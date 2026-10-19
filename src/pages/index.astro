@@ -1,0 +1,84 @@
+---
+import Base from "../layouts/Base.astro";
+import { EDICIONES, TIPOS, TIPO_META, contar, type Edition } from "../lib/content";
+import { e } from "../lib/urls";
+
+const ediciones = (["5e", "5.5"] as Edition[]).map((ed) => ({
+  ed,
+  ...EDICIONES[ed],
+  cifras: [
+    { n: contar(ed, "conjuros"), t: "conjuros" },
+    { n: contar(ed, "monstruos"), t: "monstruos" },
+    { n: contar(ed, "objetos"), t: "objetos" },
+    { n: contar(ed, "clases"), t: "clases" },
+  ].filter((c) => c.n > 0),
+}));
+---
+
+<Base
+  title="La Taberna de Eme"
+  description="Referencia completa y herramientas de mesa para D&D quinta edición y las reglas de 2024. Conjuros, monstruos, objetos, clases y generadores para el Dungeon Master."
+>
+  <section class="heroe">
+    <p class="heroe__sub">Referencia abierta para la quinta edición</p>
+    <h1>La Taberna de Eme</h1>
+    <p class="heroe__texto">
+      Todo el contenido abierto de la quinta edición y de las reglas de 2024 —conjuros, monstruos,
+      objetos, clases y reglas— más las herramientas que hacen falta en mitad de una partida.
+      Sin cuentas, sin anuncios y sin trucos.
+    </p>
+  </section>
+
+  <div class="ediciones">
+    {ediciones.map((ed) => (
+      <a class="edicion" href={e(`/${ed.ed}/`)}>
+        <p class="edicion__sello">{ed.srd} · {ed.nota}</p>
+        <p class="edicion__nombre">{ed.titulo}</p>
+        <p class="edicion__desc">
+          {ed.ed === "5e"
+            ? "Las reglas de 2014, con las razas y opciones clásicas que la revisión dejó atrás."
+            : "Las reglas revisadas de 2024: nuevas clases, maestrías de arma y trasfondos."}
+        </p>
+        <span class="edicion__cifras">
+          {ed.cifras.map((c) => (
+            <span class="badge">{c.n} {c.t}</span>
+          ))}
+        </span>
+      </a>
+    ))}
+  </div>
+
+  <section aria-labelledby="que-hay">
+    <h2 id="que-hay">Qué vas a encontrar</h2>
+    <div class="rejilla">
+      {TIPOS.map((tipo) => {
+        const n = contar("5e", tipo) + contar("5.5", tipo);
+        if (n === 0) return null;
+        return (
+          <a class="tarjeta" href={e(`/5.5/${tipo}/`)}>
+            <span class="tarjeta__nombre">
+              <span aria-hidden="true">{TIPO_META[tipo].icono}</span> {TIPO_META[tipo].plural}
+            </span>
+            <span class="tarjeta__meta">{n} entradas entre las dos ediciones</span>
+            <span class="tarjeta__texto">{TIPO_META[tipo].desc}</span>
+          </a>
+        );
+      })}
+      <a class="tarjeta" href={e("/mesa/")}>
+        <span class="tarjeta__nombre"><span aria-hidden="true">⚄</span> Herramientas de mesa</span>
+        <span class="tarjeta__meta">Generadores, iniciativa y dados</span>
+        <span class="tarjeta__texto">Encuentros por presupuesto de PX, orden de iniciativa, PNJ y botín.</span>
+      </a>
+    </div>
+  </section>
+
+  <section aria-labelledby="licencia" style="margin-top:3rem">
+    <h2 id="licencia">Contenido libre, de verdad</h2>
+    <p class="entradilla">
+      Todo el texto proviene de los documentos de referencia del sistema que Wizards of the Coast
+      publica bajo licencia Creative Commons BY 4.0, en su traducción oficial al español. Puedes
+      copiarlo, adaptarlo y usarlo, incluso comercialmente, citando la fuente.
+    </p>
+    <p><a class="boton-icono" href={e("/licencias/")}>Cómo se ha construido y qué licencias aplican →</a></p>
+  </section>
+</Base>

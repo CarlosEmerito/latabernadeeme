@@ -1,0 +1,52 @@
+---
+import { EDICIONES, TIPOS, TIPO_META, contar, type Edition, type Tipo } from "../lib/content";
+import { e } from "../lib/urls";
+
+interface Props {
+  edicion: Edition;
+  actual?: Tipo;
+}
+
+const { edicion, actual } = Astro.props;
+const meta = EDICIONES[edicion];
+const base = e(`/${edicion}`);
+---
+
+<aside class="lateral" aria-label="Contenido de la edición">
+  <p class="lateral__titulo">{meta.srd} · {meta.nota}</p>
+  <ul class="lateral__lista">
+    <li>
+      <a href={`${base}/`} aria-current={!actual ? "page" : undefined}>
+        <span class="lateral__icono" aria-hidden="true">⌂</span>
+        <span>Portada</span>
+      </a>
+    </li>
+    {TIPOS.map((tipo) => {
+      const n = contar(edicion, tipo);
+      if (n === 0) return null;
+      return (
+        <li>
+          <a href={`${base}/${tipo}/`} aria-current={actual === tipo ? "page" : undefined}>
+            <span class="lateral__icono" aria-hidden="true">{TIPO_META[tipo].icono}</span>
+            <span>{TIPO_META[tipo].plural}</span>
+            <span class="lateral__cuenta">{n}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+
+  <p class="lateral__titulo">Cambiar de edición</p>
+  <ul class="lateral__lista">
+    {(["5e", "5.5"] as Edition[]).map((otra) =>
+      otra === edicion ? null : (
+        <li>
+          <a href={e(`/${otra}${actual ? `/${actual}/` : "/"}`)}>
+            <span class="lateral__icono" aria-hidden="true">⇄</span>
+            <span>{EDICIONES[otra].srd}</span>
+          </a>
+        </li>
+      ),
+    )}
+  </ul>
+</aside>

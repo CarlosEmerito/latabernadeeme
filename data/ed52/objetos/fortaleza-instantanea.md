@@ -1,0 +1,16 @@
+---
+name: Fortaleza instantánea
+type: Objeto maravilloso
+rarity: raro
+attunement: true
+srd: '5.2'
+page: 258
+---
+
+Como acción de magia, puedes colocar esta estatuilla de adamantina de 2,5 cm en el suelo y pronunciar una palabra de activación para hacer que crezca rápidamente hasta convertirse en una torre cuadrada de adamantina. Si repites la palabra de activación, la torre volverá a convertirse en estatuilla, lo cual solo funciona si está vacía. Todas las criaturas en la zona donde aparece la torre son empujadas a un espacio sin ocupar junto a la torre, fuera de ella. Los objetos dentro del área que no lleve o vista nadie también se verán empujados de esta forma.
+
+La torre mide 6 m de lado y 9 m de altura, con aspilleras en todos los lados y almenas en la parte superior. Su interior se divide en dos plantas conectadas mediante unas escaleras, una escalera de mano o una rampa (a tu elección). Estas escaleras o rampa llevan hasta una trampilla que da al techo. Cuando se crea, la torre tiene una sola puerta en la planta baja en el lado frente a ti. La puerta se abre solo bajo tus órdenes, que puedes dar como acción adicional. Es inmune al conjuro abrir o efectos mágicos similares.
+
+La magia impide que se derribe la torre. El techo, la puerta y los muros poseen cada uno una CA de 20, 100 pg, inmunidad al daño contundente, cortante y perforante salvo que se haga con equipo de asedio, y resistencia a todo el resto de daño. Devolver la
+
+haya recibido. Solo un conjuro deseo puede reparar la torre (este uso cuenta como replicar un conjuro de nivel 8 o inferior). Cada vez que se lance deseo, la torre recupera todos sus puntos de golpe.

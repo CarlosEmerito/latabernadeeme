@@ -1,0 +1,14 @@
+{
+  "name": "La Taberna de Eme",
+  "short_name": "La Taberna",
+  "description": "Referencia y herramientas de mesa para D&D quinta edición y las reglas de 2024.",
+  "lang": "es",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#f6efdf",
+  "theme_color": "#1d1812",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

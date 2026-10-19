@@ -1,0 +1,125 @@
+---
+import Base from "../../layouts/Base.astro";
+import { EDICIONES, TIPOS, TIPO_META, contar, type Edition } from "../../lib/content";
+
+const filas = (["5e", "5.5"] as Edition[]).map((ed) => ({
+  ed,
+  srd: EDICIONES[ed].srd,
+  tipos: TIPOS.map((t) => ({ t, n: contar(ed, t) })).filter((x) => x.n > 0),
+}));
+---
+
+<Base
+  title="Licencias y fuentes"
+  description="Qué contenido usa esta web, bajo qué licencia y qué se ha quedado fuera por derechos de autor o marcas."
+>
+  <article class="ficha">
+    <header class="ficha__cabecera">
+      <p class="ceja">Transparencia</p>
+      <h1 class="ficha__nombre">Licencias y fuentes</h1>
+      <p class="entradilla">
+        Esta web existe porque Wizards of the Coast publicó las reglas de la quinta edición bajo una
+        licencia libre. Aquí está exactamente qué se usa, qué obligaciones tiene y qué no se ha
+        incluido.
+      </p>
+    </header>
+
+    <div class="prosa">
+      <h2>De dónde sale el texto</h2>
+      <p>
+        Todo el contenido proviene de los <strong>documentos de referencia del sistema</strong> en su
+        traducción oficial al español:
+      </p>
+      <ul>
+        <li>
+          <strong>SRD 5.1</strong> (<em>System Reference Document</em> de 2014), publicado por
+          Wizards of the Coast LLC y disponible en
+          <a href="https://www.dndbeyond.com/srd" rel="noopener">dndbeyond.com/srd</a>.
+        </li>
+        <li>
+          <strong>SRD 5.2.1</strong> (reglas de 2024), del mismo editor y en la misma dirección.
+        </li>
+      </ul>
+      <p>
+        Ambos se distribuyen bajo la licencia
+        <a href="https://creativecommons.org/licenses/by/4.0/legalcode.es" rel="noopener"
+          >Creative Commons Atribución 4.0 Internacional (CC BY 4.0)</a
+        >. Esa licencia permite copiar, transformar y redistribuir el material, incluso con fines
+        comerciales, siempre que se atribuya la autoría. Es irrevocable: Wizards no puede retirarla.
+      </p>
+
+      <h2>Texto de atribución</h2>
+      <blockquote>
+        <p>
+          Esta obra incluye material procedente del documento de referencia del sistema 5.2.1
+          («SRD 5.2.1») de Wizards of the Coast LLC, disponible en
+          https://www.dndbeyond.com/srd. La licencia sobre el SRD 5.2.1 se concede de acuerdo con la
+          licencia internacional de atribución/reconocimiento 4.0 de Creative Commons, disponible en
+          https://creativecommons.org/licenses/by/4.0/legalcode.
+        </p>
+        <p>
+          Esta obra incluye material procedente del documento de referencia del sistema 5.1
+          («SRD 5.1») de Wizards of the Coast LLC, disponible en
+          https://www.dndbeyond.com/srd. La licencia sobre el SRD 5.1 se concede de acuerdo con la
+          licencia internacional de atribución/reconocimiento 4.0 de Creative Commons, disponible en
+          https://creativecommons.org/licenses/by/4.0/legalcode.
+        </p>
+      </blockquote>
+
+      <h2>Qué hay y cuánto</h2>
+      <table>
+        <thead>
+          <tr><th>Documento</th><th>Tipo</th><th>Entradas</th></tr>
+        </thead>
+        <tbody>
+          {filas.map((f) =>
+            f.tipos.map((x) => (
+              <tr>
+                <td>{f.srd}</td>
+                <td>{TIPO_META[x.t].plural}</td>
+                <td>{x.n}</td>
+              </tr>
+            )),
+          )}
+        </tbody>
+      </table>
+
+      <h2>Qué no está, y por qué</h2>
+      <p>
+        El SRD es el subconjunto de los libros que Wizards publica como abierto. No es la obra
+        completa, y lo que queda fuera no se puede copiar:
+      </p>
+      <ul>
+        <li><strong>Marca</strong>: «Dungeons &amp; Dragons», «D&amp;D», el ampersand y los logotipos son marcas registradas. Esta web no las usa como identidad y no está afiliada ni respaldada por Wizards of the Coast.</li>
+        <li><strong>Ambientación y nombres propios</strong>: Reinos Olvidados, Strahd, Tiamat, Vecna y similares no aparecen en el SRD.</li>
+        <li><strong>Monstruos emblemáticos</strong>: el beholder y los azotamentes están excluidos por marca. El artífice, el aasimar y las reglas de bastiones tampoco están en el SRD 5.2.</li>
+        <li><strong>Arte y maquetación</strong>: las ilustraciones de los manuales tienen derechos propios. Aquí no se reproduce ninguna.</li>
+        <li><strong>Aventuras</strong>: no son contenido abierto.</li>
+      </ul>
+      <p>
+        Por eso esta herramienta no es «los libros en una web»: es todo el <em>motor</em> del juego y
+        toda la consulta de mesa, que es la parte que el SRD libera. Si algún día quieres el
+        contenido cerrado, la vía legal es otro tipo de licencia, no copiarlo.
+      </p>
+
+      <h2>Cómo está construido</h2>
+      <p>
+        El texto se extrae de los PDF oficiales en español, se normaliza a un fichero Markdown por
+        entidad y se valida contra el original: recuentos por sección y comprobación de campos
+        obligatorios. El código y los datos están en un repositorio de GitHub; los datos conservan
+        la licencia CC BY 4.0 y el código es tuyo para mirarlo.
+      </p>
+      <p>
+        Tipografías: <strong>EB Garamond</strong> e <strong>Inter</strong>, ambas bajo SIL Open Font
+        License 1.1, autoalojadas (ninguna petición a terceros).
+      </p>
+
+      <h2>Atribución de la traducción</h2>
+      <p>
+        Las traducciones al español del SRD las publica Wizards of the Coast junto al documento
+        original, y están cubiertas por la misma licencia CC BY 4.0. No se ha usado ninguna
+        traducción de terceros.
+      </p>
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,138 @@
+---
+import type { Entrada, Edition, Tipo } from "../lib/content";
+import { enlazarConjuros } from "../lib/content";
+
+interface Props {
+  entrada: Entrada;
+  edicion: Edition;
+  tipo: Tipo;
+}
+
+const { entrada, edicion, tipo } = Astro.props;
+const d = entrada.data;
+const html = enlazarConjuros(entrada.html, edicion, tipo);
+
+const nivelTexto = (n: number) => (n === 0 ? "Truco" : `Nivel ${n}`);
+const modificador = (v: number) => {
+  const m = Math.floor((v - 10) / 2);
+  return m >= 0 ? `+${m}` : `−${Math.abs(m)}`;
+};
+const ABREV: Record<string, string> = { fue: "Fue", des: "Des", con: "Con", int: "Int", sab: "Sab", car: "Car" };
+const tieneHab = d.abilities && Object.keys(d.abilities).length === 6;
+const lineas = [
+  ["Tiradas de salvación", d.saves],
+  ["Habilidades", d.skills],
+  ["Resistencia a daño", d.resistances],
+  ["Inmunidad a daño", d.immunities],
+  ["Inmunidad a estados", d.conditionImmunities],
+  ["Vulnerabilidad a daño", d.vulnerabilities],
+  ["Sentidos", d.senses],
+  ["Idiomas", d.languages],
+  ["Equipo", d.gear],
+].filter(([, v]) => v) as [string, string][];
+---
+
+<article class="ficha">
+  <header class="ficha__cabecera">
+    <h1 class="ficha__nombre">{d.name}</h1>
+
+    {tipo === "conjuros" && (
+      <p class="ficha__meta">
+        <span class="badge badge--acento">{nivelTexto(d.level)} · {d.school}</span>
+        {d.ritual && <span class="badge">Ritual</span>}
+        {d.concentration && <span class="badge badge--oro">Concentración</span>}
+        {Array.isArray(d.classes) && d.classes.length > 0 && (
+          <span>{d.classes.join(" · ")}</span>
+        )}
+      </p>
+    )}
+
+    {tipo === "monstruos" && (
+      <p class="ficha__meta">
+        <span class="badge badge--acento">VD {d.cr}</span>
+        <span>{d.size} {String(d.type).toLowerCase()}{d.tags ? ` (${d.tags})` : ""}, {d.alignment}</span>
+      </p>
+    )}
+
+    {tipo === "objetos" && (
+      <p class="ficha__meta">
+        {d.rarity && <span class="badge badge--oro">{d.rarity}</span>}
+        {d.attunement && <span class="badge">Requiere sintonización</span>}
+        <span>{d.type}</span>
+      </p>
+    )}
+
+    {tipo === "equipo" && (
+      <p class="ficha__meta">
+        {d.category && <span class="badge">{d.category}</span>}
+        {d.price && <span>{d.price}</span>}
+        {d.weight && <span>{d.weight}</span>}
+      </p>
+    )}
+
+    {tipo === "clases" && (
+      <p class="ficha__meta">
+        {d.hitDie && <span class="badge badge--acento">Dado de golpe {d.hitDie}</span>}
+        {d.primaryAbility && <span>{d.primaryAbility}</span>}
+        {Array.isArray(d.saves) && d.saves.length > 0 && <span>Salvaciones: {d.saves.join(", ")}</span>}
+      </p>
+    )}
+
+    {tipo === "dotes" && (
+      <p class="ficha__meta">
+        {d.category && <span class="badge badge--oro">{d.category}</span>}
+        {d.prerequisite && <span>{d.prerequisite}</span>}
+      </p>
+    )}
+  </header>
+
+  {tipo === "monstruos" && (
+    <section class="perfil" aria-label="Perfil de combate">
+      <p class="perfil__tipo">{d.size} {String(d.type).toLowerCase()}{d.tags ? ` (${d.tags})` : ""}, {d.alignment}</p>
+      <p class="perfil__linea"><b>Clase de Armadura:</b> {d.ac}</p>
+      <p class="perfil__linea"><b>Puntos de golpe:</b> {d.hp}</p>
+      <p class="perfil__linea"><b>Velocidad:</b> {d.speed}</p>
+      {d.initiative && <p class="perfil__linea"><b>Iniciativa:</b> {d.initiative}</p>}
+
+      {tieneHab && (
+        <div class="caracteristicas">
+          {(["fue", "des", "con", "int", "sab", "car"] as const).map((k) => (
+            <div class="caracteristicas__celda">
+              <div class="caracteristicas__nombre">{ABREV[k]}</div>
+              <div class="caracteristicas__valor">{d.abilities[k]}</div>
+              <div class="caracteristicas__mod">{modificador(Number(d.abilities[k]))}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div class="perfil__separador"></div>
+
+      {lineas.map(([etiqueta, valor]) => (
+        <p class="perfil__linea"><b>{etiqueta}:</b> {valor}</p>
+      ))}
+      <p class="perfil__linea">
+        <b>Desafío:</b> {d.cr} ({d.xp}){d.proficiency ? ` · Competencia ${d.proficiency}` : ""}
+      </p>
+    </section>
+  )}
+
+  {tipo === "conjuros" && (
+    <section class="perfil" aria-label="Datos del conjuro">
+      <p class="perfil__linea"><b>Tiempo de lanzamiento:</b> {d.castingTime}</p>
+      <p class="perfil__linea"><b>Alcance:</b> {d.range}</p>
+      <p class="perfil__linea"><b>Componentes:</b> {d.components}</p>
+      <p class="perfil__linea"><b>Duración:</b> {d.duration}</p>
+      {Array.isArray(d.classes) && d.classes.length > 0 && (
+        <p class="perfil__linea"><b>Clases:</b> {d.classes.join(", ")}</p>
+      )}
+    </section>
+  )}
+
+  <div class="prosa" set:html={html} />
+
+  <p class="noprint" style="margin-top:2.5rem;font-family:var(--fuente-ui);font-size:.8rem;color:var(--tinta-tenue)">
+    Fuente: {edicion === "5e" ? "SRD 5.1" : "SRD 5.2.1"}, página {d.page} del documento en español.
+    Contenido bajo CC BY 4.0.
+  </p>
+</article>

@@ -1,0 +1,76 @@
+---
+import Base from "../../layouts/Base.astro";
+import { e } from "../../lib/urls";
+---
+
+<Base title="Buscar" description="Busca en todos los conjuros, monstruos, objetos, clases y reglas de las dos ediciones.">
+  <p class="ceja">Índice completo</p>
+  <h1>Buscar</h1>
+  <p class="entradilla">
+    El buscador se genera en cada compilación e indexa todo el texto del SRD que hay en la web:
+    conjuros, monstruos, objetos, clases, especies, trasfondos, dotes y reglas, en las dos ediciones.
+  </p>
+
+  <div id="busqueda" class="panel">
+    <p style="margin:0;color:var(--tinta-suave)">
+      El índice se carga al abrir la página. Si acabas de desplegar, puede tardar unos segundos.
+    </p>
+  </div>
+
+  <noscript>
+    <p class="panel">
+      El buscador necesita JavaScript. Mientras tanto, puedes navegar por los listados de cada
+      edición, que sí funcionan sin él.
+    </p>
+  </noscript>
+
+  <link rel="stylesheet" href={e("/pagefind/pagefind-ui.css")} />
+  <script is:inline src={e("/pagefind/pagefind-ui.js")}></script>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+      if (typeof window.PagefindUI === "undefined") return;
+      const contenedor = document.getElementById("busqueda");
+      if (contenedor) contenedor.innerHTML = "";
+      new window.PagefindUI({
+        element: "#busqueda",
+        showSubResults: true,
+        showImages: false,
+        resetStyles: false,
+        translations: {
+          placeholder: "Bola de fuego, goblin, cota de malla…",
+          clear_search: "Limpiar",
+          load_more: "Ver más resultados",
+          search_label: "Buscar en La Taberna de Eme",
+          filters_label: "Filtros",
+          zero_results: "Sin resultados para [SEARCH_TERM]",
+          many_results: "[COUNT] resultados para [SEARCH_TERM]",
+          one_result: "1 resultado para [SEARCH_TERM]",
+          alt_search: "Sin resultados para [SEARCH_TERM]. Mostrando resultados de [DIFFERENT_TERM]",
+          search_suggestion: "Prueba con otra palabra",
+          searching: "Buscando [SEARCH_TERM]…",
+        },
+      });
+    });
+  </script>
+
+  <style is:inline>
+    .pagefind-ui {
+      --pagefind-ui-primary: var(--acento);
+      --pagefind-ui-text: var(--tinta);
+      --pagefind-ui-background: var(--panel);
+      --pagefind-ui-border: var(--borde);
+      --pagefind-ui-tag: var(--fondo-alt);
+      --pagefind-ui-border-radius: 6px;
+      --pagefind-ui-font: var(--fuente-ui);
+    }
+    .pagefind-ui .pagefind-ui__search-input {
+      font-family: var(--fuente-ui);
+      background: var(--panel-alto);
+      color: var(--tinta);
+    }
+    .pagefind-ui .pagefind-ui__result-link {
+      font-family: var(--fuente-texto);
+      font-size: 1.15rem;
+    }
+  </style>
+</Base>

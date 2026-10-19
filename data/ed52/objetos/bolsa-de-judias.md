@@ -1,0 +1,156 @@
+---
+name: Bolsa de judías
+type: Objeto maravilloso
+rarity: raro
+attunement: false
+srd: '5.2'
+page: 243
+---
+
+Dentro de esta pesada bolsa de tela hay 3d4 judías secas. La bolsa pesa 250 g, independientemente de cuántas judías contenga, y se convierte en un objeto no mágico cuando no le queden judías.
+
+Si vuelcas la bolsa y dejas caer una o más judías, explotan en una esfera de 3 m de radio centrada en ellas. Todas las judías que caigan quedan destruidas en la explosión, y todas las criaturas en la esfera, incluyéndote a ti, hacen una tirada de salvación de Destreza con CD 15; sufrirán 5d4 de daño de fuerza si la fallan o la mitad del daño si la superan.
+
+Si sacas una judía de la bolsa, la plantas en tierra o arena y la riegas, la judía desaparecerá y producirá un efecto 1 minuto después en el suelo donde la hayas plantado. Tu GM puede escoger un efecto de la siguiente tabla o determinarlo al azar.
+
+1d100 Efecto
+
+01 Brotan 5d4 hongos venenosos. Si una cria-
+
+tura come un hongo, tira un dado. Si el re-
+
+sultado es impar, la criatura deberá superar
+
+una tirada de salvación de Constitución con
+
+CD 15 o recibirá 5d6 de daño de veneno
+
+y tendrá el estado de envenenada durante
+
+1 hora. Si el resultado es par, la criatura ob-
+
+tendrá 5d6 puntos de golpe temporales que
+
+durarán 1 hora.
+
+02–10 Un géiser emerge del suelo y expulsa a
+
+borbotones agua, cerveza, mayonesa, té,
+
+vinagre, vino o aceite (a elección de tu GM).
+
+El chorro tiene una altura de 9 m y dura
+
+1d4 minutos.
+
+11–20 Un ent brota del suelo. Tira cualquier dado.
+
+Si el resultado es impar, el ent es caótico
+
+malvado. Si el resultado es par, el ent es caó-
+
+tico bueno.
+
+21–30 Aparece una estatua de piedra animada e in-
+
+móvil con tu apariencia y te amenaza verbal-
+
+mente. Si la abandonas y otros se acercan,
+
+la estatua te describirá como el más vil de
+
+los villanos y mandará a los recién llegados
+
+a buscarte y atacarte. Si estás en el mismo
+
+plano de existencia que la estatua, sabrá
+
+donde estás. La estatua se volverá inanimada
+
+al cabo de 24 horas.
+
+1d100 Efecto
+
+31–40 Surge una hoguera de llamas verdes que
+
+arderá durante 24 horas o hasta que la
+
+apaguen.
+
+41–50 Del suelo brotan tres hongos chillones.
+
+51–60 De entre la tierra surgen 1d4 + 4 sapos de
+
+color rosa intenso. Cuando se toque a uno,
+
+este se transforma en un monstruo Grande
+
+o más pequeño a elección de tu GM que
+
+actúa según su alineamiento y naturaleza.
+
+El monstruo permanece durante 1 minuto
+
+y luego desaparece en una nube de humo
+
+rosa intenso.
+
+61–70 Un bulette hambriento sale excavando de
+
+la tierra y ataca.
+
+71–80 Crece un árbol frutal. Tiene 1d10 + 20 fru-
+
+tas, de las cuales 1d8 se comportan como
+
+pociones determinadas al azar. El árbol se
+
+desvanece tras 1 hora. La fruta recogida per-
+
+manece y conserva la magia durante 30 días.
+
+81–90 Aparece un nido con 1d4 + 3 huevos de los
+
+colores del arcoíris. Cualquier criatura que
+
+se coma uno de estos huevos hace una tirada
+
+de salvación de Constitución con CD 20.
+
+Si la supera, aumentará su puntuación de
+
+característica más baja en 1 de forma perma-
+
+nente (se elegirá al azar la puntuación si hay
+
+varias puntuaciones que empatan como la
+
+más baja). Si la falla, la criatura recibirá 10d6
+
+de daño de fuerza debido a una explosión
+
+interna.
+
+91–95 Una pirámide con una base cuadrada de
+
+18 m de lado emerge del suelo. Dentro hay
+
+un mausoleo con una momia, un señor de
+
+las momias u otro muerto viviente a elec-
+
+ción de tu GM. El sarcófago contiene tesoros
+
+a elección de tu GM.
+
+96–00 Brota un tallo de judías gigante que crece
+
+hasta la altura que decida tu GM, que tam-
+
+bién elige adónde conduce la parte superior.
+
+Por ejemplo, podría dar a un hermoso mi-
+
+rador, al castillo de un gigante de las nubes
+
+o a otro plano de existencia.

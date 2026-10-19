@@ -1,0 +1,20 @@
+---
+name: Vara de la absorción
+type: Vara
+rarity: muy raro
+attunement: true
+srd: '5.1'
+page: 265
+---
+
+Mientras empuñes esta vara, podrás utilizar tu reacción para absorber un conjuro que solo te haga objetivo a ti y no tenga un área de efecto. El efecto del conjuro absorbido se cancelará y la energía del conjuro (no el conjuro en sí) se almacenará en la vara. La energía tiene el mismo nivel que el conjuro cuando se lanzó. La vara puede absorber y almacenar hasta 50 niveles de energía a lo largo de su existencia. En cuanto la vara absorba 50 niveles
+
+=== PÁGINA 266 ===
+
+de energía, no podrá absorber más. Si eres el objetivo de un conjuro que la vara no puede almacenar, esta no tendrá efecto sobre ese conjuro.
+
+Cuando te sintonizas con la vara, sabes cuántos niveles de energía ha absorbido a lo largo de su existencia y cuántos niveles de energía de conjuro están almacenados en ella en ese momento.
+
+Si eres un lanzador de conjuros y empuñas esta vara, podrás convertir la energía almacenada en ella en espacios de conjuro para lanzar conjuros que hayas preparado o conozcas. Solamente puedes crear espacios de conjuro de un nivel igual o inferior al mayor de tus espacios de conjuro, como máximo de nivel 5. Puedes utilizar los niveles almacenados en lugar de tus espacios de conjuro, pero, por lo demás, lanzarás el conjuro de forma normal. Por ejemplo, puedes utilizar 3 niveles almacenados en la vara como un espacio de conjuro de nivel 3.
+
+Una vara recién encontrada tiene 1d10 niveles de energía de conjuros ya almacenados. Una vara que ya no pueda absorber la energía de los conjuros y a la que no le quede nada de energía almacenada se volverá no mágica.

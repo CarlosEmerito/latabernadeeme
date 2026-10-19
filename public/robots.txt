@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://carlosemerito.github.io/latabernadeeme/sitemap-index.xml

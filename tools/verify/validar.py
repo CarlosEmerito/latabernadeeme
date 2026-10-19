@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+"""Verifica la integridad de `data/` y escribe un informe.
+
+Comprueba, por edición y tipo de contenido:
+  - número de entradas frente a los recuentos de referencia del SRD,
+  - campos obligatorios vacíos,
+  - cuerpos vacíos o desproporcionados (síntoma de un corte mal hecho),
+  - duplicados por nombre.
+
+Uso:
+    .venv-ingest/bin/python tools/verify/validar.py
+"""
+from __future__ import annotations
+
+import re
+import sys
+import unicodedata
+from collections import Counter
+from pathlib import Path
+
+import yaml
+
+RAIZ = Path(__file__).resolve().parents[2]
+DATOS = RAIZ / "data"
+INFORME = RAIZ / "docs" / "informes" / "validacion.md"
+
+# Recuentos del SRD en español, comprobados contra los documentos oficiales.
+REFERENCIA = {
+    ("ed51", "conjuros"): 319,
+    ("ed51", "monstruos"): 302,
+    ("ed52", "conjuros"): 339,
+    ("ed52", "monstruos"): 315,
+}
+
+OBLIGATORIOS = {
+    "conjuros": ["name", "level", "school", "castingTime", "range", "components", "duration"],
+    "monstruos": ["name", "size", "type", "ac", "hp", "speed", "cr"],
+    "objetos": ["name", "type"],
+    "clases": ["name"],
+    "especies": ["name"],
+    "trasfondos": ["name"],
+    "dotes": ["name"],
+    "equipo": ["name"],
+    "reglas": ["name"],
+}
+
+
+def leer(ruta: Path) -> tuple[dict, str] | None:
+    raw = ruta.read_text(encoding="utf-8")
+    m = re.match(r"^---\r?\n([\s\S]*?)\r?\n---\r?\n?", raw)
+    if not m:
+        return None
+    try:
+        datos = yaml.safe_load(m.group(1)) or {}
+    except yaml.YAMLError as e:
+        print(f"  YAML inválido en {ruta}: {e}")
+        return None
+    return datos, raw[m.end() :]
+
+
+def main() -> int:
+    lineas = ["# Informe de validación", "", "Generado por `tools/verify/validar.py`.", ""]
+    problemas = 0
+    total = 0
+
+    for ed in sorted(p.name for p in DATOS.iterdir() if p.is_dir()):
+        for carpeta in sorted(p for p in (DATOS / ed).iterdir() if p.is_dir()):
+            tipo = carpeta.name
+            ficheros = sorted(carpeta.glob("*.md"))
+            total += len(ficheros)
+            vacios: list[str] = []
+            faltan: list[str] = []
+            largos: list[str] = []
+            nombres: Counter[str] = Counter()
+
+            for f in ficheros:
+                contenido = leer(f)
+                if contenido is None:
+                    faltan.append(f"{f.name} (sin frontmatter válido)")
+                    continue
+                datos, cuerpo = contenido
+                nombres[str(datos.get("name", "")).strip().lower()] += 1
+                for campo in OBLIGATORIOS.get(tipo, ["name"]):
+                    if datos.get(campo) in (None, "", []):
+                        faltan.append(f"{f.name}: {campo}")
+                if len(cuerpo.strip()) == 0:
+                    vacios.append(f.name)
+                elif len(cuerpo) > 12_000:
+                    largos.append(f"{f.name} ({len(cuerpo)} caracteres)")
+
+            duplicados = [n for n, c in nombres.items() if c > 1 and n]
+            referencia = REFERENCIA.get((ed, tipo))
+            estado = "OK"
+            if referencia is not None and len(ficheros) != referencia:
+                estado = f"DESCUADRE ({len(ficheros)} de {referencia})"
+                problemas += 1
+            if faltan or vacios or largos:
+                problemas += 1
+
+            lineas.append(f"## {ed} · {tipo} — {len(ficheros)} entradas · {estado}")
+            if faltan:
+                lineas.append(f"- Campos vacíos: **{len(faltan)}**")
+                lineas += [f"  - `{x}`" for x in faltan[:15]]
+                if len(faltan) > 15:
+                    lineas.append(f"  - …y {len(faltan) - 15} más")
+            if vacios:
+                lineas.append(f"- Cuerpos vacíos: **{len(vacios)}** ({', '.join(vacios[:10])})")
+            if largos:
+                lineas.append(f"- Cuerpos sospechosamente largos: **{len(largos)}** ({', '.join(largos[:5])})")
+            if duplicados:
+                lineas.append(f"- Nombres repetidos: {len(duplicados)} ({', '.join(duplicados[:8])})")
+            lineas.append("")
+
+    lineas.insert(3, f"Total de entradas: **{total}**. Bloques con incidencias: **{problemas}**.")
+    INFORME.parent.mkdir(parents=True, exist_ok=True)
+    INFORME.write_text("\n".join(lineas), encoding="utf-8")
+    print("\n".join(lineas[:8]))
+    print(f"\nInforme completo en {INFORME}")
+    return 1 if problemas else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,82 @@
+---
+name: Anillo de comandar elementales
+type: Anillo
+rarity: legendario
+attunement: true
+srd: '5.1'
+page: 224
+---
+
+Este anillo está vinculado a uno de los cuatro Planos Elementales. Tu GM elige el plano o lo determina al azar.
+
+Mientras lo lleves puesto, tendrás ventaja en las tiradas de ataque contra elementales del plano vinculado y ellos tendrán desventaja en las tiradas de ataque contra ti. Además, tendrás acceso a ciertas propiedades en función del plano vinculado.
+
+El anillo tiene 5 cargas. Recupera 1d4 +1 cargas empleadas cada día, al amanecer. Los conjuros
+
+=== PÁGINA 225 ===
+
+lanzados desde el anillo tienen una CD de salvación de 17.
+
+Anillo de comandar elementales de agua. Puedes gastar 2 de las cargas del anillo para lanzar el conjuro dominar monstruo sobre un elemental de agua. Además, puedes permanecer de pie sobre superficies líquidas y andar por ellas como si fueran terreno firme. También puedes hablar y entender acuano.
+
+Si ayudas a matar a un elemental de agua mientras tengas sintonización con el anillo, accedes las siguientes propiedades adicionales:
+
+• Puedes respirar bajo el agua y obtienes una
+
+velocidad nadando igual a tu velocidad caminando. • Puedes lanzar los siguientes conjuros desde el
+
+anillo empleando las cargas necesarias: crear
+
+o destruir agua (1 carga), controlar agua
+
+(3 cargas), muro de hielo (3 cargas) o tormenta
+
+de hielo (2 cargas).
+
+Anillo de comandar elementales de aire. Puedes gastar 2 de las cargas del anillo para lanzar el conjuro dominar monstruo sobre un elemental de aire. Además, cuando caigas, descenderás 18 m por asalto y no sufrirás daño por la caída. También puedes hablar y entender aurano.
+
+Si ayudas a matar a un elemental de aire mientras tengas sintonización con el anillo, accedes las siguientes propiedades adicionales:
+
+• Tienes resistencia al daño de relámpago. • Tienes una velocidad volando igual a tu velocidad
+
+caminando y puedes levitar. • Puedes lanzar los siguientes conjuros desde el
+
+anillo empleando las cargas necesarias: muro
+
+de viento (1 carga), ráfaga de viento (2 cargas)
+
+o relámpago en cadena (3 cargas).
+
+Anillo de comandar elementales de fuego. Puedes gastar 2 de las cargas del anillo para lanzar el conjuro dominar monstruo sobre un elemental de fuego. Además, tienes resistencia al daño de fuego. También puedes hablar y entender ígneo.
+
+Si ayudas a matar a un elemental de fuego mientras tengas sintonización con el anillo, accedes las siguientes propiedades adicionales:
+
+• Eres inmune al daño de fuego. • Puedes lanzar los siguientes conjuros desde
+
+el anillo empleando las cargas necesarias: bola
+
+de fuego (2 cargas), manos ardientes (1 carga)
+
+o muro de fuego (3 cargas).
+
+Anillo de comandar elementales de tierra. Puedes gastar 2 de las cargas del anillo para lanzar el conjuro dominar monstruo sobre un elemental de
+
+tierra. Además, puedes moverte por terreno difícil compuesto de escombros, rocas o tierra como si fuera terreno normal. También puedes hablar y entender terrano.
+
+Si ayudas a matar a un elemental de tierra mientras tengas sintonización con el anillo, accedes las siguientes propiedades adicionales:
+
+• Tienes resistencia al daño de ácido. • Puedes moverte a través de tierra sólida o roca
+
+como si estas superficies fueran terreno difícil.
+
+Si acabas tu turno en ellas, irás a parar al espacio
+
+sin ocupar más cercano en el que estuviste por
+
+última vez. • Puedes lanzar los siguientes conjuros desde el
+
+anillo empleando las cargas necesarias: moldear
+
+la piedra (2 cargas), muro de piedra (3 cargas)
+
+o piel pétrea (3 cargas).

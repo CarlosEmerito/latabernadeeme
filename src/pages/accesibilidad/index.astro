@@ -1,0 +1,48 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+
+<Base
+  title="Accesibilidad"
+  description="Cómo está pensada la accesibilidad de La Taberna de Eme y qué límites conocidos tiene."
+>
+  <article class="ficha">
+    <header class="ficha__cabecera">
+      <p class="ceja">Compromiso</p>
+      <h1 class="ficha__nombre">Accesibilidad</h1>
+      <p class="entradilla">
+        Esto es una herramienta de consulta en mitad de una partida: si no se puede leer ni navegar
+        con rapidez, no sirve. El objetivo es cumplir las pautas WCAG 2.2 en nivel AA.
+      </p>
+    </header>
+
+    <div class="prosa">
+      <h2>Qué está implementado</h2>
+      <ul>
+        <li><strong>Contraste</strong>: todos los textos superan el 4,5:1 en ambos temas; los títulos y el cuerpo van por encima del 7:1 en el tema claro.</li>
+        <li><strong>Teclado</strong>: se puede recorrer todo el sitio sin ratón, con foco visible en cada elemento interactivo y un enlace de «saltar al contenido» al principio.</li>
+        <li><strong>Estructura</strong>: un solo <code>h1</code> por página, jerarquía de encabezados sin saltos, regiones con <code>landmark</code> y listas semánticas.</li>
+        <li><strong>Formularios</strong>: cada filtro y cada campo tiene su etiqueta asociada; los resultados se anuncian con <code>aria-live</code>.</li>
+        <li><strong>Sin dependencia de JavaScript para leer</strong>: los listados se generan en el servidor; el filtrado es una mejora. Si el script falla, ves todo el contenido igualmente.</li>
+        <li><strong>Movimiento reducido</strong>: se respeta <code>prefers-reduced-motion</code>; no hay animaciones que duren más de un instante.</li>
+        <li><strong>Tema</strong>: claro y oscuro, con detección de la preferencia del sistema y conmutador manual que se recuerda entre visitas.</li>
+        <li><strong>Zoom</strong>: el diseño aguanta el 200 % de ampliación sin scroll horizontal en las columnas de texto; las tablas anchas tienen su propio desplazamiento.</li>
+        <li><strong>Impresión</strong>: las fichas de conjuro y los perfiles de monstruo se imprimen sin menús ni pie, en blanco y negro legible.</li>
+      </ul>
+
+      <h2>Cómo comprobarlo</h2>
+      <p>
+        Las comprobaciones automáticas cubren una parte: estructura, etiquetas, contraste y orden de
+        encabezados. La navegación con teclado y con lector de pantalla se prueba a mano. Si
+        encuentras una barrera, es un fallo y hay que arreglarlo, no una limitación aceptable.
+      </p>
+
+      <h2>Límites conocidos</h2>
+      <ul>
+        <li>El texto proviene de los PDF del SRD: algunas tablas de clases conservan un orden de celdas mejorable al leerlas en línea.</li>
+        <li>El buscador (Pagefind) necesita JavaScript. Los listados por edición no.</li>
+        <li>No hay versión en lectura fácil ni traducción a lengua de signos; el contenido es técnico por naturaleza.</li>
+      </ul>
+    </div>
+  </article>
+</Base>

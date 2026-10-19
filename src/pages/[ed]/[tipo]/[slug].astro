@@ -1,0 +1,51 @@
+---
+import Base from "../../../layouts/Base.astro";
+import Lateral from "../../../components/Lateral.astro";
+import Detalle from "../../../components/Detalle.astro";
+import { EDICIONES, TIPO_META, cargar, type Edition, type Tipo, TIPOS } from "../../../lib/content";
+import { e } from "../../../lib/urls";
+
+export function getStaticPaths() {
+  const rutas: { params: { ed: string; tipo: string; slug: string } }[] = [];
+  for (const ed of ["5e", "5.5"] as Edition[]) {
+    for (const tipo of TIPOS) {
+      for (const e of cargar(ed, tipo)) {
+        rutas.push({ params: { ed, tipo, slug: e.slug } });
+      }
+    }
+  }
+  return rutas;
+}
+
+const ed = Astro.params.ed as Edition;
+const tipo = Astro.params.tipo as Tipo;
+const slug = Astro.params.slug!;
+const entrada = cargar(ed, tipo).find((e) => e.slug === slug);
+
+if (!entrada) {
+  return Astro.redirect(e("/404/"));
+}
+
+const meta = EDICIONES[ed];
+const t = TIPO_META[tipo];
+const titulo = String(entrada.data.name);
+const descripcion =
+  tipo === "monstruos"
+    ? `${titulo}, VD ${entrada.data.cr} (${meta.srd}).`
+    : tipo === "conjuros"
+      ? `${titulo}, ${entrada.data.level === 0 ? "truco" : `conjuro de nivel ${entrada.data.level}`} de ${entrada.data.school} (${meta.srd}).`
+      : `${titulo} (${meta.srd}).`;
+---
+
+<Base title={titulo} description={descripcion}>
+  <div class="con-lateral">
+    <Lateral edicion={ed} actual={tipo} />
+    <div>
+      <nav aria-label="Migas de pan" class="ceja" style="margin-bottom:1rem">
+        <a href={e(`/${ed}/`)} style="color:inherit">{meta.srd}</a> ›
+        <a href={e(`/${ed}/${tipo}/`)} style="color:inherit"> {t.plural}</a>
+      </nav>
+      <Detalle entrada={entrada} edicion={ed} tipo={tipo} />
+    </div>
+  </div>
+</Base>

@@ -9,6 +9,7 @@ interface Props {
   ruta?: string;
 }
 
+const SITIO = "La Taberna de Eme";
 const { title, description = "Herramientas y referencia para jugadores y Dungeon Masters de la quinta edición.", edicion, ruta = "" } = Astro.props;
 const rutaActual = Astro.url.pathname.replace(/\/$/, "") || "/";
 const esActiva = (href: string) => (rutaActual === href ? "page" : undefined);
@@ -19,7 +20,7 @@ const esActiva = (href: string) => (rutaActual === href ? "page" : undefined);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} · La Taberna de Eme</title>
+    <title>{title === SITIO ? title : `${title} · ${SITIO}`}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#f6efdf" media="(prefers-color-scheme: light)" />

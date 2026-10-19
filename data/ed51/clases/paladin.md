@@ -120,15 +120,9 @@ Puedes cambiar los conjuros que tienes preparados tras finalizar un descanso lar
 
 El Carisma es tu aptitud mágica en lo que respecta a tus conjuros de paladín, ya que su poder proviene de la fuerza de tus convicciones. Utilizarás tu Carisma siempre que un conjuro haga referencia a tu aptitud mágica. Además, también usarás tu modificador por Carisma para determinar la CD de las tiradas de salvación de los conjuros de paladín y para hacer tiradas de ataque con uno de estos conjuros.
 
-CD de salvación de conjuros =
+CD de salvación de conjuros = 8 + tu bonificador por competencia + tu modificador por Carisma Modificador de ataque de conjuros =
 
-8 + tu bonificador por competencia +
-
-tu modificador por Carisma Modificador de ataque de conjuros =
-
-tu bonificador por competencia +
-
-tu modificador por Carisma
+tu bonificador por competencia + tu modificador por Carisma
 
 #### Canalizador mágico
 

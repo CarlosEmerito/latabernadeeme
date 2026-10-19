@@ -34,7 +34,7 @@ const lineas = [
 
 <article class="ficha">
   <header class="ficha__cabecera">
-    <h1 class="ficha__nombre">{d.name}</h1>
+    <h1 class="ficha__nombre" data-pagefind-weight="10">{d.name}</h1>
 
     {tipo === "conjuros" && (
       <p class="ficha__meta">
@@ -46,6 +46,10 @@ const lineas = [
         )}
       </p>
     )}
+
+    <p class="noprint" style="margin:.6rem 0 0">
+      <button class="boton-icono" type="button" onclick="window.print()">🖨 Imprimir esta ficha</button>
+    </p>
 
     {tipo === "monstruos" && (
       <p class="ficha__meta">

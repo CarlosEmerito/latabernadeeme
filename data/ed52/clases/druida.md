@@ -5,7 +5,7 @@ primaryAbility: Sabiduría
 saves:
 - Inteligencia
 - Sabiduría
-skillChoices: 'en Elige dos: Conocimiento arcano, habilidades Medicina, Naturaleza, Percepción, Perspicacia, Religión, Supervivencia o Trato con animales'
+skillChoices: 'Elige dos: Conocimiento arcano, Medicina, Naturaleza, Percepción, Perspicacia, Religión, Supervivencia o Trato con animales'
 armor: Armaduras ligeras y escudos
 weapons: Armas sencillas
 tools: Útiles de herborista
@@ -16,9 +16,9 @@ page: 52
 ## Atributos básicos
 
 - **Característica principal:** Sabiduría
-- **Dado de puntos de golpe:** de 1d8 por nivel de druida golpe
+- **Dado de puntos de golpe:** 1d8 por nivel de druida
 - **Competencias en tiradas de salvación:** Inteligencia y Sabiduría
-- **Competencias en habilidades:** en Elige dos: Conocimiento arcano, habilidades Medicina, Naturaleza, Percepción, Perspicacia, Religión, Supervivencia o Trato con animales
+- **Competencias en habilidades:** Elige dos: Conocimiento arcano, Medicina, Naturaleza, Percepción, Perspicacia, Religión, Supervivencia o Trato con animales
 - **Competencias con armas:** Armas sencillas
 - **Competencias con herramientas:** Útiles de herborista
 - **Entrenamiento con armaduras:** Armaduras ligeras y escudos
@@ -66,48 +66,6 @@ page: 52
 ## Rasgos de clase
 
 Como druida, obtienes los siguientes rasgos de clase cuando alcanzas los niveles de druida especificados. Estos rasgos se muestran en la tabla “Rasgos de druida”.
-
-—Espacios de conjuro por cada nivel de conjuro— Conjuros Trucos preparados 1 2 3 4 5 6 7 8 9
-
-2 4 2 — — — — — — — —
-
-2 5 3 — — — — — — — —
-
-2 6 4 2 — — — — — — —
-
-3 7 4 3 — — — — — — —
-
-3 9 4 3 2 — — — — — —
-
-3 10 4 3 3 — — — — — —
-
-3 11 4 3 3 1 — — — — —
-
-3 12 4 3 3 2 — — — — —
-
-3 14 4 3 3 3 1 — — — —
-
-4 15 4 3 3 3 2 — — — —
-
-4 16 4 3 3 3 2 1 — — —
-
-4 16 4 3 3 3 2 1 — — —
-
-4 17 4 3 3 3 2 1 1 — —
-
-4 17 4 3 3 3 2 1 1 — —
-
-4 18 4 3 3 3 2 1 1 1 —
-
-4 18 4 3 3 3 2 1 1 1 —
-
-4 19 4 3 3 3 2 1 1 1 1
-
-4 20 4 3 3 3 3 1 1 1 1
-
-4 21 4 3 3 3 3 2 1 1 1
-
-4 22 4 3 3 3 3 2 2 1 1
 
 ### Druídico (nivel 1)
 
@@ -167,53 +125,27 @@ Cuando alcances determinados niveles de druida, la cantidad de formas conocidas 
 
 Al escoger las formas conocidas, puedes consultar otras fuentes para buscar más bestias si tu Game Master te lo permite.
 
-Formas de bestia
-
-Nivel Formas Velocidad de druida conocidas VD máx. volando
-
-2 4 1/4 No
-
-4 6 1/2 No
-
-8 8 1 Sí
-
 Reglas con forma de bestia. Mientras tengas la forma de una bestia, conservas tu personalidad, recuerdos y capacidad de hablar, y se aplican las siguientes normas: Puntos de golpe temporales. Cuando te transfor-
 
-mas usando Forma salvaje, obtienes una cantidad
+mas usando Forma salvaje, obtienes una cantidad de puntos de golpe temporales igual a tu nivel de
 
-de puntos de golpe temporales igual a tu nivel de
+druida. Perfil. Tu perfil se sustituye por el perfil de la bestia, pero conservas tu tipo de criatura, puntos
 
-druida. Perfil. Tu perfil se sustituye por el perfil de la
+de golpe, dados de puntos de golpe, puntuaciones de Inteligencia, Sabiduría y Carisma, rasgos de
 
-bestia, pero conservas tu tipo de criatura, puntos
+clase, idiomas y dotes. También conservas tus competencias en habilidades y tiradas de salva-
 
-de golpe, dados de puntos de golpe, puntuaciones
+ción y utilizas tu bonificador por competencia con ellas, además de obtener las competencias de la
 
-de Inteligencia, Sabiduría y Carisma, rasgos de
-
-clase, idiomas y dotes. También conservas tus
-
-competencias en habilidades y tiradas de salva-
-
-ción y utilizas tu bonificador por competencia con
-
-ellas, además de obtener las competencias de la
-
-criatura. Si el modificador de una habilidad o tira-
-
-da de salvación del perfil de la bestia es superior
+criatura. Si el modificador de una habilidad o tirada de salvación del perfil de la bestia es superior
 
 al tuyo, usa el de la bestia. Sin lanzamiento de conjuros. No puedes lanzar
 
-conjuros, pero cambiar de forma no te hace perder
-
-la concentración ni interfiere de ningún otro
+conjuros, pero cambiar de forma no te hace perder la concentración ni interfiere de ningún otro
 
 modo con un conjuro que ya hayas lanzado. Objetos. Tu capacidad de manejar objetos depende
 
-de las extremidades de la bestia cuya forma hayas
-
-adoptado. Además, eliges si tu equipo cae en tu espacio, se funde con la nueva forma o lo sigues llevando puesto. El equipo que lleves puesto funcionará con normalidad, pero tu GM determinará si es factible que la nueva forma pueda llevar un objeto de equipo concreto, en función del tamaño y la forma de la criatura. Tu equipo no cambia de forma o tamaño para adaptarse a la nueva forma y cualquier objeto que esta no pueda llevar puesto deberá caer al suelo o fundirse con la nueva forma. El equipo que se funde con la forma no tendrá efecto mientras conserves esa forma.
+de las extremidades de la bestia cuya forma hayas adoptado. Además, eliges si tu equipo cae en tu espacio, se funde con la nueva forma o lo sigues llevando puesto. El equipo que lleves puesto funcionará con normalidad, pero tu GM determinará si es factible que la nueva forma pueda llevar un objeto de equipo concreto, en función del tamaño y la forma de la criatura. Tu equipo no cambia de forma o tamaño para adaptarse a la nueva forma y cualquier objeto que esta no pueda llevar puesto deberá caer al suelo o fundirse con la nueva forma. El equipo que se funde con la forma no tendrá efecto mientras conserves esa forma.
 
 ### Subclase de druida (nivel 3)
 
@@ -266,3 +198,26 @@ Longevidad. La magia primigenia que dominas ralentiza tu envejecimiento. Por cad
 ## Subclases
 
 ### Círculo de la tierra
+
+Celebra el vínculo con el mundo natural. El círculo de la tierra se compone de místicos y sabios que custodian ritos y conocimientos antiguos. Estos druidas se reúnen en torno a círculos sagrados de árboles o menhires para susurrar secretos primordiales en lengua druídica. Los miembros más sabios del círculo son los sumos sacerdotes de sus comunidades.
+
+#### Ayuda de la tierra (nivel 3)
+Como acción de magia, puedes gastar un uso de tu rasgo Forma salvaje y elegir un punto a 18 m o menos de ti. Unas flores que otorgan vitalidad y espinas que la absorben aparecen por un instante en una esfera de 3 m de radio centrada en ese punto. Todas las criaturas de tu elección situadas en la esfera deberán hacer una tirada de salvación de Constitución contra tu CD de salvación de conjuros; sufrirán 2d6 de daño necrótico si la fallan o la mitad del daño si la superan. Además, una criatura de tu elección situada en esa zona recuperará 2d6 puntos de golpe.
+
+El daño y la curación aumentan en 1d6 cuando alcances los niveles 10 (3d6) y 14 (4d6) de druida.
+
+#### Conjuros del círculo de la tierra (nivel 3)
+Tras finalizar un descanso largo, elige un tipo de terreno: árido, polar, templado o tropical. Consulta a continuación la tabla que se corresponda con el tipo elegido. Tendrás preparados los conjuros que se mencionan para tu nivel de druida e inferiores.
+
+#### Recuperación natural (nivel 6)
+Puedes lanzar un conjuro de nivel 1 o superior que tengas preparado por el rasgo Conjuros de círculo sin gastar un espacio de conjuro. Deberás finalizar un descanso largo antes de volver a hacerlo.
+
+Además, tras finalizar un descanso corto, puedes elegir espacios de conjuro gastados y recuperarlos. La suma de niveles de estos espacios de conjuro debe ser igual o inferior a la mitad de tu nivel de druida (redondeando hacia arriba) y ninguno de los espacios puede ser de nivel 6 o más. Por ejemplo, si eres une druida de nivel 6, puedes recuperar hasta tres niveles en espacios de conjuro: puedes recuperar un espacio de conjuro de nivel 3, un espacio de nivel 2 y otro de nivel 1 o tres espacios de nivel 1. Cuando recuperes espacios de conjuro con este rasgo, no podrás volver a hacerlo hasta que finalices un descanso largo.
+
+#### Protección de la naturaleza (nivel 10)
+Eres inmune al estado de envenenado y tienes resistencia a un tipo de daño asociado con tu elección de terreno actual del rasgo Conjuros de círculo, como se muestra en la tabla “Protección de la naturaleza”.
+
+#### Santuario de la naturaleza (nivel 14)
+Como acción de magia, puedes gastar un uso de tu rasgo Forma salvaje y hacer que aparezcan árboles y enredaderas espectrales en un cubo de 4,5 m de lado sobre el suelo a 36 m o menos de ti. Permanecerán ahí 1 minuto o hasta que tengas el estado de incapacitado o mueras. Tus aliados y tú tendréis cobertura media mientras estéis en esa zona y tus aliados obtendrán la resistencia actual de tu Protección de la naturaleza mientras estén ahí.
+
+Como acción adicional, puedes mover el cubo hasta 18 m a una parte del suelo que esté a 36 m o menos de ti.

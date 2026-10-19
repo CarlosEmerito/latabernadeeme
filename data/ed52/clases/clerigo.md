@@ -5,10 +5,10 @@ primaryAbility: Sabiduría
 saves:
 - Sabiduría
 - Carisma
-skillChoices: 'Elige dos: en Historia, Medicina, habilidades Perspicacia, Persuasión o Religión'
-armor: 'Equipo inicial Elige A o B: (A) camisa de malla, escudo, maza, paquete de sacerdote, símbolo sagrado y 7 po, o (B) 110 po'
+skillChoices: 'Elige dos: Historia, Medicina, Perspicacia, Persuasión o Religión'
+armor: Armaduras ligeras y medias y escudos
 weapons: Amas sencillas
-tools: Entrenamiento con Armaduras ligeras y medias y escudos
+tools: ''
 srd: '5.2'
 page: 47
 ---
@@ -16,12 +16,12 @@ page: 47
 ## Atributos básicos
 
 - **Característica principal:** Sabiduría
-- **Dado de puntos de golpe:** de 1d8 por nivel de clérigo golpe
+- **Dado de puntos de golpe:** 1d8 por nivel de clérigo
 - **Competencias en tiradas de salvación:** Sabiduría y Carisma
-- **Competencias en habilidades:** Elige dos: en Historia, Medicina, habilidades Perspicacia, Persuasión o Religión
+- **Competencias en habilidades:** Elige dos: Historia, Medicina, Perspicacia, Persuasión o Religión
 - **Competencias con armas:** Amas sencillas
-- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras y medias y escudos
-- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) camisa de malla, escudo, maza, paquete de sacerdote, símbolo sagrado y 7 po, o (B) 110 po
+- **Entrenamiento con armaduras:** Armaduras ligeras y medias y escudos
+- **Equipo inicial:** Elige A o B: (A) camisa de malla, escudo, maza, paquete de sacerdote, símbolo sagrado y 7 po, o (B) 110 po
 
 ## Progresión
 
@@ -61,48 +61,6 @@ page: 47
 • Obtienes los siguientes atributos de la tabla “Atributos básicos de clérigo”: dado de puntos de golpe y entrenamiento con armaduras ligeras y medias y escudos.
 
 • Obtienes los rasgos de nivel 1 de clérigo, que se muestran en la tabla “Rasgos de clérigo”. Consulta las reglas de multiclase del capítulo “Creación de personajes” para determinar tus espacios de conjuro disponibles.
-
-Espacios de conjuro por cada nivel de conjuro Conjuros preparados 1 2 3 4 5 6 7 8 9
-
-4 2 — — — — — — — —
-
-5 3 — — — — — — — —
-
-6 4 2 — — — — — — —
-
-7 4 3 — — — — — — —
-
-9 4 3 2 — — — — — —
-
-10 4 3 3 — — — — — —
-
-11 4 3 3 1 — — — — —
-
-12 4 3 3 2 — — — — —
-
-14 4 3 3 3 1 — — — —
-
-15 4 3 3 3 2 — — — —
-
-16 4 3 3 3 2 1 — — —
-
-16 4 3 3 3 2 1 — — —
-
-17 4 3 3 3 2 1 1 — —
-
-17 4 3 3 3 2 1 1 — —
-
-18 4 3 3 3 2 1 1 1 —
-
-18 4 3 3 3 2 1 1 1 —
-
-19 4 3 3 3 2 1 1 1 1
-
-20 4 3 3 3 3 1 1 1 1
-
-21 4 3 3 3 3 2 1 1 1
-
-22 4 3 3 3 3 2 2 1 1 Trucos
 
 ## Rasgos de clase
 
@@ -197,3 +155,22 @@ Puedes solicitar una intercesión divina todavía más poderosa. Cuando uses tu 
 ## Subclases
 
 ### Dominio de la vida
+
+Alivia las penas del mundo. El dominio de la vida se centra en la energía positiva que ayuda a sustentar la vida en el multiverso. Los clérigos que acceden a este dominio son maestros de la curación y emplean la fuerza vital para sanar el sufrimiento.
+
+La existencia en sí depende de la energía positiva asociada a este dominio, así que los clérigos de casi cualquier tradición religiosa podrían optar por él. Este dominio se asocia, en especial, con las deidades de la agricultura, la curación o la resistencia y los dioses del hogar y la comunidad. Las órdenes religiosas dedicadas a la sanación también recurren a la magia de este dominio.
+
+#### Conjuros del dominio de la vida (nivel 3)
+Tu conexión con este dominio divino garantiza que siempre tengas ciertos conjuros preparados. Cuando alcances un nivel de clérigo especificado en la tabla “Conjuros del dominio de la vida”, a partir de entonces siempre tendrás preparados los conjuros que se indican.
+
+#### Discípulo de la vida (nivel 3)
+Cuando uses un espacio de conjuro para lanzar un conjuro que haga recuperar puntos de golpe a una criatura, esa criatura recuperará puntos de golpe adicionales en el turno en que lances el conjuro. La cantidad de puntos de golpe adicionales es igual a 2 más el nivel del espacio de conjuro.
+
+#### Preservar vida (nivel 3)
+Como acción de magia, muestras tu símbolo sagrado y gastas un uso de Canalizar divinidad para generar una energía curativa capaz de restaurar una cantidad de puntos de golpe igual a cinco veces tu nivel de clérigo. Elige criaturas maltrechas a 9 m o menos de ti (lo que puede incluirte a ti) y divide estos puntos de golpe entre ellas. Este rasgo no puede hacer que una criatura pase a tener más de la mitad de sus puntos de golpe máximos.
+
+#### Sanador bendito (nivel 6)
+Los conjuros de curación que lances sobre otros también te sanan a ti. Inmediatamente después de usar un espacio de conjuro para lanzar un conjuro que haga recuperar puntos de golpe a una o varias criaturas que no seas tú, recuperarás una cantidad de puntos de golpe igual a 2 más el nivel del espacio de conjuro.
+
+#### Sanación suprema (nivel 17)
+En vez de tirar uno o más dados para hacer que una criatura recupere puntos de golpe con un conjuro o con Canalizar divinidad, no tirarás estos dados para la curación, sino que utilizarás el número más alto de cada dado. Por ejemplo, en lugar de hacer que una criatura recupere 2d6 puntos de golpe, harás que recupere 12.

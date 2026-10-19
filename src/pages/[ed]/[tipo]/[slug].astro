@@ -20,7 +20,11 @@ export function getStaticPaths() {
 const ed = Astro.params.ed as Edition;
 const tipo = Astro.params.tipo as Tipo;
 const slug = Astro.params.slug!;
-const entrada = cargar(ed, tipo).find((e) => e.slug === slug);
+const entradas = cargar(ed, tipo);
+const indice = entradas.findIndex((e) => e.slug === slug);
+const entrada = entradas[indice];
+const anterior = indice > 0 ? entradas[indice - 1] : undefined;
+const siguiente = indice >= 0 && indice < entradas.length - 1 ? entradas[indice + 1] : undefined;
 
 if (!entrada) {
   return Astro.redirect(e("/404/"));
@@ -46,6 +50,19 @@ const descripcion =
         <a href={e(`/${ed}/${tipo}/`)} style="color:inherit"> {t.plural}</a>
       </nav>
       <Detalle entrada={entrada} edicion={ed} tipo={tipo} />
+
+      <nav class="noprint" aria-label="Otras entradas" style="display:flex;justify-content:space-between;gap:1rem;margin-top:2rem;font-family:var(--fuente-ui);font-size:.88rem">
+        {anterior ? (
+          <a href={e(`/${ed}/${tipo}/${anterior.slug}/`)}>← {anterior.data.name}</a>
+        ) : (
+          <span />
+        )}
+        {siguiente ? (
+          <a href={e(`/${ed}/${tipo}/${siguiente.slug}/`)} style="text-align:right">{siguiente.data.name} →</a>
+        ) : (
+          <span />
+        )}
+      </nav>
     </div>
   </div>
 </Base>

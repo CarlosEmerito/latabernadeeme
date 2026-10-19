@@ -3,8 +3,9 @@ name: Pícaro
 hitDie: d8
 primaryAbility: Destreza
 saves:
-- Destreza e Inteligencia
-skillChoices: 'Elige cuatro: en Acrobacias, Atletismo, habilidades Engaño, Intimidación, Investigación, Juego de manos, Percepción, Perspicacia, Persuasión o Sigilo'
+- Destreza
+- Inteligencia
+skillChoices: 'Elige cuatro: Acrobacias, Atletismo, Engaño, Intimidación, Investigación, Juego de manos, Percepción, Perspicacia, Persuasión o Sigilo'
 armor: Armaduras ligeras
 weapons: Armas sencillas, además de marciales que tengan las propiedades “ligera” o “sutil”
 tools: Herramientas de ladrón
@@ -15,9 +16,9 @@ page: 86
 ## Atributos básicos
 
 - **Característica principal:** Destreza
-- **Dado de puntos de golpe:** de 1d8 por nivel de pícaro golpe
+- **Dado de puntos de golpe:** 1d8 por nivel de pícaro
 - **Competencias en tiradas de salvación:** Destreza e Inteligencia
-- **Competencias en habilidades:** Elige cuatro: en Acrobacias, Atletismo, habilidades Engaño, Intimidación, Investigación, Juego de manos, Percepción, Perspicacia, Persuasión o Sigilo
+- **Competencias en habilidades:** Elige cuatro: Acrobacias, Atletismo, Engaño, Intimidación, Investigación, Juego de manos, Percepción, Perspicacia, Persuasión o Sigilo
 - **Competencias con armas:** Armas sencillas, además de marciales que tengan las propiedades “ligera” o “sutil”
 - **Competencias con herramientas:** Herramientas de ladrón
 - **Entrenamiento con armaduras:** Armaduras ligeras
@@ -65,48 +66,6 @@ page: 86
 ## Rasgos de clase
 
 Como pícaro, obtienes los siguientes rasgos de clase cuando alcanzas los niveles de pícaro especificados. Estos rasgos se muestran en la tabla “Rasgos de pícaro”.
-
-Ataque furtivo
-
-con armas, Pericia 1d6
-
-1d6
-
-2d6
-
-2d6
-
-3d6
-
-3d6
-
-4d6
-
-4d6
-
-5d6
-
-5d6
-
-6d6
-
-6d6
-
-7d6
-
-7d6
-
-8d6
-
-8d6
-
-9d6
-
-9d6
-
-10d6
-
-10d6 Maestría
 
 ### Ataque furtivo (nivel 1)
 

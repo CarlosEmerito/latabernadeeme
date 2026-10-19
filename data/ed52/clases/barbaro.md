@@ -6,9 +6,9 @@ saves:
 - Fuerza
 - Constitución
 skillChoices: 'Elige dos: Atletismo, Intimidación, Naturaleza, Percepción, Supervivencia o Trato con animales'
-armor: 'Equipo inicial Elige A o B: (A) hacha a dos manos, 4 hachas de mano, paquete de explorador y 15 po, o (B) 75 po'
+armor: Armaduras ligeras y medias y escudos
 weapons: Armas sencillas y marciales
-tools: Entrenamiento con Armaduras ligeras y medias y escudos
+tools: ''
 srd: '5.2'
 page: 32
 ---
@@ -20,8 +20,8 @@ page: 32
 - **Competencias en tiradas de salvación:** Fuerza y Constitución
 - **Competencias en habilidades:** Elige dos: Atletismo, Intimidación, Naturaleza, Percepción, Supervivencia o Trato con animales
 - **Competencias con armas:** Armas sencillas y marciales
-- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras y medias y escudos
-- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) hacha a dos manos, 4 hachas de mano, paquete de explorador y 15 po, o (B) 75 po
+- **Entrenamiento con armaduras:** Armaduras ligeras y medias y escudos
+- **Equipo inicial:** Elige A o B: (A) hacha a dos manos, 4 hachas de mano, paquete de explorador y 15 po, o (B) 75 po
 
 ## Progresión
 
@@ -69,48 +69,6 @@ Como bárbaro, obtienes los siguientes rasgos de clase cuando alcanzas los nivel
 ### Defensa sin armadura (nivel 1)
 
 Mientras no lleves armadura alguna, tu clase de armadura base será igual a 10 más tus modificadores por Destreza y Constitución. Obtienes este beneficio aunque lleves un escudo.
-
-Maestría N.º de Daño por con furias furia armas
-
-con armas 2 +2 2
-
-2 +2 2 de bárbaro 3 +2 2
-
-3 +2 3
-
-3 +2 3
-
-4 +2 3
-
-4 +2 3
-
-4 +2 3
-
-4 +3 3
-
-4 +3 4
-
-4 +3 4
-
-5 +3 4
-
-5 +3 4
-
-5 +3 4
-
-5 +3 4
-
-5 +4 4
-
-6 +4 4
-
-6 +4 4
-
-6 +4 4
-
-6 +4 4 Maestría
-
-rápido
 
 ### Furia (nivel 1)
 
@@ -238,3 +196,8 @@ Tienes inmunidad a los estados de asustado y hechizado mientras estés enfurecid
 
 #### Represalia (nivel 10)
 Cuando recibas daño de una criatura que esté a 1,5 m o menos de ti, puedes llevar a cabo una reacción para hacer un ataque cuerpo a cuerpo contra esa criatura usando un arma o un ataque sin armas.
+
+#### Presencia intimidante (nivel 14)
+Como acción adicional, puedes sembrar el terror en los demás con tu mera presencia amenazadora y tu poder primigenio. Cuando lo hagas, todas las criaturas de tu elección situadas en una emanación de 9 m originada en ti deberán hacer una tirada de salvación de Sabiduría (CD 8 más tu modificador por Fuerza y tu bonificador por competencia). Si la fallan, tendrán el estado de asustadas durante 1 minuto. Al final de cada uno de sus turnos, las criaturas asustadas repiten la tirada de salvación y, si tienen éxito, se librarán del efecto.
+
+Cuando uses este rasgo, no podrás volver a hacerlo hasta que finalices un descanso largo, a menos que gastes un uso de tu furia (no requiere acción) para restablecer su uso.

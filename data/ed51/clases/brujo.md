@@ -96,15 +96,9 @@ Además, cada vez que subas un nivel de esta clase, podrás elegir uno de los co
 
 El Carisma es tu aptitud mágica en lo que respecta a tus conjuros de brujo. Utilizarás tu Carisma siempre que un conjuro haga referencia a tu aptitud mágica. Además, también usarás tu modificador por Carisma para determinar la CD de las tiradas de salvación de los conjuros de brujo y para hacer tiradas de ataque con uno de estos conjuros.
 
-CD de salvación de conjuros =
+CD de salvación de conjuros = 8 + tu bonificador por competencia + tu modificador por Carisma Modificador de ataque de conjuros =
 
-8 + tu bonificador por competencia +
-
-tu modificador por Carisma Modificador de ataque de conjuros =
-
-tu bonificador por competencia +
-
-tu modificador por Carisma
+tu bonificador por competencia + tu modificador por Carisma
 
 #### Canalizador mágico
 

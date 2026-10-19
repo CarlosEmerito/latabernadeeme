@@ -113,7 +113,7 @@ def two_columns(page: Page) -> bool:
     return any(x < GUTTER for x in lefts) and any(x >= GUTTER for x in lefts)
 
 
-def page_lines(page: Page) -> list[Line]:
+def page_lines(page: Page, indent_space: bool = True) -> list[Line]:
     runs = [r for r in page.runs if r.text.strip() and r.top < FOOTER_TOP]
     if not runs:
         return []
@@ -137,54 +137,59 @@ def page_lines(page: Page) -> list[Line]:
             if abs(r.top - base) <= 4:
                 group.append(r)
             else:
-                out.append(_line(group, col, page.n))
+                out.append(_line(group, col, page.n, indent_space))
                 group = [r]
                 base = r.top
-        out.append(_line(group, col, page.n))
-    return [l for l in out if l and l.text]
+        out.append(_line(group, col, page.n, indent_space))
+
+    lines = [l for l in out if l and l.text]
+    for col in {l.col for l in lines}:
+        body = [l.left for l in lines if l.col == col and 14.7 <= l.size <= 17.5]
+        if body:
+            base = min(body)
+            for l in lines:
+                if l.col == col and l.left > base + 5 and 14.7 <= l.size <= 17.5:
+                    l.indent = True
+    return lines
 
 
-def _line(group: list[Run], col: int, page: int) -> Line | None:
+def _line(group: list[Run], col: int, page: int, indent_space: bool = True) -> Line | None:
     group = sorted(group, key=lambda r: r.left)
-    indent = group[0].text[:1].isspace()
-    text = ""
-    spans: list[tuple[int, int, bool]] = []
+    indent = indent_space and group[0].text[:1].isspace()
+    chars: list[tuple[str, bool]] = []
     prev_end = None
     for r in group:
-        if not text:
-            gap = ""
-        else:
-            gap = "" if (prev_end is not None and r.left - prev_end < 3) else " "
-        text += gap
-        first = not text.strip()
+        if chars and prev_end is not None and r.left - prev_end >= 3:
+            chars.append((" ", False))
         for chunk, bold in r.segs:
-            if first:
-                chunk = chunk.lstrip()
-                first = False
-            start = len(text)
-            text += chunk
-            spans.append((start, len(text), bold))
+            chars.extend((ch, bold) for ch in chunk)
         prev_end = r.left + r.width
-    text = text.strip()
-    if not text:
+
+    # normaliza espacios (justificado) y recorta
+    out: list[tuple[str, bool]] = []
+    for ch, bold in chars:
+        if ch in " \t\n\r":
+            if out and out[-1][0] != " ":
+                out.append((" ", bold))
+        else:
+            out.append((ch, bold))
+    while out and out[0][0] == " ":
+        out.pop(0)
+    while out and out[-1][0] == " ":
+        out.pop()
+    if not out:
         return None
-    mask = [False] * len(text)
-    for a, b, bold in spans:
-        if bold:
-            for i in range(max(a, 0), min(b, len(text))):
-                mask[i] = True
-    for i in range(len(text)):
-        if mask[i] and text[i] == " ":
-            if i == 0 or not mask[i - 1]:
-                mask[i] = False
-            elif i + 1 >= len(text) or not mask[i + 1]:
-                mask[i] = False
+    for i in (0, len(out) - 1):
+        if out[i][0] == " ":
+            out[i] = (" ", False)
+
+    text = "".join(ch for ch, _ in out)
     md = ""
-    for i, ch in enumerate(text):
-        if mask[i] and (i == 0 or not mask[i - 1]):
+    for i, (ch, bold) in enumerate(out):
+        if bold and (i == 0 or not out[i - 1][1]):
             md += "**"
         md += ch
-        if mask[i] and (i + 1 == len(text) or not mask[i + 1]):
+        if bold and (i + 1 == len(out) or not out[i + 1][1]):
             md += "**"
     return Line(
         page=page,
@@ -266,7 +271,13 @@ def _line_to_block(line: Line, page: int) -> Block:
     return Block(kind, page, line.text, _cells(line.text))
 
 
-def blocks(pages: list[Page], first: int, last: int, words: dict | None = None) -> list[Block]:
+def blocks(
+    pages: list[Page],
+    first: int,
+    last: int,
+    words: dict | None = None,
+    indent_space: bool = True,
+) -> list[Block]:
     out: list[Block] = []
     cur: Block | None = None
     prev: Line | None = None
@@ -301,7 +312,7 @@ def blocks(pages: list[Page], first: int, last: int, words: dict | None = None) 
         tbl = None
 
     for page in pages[first - 1 : last]:
-        lines = page_lines(page)
+        lines = page_lines(page, indent_space)
         if not lines:
             continue
         pitch = page_pitch(lines)

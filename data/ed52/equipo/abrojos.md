@@ -1,8 +1,8 @@
 ---
 name: Abrojos
-category: Herramienta
+category: Equipo de aventurero
 price: 1 po
-weight: ''
+weight: 1 kg
 srd: '5.2'
-page: 102
+page: 103
 ---

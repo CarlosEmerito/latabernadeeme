@@ -7,11 +7,33 @@ page: 99
 
 Tanto si golpeas con un arma cuerpo a cuerpo, disparas un arma a distancia o realizas una tirada de ataque como parte de un conjuro, todos los ataques tienen la siguiente estructura:
 
-**1. Escoge un objetivo.** Elige un objetivo que esté dentro del alcance del ataque: una criatura, un objeto o una ubicación.
+**1. Escoge un objetivo.** Elige un objetivo que esté
 
-**2. Determina los modificadores.** Tu GM determina si el objetivo posee cobertura y si tienes ventaja o desventaja contra él. Además, los conjuros, las capacidades especiales y otros efectos pueden imponer penalizadores o bonificadores a la tirada de ataque.
+dentro del alcance del ataque: una criatura, un
 
-**3. Resuelve el ataque.** Haces la tirada de ataque. Si impactas, tiras el daño, salvo que el ataque en concreto indique lo contrario. Algunos ataques causan efectos especiales además o en vez de hacer daño.
+objeto o una ubicación.
+
+**2. Determina los modificadores. **Tu GM determina
+
+si el objetivo posee cobertura y si tienes ventaja
+
+o desventaja contra él. Además, los conjuros,
+
+las capacidades especiales y otros efectos pueden
+
+imponer penalizadores o bonificadores a la tirada
+
+de ataque.
+
+**3. Resuelve el ataque. **Haces la tirada de ataque.
+
+Si impactas, tiras el daño, salvo que el ataque en
+
+concreto indique lo contrario. Algunos ataques
+
+causan efectos especiales además o en vez de
+
+hacer daño.
 
 Si en algún momento dudas si algo cuenta o no como un ataque, aplica esta norma: si debes hacer una tirada de ataque, estás atacando.
 
@@ -25,11 +47,11 @@ Si el total de la tirada más los modificadores es mayor o igual que la Clase de
 
 Los dos modificadores más habituales de las tiradas de ataque de un personaje son el modificador por característica y el bonificador por competencia. Cuando un monstruo hace una tirada de ataque, utiliza el modificador que aparece en su perfil.
 
-**Modificador por característica.** El modificador por característica de un ataque con un arma cuerpo a cuerpo es la Fuerza, y el de un ataque con un arma a distancia es la Destreza. Las armas con las propiedades “sutil” o “arrojadiza” incumplen esta regla.
+**Modificador por característica. **El modificador por característica de un ataque con un arma cuerpo a cuerpo es la Fuerza, y el de un ataque con un arma a distancia es la Destreza. Las armas con las propiedades “sutil” o “arrojadiza” incumplen esta regla.
 
 Algunos conjuros también necesitan tiradas de ataque. El modificador por característica que se utiliza para un ataque de conjuro depende de la aptitud mágica del lanzador.
 
-**Bonificador por competencia.** Si eres competente con el arma con la que atacas, podrás sumar el bonificador por competencia a la tirada de ataque. También sumarás este bonificador a tus ataques de conjuro.
+**Bonificador por competencia. **Si eres competente con el arma con la que atacas, podrás sumar el bonificador por competencia a la tirada de ataque. También sumarás este bonificador a tus ataques de conjuro.
 
 ### Sacar 1 o 20
 
@@ -91,9 +113,9 @@ Cuando quieras sujetar a una criatura o forcejear con ella, tendrás que usar tu
 
 El objetivo de tu agarre debe estar dentro de tu alcance y tener un tamaño que esté, como mucho, una categoría por encima de la tuya. Utilizando al menos una mano libre, intentas sujetar al objetivo mediante una prueba de agarrar en lugar de una tirada de ataque: haz una prueba de Fuerza (Atletismo) enfrentada a una prueba de Fuerza (Atletismo) o Destreza (Acrobacias) del objetivo (este último elige qué característica usar). Si tienes éxito, sometes a la víctima al estado de “agarrado” (consulta el apéndice MJ-A). El propio estado especifica bajo qué circunstancias termina, aunque puedes liberar al objetivo cuando quieras, sin necesidad de invertir una acción.
 
-**Escapar de un agarre.** Una criatura agarrada puede utilizar su acción para intentar escapar. Lo logrará si tiene éxito en una prueba de Fuerza (Atletismo) o Destreza (Acrobacias) enfrentada a una prueba de Fuerza (Atletismo) de quien la tiene agarrada.
+**Escapar de un agarre. **Una criatura agarrada puede utilizar su acción para intentar escapar. Lo logrará si tiene éxito en una prueba de Fuerza (Atletismo) o Destreza (Acrobacias) enfrentada a una prueba de Fuerza (Atletismo) de quien la tiene agarrada.
 
-**Mover a una criatura agarrada.** Cuando te muevas, puedes arrastrar o transportar a la criatura agarrada, pero tu velocidad se reducirá a la mitad, salvo si dicha criatura está dos o más categorías de tamaño por debajo de la tuya.
+**Mover a una criatura agarrada. **Cuando te muevas, puedes arrastrar o transportar a la criatura agarrada, pero tu velocidad se reducirá a la mitad, salvo si dicha criatura está dos o más categorías de tamaño por debajo de la tuya.
 
 Tiradas enfrentadas en combate
 

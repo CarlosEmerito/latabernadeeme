@@ -11,11 +11,11 @@ Pueden encontrarse los siguientes cuatro tipos de venenos.
 
 **Contacto.** Los venenos de contacto pueden impregnarse en un objeto y conservan su eficacia hasta que alguien toca ese objeto o lo lava. Si un veneno de este tipo entra en contacto con la piel desnuda de cualquier criatura, esta sufrirá sus efectos.
 
-**Herida.** Este tipo de veneno se puede aplicar a armas, munición, componentes de trampas y otros objetos que causan daño cortante o perforante, y conserva su eficacia hasta que se administra al causar una herida o que alguien lave el objeto en el que se ha impregnado. Si una criatura recibe daño cortante o perforante de un objeto recubierto con este tipo de veneno, se verá expuesta a sus efectos.
+**Herida. **Este tipo de veneno se puede aplicar a armas, munición, componentes de trampas y otros objetos que causan daño cortante o perforante, y conserva su eficacia hasta que se administra al causar una herida o que alguien lave el objeto en el que se ha impregnado. Si una criatura recibe daño cortante o perforante de un objeto recubierto con este tipo de veneno, se verá expuesta a sus efectos.
 
-**Ingerido.** Para que un veneno ingerido afecte a una criatura, esta debe consumir una dosis completa de dicho veneno, que se puede administrar por medio de alimentos o de líquido. Si así lo deseas, puedes decidir que una dosis parcial tenga un efecto reducido y, por tanto, que la criatura afectada tenga ventaja en la tirada de salvación o que solo sufra la mitad del daño si la falla.
+**Ingerido. **Para que un veneno ingerido afecte a una criatura, esta debe consumir una dosis completa de dicho veneno, que se puede administrar por medio de alimentos o de líquido. Si así lo deseas, puedes decidir que una dosis parcial tenga un efecto reducido y, por tanto, que la criatura afectada tenga ventaja en la tirada de salvación o que solo sufra la mitad del daño si la falla.
 
-**Inhalado.** Estos venenos adoptan la forma de polvos o gases que afectan a la víctima cuando los inhala. Si se sopla el polvo para esparcirlo o se libera el gas, las criaturas que estén en un cubo de 1,5 m de lado se verán afectadas y la nube resultante se disipará justo después. Contener la respiración es inútil frente a los venenos inhalados, ya que afectan a las membranas nasales, a los conductos lagrimales y a otras partes del cuerpo.
+**Inhalado. **Estos venenos adoptan la forma de polvos o gases que afectan a la víctima cuando los inhala. Si se sopla el polvo para esparcirlo o se libera el gas, las criaturas que estén en un cubo de 1,5 m de lado se verán afectadas y la nube resultante se disipará justo después. Contener la respiración es inútil frente a los venenos inhalados, ya que afectan a las membranas nasales, a los conductos lagrimales y a otras partes del cuerpo.
 
 **Venenos**
 

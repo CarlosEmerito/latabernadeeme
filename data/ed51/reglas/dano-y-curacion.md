@@ -35,29 +35,29 @@ Los diversos ataques, conjuros y efectos dañinos causan daño de tipos diferent
 
 Debajo se muestran los tipos de daño, acompañados por ejemplos que pueden ayudar a tu GM a asignar el tipo de daño adecuado a un efecto nuevo.
 
-**Ácido.** El aliento corrosivo de un dragón negro y las enzimas disolventes que secreta un pudin negro causan daño de ácido.
+**Ácido. **El aliento corrosivo de un dragón negro y las enzimas disolventes que secreta un pudin negro causan daño de ácido.
 
-**Contundente.** Los golpes de objetos romos, como martillos, las caídas o los aplastamientos causan daño contundente.
+**Contundente. **Los golpes de objetos romos, como martillos, las caídas o los aplastamientos causan daño contundente.
 
-**Cortante.** Las espadas, las hachas y las garras de los monstruos causan daño cortante.
+**Cortante. **Las espadas, las hachas y las garras de los monstruos causan daño cortante.
 
-**Frío.** El frío infernal que irradia de la lanza de un diablo gélido o el aliento de un dragón blanco causan daño de frío.
+**Frío. **El frío infernal que irradia de la lanza de un diablo gélido o el aliento de un dragón blanco causan daño de frío.
 
-**Fuego.** El fuego que exhalan los dragones rojos y las llamas que crean muchos conjuros causan daño de fuego.
+**Fuego. **El fuego que exhalan los dragones rojos y las llamas que crean muchos conjuros causan daño de fuego.
 
-**Fuerza.** La fuerza es energía mágica en forma pura enfocada a provocar daño. La mayoría de los efectos que causan daño de fuerza son conjuros, como arma espiritual o proyectil mágico.
+**Fuerza. **La fuerza es energía mágica en forma pura enfocada a provocar daño. La mayoría de los efectos que causan daño de fuerza son conjuros, como arma espiritual o proyectil mágico.
 
-**Necrótico.** El daño necrótico que causan ciertos muertos vivientes y conjuros como toque helado agosta la materia e incluso el alma.
+**Necrótico. **El daño necrótico que causan ciertos muertos vivientes y conjuros como toque helado agosta la materia e incluso el alma.
 
-**Perforante.** Los ataques que perforan o empalan, como los de las lanzas o los mordiscos de los monstruos, causan daño perforante.
+**Perforante. **Los ataques que perforan o empalan, como los de las lanzas o los mordiscos de los monstruos, causan daño perforante.
 
-**Psíquico.** Las habilidades mentales, como la descarga psiónica de un azotamentes, causan daño psíquico.
+**Psíquico. **Las habilidades mentales, como la descarga psiónica de un azotamentes, causan daño psíquico.
 
-**Radiante.** El daño radiante que causan el conjuro golpe flamígero de un clérigo o las armas aniquiladoras de un ángel abrasa la piel como el fuego y sobrecarga el espíritu de energía.
+**Radiante. **El daño radiante que causan el conjuro golpe flamígero de un clérigo o las armas aniquiladoras de un ángel abrasa la piel como el fuego y sobrecarga el espíritu de energía.
 
-**Relámpago.** Un conjuro relámpago o el aliento de un dragón azul causan daño de relámpago.
+**Relámpago. **Un conjuro relámpago o el aliento de un dragón azul causan daño de relámpago.
 
-**Trueno.** Un estallido sonoro ensordecedor, como el efecto del conjuro ola atronadora, causa daño de trueno.
+**Trueno. **Un estallido sonoro ensordecedor, como el efecto del conjuro ola atronadora, causa daño de trueno.
 
 **Veneno.** Los aguijones venenosos y el gas toxico del aliento de un dragón verde causan daño de veneno.
 

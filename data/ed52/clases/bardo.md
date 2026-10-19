@@ -22,7 +22,7 @@ page: 35
 - **Competencias con armas:** Armas sencillas
 - **Competencias con herramientas:** Elige tres instrumentos musicales (consulta el capítulo “Equipo”)
 - **Entrenamiento con armaduras:** Armaduras ligeras
-- **Equipo inicial:** Elige A o B: (A) armadura de Conjuros de conjuro preparados 1 2 3 4 5 6 7 8 9 2 4 2 — — — — — — — — 2 5 3 — — — — — — — — 2 6 4 2 — — — — — — — 3 7 4 3 — — — — — — — 3 9 4 3 2 — — — — — — 3 10 4 3 3 — — — — — — 3 11 4 3 3 1 — — — — — 3 12 4 3 3 2 — — — — — 3 14 4 3 3 3 1 — — — — 4 15 4 3 3 3 2 — — — — 4 16 4 3 3 3 2 1 — — — 4 16 4 3 3 3 2 1 — — — 4 17 4 3 3 3 2 1 1 — — 4 17 4 3 3 3 2 1 1 — — 4 18 4 3 3 3 2 1 1 1 — 4 18 4 3 3 3 2 1 1 1 — 4 19 4 3 3 3 2 1 1 1 1 4 20 4 3 3 3 3 1 1 1 1 4 21 4 3 3 3 3 2 1 1 1 4 22 4 3 3 3 3 2 2 1 1 Trucos cuero, 2 dagas, instrumento musical de tu elección, paquete de artista y 19 po, o (B) 90 po Espacios de conjuro por cada nivel
+- **Equipo inicial:** Elige A o B: (A) armadura de cuero, 2 dagas, instrumento musical de tu elección, paquete de artista y 19 po, o (B) 90 po
 
 ## Progresión
 
@@ -152,3 +152,19 @@ Ahora dominas dos de las palabras de creación: las palabras de la vida y de la 
 ## Subclases
 
 ### Colegio del conocimiento
+
+Explora las profundidades del conocimiento mágico. Los bardos del colegio del conocimiento recaban conjuros y secretos de diversas fuentes, como tratados intelectuales, ritos místicos y cuentos de campesinos. Los miembros del colegio se reúnen en bibliotecas y universidades para intercambiar sus conocimientos. También se encuentran en festivales o reuniones de Estado, donde pueden sacar a la luz casos de corrupción, desvelar mentiras o reírse de los vanidosos representantes de la autoridad.
+
+#### Competencias adicionales (nivel 3)
+Ganas competencia en tres habilidades de tu elección.
+
+#### Palabras cortantes (nivel 3)
+Aprendes a usar tu astucia para distraer, confundir y minar la confianza y las aptitudes de los demás de manera sobrenatural. Cuando una criatura que puedas ver a 18 m o menos de ti haga una tirada de daño o tenga éxito en una prueba de característica o una tirada de ataque, puedes llevar a cabo una reacción para gastar un uso de tu Inspiración bárdica; tira tu dado de Inspiración bárdica y resta el número obtenido al resultado de la tirada de la criatura, lo que reducirá el daño o quizá convierta el éxito en un fallo.
+
+#### Descubrimientos mágicos (nivel 6)
+Aprendes dos conjuros de tu elección. Estos conjuros pueden proceder de las listas de conjuros de clérigo, druida o mago, o de cualquier combinación de estas (consulta la lista de conjuros en la sección de la clase). Los conjuros que elijas deben ser trucos o conjuros para los que tengas espacios de conjuro, como se muestra en la tabla “Rasgos de bardo”.
+
+Siempre tienes preparados los conjuros elegidos y, cada vez que subas un nivel de bardo, podrás reemplazar uno de los conjuros por otro conjuro que cumpla estos requisitos.
+
+#### Habilidad sin parangón (nivel 14)
+Cuando hagas una prueba de característica o una tirada de ataque y falles, podrás gastar un uso de Inspiración bárdica; tira el dado de Inspiración bárdica y suma el resultado al d20, lo que podría convertir un fallo en un éxito. Si fallas la tirada, la Inspiración bárdica no se gasta.

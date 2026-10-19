@@ -22,7 +22,7 @@ page: 77
 - **Competencias con armas:** Armas sencillas, además de marciales que tengan la propiedad “ligera”
 - **Competencias con herramientas:** Elige un tipo de herramientas de artesano o instrumento musical (consulta el capítulo “Equipo”)
 - **Entrenamiento con armaduras:** Ninguna
-- **Equipo inicial:** Elige A o B: (A) lanza, 5 dagas, asombroso, 1d6 2 +3 m agudizada 1d8 10 +6 m armadura Metabolismo subclase Concentración herramientas de artesano o instrumento musical que has elegido para la competencia con herramientas, paquete de explorador y 11 po, o (B) 50 po Movimiento Artes Puntos de sin marciales concentración armadura 1d6 — — 1d6 3 +3 m 1d6 4 +3 m 1d8 5 +3 m 1d8 6 +4,5 m 1d8 7 +4,5 m 1d8 8 +4,5 m 1d8 9 +4,5 m 1d10 11 +6 m 1d10 12 +6 m 1d10 13 +6 m 1d10 14 +7,5 m 1d10 15 +7,5 m 1d10 16 +7,5 m 1d12 17 +7,5 m 1d12 18 +9 m 1d12 19 +9 m 1d12 20 +9 m
+- **Equipo inicial:** Elige A o B: (A) lanza, 5 dagas, herramientas de artesano o instrumento musical que has elegido para la competencia con herramientas, paquete de explorador y 11 po, o (B) 50 po
 
 ## Progresión
 

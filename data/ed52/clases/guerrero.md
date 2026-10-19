@@ -6,9 +6,9 @@ saves:
 - Fuerza
 - Constitución
 skillChoices: 'Elige dos: Acrobacias, Atletismo, Historia, Intimidación, Percepción, Perspicacia, Persuasión, Supervivencia o Trato con animales'
-armor: 'Equipo inicial Elige A, B o C: (A) cota de malla, espadón, mangual, 8 jabalinas, paquete de explorador de mazmorras y 4 po; (B) armadura de cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, paquete de explorador de mazmorras y 11 po, o (C) 155 po'
+armor: Armaduras ligeras, medias y pesadas y escudos
 weapons: Armas sencillas y marciales
-tools: Entrenamiento con Armaduras ligeras, medias y pesadas y escudos
+tools: ''
 srd: '5.2'
 page: 62
 ---
@@ -20,8 +20,8 @@ page: 62
 - **Competencias en tiradas de salvación:** Fuerza y Constitución
 - **Competencias en habilidades:** Elige dos: Acrobacias, Atletismo, Historia, Intimidación, Percepción, Perspicacia, Persuasión, Supervivencia o Trato con animales
 - **Competencias con armas:** Armas sencillas y marciales
-- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras, medias y pesadas y escudos
-- **Entrenamiento con armaduras:** Equipo inicial Elige A, B o C: (A) cota de malla, espadón, mangual, 8 jabalinas, paquete de explorador de mazmorras y 4 po; (B) armadura de cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, paquete de explorador de mazmorras y 11 po, o (C) 155 po
+- **Entrenamiento con armaduras:** Armaduras ligeras, medias y pesadas y escudos
+- **Equipo inicial:** Elige A, B o C: (A) cota de malla, espadón, mangual, 8 jabalinas, paquete de explorador de mazmorras y 4 po; (B) armadura de cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, paquete de explorador de mazmorras y 11 po, o (C) 155 po
 
 ## Progresión
 
@@ -69,54 +69,6 @@ Como guerrero, obtienes los siguientes rasgos de clase cuando alcanzas los nivel
 ### Estilo de combate (nivel 1)
 
 Has pulido tu destreza marcial y obtienes una dote de estilo de combate de tu elección (consulta el capítulo “Dotes”). Se recomienda Defensa.
-
-Tomar Maestría con aliento armas armas, Tomar aliento 2 3
-
-2 3
-
-2 3
-
-3 4
-
-táctico 3 4
-
-3 4
-
-3 4
-
-3 4
-
-3 4
-
-4 5
-
-4 5
-
-4 5
-
-4 5
-
-4 5
-
-4 5
-
-4 6
-
-(tres usos) 4 6
-
-4 6
-
-4 6
-
-4 6
-
-táctica
-
-táctico
-
-estudiados
-
-Indómito
 
 Cada vez que subas un nivel de guerrero, puedes sustituir la dote que hayas elegido por otra dote de estilo de combate.
 
@@ -185,3 +137,33 @@ Obtienes una dote de don épico (consulta el capítulo “Dotes”) u otra dote 
 ### Tres ataques adicionales (nivel 20)
 
 Cuando lleves a cabo la acción de atacar en tu turno, podrás hacer cuatro ataques en lugar de uno.
+
+## Subclases
+
+### Campeón
+
+Aspira a la excelencia física en combate. Un campeón se centra en desarrollar su destreza marcial en su incansable afán de victoria. Los campeones combinan un entrenamiento riguroso con un estado físico excelente para asestar golpes devastadores, resistir ante el peligro y alcanzar la gloria. Ya sea en una competición atlética o en una sangrienta batalla, los campeones luchan por coronarse como vencedores.
+
+#### Atleta sobresaliente (nivel 3)
+Gracias a tus capacidades atléticas, tienes ventaja en las tiradas de iniciativa y las pruebas de Fuerza (Atletismo).
+
+Además, justo después de causar un crítico, puedes moverte hasta la mitad de tu velocidad sin provocar ataques de oportunidad.
+
+#### Crítico mejorado (nivel 3)
+Tus tiradas de ataque con armas y tus ataques sin armas pueden causar críticos con un resultado de 19 o 20 en el d20.
+
+#### Estilo de combate adicional (nivel 7)
+Obtienes otra dote de estilo de combate de tu elección.
+
+#### Guerrero heroico (nivel 10)
+La emoción de la batalla te empuja hacia la victoria. Durante un combate, puedes otorgarte inspiración heroica siempre que empieces tu turno sin ella.
+
+#### Crítico superior (nivel 15)
+Tus tiradas de ataque con armas y tus ataques sin armas ahora pueden causar críticos con un resultado de 18 a 20 en el d20.
+
+#### Superviviente (nivel 18)
+Alcanzas la cumbre de la resistencia en batalla, lo que te otorga estos beneficios:
+
+Desafiar a la muerte. Tienes ventaja en las tiradas de salvación contra muerte. Asimismo, cuando saques de 18 a 20 en una tirada de salvación contra muerte, obtendrás el beneficio de sacar un 20 en ella.
+
+Mejoría heroica. Al principio de cada uno de tus turnos, recuperas una cantidad de puntos de golpe igual a 5 más tu modificador por Constitución si estás maltrecho y tienes al menos 1 punto de golpe.

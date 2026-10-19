@@ -35,7 +35,7 @@ CLASSES52 = [
     ("Mago", 71), ("Monje", 77), ("Paladín", 81), ("Pícaro", 86),
 ]
 # última página de cada clase (la siguiente empieza otro capítulo o clase)
-NEXT52 = {name: (CLASSES52[i + 1][1] if i + 1 < len(CLASSES52) else 89)
+NEXT52 = {name: (CLASSES52[i + 1][1] if i + 1 < len(CLASSES52) else 88)
           for i, (name, _) in enumerate(CLASSES52)}
 
 T51_SECTION, T51_TRAIT, T51_SUB, T51_CAPTION = 24.1, 18.8, 16.1, 16.7
@@ -97,7 +97,8 @@ def merge_same_baseline(lines: list[Line]) -> list[Line]:
 
 def fix_text(text: str) -> str:
     """Corrige artefactos conocidos de la extracción (ligaduras del PDF)."""
-    return text.replace("Amas sencillas", "Armas sencillas")
+    text = re.sub(r"\bAmas\b", "Armas", text)
+    return text
 
 
 def prose(lines: list[Line]) -> list[str]:
@@ -143,7 +144,16 @@ def prose(lines: list[Line]) -> list[str]:
             out.extend("• " + fix_text(clean_paragraph(r)) for r in rest if r.strip())
         else:
             out.append(fix_text(clean_paragraph(text)))
-    return [p for p in out if p]
+    # une fragmentos sueltos de cuadros de texto estrechos
+    merged: list[str] = []
+    for p in out:
+        if (merged and len(merged[-1]) < 70
+                and not merged[-1].rstrip().endswith((".", ";", ":", "!", "?"))
+                and not p.startswith("•")):
+            merged[-1] = _join([merged[-1], p])
+        else:
+            merged.append(p)
+    return [p for p in merged if p]
 
 
 def _join(parts: list[str]) -> str:
@@ -397,6 +407,7 @@ def front51(items: list[tuple[str, str]], page: int) -> dict:
 def _attr_bullets(items: list[tuple[str, str]]) -> list[str]:
     out = []
     for label, value in items:
+        value = fix_text(value)
         if label and value:
             out.append(f"- **{label}:** {value}")
         elif label:
@@ -664,7 +675,7 @@ def span52(lines: list[Line], name: str, page: int, next_page: int = 999) -> lis
         if near(lines[i].size, 21.5, 0.6) and lines[i].text in [c for c, _ in CLASSES52]:
             end = i
             break
-        if lines[i].page >= next_page:
+        if lines[i].page > next_page:
             end = i
             break
     return lines[start + 1:end]
@@ -686,12 +697,12 @@ BOX_FRAGMENTS = {"principal", "de golpe", "tiradas de salvación", "en habilidad
 
 BOX_ROWS = [
     ("Característica principal", "Característica"),
-    ("Dado de puntos de golpe", "Dado"),
+    ("Dado de puntos de golpe", "Dado de puntos"),
     ("Competencias en tiradas de salvación", "Competencias en"),
     ("Competencias en habilidades", "Competencias"),
     ("Competencias con armas", "Competencias con"),
     ("Competencias con herramientas", "Competencias con"),
-    ("Entrenamiento con armaduras", "Entrenamiento"),
+    ("Entrenamiento con armaduras", "Entrenamiento con"),
     ("Equipo inicial", "Equipo inicial"),
 ]
 BOX_FRAGMENTS = {"principal", "de golpe", "golpe", "tiradas de salvación", "en habilidades",
@@ -751,6 +762,7 @@ def attribute_box52(raw: list[Line], page: int) -> list[tuple[str, str]]:
         preface = [t for t in right if re.match(r"^(Elige|Escoge)\b", t)]
         rest = [t for t in right if t not in preface]
         value = _join([p for p in preface + parts + rest if p])
+        value = re.sub(r"\s+habilidades\s+", " ", value)
         out.append((label, clean_paragraph(value)))
     return out
 
@@ -758,12 +770,15 @@ def attribute_box52(raw: list[Line], page: int) -> list[tuple[str, str]]:
 def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page: int):
     pages = set(range(page, next_page))
     body = span52(lines, name, page, next_page)
+    # las tablas (11 pt) y la caja de atributos se tratan aparte
+    body = [ln for ln in body if ln.size > 12.6]
     rows, warns, _ = parse_table(lines, pages, T52_TABLE_MAX, {"strip_trailing": True})
 
     nodes: list[dict] = []
     cur: dict | None = None
     skip_list = False
     section = ""
+    dropcap = ""
     i = 0
     while i < len(body):
         ln = body[i]
@@ -778,6 +793,7 @@ def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page:
             if not name2:
                 name2 = body[j].text if j < len(body) else cap
                 j += 1
+            skip_list = False
             cur = {"level": 3, "title": name2, "lines": []}
             section = "Subclases"
             nodes.append(cur)
@@ -788,8 +804,20 @@ def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page:
                 skip_list = True
                 i += 1
                 continue
+            # letra capital decorativa: se pega a la línea siguiente
+            if len(ln.text.strip()) <= 2 and ln.text.strip().isupper():
+                dropcap = ln.text.strip()
+                i += 1
+                continue
             skip_list = False
-            cur = {"level": 2, "title": ln.text, "lines": []}
+            # un título puede seguir en la línea siguiente
+            if (nodes and nodes[-1]["level"] == 2 and not nodes[-1]["lines"]
+                    and 0 < ln.y - nodes[-1]["y"] < 20):
+                nodes[-1]["title"] += " " + ln.text
+                nodes[-1]["y"] = ln.y
+                i += 1
+                continue
+            cur = {"level": 2, "title": ln.text, "lines": [], "y": ln.y}
             section = ln.text
             nodes.append(cur)
             i += 1
@@ -808,6 +836,9 @@ def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page:
             i += 1
             continue
         if cur is not None:
+            if dropcap:
+                ln = Line(ln.page, ln.col, ln.x, ln.y, ln.size, dropcap + ln.text)
+                dropcap = ""
             cur["lines"].append(ln)
         i += 1
 
@@ -826,7 +857,7 @@ def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page:
     m = re.search(r"1d(\d+)", ad.get("dado de puntos de golpe", ""))
     if m:
         hit = "d" + m.group(1)
-    saves = [s.strip() for s in re.split(r",| y ", ad.get("competencias en tiradas de salvación", ""))
+    saves = [s.strip() for s in re.split(r",| y | e ", ad.get("competencias en tiradas de salvación", ""))
              if s.strip()]
     front = {
         "name": name,
@@ -872,7 +903,7 @@ def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page:
                 out += ["### " + nd["title"] + f" (nivel {nd['num']})", ""]
             add_paras(out, nd["lines"])
             continue
-        out.append(f"### {nd['title']}")
+        out.append(f"#### {nd['title']}" if section == "Subclases" else f"### {nd['title']}")
         out.append("")
         add_paras(out, nd["lines"])
     return front, "\n".join(out).strip() + "\n", rows, warns
@@ -891,7 +922,10 @@ def run(ed: str, only: str | None = None, write: bool = True) -> dict:
     taken: set[str] = set()
     report = {"ed": ed, "classes": [], "warns": []}
     for i, (name, page) in enumerate(classes):
-        next_page = classes[i + 1][1] if i + 1 < len(classes) else (56 if ed == "51" else 89)
+        if ed == "51":
+            next_page = classes[i + 1][1] if i + 1 < len(classes) else 56
+        else:
+            next_page = NEXT52[name]
         if ed == "51":
             front, body, rows, warns = build51(name, page, lines, next_page)
         else:

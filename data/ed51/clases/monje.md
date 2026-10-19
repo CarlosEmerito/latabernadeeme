@@ -91,11 +91,7 @@ Cuando uses un punto de ki, este dejará de estar disponible hasta que termines 
 
 Algunos de tus rasgos de ki exigen a tu objetivo realizar una tirada de salvación para resistir sus efectos. La CD para estas tiradas de salvación se calcula de la siguiente forma:
 
-CD de salvación de ki =
-
-8 + tu bonificador por competencia +
-
-tu modificador por Sabiduría
+CD de salvación de ki = 8 + tu bonificador por competencia + tu modificador por Sabiduría
 
 #### Defensa Paciente
 

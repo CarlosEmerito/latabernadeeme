@@ -85,7 +85,9 @@ Una prueba pasiva es un tipo especial de prueba de característica que no implic
 
 Así se determina el total de un personaje para una prueba pasiva:
 
-10 + todos los modificadores aplicados normalmente a la prueba
+10 + todos los modificadores
+
+aplicados normalmente a la prueba
 
 Si el personaje tiene ventaja en la prueba, sumará 5. Si tiene desventaja, restará 5. El total de una prueba pasiva se denomina puntuación.
 

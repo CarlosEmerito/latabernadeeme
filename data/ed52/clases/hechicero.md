@@ -5,10 +5,10 @@ primaryAbility: Carisma
 saves:
 - Constitución
 - Carisma
-skillChoices: 'Elige dos: en Conocimiento arhabilidades cano, Engaño, Intimidación, Perspicacia, Persuasión o Religión'
-armor: 'Equipo inicial Elige A o B: (A) lanza, 2 dagas, canalizador arcano (cristal), paquete de explorador de mazmorras y 28 po, o (B) 50 po'
+skillChoices: 'Elige dos: Conocimiento arhabilidades cano, Engaño, Intimidación, Perspicacia, Persuasión o Religión'
+armor: Ninguna
 weapons: Amas sencillas
-tools: Entrenamiento con Ninguna
+tools: ''
 srd: '5.2'
 page: 64
 ---
@@ -16,12 +16,12 @@ page: 64
 ## Atributos básicos
 
 - **Característica principal:** Carisma
-- **Dado de puntos de golpe:** de 1d6 por nivel de hechicero golpe
+- **Dado de puntos de golpe:** 1d6 por nivel de hechicero
 - **Competencias en tiradas de salvación:** Constitución y Carisma
-- **Competencias en habilidades:** Elige dos: en Conocimiento arhabilidades cano, Engaño, Intimidación, Perspicacia, Persuasión o Religión
+- **Competencias en habilidades:** Elige dos: Conocimiento arhabilidades cano, Engaño, Intimidación, Perspicacia, Persuasión o Religión
 - **Competencias con armas:** Amas sencillas
-- **Competencias con herramientas:** Entrenamiento con Ninguna
-- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) lanza, 2 dagas, canalizador arcano (cristal), paquete de explorador de mazmorras y 28 po, o (B) 50 po
+- **Entrenamiento con armaduras:** Ninguna
+- **Equipo inicial:** Elige A o B: (A) lanza, 2 dagas, canalizador arcano (cristal), paquete de explorador de mazmorras y 28 po, o (B) 50 po
 
 ## Progresión
 
@@ -68,95 +68,25 @@ Como hechicero, obtienes los siguientes rasgos de clase cuando alcanzas los nive
 
 ### Lanzamiento de conjuros (nivel 1)
 
-Recurres a tu magia innata, lo que te permite lanzar conjuros. Consulta el capítulo “Conjuros” para ver las reglas sobre el lanzamiento de conjuros. La información presentada a continuación detalla cómo usar esas reglas con los conjuros de hechicero, que encontrarás más adelante en la lista de conjuros de hechicero de la descripción de la clase. Rasgos de hechicero
-
-Bonificador por Puntos de Nivel competencia Rasgos de clase hechicería
-
-1 +2 Lanzamiento de —
-
-conjuros,
-
-Hechicería innata
-
-2 +2 Fuente de magia, 2
-
-Metamagia
-
-3 +2 Subclase de 3
-
-hechicero
-
-4 +2 Mejora de 4
-
-característica
-
-5 +3 Recuperación 5
-
-mágica
-
-6 +3 Rasgo de subclase 6
-
-7 +3 Encarnación mágica 7
-
-8 +3 Mejora de 8
-
-característica
-
-9 +4 — 9
-
-10 +4 Metamagia 10
-
-11 +4 — 11
-
-12 +4 Mejora de 12
-
-característica
-
-13 +5 — 13
-
-14 +5 Rasgo de subclase 14
-
-15 +5 — 15
-
-16 +5 Mejora de 16
-
-característica
-
-17 +6 Metamagia 17
-
-18 +6 Rasgo de subclase 18
-
-19 +6 Don épico 19
-
-20 +6 Apoteosis arcana 20
+Recurres a tu magia innata, lo que te permite lanzar conjuros. Consulta el capítulo “Conjuros” para ver las reglas sobre el lanzamiento de conjuros. La información presentada a continuación detalla cómo usar esas reglas con los conjuros de hechicero, que encontrarás más adelante en la lista de conjuros de hechicero de la descripción de la clase.
 
 Trucos. Conoces cuatro trucos de hechicero agarre electrizante, de tu elección. Se recomiendan estallido mágico, luz y prestidigitación. Cada vez que subas un nivel de hechicero, puedes sustituir uno de tus trucos de este rasgo por otro truco de hechicero de tu elección.
 
-Cuando alcanzas los niveles 4 y 10 de hechicero, aprendes otro truco de hechicero de tu elección, como se muestra en la columna “Trucos” de la tabla “Rasgos de hechicero”. Espacios de conjuro. La tabla “Rasgos de hechicero” muestra cuántos espacios de conjuro tienes para lanzar tus conjuros de nivel 1 y superiores. Recuperas todos los espacios utilizados tras finalizar un descanso largo. Conjuros preparados de nivel 1 y superiores. Preparas una serie de conjuros de nivel 1 y superio-
+Cuando alcanzas los niveles 4 y 10 de hechicero, aprendes otro truco de hechicero de tu elección, como se muestra en la columna “Trucos” de la tabla “Rasgos de hechicero”.
 
-—Espacios de conjuro por cada nivel de conjuro— Conjuros preparados 1 2 3 4 5 6 7 8 9 4 2 2 — — — — — — — —
+Espacios de conjuro. La tabla “Rasgos de hechicero” muestra cuántos espacios de conjuro tienes para lanzar tus conjuros de nivel 1 y superiores. Recuperas todos los espacios utilizados tras finalizar un descanso largo.
 
-4 4 3 — — — — — — — —
-
-4 6 4 2 — — — — — — —
-
-5 7 4 3 — — — — — — —
-
-5 9 4 3 2 — — — — — —
-
-5 10 4 3 3 — — — — — — 5 11 4 3 3 1 — — — — — 5 12 4 3 3 2 — — — — —
-
-5 14 4 3 3 3 1 — — — — 6 15 4 3 3 3 2 — — — — 6 16 4 3 3 3 2 1 — — — 6 16 4 3 3 3 2 1 — — —
-
-6 17 4 3 3 3 2 1 1 — — 6 17 4 3 3 3 2 1 1 — — 6 18 4 3 3 3 2 1 1 1 — 6 18 4 3 3 3 2 1 1 1 —
-
-6 19 4 3 3 3 2 1 1 1 1 6 20 4 3 3 3 3 1 1 1 1 6 21 4 3 3 3 3 2 1 1 1 6 22 4 3 3 3 3 2 2 1 1
-
-res, que son los que podrás lanzar con este rasgo. Para empezar, elige dos conjuros de hechicero de nivel 1. Se recomiendan detectar magia y manos ardientes.
+Conjuros preparados de nivel 1 y superiores. Preparas una serie de conjuros de nivel 1 y superiores, que son los que podrás lanzar con este rasgo. Para empezar, elige dos conjuros de hechicero de nivel 1. Se recomiendan detectar magia y manos ardientes.
 
 El número de conjuros de tu lista aumenta conforme subes de nivel de hechicero, como se muestra en la columna “Conjuros preparados” de la tabla “Rasgos de hechicero”. Cuando ese número aumente, elige conjuros de hechicero adicionales hasta que el número de conjuros de tu lista coincida con el número de la tabla “Rasgos de hechicero”. Estos conjuros deben ser de un nivel para el que tengas espacios de conjuro. Por ejemplo, si eres un hechicero de nivel 3, podrías preparar cualquier combinación de seis conjuros de hechicero de nivel 1 o 2.
 
-Si otro rasgo de hechicero te proporciona conjuros que siempre tienes preparados, esos conjuros Trucos no cuentan para el total que puedes preparar con este rasgo, pero sí que cuentan como conjuros de hechicero para ti. Cambiar los conjuros preparados. Cada vez que subas un nivel de hechicero, puedes sustituir un conjuro de tu lista por otro conjuro de hechicero para el que tengas espacios de conjuro. Aptitud mágica. El Carisma es tu aptitud mágica en lo que respecta a tus conjuros de hechicero. Canalizador mágico. Puedes utilizar un canalizador arcano como canalizador mágico para tus conjuros de hechicero.
+Si otro rasgo de hechicero te proporciona conjuros que siempre tienes preparados, esos conjuros no cuentan para el total que puedes preparar con este rasgo, pero sí que cuentan como conjuros de hechicero para ti.
+
+Cambiar los conjuros preparados. Cada vez que subas un nivel de hechicero, puedes sustituir un conjuro de tu lista por otro conjuro de hechicero para el que tengas espacios de conjuro.
+
+Aptitud mágica. El Carisma es tu aptitud mágica en lo que respecta a tus conjuros de hechicero.
+
+Canalizador mágico. Puedes utilizar un canalizador arcano como canalizador mágico para tus conjuros de hechicero.
 
 ### Hechicería innata (nivel 1)
 
@@ -178,19 +108,7 @@ Convertir espacios de conjuro en puntos de hechicería. Puedes gastar un espacio
 
 Crear espacios de conjuro. Como acción adicional, puedes transformar puntos de hechicería que no hayas gastado aún en un espacio de conjuro. La tabla “Crear espacios de conjuro” indica el coste de crear un espacio de conjuro de un nivel determinado y el nivel mínimo de hechicero que debes tener para crear un espacio. Puedes crear espacios de conjuro de nivel 5 como máximo.
 
-Cualquier espacio creado mediante este rasgo se desvanece tras finalizar un descanso largo. Crear espacios de conjuro
-
-Nivel del espacio Coste en puntos Nivel mínimo de conjuro de hechicería de hechicero
-
-1 2 2
-
-2 3 3
-
-3 5 5
-
-4 6 7
-
-5 7 9
+Cualquier espacio creado mediante este rasgo se desvanece tras finalizar un descanso largo.
 
 ### Metamagia (nivel 2)
 
@@ -279,3 +197,28 @@ Coste: 1 punto de hechicería Cuando lances un conjuro que inflija un tipo de da
 ## Subclases
 
 ### Hechicería dracónica
+
+Exhala la magia de los dragones. Tu magia innata proviene de un regalo dracónico. Tal vez un dragón anciano a punto de morir te transfiriera parte de su poder mágico a ti o a un antepasado tuyo. Puede que hayas absorbido magia de un lugar impregnado con poder dracónico, manipulado un tesoro de un dragón impregnado de su poder o quizá uno de tus antecesores fuera un dragón.
+
+#### Conjuros dracónicos (nivel 3)
+Cuando alcances un nivel de hechicero especificado en la tabla “Conjuros dracónicos”, a partir de entonces siempre tendrás preparados los conjuros que se indican.
+
+#### Resistencia dracónica (nivel 3)
+La magia de tu cuerpo manifiesta tu don dracónico de forma física. Tus puntos de golpe máximos aumentan en 3 y en 1 más por cada nivel de hechicero que subas en el futuro.
+
+Además, partes de tu cuerpo se cubren de escamas similares a las de los dragones. Mientras no lleves armadura, tu clase de armadura base será igual a 10 más tus modificadores por Destreza y Carisma.
+
+#### Afinidad elemental (nivel 6)
+Tu magia dracónica tiene afinidad con un tipo de daño asociado a los dragones. Elige uno de estos tipos: ácido, frío, fuego, relámpago o veneno.
+
+Tienes resistencia a ese tipo de daño. Además, cuando lances un conjuro que inflija daño de ese tipo, puedes sumar tu modificador por Carisma a una tirada de daño del conjuro.
+
+#### Alas de dragón (nivel 14)
+Como acción adicional, puedes hacer que te crezcan alas dracónicas de la espalda. Las alas permanecen 1 hora o hasta que las hagas desaparecer (no requiere acción). Mientras dure el efecto, tienes una velocidad volando de 18 m.
+
+Cuando uses este rasgo, no podrás volver a hacerlo hasta que finalices un descanso largo, a menos que gastes 3 puntos de hechicería (no requiere acción) para restablecer su uso.
+
+#### Compañero dragón (nivel 18)
+invocar dragón Puedes lanzar sin ningún compo nente material. También puedes lanzarlo una vez sin gastar un espacio de conjuro y recuperas la capacidad de hacerlo de esta forma tras finalizar un descanso largo.
+
+Cuando empieces a lanzar el conjuro, puedes modificarlo para que no requiera concentración. Si lo haces, la duración del conjuro es de 1 minuto para ese lanzamiento.

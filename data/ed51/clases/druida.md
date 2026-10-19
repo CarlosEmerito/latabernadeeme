@@ -91,15 +91,9 @@ También puedes cambiar los conjuros que tienes preparados tras finalizar un des
 
 La Sabiduría es tu aptitud mágica en lo que respecta a tus conjuros de druida, ya que tu magia proviene de tu devoción y sintonía con la naturaleza. Utilizarás tu Sabiduría siempre que un conjuro haga referencia a tu aptitud mágica. Además, también usarás tu modificador por Sabiduría para determinar la CD de las tiradas de salvación de los conjuros de druida y para hacer tiradas de ataque con uno de estos conjuros.
 
-CD de salvación de conjuros = 8 + tu bonificador por competencia +
+CD de salvación de conjuros = 8 + tu bonificador por competencia + tu modificador por Sabiduría
 
-tu modificador por Sabiduría
-
-Modificador de ataque de conjuros =
-
-tu bonificador por competencia +
-
-tu modificador por Sabiduría
+Modificador de ataque de conjuros = tu bonificador por competencia + tu modificador por Sabiduría
 
 #### Lanzamiento ritual
 
@@ -246,14 +240,10 @@ Cuando alcanzas el nivel 14, las criaturas del mundo natural sienten tu conexió
 
 La criatura es consciente de este efecto antes de decidir si atacarte.
 
-Plantas y maderas sagradas
-
-Los druidas consideran que ciertos árboles y plantas son sagrados, en especial el abedul, el acebo, el aliso, el avellano, el enebro, el fresno, el muérdago, el roble, el sauce, el saúco, el serbal y el tejo. Suelen usar estas especies vegetales como parte de sus canalizadores mágicos y también incorporan trozos de roble o tejo y ramitas de muérdago.
+Plantas y maderas sagradas Los druidas consideran que ciertos árboles y plantas son sagrados, en especial el abedul, el acebo, el aliso, el avellano, el enebro, el fresno, el muérdago, el roble, el sauce, el saúco, el serbal y el tejo. Suelen usar estas especies vegetales como parte de sus canalizadores mágicos y también incorporan trozos de roble o tejo y ramitas de muérdago.
 
 Por la misma razón, los druidas emplean estas maderas para fabricar otros objetos, como armas y escudos. El tejo está asociado a la muerte y al renacimiento, por lo que podrían confeccionar los mangos de sus cimitarras u hoces con esta madera. El fresno se relaciona con la vida y el roble, con la fuerza, así que estos materiales son ideales para fabricar empuñaduras e incluso armas enteras, como bastones o garrotes, además de escudos. El aliso se asocia con el aire, por lo que esta madera podría emplearse para armas arrojadizas, como los dardos y las jabalinas.
 
 Los druidas de las regiones que carecen de las especies vegetales aquí descritas han elegido otras que llevan a cabo funciones similares. Por ejemplo, un druida de una región desértica podría emplear árboles de yuca y cactus.
 
-Los druidas y los dioses
-
-Algunos druidas veneran a las propias fuerzas de la naturaleza, pero la mayoría son devotos de una de las muchas deidades de la naturaleza adoradas en el multiverso (la lista de dioses del apéndice MJ-B incluye muchas de estas deidades). La adoración de estos dioses suele considerarse como una tradición más antigua que las creencias de los clérigos y las comunidades urbanizadas.
+Los druidas y los dioses Algunos druidas veneran a las propias fuerzas de la naturaleza, pero la mayoría son devotos de una de las muchas deidades de la naturaleza adoradas en el multiverso (la lista de dioses del apéndice MJ-B incluye muchas de estas deidades). La adoración de estos dioses suele considerarse como una tradición más antigua que las creencias de los clérigos y las comunidades urbanizadas.

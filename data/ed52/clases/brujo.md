@@ -6,9 +6,9 @@ saves:
 - Sabiduría
 - Carisma
 skillChoices: 'Elige dos: Conocimiento arcano, Engaño, Historia, Intimidación, Investigación, Naturaleza o Religión'
-armor: 'Equipo inicial Elige A o B: (A) armadura de Trucos preparados conjuro espacios 1 2 2 1 1 3 2 3 2 1 3 2 4 2 2 3 3 5 2 2 5 3 6 2 3 5 3 7 2 3 6 3 8 2 4 6 3 9 2 4 7 3 10 2 5 7 4 10 2 5 7 4 11 3 5 8 4 11 3 5 8 4 12 3 5 8 4 12 3 5 9 4 13 3 5 9 4 13 3 5 9 4 14 4 5 10 4 14 4 5 10 4 15 4 5 10 4 15 4 5 Invocaciones sobrenaturales cuero, hoz, 2 dagas, canalizador arcano (orbe), libro (de conocimiento oculto), paquete de erudito y 15 po, o (B) 100 po Espacios Nivel Conjuros de de los'
+armor: Armaduras ligeras
 weapons: Amas sencillas
-tools: Entrenamiento con Armaduras ligeras
+tools: ''
 srd: '5.2'
 page: 40
 ---
@@ -20,8 +20,8 @@ page: 40
 - **Competencias en tiradas de salvación:** Sabiduría y Carisma
 - **Competencias en habilidades:** Elige dos: Conocimiento arcano, Engaño, Historia, Intimidación, Investigación, Naturaleza o Religión
 - **Competencias con armas:** Amas sencillas
-- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras
-- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) armadura de Trucos preparados conjuro espacios 1 2 2 1 1 3 2 3 2 1 3 2 4 2 2 3 3 5 2 2 5 3 6 2 3 5 3 7 2 3 6 3 8 2 4 6 3 9 2 4 7 3 10 2 5 7 4 10 2 5 7 4 11 3 5 8 4 11 3 5 8 4 12 3 5 8 4 12 3 5 9 4 13 3 5 9 4 13 3 5 9 4 14 4 5 10 4 14 4 5 10 4 15 4 5 10 4 15 4 5 Invocaciones sobrenaturales cuero, hoz, 2 dagas, canalizador arcano (orbe), libro (de conocimiento oculto), paquete de erudito y 15 po, o (B) 100 po Espacios Nivel Conjuros de de los
+- **Entrenamiento con armaduras:** Armaduras ligeras
+- **Equipo inicial:** Elige A o B: (A) armadura de cuero, hoz, 2 dagas, canalizador arcano (orbe), libro (de conocimiento oculto), paquete de erudito y 15 po, o (B) 100 po
 
 ## Progresión
 
@@ -138,9 +138,7 @@ Obtienes una dote de don épico (consulta el capítulo “Dotes”) u otra dote 
 
 Cuando empleas tu rasgo Astucia mágica, recuperas todos los espacios de conjuro utilizados de Magia del pacto.
 
-## Opciones de invocación
-
-## sobrenatural
+## Opciones de invocación sobrenatural
 
 Las opciones de invocación sobrenatural aparecen en orden alfabético.
 
@@ -297,3 +295,24 @@ Requisitos: brujo de nivel 2 o superior. Puedes ver con normalidad en luz tenue 
 ## Subclases
 
 ### Patrón infernal
+
+Haz un trato con los Planos Inferiores. Tu pacto recurre a los Planos Inferiores, los reinos de la perdición. Puedes negociar con un señor demoníaco, con un archidiablo o con otro infernal especialmente notable. Estos patrones desean la corrupción y la destrucción de todas las cosas (incluyéndote a ti en última instancia) y tu camino se verá definido por la medida en que luchas contra esos deseos.
+
+#### Bendición del oscuro (nivel 3)
+Cuando reduzcas a 0 los puntos de golpe de un enemigo, obtienes una cantidad de puntos de golpe temporales igual a tu modificador por Carisma más tu nivel de brujo (mínimo de 1 punto de golpe temporal). También obtienes este beneficio si otra criatura reduce a 0 los puntos de golpe de un enemigo a 3 m o menos de ti.
+
+#### Conjuros del infernal (nivel 3)
+La magia de tu patrón garantiza que siempre tengas ciertos conjuros preparados. Cuando alcances un nivel de brujo especificado en la tabla “Conjuros del infernal”, a partir de entonces siempre tendrás preparados los conjuros que se indican.
+
+#### La suerte del oscuro (nivel 6)
+Puedes invocar a tu patrón infernal para alterar el destino a tu favor. Cuando hagas una prueba de característica o una tirada de salvación, puedes utilizar este rasgo para sumar 1d10 a tu tirada. Puedes hacerlo después de ver el resultado de la tirada, pero antes de que ocurran sus efectos.
+
+Puedes usar este rasgo una cantidad de veces igual a tu modificador por Carisma (mínimo una vez), pero no más de una vez por tirada. Recuperas todos los usos tras finalizar un descanso largo.
+
+#### Resistencia infernal (nivel 10)
+Tras finalizar un descanso corto o largo, elige un tipo de daño que no sea el de fuerza. Tienes resis tencia a ese tipo de daño hasta que elijas uno distinto con este rasgo.
+
+#### Arrastrar por el infierno (nivel 14)
+Una vez por turno, cuando aciertas a una criatura con una tirada de ataque, puedes intentar teletransportar instantáneamente al objetivo a los Planos Inferiores. El objetivo deberá superar una tirada de salvación de Carisma contra tu CD de salvación de conjuros o desaparecerá y se precipitará a través de un paisaje de pesadilla. Si el objetivo no es un infernal, sufrirá 8d10 de daño psíquico y tendrá el estado de incapacitado hasta el final de tu siguiente turno, momento en el que volverá al espacio que ocupaba anteriormente o al espacio sin ocupar más cercano.
+
+Cuando uses este rasgo, no podrás volver a hacerlo hasta que finalices un descanso largo, a menos que gastes un espacio de conjuro de Magia del pacto (no requiere acción) para restablecer su uso.

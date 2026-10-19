@@ -5,10 +5,10 @@ primaryAbility: Destreza y Sabiduría
 saves:
 - Fuerza
 - Destreza
-skillChoices: 'Elige tres: en Atletismo, Investigahabilidades ción, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales'
-armor: 'Equipo inicial Elige A o B: (A) armadura de Enemigo Conjuros predilecto preparados 1 2 3 4 5 2 2 2 — — — — 2 3 2 — — — — 2 4 3 — — — — 2 5 3 — — — — 3 6 4 2 — — — 3 6 4 2 — — — 3 7 4 3 — — — 3 7 4 3 — — — 4 9 4 3 2 — — 4 9 4 3 2 — — 4 10 4 3 3 — — 4 10 4 3 3 — — 5 11 4 3 3 1 — 5 11 4 3 3 1 — 5 12 4 3 3 2 — 5 12 4 3 3 2 — 6 14 4 3 3 3 1 6 14 4 3 3 3 1 6 15 4 3 3 3 2 6 15 4 3 3 3 2 cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, canalizador druídico (rama de muérdago), paquete de explorador y 7 po, o (B) 150 po Espacios de conjuro por cada nivel de conjuro'
+skillChoices: 'Elige tres: Atletismo, Investigahabilidades ción, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales'
+armor: Armaduras ligeras y medias y escudos
 weapons: Armas sencillas y marciales
-tools: Entrenamiento con Armaduras ligeras y medias y escudos
+tools: ''
 srd: '5.2'
 page: 58
 ---
@@ -16,12 +16,12 @@ page: 58
 ## Atributos básicos
 
 - **Característica principal:** Destreza y Sabiduría
-- **Dado de puntos de golpe:** de 1d10 por nivel de explorador golpe
+- **Dado de puntos de golpe:** 1d10 por nivel de explorador
 - **Competencias en tiradas de salvación:** Fuerza y Destreza
-- **Competencias en habilidades:** Elige tres: en Atletismo, Investigahabilidades ción, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales
+- **Competencias en habilidades:** Elige tres: Atletismo, Investigahabilidades ción, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales
 - **Competencias con armas:** Armas sencillas y marciales
-- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras y medias y escudos
-- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) armadura de Enemigo Conjuros predilecto preparados 1 2 3 4 5 2 2 2 — — — — 2 3 2 — — — — 2 4 3 — — — — 2 5 3 — — — — 3 6 4 2 — — — 3 6 4 2 — — — 3 7 4 3 — — — 3 7 4 3 — — — 4 9 4 3 2 — — 4 9 4 3 2 — — 4 10 4 3 3 — — 4 10 4 3 3 — — 5 11 4 3 3 1 — 5 11 4 3 3 1 — 5 12 4 3 3 2 — 5 12 4 3 3 2 — 6 14 4 3 3 3 1 6 14 4 3 3 3 1 6 15 4 3 3 3 2 6 15 4 3 3 3 2 cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, canalizador druídico (rama de muérdago), paquete de explorador y 7 po, o (B) 150 po Espacios de conjuro por cada nivel de conjuro
+- **Entrenamiento con armaduras:** Armaduras ligeras y medias y escudos
+- **Equipo inicial:** Elige A o B: (A) armadura de cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, canalizador druídico (rama de muérdago), paquete de explorador y 7 po, o (B) 150 po
 
 ## Progresión
 
@@ -167,3 +167,28 @@ El dado de daño de tu marca del cazador es un d10 en lugar de un d6.
 ## Subclases
 
 ### Cazador
+
+Protege la naturaleza y a la gente contra la destrucción. Acechas a tus presas en las tierras salvajes y en otros lugares y empleas tus habilidades de cazador para proteger la naturaleza y a la gente contra las fuerzas que buscan destruirlas.
+
+#### El cazador y la presa (nivel 3)
+Obtienes una de las siguientes opciones de este rasgo, a tu elección. Tras finalizar un descanso corto o largo, puedes cambiar la opción elegida por la otra.
+
+Azote de colosos. Tu tenacidad puede agotar incluso a los enemigos más resistentes. Cuando aciertes a una criatura con un arma, esta inflige 1d8 de daño adicional si el objetivo no tiene todos sus puntos de golpe. Solo puedes infligir este daño adicional una vez por turno.
+
+Destructor de hordas. Una vez en cada uno de tus turnos, cuando hagas un ataque con un arma, puedes realizar otro con la misma arma contra una criatura distinta que se encuentre a 1,5 m o menos del objetivo original si no la has atacado este turno y está dentro del alcance del arma.
+
+#### Sabiduría del cazador (nivel 3)
+Puedes invocar a las fuerzas de la naturaleza para mostrar ciertos puntos fuertes y débiles de tu presa. Mientras una criatura tenga tu marca del cazador sobre ella, sabrás si tiene alguna inmunidad, resistencia o vulnerabilidad y cuáles son, de ser así.
+
+#### Tácticas defensivas (nivel 7)
+Obtienes una de las siguientes opciones de este rasgo, a tu elección. Tras finalizar un descanso corto o largo, puedes cambiar la opción elegida por la otra.
+
+Defensa contra ataques múltiples. Cuando una criatura te acierte con una tirada de ataque, esa criatura tendrá desventaja en todas las demás tiradas de ataque contra ti este turno.
+
+Escapar de la horda. Los ataques de oportunidad tienen desventaja contra ti.
+
+#### El cazador experto y la presa (nivel 11)
+Una vez por turno, cuando inflijas daño a una criatura que tenga tu marca del cazador, también puedes hacer el daño adicional del conjuro a una criatura distinta que puedas ver a 9 m o menos de la primera criatura.
+
+#### Defensa de cazador experto (nivel 15)
+Cuando recibes daño, puedes usar una reacción para concederte resistencia a ese daño y a cualquier otro daño del mismo tipo hasta el final de ese turno.

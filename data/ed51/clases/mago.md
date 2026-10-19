@@ -92,17 +92,9 @@ Puedes cambiar los conjuros que tienes preparados tras finalizar un descanso lar
 
 La Inteligencia es tu aptitud mágica en lo que respecta a tus conjuros de mago, ya que los aprendes mediante el estudio concienzudo y la memorización. Utilizarás tu Inteligencia siempre que un conjuro haga referencia a tu aptitud mágica. Además, también usarás tu modificador por Inteligencia para determinar la CD de las tiradas de salvación de los conjuros de mago y para hacer tiradas de ataque con uno de estos conjuros.
 
-CD de salvación de conjuros =
+CD de salvación de conjuros = 8 + tu bonificador por competencia + tu modificador por Inteligencia
 
-8 + tu bonificador por competencia +
-
-tu modificador por Inteligencia
-
-Modificador de ataque de conjuros =
-
-tu bonificador por competencia +
-
-tu modificador por Inteligencia
+Modificador de ataque de conjuros = tu bonificador por competencia + tu modificador por Inteligencia
 
 #### Lanzamiento ritual
 
@@ -178,9 +170,7 @@ A partir del nivel 14, puedes aumentar el poder de tus conjuros más sencillos. 
 
 La primera vez que hagas esto no sufrirás ningún efecto negativo, pero si usas este rasgo de nuevo sin haber finalizado un descanso largo antes, recibirás 2d12 de daño necrótico por cada nivel del conjuro inmediatamente después de lanzarlo. Cada vez que vuelvas a utilizar este rasgo sin haber terminado un descanso largo, el daño necrótico por cada nivel del conjuro aumentará en 1d12. Este daño ignora cualquier resistencia e inmunidad.
 
-Tu libro de conjuros
-
-Los conjuros que añadas a tu libro de conjuros según vayas subiendo de nivel reflejarán tanto la investigación sobre lo arcano que llevas a cabo por tu cuenta como los hitos en tu comprensión de la naturaleza del multiverso. También podrías encontrar otros conjuros durante tus aventuras, como en un pergamino descubierto en el cofre de un mago malvado o en un polvoriento volumen en una antigua biblioteca, por poner dos ejemplos.
+Tu libro de conjuros Los conjuros que añadas a tu libro de conjuros según vayas subiendo de nivel reflejarán tanto la investigación sobre lo arcano que llevas a cabo por tu cuenta como los hitos en tu comprensión de la naturaleza del multiverso. También podrías encontrar otros conjuros durante tus aventuras, como en un pergamino descubierto en el cofre de un mago malvado o en un polvoriento volumen en una antigua biblioteca, por poner dos ejemplos.
 
 Copiar un conjuro en tu libro. Cuando localices un conjuro de mago de nivel 1 o superiores, podrás añadirlo a tu libro de conjuros si es de un nivel que puedas preparar y dispones del tiempo suficiente como para poder descifrarlo y copiarlo.
 

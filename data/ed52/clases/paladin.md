@@ -6,9 +6,9 @@ saves:
 - Sabiduría
 - Carisma
 skillChoices: 'Elige dos: Atletismo, Intimidación, Medicina, Perspicacia, Persuasión o Religión'
-armor: 'Equipo inicial Elige A o B: (A) cota de malla, escudo, espada larga, 6 jabalinas, símbolo sagrado, paquete de sacerdote y 9 po, o (B) 150 po'
+armor: Armaduras ligeras, medias y pesadas y escudos
 weapons: Armas sencillas y marciales
-tools: Entrenamiento con Armaduras ligeras, medias y pesadas y escudos
+tools: ''
 srd: '5.2'
 page: 81
 ---
@@ -20,8 +20,8 @@ page: 81
 - **Competencias en tiradas de salvación:** Sabiduría y Carisma
 - **Competencias en habilidades:** Elige dos: Atletismo, Intimidación, Medicina, Perspicacia, Persuasión o Religión
 - **Competencias con armas:** Armas sencillas y marciales
-- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras, medias y pesadas y escudos
-- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) cota de malla, escudo, espada larga, 6 jabalinas, símbolo sagrado, paquete de sacerdote y 9 po, o (B) 150 po
+- **Entrenamiento con armaduras:** Armaduras ligeras, medias y pesadas y escudos
+- **Equipo inicial:** Elige A o B: (A) cota de malla, escudo, espada larga, 6 jabalinas, símbolo sagrado, paquete de sacerdote y 9 po, o (B) 150 po
 
 ## Progresión
 
@@ -29,7 +29,7 @@ page: 81
 |---|---|---|
 | 1 | +2 | Imponer las manos, Lanzamiento de conjuros, Maestría con armas |
 | 2 | +2 | Castigo de paladín, Estilo de combate |
-| 3 | +2 | Canalizar divinidad, subclase de paladín |
+| 3 | +2 | Canalizar divinidad, Subclase de paladín |
 | 4 | +2 | Mejora de característica |
 | 5 | +3 | Ataque adicional, Corcel fiel |
 | 6 | +3 | Aura de protección |
@@ -61,48 +61,6 @@ page: 81
 • Obtienes los siguientes atributos de la tabla “Atributos básicos de paladín”: dado de puntos de golpe, competencia con armas marciales y entrenamiento con armaduras ligeras y medias y escudos.
 
 • Obtienes los rasgos de nivel 1 de paladín, que se muestran en la tabla “Rasgos de paladín”. Consulta las reglas de multiclase del capítulo “Creación de personajes” para determinar tus espacios de conjuro disponibles.
-
-Espacios de conjuro por cada nivel de conjuro Canalizar Conjuros divinidad preparados 1 2 3 4 5
-
-— 2 2 — — — —
-
-— 3 2 — — — —
-
-2 4 3 — — — —
-
-2 5 3 — — — —
-
-2 6 4 2 — — —
-
-2 6 4 2 — — —
-
-2 7 4 3 — — —
-
-2 7 4 3 — — —
-
-2 9 4 3 2 — —
-
-2 9 4 3 2 — —
-
-3 10 4 3 3 — —
-
-3 10 4 3 3 — —
-
-3 11 4 3 3 1 —
-
-3 11 4 3 3 1 —
-
-3 12 4 3 3 2 —
-
-3 12 4 3 3 2 —
-
-3 14 4 3 3 3 1
-
-3 14 4 3 3 3 1
-
-3 15 4 3 3 3 2
-
-3 15 4 3 3 3 2
 
 ## Rasgos de clase
 
@@ -150,17 +108,9 @@ Obtienes una dote de estilo de combate de tu elección (consulta las dotes en el
 
 Guerrero bendito. Aprendes dos trucos de clérigo de tu elección (consulta la sección de la clase clérigo para ver la lista de conjuros de clérigo). Se recoguía llama sagrada. miendan y Los trucos elegidos cuentan como conjuros de paladín para ti y el Carisma es tu aptitud mágica para lanzarlos. Cada vez que subas un nivel de paladín, puedes sustituir uno de estos trucos por otro truco de clérigo.
 
-## R
-
-omper tu juramento Los paladines siempre intentan alcanzar los más altos estándares de conducta, pero incluso los más entregados pueden fallar. A veces, un paladín quebranta su juramento.
-
-Un paladín que rompe sus votos tiende a buscar la absolución. Para ello, y en señal de penitencia, pasa la noche en vela o lleva a cabo un ayuno. Tras finalizar el rito del perdón, el paladín puede hacer borrón y cuenta nueva.
-
-Si tu paladín rompe su juramento y no se arrepiente, habla con tu GM. Tu paladín probablemente debería buscar una subclase más apropiada o incluso abandonar la clase y adoptar otra.
-
 ### Canalizar divinidad (nivel 3)
 
-Puedes canalizar energía divina directamente de los Planos Exteriores para alimentar varios efectos mágicos. Empiezas con uno de esos efectos: Sentidos divinos, que se describe a continuación. Otros rasgos de paladín ofrecen opciones adicionales como efectos de Canalizar divinidad. Cada vez que utilices el rasgo Canalizar divinidad de esta clase, elige qué efecto de esta clase creas.
+RPuedes canalizar energía divina directamente de los Planos Exteriores para alimentar varios efectos mágicos. Empiezas con uno de esos efectos: Sentidos divinos, que se describe a continuación. Otros rasgos de paladín ofrecen opciones adicionales como efectos de Canalizar divinidad. Cada vez que utilices el rasgo Canalizar divinidad de esta clase, elige qué efecto de esta clase creas.
 
 Puedes usar el rasgo Canalizar divinidad dos veces. Recuperas uno de los usos gastados tras finalizar un descanso corto y todos tras finalizar un descanso largo. Obtienes un uso adicional cuando alcances el nivel 11 de paladín.
 
@@ -221,3 +171,42 @@ Obtienes una dote de don épico (consulta el capítulo “Dotes”) u otra dote 
 ## Subclases
 
 ### Juramento de entrega
+
+Defiende los ideales de la justicia y el orden. El juramento de entrega vincula al paladín con los ideales de la justicia y el orden. Estos paladines encarnan el ideal del caballero de brillante armadura, se exigen a sí mismos los más altos estándares de conducta y algunos de ellos, para bien o para mal, esperan lo mismo del resto del mundo.
+
+Muchos de los que pronuncian este juramento veneran a dioses de la ley y la bondad, y emplean los mandamientos de estas deidades como vara de medir de su propia devoción. Otros conciben a los ángeles como el ideal al que aspirar e incorporan imágenes de alas angelicales en sus yelmos o blasones.
+
+Estos paladines comparten los siguientes principios:
+
+• Que tus palabras sean siempre promesas.
+
+• Protege a los débiles y nunca temas actuar.
+
+• Que tus actos honorables sirvan de ejemplo.
+
+#### Arma sagrada (nivel 3)
+Cuando realizas la acción de atacar, puedes gastar uno de los usos de Canalizar divinidad para imbuir de energía positiva un arma cuerpo a cuerpo que sostengas. Durante 10 minutos o hasta que vuelvas a usar este rasgo, sumas tu modificador por Carisma a las tiradas de ataque que hagas con esa arma (mínimo de +1), y cada vez que aciertes con ella, haces que inflija su tipo de daño normal o daño radiante.
+
+El arma también emite luz brillante en un radio de 6 m y luz tenue 6 m más allá.
+
+Puedes poner fin a este efecto antes (no requiere acción). El efecto también terminará si no llevas el arma contigo.
+
+#### Conjuros del juramento (nivel 3)
+#### de entrega
+
+La magia de tu juramento garantiza que siempre tengas ciertos conjuros preparados. Cuando alcances un nivel de paladín especificado en la tabla “Conjuros del juramento de entrega”, a partir de entonces siempre tendrás preparados los conjuros que se indican.
+
+#### Aura de entrega (nivel 7)
+Tus aliados y tú tenéis inmunidad al estado de hechizados mientras estéis dentro de tu Aura de protección. Si un aliado hechizado entra en el aura, ese estado no tendrá efecto en él mientras esté dentro.
+
+#### Castigo protector (nivel 15)
+Tu castigo mágico ahora irradia energía protectora. Siempre que lances castigo divino, tus aliados y tú tenéis cobertura media mientras estéis dentro de tu Aura de protección. El aura tiene este beneficio hasta el principio de tu siguiente turno.
+
+#### Halo sagrado (nivel 20)
+Como acción adicional, puedes imbuir de poder divino tu Aura de protección, lo que otorga los beneficios indicados a continuación durante 10 minutos o hasta que les pongas fin (no requiere acción). Cuando uses este rasgo, no podrás volver a hacerlo hasta que finalices un descanso largo. También puedes restablecer su uso gastando un espacio de conjuro de nivel 5 (no requiere acción).
+
+Daño radiante. Siempre que un enemigo comience su turno dentro del aura, esa criatura recibirá una cantidad de daño radiante igual a tu modificador por Carisma más tu bonificador por competencia.
+
+Luz solar. El aura está llena de luz brillante del sol.
+
+Protección sagrada. Tienes ventaja en las tiradas de salvación que te obliguen a hacer infernales o muertos vivientes.

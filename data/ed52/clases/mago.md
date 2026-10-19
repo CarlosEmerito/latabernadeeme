@@ -5,10 +5,10 @@ primaryAbility: Inteligencia
 saves:
 - Inteligencia
 - Sabiduría
-skillChoices: 'Elige dos: en Conocimiento arhabilidades cano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión'
-armor: 'Equipo inicial Elige A o B: (A) 2 dagas, canalizador arcano (bastón), libro de conjuros, paquete de erudito, túnica y 5 po, o (B) 55 po'
+skillChoices: 'Elige dos: Conocimiento arhabilidades cano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión'
+armor: Ninguna
 weapons: Amas sencillas
-tools: Entrenamiento con Ninguna
+tools: ''
 srd: '5.2'
 page: 71
 ---
@@ -16,12 +16,12 @@ page: 71
 ## Atributos básicos
 
 - **Característica principal:** Inteligencia
-- **Dado de puntos de golpe:** de 1d6 por nivel de mago golpe
+- **Dado de puntos de golpe:** 1d6 por nivel de mago
 - **Competencias en tiradas de salvación:** Inteligencia y Sabiduría
-- **Competencias en habilidades:** Elige dos: en Conocimiento arhabilidades cano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión
+- **Competencias en habilidades:** Elige dos: Conocimiento arhabilidades cano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión
 - **Competencias con armas:** Amas sencillas
-- **Competencias con herramientas:** Entrenamiento con Ninguna
-- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) 2 dagas, canalizador arcano (bastón), libro de conjuros, paquete de erudito, túnica y 5 po, o (B) 55 po
+- **Entrenamiento con armaduras:** Ninguna
+- **Equipo inicial:** Elige A o B: (A) 2 dagas, canalizador arcano (bastón), libro de conjuros, paquete de erudito, túnica y 5 po, o (B) 55 po
 
 ## Progresión
 
@@ -65,10 +65,6 @@ page: 71
 ## Rasgos de clase
 
 Como mago, obtienes los siguientes rasgos de clase cuando alcanzas los niveles de mago especificados. Estos rasgos se muestran en la tabla “Rasgos de mago”.
-
-Espacios de conjuro por cada nivel de conjuro Conjuros preparados 1 2 3 4 5 6 7 8 9 3 4 2 — — — — — — — —
-
-3 5 3 — — — — — — — — 3 6 4 2 — — — — — — — 4 7 4 3 — — — — — — — 4 9 4 3 2 — — — — — — 4 10 4 3 3 — — — — — — 4 11 4 3 3 1 — — — — — 4 12 4 3 3 2 — — — — — 4 14 4 3 3 3 1 — — — — 5 15 4 3 3 3 2 — — — — 5 16 4 3 3 3 2 1 — — — 5 16 4 3 3 3 2 1 — — — 5 17 4 3 3 3 2 1 1 — — 5 18 4 3 3 3 2 1 1 — — 5 19 4 3 3 3 2 1 1 1 — 5 21 4 3 3 3 2 1 1 1 — 5 22 4 3 3 3 2 1 1 1 1 5 23 4 3 3 3 3 1 1 1 1 5 24 4 3 3 3 3 2 1 1 1 5 25 4 3 3 3 3 2 2 1 1 Trucos
 
 ### Lanzamiento de conjuros (nivel 1)
 
@@ -130,19 +126,9 @@ Has alcanzado tal maestría sobre ciertos conjuros que puedes lanzarlos a volunt
 
 Tras finalizar un descanso largo, puedes estudiar tu libro de conjuros y sustituir uno de los conjuros por otro del libro del mismo nivel que cumpla los requisitos.
 
-## A
-
-mpliar y sustituir un libro de conjuros Los conjuros que añades a tu libro conforme subes de nivel reflejan tu continua investigación mágica, aunque puede que en tus aventuras encuentres otros conjuros que añadir al libro. Por ejemplo, quizá descubras un conjuro de mago en un pergamino de conjuro y quieras copiarlo.
-
-Copiar un conjuro en tu libro. Cuando encuentres un conjuro de mago de nivel 1 o superior, podrás añadirlo a tu libro de conjuros si es de un nivel que puedas preparar y dispones del tiempo suficiente para copiarlo. La transcripción exige 2 horas y 50 po por cada nivel del conjuro. Después, podrás preparar el conjuro como cualquier otro de tu libro.
-
-Copiar el libro. Puedes copiar un conjuro de tu libro de conjuros en otro libro. Este proceso es el mismo que cuando copias un conjuro en tu libro, pero más rápido, pues ya sabes cómo lanzarlo. Solo necesitas dedicar 1 hora e invertir 10 po por cada nivel del conjuro copiado.
-
-Si perdieras tu libro de conjuros, podrías recurrir al mismo procedimiento para transcribir los conjuros de mago que tengas preparados en ese momento en un nuevo libro. Para seguir llenándolo, tendrás que volver a encontrar conjuros nuevos. Por este motivo, muchos magos tienen un libro de conjuros de reserva.
-
 ### Don épico (nivel 19)
 
-Obtienes una dote de don épico (consulta el capítulo “Dotes”) u otra dote de tu elección para la que cumplas las condiciones. Se recomienda Don del recuerdo de conjuros.
+AObtienes una dote de don épico (consulta el capítulo “Dotes”) u otra dote de tu elección para la que cumplas las condiciones. Se recomienda Don del recuerdo de conjuros.
 
 ### Conjuros característicos (nivel 20)
 
@@ -151,3 +137,26 @@ Escoge dos conjuros de nivel 3 que figuren en tu libro de conjuros como conjuros
 ## Subclases
 
 ### Evocador
+
+Crea efectos elementales explosivos. Haces hincapié en el estudio de la magia capaz de crear poderosos efectos elementales, como un frío penetrante, llamas abrasadoras, ácidos corrosivos, truenos reverberantes o violentos relámpagos. Algunos evocadores encuentran empleo en las fuerzas armadas, concretamente en los regimientos de artillería para destrozar ejércitos desde lejos. Otros emplean su poder para proteger a los demás y hay quienes los usan en su propio beneficio.
+
+#### Experto en evocación (nivel 3)
+Elige dos conjuros de mago de la escuela de evocación de nivel 2 o inferior y añádelos a tu libro de conjuros sin coste.
+
+Además, siempre que consigas un nuevo nivel de espacios de conjuro de esta clase, puedes añadir un conjuro de mago de la escuela de evocación a tu libro de conjuros sin coste. El conjuro elegido debe ser de un nivel para el que tengas espacios de conjuro.
+
+#### Truco potente (nivel 3)
+Tus trucos que causen daño pueden afectar incluso a las criaturas que hayan evitado la peor parte del efecto. Cuando lances un truco a una criatura y falles la tirada de ataque o el objetivo supere la tirada de salvación contra el truco, el objetivo recibirá la mitad del daño del truco (si es que causa alguno), pero no sufrirá ningún otro de sus efectos adicionales.
+
+#### Esculpir conjuros (nivel 6)
+Puedes crear espacios de relativa seguridad en el interior de los efectos generados por tu magia de evocación. Cuando lances un conjuro de evocación que afecte a otras criaturas que puedas ver, puedes elegir una cantidad de ellas igual a 1 más el nivel del conjuro. Las criaturas elegidas tienen éxito automáticamente en sus tiradas de salvación contra el conjuro y no reciben daño alguno si normalmente recibirían la mitad de daño del mismo al superar una tirada de salvación.
+
+#### Evocación potenciada (nivel 10)
+Siempre que lances un conjuro de mago de la escuela de evocación, puedes sumar tu modificador por Inteligencia a una tirada de daño del conjuro.
+
+#### Sobrecanalizar (nivel 14)
+Puedes aumentar el poder de tus conjuros. Cuando lances un conjuro de mago que cause daño usando un espacio de conjuro de niveles entre 1 y 5, puedes infligir el máximo daño posible con ese conjuro el turno en que lo lanzas.
+
+La primera vez que hagas esto no sufrirás ningún efecto negativo, pero si usas este rasgo de nuevo sin haber finalizado un descanso largo antes, recibirás 2d12 de daño necrótico por cada nivel del espacio de conjuro inmediatamente después de lanzarlo. Este daño ignora cualquier resistencia e inmunidad.
+
+Cada vez que vuelvas a utilizar este rasgo sin haber terminado un descanso largo, el daño necrótico por cada nivel del conjuro aumentará en 1d12.

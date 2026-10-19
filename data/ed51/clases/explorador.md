@@ -138,17 +138,9 @@ Además, cada vez que subas un nivel de esta clase, podrás elegir uno de los co
 
 La Sabiduría es tu aptitud mágica en lo que respecta a tus conjuros de explorador, ya que tu magia proviene de tu sintonía con la naturaleza. Utilizarás tu Sabiduría siempre que un conjuro haga referencia a tu aptitud mágica. Además, también usarás tu modificador por Sabiduría para determinar la CD de las tiradas de salvación de los conjuros de explorador y para hacer tiradas de ataque con uno de estos conjuros.
 
-CD de salvación de conjuros =
+CD de salvación de conjuros = 8 + tu bonificador por competencia + tu modificador por Sabiduría
 
-8 + tu bonificador por competencia +
-
-tu modificador por Sabiduría
-
-Modificador de ataque de conjuros =
-
-tu bonificador por competencia +
-
-tu modificador por Sabiduría
+Modificador de ataque de conjuros = tu bonificador por competencia + tu modificador por Sabiduría
 
 ### Arquetipo de Explorador (nivel 3)
 

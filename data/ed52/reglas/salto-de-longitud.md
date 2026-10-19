@@ -1,8 +1,0 @@
----
-name: Salto de longitud
-category: Glosario
-srd: '5.2'
-page: 207
----
-
-Cuando hagas un salto de longitud, avanzarás horizontalmente una distancia de hasta 30 cm × tu puntuación de Fuerza si recorres al menos 3 m antes de saltar. Si saltas sin coger carrerilla, solo podrás recorrer la mitad de esa distancia. En cualquier caso, cada metro que saltes te costará 1 m de tu movimiento. Si aterrizas en terreno difícil, deberás superar una prueba de Destreza (Acrobacias) con CD 10 o tendrás el estado de derribado. La regla de los saltos de longitud da por supuesto que la altura del salto no influye, como cuando se salta para cruzar un río o una grieta. Si tu GM lo cree conveniente, deberás superar una prueba de Fuerza (Atletismo) con CD 10 para superar un obstáculo de una altura no superior a la cuarta parte de la distancia del salto, como puede ser un seto o un muro bajo. De lo contrario, chocarás contra el obstáculo.

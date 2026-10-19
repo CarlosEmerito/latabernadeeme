@@ -84,7 +84,7 @@ SPECS_52: list[Spec] = [
     Spec("Interacciones sociales", "Social"),
     Spec("Exploración", "Exploración"),
     Spec("Combate", "Combate"),
-    Spec("Daño y curación", "Combate"),
+    Spec("Daño y curación", "Combate", end="Creación de personajes"),
     Spec("Herramientas del juego", "Básico", level="h1", end="Ritmo de viaje"),
     Spec("Ritmo de viaje", "Exploración"),
     Spec("Crear un trasfondo", "Social"),
@@ -93,7 +93,7 @@ SPECS_52: list[Spec] = [
     Spec("Miedo y estrés psicológico", "Peligros"),
     Spec("Veneno", "Peligros"),
     Spec("Trampas", "Peligros"),
-    Spec("Encuentros de combate", "Combate"),
+    Spec("Encuentros de combate", "Combate", end="Objetos mágicos"),
 ]
 
 GLOSSARY_START = "Definiciones de las reglas"
@@ -106,27 +106,31 @@ def glossary_specs(blocks: list[rules.Block]) -> list[Spec]:
     first = rules.find_any(blocks, GLOSSARY_START)
     last = rules.find_any(blocks, GLOSSARY_END, first)
     specs: list[Spec] = []
-    for block in blocks[first + 1 : last]:
-        if block.kind not in ("caption", "h4", "para"):
+    for i, block in enumerate(blocks[first + 1 : last], start=first + 1):
+        if block.kind != "caption":
             continue
         title = block.text.strip()
-        if not title or len(title) > 70:
+        if not title or len(title) > 48 or "**" in title or "." in title:
+            continue
+        if not title[0].isupper() or not title[0].isalpha():
+            continue
+        if i + 1 >= len(blocks) or blocks[i + 1].kind not in ("para", "item"):
             continue
         name = title.replace(STATE_TAG, "").replace("[peligro]", "").replace("[acción]", "")
         name = name.replace("[actitud]", "").replace("[área de efecto]", "").strip()
         category = "Condiciones" if STATE_TAG in title else "Glosario"
-        specs.append(Spec(title, category, name=name, level=block.kind))
+        specs.append(Spec(title, category, name=name, level="caption"))
     return specs
 
 
 def run_edition(ed: str, xml: str, words_xml: str, specs: list[Spec], first: int, last: int) -> int:
     pages = rules.parse(WORK / xml)
     words = rules.parse_words(WORK / words_xml)
-    blocks = rules.blocks(pages, first, last, words)
+    blocks = rules.blocks(pages, first, last, words, indent_space=(ed == "ed51"))
     if ed == "ed52":
         specs = [s for s in specs if s.title != GLOSSARY_START]
         idx = specs.index(next(s for s in specs if s.title == GLOSSARY_END))
-        specs[idx:idx] = [Spec(GLOSSARY_START, "Glosario", end=GLOSSARY_END)] + glossary_specs(blocks)
+        specs[idx:idx] = [Spec(GLOSSARY_START, "Glosario")] + glossary_specs(blocks)
 
     out = DATA / ed / "reglas"
     taken: set[str] = set()

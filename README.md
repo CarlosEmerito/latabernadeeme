@@ -8,8 +8,12 @@ Dos apartados, `5e` y `5.5`, con la misma estructura: conjuros, monstruos, objet
 
 | Edición | Conjuros | Monstruos | Objetos | Clases | Especies | Trasfondos | Dotes | Equipo | Reglas |
 |---|---|---|---|---|---|---|---|---|---|
-| 5e (SRD 5.1) | 319 | 302 | — | — | — | — | — | — | — |
-| 5.5 (SRD 5.2.1) | 339 | 315 | — | — | — | — | — | — | — |
+| 5e (SRD 5.1) | 319 | 302 | 240 | 12 | 9 | 1 | 1 | 213 | 44 |
+| 5.5 (SRD 5.2.1) | 339 | 315 | 258 | 12 | 9 | 4 | 17 | 188 | 174 |
+
+Los recuentos están verificados contra los documentos oficiales. El SRD 5.1
+solo contiene un trasfondo (acólito) y una dote (luchador), y el 5.2 cuatro
+trasfondos: no faltan, están así en el original.
 
 Los recuentos de conjuros y monstruos están verificados contra los documentos oficiales; las celdas con «—» son contenido en extracción.
 

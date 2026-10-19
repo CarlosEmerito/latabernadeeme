@@ -5,9 +5,8 @@ srd: '5.1'
 page: 389
 ---
 
-| Algunas capacidades especiales y ciertos peligros |  |
+| Algunas capacidades especiales y ciertos peligros ambientales, como la inanición o una larga exposición |  |
 |---|---|
-| ambientales, como la inanición o una larga exposición |  |
 | a los efectos de unas temperaturas particularmente frías |  |
 | o calientes, pueden producir un estado especial llamado |  |
 | “cansancio”. El cansancio se mide con seis niveles. Un efecto |  |

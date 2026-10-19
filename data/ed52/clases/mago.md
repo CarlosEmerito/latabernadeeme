@@ -1,20 +1,27 @@
 ---
 name: Mago
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d6
+primaryAbility: Inteligencia
+saves:
+- Inteligencia
+- Sabiduría
+skillChoices: 'Elige dos: en Conocimiento arhabilidades cano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión'
+armor: 'Equipo inicial Elige A o B: (A) 2 dagas, canalizador arcano (bastón), libro de conjuros, paquete de erudito, túnica y 5 po, o (B) 55 po'
+weapons: Amas sencillas
+tools: Entrenamiento con Ninguna
 srd: '5.2'
 page: 71
 ---
 
 ## Atributos básicos
 
-- **Competencias en Conocimiento ar- habilidades:** Elige dos: cano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión
-- **Equipo inicial Elige A o B: (A) 2 dagas, canali-:** zador arcano (bastón), libro de conjuros, paquete de erudito, túnica y 5 po, o (B) 55 po
+- **Característica principal:** Inteligencia
+- **Dado de puntos de golpe:** de 1d6 por nivel de mago golpe
+- **Competencias en tiradas de salvación:** Inteligencia y Sabiduría
+- **Competencias en habilidades:** Elige dos: en Conocimiento arhabilidades cano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión
+- **Competencias con armas:** Amas sencillas
+- **Competencias con herramientas:** Entrenamiento con Ninguna
+- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) 2 dagas, canalizador arcano (bastón), libro de conjuros, paquete de erudito, túnica y 5 po, o (B) 55 po
 
 ## Progresión
 
@@ -143,4 +150,4 @@ Escoge dos conjuros de nivel 3 que figuren en tu libro de conjuros como conjuros
 
 ## Subclases
 
-### Crea efectos elementales explosivos.
+### Evocador

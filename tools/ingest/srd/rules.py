@@ -292,8 +292,10 @@ def blocks(pages: list[Page], first: int, last: int, words: dict | None = None) 
                 block.rows = grid
             else:
                 # texto a cuerpo menor (cuadros y notas), no una tabla
-                block.kind = "para"
-                block.text = _flow([r[0] for r in (grid or tbl["rows"])])
+                block.kind = "skip"
+                block.text = ""
+                for extra in _small_blocks([r[0] for r in (grid or tbl["rows"])], tbl["block"].page):
+                    out.append(extra)
         else:
             block.rows = tbl["rows"]
         tbl = None
@@ -370,7 +372,7 @@ def blocks(pages: list[Page], first: int, last: int, words: dict | None = None) 
                 out.append(cur)
             prev = line
     close_table()
-    return _merge_tables(_merge_lists(out))
+    return _merge_tables(_merge_lists([b for b in out if b.kind != "skip"]))
 
 
 def _merge_tables(items: list[Block]) -> list[Block]:
@@ -388,6 +390,29 @@ def _merge_tables(items: list[Block]) -> list[Block]:
             out[-1].rows = out[-1].rows + b.rows[1:]
         else:
             out.append(b)
+    return out
+
+
+def _small_blocks(lines: list[str], page: int) -> list[Block]:
+    """Convierte un cuadro de texto pequeño en párrafos y listas."""
+    out: list[Block] = []
+    for ln in lines:
+        ln = " ".join(ln.split())
+        if not ln:
+            continue
+        bullet = ln.startswith("•")
+        if out and not bullet:
+            last = out[-1]
+            if last.kind == "item" and not bullet:
+                last.text = _join(last.text, ln.lstrip("• ").strip())
+                continue
+            if last.kind == "para" and not last.text.endswith((".", ":", "!", "?", "”", '"')):
+                last.text = _join(last.text, ln)
+                continue
+        if bullet:
+            out.append(Block("item", page, ln))
+        else:
+            out.append(Block("para", page, ln))
     return out
 
 
@@ -492,6 +517,16 @@ def table_grid(rows: list[list[tuple[float, str]]]) -> list[list[str]]:
                 grid[-1][j] = (prev + " " + line[j]).strip()
             continue
         grid.append(line)
+
+    # cabecera partida en dos líneas: "Gravedad de" / "la trampa"
+    if (
+        len(grid) >= 2
+        and all(c[:1].isupper() for c in grid[0] if c)
+        and all(c[:1].islower() for c in grid[1] if c)
+        and any(grid[1])
+    ):
+        grid[0] = [(a + " " + b).strip() for a, b in zip(grid[0], grid[1])]
+        grid.pop(1)
     return grid
 
 

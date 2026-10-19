@@ -1,21 +1,28 @@
 ---
 name: Bardo
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d8
+primaryAbility: Carisma
+saves:
+- Destreza
+- Carisma
+skillChoices: Elige tres cualesquiera (consulta el capítulo “Cómo jugar”)
+armor: Armaduras ligeras
+weapons: Armas sencillas
+tools: Elige tres instrumentos musicales (consulta el capítulo “Equipo”)
 srd: '5.2'
 page: 35
 ---
 
 ## Atributos básicos
 
-- **Competencias Elige tres cualesquiera (consulta en habilidades:** el capítulo “Cómo jugar”)
-- **Competencias con Elige tres instrumentos musicales herramientas:** (consulta el capítulo “Equipo”)
-- **Equipo inicial:** Elige A o B: (A) armadura de cuero, 2 dagas, instrumento musical de tu elección, paquete de artista y 19 po, o (B) 90 po Espacios de conjuro por cada nivel
+- **Característica principal:** Carisma
+- **Dado de puntos de golpe:** 1d8 por nivel de bardo
+- **Competencias en tiradas de salvación:** Destreza y Carisma
+- **Competencias en habilidades:** Elige tres cualesquiera (consulta el capítulo “Cómo jugar”)
+- **Competencias con armas:** Armas sencillas
+- **Competencias con herramientas:** Elige tres instrumentos musicales (consulta el capítulo “Equipo”)
+- **Entrenamiento con armaduras:** Armaduras ligeras
+- **Equipo inicial:** Elige A o B: (A) armadura de Conjuros de conjuro preparados 1 2 3 4 5 6 7 8 9 2 4 2 — — — — — — — — 2 5 3 — — — — — — — — 2 6 4 2 — — — — — — — 3 7 4 3 — — — — — — — 3 9 4 3 2 — — — — — — 3 10 4 3 3 — — — — — — 3 11 4 3 3 1 — — — — — 3 12 4 3 3 2 — — — — — 3 14 4 3 3 3 1 — — — — 4 15 4 3 3 3 2 — — — — 4 16 4 3 3 3 2 1 — — — 4 16 4 3 3 3 2 1 — — — 4 17 4 3 3 3 2 1 1 — — 4 17 4 3 3 3 2 1 1 — — 4 18 4 3 3 3 2 1 1 1 — 4 18 4 3 3 3 2 1 1 1 — 4 19 4 3 3 3 2 1 1 1 1 4 20 4 3 3 3 3 1 1 1 1 4 21 4 3 3 3 3 2 1 1 1 4 22 4 3 3 3 3 2 2 1 1 Trucos cuero, 2 dagas, instrumento musical de tu elección, paquete de artista y 19 po, o (B) 90 po Espacios de conjuro por cada nivel
 
 ## Progresión
 

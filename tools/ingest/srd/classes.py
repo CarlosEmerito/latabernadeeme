@@ -34,6 +34,9 @@ CLASSES52 = [
     ("Druida", 52), ("Explorador", 58), ("Guerrero", 62), ("Hechicero", 64),
     ("Mago", 71), ("Monje", 77), ("Paladín", 81), ("Pícaro", 86),
 ]
+# última página de cada clase (la siguiente empieza otro capítulo o clase)
+NEXT52 = {name: (CLASSES52[i + 1][1] if i + 1 < len(CLASSES52) else 89)
+          for i, (name, _) in enumerate(CLASSES52)}
 
 T51_SECTION, T51_TRAIT, T51_SUB, T51_CAPTION = 24.1, 18.8, 16.1, 16.7
 T51_TABLE_MAX = 13.2
@@ -92,6 +95,11 @@ def merge_same_baseline(lines: list[Line]) -> list[Line]:
     return out
 
 
+def fix_text(text: str) -> str:
+    """Corrige artefactos conocidos de la extracción (ligaduras del PDF)."""
+    return text.replace("Amas sencillas", "Armas sencillas")
+
+
 def prose(lines: list[Line]) -> list[str]:
     """Párrafos literales, respetando columnas, sangrías y viñetas."""
     if not lines:
@@ -132,9 +140,9 @@ def prose(lines: list[Line]) -> list[str]:
             head, *rest = re.split(r"\s*•\s*", text)
             if head.strip():
                 out.append(clean_paragraph(head))
-            out.extend("• " + clean_paragraph(r) for r in rest if r.strip())
+            out.extend("• " + fix_text(clean_paragraph(r)) for r in rest if r.strip())
         else:
-            out.append(clean_paragraph(text))
+            out.append(fix_text(clean_paragraph(text)))
     return [p for p in out if p]
 
 
@@ -662,8 +670,36 @@ def span52(lines: list[Line], name: str, page: int, next_page: int = 999) -> lis
     return lines[start + 1:end]
 
 
+BOX_ROWS = [
+    ("Característica principal", "Característica"),
+    ("Dado de puntos de golpe", "Dado de puntos"),
+    ("Competencias en tiradas de salvación", "Competencias en"),
+    ("Competencias en habilidades", "Competencias"),
+    ("Competencias con armas", "Competencias con"),
+    ("Competencias con herramientas", "Competencias con"),
+    ("Entrenamiento con armaduras", "Entrenamiento con"),
+    ("Equipo inicial", "Equipo inicial"),
+]
+BOX_FRAGMENTS = {"principal", "de golpe", "tiradas de salvación", "en habilidades",
+                 "armas", "herramientas", "armaduras"}
+
+
+BOX_ROWS = [
+    ("Característica principal", "Característica"),
+    ("Dado de puntos de golpe", "Dado"),
+    ("Competencias en tiradas de salvación", "Competencias en"),
+    ("Competencias en habilidades", "Competencias"),
+    ("Competencias con armas", "Competencias con"),
+    ("Competencias con herramientas", "Competencias con"),
+    ("Entrenamiento con armaduras", "Entrenamiento"),
+    ("Equipo inicial", "Equipo inicial"),
+]
+BOX_FRAGMENTS = {"principal", "de golpe", "golpe", "tiradas de salvación", "en habilidades",
+                 "armas", "herramientas", "armaduras"}
+
+
 def attribute_box52(raw: list[Line], page: int) -> list[tuple[str, str]]:
-    """Caja de atributos de 5.2: dos columnas (etiqueta | valor)."""
+    """Caja de atributos de 5.2 (dos columnas con las etiquetas partidas)."""
     i0 = None
     for i, ln in enumerate(raw):
         if ln.page == page and ln.text.startswith("Atributos básicos de"):
@@ -675,24 +711,47 @@ def attribute_box52(raw: list[Line], page: int) -> list[tuple[str, str]]:
     for ln in raw[i0 + 1:]:
         if ln.size > 12.6 or ln.text.startswith("Rasgos de"):
             break
+        if seg and 0 < ln.y - seg[-1].y > 18:  # la tabla de progresión empieza más abajo
+            break
         seg.append(ln)
-    xs = sorted(l.x for l in seg)
-    mid = (xs[0] + xs[-1]) / 2
-    left = [l for l in seg if l.x < mid]
-    right = [l for l in seg if l.x >= mid]
-    labels: list[tuple[float, list[str]]] = []
-    for l in left:
-        if not l.text:
-            continue
-        if labels and l.y - labels[-1][0] <= 13:
-            labels[-1][1].append(l.text)
-        else:
-            labels.append((l.y, [l.text]))
+    if not seg:
+        return []
+    mid = (min(l.x for l in seg) + max(l.x for l in seg)) / 2
+
+    starts: list[tuple[int, int]] = []   # (índice de línea, fila de BOX_ROWS)
+    pos = 0
+    for k, l in enumerate(seg):
+        if pos >= len(BOX_ROWS):
+            break
+        # ¿empieza aquí alguna etiqueta posterior? (permite saltarse "herramientas")
+        while pos < len(BOX_ROWS) and not l.text.startswith(BOX_ROWS[pos][1]):
+            if pos + 1 < len(BOX_ROWS) and l.text.startswith(BOX_ROWS[pos + 1][1]):
+                pos += 1
+            else:
+                break
+        if pos < len(BOX_ROWS) and l.text.startswith(BOX_ROWS[pos][1]):
+            starts.append((k, pos))
+            pos += 1
     out: list[tuple[str, str]] = []
-    for k, (y, parts) in enumerate(labels):
-        y_next = labels[k + 1][0] if k + 1 < len(labels) else 10_000
-        vals = [l.text for l in right if y - 2 <= l.y < y_next - 2]
-        out.append((" ".join(parts).strip(), _join(vals)))
+    for n, (k, row) in enumerate(starts):
+        label, head = BOX_ROWS[row]
+        end = starts[n + 1][0] if n + 1 < len(starts) else len(seg)
+        block = seg[k:end]
+        first = block[0].text[len(head):].strip() if block[0].text.startswith(head) else block[0].text
+        if label == "Dado de puntos de golpe" and first.startswith("de "):
+            first = first[3:]
+        if label == "Competencias en habilidades" and first.startswith("en "):
+            first = first[3:]
+        parts: list[str] = [first] if first else []
+        right: list[str] = []
+        for l in block[1:]:
+            if l.text.strip() in BOX_FRAGMENTS:
+                continue
+            (right if l.x >= mid else parts).append(l.text)
+        preface = [t for t in right if re.match(r"^(Elige|Escoge)\b", t)]
+        rest = [t for t in right if t not in preface]
+        value = _join([p for p in preface + parts + rest if p])
+        out.append((label, clean_paragraph(value)))
     return out
 
 
@@ -709,11 +768,20 @@ def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page:
     while i < len(body):
         ln = body[i]
         if near(ln.size, T52_SECTION) and ln.text.startswith("Subclase de"):
-            name2 = body[i + 1].text if i + 1 < len(body) else ""
+            cap = ln.text
+            j = i + 1
+            while (j < len(body) and near(body[j].size, T52_SECTION)
+                   and not body[j].text.startswith(("Subclase de", "Lista de conjuros"))):
+                cap += " " + body[j].text
+                j += 1
+            name2 = cap.split(":", 1)[1].strip() if ":" in cap else ""
+            if not name2:
+                name2 = body[j].text if j < len(body) else cap
+                j += 1
             cur = {"level": 3, "title": name2, "lines": []}
             section = "Subclases"
             nodes.append(cur)
-            i += 2
+            i = j
             continue
         if near(ln.size, T52_SECTION):
             if ln.text.startswith("Lista de conjuros"):
@@ -823,7 +891,7 @@ def run(ed: str, only: str | None = None, write: bool = True) -> dict:
     taken: set[str] = set()
     report = {"ed": ed, "classes": [], "warns": []}
     for i, (name, page) in enumerate(classes):
-        next_page = classes[i + 1][1] if i + 1 < len(classes) else (56 if ed == "51" else 115)
+        next_page = classes[i + 1][1] if i + 1 < len(classes) else (56 if ed == "51" else 89)
         if ed == "51":
             front, body, rows, warns = build51(name, page, lines, next_page)
         else:

@@ -1,20 +1,28 @@
 ---
 name: Druida
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d8
+primaryAbility: Sabiduría
+saves:
+- Inteligencia
+- Sabiduría
+skillChoices: 'en Elige dos: Conocimiento arcano, habilidades Medicina, Naturaleza, Percepción, Perspicacia, Religión, Supervivencia o Trato con animales'
+armor: Armaduras ligeras y escudos
+weapons: Armas sencillas
+tools: Útiles de herborista
 srd: '5.2'
 page: 52
 ---
 
 ## Atributos básicos
 
-- **Competencias en Elige dos: Conocimiento arcano, habilidades:** Medicina, Naturaleza, Percepción, Perspicacia, Religión, Supervivencia o Trato con animales
-- **Equipo inicial Elige A o B: (A) armadura de:** cuero, escudo, hoz, canalizador druídico (bastón), paquete de explorador, útiles de herborista y 9 po, o (B) 50 po
+- **Característica principal:** Sabiduría
+- **Dado de puntos de golpe:** de 1d8 por nivel de druida golpe
+- **Competencias en tiradas de salvación:** Inteligencia y Sabiduría
+- **Competencias en habilidades:** en Elige dos: Conocimiento arcano, habilidades Medicina, Naturaleza, Percepción, Perspicacia, Religión, Supervivencia o Trato con animales
+- **Competencias con armas:** Armas sencillas
+- **Competencias con herramientas:** Útiles de herborista
+- **Entrenamiento con armaduras:** Armaduras ligeras y escudos
+- **Equipo inicial:** Elige A o B: (A) armadura de cuero, escudo, hoz, canalizador druídico (bastón), paquete de explorador, útiles de herborista y 9 po, o (B) 50 po
 
 ## Progresión
 

@@ -1,21 +1,27 @@
 ---
 name: Explorador
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d10
+primaryAbility: Destreza y Sabiduría
+saves:
+- Fuerza
+- Destreza
+skillChoices: 'Elige tres: en Atletismo, Investigahabilidades ción, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales'
+armor: 'Equipo inicial Elige A o B: (A) armadura de Enemigo Conjuros predilecto preparados 1 2 3 4 5 2 2 2 — — — — 2 3 2 — — — — 2 4 3 — — — — 2 5 3 — — — — 3 6 4 2 — — — 3 6 4 2 — — — 3 7 4 3 — — — 3 7 4 3 — — — 4 9 4 3 2 — — 4 9 4 3 2 — — 4 10 4 3 3 — — 4 10 4 3 3 — — 5 11 4 3 3 1 — 5 11 4 3 3 1 — 5 12 4 3 3 2 — 5 12 4 3 3 2 — 6 14 4 3 3 3 1 6 14 4 3 3 3 1 6 15 4 3 3 3 2 6 15 4 3 3 3 2 cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, canalizador druídico (rama de muérdago), paquete de explorador y 7 po, o (B) 150 po Espacios de conjuro por cada nivel de conjuro'
+weapons: Armas sencillas y marciales
+tools: Entrenamiento con Armaduras ligeras y medias y escudos
 srd: '5.2'
 page: 58
 ---
 
 ## Atributos básicos
 
-- **Competencias en Atletismo, Investiga- habilidades:** Elige tres: ción, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales
-- **Entrenamiento con Armaduras ligeras y medias armaduras:** y escudos
-- **Equipo inicial Elige A o B: (A) armadura de:** cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, canalizador druídico (rama de muérdago), paquete de explorador y 7 po, o (B) 150 po Espacios de conjuro por cada nivel de conjuro
+- **Característica principal:** Destreza y Sabiduría
+- **Dado de puntos de golpe:** de 1d10 por nivel de explorador golpe
+- **Competencias en tiradas de salvación:** Fuerza y Destreza
+- **Competencias en habilidades:** Elige tres: en Atletismo, Investigahabilidades ción, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales
+- **Competencias con armas:** Armas sencillas y marciales
+- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras y medias y escudos
+- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) armadura de Enemigo Conjuros predilecto preparados 1 2 3 4 5 2 2 2 — — — — 2 3 2 — — — — 2 4 3 — — — — 2 5 3 — — — — 3 6 4 2 — — — 3 6 4 2 — — — 3 7 4 3 — — — 3 7 4 3 — — — 4 9 4 3 2 — — 4 9 4 3 2 — — 4 10 4 3 3 — — 4 10 4 3 3 — — 5 11 4 3 3 1 — 5 11 4 3 3 1 — 5 12 4 3 3 2 — 5 12 4 3 3 2 — 6 14 4 3 3 3 1 6 14 4 3 3 3 1 6 15 4 3 3 3 2 6 15 4 3 3 3 2 cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, canalizador druídico (rama de muérdago), paquete de explorador y 7 po, o (B) 150 po Espacios de conjuro por cada nivel de conjuro
 
 ## Progresión
 
@@ -160,4 +166,4 @@ El dado de daño de tu marca del cazador es un d10 en lugar de un d6.
 
 ## Subclases
 
-### Protege la naturaleza y a la gente contra
+### Cazador

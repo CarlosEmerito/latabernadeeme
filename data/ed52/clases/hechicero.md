@@ -1,20 +1,27 @@
 ---
 name: Hechicero
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d6
+primaryAbility: Carisma
+saves:
+- Constitución
+- Carisma
+skillChoices: 'Elige dos: en Conocimiento arhabilidades cano, Engaño, Intimidación, Perspicacia, Persuasión o Religión'
+armor: 'Equipo inicial Elige A o B: (A) lanza, 2 dagas, canalizador arcano (cristal), paquete de explorador de mazmorras y 28 po, o (B) 50 po'
+weapons: Amas sencillas
+tools: Entrenamiento con Ninguna
 srd: '5.2'
 page: 64
 ---
 
 ## Atributos básicos
 
-- **Competencias en Conocimiento ar- habilidades:** Elige dos: cano, Engaño, Intimidación, Perspicacia, Persuasión o Religión
-- **Equipo inicial Elige A o B: (A) lanza, 2 dagas,:** canalizador arcano (cristal), paquete de explorador de mazmorras y 28 po, o (B) 50 po
+- **Característica principal:** Carisma
+- **Dado de puntos de golpe:** de 1d6 por nivel de hechicero golpe
+- **Competencias en tiradas de salvación:** Constitución y Carisma
+- **Competencias en habilidades:** Elige dos: en Conocimiento arhabilidades cano, Engaño, Intimidación, Perspicacia, Persuasión o Religión
+- **Competencias con armas:** Amas sencillas
+- **Competencias con herramientas:** Entrenamiento con Ninguna
+- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) lanza, 2 dagas, canalizador arcano (cristal), paquete de explorador de mazmorras y 28 po, o (B) 50 po
 
 ## Progresión
 
@@ -271,4 +278,4 @@ Coste: 1 punto de hechicería Cuando lances un conjuro que inflija un tipo de da
 
 ## Subclases
 
-### dracónica
+### Hechicería dracónica

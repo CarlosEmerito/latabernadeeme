@@ -43,9 +43,8 @@ Una trampa diseñada para ser un contratiempo rara vez matará o dañará gravem
 
 **CD de salvación y bonificadores de ataque de las trampas**
 
-| Gravedad de | CD de | Bonificador |
+| Gravedad de la trampa | CD de salvación | Bonificador de ataque |
 |---|---|---|
-| la trampa | salvación | de ataque |
 | Contratiempo | 10–11 | De +3 a +5 |
 | Peligrosa | 12–15 | De +6 a +8 |
 | Mortal | 16–20 | De +9 a +12 |

@@ -1,21 +1,27 @@
 ---
 name: Bárbaro
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d12
+primaryAbility: Fuerza
+saves:
+- Fuerza
+- Constitución
+skillChoices: 'Elige dos: Atletismo, Intimidación, Naturaleza, Percepción, Supervivencia o Trato con animales'
+armor: 'Equipo inicial Elige A o B: (A) hacha a dos manos, 4 hachas de mano, paquete de explorador y 15 po, o (B) 75 po'
+weapons: Armas sencillas y marciales
+tools: Entrenamiento con Armaduras ligeras y medias y escudos
 srd: '5.2'
 page: 32
 ---
 
 ## Atributos básicos
 
-- **Competencias Atletismo, Intimida- en habilidades:** Elige dos: ción, Naturaleza, Percepción, Supervivencia o Trato con animales
-- **Entrenamiento con Armaduras ligeras y medias armaduras:** y escudos
-- **Equipo inicial Elige A o B: (A) hacha a dos:** manos, 4 hachas de mano, paquete de explorador y 15 po, o (B) 75 po
+- **Característica principal:** Fuerza
+- **Dado de puntos de golpe:** 1d12 por nivel de bárbaro
+- **Competencias en tiradas de salvación:** Fuerza y Constitución
+- **Competencias en habilidades:** Elige dos: Atletismo, Intimidación, Naturaleza, Percepción, Supervivencia o Trato con animales
+- **Competencias con armas:** Armas sencillas y marciales
+- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras y medias y escudos
+- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) hacha a dos manos, 4 hachas de mano, paquete de explorador y 15 po, o (B) 75 po
 
 ## Progresión
 

@@ -1,21 +1,27 @@
 ---
 name: Guerrero
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d10
+primaryAbility: Fuerza o Destreza
+saves:
+- Fuerza
+- Constitución
+skillChoices: 'Elige dos: Acrobacias, Atletismo, Historia, Intimidación, Percepción, Perspicacia, Persuasión, Supervivencia o Trato con animales'
+armor: 'Equipo inicial Elige A, B o C: (A) cota de malla, espadón, mangual, 8 jabalinas, paquete de explorador de mazmorras y 4 po; (B) armadura de cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, paquete de explorador de mazmorras y 11 po, o (C) 155 po'
+weapons: Armas sencillas y marciales
+tools: Entrenamiento con Armaduras ligeras, medias y pesadas y escudos
 srd: '5.2'
 page: 62
 ---
 
 ## Atributos básicos
 
-- **Competencias Acrobacias, Atletismo, en habilidades:** Elige dos: Historia, Intimidación, Percepción, Perspicacia, Persuasión, Supervivencia o Trato con animales
-- **Entrenamiento con Armaduras ligeras, medias y pe- armaduras:** sadas y escudos
-- **Equipo inicial Elige A, B o C: (A) cota de malla,:** espadón, mangual, 8 jabalinas, paquete de explorador de mazmorras y 4 po; (B) armadura de cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, paquete de explorador de mazmorras y 11 po, o (C) 155 po
+- **Característica principal:** Fuerza o Destreza
+- **Dado de puntos de golpe:** 1d10 por nivel de guerrero
+- **Competencias en tiradas de salvación:** Fuerza y Constitución
+- **Competencias en habilidades:** Elige dos: Acrobacias, Atletismo, Historia, Intimidación, Percepción, Perspicacia, Persuasión, Supervivencia o Trato con animales
+- **Competencias con armas:** Armas sencillas y marciales
+- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras, medias y pesadas y escudos
+- **Entrenamiento con armaduras:** Equipo inicial Elige A, B o C: (A) cota de malla, espadón, mangual, 8 jabalinas, paquete de explorador de mazmorras y 4 po; (B) armadura de cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, paquete de explorador de mazmorras y 11 po, o (C) 155 po
 
 ## Progresión
 

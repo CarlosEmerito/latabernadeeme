@@ -1,0 +1,8 @@
+---
+name: Dados de puntos de golpe
+category: Glosario
+srd: '5.2'
+page: 199
+---
+
+Los dados de puntos de golpe (o “dados de golpe” para abreviar) ayudan a determinar los puntos de golpe máximos de un personaje jugador, como se explica en el capítulo “Creación de personajes”. La mayoría de monstruos tienen también dados de golpe. Durante un descanso corto, una criatura puede gastar dados de golpe para recuperar puntos de golpe. Consulta también “Descanso corto”.

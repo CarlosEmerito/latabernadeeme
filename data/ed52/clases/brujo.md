@@ -1,20 +1,27 @@
 ---
 name: Brujo
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d8
+primaryAbility: Carisma
+saves:
+- Sabiduría
+- Carisma
+skillChoices: 'Elige dos: Conocimiento arcano, Engaño, Historia, Intimidación, Investigación, Naturaleza o Religión'
+armor: 'Equipo inicial Elige A o B: (A) armadura de Trucos preparados conjuro espacios 1 2 2 1 1 3 2 3 2 1 3 2 4 2 2 3 3 5 2 2 5 3 6 2 3 5 3 7 2 3 6 3 8 2 4 6 3 9 2 4 7 3 10 2 5 7 4 10 2 5 7 4 11 3 5 8 4 11 3 5 8 4 12 3 5 8 4 12 3 5 9 4 13 3 5 9 4 13 3 5 9 4 14 4 5 10 4 14 4 5 10 4 15 4 5 10 4 15 4 5 Invocaciones sobrenaturales cuero, hoz, 2 dagas, canalizador arcano (orbe), libro (de conocimiento oculto), paquete de erudito y 15 po, o (B) 100 po Espacios Nivel Conjuros de de los'
+weapons: Amas sencillas
+tools: Entrenamiento con Armaduras ligeras
 srd: '5.2'
 page: 40
 ---
 
 ## Atributos básicos
 
-- **Competencias Conocimiento arcano, en habilidades:** Elige dos: Engaño, Historia, Intimidación, Investigación, Naturaleza o Religión
-- **Equipo inicial Elige A o B: (A) armadura de:** cuero, hoz, 2 dagas, canalizador arcano (orbe), libro (de conocimiento oculto), paquete de erudito y 15 po, o (B) 100 po Espacios Nivel Conjuros de de los
+- **Característica principal:** Carisma
+- **Dado de puntos de golpe:** 1d8 por nivel de brujo
+- **Competencias en tiradas de salvación:** Sabiduría y Carisma
+- **Competencias en habilidades:** Elige dos: Conocimiento arcano, Engaño, Historia, Intimidación, Investigación, Naturaleza o Religión
+- **Competencias con armas:** Amas sencillas
+- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras
+- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) armadura de Trucos preparados conjuro espacios 1 2 2 1 1 3 2 3 2 1 3 2 4 2 2 3 3 5 2 2 5 3 6 2 3 5 3 7 2 3 6 3 8 2 4 6 3 9 2 4 7 3 10 2 5 7 4 10 2 5 7 4 11 3 5 8 4 11 3 5 8 4 12 3 5 8 4 12 3 5 9 4 13 3 5 9 4 13 3 5 9 4 14 4 5 10 4 14 4 5 10 4 15 4 5 10 4 15 4 5 Invocaciones sobrenaturales cuero, hoz, 2 dagas, canalizador arcano (orbe), libro (de conocimiento oculto), paquete de erudito y 15 po, o (B) 100 po Espacios Nivel Conjuros de de los
 
 ## Progresión
 
@@ -289,4 +296,4 @@ Requisitos: brujo de nivel 2 o superior. Puedes ver con normalidad en luz tenue 
 
 ## Subclases
 
-### Haz un trato con los Planos Inferiores.
+### Patrón infernal

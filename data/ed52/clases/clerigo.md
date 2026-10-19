@@ -1,21 +1,27 @@
 ---
 name: Clérigo
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d8
+primaryAbility: Sabiduría
+saves:
+- Sabiduría
+- Carisma
+skillChoices: 'Elige dos: en Historia, Medicina, habilidades Perspicacia, Persuasión o Religión'
+armor: 'Equipo inicial Elige A o B: (A) camisa de malla, escudo, maza, paquete de sacerdote, símbolo sagrado y 7 po, o (B) 110 po'
+weapons: Amas sencillas
+tools: Entrenamiento con Armaduras ligeras y medias y escudos
 srd: '5.2'
 page: 47
 ---
 
 ## Atributos básicos
 
-- **Competencias en Historia, Medicina, habilidades:** Elige dos: Perspicacia, Persuasión o Religión
-- **Entrenamiento con Armaduras ligeras y medias armaduras:** y escudos
-- **Equipo inicial Elige A o B: (A) camisa de ma-:** lla, escudo, maza, paquete de sacerdote, símbolo sagrado y 7 po, o (B) 110 po
+- **Característica principal:** Sabiduría
+- **Dado de puntos de golpe:** de 1d8 por nivel de clérigo golpe
+- **Competencias en tiradas de salvación:** Sabiduría y Carisma
+- **Competencias en habilidades:** Elige dos: en Historia, Medicina, habilidades Perspicacia, Persuasión o Religión
+- **Competencias con armas:** Amas sencillas
+- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras y medias y escudos
+- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) camisa de malla, escudo, maza, paquete de sacerdote, símbolo sagrado y 7 po, o (B) 110 po
 
 ## Progresión
 
@@ -190,4 +196,4 @@ Puedes solicitar una intercesión divina todavía más poderosa. Cuando uses tu 
 
 ## Subclases
 
-### de la vida
+### Dominio de la vida

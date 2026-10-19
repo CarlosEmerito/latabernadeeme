@@ -1,21 +1,27 @@
 ---
 name: Paladín
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d10
+primaryAbility: Fuerza y Carisma
+saves:
+- Sabiduría
+- Carisma
+skillChoices: 'Elige dos: Atletismo, Intimidación, Medicina, Perspicacia, Persuasión o Religión'
+armor: 'Equipo inicial Elige A o B: (A) cota de malla, escudo, espada larga, 6 jabalinas, símbolo sagrado, paquete de sacerdote y 9 po, o (B) 150 po'
+weapons: Armas sencillas y marciales
+tools: Entrenamiento con Armaduras ligeras, medias y pesadas y escudos
 srd: '5.2'
 page: 81
 ---
 
 ## Atributos básicos
 
-- **Competencias Atletismo, Intimida- en habilidades:** Elige dos: ción, Medicina, Perspicacia, Persuasión o Religión
-- **Entrenamiento con Armaduras ligeras, medias armaduras:** y pesadas y escudos
-- **Equipo inicial Elige A o B: (A) cota de malla,:** escudo, espada larga, 6 jabalinas, símbolo sagrado, paquete de sacerdote y 9 po, o (B) 150 po
+- **Característica principal:** Fuerza y Carisma
+- **Dado de puntos de golpe:** 1d10 por nivel de Paladín
+- **Competencias en tiradas de salvación:** Sabiduría y Carisma
+- **Competencias en habilidades:** Elige dos: Atletismo, Intimidación, Medicina, Perspicacia, Persuasión o Religión
+- **Competencias con armas:** Armas sencillas y marciales
+- **Competencias con herramientas:** Entrenamiento con Armaduras ligeras, medias y pesadas y escudos
+- **Entrenamiento con armaduras:** Equipo inicial Elige A o B: (A) cota de malla, escudo, espada larga, 6 jabalinas, símbolo sagrado, paquete de sacerdote y 9 po, o (B) 150 po
 
 ## Progresión
 
@@ -214,4 +220,4 @@ Obtienes una dote de don épico (consulta el capítulo “Dotes”) u otra dote 
 
 ## Subclases
 
-### de entrega
+### Juramento de entrega

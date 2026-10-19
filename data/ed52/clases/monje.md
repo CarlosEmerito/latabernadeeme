@@ -1,24 +1,28 @@
 ---
 name: Monje
-hitDie: ''
-primaryAbility: ''
-saves: []
-skillChoices: ''
-armor: ''
-weapons: ''
-tools: ''
+hitDie: d8
+primaryAbility: Destreza y Sabiduría
+saves:
+- Fuerza
+- Destreza
+skillChoices: 'Elige dos: Acrobacias, Atletismo, Historia, Perspicacia, Religión o Sigilo'
+armor: Ninguna
+weapons: Armas sencillas, además de marciales que tengan la propiedad “ligera”
+tools: Elige un tipo de herramientas de artesano o instrumento musical (consulta el capítulo “Equipo”)
 srd: '5.2'
 page: 77
 ---
 
 ## Atributos básicos
 
-- **Competencias Elige dos: Acrobacias, Atle- en habilidades:** tismo, Historia, Perspicacia, Religión o Sigilo
-- **Competencias con Armas sencillas, además de armas:** marciales que tengan la propiedad “ligera”
-- **Competencias con Elige un tipo de herramientas de herramientas:** artesano o instrumento musical (consulta el capítulo “Equipo”)
-- **Equipo inicial Elige A o B: (A) lanza, 5 dagas,:** herramientas de artesano o instrumento musical que has elegido para la competencia con herramientas, paquete de explorador y 11 po, o (B) 50 po Movimiento Artes Puntos de sin marciales concentración armadura 1d6 — —
-- **asombroso, 1d6 2 +3 m:** 1d6 3 +3 m 1d6 4 +3 m 1d8 5 +3 m 1d8 6 +4,5 m 1d8 7 +4,5 m 1d8 8 +4,5 m 1d8 9 +4,5 m
-- **agudizada 1d8 10 +6 m armadura Metabolismo subclase Concentración:** 1d10 11 +6 m 1d10 12 +6 m 1d10 13 +6 m 1d10 14 +7,5 m 1d10 15 +7,5 m 1d10 16 +7,5 m 1d12 17 +7,5 m 1d12 18 +9 m 1d12 19 +9 m 1d12 20 +9 m
+- **Característica principal:** Destreza y Sabiduría
+- **Dado de puntos de golpe:** 1d8 por nivel de monje
+- **Competencias en tiradas de salvación:** Fuerza y Destreza
+- **Competencias en habilidades:** Elige dos: Acrobacias, Atletismo, Historia, Perspicacia, Religión o Sigilo
+- **Competencias con armas:** Armas sencillas, además de marciales que tengan la propiedad “ligera”
+- **Competencias con herramientas:** Elige un tipo de herramientas de artesano o instrumento musical (consulta el capítulo “Equipo”)
+- **Entrenamiento con armaduras:** Ninguna
+- **Equipo inicial:** Elige A o B: (A) lanza, 5 dagas, asombroso, 1d6 2 +3 m agudizada 1d8 10 +6 m armadura Metabolismo subclase Concentración herramientas de artesano o instrumento musical que has elegido para la competencia con herramientas, paquete de explorador y 11 po, o (B) 50 po Movimiento Artes Puntos de sin marciales concentración armadura 1d6 — — 1d6 3 +3 m 1d6 4 +3 m 1d8 5 +3 m 1d8 6 +4,5 m 1d8 7 +4,5 m 1d8 8 +4,5 m 1d8 9 +4,5 m 1d10 11 +6 m 1d10 12 +6 m 1d10 13 +6 m 1d10 14 +7,5 m 1d10 15 +7,5 m 1d10 16 +7,5 m 1d12 17 +7,5 m 1d12 18 +9 m 1d12 19 +9 m 1d12 20 +9 m
 
 ## Progresión
 
@@ -193,7 +197,7 @@ Has llevado tu cuerpo y mente a otro nivel. Tus puntuaciones de Destreza y Sabid
 
 ## Subclases
 
-### de la mano abierta
+### Guerrero de la mano abierta
 
 Domina las técnicas de combate sin armas. Los guerreros de la mano abierta son maestros del combate sin armas. Aprenden técnicas para empujar y derribar a sus adversarios y manipulan su propia energía para protegerse del peligro.
 

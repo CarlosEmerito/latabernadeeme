@@ -45,47 +45,27 @@ Interaccionar con objetos de los alrededores
 
 Estos son algunos ejemplos de las cosas que puedes hacer como parte de tu movimiento y tu acción:
 
-• Envainar o desenvainar una espada.
-
-• Abrir o cerrar una puerta.
-
-• Sacar una poción de tu mochila.
-
-• Recoger un hacha del suelo.
-
-• Tomar una baratija de una mesa.
-
-• Quitarte un anillo del dedo.
-
-• Meterte comida en la boca.
-
-• Plantar un estandarte en tierra.
-
-• Sacar unas monedas de la bolsa de tu cinturón.
-
-• Beberte una jarra de cerveza entera.
-
-• Mover una palanca o un interruptor.
-
-• Sacar una antorcha de su soporte.
-
-• Tomar un libro de un estante a tu alcance.
-
-• Apagar una llama pequeña.
-
-• Ponerte una máscara.
-
-• Cubrirte la cabeza con la capucha de la capa.
-
-• Pegar la oreja a una puerta.
-
-• Dar una patada a una piedra pequeña.
-
-• Girar una llave en una cerradura.
-
-• Palpar el suelo con una vara de 3 m.
-
-• Entregarle un objeto a otro personaje.
+- Envainar o desenvainar una espada.
+- Abrir o cerrar una puerta.
+- Sacar una poción de tu mochila.
+- Recoger un hacha del suelo.
+- Tomar una baratija de una mesa.
+- Quitarte un anillo del dedo.
+- Meterte comida en la boca.
+- Plantar un estandarte en tierra.
+- Sacar unas monedas de la bolsa de tu cinturón.
+- Beberte una jarra de cerveza entera.
+- Mover una palanca o un interruptor.
+- Sacar una antorcha de su soporte.
+- Tomar un libro de un estante a tu alcance.
+- Apagar una llama pequeña.
+- Ponerte una máscara.
+- Cubrirte la cabeza con la capucha de la capa.
+- Pegar la oreja a una puerta.
+- Dar una patada a una piedra pequeña.
+- Girar una llave en una cerradura.
+- Palpar el suelo con una vara de 3 m.
+- Entregarle un objeto a otro personaje.
 
 ## Moverse alrededor de otras criaturas
 

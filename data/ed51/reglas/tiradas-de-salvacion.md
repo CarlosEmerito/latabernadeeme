@@ -1,0 +1,18 @@
+---
+name: Tiradas de salvación
+category: Características
+srd: '5.1'
+page: 87
+---
+
+Una tirada de salvación, o simplemente salvación, representa un intento de resistir o evitar un conjuro, trampa, veneno, enfermedad o amenaza similar. No sueles decidir hacer una tirada de salvación, sino que te obligan a ello porque tu personaje o monstruo se encuentra en peligro.
+
+Para hacer una tirada de salvación, tira 1d20 y añade el modificador por característica pertinente. Por ejemplo, una tirada de salvación de Destreza utilizará tu modificador por Destreza.
+
+Una tirada de salvación puede verse modificada por bonificadores o penalizadores que dependan de la situación, así como tener ventaja o desventaja, según determine cada GM.
+
+Cada clase otorga competencia en al menos dos tiradas de salvación. El mago, por ejemplo, es competente en las salvaciones de Inteligencia y Sabiduría. Al igual que sucede en las competencias en habilidades, la competencia en una tirada de salvación permite al personaje sumar su bonificador por competencia a las tiradas de salvación que haga usando una característica concreta. Algunos monstruos también son competentes en tiradas de salvación.
+
+La Clase de Dificultad de una tirada de salvación la determina el efecto que la causa. Por ejemplo, si un conjuro permite una tirada de salvación, la CD para dicha tirada de salvación la determinan la aptitud mágica y el bonificador por competencia del lanzador.
+
+Lo que sucede tanto si se supera como si se falla una tirada de salvación se detalla en el efecto que ha obligado a realizarla. Lo habitual es que superar la tirada de salvación se traduzca en que el efecto cause menos o ningún daño al personaje.

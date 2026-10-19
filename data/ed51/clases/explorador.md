@@ -86,31 +86,15 @@ Cuando viajas durante al menos una hora por tu terreno predilecto, obtienes los 
 
 • El terreno difícil no ralentiza el viaje de tu grupo.
 
-• Tu grupo no puede perderse por causas no
+• Tu grupo no puede perderse por causas no mágicas.
 
-mágicas.
+• Incluso aunque estés ocupado con otra actividad mientras viajas (como forrajear, orientarte o rastrear), permaneces atento al peligro.
 
-• Incluso aunque estés ocupado con otra actividad
+• Si viajas en solitario, puedes moverte con sigilo a un ritmo de viaje normal.
 
-mientras viajas (como forrajear, orientarte
+• Cuando forrajeas, encuentras el doble de comida de lo normal.
 
-o rastrear), permaneces atento al peligro.
-
-• Si viajas en solitario, puedes moverte con sigilo
-
-a un ritmo de viaje normal.
-
-• Cuando forrajeas, encuentras el doble de comida
-
-de lo normal.
-
-• Cuando rastreas a otras criaturas, también
-
-descubres el número exacto de las mismas, sus
-
-tamaños y hace cuánto pasaron por la zona.
-
-Puedes elegir otros tipos de terreno predilecto en los niveles 6 y 10.
+• Cuando rastreas a otras criaturas, también descubres el número exacto de las mismas, sus tamaños y hace cuánto pasaron por la zona. Puedes elegir otros tipos de terreno predilecto en los niveles 6 y 10.
 
 ### Estilo de Combate (nivel 2)
 

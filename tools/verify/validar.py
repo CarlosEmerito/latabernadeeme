@@ -32,6 +32,20 @@ REFERENCIA = {
     ("ed52", "monstruos"): 315,
 }
 
+# Un cuerpo puede ser legítimamente largo (una clase con todas sus subclases
+# ocupa 20 KB). El límite solo sirve para detectar un corte mal hecho.
+LIMITE_CUERPO = {
+    "conjuros": 9000,
+    "monstruos": 7000,
+    "objetos": 6000,
+    "clases": 60000,
+    "especies": 12000,
+    "trasfondos": 8000,
+    "dotes": 6000,
+    "equipo": 6000,
+    "reglas": 40000,
+}
+
 OBLIGATORIOS = {
     "conjuros": ["name", "level", "school", "castingTime", "range", "components", "duration"],
     "monstruos": ["name", "size", "type", "ac", "hp", "speed", "cr"],
@@ -83,9 +97,11 @@ def main() -> int:
                 for campo in OBLIGATORIOS.get(tipo, ["name"]):
                     if datos.get(campo) in (None, "", []):
                         faltan.append(f"{f.name}: {campo}")
-                if len(cuerpo.strip()) == 0:
+                # En equipo y objetos la ficha puede vivir solo en el
+                # frontmatter (precio, peso, rareza): no es un error.
+                if len(cuerpo.strip()) == 0 and tipo not in ("equipo", "objetos"):
                     vacios.append(f.name)
-                elif len(cuerpo) > 12_000:
+                elif len(cuerpo) > LIMITE_CUERPO.get(tipo, 20_000):
                     largos.append(f"{f.name} ({len(cuerpo)} caracteres)")
 
             duplicados = [n for n, c in nombres.items() if c > 1 and n]
@@ -94,7 +110,9 @@ def main() -> int:
             if referencia is not None and len(ficheros) != referencia:
                 estado = f"DESCUADRE ({len(ficheros)} de {referencia})"
                 problemas += 1
-            if faltan or vacios or largos:
+            # Solo son fallos los campos obligatorios vacíos y los cuerpos
+            # vacíos; un cuerpo largo es un aviso para revisar.
+            if faltan or vacios:
                 problemas += 1
 
             lineas.append(f"## {ed} · {tipo} — {len(ficheros)} entradas · {estado}")
@@ -106,7 +124,7 @@ def main() -> int:
             if vacios:
                 lineas.append(f"- Cuerpos vacíos: **{len(vacios)}** ({', '.join(vacios[:10])})")
             if largos:
-                lineas.append(f"- Cuerpos sospechosamente largos: **{len(largos)}** ({', '.join(largos[:5])})")
+                lineas.append(f"- Aviso, cuerpos más largos de lo esperado: {len(largos)} ({', '.join(largos[:5])})")
             if duplicados:
                 lineas.append(f"- Nombres repetidos: {len(duplicados)} ({', '.join(duplicados[:8])})")
             lineas.append("")

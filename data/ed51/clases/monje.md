@@ -75,39 +75,11 @@ A nivel 1, tu práctica de las artes marciales te ha otorgado un dominio de los 
 
 Obtienes los siguientes beneficios mientras no portes armadura ni escudo y estés desarmado o empuñes únicamente armas de monje:
 
-• Puedes usar tu Destreza en lugar de tu Fuerza
+• Puedes usar tu Destreza en lugar de tu Fuerza para las tiradas de ataque y de daño de tus ataques sin armas y tus armas de monje.
 
-para las tiradas de ataque y de daño de tus ataques
+• Puedes tirar 1d4 en lugar del daño normal de tus ataques sin armas o tus armas de monje. Este dado cambia según subes niveles como monje, tal y como se muestra en la columna “Artes marciales” de la tabla “El monje”.
 
-sin armas y tus armas de monje.
-
-• Puedes tirar 1d4 en lugar del daño normal de tus
-
-ataques sin armas o tus armas de monje. Este dado
-
-cambia según subes niveles como monje, tal
-
-y como se muestra en la columna “Artes marciales”
-
-de la tabla “El monje”.
-
-• Cuando llevas a cabo la acción de atacar con un
-
-ataque sin armas o un arma de monje durante tu
-
-turno, puedes utilizar tu acción adicional para
-
-realizar un ataque sin armas. Por ejemplo, si
-
-empleas la acción de atacar para atacar con un
-
-bastón, también puedes llevar a cabo un ataque
-
-sin armas con tu acción adicional, siempre y
-
-cuando no la hayas usado ya en este turno.
-
-Ciertos monasterios utilizan formas especializadas de las armas de monje. Por ejemplo, podrías usar un garrote llamado nunchaku, que está compuesto de dos trozos de madera unidos por una cadena corta, o una hoz con un filo más corto y recto, que recibe el nombre de kama. Independientemente del nombre que reciba el arma de monje, podrás utilizar el perfil del arma de la que deriva.
+• Cuando llevas a cabo la acción de atacar con un ataque sin armas o un arma de monje durante tu turno, puedes utilizar tu acción adicional para realizar un ataque sin armas. Por ejemplo, si empleas la acción de atacar para atacar con un bastón, también puedes llevar a cabo un ataque sin armas con tu acción adicional, siempre y cuando no la hayas usado ya en este turno. Ciertos monasterios utilizan formas especializadas de las armas de monje. Por ejemplo, podrías usar un garrote llamado nunchaku, que está compuesto de dos trozos de madera unidos por una cadena corta, o una hoz con un filo más corto y recto, que recibe el nombre de kama. Independientemente del nombre que reciba el arma de monje, podrás utilizar el perfil del arma de la que deriva.
 
 ### Ki (nivel 2)
 
@@ -223,19 +195,11 @@ Los monjes del Camino de la Mano Abierta son los maestros definitivos de las art
 
 A partir del momento en que escoges esta tradición a nivel 3, puedes manipular el ki de tus enemigos cuando emplees el tuyo. Siempre que impactes a una criatura con uno de los ataques que te proporciona Ráfaga de Golpes, puedes imponerle uno de los siguientes efectos:
 
-• Debe superar una tirada de salvación de Destreza
+• Debe superar una tirada de salvación de Destreza o será derribada.
 
-o será derribada.
+• Debe hacer una tirada de salvación de Fuerza. Si la falla, puedes empujarla hasta 4,5 m en dirección contraria a ti.
 
-• Debe hacer una tirada de salvación de Fuerza.
-
-Si la falla, puedes empujarla hasta 4,5 m en
-
-dirección contraria a ti.
-
-• No puede llevar a cabo reacciones hasta el final de
-
-tu siguiente turno.
+• No puede llevar a cabo reacciones hasta el final de tu siguiente turno.
 
 #### Plenitud de Cuerpo (nivel 6)
 

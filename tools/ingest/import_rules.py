@@ -53,7 +53,7 @@ SPECS_51: list[Spec] = [
     Spec("Enfermedades", "Peligros"),
     Spec("Locura", "Peligros"),
     Spec("Objetos", "Equipo"),
-    Spec("Venenos", "Peligros"),
+    Spec("Venenos", "Peligros", end="Objetos mágicos"),
     Spec("Apéndice MJ-A: Estados", "Condiciones", level="h1", end="Agarrado"),
     Spec("Agarrado", "Condiciones", level="h4"),
     Spec("Apresado", "Condiciones", level="h4"),

@@ -247,6 +247,14 @@ def _kind_of(line: Line) -> str:
     return "para"
 
 
+def _lead_in(md: str) -> bool:
+    """¿La línea empieza con una entradilla en negrita cerrada con punto?"""
+    if not md.startswith("**"):
+        return False
+    end = md.find("**", 2)
+    return end > 2 and md[2:end].rstrip().endswith(".")
+
+
 def _cells(text: str) -> list[str]:
     return [c.strip() for c in re.split(r"\s{2,}", text) if c.strip()]
 
@@ -285,7 +293,7 @@ def blocks(pages: list[Page], first: int, last: int, words: dict | None = None) 
             else:
                 # texto a cuerpo menor (cuadros y notas), no una tabla
                 block.kind = "para"
-                block.text = "\n\n".join(r[0] for r in (grid or tbl["rows"]))
+                block.text = _flow([r[0] for r in (grid or tbl["rows"])])
         else:
             block.rows = tbl["rows"]
         tbl = None
@@ -338,6 +346,12 @@ def blocks(pages: list[Page], first: int, last: int, words: dict | None = None) 
             new_page = False
             starts_item = line.text.startswith("•")
             terminal = cur is not None and cur.text.rstrip().endswith((".", ":", "!", "?", "”", '"'))
+            if cur is not None and cur.kind == "para" and _lead_in(line.md):
+                cur = Block("para", page.n, line.md)
+                cur_left = line.left
+                out.append(cur)
+                prev = line
+                continue
             if starts_item:
                 cur = Block("item", page.n, line.text)
                 cur_left = line.left
@@ -356,7 +370,39 @@ def blocks(pages: list[Page], first: int, last: int, words: dict | None = None) 
                 out.append(cur)
             prev = line
     close_table()
-    return _merge_lists(out)
+    return _merge_tables(_merge_lists(out))
+
+
+def _merge_tables(items: list[Block]) -> list[Block]:
+    """Une una tabla partida por un salto de página que repite la cabecera."""
+    out: list[Block] = []
+    for b in items:
+        if (
+            b.kind == "table"
+            and out
+            and out[-1].kind == "table"
+            and b.rows
+            and out[-1].rows
+            and b.rows[0] == out[-1].rows[0]
+        ):
+            out[-1].rows = out[-1].rows + b.rows[1:]
+        else:
+            out.append(b)
+    return out
+
+
+def _flow(lines: list[str]) -> str:
+    """Une líneas sueltas en párrafos: solo se corta tras puntuación final."""
+    paras: list[str] = []
+    for ln in lines:
+        ln = ln.strip()
+        if not ln:
+            continue
+        if paras and not paras[-1].endswith((".", ":", "!", "?", "”", '"', ";")):
+            paras[-1] = _join(paras[-1], ln)
+        else:
+            paras.append(ln)
+    return "\n\n".join(paras)
 
 
 def _merge_lists(items: list[Block]) -> list[Block]:
@@ -468,12 +514,13 @@ class Spec:
         return self.name or self.title
 
 
-def find(blocks: list[Block], title: str, start: int = 0, kind: str = "h2") -> int:
+def find(blocks: list[Block], title: str, start: int = 0, kind="h2") -> int:
+    kinds = (kind,) if isinstance(kind, str) else tuple(kind)
     for i in range(start, len(blocks)):
         b = blocks[i]
-        if b.kind == kind and b.text.strip() == title:
+        if b.kind in kinds and b.text.strip() == title:
             return i
-    raise LookupError(f"{kind} no encontrado: {title!r}")
+    raise LookupError(f"{kinds} no encontrado: {title!r}")
 
 
 def find_any(blocks: list[Block], title: str, start: int = 0) -> int:
@@ -489,9 +536,11 @@ def entries(blocks: list[Block], specs: list[Spec]) -> list[tuple[Spec, int, lis
     cursor = 0
     for i, spec in enumerate(specs):
         start = find(blocks, spec.title, cursor, spec.level)
-        end_title = spec.end or (specs[i + 1].title if i + 1 < len(specs) else "")
-        if end_title:
-            end = find_any(blocks, end_title, start + 1)
+        if spec.end:
+            end = find_any(blocks, spec.end, start + 1)
+        elif i + 1 < len(specs):
+            nxt = specs[i + 1]
+            end = find(blocks, nxt.title, start + 1, nxt.level)
         else:
             end = len(blocks)
         out.append((spec, blocks[start].page, blocks[start + 1 : end]))

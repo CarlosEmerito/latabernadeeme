@@ -115,7 +115,8 @@ def prose(lines: list[Line]) -> list[str]:
             elif same and gap > pitch * 1.45:
                 paras.append(cur)
                 cur = []
-            elif (not same or gap > pitch * 0.9) and indent > 5:
+            elif ((not same or gap > pitch * 0.9) and indent > 5
+                  and not (cur and cur[0].startswith("•"))):
                 paras.append(cur)
                 cur = []
         cur.append(ln.text)
@@ -642,7 +643,7 @@ def build51(name: str, page: int, lines: list[Line], next_page: int):
 # --------------------------------------------------------------------------
 # 5.2
 # --------------------------------------------------------------------------
-def span52(lines: list[Line], name: str, page: int) -> list[Line]:
+def span52(lines: list[Line], name: str, page: int, next_page: int = 999) -> list[Line]:
     start = None
     for i, ln in enumerate(lines):
         if ln.page == page and near(ln.size, 21.5, 0.6) and ln.text == name:
@@ -653,6 +654,9 @@ def span52(lines: list[Line], name: str, page: int) -> list[Line]:
     end = len(lines)
     for i in range(start + 1, len(lines)):
         if near(lines[i].size, 21.5, 0.6) and lines[i].text in [c for c, _ in CLASSES52]:
+            end = i
+            break
+        if lines[i].page >= next_page:
             end = i
             break
     return lines[start + 1:end]
@@ -669,7 +673,7 @@ def attribute_box52(raw: list[Line], page: int) -> list[tuple[str, str]]:
         return []
     seg: list[Line] = []
     for ln in raw[i0 + 1:]:
-        if ln.size > 12.6:
+        if ln.size > 12.6 or ln.text.startswith("Rasgos de"):
             break
         seg.append(ln)
     xs = sorted(l.x for l in seg)
@@ -694,18 +698,20 @@ def attribute_box52(raw: list[Line], page: int) -> list[tuple[str, str]]:
 
 def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page: int):
     pages = set(range(page, next_page))
-    body = span52(lines, name, page)
+    body = span52(lines, name, page, next_page)
     rows, warns, _ = parse_table(lines, pages, T52_TABLE_MAX, {"strip_trailing": True})
 
     nodes: list[dict] = []
     cur: dict | None = None
     skip_list = False
+    section = ""
     i = 0
     while i < len(body):
         ln = body[i]
         if near(ln.size, T52_SECTION) and ln.text.startswith("Subclase de"):
             name2 = body[i + 1].text if i + 1 < len(body) else ""
             cur = {"level": 3, "title": name2, "lines": []}
+            section = "Subclases"
             nodes.append(cur)
             i += 2
             continue
@@ -716,13 +722,15 @@ def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page:
                 continue
             skip_list = False
             cur = {"level": 2, "title": ln.text, "lines": []}
+            section = ln.text
             nodes.append(cur)
             i += 1
             continue
         if near(ln.size, T52_TRAIT) and not skip_list:
             m = TRAIT52_RE.match(ln.text)
             if m:
-                cur = {"level": 4, "title": m.group(2), "num": int(m.group(1)), "lines": []}
+                cur = {"level": 4, "title": m.group(2), "num": int(m.group(1)), "lines": [],
+                       "section": section}
             else:
                 cur = {"level": 5, "title": ln.text, "lines": []}
             nodes.append(cur)
@@ -737,7 +745,7 @@ def build52(name: str, page: int, lines: list[Line], raw: list[Line], next_page:
 
     by_level: dict[int, list[str]] = {}
     for nd in nodes:
-        if nd["level"] == 4:
+        if nd["level"] == 4 and nd.get("section", "").lower().startswith("rasgos de clase"):
             by_level.setdefault(nd["num"], []).append(nd["title"])
     for r in rows:
         names = by_level.get(r["level"])
@@ -819,7 +827,7 @@ def run(ed: str, only: str | None = None, write: bool = True) -> dict:
         if ed == "51":
             front, body, rows, warns = build51(name, page, lines, next_page)
         else:
-            front, body, rows, warns = build52(name, page, lines, next_page, raw)
+            front, body, rows, warns = build52(name, page, lines, raw, next_page)
         n_sub = body.count("\n### ") if "## Subclases" in body else 0
         sub_block = body.split("## Subclases", 1)[1] if "## Subclases" in body else ""
         subs = re.findall(r"^### (.+)$", sub_block, re.M)

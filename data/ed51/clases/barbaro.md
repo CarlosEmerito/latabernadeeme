@@ -71,29 +71,11 @@ Cuando estás en medio de un combate, luchas con ferocidad primordial. Durante t
 
 Mientras estás enfurecido, obtienes los siguientes beneficios, siempre y cuando no lleves armadura pesada:
 
-• Tienes ventaja en las pruebas de Fuerza y en las
+• Tienes ventaja en las pruebas de Fuerza y en las tiradas de salvación de Fuerza.
 
-tiradas de salvación de Fuerza.
+• Cuando llevas a cabo un ataque con arma cuerpo a cuerpo mediante Fuerza, ganas un bonificador a la tirada de daño que aumenta a medida que subes de nivel como bárbaro, tal y como se indica en la columna “Daño por furia” de la tabla “El bárbaro”.
 
-• Cuando llevas a cabo un ataque con arma cuerpo
-
-a cuerpo mediante Fuerza, ganas un bonificador
-
-a la tirada de daño que aumenta a medida que
-
-subes de nivel como bárbaro, tal y como se indica
-
-en la columna “Daño por furia” de la tabla
-
-“El bárbaro”.
-
-• Tienes resistencia al daño contundente, cortante
-
-y perforante. Si normalmente eres capaz de lanzar conjuros, no podrás lanzarlos ni concentrarte en ellos mientras estés enfurecido.
-
-Tu furia dura 1 minuto, aunque acabará antes de este tiempo si quedas inconsciente, o si terminas tu turno sin haber atacado a una criatura hostil o sin haber recibido daño desde tu turno anterior. También puedes finalizar tu furia como acción adicional en tu turno.
-
-Una vez que te hayas enfurecido tantas veces como se indicada en la columna “N.º de furias” de la tabla “El bárbaro”, tendrás que llevar a cabo un descanso largo antes de poder enfurecerte de nuevo.
+• Tienes resistencia al daño contundente, cortante y perforante. Si normalmente eres capaz de lanzar conjuros, no podrás lanzarlos ni concentrarte en ellos mientras estés enfurecido. Tu furia dura 1 minuto, aunque acabará antes de este tiempo si quedas inconsciente, o si terminas tu turno sin haber atacado a una criatura hostil o sin haber recibido daño desde tu turno anterior. También puedes finalizar tu furia como acción adicional en tu turno. Una vez que te hayas enfurecido tantas veces como se indicada en la columna “N.º de furias” de la tabla “El bárbaro”, tendrás que llevar a cabo un descanso largo antes de poder enfurecerte de nuevo.
 
 ### Defensa sin Armadura (nivel 1)
 

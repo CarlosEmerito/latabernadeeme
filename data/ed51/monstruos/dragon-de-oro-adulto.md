@@ -16,7 +16,7 @@ abilities:
   sab: 15
   car: 24
 saves: Des +8, Con +13, Sab +8, Car +13
-skills: Percepción +14, Perspicacia +8
+skills: ''
 resistances: ''
 immunities: fuego
 conditionImmunities: ''

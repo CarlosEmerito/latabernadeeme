@@ -9,9 +9,9 @@ page: 269
 
 Este sombrero puntiagudo tiene las siguientes propiedades.
 
-**Canalizador mágico.** Mientras sujetas el sombrero, puedes usarlo como canalizador mágico para tus conjuros de mago. Cualquier conjuro que lances mediante el sombrero tendrá un componente somático especial: debes meter la mano en el sombrero y “sacar” el conjuro de él.
+Canalizador mágico. Mientras sujetas el sombrero, puedes usarlo como canalizador mágico para tus conjuros de mago. Cualquier conjuro que lances mediante el sombrero tendrá un componente somático especial: debes meter la mano en el sombrero y “sacar” el conjuro de él.
 
-**Conjuro desconocido.** Mientras sujetas el sombrero, puedes intentar lanzar un conjuro de nivel 1 o superior que no conoces. El conjuro debe estar en la lista de conjuros de mago, debe ser de un nivel que puedas lanzar y no puede tener componentes materiales que cuesten más de 1000 po. Cuando hayas decidido el conjuro, deberás gastar un espacio de conjuro del nivel correspondiente. A continuación, para determinar si lo lanzas, haz una prueba de Inteligencia (Conocimiento arcano) (CD 10 más el nivel del conjuro). Si la superas, lanzarás el conjuro con su tiempo de lanzamiento normal y no podrás volver a utilizar esta propiedad hasta que finalices un descanso corto o largo. Si la fallas, el conjuro no se lanzará y en su lugar se producirá un efecto aleatorio. Tira en la tabla a continuación para determinarlo.
+Conjuro desconocido. Mientras sujetas el sombrero, puedes intentar lanzar un conjuro de nivel 1 o superior que no conoces. El conjuro debe estar en la lista de conjuros de mago, debe ser de un nivel que puedas lanzar y no puede tener componentes materiales que cuesten más de 1000 po. Cuando hayas decidido el conjuro, deberás gastar un espacio de conjuro del nivel correspondiente. A continuación, para determinar si lo lanzas, haz una prueba de Inteligencia (Conocimiento arcano) (CD 10 más el nivel del conjuro). Si la superas, lanzarás el conjuro con su tiempo de lanzamiento normal y no podrás volver a utilizar esta propiedad hasta que finalices un descanso corto o largo. Si la fallas, el conjuro no se lanzará y en su lugar se producirá un efecto aleatorio. Tira en la tabla a continuación para determinarlo.
 
 Los conjuros que lances desde el sombrero emplean tu CD de salvación de conjuros y tu bonificador de ataque de conjuros.
 
@@ -19,11 +19,11 @@ Los conjuros que lances desde el sombrero emplean tu CD de salvación de conjuro
 
 01–50 Lanzas un conjuro aleatorio que determinas
 
-## tirando 1d10: si el resultado es agrandar/re1,
+tirando 1d10: si el resultado es 1, agrandar/re-
 
-## ducir (efecto de agrandar); si es agrandar/re2,
+ducir (efecto de agrandar); si es 2, agrandar/re-
 
-## ducir (efecto de reducir); si es bola de fuego; 3,
+ducir bola de fuego; (efecto de reducir); si es 3,
 
 ## si es fuego feérico; si es fuerza fantasmal; 4, 5,
 
@@ -31,7 +31,7 @@ Los conjuros que lances desde el sombrero emplean tu CD de salvación de conjuro
 
 ## tosa; si es polimorfar; si es ráfaga de viento; 8, 9,
 
-## si es relámpago. 10,
+si es 10, relámpago.
 
 51–55 Creerás que ha sucedido algo asombroso
 
@@ -49,7 +49,7 @@ El enjambre se dispersa pasado 1 minuto.
 
 1d4 para determinar el objeto: si el resultado
 
-## es un vial de ácido; si es una antorcha 1, 2,
+es 1, un vial de ácido; si es 2, una antorcha
 
 ## encendida; si es un frasco de fuego de alqui3,
 
@@ -71,7 +71,7 @@ de tu siguiente turno.
 
 cuerda con un garfio de escalada atado en un
 
-## 3, 4, extremo; si es una daga; si es una gema
+## extremo; si es una daga; si es una gema 3, 4,
 
 valorada en 50 po.
 
@@ -89,7 +89,7 @@ para determinar la criatura: si el resultado
 
 ## es un si es un 1, camello; 2, elefante;
 
-## si es una si es una 3, mula; 4, serpiente
+si es 3, una mula; si es 4, una serpiente
 
 constrictora.
 
@@ -117,9 +117,9 @@ adónde lleva.
 
 1d6 para determinar la rareza del objeto: si
 
-## el resultado es común; si es infre1–3, 4–5,
+el resultado es 1–3, común; si es 4–5, infre-
 
-## cuente; si es raro. Tu GM elige el objeto, 6,
+cuente; si es 6, raro. Tu GM elige el objeto,
 
 que desaparecerá tras 1 hora si no se con-
 

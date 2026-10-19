@@ -16,7 +16,7 @@ abilities:
   sab: 11
   car: 19
 saves: ''
-skills: ''
+skills: Historia +6, Percepción +8, Sigilo +4
 resistances: ''
 immunities: ''
 conditionImmunities: ''

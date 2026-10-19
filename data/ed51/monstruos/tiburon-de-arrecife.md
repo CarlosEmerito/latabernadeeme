@@ -16,7 +16,7 @@ abilities:
   sab: 10
   car: 4
 saves: ''
-skills: ''
+skills: Percepción +2
 resistances: ''
 immunities: ''
 conditionImmunities: ''

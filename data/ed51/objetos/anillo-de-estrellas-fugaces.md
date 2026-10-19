@@ -7,11 +7,11 @@ srd: '5.1'
 page: 225
 ---
 
-Mientras lleves puesto este anillo bajo luz tenue o en la oscuridad, podrás lanzar a voluntad los conjuros luces danzantes y luz. Lanzar uno de estos conjuros desde el anillo requiere una acción.
+Mientras lleves puesto este anillo bajo luz tenue o en la oscuridad, podrás lanzar a voluntad los conjuros luces danzantes luz. y Lanzar uno de estos conjuros desde el anillo requiere una acción.
 
 El anillo tiene 6 cargas para utilizar las propiedades que se describen a continuación. Recupera 1d6 cargas empleadas cada día, al amanecer.
 
-Fuego feérico. Como acción, puedes gastar 1 carga para lanzar desde el anillo. fuego feérico **Bola de rayos.** Como acción, puedes gastar 2 cargas para crear entre una y cuatro esferas de rayos con un diámetro de 90 cm. Cuantas más esferas crees, menos potente será cada una de ellas.
+Fuego feérico. Como acción, puedes gastar 1 carga para lanzar fuego feérico desde el anillo. Bola de rayos. Como acción, puedes gastar 2 cargas para crear entre una y cuatro esferas de rayos con un diámetro de 90 cm. Cuantas más esferas crees, menos potente será cada una de ellas.
 
 Cada esfera aparece en un espacio sin ocupar que puedas ver a 36 m o menos de ti. Las esferas permanecerán hasta 1 minuto mientras mantengas la concentración (como si te concentraras en un conjuro). Cada una emite luz tenue en un radio de 9 m.
 

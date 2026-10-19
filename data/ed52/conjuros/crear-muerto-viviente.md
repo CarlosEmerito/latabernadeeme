@@ -22,6 +22,4 @@ Como acción adicional en cada uno de tus turnos, puedes dar órdenes mentalment
 
 La criatura estará bajo tu control durante 24 horas, tras las cuales dejará de obedecer cualquier orden que le hayas dado. Para mantener el control sobre ella otras 24 horas, deberás volver a lanzarle este conjuro antes de que acabe el periodo actual de 24 horas. Este uso del conjuro refuerza tu control sobre hasta tres criaturas que hayas animado con él y no anima nuevas criaturas.
 
-Con un espacio de conjuro de nivel superior. Si usas un espacio de conjuro de nivel 7, puedes
-
-gules. animar o reforzar el control sobre cuatro Si usas un espacio de conjuro de nivel 8, puedes animar o reforzar el control sobre cinco gules o dos ghasts tumularios. o Si usas un espacio de conjuro de nivel 9, puedes animar o reforzar el control sobre seis gules, tres ghasts o tumularios o dos momias. Consulta el capítulo “Monstruos” para ver estos perfiles.
+Con un espacio de conjuro de nivel superior. Si usas un espacio de conjuro de nivel 7, puedes animar o reforzar el control sobre cuatro gules. Si usas un espacio de conjuro de nivel 8, puedes animar o reforzar el control sobre cinco gules o dos ghasts o tumularios. Si usas un espacio de conjuro de nivel 9, puedes animar o reforzar el control sobre seis gules, tres ghasts o tumularios o dos momias. Consulta el capítulo “Monstruos” para ver estos perfiles.

@@ -21,7 +21,7 @@ resistances: contundente, perforante
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: fuego
-senses: ''
+senses: Percepción pasiva 10
 languages: un idioma conocido por su creador
 cr: '2'
 xp: 450 PX

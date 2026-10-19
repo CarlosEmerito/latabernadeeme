@@ -9,7 +9,7 @@ page: 276
 
 Esta varita tiene 7 cargas.
 
-**Conjuros.** Mientras sostengas la varita, puedes lanzar desde ella un conjuro (CD de salvación 15) de la tabla a continuación. En ella se indica cuántas cargas debes gastar para lanzar el conjuro.
+Conjuros. Mientras sostengas la varita, puedes lanzar desde ella un conjuro (CD de salvación 15) de la tabla a continuación. En ella se indica cuántas cargas debes gastar para lanzar el conjuro.
 
 Conjuro Coste en cargas
 

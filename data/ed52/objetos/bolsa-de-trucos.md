@@ -7,44 +7,80 @@ srd: '5.2'
 page: 244
 ---
 
-Esta bolsa hecha de tela de color gris, rojizo o marrón parece vacía. No obstante, meter la mano en su interior revela la presencia de un objeto pequeño y peludo. Puedes usar una acción de magia para sacar el objeto peludo de la bolsa y lanzarlo a 6 m o menos de distancia. Cuando aterrice, se transformará en una criatura que determines al tirar en la tabla que corresponda al color de la bolsa. Consulta el capítulo “Monstruos” para conocer el perfil de la criatura. La criatura desaparecerá al siguiente amanecer o cuando sus puntos de golpe se reduzcan a 0.
+Objeto maravilloso, infrecuente Esta bolsa hecha de tela de color gris, rojizo o marrón parece vacía. No obstante, meter la mano en su interior revela la presencia de un objeto pequeño y peludo.
 
-La criatura es amistosa contigo y tus aliados y actúa inmediatamente después de ti en tu orden de iniciativa. Puedes emplear una acción adicional para ordenarle cómo se mueve o qué acción realiza en su turno, como atacar a un enemigo. Si no recibe tales órdenes, se comportará conforme a su naturaleza.
+Puedes usar una acción de magia para sacar el objeto peludo de la bolsa y lanzarlo a 6 m o menos de distancia. Cuando aterrice, se transformará en una criatura que determines al tirar en la tabla que ­corresponda al color de la bolsa. Consulta el ­capítulo “Monstruos” para conocer el perfil de la criatura. La criatura desaparecerá al siguiente amanecer o cuando sus puntos de golpe se reduzcan a 0. La criatura es amistosa contigo y tus aliados y ­actúa inmediatamente después de ti en tu orden de iniciativa. Puedes emplear una acción adicional para ordenarle cómo se mueve o qué acción realiza en su turno, como atacar a un enemigo. Si no recibe tales órdenes, se comportará conforme a su naturaleza.
 
 Una vez que se han extraído tres objetos peludos de la bolsa, no puede volver a utilizarse hasta el siguiente amanecer.
 
-Bolsa de trucos gris
+Bolsa de trucos gris 1d8
 
-1d8 Criatura 1d8 Criatura
+Criatura
 
-1 Comadreja 5 Pantera
+1d8
 
-2 Rata gigante 6 Tejón gigante
+Criatura
 
-3 Tejón 7 Lobo terrible
+Comadreja
 
-4 Jabalí 8 Alce gigante
+Pantera
 
-Bolsa de trucos rojiza
+Rata gigante
 
-1d8 Criatura 1d8 Criatura
+Tejón gigante
 
-1 Rata 5 Cabra gigante
+Tejón
 
-2 Búho 6 Jabalí gigante
+Lobo terrible
 
-3 Mastín 7 León
+Jabalí
 
-4 Cabra 8 Oso pardo
+Alce gigante
 
-Bolsa de trucos marrón
+Bolsa de trucos rojiza 1d8
 
-1d8 Criatura 1d8 Criatura
+Criatura
 
-1 Chacal 5 Oso negro
+1d8
 
-2 Simio 6 Comadreja gigante
+Criatura
 
-3 Babuino 7 Hiena gigante
+Rata
 
-4 Pico de hacha 8 Tigre
+Cabra gigante
+
+Búho
+
+Jabalí gigante
+
+Mastín
+
+León
+
+Cabra
+
+Oso pardo
+
+Bolsa de trucos marrón 1d8
+
+Criatura
+
+1d8
+
+Criatura
+
+Chacal
+
+Oso negro
+
+Simio
+
+Comadreja gigante
+
+Babuino
+
+Hiena gigante
+
+Pico de hacha
+
+Tigre

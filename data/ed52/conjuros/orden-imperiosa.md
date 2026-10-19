@@ -20,6 +20,10 @@ Das una orden de una sola palabra a una criatura que puedas ver dentro del alcan
 
 corta y directa posible, y su turno acaba si se sitúa a 1,5 m o menos de ti. Detente. En su turno, el objetivo no se mueve y no
 
-usa acciones ni acciones adicionales. Huye. El objetivo emplea su turno en alejarse de ti de la manera más rápida posible. Póstrate. El objetivo adopta el estado de derribado y termina su turno. Suelta. El objetivo suelta lo que sea que esté suje-
+usa acciones ni acciones adicionales. Huye. El objetivo emplea su turno en alejarse de
+
+ti de la manera más rápida posible. Póstrate. El objetivo adopta el estado de derribado
+
+y termina su turno. Suelta. El objetivo suelta lo que sea que esté suje-
 
 tando y acaba su turno. Con un espacio de conjuro de nivel superior. Puedes afectar a una criatura adicional por cada nivel por encima de 1 que tenga el espacio.

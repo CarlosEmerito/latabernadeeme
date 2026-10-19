@@ -23,7 +23,7 @@ El muro consta de siete capas, cada una de un color distinto. Cuando una criatur
 
 afectada por las propiedades de esa capa, como se describe en la tabla “Capas prismáticas”.
 
-El muro, que tiene una CA de 10, se puede destruir capa por capa, en orden de rojo a violeta, por el medio específico para cada una de ellas. Si se destruye una capa, seguirá eliminada hasta que termine el Campo antimagia conjuro. no tiene efecto en el muro y disipar magia solo puede afectar a la capa violeta.
+El muro, que tiene una CA de 10, se puede destruir capa por capa, en orden de rojo a violeta, por el medio específico para cada una de ellas. Si se destruye una capa, seguirá eliminada hasta que termine el conjuro. Campo antimagia no tiene efecto en el muro y disipar magia solo puede afectar a la capa violeta.
 
 Capas prismáticas
 
@@ -37,7 +37,9 @@ Si supera la tirada: la mitad de daño. Efectos adicionales: los ataques a dista
 
 relámpago. Si supera la tirada: la mitad de daño. Efectos adicionales: la capa se destruye si recibe al menos 60 de daño de fuerza. 4 Verde. Si falla la tirada: 12d6 de daño de
 
-veneno. Si supera la tirada: la mitad de daño. Efectos adicionales: un conjuro pasamuros u otro del mismo nivel o superior que puedan abrir un portal en una superficie sólida destruirán esta capa. 5 Azul. 12d6 de daño de frío. Si falla la tirada: Si supera la tirada: la mitad de daño. Efectos adicionales: la capa se destruye si recibe al menos 25 de daño de fuego. 6 Añil. Si falla la tirada: el objetivo tendrá el
+veneno. Si supera la tirada: la mitad de daño. Efectos adicionales: un conjuro pasamuros u otro del mismo nivel o superior que puedan abrir un portal en una superficie sólida destruirán esta capa. 5 Azul. Si falla la tirada: 12d6 de daño de frío.
+
+Si supera la tirada: la mitad de daño. Efectos adicionales: la capa se destruye si recibe al menos 25 de daño de fuego. 6 Añil. Si falla la tirada: el objetivo tendrá el
 
 estado de apresado y hará una tirada de salvación de Constitución al final de cada uno de sus turnos. Si la supera tres veces, el estado terminará. Si la falla tres veces, tendrá el estado de petrificado hasta que lo libere un efecto como el del conjuro restablecimiento mayor. Los éxitos y los fallos no tienen por qué ser consecutivos: lleva la cuenta de ambos hasta que el objetivo tenga tres de un mismo tipo. Efectos adicionales: no es posible lanzar conjuros a través de esta capa, que puede destruirse mediante la luz brillante del conjuro luz del día.
 

@@ -39,4 +39,4 @@ page: 435
 
 **Maza.** Ataque con arma cuerpo a cuerpo: +2 a impactar, alcance 1,5 m, un objetivo. Impacto: 3 (1d6) de daño contundente.
 
-**sacerdotes Los transmiten las enseñanzas de sus dioses al pueblo llano.** Son los líderes espirituales de templos y santuarios, y suelen ocupar posiciones influyentes en sus comunidades. Los sacerdotes malvados pueden operar abiertamente bajo las órdenes de un tirano o dirigir sectas religiosas ocultas entre las sombras que proyecta la sociedad, supervisando ritos depravados.
+**Los sacerdotes transmiten las enseñanzas de sus dioses al pueblo llano.** Son los líderes espirituales de templos y santuarios, y suelen ocupar posiciones influyentes en sus comunidades. Los sacerdotes malvados pueden operar abiertamente bajo las órdenes de un tirano o dirigir sectas religiosas ocultas entre las sombras que proyecta la sociedad, supervisando ritos depravados.

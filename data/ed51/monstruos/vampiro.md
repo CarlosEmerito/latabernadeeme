@@ -16,7 +16,7 @@ abilities:
   sab: 15
   car: 18
 saves: Des +9, Sab +7, Car +9
-skills: ''
+skills: Percepción +7, Sigilo +9
 resistances: necrótico; contundente, cortante y perforante de ataques no mágicos
 immunities: ''
 conditionImmunities: ''

@@ -4,10 +4,10 @@ size: Diminuta
 type: Monstruosidad
 tags: ''
 alignment: sin alineamiento
-ac: 'Iniciativa: 14 +2 (12)'
+ac: '14'
 hp: 5 (2d4)
 speed: 9 m, nadar 9 m, volar 18 m
-initiative: 14 +2 (12)
+initiative: +2 (12)
 abilities:
   fue: 4
   des: 15

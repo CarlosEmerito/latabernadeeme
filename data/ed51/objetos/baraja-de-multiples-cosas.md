@@ -85,9 +85,9 @@ hechizado, inconsciente, paralizado, petrificado Sentidos: visión en la oscurid
 
 Inmunidad a Expulsión. El avatar es inmune a los efectos que expulsan muertos vivientes. Movimiento Incorpóreo. El avatar puede moverse a través de otras criaturas y objetos como si fueran terreno difícil. Recibe 5 (1d10) de daño de fuerza si acaba su turno dentro de un objeto.
 
-Acciones **Guadaña segadora.** El avatar barre con su guadaña espectral a una criatura que esté a 1,5 m o menos de él y le inflige 7 (1d8 +3) de daño cortante más 4 (1d8) de daño necrótico.
+Acciones Guadaña segadora. El avatar barre con su guadaña espectral a una criatura que esté a 1,5 m o menos de él y le inflige 7 (1d8 +3) de daño cortante más 4 (1d8) de daño necrótico.
 
-Canalla. Un personaje no jugador a elección de tu GM se vuelve hostil hacia ti. La identidad de tu nuevo enemigo será desconocida hasta que el PNJ u otro personaje la revelen. Salvo un conjuro o la deseo intercesión divina, nada puede hacer que esta hostilidad cese.
+**Canalla.** Un personaje no jugador a elección de tu GM se vuelve hostil hacia ti. La identidad de tu nuevo enemigo será desconocida hasta que el PNJ u otro personaje la revelen. Salvo un conjuro deseo o la intercesión divina, nada puede hacer que esta hostilidad cese.
 
 **Cometa.** Si derrotas sin ayuda al siguiente monstruo o grupo de monstruos hostiles que te encuentres, ganas suficientes puntos de experiencia para subir de nivel. De lo contrario, la carta no tiene efecto.
 
@@ -99,26 +99,26 @@ Equilibrio. Tu mente sufre una alteración terrible, lo que causa que tu alineam
 
 Garras. Todos los objetos mágicos que vistas o lleves contigo se desintegran. Los artefactos que poseas no se destruyen, pero desaparecen.
 
-**Gema.** Aparecen a tus pies veinticinco joyas con un valor de 2000 po cada una o cincuenta gemas con un valor de 1000 po cada una.
+Gema. Aparecen a tus pies veinticinco joyas con un valor de 2000 po cada una o cincuenta gemas con un valor de 1000 po cada una.
 
-Los Hados. El tejido del universo se desteje y se teje de nuevo, lo que te permite evitar o borrar un suceso, como si nunca hubiera ocurrido. Puedes usar esta magia tan pronto como robes la carta o en cualquier momento antes de morir.
+**Los Hados.** El tejido del universo se desteje y se teje de nuevo, lo que te permite evitar o borrar un suceso, como si nunca hubiera ocurrido. Puedes usar esta magia tan pronto como robes la carta o en cualquier momento antes de morir.
 
-**Idiota.** Tu Inteligencia se reduce permanentemente en 1d4 + 1 (hasta un mínimo de 1). Puedes robar una carta más de las que declaraste.
+Idiota. Tu Inteligencia se reduce permanentemente en 1d4 + 1 (hasta un mínimo de 1). Puedes robar una carta más de las que declaraste.
 
 Llamas. Un poderoso diablo se convierte en tu enemigo. Buscará tu ruina y te acosará, además de regodearse con tu sufrimiento antes de intentar matarte. Esta enemistad dura hasta que el diablo o tú muráis.
 
 Llave. Aparece en tus manos un arma mágica rara o de mayor rareza con la que eres competente. Tu GM elige el arma.
 
-**Loco.** Pierdes 10 000 PX, descartas esta carta y robas otra vez de la baraja; ambos robos solo contarán como uno de tus robos declarados. Si esa pérdida de PX te haría bajar de nivel, en vez de eso, perderás la cantidad de PX justa para quedarte en tu nivel actual.
+Loco. Pierdes 10 000 PX, descartas esta carta y robas otra vez de la baraja; ambos robos solo contarán como uno de tus robos declarados. Si esa pérdida de PX te haría bajar de nivel, en vez de eso, perderás la cantidad de PX justa para quedarte en tu nivel actual.
 
 **Luna.** Obtienes la capacidad de lanzar el conjuro deseo 1d3 veces.
 
-**Ruina.** Pierdes todas las riquezas que lleves o poseas, excepto los objetos mágicos. Las propiedades que puedas llevar encima desaparecen. Pierdes todos los negocios, edificios y tierras que poseas de la manera que menos altere la realidad. Cualquier documento que pruebe que deberías poseer las riquezas perdidas por esta carta también desaparece.
+Ruina. Pierdes todas las riquezas que lleves o poseas, excepto los objetos mágicos. Las propiedades que puedas llevar encima desaparecen. Pierdes todos los negocios, edificios y tierras que poseas de la manera que menos altere la realidad. Cualquier documento que pruebe que deberías poseer las riquezas perdidas por esta carta también desaparece.
 
 **Sol.** Ganas 50 000 PX y en tus manos aparece un objeto maravilloso (tu GM lo determina al azar).
 
-**Trono.** Ganas competencia en la habilidad Persuasión y duplicas tu bonificador por competencia en las pruebas de esa habilidad. Además, obtienes de pleno derecho la propiedad de una pequeña fortaleza en alguna parte del mundo. No obstante, ahora mismo la habitan monstruos, a los que deberás expulsar antes de reclamar la fortaleza.
+Trono. Ganas competencia en la habilidad Persuasión y duplicas tu bonificador por competencia en las pruebas de esa habilidad. Además, obtienes de pleno derecho la propiedad de una pequeña fortaleza en alguna parte del mundo. No obstante, ahora mismo la habitan monstruos, a los que deberás expulsar antes de reclamar la fortaleza.
 
 **El Vacío.** Esta carta negra vaticina una catástrofe. Tu alma se extrae de tu cuerpo y va a parar al interior de un objeto situado en un lugar a elección de tu GM. Uno o más seres poderosos custodian ese sitio. Mientras tu alma esté atrapada de este modo, tu cuerpo quedará incapacitado. Un conjuro deseo no puede traer de vuelta tu alma, pero sí revela la ubicación del objeto que la contiene. No robas más cartas.
 
-Visir. En cualquier momento que quieras hasta un año después de robar esta carta, podrás hacer una pregunta mientras meditas y recibirás mentalmente una respuesta veraz a dicha cuestión. Además de proporcionarte información, la respuesta te ayudará a resolver un problema u otro dilema. Dicho de otro modo, el conocimiento se obtiene junto con la sabiduría necesaria para aplicarlo.
+**Visir.** En cualquier momento que quieras hasta un año después de robar esta carta, podrás hacer una pregunta mientras meditas y recibirás mentalmente una respuesta veraz a dicha cuestión. Además de proporcionarte información, la respuesta te ayudará a resolver un problema u otro dilema. Dicho de otro modo, el conocimiento se obtiene junto con la sabiduría necesaria para aplicarlo.

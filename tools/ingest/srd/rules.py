@@ -143,13 +143,12 @@ def page_lines(page: Page, indent_space: bool = True) -> list[Line]:
         out.append(_line(group, col, page.n, indent_space))
 
     lines = [l for l in out if l and l.text]
-    for col in {l.col for l in lines}:
-        body = [l.left for l in lines if l.col == col and 14.7 <= l.size <= 17.5]
-        if body:
-            base = min(body)
-            for l in lines:
-                if l.col == col and l.left > base + 5 and 14.7 <= l.size <= 17.5:
-                    l.indent = True
+    if indent_space:
+        prev: Line | None = None
+        for l in lines:
+            if prev is not None and prev.col == l.col:
+                l.indent = l.left > prev.left + 5
+            prev = l
     return lines
 
 
@@ -179,9 +178,10 @@ def _line(group: list[Run], col: int, page: int, indent_space: bool = True) -> L
         out.pop()
     if not out:
         return None
-    for i in (0, len(out) - 1):
-        if out[i][0] == " ":
-            out[i] = (" ", False)
+    for i in range(len(out)):
+        if out[i][0] == " " and out[i][1]:
+            if i == 0 or not out[i - 1][1] or i + 1 == len(out) or not out[i + 1][1]:
+                out[i] = (" ", False)
 
     text = "".join(ch for ch, _ in out)
     md = ""
@@ -372,6 +372,7 @@ def blocks(
             elif (
                 cur is not None
                 and cur.kind == "item"
+                and not _lead_in(line.md)
                 and (line.left > cur_left + 5 or (gap is not None and gap < pitch * 1.3 and not terminal))
             ):
                 cur.text = _join(cur.text, line.text)
@@ -518,6 +519,17 @@ def table_grid(rows: list[list[tuple[float, str]]]) -> list[list[str]]:
         for x, text in row:
             i = min(range(width), key=lambda j: abs(anchors[j] - x))
             line[i] = (line[i] + " " + text).strip() if line[i] else text
+        if grid and line[0] == "" and grid[-1][0] and any(line):
+            # celdas partidas en varias líneas dentro de la misma fila
+            prev = grid[-1]
+            for j, cell in enumerate(line):
+                if not cell:
+                    continue
+                if prev[j].endswith(("-", "\u2010", "\u2011")):
+                    prev[j] = prev[j][:-1] + cell
+                else:
+                    prev[j] = (prev[j] + " " + cell).strip()
+            continue
         if grid and line[0] == "" and sum(1 for c in line if c) == 1:
             # una fila con una sola celda fuera de la primera columna continúa la anterior
             j = next(i for i, c in enumerate(line) if c)
@@ -530,14 +542,18 @@ def table_grid(rows: list[list[tuple[float, str]]]) -> list[list[str]]:
         grid.append(line)
 
     # cabecera partida en dos líneas: "Gravedad de" / "la trampa"
-    if (
-        len(grid) >= 2
-        and all(c[:1].isupper() for c in grid[0] if c)
-        and all(c[:1].islower() for c in grid[1] if c)
-        and any(grid[1])
-    ):
-        grid[0] = [(a + " " + b).strip() for a, b in zip(grid[0], grid[1])]
-        grid.pop(1)
+    if len(grid) >= 2 and any(grid[1]) and not any("———" in c for c in grid[0]):
+        below = grid[1]
+        lower = all(c[:1].islower() for c in below if c) and all(c[:1].isupper() for c in grid[0] if c)
+        split = (
+            "" in grid[0]
+            and "" not in below
+            and all(len(c) <= 32 for c in below if c)
+            and not any(ch.isdigit() for c in below for ch in c)
+        )
+        if lower or split:
+            grid[0] = [(a + " " + b).strip() for a, b in zip(grid[0], below)]
+            grid.pop(1)
     return grid
 
 

@@ -5,11 +5,7 @@ srd: '5.1'
 page: 96
 ---
 
-Durante un combate, los personajes y los monstruos no dejan de desplazarse y suelen emplear su movimiento y su posición para imponerse.
-
-En tu turno puedes moverte una distancia que no supere tu velocidad. Tienes la posibilidad de usar toda tu velocidad o solo parte de ella si así lo prefieres, siempre y cuando respetes estas normas.
-
-Tu movimiento puede incluir saltar, trepar y nadar. Estas formas de movimiento pueden combinarse con caminar o pueden constituir la totalidad de tu movimiento. Independientemente de cómo te muevas, restarás la distancia recorrida en cada parte de tu movimiento a tu velocidad hasta que la uses por completo o acabes de moverte.
+Durante un combate, los personajes y los monstruos no dejan de desplazarse y suelen emplear su movimiento y su posición para imponerse. En tu turno puedes moverte una distancia que no supere tu velocidad. Tienes la posibilidad de usar toda tu velocidad o solo parte de ella si así lo prefieres, siempre y cuando respetes estas normas. Tu movimiento puede incluir saltar, trepar y nadar. Estas formas de movimiento pueden combinarse con caminar o pueden constituir la totalidad de tu movimiento. Independientemente de cómo te muevas, restarás la distancia recorrida en cada parte de tu movimiento a tu velocidad hasta que la uses por completo o acabes de moverte.
 
 ## Dividir el movimiento
 
@@ -21,25 +17,15 @@ Si llevas a cabo una acción que incluya más de un ataque con arma, puedes divi
 
 ### Usar diferentes velocidades
 
-Si posees más de una velocidad (como velocidad caminando y velocidad volando), puedes cambiar entre una y otra durante tu movimiento. Cada vez que lo hagas, resta la distancia que ya te hayas movido a la nueva velocidad. Lo que quede será lo que aún te puedas mover. Si te quedan 0 metros o menos, no podrás usar la nueva velocidad durante el movimiento actual.
-
-Por ejemplo, si tienes una velocidad caminando de 9 m y una velocidad volando de 18 m porque un mago te ha lanzado el conjuro volar, entonces podrías volar 6 m, caminar 3 m y volar otros 6 m más.
+Si posees más de una velocidad (como velocidad caminando y velocidad volando), puedes cambiar entre una y otra durante tu movimiento. Cada vez que lo hagas, resta la distancia que ya te hayas movido a la nueva velocidad. Lo que quede será lo que aún te puedas mover. Si te quedan 0 metros o menos, no podrás usar la nueva velocidad durante el movimiento actual. Por ejemplo, si tienes una velocidad caminando de 9 m y una velocidad volando de 18 m porque un mago te ha lanzado el conjuro volar, entonces podrías volar 6 m, caminar 3 m y volar otros 6 m más.
 
 ## Terreno difícil
 
-Raras veces el combate se produce en estancias vacías o llanuras uniformes. El escenario normal de una lucha suele contener terreno difícil, como cavernas llenas de piedras, espesos bosques o escaleras traicioneras.
-
-Cada metro de movimiento en terreno difícil cuesta 1 m adicional, incluso si en el mismo espacio hay varios obstáculos que se consideren terreno difícil.
-
-Muebles bajos, escombros, sotobosque, escaleras empinadas, nieve y lodazales poco profundos son algunos ejemplos de terreno difícil. El espacio que ocupa otra criatura, sea hostil o no, también se considera terreno difícil.
+Raras veces el combate se produce en estancias vacías o llanuras uniformes. El escenario normal de una lucha suele contener terreno difícil, como cavernas llenas de piedras, espesos bosques o escaleras traicioneras. Cada metro de movimiento en terreno difícil cuesta 1 m adicional, incluso si en el mismo espacio hay varios obstáculos que se consideren terreno difícil. Muebles bajos, escombros, sotobosque, escaleras empinadas, nieve y lodazales poco profundos son algunos ejemplos de terreno difícil. El espacio que ocupa otra criatura, sea hostil o no, también se considera terreno difícil.
 
 ## Derribado
 
-En muchas ocasiones, los combatientes acaban en el suelo, ya sea porque los han tirado o porque se han lanzado ellos mismos. A efectos del juego, se considera que están “derribados”, un estado que se describe en el apéndice MJ-A.
-
-Puedes tirarte al suelo voluntariamente, quedando derribado, sin tener que gastar nada de tu velocidad. Levantarse cuesta más y requerirá la mitad de tu velocidad. Por ejemplo, si tu velocidad fuera de 9 m, tendrías que gastar 4,5 m para levantarte. No podrás levantarte si no tienes suficiente movimiento restante o si tu velocidad es 0.
-
-Para moverte mientras estás derribado, deberás arrastrarte o recurrir a efectos mágicos como la teletransportación. Cada metro de movimiento arrastrándote cuesta 1 m adicional. Por lo tanto, arrastrarte 1 m en terreno difícil cuesta 3 m de movimiento.
+En muchas ocasiones, los combatientes acaban en el suelo, ya sea porque los han tirado o porque se han lanzado ellos mismos. A efectos del juego, se considera que están “derribados”, un estado que se describe en el apéndice MJ-A. Puedes tirarte al suelo voluntariamente, quedando derribado, sin tener que gastar nada de tu velocidad. Levantarse cuesta más y requerirá la mitad de tu velocidad. Por ejemplo, si tu velocidad fuera de 9 m, tendrías que gastar 4,5 m para levantarte. No podrás levantarte si no tienes suficiente movimiento restante o si tu velocidad es 0. Para moverte mientras estás derribado, deberás arrastrarte o recurrir a efectos mágicos como la teletransportación. Cada metro de movimiento arrastrándote cuesta 1 m adicional. Por lo tanto, arrastrarte 1 m en terreno difícil cuesta 3 m de movimiento.
 
 Interaccionar con objetos de los alrededores
 
@@ -69,11 +55,7 @@ Estos son algunos ejemplos de las cosas que puedes hacer como parte de tu movimi
 
 ## Moverse alrededor de otras criaturas
 
-Puedes moverte a través del espacio ocupado por una criatura que no sea hostil. Por contra, solo podrás atravesar el espacio de una criatura hostil si su tamaño es al menos dos categorías superior o inferior al tuyo. Recuerda que el espacio ocupado por otra criatura se considera terreno difícil para ti.
-
-Ya sea amiga o enemiga, en ningún caso puedes terminar tu movimiento en el espacio de otra criatura.
-
-Si te mueves fuera del alcance de una criatura hostil, provocarás un ataque de oportunidad.
+Puedes moverte a través del espacio ocupado por una criatura que no sea hostil. Por contra, solo podrás atravesar el espacio de una criatura hostil si su tamaño es al menos dos categorías superior o inferior al tuyo. Recuerda que el espacio ocupado por otra criatura se considera terreno difícil para ti. Ya sea amiga o enemiga, en ningún caso puedes terminar tu movimiento en el espacio de otra criatura. Si te mueves fuera del alcance de una criatura hostil, provocarás un ataque de oportunidad.
 
 ## Volar
 
@@ -96,11 +78,7 @@ Cada criatura ocupa una cantidad de espacio distinta. La tabla “Categorías de
 
 ### Espacio
 
-El espacio de una criatura es el área en metros que esta controla en combate de forma efectiva, no una medida de sus dimensiones físicas. Por ejemplo, una criatura Mediana típica no tiene 1,5 m de ancho, pero controla un espacio de esa anchura. Si un hobgoblin Mediano se sitúa en una entrada de 1,5 m de ancho, otras criaturas no podrán atravesarla salvo que el hobgoblin se lo permita.
-
-El espacio de una criatura también indica el área que esta necesita para poder luchar de forma efectiva. Por ese motivo, existe un límite al número de criaturas que pueden rodear a otra durante un combate. Si hablamos de combatientes de tamaño Mediano, ocho criaturas pueden situarse en un radio de 1,5 m y rodear a otra.
-
-Como las criaturas más grandes ocupan más espacio, la cantidad de ellas que puede rodear a un enemigo es menor. Si cinco criaturas Grandes asedian a una Mediana o más pequeña, no queda espacio para nadie más. Por contra, una criatura Gargantuesca puede verse rodeada por hasta veinte criaturas Medianas.
+El espacio de una criatura es el área en metros que esta controla en combate de forma efectiva, no una medida de sus dimensiones físicas. Por ejemplo, una criatura Mediana típica no tiene 1,5 m de ancho, pero controla un espacio de esa anchura. Si un hobgoblin Mediano se sitúa en una entrada de 1,5 m de ancho, otras criaturas no podrán atravesarla salvo que el hobgoblin se lo permita. El espacio de una criatura también indica el área que esta necesita para poder luchar de forma efectiva. Por ese motivo, existe un límite al número de criaturas que pueden rodear a otra durante un combate. Si hablamos de combatientes de tamaño Mediano, ocho criaturas pueden situarse en un radio de 1,5 m y rodear a otra. Como las criaturas más grandes ocupan más espacio, la cantidad de ellas que puede rodear a un enemigo es menor. Si cinco criaturas Grandes asedian a una Mediana o más pequeña, no queda espacio para nadie más. Por contra, una criatura Gargantuesca puede verse rodeada por hasta veinte criaturas Medianas.
 
 ### Apretarse en un espacio más pequeño
 

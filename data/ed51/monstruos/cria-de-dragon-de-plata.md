@@ -15,7 +15,7 @@ abilities:
   int: 12
   sab: 11
   car: 15
-saves: ''
+saves: Des +2, Con +5, Sab +2, Car +4
 skills: Percepción +4, Sigilo +2
 resistances: ''
 immunities: frío

@@ -9,7 +9,7 @@ page: 261
 
 Cuando bebas esta poción, tu puntuación de Fuerza cambiará durante 1 hora. El tipo de gigante determina la puntuación (consulta la tabla más adelante). La poción no tendrá ningún efecto si tu Fuerza es igual o superior a esa puntuación.
 
-En el líquido transparente de la poción flota un trozo de uña de un gigante del tipo correspondiente. La y la poción de fuerza de gigante de escarcha poción de fuerza de gigante de piedra tienen el mismo efecto.
+En el líquido transparente de la poción flota un trozo de uña de un gigante del tipo correspondiente. La poción de fuerza de gigante de escarcha y la poción de fuerza de gigante de piedra tienen el mismo efecto.
 
 Tipo de gigante Fuerza Rareza
 

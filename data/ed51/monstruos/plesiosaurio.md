@@ -22,7 +22,7 @@ immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
 senses: Percepción pasiva 13
-languages: —
+languages: ''
 cr: '2'
 xp: 450 PX
 proficiency: ''

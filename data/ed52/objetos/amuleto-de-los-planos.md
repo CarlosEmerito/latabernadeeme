@@ -19,9 +19,9 @@ nombrado.
 
 determina tirando 1d6: si sale un 1, el Plano de
 
-la Tierra; si sale un el Plano del Agua; si sale 2,
+la Tierra; si sale un 2, el Plano del Agua; si sale
 
-un el Plano del Aire; si sale un el Plano del 3, 4,
+un 3, el Plano del Aire; si sale un 4, el Plano del
 
 Fuego; si sale un 5, los Parajes Feéricos; si sale
 

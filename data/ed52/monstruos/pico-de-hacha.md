@@ -33,4 +33,4 @@ page: 359
 
 ## Rasgos
 
-**Acciones Pico.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. 6 (1d8 + 2) de daño cortante. Acierto:
+**Acciones Pico.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño cortante.

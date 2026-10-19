@@ -7,8 +7,6 @@ srd: '5.2'
 page: 275
 ---
 
-Mientras sostengas esta varita, obtendrás un boni-
+Varita, infrecuente (+1), rara (+2) o muy rara (+3) (requiere sintonización por parte de un lanzador de conjuros)
 
-=== PÁGINA 276 ===
-
-nado por la rareza de la varita. Además, ignorarás la cobertura media cuando realices una tirada de ataque de conjuro.
+Mientras sostengas esta varita, obtendrás un bonificador a las tiradas de ataque de conjuro determi-

@@ -22,7 +22,7 @@ immunities: veneno
 conditionImmunities: cansancio, envenenado
 vulnerabilities: contundente
 senses: visión en la oscuridad 18 m, Percepción pasiva 9
-languages: —
+languages: ''
 cr: 1/2
 xp: 100 PX
 proficiency: ''

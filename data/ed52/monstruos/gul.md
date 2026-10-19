@@ -45,4 +45,4 @@ page: 336
 
 **Ataque múltiple.** El gul realiza dos ataques de mordisco. Garra. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 4 (1d4 + 2) de daño cortante. Si el objetivo es una criatura que no sea un muerto viviente o un elfo, sufre el siguiente efecto. Tirada de salvación de Constitución: CD 10. Fallo: el objetivo tendrá el estado de paralizado hasta el final de su siguiente turno. Mordisco. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante más 3 (1d6) de daño necrótico. Gusano púrpura
 
-**MOD.** SALV. MOD. SALV. MOD. SALV. F 28 +9 +9 D 7 −2 −2 C 22 +6 +11 ue es on I 1 −5 −5 S 8 −1 +4 C 4 −3 −3 nt ab ar
+**MOD.** SALV. MOD. SALV. MOD. SALV. F 28 +9 +9 D 7 −2 −2 C 22 +6 +11 ue es on I S C nt 1 −5 −5 ab 8 −1 +4 ar 4 −3 −3

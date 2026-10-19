@@ -9,7 +9,7 @@ page: 241
 
 Este bastón tiene 20 cargas y se puede usar a modo de bastón mágico que otorga un bonificador de +2 a las tiradas de ataque y de daño realizadas con él. Mientras lo empuñes, obtendrás un bonificador de +2 a la clase de armadura, las tiradas de salvación y las tiradas de ataque de conjuro.
 
-**Conjuros.** Mientras empuñes el bastón, puedes lanzar un conjuro de la tabla a continuación desde él empleando tu CD de salvación de conjuros. En ella se indica cuántas cargas debes gastar para lanzar el conjuro.
+Conjuros. Mientras empuñes el bastón, puedes lanzar un conjuro de la tabla a continuación desde él empleando tu CD de salvación de conjuros. En ella se indica cuántas cargas debes gastar para lanzar el conjuro.
 
 Conjuro Coste en cargas
 
@@ -31,6 +31,6 @@ Rayo debilitador 1
 
 Relámpago (versión de nivel 5) 5
 
-Golpe vengador. Puedes emplear una acción de magia para romper el bastón de un rodillazo o contra una superficie sólida. El bastón se destruye y libera su magia en una explosión que llena una emanación de 9 m que se origina en él. Tienes un 50 % de probabilidad de viajar en ese instante a un plano de existencia aleatorio y evitar la explosión. Si no logras evitar el efecto, sufrirás una cantidad de daño de fuerza igual a 16 veces la cantidad de cargas del bastón. Todas las demás criaturas situadas en la zona harán una tirada de salvación de Destreza con CD 17. Si la fallan, sufrirán un daño de fuerza igual a 4 veces la cantidad de cargas del bastón. Si la superan, sufrirán la mitad de ese daño.
+**Golpe vengador.** Puedes emplear una acción de magia para romper el bastón de un rodillazo o contra una superficie sólida. El bastón se destruye y libera su magia en una explosión que llena una emanación de 9 m que se origina en él. Tienes un 50 % de probabilidad de viajar en ese instante a un plano de existencia aleatorio y evitar la explosión. Si no logras evitar el efecto, sufrirás una cantidad de daño de fuerza igual a 16 veces la cantidad de cargas del bastón. Todas las demás criaturas situadas en la zona harán una tirada de salvación de Destreza con CD 17. Si la fallan, sufrirán un daño de fuerza igual a 4 veces la cantidad de cargas del bastón. Si la superan, sufrirán la mitad de ese daño.
 
 **Recuperar cargas.** El bastón recupera 2d8 + 4 cargas empleadas cada día, al amanecer. Si gastas la última carga, tira 1d20. Si el resultado es 1, el bastón conserva su bonificador de +2 a las tiradas de ataque y de daño, pero pierde sus otras propiedades. Si el resultado es 20, el bastón recupera 1d8 + 2 cargas.

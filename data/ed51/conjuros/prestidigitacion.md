@@ -25,9 +25,11 @@ como una lluvia de chispas, una ligera ráfaga de viento, tenues notas musicales
 
 • Enciendes o apagas al instante una vela, una
 
-antorcha o una hoguera pequeña. • Limpias o ensucias al instante un objeto de hasta 0,03 m. 3 • Enfrías, calientas o das sabor a un material inerte
+antorcha o una hoguera pequeña. • Limpias o ensucias al instante un objeto de hasta
 
-de hasta 0,03 m durante 1 hora. 3 • Haces que aparezca una mancha de color,
+0,03 m3. • Enfrías, calientas o das sabor a un material inerte
+
+de hasta 0,03 m3 durante 1 hora. • Haces que aparezca una mancha de color,
 
 una pequeña marca o un símbolo en un objeto o superficie durante 1 hora. • Creas un abalorio no mágico o una imagen ilusoria
 

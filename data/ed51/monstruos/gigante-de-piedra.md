@@ -16,7 +16,7 @@ abilities:
   sab: 12
   car: 9
 saves: Des +5, Con +8, Sab +4
-skills: Atletismo +12, Percepción +4
+skills: ''
 resistances: ''
 immunities: ''
 conditionImmunities: ''

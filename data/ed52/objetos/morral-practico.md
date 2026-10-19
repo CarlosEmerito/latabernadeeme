@@ -7,7 +7,11 @@ srd: '5.2'
 page: 263
 ---
 
-Esta mochila posee un bolsillo central y dos laterales, cada uno de los cuales es un espacio extradimensional. Cada bolsillo lateral puede contener hasta 100 kg de materia sin exceder un volumen de 750 l. El bolsillo central puede contener hasta 250 kg de materia sin exceder un volumen de 1900 l. El morral pesa siempre 2,5 kg, independientemente del contenido.
+Objeto maravilloso, raro
+
+Esta mochila posee un bolsillo central y dos laterales, cada uno de los cuales es un espacio extradimensional. Cada bolsillo lateral puede contener hasta 100 kg de materia sin exceder un volumen de 750 l. El bolsillo central puede contener hasta 250 kg de materia sin exceder un volumen de 1900 l.
+
+El morral pesa siempre 2,5 kg, independientemente del contenido.
 
 Sacar un objeto del morral requiere una acción de utilizar o una acción adicional, a tu elección. Cuando metes la mano para extraer un objeto concreto, la magia hará que siempre se encuentre arriba del todo.
 
@@ -17,4 +21,6 @@ Cada bolsillo del morral contiene aire suficiente para respirar durante 10 minut
 
 el número de criaturas que necesiten respirar en su interior.
 
-Meter el morral en el espacio extradimensional creado por un agujero portátil, una bolsa de contención o un objeto similar destruye instantáneamente ambos objetos y abre un portal al Plano Astral. El portal se crea en el sitio en el que un objeto se introdujo dentro del otro. El portal absorbe a todas las criaturas situadas a 3 m o menos de él y que no estén tras cobertura completa, y las conduce a un lugar aleatorio del Plano Astral. Después, el portal se cierra. El portal solo funciona en un sentido y no puede volver a abrirse.
+Meter el morral en el espacio extradimensional creado por un agujero portátil, una bolsa de contención o un objeto similar destruye instantáneamente ambos objetos y abre un portal al Plano Astral.
+
+El portal se crea en el sitio en el que un objeto se introdujo dentro del otro. El portal absorbe a todas las criaturas situadas a 3 m o menos de él y que no estén tras cobertura completa, y las conduce a un lugar aleatorio del Plano Astral. Después, el portal se cierra. El portal solo funciona en un sentido y no puede volver a abrirse.

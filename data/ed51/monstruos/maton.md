@@ -16,7 +16,7 @@ abilities:
   sab: 10
   car: 11
 saves: ''
-skills: ''
+skills: Intimidación +2
 resistances: ''
 immunities: ''
 conditionImmunities: ''

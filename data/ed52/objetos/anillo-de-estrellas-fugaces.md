@@ -7,11 +7,11 @@ srd: '5.2'
 page: 231
 ---
 
-Puedes lanzar o desde este luces danzantes luz anillo.
+Puedes lanzar luces danzantes o luz desde este anillo.
 
 El anillo tiene 6 cargas y recupera 1d6 cargas empleadas cada día, al amanecer. Puedes gastar las cargas para usar las propiedades a continuación.
 
-**Esferas de rayos.** Como acción de magia, puedes gastar 2 cargas para crear hasta cuatro esferas de rayos con un diámetro de 90 cm.
+Esferas de rayos. Como acción de magia, puedes gastar 2 cargas para crear hasta cuatro esferas de rayos con un diámetro de 90 cm.
 
 Cada esfera aparece en un espacio sin ocupar que puedas ver a 36 m o menos de ti. Las esferas permanecerán mientras mantengas la concentración, hasta 1 minuto. Cada una emite luz tenue en un radio de 9 m.
 
@@ -27,4 +27,4 @@ de esferas relámpago de esferas relámpago
 
 **Estrellas fugaces.** Como acción de magia, puedes gastar entre 1 y 3 cargas. Por cada carga que emplees, lanzarás una mota de luz brillante desde el anillo hacia un punto que puedas ver a 18 m o menos de ti. A todas las criaturas situadas en un cubo de 4,5 m de lado que parta de ese punto les caerá una lluvia de chispas y harán una tirada de salvación de Destreza con CD 15; sufrirán 5d4 de daño radiante si la fallan o la mitad del daño si la superan.
 
-Fuego feérico. Puedes gastar 1 carga para lanzar fuego feérico desde el anillo.
+**Fuego feérico.** Puedes gastar 1 carga para lanzar fuego feérico desde el anillo.

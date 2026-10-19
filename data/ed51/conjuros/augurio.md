@@ -16,9 +16,7 @@ page: 127
 
 Lanzando palitos con gemas incrustadas, tirando huesos de dragón, echando las cartas o mediante otra herramienta de adivinación, consigues que una entidad de otro mundo te otorgue un presagio sobre los resultados de un curso de acción concreto que planees llevar a cabo en los próximos 30 minutos. Tu GM elige de entre los siguientes presagios posibles:
 
-• Fortuna, para resultados buenos. • Desdicha, para resultados malos.
-
-Fortuna y desdicha, • para resultados a la vez
+• Fortuna, para resultados buenos. • Desdicha, para resultados malos. • Fortuna y desdicha, para resultados a la vez
 
 buenos y malos. • Nada, para resultados que no son particularmente
 

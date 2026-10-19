@@ -20,4 +20,4 @@ En cualquier momento a partir de entonces, puedes usar tu acción para decir el 
 
 Si hay otra criatura que sostenga o lleve el objeto, este no se transportará hasta ti al aplastar el zafiro, sino que sabrás quién es la criatura que lo tiene en su posesión y aproximadamente dónde se encuentra esa criatura en dicho momento.
 
-disipar magia Un conjuro o un efecto similar que se aplique con éxito al zafiro pondrá fin al efecto de este conjuro.
+Un conjuro disipar magia o un efecto similar que se aplique con éxito al zafiro pondrá fin al efecto de este conjuro.

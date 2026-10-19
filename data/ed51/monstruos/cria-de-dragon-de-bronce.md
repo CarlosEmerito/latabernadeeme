@@ -45,9 +45,7 @@ page: 319
 
 **Resistencia Legendaria (3/día).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado.
 
-**Ataque múltiple.** El dragón puede usar su presencia aterradora. Después realiza tres ataques: uno con su mordisco y dos con sus garras. Cola. Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 6 m, un objetivo. Impacto: 17 (2d8 + 8) de daño contundente. Garra. Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 3 m, un objetivo. Impacto: 15 (2d6 + 8) de daño cortante. Mordisco. Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 4,5 m, un objetivo. Impacto: 19 (2d10 + 8) de daño perforante. Ataques de aliento (recarga 5–6). El dragón usa uno de los siguientes ataques de aliento: Aliento ácido. El dragón exhala ácido en una línea de
-
-**27 m de largo y 3 m de ancho.** Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 22; sufrirán 63 (14d8) de daño de ácido si la fallan o la mitad del daño si la superan.
+**Ataque múltiple.** El dragón puede usar su presencia aterradora. Después realiza tres ataques: uno con su mordisco y dos con sus garras. Cola. Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 6 m, un objetivo. Impacto: 17 (2d8 + 8) de daño contundente. Garra. Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 3 m, un objetivo. Impacto: 15 (2d6 + 8) de daño cortante. Mordisco. Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 4,5 m, un objetivo. Impacto: 19 (2d10 + 8) de daño perforante. Ataques de aliento (recarga 5–6). El dragón usa uno de los siguientes ataques de aliento: Aliento ácido. El dragón exhala ácido en una línea de 27 m de largo y 3 m de ancho. Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 22; sufrirán 63 (14d8) de daño de ácido si la fallan o la mitad del daño si la superan.
 
 **Aliento ralentizador.** El dragón exhala gas en un
 

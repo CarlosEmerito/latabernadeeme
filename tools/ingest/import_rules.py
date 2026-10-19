@@ -130,7 +130,10 @@ def run_edition(ed: str, xml: str, words_xml: str, specs: list[Spec], first: int
     if ed == "ed52":
         specs = [s for s in specs if s.title != GLOSSARY_START]
         idx = specs.index(next(s for s in specs if s.title == GLOSSARY_END))
-        specs[idx:idx] = [Spec(GLOSSARY_START, "Glosario")] + glossary_specs(blocks)
+        specs[idx:idx] = [
+            Spec("Convenciones del glosario", "Glosario"),
+            Spec(GLOSSARY_START, "Glosario"),
+        ] + glossary_specs(blocks)
 
     out = DATA / ed / "reglas"
     taken: set[str] = set()

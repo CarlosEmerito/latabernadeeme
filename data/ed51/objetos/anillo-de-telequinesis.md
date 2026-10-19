@@ -7,4 +7,4 @@ srd: '5.1'
 page: 227
 ---
 
-Mientras lleves puesto este anillo, podrás lanzar a voluntad el conjuro telequinesis, pero solo sobre objetos que no lleve o vista alguien.
+Mientras lleves puesto este anillo, podrás lanzar a voluntad el conjuro pero solo sobre telequinesis, objetos que no lleve o vista alguien.

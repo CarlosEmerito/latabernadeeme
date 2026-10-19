@@ -14,7 +14,7 @@ srd: '5.2'
 page: 130
 ---
 
-Ocultas un cofre y todo su contenido en el Plano Etéreo. Debes tocar el cofre y la réplica en miniatura que sirve como componente material del conjuro. El cofre puede contener hasta 0,34 m3 de material inerte (90 cm por 60 cm por 60 cm).
+Ocultas un cofre y todo su contenido en el Plano Etéreo. Debes tocar el cofre y la réplica en miniatura que sirve como componente material del conjuro. El cofre puede contener hasta 0,34 m de material 3 inerte (90 cm por 60 cm por 60 cm).
 
 Mientras el cofre permanezca en el Plano Etéreo, puedes usar una acción de magia y tocar la réplica para recuperar dicho cofre, que aparecerá en un espacio sin ocupar en el suelo a 1,5 m de ti. Puedes enviar el cofre de regreso al Plano Etéreo usando una acción de magia para tocar el cofre y la réplica.
 

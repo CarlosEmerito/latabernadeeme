@@ -7,6 +7,6 @@ srd: '5.2'
 page: 259
 ---
 
-Tu Fuerza es de 19 mientras lleves estos guanteletes. No tienen efecto si tu Fuerza es de 19 o más sin ellos.
+Objeto maravilloso, infrecuente (requiere sintonización)
 
-=== PÁGINA 260 ===
+Tu Fuerza es de 19 mientras lleves estos guanteletes. No tienen efecto si tu Fuerza es de 19 o más sin ellos.

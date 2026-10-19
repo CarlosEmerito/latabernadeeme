@@ -35,4 +35,4 @@ page: 388
 
 **Trepar cual arácnido.** El lagarto puede trepar por superficies difíciles e incluso recorrer techos sin tener que realizar pruebas de característica. Acciones
 
-**Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño perforante.
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. 6 (1d8 + 2) de daño perforante. Acierto:

@@ -95,7 +95,7 @@ y luego desaparece en una nube de humo
 
 rosa intenso.
 
-61–70 Un bulette hambriento sale excavando de
+61–70 bulette Un hambriento sale excavando de
 
 la tierra y ataca.
 

@@ -37,9 +37,7 @@ page: 327
 
 **Ataques de aliento (recarga 5–6).** El dragón usa uno de los siguientes ataques de aliento: Aliento de fuego. El dragón exhala fuego en una línea
 
-**de 6 m de largo y 1,5 m de ancho.** Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 11; sufrirán 14 (4d6) de daño de fuego si la fallan o la mitad del daño si la superan. Aliento somnífero. El dragón exhala gas somnífero en
-
-**un cono de 4,5 m.** Todas las criaturas situadas en la zona deberán superar una tirada de salvación de Constitución con CD 11 o quedarán inconscientes durante 1 minuto. Este efecto finaliza para una criatura si recibe daño o si alguien usa una acción para despertarla.
+**de 6 m de largo y 1,5 m de ancho.** Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 11; sufrirán 14 (4d6) de daño de fuego si la fallan o la mitad del daño si la superan. Aliento somnífero. El dragón exhala gas somnífero en un cono de 4,5 m. Todas las criaturas situadas en la zona deberán superar una tirada de salvación de Constitución con CD 11 o quedarán inconscientes durante 1 minuto. Este efecto finaliza para una criatura si recibe daño o si alguien usa una acción para despertarla.
 
 **Resistencia Legendaria (3/día).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado.
 
@@ -55,4 +53,6 @@ page: 327
 
 ## Acciones legendarias
 
-**(Percepción).** Atacar con las alas (cuesta 2 acciones). El dragón bate las alas. Todas las criaturas a 4,5 m o menos de él deberán superar una tirada de salvación de Destreza con CD 25 o sufrirán 17 (2d6 + 10) de daño contundente y serán derribadas. Luego, el dragón puede volar hasta la mitad de su velocidad volando.
+**(Percepción).** Atacar con las alas (cuesta 2 acciones). El dragón
+
+**bate las alas.** Todas las criaturas a 4,5 m o menos de él deberán superar una tirada de salvación de Destreza con CD 25 o sufrirán 17 (2d6 + 10) de daño contundente y serán derribadas. Luego, el dragón puede volar hasta la mitad de su velocidad volando.

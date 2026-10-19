@@ -18,13 +18,11 @@ Haces que una zona dentro del alcance sea mágicamente segura. Esta zona es un c
 
 Cuando lanzas el conjuro, eliges el tipo de seguridad que proporciona de entre las siguientes propiedades:
 
-• El sonido no puede atravesar la barrera del perímetro de la zona protegida. • La barrera de la zona protegida parece oscura
+• El sonido no puede atravesar la barrera del perímetro de la zona protegida. • La barrera de la zona protegida parece oscura y con niebla, impidiendo ver a través de ella (incluso a la visión en la oscuridad). • Dentro de la zona protegida no pueden aparecer sensores creados mediante conjuros de adivinación, ni estos pueden atravesar la barrera del perímetro. • Las criaturas en la zona no pueden ser el objetivo
 
-y con niebla, impidiendo ver a través de ella (incluso a la visión en la oscuridad). • Dentro de la zona protegida no pueden aparecer
+de conjuros de adivinación. • Nada puede teletransportarse ni al interior ni al
 
-sensores creados mediante conjuros de adivinación, ni estos pueden atravesar la barrera del perímetro. • Las criaturas en la zona no pueden ser el objetivo
-
-de conjuros de adivinación. • Nada puede teletransportarse ni al interior ni al exterior del área protegida. • El viaje interplanar está bloqueado dentro de la
+exterior del área protegida. • El viaje interplanar está bloqueado dentro de la
 
 zona. Si este conjuro se lanza en el mismo lugar todos los días durante un año, el efecto se hace permanente.
 

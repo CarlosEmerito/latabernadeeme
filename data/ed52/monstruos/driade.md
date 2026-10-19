@@ -35,7 +35,7 @@ page: 317
 
 **Hablar con las bestias y las plantas.** La dríade puede comunicarse con bestias y plantas como si tuvieran un idioma en común. Resistencia mágica. La dríade tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos. Acciones
 
-**Ataque múltiple.** La dríade realiza un ataque con su latigazo de enredadera o su estallido de espinas y puede utilizar su lanzamiento de conjuros para lanzar hechizar monstruo. Latigazo de enredadera. Tirada de ataque cuerpo a cuerpo: Acierto: +6, alcance 3 m. 8 (1d8 + 4) de daño cortante.
+**Ataque múltiple.** La dríade realiza un ataque con su latigazo de enredadera o su estallido de espinas y puede utilizar su lanzamiento de conjuros para lanzar hechizar monstruo. Latigazo de enredadera. Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 8 (1d8 + 4) de daño cortante.
 
 **Estallido de espinas.** Tirada de ataque a distancia: +6, alcance 18 m. Acierto: 7 (1d6 + 4) de daño perforante. Lanzamiento de conjuros. La dríade lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 14): A voluntad: encantar animal, hechizar monstruo (dura
 

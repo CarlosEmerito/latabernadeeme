@@ -7,7 +7,7 @@ srd: '5.2'
 page: 270
 ---
 
-Mientras lleves puesto este colgante, obtienes los siguientes beneficios:
+Objeto maravilloso, infrecuente (requiere sintonización) Mientras lleves puesto este colgante, obtienes los ­siguientes beneficios:
 
 Curación natural mejorada. Cuando tires un dado de puntos de golpe para recuperar puntos de golpe, se duplicará la cantidad de puntos de golpe que recuperas.
 

@@ -23,4 +23,4 @@ Si la falla, la Inteligencia y el Carisma de la criatura se convierten en 1 y no
 
 Al final de cada 30 días, la criatura puede repetir su tirada de salvación contra este conjuro. Si la supera, el conjuro termina.
 
-El conjuro también se puede disipar mediante curar, deseo restablecimiento mayor. o
+El conjuro también se puede disipar mediante curar, deseo o restablecimiento mayor.

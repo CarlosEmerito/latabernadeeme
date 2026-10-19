@@ -14,6 +14,4 @@ Las seis características proporcionan una breve descripción de las capacidades
 - Sabiduría, que mide la percepción y la perspicacia.
 - Carisma, que mide lo fuerte que es la personalidad.
 
-¿Tu personaje es musculosa y perspicaz? ¿Brillante y carismática? ¿Ágil y resistente? Las puntuaciones de característica definen estas cualidades: los puntos fuertes y débiles de una criatura.
-
-Las tres tiradas principales del juego (la prueba de característica, la tirada de salvación y la tirada de ataque) se basan en las seis puntuaciones de característica. La regla básica que rige estas tiradas es la siguiente: tira 1d20, añade un modificador por característica derivado de una de las seis puntuaciones de característica y compara el total con un número objetivo.
+¿Tu personaje es musculosa y perspicaz? ¿Brillante y carismática? ¿Ágil y resistente? Las puntuaciones de característica definen estas cualidades: los puntos fuertes y débiles de una criatura. Las tres tiradas principales del juego (la prueba de característica, la tirada de salvación y la tirada de ataque) se basan en las seis puntuaciones de característica. La regla básica que rige estas tiradas es la siguiente: tira 1d20, añade un modificador por característica derivado de una de las seis puntuaciones de característica y compara el total con un número objetivo.

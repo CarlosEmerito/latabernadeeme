@@ -1,0 +1,8 @@
+---
+name: Cobertura
+category: Glosario
+srd: '5.2'
+page: 198
+---
+
+La cobertura proporciona un grado de protección a un objetivo situado tras ella. Hay tres niveles de cobertura, cada uno de los cuales otorga un beneficio diferente al objetivo: cobertura media (bonificador de +2 a la CA y las tiradas de salvación de Destreza), cobertura tres cuartos (bonificador de +5 a la CA y las tiradas de salvación de Destreza) y cobertura completa (no puede ser el objetivo directo). Si un objetivo está detrás de más de un grado de cobertura, solo se beneficia del que le proporciona más protección. Consulta también el capítulo “Cómo jugar” (“Combate”).

@@ -69,9 +69,9 @@ Los efectos de cada carta se describen a continuación.
 
 **Caballero.** Consigues los servicios de un caballero, que aparece mágicamente en un espacio sin ocupar de tu elección a 9 m o menos de ti. El caballero tiene tu mismo alineamiento y te servirá con lealtad hasta la muerte, creyendo que el destino le ha llevado hasta ti. Habla con tu GM para darle un nombre y un trasfondo a este PNJ. Tu GM puede emplear un perfil distinto para el caballero, según considere.
 
-**Calabozo.** Desapareces y quedas sepultado en un estado de animación suspendida en una esfera extradimensional. Todo lo que llevaras y vistieras desaparece contigo salvo los artefactos, que se quedan en el espacio que ocupabas cuando desapareciste. Permanecerás encarcelado hasta que te encuentren y te saquen de la esfera. No se te puede localizar mediante magia de adivinación, pero sí mediante un conjuro deseo. No robas más cartas.
+Calabozo. Desapareces y quedas sepultado en un estado de animación suspendida en una esfera extradimensional. Todo lo que llevaras y vistieras desaparece contigo salvo los artefactos, que se quedan en el espacio que ocupabas cuando desapareciste. Permanecerás encarcelado hasta que te encuentren y te saquen de la esfera. No se te puede localizar mediante magia de adivinación, pero sí mediante un conjuro deseo. No robas más cartas.
 
-Calavera. avatar de la muerte Un (consulta el perfil en esta página) aparece en un espacio sin ocupar lo más cerca posible de ti. El avatar se muestra como un esqueleto fantasmal vestido con una raída túnica negra, porta una guadaña espectral y solo te atacará a ti. El avatar desaparecerá cuando sus puntos de golpe se reduzcan a 0 o cuando mueras. Si uno de tus aliados intenta hacerle daño, ese aliado invocará otro avatar de la muerte. El nuevo avatar aparecerá en un espacio sin ocupar lo más cerca posible de ese aliado y solo le atacará a él. Tus aliados y tú solo podéis invocar un avatar cada uno como consecuencia de este robo. Cualquier criatura que sucumba ante un avatar no puede revivir.
+Calavera. Un avatar de la muerte (consulta el perfil en esta página) aparece en un espacio sin ocupar lo más cerca posible de ti. El avatar se muestra como un esqueleto fantasmal vestido con una raída túnica negra, porta una guadaña espectral y solo te atacará a ti. El avatar desaparecerá cuando sus puntos de golpe se reduzcan a 0 o cuando mueras. Si uno de tus aliados intenta hacerle daño, ese aliado invocará otro avatar de la muerte. El nuevo avatar aparecerá en un espacio sin ocupar lo más cerca posible de ese aliado y solo le atacará a él. Tus aliados y tú solo podéis invocar un avatar cada uno como consecuencia de este robo. Cualquier criatura que sucumba ante un avatar no puede revivir.
 
 ## Avatar de la muerte
 
@@ -131,7 +131,7 @@ acierto automático, alcance 1,5 m. Acierto: 7 (1d8 + 3)
 
 de daño cortante más 4 (1d8) de daño necrótico.
 
-Canalla. Un PNJ a elección de tu GM se vuelve hostil hacia ti. No conoces la identidad de este personaje hasta que el PNJ u otra persona la revelen. Salvo un conjuro deseo o la intercesión divina, nada puede hacer que esta hostilidad cese.
+**Canalla.** Un PNJ a elección de tu GM se vuelve hostil hacia ti. No conoces la identidad de este personaje hasta que el PNJ u otra persona la revelen. Salvo un conjuro o la intercesión divina, nada deseo puede hacer que esta hostilidad cese.
 
 **Cometa.** La próxima vez que entables combate contra una o más criaturas hostiles, puedes elegir a una como tu adversario cuando tires iniciativa. Si reduces a 0 los puntos de golpe de tu adversario durante el combate, tendrás ventaja en las tiradas de salvación contra muerte durante 1 año. Si alguien reduce a 0 los puntos de golpe de tu adversario elegido o si no eliges uno, esta carta no tendrá ningún efecto.
 
@@ -145,11 +145,11 @@ Canalla. Un PNJ a elección de tu GM se vuelve hostil hacia ti. No conoces la id
 
 **Euríale.** La cara de medusa de la carta te lanza una maldición. Recibes un penalizador de −2 a las tiradas de salvación mientras estés bajo su influjo. Solo un dios o la magia de la carta de los Hados pueden acabar con esta maldición.
 
-Garras. Todos los objetos mágicos que vistas o lleves contigo se desintegran. Los artefactos que poseas se desvanecerán.
+**Garras.** Todos los objetos mágicos que vistas o lleves contigo se desintegran. Los artefactos que poseas se desvanecerán.
 
-Gema. Aparecen a tus pies veinticinco joyas con un valor de 2000 po cada una o cincuenta gemas con un valor de 1000 po cada una.
+**Gema.** Aparecen a tus pies veinticinco joyas con un valor de 2000 po cada una o cincuenta gemas con un valor de 1000 po cada una.
 
-Hados. El tejido del universo se desteje y se teje de nuevo, lo que te permite evitar o borrar un suceso, como si nunca hubiera ocurrido. Puedes usar esta magia tan pronto como robes la carta o en cualquier momento antes de morir. **Llamas.** Un poderoso diablo se convierte en tu enemigo. Buscará tu ruina y te atormentará, además de regodearse con tu sufrimiento antes de intentar matarte. Esta enemistad dura hasta que el diablo o tú muráis.
+**Hados.** El tejido del universo se desteje y se teje de nuevo, lo que te permite evitar o borrar un suceso, como si nunca hubiera ocurrido. Puedes usar esta magia tan pronto como robes la carta o en cualquier momento antes de morir. Llamas. Un poderoso diablo se convierte en tu enemigo. Buscará tu ruina y te atormentará, además de regodearse con tu sufrimiento antes de intentar matarte. Esta enemistad dura hasta que el diablo o tú muráis.
 
 Llave. Aparece en tus manos un arma mágica rara o de mayor rareza con la que eres competente. Tu GM elige el arma.
 
@@ -161,6 +161,6 @@ Rompecabezas. Tu Inteligencia o Sabiduría se reducen permanentemente en 1d4 + 1
 
 Ruina. Pierdes todas las riquezas que lleves o poseas, excepto los objetos mágicos. Las propiedades que puedas llevar encima desaparecen. Pierdes todos los negocios, edificios y tierras que poseas de la manera que menos altere la realidad. Cualquier documento que pruebe que deberías poseer las riquezas perdidas por esta carta también desaparece.
 
-**Sol.** Un objeto mágico (a elección de tu GM) aparece en tus manos. Además, hasta que mueras, obtienes 10 puntos de golpe temporales cada día, al amanecer.
+Sol. Un objeto mágico (a elección de tu GM) aparece en tus manos. Además, hasta que mueras, obtienes 10 puntos de golpe temporales cada día, al amanecer.
 
 Trono. Obtienes competencia y pericia en Historia, Intimidación, Perspicacia o Persuasión, a tu elección. Además, obtienes de pleno derecho la propiedad de una pequeña fortaleza en alguna parte del mundo. Sin embargo, la fortaleza es hogar de uno o más monstruos, que deberás expulsar antes de reclamarla como tuya.

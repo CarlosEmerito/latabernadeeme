@@ -24,8 +24,6 @@ Tu forma astral puede viajar libremente por el Plano Astral y atravesar portales
 
 El conjuro termina para tus compañeros y para ti cuando usas tu acción para disiparlo. Al hacerlo, las criaturas afectadas regresan a su cuerpo físico y despiertan.
 
-El conjuro también podría terminar antes de tiempo para cualquiera de tus compañeros o para ti.
-
-disipar magia Si se lanza con éxito sobre un cuerpo astral o físico, el conjuro terminará para esa criatura. Si los puntos de golpe del cuerpo original de una criatura o de su forma astral se reducen a 0, el conjuro terminará para ella. Si el conjuro termina y el cordón de plata está intacto, este tira de la forma astral de la criatura y la devuelve a su cuerpo, lo que pone fin al estado de animación suspendida.
+El conjuro también podría terminar antes de tiempo para cualquiera de tus compañeros o para ti. Si se lanza con éxito disipar magia sobre un cuerpo astral o físico, el conjuro terminará para esa criatura. Si los puntos de golpe del cuerpo original de una criatura o de su forma astral se reducen a 0, el conjuro terminará para ella. Si el conjuro termina y el cordón de plata está intacto, este tira de la forma astral de la criatura y la devuelve a su cuerpo, lo que pone fin al estado de animación suspendida.
 
 Si vuelves a tu cuerpo prematuramente, tus compañeros permanecerán en su forma astral y deberán buscar la forma de regresar a sus cuerpos, generalmente haciendo que sus puntos de golpe desciendan a 0.

@@ -9,19 +9,11 @@ En una campaña normal, los personajes no enloquecen por los horrores a los que 
 
 ## Volverse loco
 
-Diversos efectos mágicos pueden provocar locura en una mente habitualmente estable. Algunos conjuros, como contactar con otro plano y símbolo, también pueden desequilibrar a un aventurero cuerdo. Si lo deseas, usa las reglas sobre la locura de este apartado en lugar de los efectos que aparecen en las descripciones de esos conjuros. También ciertos venenos, enfermedades y efectos planares, como el viento psíquico o los vientos huracanados de Pandemónium, pueden conducir a la locura. E incluso hay artefactos que pueden fracturar la mente de un personaje que los use o se sintonice con ellos.
-
-Para resistirse a un efecto que provoque locura, generalmente se necesita una tirada de salvación de Sabiduría o de Carisma.
+Diversos efectos mágicos pueden provocar locura en una mente habitualmente estable. Algunos conjuros, como contactar con otro plano y símbolo, también pueden desequilibrar a un aventurero cuerdo. Si lo deseas, usa las reglas sobre la locura de este apartado en lugar de los efectos que aparecen en las descripciones de esos conjuros. También ciertos venenos, enfermedades y efectos planares, como el viento psíquico o los vientos huracanados de Pandemónium, pueden conducir a la locura. E incluso hay artefactos que pueden fracturar la mente de un personaje que los use o se sintonice con ellos. Para resistirse a un efecto que provoque locura, generalmente se necesita una tirada de salvación de Sabiduría o de Carisma.
 
 ## Efectos de la locura
 
-La locura puede ser a corto plazo, a largo plazo o indefinida. Los efectos más cotidianos suelen provocar una locura a corto plazo que solo dura unos minutos. Los más aterradores o algunos acumulativos pueden traducirse en una locura a largo plazo o indefinida.
-
-Un personaje afectado por una locura a corto plazo estará sujeto a un efecto de la tabla “Locura a corto plazo” durante 1d10 minutos.
-
-Un personaje afectado por una locura a largo plazo estará sujeto a un efecto de la tabla “Locura a largo plazo” durante 1d10 × 10 horas.
-
-Un personaje víctima de locura indefinida sufrirá un nuevo defecto de la tabla “Locura indefinida” que durará hasta que se cure.
+La locura puede ser a corto plazo, a largo plazo o indefinida. Los efectos más cotidianos suelen provocar una locura a corto plazo que solo dura unos minutos. Los más aterradores o algunos acumulativos pueden traducirse en una locura a largo plazo o indefinida. Un personaje afectado por una locura a corto plazo estará sujeto a un efecto de la tabla “Locura a corto plazo” durante 1d10 minutos. Un personaje afectado por una locura a largo plazo estará sujeto a un efecto de la tabla “Locura a largo plazo” durante 1d10 × 10 horas. Un personaje víctima de locura indefinida sufrirá un nuevo defecto de la tabla “Locura indefinida” que durará hasta que se cure.
 
 **Locura a corto plazo**
 

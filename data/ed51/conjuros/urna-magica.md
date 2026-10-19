@@ -18,7 +18,7 @@ Tu cuerpo entra en estado catatónico y tu alma lo abandona y entra en el recipi
 
 Puedes intentar poseer a cualquier humanoide que esté a 30 m o menos de ti que puedas ver (las
 
-círculo criaturas protegidas mediante un conjuro mágico o protección contra el bien y el mal no pueden ser poseídas). El objetivo deberá hacer una tirada de
+círculo criaturas protegidas mediante un conjuro mágico protección contra el bien y el mal o no pueden ser poseídas). El objetivo deberá hacer una tirada de
 
 salvación de Carisma. Si la falla, tu alma se introducirá en el cuerpo del objetivo y la suya quedará atrapada en el recipiente. Si la supera, resistirá tus esfuerzos por poseerlo y no podrás intentar volver a poseerlo durante 24 horas.
 

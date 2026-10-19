@@ -17,11 +17,15 @@ page: 137
 
 Invocas elementales que aparecen en espacios sin ocupar que puedas ver dentro del alcance. Elige una de las siguientes opciones para lo que aparece:
 
-• Un elemental con un valor de desafío de 2 o menos. • Dos elementales con un valor de desafío de 1 o menos.
+• Un elemental con un valor de desafío de 2 o menos. • Dos elementales con un valor de desafío de 1
+
+o menos.
 
 • Cuatro elementales con un valor de desafío de 1/2
 
-o menos. • Ocho elementales con un valor de desafío de 1/4 o menos. Un elemental invocado por este conjuro desaparecerá si sus puntos de golpe se reducen a 0 o si el conjuro termina.
+o menos. • Ocho elementales con un valor de desafío de 1/4
+
+o menos. Un elemental invocado por este conjuro desaparecerá si sus puntos de golpe se reducen a 0 o si el conjuro termina.
 
 Las criaturas invocadas son amistosas contigo y tus compañeros. Tira iniciativa por las criaturas invocadas como grupo, que tiene sus propios turnos. Obedecen las órdenes verbales que les des (no requiere acción). Si no les das ninguna orden, se defienden de las criaturas hostiles, pero, por lo demás, no realizan ninguna acción.
 

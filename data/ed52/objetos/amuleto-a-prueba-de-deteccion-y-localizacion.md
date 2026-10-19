@@ -7,6 +7,4 @@ srd: '5.2'
 page: 229
 ---
 
-Mientras lleves puesto este amuleto, no podrás ser objetivo de conjuros de adivinación ni ser percibido mediante sensores mágicos de escudriñamiento
-
-=== PÁGINA 230 ===
+Mientras lleves puesto este amuleto, no podrás ser objetivo de conjuros de adivinación ni ser percibido mediante sensores mágicos de escudriñamiento salvo que lo permitas.

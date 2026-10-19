@@ -1,7 +1,7 @@
 # Informe de validación
 
 Generado por `tools/verify/validar.py`.
-Total de entradas: **2465**. Bloques con incidencias: **0**.
+Total de entradas: **2457**. Bloques con incidencias: **0**.
 
 ## ed51 · clases — 12 entradas · OK
 
@@ -17,7 +17,7 @@ Total de entradas: **2465**. Bloques con incidencias: **0**.
 ## ed51 · monstruos — 302 entradas · OK
 
 ## ed51 · objetos — 240 entradas · OK
-- Aviso, cuerpos más largos de lo esperado: 2 (baraja-de-multiples-cosas.md (7842 caracteres), estatuilla-de-poder-maravilloso.md (6119 caracteres))
+- Aviso, cuerpos más largos de lo esperado: 1 (baraja-de-multiples-cosas.md (7830 caracteres))
 
 ## ed51 · reglas — 44 entradas · OK
 
@@ -29,18 +29,17 @@ Total de entradas: **2465**. Bloques con incidencias: **0**.
 
 ## ed52 · dotes — 17 entradas · OK
 
-## ed52 · equipo — 178 entradas · OK
-- Nombres repetidos: 1 (abrojos)
+## ed52 · equipo — 188 entradas · OK
+- Nombres repetidos: 2 (bastón, vara)
 
 ## ed52 · especies — 9 entradas · OK
 
 ## ed52 · monstruos — 315 entradas · OK
 
 ## ed52 · objetos — 258 entradas · OK
-- Aviso, cuerpos más largos de lo esperado: 2 (baraja-misteriosa.md (8437 caracteres), estatuilla-de-poder-maravilloso.md (6116 caracteres))
+- Aviso, cuerpos más largos de lo esperado: 2 (baraja-misteriosa.md (8441 caracteres), estatuilla-de-poder-maravilloso.md (6110 caracteres))
 
-## ed52 · reglas — 192 entradas · OK
-- Aviso, cuerpos más largos de lo esperado: 2 (dano-y-curacion.md (712424 caracteres), definiciones-de-las-reglas.md (73179 caracteres))
-- Nombres repetidos: 5 (**ataques afectados.** las tiradas de ataque contra ti tienen ventaja., capacidad de carga, competencia, tipos de daño, **velocidad 0.** tu velocidad es 0 y no puede aumentar.)
+## ed52 · reglas — 174 entradas · OK
+- Nombres repetidos: 1 (competencia)
 
 ## ed52 · trasfondos — 4 entradas · OK

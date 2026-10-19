@@ -39,4 +39,4 @@ page: 415
 
 **Mordisco.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 1 de daño perforante.
 
-**mordedores Los son peces carnívoros con una dentadura muy afilada.** Pueden vivir en cualquier entorno acuático, incluso fríos lagos subterráneos. Suelen cazar en grupo; utiliza el perfil del enjambre de mordedores para estos casos.
+**Los mordedores son peces carnívoros con una dentadura muy afilada.** Pueden vivir en cualquier entorno acuático, incluso fríos lagos subterráneos. Suelen cazar en grupo; utiliza el perfil del enjambre de mordedores para estos casos.

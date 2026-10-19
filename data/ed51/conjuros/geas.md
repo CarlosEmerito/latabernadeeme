@@ -24,9 +24,7 @@ recibirá 5d10 de daño psíquico cada vez que actúe de una forma directamente 
 
 Puedes dar cualquier orden que quieras, siempre que no sea una actividad que suponga una muerte segura. Si das una orden suicida, el conjuro termina.
 
-Puedes poner fin al conjuro anticipadamente si
-
-deseo, usas una acción para disiparlo. Un conjuro levantar maldición o restablecimiento mayor también le pone fin.
+Puedes poner fin al conjuro anticipadamente si usas una acción para disiparlo. Un conjuro deseo, levantar maldición o restablecimiento mayor también le pone fin.
 
 ## A niveles superiores
 

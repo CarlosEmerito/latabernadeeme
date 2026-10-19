@@ -15,9 +15,7 @@ srd: '5.2'
 page: 120
 ---
 
-Elige un montón de huesos o un cadáver de un humanoide Mediano o Pequeño dentro del alcance. El objetivo se convierte en una criatura muerta
-
-esqueleto viviente: un si eliges un montón de huesos o un zombi si eliges un cadáver (consulta los perfiles de las criaturas en el capítulo “Monstruos”).
+Elige un montón de huesos o un cadáver de un humanoide Mediano o Pequeño dentro del alcance. El objetivo se convierte en una criatura muerta viviente: un esqueleto si eliges un montón de huesos o un zombi si eliges un cadáver (consulta los perfiles de las criaturas en el capítulo “Monstruos”).
 
 En cada uno de tus turnos, puedes usar una acción adicional para dar órdenes mentalmente a cada
 

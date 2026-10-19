@@ -8,5 +8,3 @@ page: 242
 ---
 
 Mientras tocas este orbe de cristal, puedes lanzar escudriñar (CD de salvación 17) desde él.
-
-=== PÁGINA 243 ===

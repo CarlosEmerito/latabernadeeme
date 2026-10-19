@@ -16,7 +16,7 @@ abilities:
   sab: 11
   car: 10
 saves: ''
-skills: ''
+skills: Percepción +4, Sigilo +3
 resistances: ''
 immunities: contundente, cortante y perforante de ataques no mágicos con armas que no sean de plata
 conditionImmunities: ''

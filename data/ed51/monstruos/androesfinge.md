@@ -37,7 +37,7 @@ page: 336
 
 ## Acciones
 
-**Ataque múltiple.** La esfinge realiza dos ataques con sus garras. Garra. Ataque con arma cuerpo a cuerpo: +12 a impactar, alcance 1,5 m, un objetivo. Impacto: 17 (2d10 + 6) de daño cortante. Rugido (3/día). La esfinge emite un rugido mágico. Cada vez que ruja antes de finalizar un descanso largo, este rugido será más fuerte y tendrá un efecto distinto, como se describe a continuación. Todas las criaturas que estén a 150 m o menos de la esfinge y puedan oír el rugido deberán realizar una tirada de salvación. Primer rugido. Las criaturas que fallen una tirada
+**Ataque múltiple.** La esfinge realiza dos ataques con sus garras. Garra. Ataque con arma cuerpo a cuerpo: +12 a impactar, alcance 1,5 m, un objetivo. Impacto: 17 (2d10 + 6) de daño cortante. Rugido (3/día). La esfinge emite un rugido mágico. Cada vez que ruja antes de finalizar un descanso largo, este rugido será más fuerte y tendrá un efecto distinto, como se describe a continuación. Todas las criaturas que estén a 150 m o menos de la esfinge y puedan oír el rugido deberán realizar una tirada de salvación. Primer rugido. Las criaturas que fallen una tirada de salvación de Sabiduría con CD 18 quedarán asustadas durante 1 minuto. Una criatura asustada puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Segundo rugido. Las criaturas que fallen una tirada
 
 **de salvación de Constitución con CD 18.** Si la fallan, recibirán 44 (8d10) de daño de trueno y serán derribadas. Si la superan, recibirán la mitad de ese daño y no serán derribadas.
 

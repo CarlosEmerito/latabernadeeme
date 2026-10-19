@@ -15,7 +15,7 @@ abilities:
   int: 11
   sab: 10
   car: 12
-saves: Des +6, Sab +3
+saves: ''
 skills: Percepción +3, Sigilo +6
 resistances: necrótico; contundente, cortante y perforante de ataques no mágicos
 immunities: ''

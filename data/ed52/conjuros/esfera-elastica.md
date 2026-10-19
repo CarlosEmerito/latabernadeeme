@@ -20,4 +20,4 @@ Nada (ni objetos físicos ni energía ni los efectos de otros conjuros) puede at
 
 La esfera no pesa nada y tiene un tamaño justo como para contener a la criatura o el objeto de su interior. Una criatura encerrada puede utilizar una acción para empujar las paredes de la esfera y hacerla rodar a hasta la mitad de su velocidad. De forma similar, otras criaturas pueden recoger la esfera y moverla.
 
-desintegrar Un conjuro que haga objetivo a la esfera la destruirá, pero no dañará nada que haya dentro.
+Un conjuro desintegrar que haga objetivo a la esfera la destruirá, pero no dañará nada que haya dentro.

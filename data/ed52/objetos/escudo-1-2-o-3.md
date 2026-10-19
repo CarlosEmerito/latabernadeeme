@@ -7,4 +7,6 @@ srd: '5.2'
 page: 252
 ---
 
+o muy rara (+3)
+
 Mientras lleves embrazado este escudo, tienes un bonificador a la clase de armadura determinado por su rareza, además del bonificador a la CA normal del escudo.

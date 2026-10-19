@@ -9,6 +9,6 @@ page: 240
 
 Mientras arda un fuego en este brasero de latón, podrás utilizar una acción para pronunciar su palabra de activación e invocar un elemental de
 
-fuego, como si hubieras lanzado conjurar elemental. El brasero no puede volver a emplearse de esta manera hasta el siguiente amanecer.
+Prohibida la reventa. Tienes permiso para imprimir o fotocopiar este documento solo para uso personal.
 
-El brasero pesa 2,5 kg.
+fuego, como si hubieras lanzado conjurar elemental. El brasero no puede volver a emplearse de esta manera hasta el siguiente amanecer. El brasero pesa 2,5 kg.

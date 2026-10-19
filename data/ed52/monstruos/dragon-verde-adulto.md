@@ -49,6 +49,6 @@ page: 315
 
 **Anfibio.** El dragón puede respirar tanto dentro como fuera del agua. Acciones
 
-**Ataque múltiple.** El dragón realiza tres ataques de mordisco. Puede sustituir uno de ellos por un ataque con su cola. Cola. Tirada de ataque cuerpo a cuerpo: +13, alcance 4,5 m. 18 (2d10 + 7) de daño contundente. Acierto: Si el objetivo es una criatura Enorme o más pequeña, tendrá el estado de derribada. Mordisco. Tirada de ataque cuerpo a cuerpo: +13, alcance 4,5 m. Acierto: 23 (3d10 + 7) de daño perforante más 7 (2d6) de daño de fuego. Estar bajo el agua no otorga resistencia a este daño de fuego. Aliento de vapor (recarga 5–6). Tirada de salvación de Constitución: CD 19, todas las criaturas en un cono de 18 m. 56 (16d6) de daño de fuego. la mitad Fallo: Éxito:
+**Ataque múltiple.** El dragón realiza tres ataques de mordisco. Puede sustituir uno de ellos por un ataque con su cola. Cola. Tirada de ataque cuerpo a cuerpo: +13, alcance 4,5 m. Acierto: 18 (2d10 + 7) de daño contundente. Si el objetivo es una criatura Enorme o más pequeña, tendrá el estado de derribada. Mordisco. Tirada de ataque cuerpo a cuerpo: +13, alcance 4,5 m. Acierto: 23 (3d10 + 7) de daño perforante más 7 (2d6) de daño de fuego. Estar bajo el agua no otorga resistencia a este daño de fuego. Aliento de vapor (recarga 5–6). Tirada de salvación de Constitución: CD 19, todas las criaturas en un cono de 18 m. Fallo: 56 (16d6) de daño de fuego. Éxito: la mitad
 
 **del daño.** Fallo o éxito: estar bajo el agua no otorga resistencia a este daño de fuego. Draña

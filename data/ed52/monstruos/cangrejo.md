@@ -16,7 +16,7 @@ abilities:
   sab: 8
   car: 2
 saves: ''
-skills: Sigilo +2
+skills: ''
 resistances: ''
 immunities: ''
 conditionImmunities: ''

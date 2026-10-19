@@ -35,6 +35,6 @@ verán tras 10 minutos si se dispersan mientras dure guardas y guardias). • R�
 
 sopla sin parar mientras dure el conjuro).
 
-Sugestión • en una casilla de 1,5 m de lado, y cual-
+• Sugestión en una casilla de 1,5 m de lado, y cual-
 
 quier criatura que entre en ella recibirá la sugestión mentalmente.

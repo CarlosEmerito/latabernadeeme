@@ -23,9 +23,7 @@ intersección entre el cilindro y el suelo o cualquier otra superficie aparecer�
 
 Elige uno o más de los siguientes tipos de criaturas: celestiales, elementales, feéricos, infernales o muertos vivientes. El círculo afecta a una criatura del tipo elegido de las siguientes formas:
 
-• La criatura no puede entrar voluntariamente en
-
-el cilindro por medios no mágicos. Si la criatura intenta usar el teletransporte o el viaje interplanar para hacerlo, antes deberá superar una tirada de salvación de Carisma. • La criatura tiene desventaja en las tiradas
+• La criatura no puede entrar voluntariamente en el cilindro por medios no mágicos. Si la criatura intenta usar el teletransporte o el viaje interplanar para hacerlo, antes deberá superar una tirada de salvación de Carisma. • La criatura tiene desventaja en las tiradas
 
 de ataque contra objetivos que estén dentro del cilindro. • Los objetivos dentro del cilindro no pueden ser
 

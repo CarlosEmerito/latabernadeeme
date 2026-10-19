@@ -22,6 +22,4 @@ Sobrecrecimiento. Elige un punto dentro del alcance. Todas las plantas en una es
 
 y frondosas. Una criatura que atraviese esa área deberá gastar 4 m de movimiento por cada metro que se mueva. Puedes excluir una o más zonas de cualquier tamaño dentro del área del conjuro para que no se vean afectadas.
 
-Fertilización. Todas las plantas en un radio de 750 m centrado en un punto dentro del alcance estarán fertilizadas durante 365 días y producirán el doble de comida al recolectarlas. Solo podrán
-
-crecimiento vegetal beneficiarse de un cada año.
+Fertilización. Todas las plantas en un radio de 750 m centrado en un punto dentro del alcance estarán fertilizadas durante 365 días y producirán el doble de comida al recolectarlas. Solo podrán beneficiarse de un crecimiento vegetal cada año.

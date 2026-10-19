@@ -7,14 +7,6 @@ srd: '5.2'
 page: 244
 ---
 
-Esta bolsa se parece a una bolsa de contención, pero en realidad es el orificio de alimentación de una criatura extradimensional gigante. Poner la bolsa del revés cierra el orificio.
+Esta bolsa se parece a una bolsa de contención, pero en realidad es el orificio de alimentación de una criatura extradimensional gigante. Poner la bolsa del revés cierra el orificio. La criatura extradimensional vinculada a la bolsa puede sentir cualquier cosa que se meta en su interior y devora cualquier materia animal o vegetal que se introduzca por completo. Esta materia se pierde para siempre. Cuando se introduce parte de una criatura viva en la bolsa, como cuando alguien
 
-La criatura extradimensional vinculada a la bolsa puede sentir cualquier cosa que se meta en su interior y devora cualquier materia animal o vegetal que se introduzca por completo. Esta materia se pierde para siempre. Cuando se introduce parte de una criatura viva en la bolsa, como cuando alguien
-
-=== PÁGINA 245 ===
-
-mete la mano, hay un 50 % de probabilidad de que toda la criatura se vea arrastrada al interior. Una criatura dentro de la bolsa puede emplear una acción para intentar escapar superando una prueba de Fuerza (Atletismo) con CD 15. Otra criatura puede utilizar una acción para meter la mano en la bolsa con el fin de sacar a una criatura, lo que logrará si supera una prueba de Fuerza (Atletismo) con CD 20, siempre y cuando no vaya a parar ella también al interior de la bolsa primero. Cualquier criatura que comience su turno en el interior de la bolsa será devorada y su cuerpo será destruido.
-
-Se pueden guardar objetos inanimados en la bolsa, que puede albergar 0,03 m3 de dicho material. No obstante, una vez al día, la bolsa se traga cualquier objeto que contenga y lo escupe en otro plano de existencia. El momento y el plano los determina tu GM.
-
-Si se perfora o se rasga la bolsa, se destruye y cualquier cosa que contenga se transporta a un lugar aleatorio del Plano Astral.
+mete la mano, hay un 50 % de probabilidad de que toda la criatura se vea arrastrada al interior. Una criatura dentro de la bolsa puede emplear una acción para intentar escapar superando una prueba de Fuerza (Atletismo) con CD 15. Otra criatura puede utilizar una acción para meter la mano en la bolsa con el fin de sacar a una criatura, lo que logrará si supera una prueba de Fuerza (Atletismo) con CD 20, siempre y cuando no vaya a parar ella también al interior de la bolsa primero. Cualquier criatura que comience su turno en el interior de la bolsa será devorada y su cuerpo será destruido. Se pueden guardar objetos inanimados en la bolsa, que puede albergar 0,03 m3 de dicho material. No obstante, una vez al día, la bolsa se traga cualquier objeto que contenga y lo escupe en otro plano de existencia. El momento y el plano los determina tu GM. Si se perfora o se rasga la bolsa, se destruye y cualquier cosa que contenga se transporta a un lugar aleatorio del Plano Astral.

@@ -98,3 +98,19 @@ Los tres métodos convergen en **240** y **258**.
 | Orbe de los Dragones | `data/ed51/objetos/orbe-de-los-dragones.md` |
 | Pociones de curación | `data/ed52/objetos/pociones-de-curacion.md` |
 | Varita de atadura | `data/ed52/objetos/varita-de-atadura.md` |
+
+## Repaso de fidelidad (20 de octubre)
+
+Comprobación independiente: para cada fichero se normaliza el cuerpo, se toman
+sus primeros 70 caracteres y se busca esa cadena en el texto del PDF.
+
+- Primera pasada: 231/240 en 5.1 y 206/258 en 5.2. Los fallos eran de tres
+  tipos: cursivas del original recolocadas por el maquetador («Un *pergamino de
+  conjuro* contiene…» quedaba como «Un contiene…»), cuerpos truncados y pies de
+  página dentro del texto.
+- `tools/ingest/reparar_objetos.py` detecta esos casos y recompone el cuerpo
+  desde el texto plano página a página.
+- Resultado final: **240/240 (100 %) en 5.1 y 258/258 (100 %) en 5.2**.
+
+Ese script queda en el repositorio y se puede volver a ejecutar tras cualquier
+recambio de los flujos.

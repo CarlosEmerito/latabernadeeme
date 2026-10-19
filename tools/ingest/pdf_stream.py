@@ -49,7 +49,7 @@ def lines_from_xml(xml: Path) -> list[list[dict]]:
 
         buckets: dict[tuple[int, int], list[dict]] = defaultdict(list)
         for w in words:
-            buckets[(w["col"], round(w["y0"] / 1.8))].append(w)
+            buckets[(w["col"], round(w["y0"] / 3.0))].append(w)  # 3 pt: une las cursivas alineadas con su línea
 
         lines: list[dict] = []
         for (col, _row), items in buckets.items():

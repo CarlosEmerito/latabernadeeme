@@ -9,7 +9,7 @@ page: 274
 
 Esta varita tiene 7 cargas. Mientras la sostengas, puedes emplear una acción de magia para gastar 1 carga y elegir un punto a 36 m o menos de ti. Ese espacio se convertirá en el punto de origen de un conjuro u otro efecto mágico que se determina tirando en la tabla “Efectos de la varita de las maravillas”. Los conjuros lanzados desde la varita tienen una CD de salvación de 15. Si el alcance máximo habitual de un conjuro es menor de 36 m, pasará a ser de 36 m cuando se lanza desde la varita. Si un efecto tiene varios objetivos posibles, tu GM determina al azar cuáles de ellos se ven afectados.
 
-**Recuperar cargas.** La varita recupera 1d6 + 1 cargas empleadas cada día, al amanecer. Si gastas la última carga de la varita, tira 1d20. Si el resultado es 1, la varita se convierte en polvo y se destruye.
+Recuperar cargas. La varita recupera 1d6 + 1 cargas empleadas cada día, al amanecer. Si gastas la última carga de la varita, tira 1d20. Si el resultado es 1, la varita se convierte en polvo y se destruye.
 
 Efectos de la varita de las maravillas
 
@@ -21,7 +21,7 @@ elegido. Tira 1d10 para determinar el conjuro:
 
 si el resultado es 1–2, bola de fuego; si es 3–4,
 
-fuego feérico; si es 5–6, nube apestosa; si es
+fuego feérico; nube apestosa; si es 5–6, si es
 
 7–8, oscuridad; si es 9–10, ralentizar.
 

@@ -7,7 +7,7 @@ srd: '5.2'
 page: 271
 ---
 
-Esta elegante prenda está hecha de una tela exquisita y adornada con runas.
+Objeto maravilloso, legendario (requiere sintonización por parte de un brujo, hechicero o mago) Esta elegante prenda está hecha de una tela exquisita y adornada con runas.
 
 Mientras lleves puesta la túnica, obtendrás los siguientes beneficios.
 

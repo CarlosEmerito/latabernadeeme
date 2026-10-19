@@ -21,7 +21,7 @@ resistances: ''
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
-senses: ''
+senses: Percepción pasiva 10
 languages: uno cualquiera (normalmente común)
 cr: '3'
 xp: 700 PX

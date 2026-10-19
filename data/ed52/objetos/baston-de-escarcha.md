@@ -9,7 +9,7 @@ page: 240
 
 Mientras empuñes este bastón, tendrás resistencia al daño de frío.
 
-**Conjuros.** El bastón tiene 10 cargas. Mientras lo empuñes, puedes lanzar un conjuro de la tabla a continuación desde él empleando tu CD de salvación de conjuros. En ella se indica cuántas cargas debes gastar para lanzar el conjuro.
+Conjuros. El bastón tiene 10 cargas. Mientras lo empuñes, puedes lanzar un conjuro de la tabla a continuación desde él empleando tu CD de salvación de conjuros. En ella se indica cuántas cargas debes gastar para lanzar el conjuro.
 
 Coste en Coste en
 

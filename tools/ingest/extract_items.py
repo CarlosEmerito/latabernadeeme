@@ -9,9 +9,8 @@ sys.path.insert(0, str(HERE))
 
 from srd import items as items_mod  # noqa: E402
 from srd.stream import load  # noqa: E402
+from rutas import WORK  # noqa: E402
 from write_data import DATA, slug, unique_path, write_entry  # noqa: E402
-
-WORK = Path("/home/emerito/.hermes/cache/scratch/srd/work")
 
 EDITIONS = {
     "5.1": {

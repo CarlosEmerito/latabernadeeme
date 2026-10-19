@@ -16,7 +16,7 @@ abilities:
   sab: 22
   car: 25
 saves: Con +12, Sab +11, Car +12
-skills: ''
+skills: Percepción +11
 resistances: radiante; contundente, cortante y perforante de ataques no mágicos
 immunities: ''
 conditionImmunities: asustado, cansancio, hechizado

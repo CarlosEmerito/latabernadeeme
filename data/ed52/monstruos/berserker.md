@@ -33,6 +33,4 @@ page: 288
 
 ## Rasgos
 
-**Frenesí maltrecho.** Mientras esté maltrecho, el berserker tiene ventaja en las tiradas de ataque y las tiradas de salvación. Acciones
-
-**Hacha a dos manos.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 9 (1d12 + 3) de daño cortante. Bocón barbotante
+**Atributos Frenesí maltrecho.** Mientras esté maltrecho, el berserker tiene ventaja en las tiradas de ataque y las tiradas de salvación. Acciones Hacha a dos manos. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 9 (1d12 + 3) de daño cortante. Bocón barbotante

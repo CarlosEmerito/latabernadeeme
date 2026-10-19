@@ -25,7 +25,7 @@ Un recuerdo modificado no tiene por qué afectar al comportamiento de una criatu
 
 alineamiento o sus creencias. Un recuerdo modificado que no sea lógico, como cuánto disfrutó bañándose en ácido, se difumina y puede que solo lo considere un mal sueño. Tu GM podría considerar que un recuerdo modificado carece de sentido como para afectar a una criatura de ninguna manera importante.
 
-levantar maldición restablecimiento Un conjuro o mayor lanzado sobre el objetivo restaurará los recuerdos auténticos de la criatura.
+Un conjuro levantar maldición o restablecimiento mayor lanzado sobre el objetivo restaurará los recuerdos auténticos de la criatura.
 
 ## A niveles superiores
 

@@ -7,26 +7,52 @@ srd: '5.2'
 page: 232
 ---
 
+Anillo, raro
+
 Mientras lleves puesto este anillo, tendrás resistencia a un tipo de daño. La piedra preciosa engastada indica el tipo, que tu GM elige o determina al azar tirando en la siguiente tabla.
 
-1d10 Tipo de daño Piedra preciosa
+1d10
 
-1 Ácido Perla
+Tipo de daño
 
-2 Frío Turmalina
+Piedra preciosa
 
-3 Fuego Granate
+Ácido
 
-4 Fuerza Zafiro
+Perla
 
-5 Necrótico Azabache
+Frío
 
-6 Psíquico Jade
+Turmalina
 
-7 Radiante Topacio
+Fuego
 
-8 Relámpago Citrino
+Granate
 
-9 Trueno Espinela
+Fuerza
 
-10 Veneno Amatista
+Zafiro
+
+Necrótico
+
+Azabache
+
+Psíquico
+
+Jade
+
+Radiante
+
+Topacio
+
+Relámpago
+
+Citrino
+
+Trueno
+
+Espinela
+
+Veneno
+
+Amatista

@@ -17,9 +17,7 @@ srd: '5.1'
 page: 173
 ---
 
-Hasta que el conjuro termine, tus ojos se convierten en un vacío oscuro dotado de un poder terrorífico. Una criatura de tu elección que puedas ver a 18 m o menos de ti deberá superar una tirada de salvación de Sabiduría o se verá afectada por uno de los efectos descritos debajo, a tu elección, hasta que termine el conjuro. En cada uno de tus turnos hasta que el conjuro termine, puedes usar tu acción para hacer objetivo a otra criatura, pero no puedes volver a elegir a una que haya superado una tirada de
-
-mal de ojo. salvación contra este lanzamiento de
+Hasta que el conjuro termine, tus ojos se convierten en un vacío oscuro dotado de un poder terrorífico. Una criatura de tu elección que puedas ver a 18 m o menos de ti deberá superar una tirada de salvación de Sabiduría o se verá afectada por uno de los efectos descritos debajo, a tu elección, hasta que termine el conjuro. En cada uno de tus turnos hasta que el conjuro termine, puedes usar tu acción para hacer objetivo a otra criatura, pero no puedes volver a elegir a una que haya superado una tirada de salvación contra este lanzamiento de mal de ojo.
 
 Náuseas. El objetivo tiene desventaja en las tiradas de ataque y las pruebas de característica. Al final de cada uno de sus turnos, puede realizar otra tirada de salvación de Sabiduría. Si la supera, el efecto termina.
 

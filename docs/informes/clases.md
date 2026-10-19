@@ -9,6 +9,18 @@ esquema de `docs/DATOS.md`.
 .venv-ingest/bin/python tools/ingest/srd/classes.py --ed 51    # solo 5.1
 ```
 
+## Verificación
+
+```
+$ cd data/ed51/clases && ls | wc -l     → 12
+$ cd data/ed52/clases && ls | wc -l     → 12
+```
+
+Comprobado además, fichero a fichero: 20 filas `| N |` en cada tabla de
+progresión, un `## Subclases` con al menos una subclase en las 24 clases y
+todos los rasgos con su nivel en el encabezado. `data/*/conjuros` y
+`data/*/monstruos` no se han modificado (319/302 y 339/315 ficheros).
+
 ## Recuento
 
 | Edición | Ficheros | Tablas de 20 niveles | Subclases |

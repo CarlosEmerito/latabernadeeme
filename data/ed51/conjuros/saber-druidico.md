@@ -22,6 +22,4 @@ que predice el clima que habrá en tu ubicación durante las siguientes 24 horas
 
 de semillas se abra o el brote de una hoja germine. • Creas un efecto sensorial instantáneo e inofensivo,
 
-como la caída de unas hojas, un soplo de viento, el sonido de un animal pequeño o un tenue olor a mofeta. El efecto debe caber en un cubo de 1,5 m de lado. • Enciendes o apagas al instante una vela, una
-
-antorcha o una hoguera pequeña.
+como la caída de unas hojas, un soplo de viento, el sonido de un animal pequeño o un tenue olor a mofeta. El efecto debe caber en un cubo de 1,5 m de lado. • Enciendes o apagas al instante una vela, una antorcha o una hoguera pequeña.

@@ -18,6 +18,4 @@ Con un toque, aplicas una ilusión a una criatura voluntaria o un objeto que no 
 
 Enmascarar (criaturas). Elige un tipo de criatura que no sea el auténtico del objetivo. Los conjuros y otros efectos mágicos tratan al objetivo como si fuese una criatura del tipo elegido.
 
-Aura falsa (objetos). Cambias la forma en la que el objetivo se revela ante conjuros y efectos mágicos
-
-detectar que detectan las auras mágicas, como el de magia. Puedes hacer que un objeto no mágico parezca mágico, que un objeto mágico parezca no mágico o cambiar el aura de un objeto para que parezca pertenecer a una escuela mágica de tu elección.
+Aura falsa (objetos). Cambias la forma en la que el objetivo se revela ante conjuros y efectos mágicos que detectan las auras mágicas, como el de detectar magia. Puedes hacer que un objeto no mágico parezca mágico, que un objeto mágico parezca no mágico o cambiar el aura de un objeto para que parezca pertenecer a una escuela mágica de tu elección.

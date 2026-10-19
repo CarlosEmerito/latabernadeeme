@@ -5,9 +5,7 @@ srd: '5.1'
 page: 218
 ---
 
-Cuando los personajes tienen que cortar una cuerda, hacer añicos una ventana o destrozar el ataúd de un vampiro, la única regla general es esta: con el tiempo suficiente y las herramientas adecuadas, los aventureros pueden destruir cualquier cosa que se pueda destruir. A la hora de decidir si un personaje logra dañar un objeto, aplica el sentido común. ¿Un guerrero puede atravesar un trozo de un muro de piedra con una espada? No, es probable que la espada se rompa antes que el muro.
-
-Para los fines de estas reglas, un objeto es un elemento único e inanimado, como una ventana, una puerta, una espada, un libro, una mesa, una silla o una piedra, no un edificio o un vehículo compuesto de muchos otros objetos.
+Cuando los personajes tienen que cortar una cuerda, hacer añicos una ventana o destrozar el ataúd de un vampiro, la única regla general es esta: con el tiempo suficiente y las herramientas adecuadas, los aventureros pueden destruir cualquier cosa que se pueda destruir. A la hora de decidir si un personaje logra dañar un objeto, aplica el sentido común. ¿Un guerrero puede atravesar un trozo de un muro de piedra con una espada? No, es probable que la espada se rompa antes que el muro. Para los fines de estas reglas, un objeto es un elemento único e inanimado, como una ventana, una puerta, una espada, un libro, una mesa, una silla o una piedra, no un edificio o un vehículo compuesto de muchos otros objetos.
 
 ### Perfiles de los objetos
 
@@ -43,4 +41,4 @@ Objetos Enormes y Gargantuescos. Las armas normales de poco sirven contra muchos
 
 **Objetos y tipos de daño.** Los objetos son inmunes al daño psíquico y de veneno. Si quieres, puedes decidir que algunos tipos de daño sean más efectivos que otros contra un objeto o una sustancia en concreto. Por ejemplo, el daño contundente sirve para destrozar cosas a golpes, pero no para cortar cuerda o cuero, mientras que el papel o los objetos de tela podrían ser vulnerables al daño de fuego y de relámpago. Un pico puede servir para romper una piedra, pero no para talar un árbol. Como siempre, aplica el sentido común.
 
-**Umbral de daño. **Los objetos de gran tamaño, como los muros de un castillo, suelen tener una resistencia mayor, lo que se representa mediante un umbral de daño. Un objeto que posea un umbral de daño tendrá inmunidad a todo el daño excepto si recibe una cantidad de daño procedente de un único ataque o efecto igual o mayor que su umbral de daño, en cuyo caso sufrirá daño de forma normal. Cualquier daño que no iguale o supere el umbral de daño del objeto se considera superficial y no reduce sus puntos de golpe.
+**Umbral de daño.** Los objetos de gran tamaño, como los muros de un castillo, suelen tener una resistencia mayor, lo que se representa mediante un umbral de daño. Un objeto que posea un umbral de daño tendrá inmunidad a todo el daño excepto si recibe una cantidad de daño procedente de un único ataque o efecto igual o mayor que su umbral de daño, en cuyo caso sufrirá daño de forma normal. Cualquier daño que no iguale o supere el umbral de daño del objeto se considera superficial y no reduce sus puntos de golpe.

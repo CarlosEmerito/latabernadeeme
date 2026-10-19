@@ -7,4 +7,4 @@ srd: '5.2'
 page: 261
 ---
 
-Mientras lleves esta capa, tendrás ventaja en las tiradas de salvación contra conjuros.
+Objeto maravilloso, raro (requiere sintonización) Mientras lleves esta capa, tendrás ventaja en las ­t iradas de salvación contra conjuros.

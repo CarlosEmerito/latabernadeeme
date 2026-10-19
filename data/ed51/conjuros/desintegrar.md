@@ -15,9 +15,7 @@ srd: '5.1'
 page: 147
 ---
 
-Un fino rayo de color verde surge de tu dedo índice hacia un objetivo que puedas ver dentro del alcance. El objetivo puede ser una criatura, un objeto o una creación de fuerza mágica, como una pared creada
-
-muro de fuerza. por
+Un fino rayo de color verde surge de tu dedo índice hacia un objetivo que puedas ver dentro del alcance. El objetivo puede ser una criatura, un objeto o una creación de fuerza mágica, como una pared creada por muro de fuerza.
 
 Una criatura que sea objetivo de este conjuro deberá hacer una tirada de salvación de Destreza. Si la falla, recibirá 10d6 + 40 de daño de fuerza. Si este daño reduce los puntos de golpe del objetivo a 0, este se desintegra.
 

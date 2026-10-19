@@ -35,7 +35,7 @@ page: 432
 
 **Lanzamiento de Conjuros.** El druida es un lanzador de conjuros de nivel 4. Su aptitud mágica es la Sabiduría (CD de salvación de conjuros 12, +4 a impactar con
 
-**ataques de conjuro).** Tiene los siguientes conjuros de druida preparados: Trucos (a voluntad): crear llama, saber druídico,
+**ataques de conjuro).** Tiene los siguientes conjuros de druida preparados:
 
 ## Acciones
 

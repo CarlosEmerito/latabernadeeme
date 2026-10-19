@@ -33,7 +33,7 @@ page: 434
 
 ## Rasgos
 
-**Lanzamiento de Conjuros.** El mago es un lanzador de conjuros de nivel 9. Su aptitud mágica es la Inteligencia (CD de salvación de conjuros 14, +6 a impactar con ataques de conjuro). Tiene los siguientes conjuros de mago preparados: Trucos (a voluntad): descarga de fuego, luz, mano
+**Lanzamiento de Conjuros.** El mago es un lanzador de conjuros de nivel 9. Su aptitud mágica es la Inteligencia (CD de salvación de conjuros 14, +6 a impactar con ataques de conjuro). Tiene los siguientes conjuros de mago preparados:
 
 ## Acciones
 

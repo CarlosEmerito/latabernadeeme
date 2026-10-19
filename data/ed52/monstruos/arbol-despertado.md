@@ -31,6 +31,6 @@ srd: '5.2'
 page: 360
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Golpe.** Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 14 (3d6 + 4) de daño contundente.
+**Golpe.** Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 14 (3d6 + 4) de daño contundente.

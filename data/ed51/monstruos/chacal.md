@@ -33,7 +33,9 @@ page: 404
 
 ## Rasgos
 
-**Atacar en Manada.** El chacal tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del chacal se encuentra a 1,5 m o menos de la criatura y no está incapacitado. Oído y Olfato Agudos. El chacal tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído o del olfato.
+**Atacar en Manada.** El chacal tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del chacal se encuentra a 1,5 m o menos de la criatura y no está incapacitado.
+
+**Oído y Olfato Agudos.** El chacal tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído o del olfato.
 
 ## Acciones
 

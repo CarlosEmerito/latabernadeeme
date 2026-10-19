@@ -33,10 +33,16 @@ page: 339
 
 ## Acciones
 
-**Ataque múltiple.** El hombre oso realiza dos ataques de desgarro o con sus hachas de mano en cualquier combinación. Puede sustituir uno de ellos por un ataque de mordisco. Desgarro (solo en forma de oso o híbrida). Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 13 (2d8 + 4) de daño cortante.
+**Ataque múltiple.** El hombre oso realiza dos ataques de desgarro o con sus hachas de mano en cualquier combinación. Puede sustituir uno de ellos por un ataque de mordisco.
 
-**Hacha de mano (solo en forma humanoide o híbrida).** Tirada de ataque cuerpo a cuerpo o a distancia: +7, alcance 1,5 m o 6/18 m a distancia. Acierto: 14 (3d6 + 4) de daño cortante. Mordisco (solo en forma de oso o híbrida). Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (2d12 + 4) de daño perforante. Si el objetivo es
+**Desgarro (solo en forma de oso o híbrida).** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 13 (2d8 + 4) de daño cortante.
 
-**un humanoide, sufre el siguiente efecto.** Tirada de salvación de Constitución: CD 14. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre oso controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre oso durante 24 horas. Acciones adicionales
+**Hacha de mano (solo en forma humanoide o híbrida).** Tirada de ataque cuerpo a cuerpo o a distancia: +7, alcance 1,5 m o 6/18 m a distancia. Acierto: 14 (3d6 + 4) de daño cortante.
 
-**Cambio de forma.** El hombre oso adopta la forma de un híbrido de oso-humanoide Grande o de un oso Grande, o recupera su verdadera forma humanoide. Su perfil, salvo por el tamaño, es el mismo en todas las formas. Cualquier equipo que vista o lleve no se transformará. Hombre rata
+**Mordisco (solo en forma de oso o híbrida).** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (2d12 + 4) de daño perforante. Si el objetivo es
+
+**un humanoide, sufre el siguiente efecto.** Tirada de salvación de Constitución: CD 14. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre oso controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre oso durante 24 horas.
+
+## Acciones adicionales
+
+**Cambio de forma.** El hombre oso adopta la forma de un híbrido de oso-humanoide Grande o de un oso Grande, o recupera su verdadera forma humanoide. Su perfil, salvo por el tamaño, es el mismo en todas las formas. Cualquier equipo que vista o lleve no se transformará.

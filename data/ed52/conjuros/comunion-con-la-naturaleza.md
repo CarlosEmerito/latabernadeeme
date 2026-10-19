@@ -25,4 +25,6 @@ tencia. • La ubicación de una criatura con un valor de
 
 desafío de 10 o más (a elección de tu GM) que sea celestial, elemental, feérico, infernal o muerto viviente. • El tipo de planta, mineral o bestia más frecuente
 
-(tú decides cuál). • Ubicaciones de masas de agua. Por ejemplo, podrías determinar el paradero de un monstruo poderoso en la zona y la ubicación de masas de agua y de cualquier pueblo cercano.
+(tú decides cuál). • Ubicaciones de masas de agua.
+
+Por ejemplo, podrías determinar el paradero de un monstruo poderoso en la zona y la ubicación de masas de agua y de cualquier pueblo cercano.

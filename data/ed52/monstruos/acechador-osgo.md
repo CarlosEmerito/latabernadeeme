@@ -33,10 +33,16 @@ page: 356
 
 ## Rasgos
 
-**Rapto.** El osgo no necesita gastar movimiento adicional para desplazar a una criatura que tenga agarrada. Acciones
+**Rapto.** El osgo no necesita gastar movimiento adicional para desplazar a una criatura que tenga agarrada.
 
-**Ataque múltiple.** El osgo realiza dos ataques con sus jabalinas o su lucero del alba. Jabalina. Tirada de ataque cuerpo a cuerpo o a distancia: +5, alcance 3 m o 9/36 m a distancia. Acierto: 13 (3d6 + 3) de daño perforante.
+## Acciones
 
-**Lucero del alba.** Tirada de ataque cuerpo a cuerpo: +5 (con ventaja si el osgo tiene agarrado al objetivo), alcance 3 m. Acierto: 12 (2d8 + 3) de daño perforante. Acciones adicionales
+**Ataque múltiple.** El osgo realiza dos ataques con sus jabalinas o su lucero del alba.
+
+**Jabalina.** Tirada de ataque cuerpo a cuerpo o a distancia: +5, alcance 3 m o 9/36 m a distancia. Acierto: 13 (3d6 + 3) de daño perforante.
+
+**Lucero del alba.** Tirada de ataque cuerpo a cuerpo: +5 (con ventaja si el osgo tiene agarrado al objetivo), alcance 3 m. Acierto: 12 (2d8 + 3) de daño perforante.
+
+## Acciones adicionales
 
 **Agarre rápido.** Tirada de salvación de Destreza: CD 13, una criatura Mediana o más pequeña que el osgo pueda ver a 3 m o menos. Fallo: el objetivo tendrá el estado de agarrado (CD 13 para escapar).

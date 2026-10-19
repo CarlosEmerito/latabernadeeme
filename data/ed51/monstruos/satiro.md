@@ -47,6 +47,6 @@ page: 380
 
 **Sentidos.** El semidragón obtiene visión ciega en un radio de 3 m y visión en la oscuridad en un radio de 18 m.
 
-**Resistencias.** El semidragón gana resistencia a un tipo de daño que depende de su color. Color Resistencia al daño Azul o de bronce Relámpago Blanco o de plata Frío Negro o de cobre Ácido Rojo, de bronce o de oro Fuego Verde Veneno
+**Resistencias.** El semidragón gana resistencia a un tipo de daño que depende de su color.
 
 **Idiomas.** El semidragón habla dracónico, además de cualquier otro idioma que ya conozca.

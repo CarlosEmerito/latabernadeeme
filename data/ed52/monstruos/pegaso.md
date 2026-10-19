@@ -31,6 +31,6 @@ srd: '5.2'
 page: 357
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Cascos.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 7 (1d6 + 4) de daño contundente más 5 (2d4) de daño radiante. Pendencieros
+**Cascos.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 7 (1d6 + 4) de daño contundente más 5 (2d4) de daño radiante.

@@ -37,4 +37,6 @@ page: 354
 
 ## Acciones
 
-**Ataque múltiple.** El hongo realiza 1d4 ataques con su toque putrefacto. Toque putrefacto. Ataque con arma cuerpo a cuerpo: +2 a impactar, alcance 3 m, una criatura. Impacto: 4 (1d8) de daño necrótico.
+**Ataque múltiple.** El hongo realiza 1d4 ataques con su toque putrefacto.
+
+**Toque putrefacto.** Ataque con arma cuerpo a cuerpo: +2 a impactar, alcance 3 m, una criatura. Impacto: 4 (1d8) de daño necrótico.

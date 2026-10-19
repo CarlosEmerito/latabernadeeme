@@ -33,6 +33,8 @@ page: 395
 
 ## Rasgos
 
-**Trepar cual arácnido.** La araña puede trepar por superficies difíciles e incluso recorrer techos sin tener que realizar pruebas de característica. Acciones
+**Trepar cual arácnido.** La araña puede trepar por superficies difíciles e incluso recorrer techos sin tener que realizar pruebas de característica.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 5 (1d4 + 3) de daño perforante más 5 (2d4) de daño de veneno.

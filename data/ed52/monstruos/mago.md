@@ -33,8 +33,16 @@ page: 346
 
 ## Acciones
 
-**Ataque múltiple.** El mago realiza tres ataques con su estallido arcano. Estallido arcano. Tirada de ataque cuerpo a cuerpo o a distancia: +6, alcance 1,5 m o 36 m a distancia. Acierto: 16 (3d8 + 3) de daño de fuerza. Lanzamiento de conjuros. El mago lanza uno de los siguientes conjuros, que utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 14): A voluntad: armadura de mago (incluido en la CA), de-
+**Ataque múltiple.** El mago realiza tres ataques con su estallido arcano.
 
-**Paso brumoso (3/día).** El mago lanza paso brumoso usando la misma aptitud mágica que para su lanzamiento de conjuros. Reacciones
+**Estallido arcano.** Tirada de ataque cuerpo a cuerpo o a distancia: +6, alcance 1,5 m o 36 m a distancia. Acierto: 16 (3d8 + 3) de daño de fuerza.
+
+**Lanzamiento de conjuros.** El mago lanza uno de los siguientes conjuros, que utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 14):
+
+## Acciones adicionales
+
+**Paso brumoso (3/día).** El mago lanza paso brumoso usando la misma aptitud mágica que para su lanzamiento de conjuros.
+
+## Reacciones
 
 **Magia protectora (3/día).** El mago lanza contrahechizo o escudo en respuesta al desencadenante de esos conjuros, usando la misma aptitud mágica que para su lanzamiento de conjuros.

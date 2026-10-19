@@ -33,4 +33,10 @@ page: 350
 
 ## Acciones
 
-**Ataque múltiple.** El guiverno realiza dos ataques: uno con su mordisco y otro con su aguijón. Mientras esté volando, puede utilizar sus garras en lugar de uno de los dos ataques. Aguijón. Ataque con arma cuerpo a cuerpo: +7 a impactar, alcance 3 m, una criatura. Impacto: 11 (2d6 + 4) de daño perforante. El objetivo deberá
+**Ataque múltiple.** El guiverno realiza dos ataques: uno con su mordisco y otro con su aguijón. Mientras esté volando, puede utilizar sus garras en lugar de uno de los dos ataques.
+
+**Aguijón.** Ataque con arma cuerpo a cuerpo: +7 a impactar, alcance 3 m, una criatura. Impacto: 11 (2d6 + 4) de daño perforante. El objetivo deberá
+
+**Garras.** Ataque con arma cuerpo a cuerpo: +7 a impactar, alcance 1,5 m, un objetivo. Impacto: 13 (2d8 + 4) de daño cortante.
+
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +7 a impactar, alcance 3 m, una criatura. Impacto: 11 (2d6 + 4) de daño perforante.

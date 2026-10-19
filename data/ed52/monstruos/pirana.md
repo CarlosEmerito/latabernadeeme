@@ -33,4 +33,8 @@ page: 391
 
 ## Rasgos
 
-**Atributos Respirar en el agua.** La piraña solo puede respirar bajo el agua. Acciones Mordisco. Tirada de ataque cuerpo a cuerpo: +5 (con ventaja si el objetivo no tiene todos sus puntos de golpe), alcance 1,5 m. Acierto: 1 de daño perforante.
+**Respirar en el agua.** La piraña solo puede respirar bajo el agua.
+
+## Acciones
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5 (con ventaja si el objetivo no tiene todos sus puntos de golpe), alcance 1,5 m. Acierto: 1 de daño perforante.

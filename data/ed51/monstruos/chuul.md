@@ -33,8 +33,14 @@ page: 290
 
 ## Rasgos
 
-**Anfibio.** El chuul puede respirar tanto dentro como fuera del agua. Sentir Magia. El chuul puede percibir la magia en un radio de 36 m a voluntad. Este atributo funciona, en todos los demás aspectos, igual que el conjuro detectar magia, pero no es mágico en sí mismo.
+**Anfibio.** El chuul puede respirar tanto dentro como fuera del agua.
+
+**Sentir Magia.** El chuul puede percibir la magia en un radio de 36 m a voluntad. Este atributo funciona, en todos los demás aspectos, igual que el conjuro detectar magia, pero no es mágico en sí mismo.
 
 ## Acciones
 
-**Ataque múltiple.** El chuul realiza dos ataques con sus tenazas. Si está agarrando a una criatura, también puede usar sus tentáculos una vez. Tenaza. Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 3 m, un objetivo. Impacto: 11 (2d6 + 4) de daño contundente. El objetivo quedará
+**Ataque múltiple.** El chuul realiza dos ataques con sus tenazas. Si está agarrando a una criatura, también puede usar sus tentáculos una vez.
+
+**Tenaza.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 3 m, un objetivo. Impacto: 11 (2d6 + 4) de daño contundente. El objetivo quedará
+
+**Tentáculos.** Una criatura agarrada por el chuul deberá superar una tirada de salvación de Constitución con CD 13 o quedará envenenada durante 1 minuto. Hasta que el efecto de este veneno termine, el objetivo estará paralizado. El objetivo puede repetir la tirada

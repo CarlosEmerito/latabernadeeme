@@ -33,16 +33,44 @@ page: 310
 
 ## Rasgos
 
-**Resistencia legendaria (3/día o 4/día en la guarida).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado. Acciones
-
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de (A) su aliento paralizante o de (B) su lanzamiento de conjuros para lanzar cuchillo de hielo. Desgarro. Tirada de ataque cuerpo a cuerpo: +13, alcance 3 m. Acierto: 17 (2d8 + 8) de daño cortante más 4 (1d8) de daño de frío. Aliento gélido (recarga 5–6). Tirada de salvación de Constitución: CD 20, todas las criaturas en un cono de 18 m. Fallo: 54 (12d8) de daño de frío. Éxito: la mitad del daño. Aliento paralizante. Tirada de salvación de Constitución: CD 20, todas las criaturas en un cono de 18 m. Primer fallo: el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno, momento en el que repetirá la tirada de salvación. Segundo fallo: el objetivo tendrá el estado de paralizado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente.
-
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 19, +11 a acertar con ataques de conjuro): A voluntad: cambiar de forma (solo forma de bestia
-
-**MOD.** SALV. MOD. SALV. MOD. SALV. F 30 +10 +10 D 10 +0 +7 C 29 +9 +9 ue es on I 18 +4 +4 S 15 +2 +9 C 26 +8 +8 nt ab ar
+**Resistencia legendaria (3/día o 4/día en la guarida).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado.
 
 **Resistencia legendaria (4/día o 5/día en la guarida).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado.
 
 ## Acciones
 
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de (A) su aliento paralizante o de (B) su lanzamiento de conjuros para lanzar cuchillo de hielo (versión de nivel 2). Desgarro. Tirada de ataque cuerpo a cuerpo: +17, alcance 4,5 m. Acierto: 19 (2d8 + 10) de daño cortante más 9 (2d8) de daño de frío. Aliento gélido (recarga 5–6). Tirada de salvación de Constitución: CD 24, todas las criaturas en un cono de 27 m. Fallo: 67 (15d8) de daño de frío. Éxito: la mitad del daño. Aliento paralizante. Tirada de salvación de Constitución: CD 24, todas las criaturas en un cono de 27 m. Primer fallo: el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno, momento en el que repetirá la tirada de salvación. Segundo fallo: el objetivo tendrá el estado de paralizado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente. Lanzamiento de conjuros. El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 23, +15 a acertar con ataques de conjuro): A voluntad: cambiar de forma (solo forma de bestia
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de (A) su aliento paralizante o de (B) su lanzamiento de conjuros para lanzar cuchillo de hielo.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +13, alcance 3 m. Acierto: 17 (2d8 + 8) de daño cortante más 4 (1d8) de daño de frío.
+
+**Aliento gélido (recarga 5–6).** Tirada de salvación de Constitución: CD 20, todas las criaturas en un cono de 18 m. Fallo: 54 (12d8) de daño de frío. Éxito: la mitad del daño.
+
+**Aliento paralizante.** Tirada de salvación de Constitución: CD 20, todas las criaturas en un cono de 18 m. Primer fallo: el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno, momento en el que repetirá la tirada de salvación. Segundo fallo: el objetivo tendrá el estado de paralizado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente.
+
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 19, +11 a acertar con ataques de conjuro):
+
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de (A) su aliento paralizante o de (B) su lanzamiento de conjuros para lanzar cuchillo de hielo (versión de nivel 2).
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +17, alcance 4,5 m. Acierto: 19 (2d8 + 10) de daño cortante más 9 (2d8) de daño de frío.
+
+**Aliento gélido (recarga 5–6).** Tirada de salvación de Constitución: CD 24, todas las criaturas en un cono de 27 m. Fallo: 67 (15d8) de daño de frío. Éxito: la mitad del daño.
+
+**Aliento paralizante.** Tirada de salvación de Constitución: CD 24, todas las criaturas en un cono de 27 m. Primer fallo: el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno, momento en el que repetirá la tirada de salvación. Segundo fallo: el objetivo tendrá el estado de paralizado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente.
+
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 23, +15 a acertar con ataques de conjuro):
+
+## Acciones legendarias
+
+**Abalanzarse.** El dragón se mueve hasta la mitad de su velocidad y realiza un ataque de desgarro.
+
+**Congelar.** El dragón utiliza su lanzamiento de conjuros para lanzar inmovilizar monstruo. El dragón no puede volver a realizar esta acción hasta el principio de su siguiente turno.
+
+**Vendaval helado.** Tirada de salvación de Destreza: CD 19, todas las criaturas en una línea de 18 m de largo y 3 m de ancho. Fallo: 14 (4d6) de daño de frío y el objetivo es empujado hasta 9 m respecto al dragón en línea recta. Éxito: solo la mitad del daño. Fallo o éxito: el dragón no puede volver a realizar esta acción hasta el principio de su siguiente turno.
+
+**MOD.** SALV. MOD. SALV. MOD. SALV.
+
+**Abalanzarse.** El dragón se mueve hasta la mitad de su velocidad y realiza un ataque de desgarro.
+
+**Congelar.** El dragón utiliza su lanzamiento de conjuros para lanzar inmovilizar monstruo. El dragón no puede volver a realizar esta acción hasta el principio de su siguiente turno.
+
+**Vendaval helado.** Tirada de salvación de Destreza: CD 23, todas las criaturas en una línea de 18 m de largo y 3 m de ancho. Fallo: 14 (4d6) de daño de frío y el objetivo es empujado hasta 9 m respecto al dragón en línea recta. Éxito: solo la mitad del daño. Fallo o éxito: el dragón no puede volver a realizar esta acción hasta el principio de su siguiente turno.

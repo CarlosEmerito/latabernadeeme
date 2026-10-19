@@ -33,4 +33,6 @@ page: 376
 
 ## Acciones
 
-**Ataque múltiple.** El águila realiza dos ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 5 (1d4 + 3) de daño cortante más 3 (1d6) de daño radiante.
+**Ataque múltiple.** El águila realiza dos ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 5 (1d4 + 3) de daño cortante más 3 (1d6) de daño radiante.

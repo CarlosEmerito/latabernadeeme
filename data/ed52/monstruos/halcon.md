@@ -31,6 +31,6 @@ srd: '5.2'
 page: 386
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Garras.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 1 de daño cortante.
+**Garras.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 1 de daño cortante.

@@ -31,6 +31,6 @@ srd: '5.2'
 page: 355
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Corte.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño cortante. Ogro
+**Corte.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño cortante.

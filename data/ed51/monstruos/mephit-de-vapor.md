@@ -39,4 +39,6 @@ page: 365
 
 ## Acciones
 
-**Garras.** Ataque con arma cuerpo a cuerpo: +2 a impactar, alcance 1,5 m, una criatura. Impacto: 2 (1d4) de daño cortante más 2 (1d4) de daño de fuego. Aliento de vapor (recarga 6). El mephit exhala vapor hirviendo en un cono de 4,5 m. Todas las criaturas situadas en la zona deberán hacer una tirada de salvación de Destreza con CD 10; sufrirán 4 (1d8) de daño de fuego si la fallan o la mitad del daño si la superan.
+**Garras.** Ataque con arma cuerpo a cuerpo: +2 a impactar, alcance 1,5 m, una criatura. Impacto: 2 (1d4) de daño cortante más 2 (1d4) de daño de fuego.
+
+**Aliento de vapor (recarga 6).** El mephit exhala vapor hirviendo en un cono de 4,5 m. Todas las criaturas situadas en la zona deberán hacer una tirada de salvación de Destreza con CD 10; sufrirán 4 (1d8) de daño de fuego si la fallan o la mitad del daño si la superan.

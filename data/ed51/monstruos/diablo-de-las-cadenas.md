@@ -33,11 +33,17 @@ page: 300
 
 ## Rasgos
 
-**Resistencia Mágica.** El diablo tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos. Vista del Diablo. La oscuridad mágica no dificulta la visión en la oscuridad del diablo.
+**Resistencia Mágica.** El diablo tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
+
+**Vista del Diablo.** La oscuridad mágica no dificulta la visión en la oscuridad del diablo.
 
 ## Acciones
 
-**Ataque múltiple.** El diablo realiza dos ataques con sus cadenas. Cadena. Ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 3 m, un objetivo. Impacto: 11 (2d6 + 4) de daño cortante. Si el diablo no está
+**Ataque múltiple.** El diablo realiza dos ataques con sus cadenas.
+
+**Cadena.** Ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 3 m, un objetivo. Impacto: 11 (2d6 + 4) de daño cortante. Si el diablo no está
+
+**Animar cadenas (se recarga tras un descanso corto o largo).** Hasta cuatro cadenas que estén a 18 m o menos del diablo cobran vida bajo su control, siempre que pueda verlas y que no las lleve o vista nadie. De ellas surgen mágicamente numerosas púas afiladas.
 
 ## Reacciones
 

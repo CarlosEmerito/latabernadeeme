@@ -31,6 +31,8 @@ srd: '5.2'
 page: 357
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Ataque múltiple.** El oso lechuza realiza dos ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 14 (2d8 + 5) de daño cortante. Otyugh
+**Ataque múltiple.** El oso lechuza realiza dos ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 14 (2d8 + 5) de daño cortante.

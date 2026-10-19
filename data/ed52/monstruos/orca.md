@@ -33,4 +33,8 @@ page: 390
 
 ## Rasgos
 
-**Atributos Aguantar la respiración.** La orca puede aguantar la respiración durante 30 minutos. Acciones Mordisco. Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 21 (5d6 + 4) de daño perforante.
+**Aguantar la respiración.** La orca puede aguantar la respiración durante 30 minutos.
+
+## Acciones
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 21 (5d6 + 4) de daño perforante.

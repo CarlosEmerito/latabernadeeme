@@ -31,6 +31,6 @@ srd: '5.2'
 page: 334
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Garrote óseo.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño contundente más 2 (1d4) de daño psíquico. Guardián escudo
+**Garrote óseo.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño contundente más 2 (1d4) de daño psíquico.

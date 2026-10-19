@@ -33,6 +33,14 @@ page: 344
 
 ## Rasgos
 
-**Trepar cual arácnido.** El lacero puede trepar por superficies difíciles e incluso recorrer techos sin tener que realizar pruebas de característica. Acciones
+**Trepar cual arácnido.** El lacero puede trepar por superficies difíciles e incluso recorrer techos sin tener que realizar pruebas de característica.
 
-**Ataque múltiple.** El lacero realiza dos ataques con sus tentáculos, usa la acción de atraer y hace dos ataques de mordisco. Mordisco. Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (3d8 + 4) de daño perforante. Tentáculo. Tirada de ataque cuerpo a cuerpo: +7, alcance 18 m. Acierto: el objetivo tendrá el estado de agarrado (CD 14 para escapar) por uno de los seis tentáculos y el de envenenado hasta que el agarre termine.
+## Acciones
+
+**Ataque múltiple.** El lacero realiza dos ataques con sus tentáculos, usa la acción de atraer y hace dos ataques de mordisco.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (3d8 + 4) de daño perforante.
+
+**Tentáculo.** Tirada de ataque cuerpo a cuerpo: +7, alcance 18 m. Acierto: el objetivo tendrá el estado de agarrado (CD 14 para escapar) por uno de los seis tentáculos y el de envenenado hasta que el agarre termine.
+
+**Atraer.** El lacero arrastra a todas las criaturas que tenga agarradas hasta 9 m en línea recta hacia él.

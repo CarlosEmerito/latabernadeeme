@@ -29,6 +29,8 @@ nar para hacerlo, antes deberá superar una tirada de salvación de Carisma. •
 
 ataque contra objetivos que estén dentro del cilindro. • Los objetivos dentro del cilindro no pueden ser
 
-poseídos por la criatura ni obtener los estados de asustados o hechizados a causa de ella. Cada vez que lances este conjuro, puedes hacer que su magia funcione en sentido inverso para impedir que una criatura del tipo especificado salga del cilindro y proteger así a los objetivos que estén fuera de él.
+poseídos por la criatura ni obtener los estados de asustados o hechizados a causa de ella.
+
+Cada vez que lances este conjuro, puedes hacer que su magia funcione en sentido inverso para impedir que una criatura del tipo especificado salga del cilindro y proteger así a los objetivos que estén fuera de él.
 
 Con un espacio de conjuro de nivel superior. La duración aumenta en 1 hora por cada nivel por encima de 3 que tenga el espacio.

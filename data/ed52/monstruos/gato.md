@@ -33,6 +33,8 @@ page: 386
 
 ## Rasgos
 
-**Atributos Saltador.** La distancia de salto del gato se determina usando su Destreza en vez de su Fuerza.
+**Saltador.** La distancia de salto del gato se determina usando su Destreza en vez de su Fuerza.
 
-**Acciones Arañazo.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 1 de daño cortante.
+## Acciones
+
+**Arañazo.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 1 de daño cortante.

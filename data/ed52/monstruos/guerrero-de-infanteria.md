@@ -33,6 +33,8 @@ page: 335
 
 ## Rasgos
 
-**Atacar en grupo.** El guerrero tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del guerrero se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado. Acciones
+**Atacar en grupo.** El guerrero tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del guerrero se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado.
+
+## Acciones
 
 **Lanza.** Tirada de ataque cuerpo a cuerpo o a distancia: +3, alcance 1,5 m o 6/18 m a distancia. Acierto: 4 (1d6 + 1) de daño perforante.

@@ -33,6 +33,12 @@ page: 364
 
 ## Acciones
 
-**Maza.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño contundente más 2 (1d4) de daño radiante. Llama radiante. Tirada de ataque a distancia: +4, alcance 18 m. Acierto: 7 (2d6) de daño radiante. Lanzamiento de conjuros. El sacerdote lanza uno de los siguientes conjuros, que utiliza la Sabiduría como aptitud mágica: A voluntad: luz, taumaturgia Acciones adicionales
+**Maza.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño contundente más 2 (1d4) de daño radiante.
+
+**Llama radiante.** Tirada de ataque a distancia: +4, alcance 18 m. Acierto: 7 (2d6) de daño radiante.
+
+**Lanzamiento de conjuros.** El sacerdote lanza uno de los siguientes conjuros, que utiliza la Sabiduría como aptitud mágica:
+
+## Acciones adicionales
 
 **Auxilio divino (1/día).** El sacerdote lanza bendición, palabra de curación o santuario usando la misma aptitud mágica que para su lanzamiento de conjuros.

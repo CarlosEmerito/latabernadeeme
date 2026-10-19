@@ -31,6 +31,8 @@ srd: '5.2'
 page: 390
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Ataque múltiple.** El oso realiza dos ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño cortante.
+**Ataque múltiple.** El oso realiza dos ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño cortante.

@@ -33,6 +33,12 @@ page: 330
 
 ## Acciones
 
-**Ataque múltiple.** El gladiador realiza tres ataques con sus lanzas. Puede sustituir un ataque por un uso de su golpe con escudo. Lanza. Tirada de ataque cuerpo a cuerpo o a distancia: +7, alcance 1,5 m o 6/18 m a distancia. Acierto: 11 (2d6 + 4) de daño perforante. Golpe con escudo. Tirada de salvación de Fuerza: CD 15, una criatura a 1,5 m o menos que el gladiador pueda ver. Fallo: 9 (2d4 + 4) de daño contundente. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de derribada. Reacciones
+**Ataque múltiple.** El gladiador realiza tres ataques con sus lanzas. Puede sustituir un ataque por un uso de su golpe con escudo.
 
-**Parada.** Detonante: una tirada de ataque cuerpo a cuerpo acierta al gladiador mientras sostiene un arma. Respuesta: el gladiador suma 3 a su CA contra ese ataque, lo que puede hacer que falle. Gnoll
+**Lanza.** Tirada de ataque cuerpo a cuerpo o a distancia: +7, alcance 1,5 m o 6/18 m a distancia. Acierto: 11 (2d6 + 4) de daño perforante.
+
+**Golpe con escudo.** Tirada de salvación de Fuerza: CD 15, una criatura a 1,5 m o menos que el gladiador pueda ver. Fallo: 9 (2d4 + 4) de daño contundente. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de derribada.
+
+## Reacciones
+
+**Parada.** Detonante: una tirada de ataque cuerpo a cuerpo acierta al gladiador mientras sostiene un arma. Respuesta: el gladiador suma 3 a su CA contra ese ataque, lo que puede hacer que falle.

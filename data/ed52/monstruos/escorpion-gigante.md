@@ -33,4 +33,8 @@ page: 386
 
 ## Acciones
 
-**Ataque múltiple.** El escorpión realiza dos ataques con sus pinzas y uno con su aguijón. Aguijón. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño perforante más 11 (2d10) de daño de veneno. Pinza. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 13 para escapar) por una de las dos pinzas.
+**Ataque múltiple.** El escorpión realiza dos ataques con sus pinzas y uno con su aguijón.
+
+**Aguijón.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño perforante más 11 (2d10) de daño de veneno.
+
+**Pinza.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 13 para escapar) por una de las dos pinzas.

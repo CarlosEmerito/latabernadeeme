@@ -37,7 +37,9 @@ page: 344
 
 ## Acciones
 
-**Ataque múltiple.** El gigante realiza dos ataques con su garrote grande. Garrote grande. Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 4,5 m, un objetivo. Impacto: 19 (3d8 + 6) de daño contundente.
+**Ataque múltiple.** El gigante realiza dos ataques con su garrote grande.
+
+**Garrote grande.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 4,5 m, un objetivo. Impacto: 19 (3d8 + 6) de daño contundente.
 
 **Piedra.** Ataque con arma a distancia: +9 a impactar, alcance 18/72 m, un objetivo. Impacto: 28 (4d10 + 6) de daño contundente. Si el objetivo es una criatura, deberá superar una tirada de salvación de Fuerza con CD 17 o será derribada.
 

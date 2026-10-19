@@ -19,6 +19,18 @@ Tomas hebras de sombra del Páramo Sombrío para crear un objeto dentro del alca
 
 La duración del conjuro depende del material del objeto, como se muestra en la tabla “Materiales”. Si el objeto está compuesto de varios materiales, su duración será la menor. Si se usa cualquier objeto creado con este conjuro como componente material de otro conjuro, este último fallará.
 
-Materiales Material Duración Materia vegetal 24 horas Piedra o cristal 12 horas Metales preciosos 1 hora Gemas 10 minutos Adamantina o mithral 1 minuto
+Materiales
+
+Material Duración
+
+Materia vegetal 24 horas
+
+Piedra o cristal 12 horas
+
+Metales preciosos 1 hora
+
+Gemas 10 minutos
+
+Adamantina o mithral 1 minuto
 
 Con un espacio de conjuro de nivel superior. El tamaño del cubo aumenta en 1,5 m por cada nivel por encima de 5 que tenga el espacio.

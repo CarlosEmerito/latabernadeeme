@@ -33,6 +33,8 @@ page: 382
 
 ## Rasgos
 
-**Aguantar la respiración.** El cocodrilo puede aguantar la respiración durante 1 hora. Acciones
+**Aguantar la respiración.** El cocodrilo puede aguantar la respiración durante 1 hora.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño perforante. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de agarrada (CD 12 para escapar). Mientras esté agarrada, tendrá el estado de apresada.

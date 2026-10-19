@@ -33,7 +33,13 @@ page: 341
 
 ## Rasgos
 
-**Devorar Vida.** Como acción adicional, el fuego fatuo puede hacer objetivo a una criatura que pueda ver a 1,5 m o menos de él, que tenga 0 puntos de golpe y que siga viva. El objetivo deberá superar una tirada de salvación de Constitución con CD 10 contra este efecto mágico o morirá. Si el objetivo muere, el fuego fatuo recupera 10 (3d6) puntos de golpe. Efímero. El fuego fatuo no puede vestir o llevar nada. Iluminación Variable. El fuego fatuo emite luz brillante en un radio de 1,5 a 6 m y luz tenue en un número adicional de metros igual al radio elegido. Puede alterar el radio como acción adicional. Movimiento Incorpóreo. El fuego fatuo puede moverse a través de otras criaturas y objetos como si fueran terreno difícil. Recibe 5 (1d10) de daño de fuerza si acaba su turno dentro de un objeto.
+**Devorar Vida.** Como acción adicional, el fuego fatuo puede hacer objetivo a una criatura que pueda ver a 1,5 m o menos de él, que tenga 0 puntos de golpe y que siga viva. El objetivo deberá superar una tirada de salvación de Constitución con CD 10 contra este efecto mágico o morirá. Si el objetivo muere, el fuego fatuo recupera 10 (3d6) puntos de golpe.
+
+**Efímero.** El fuego fatuo no puede vestir o llevar nada.
+
+**Iluminación Variable.** El fuego fatuo emite luz brillante en un radio de 1,5 a 6 m y luz tenue en un número adicional de metros igual al radio elegido. Puede alterar el radio como acción adicional.
+
+**Movimiento Incorpóreo.** El fuego fatuo puede moverse a través de otras criaturas y objetos como si fueran terreno difícil. Recibe 5 (1d10) de daño de fuerza si acaba su turno dentro de un objeto.
 
 ## Acciones
 

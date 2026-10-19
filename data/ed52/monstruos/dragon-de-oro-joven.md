@@ -33,6 +33,14 @@ page: 305
 
 ## Rasgos
 
-**Anfibio.** El dragón puede respirar tanto dentro como fuera del agua. Acciones
+**Anfibio.** El dragón puede respirar tanto dentro como fuera del agua.
 
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su aliento debilitador. Desgarro. Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 17 (2d10 + 6) de daño cortante. Aliento de fuego (recarga 5–6). Tirada de salvación de Destreza: CD 17, todas las criaturas en un cono de 9 m. Fallo: 55 (10d10) de daño de fuego. Éxito: la mitad del daño. Aliento debilitador. Tirada de salvación de Fuerza: CD 17, todas las criaturas que no estén afectadas ya por este aliento en un cono de 9 m. Fallo: el objetivo tendrá desventaja en las pruebas con d20 basadas en la Fuerza y restará 3 (1d6) a sus tiradas de daño. Repe-
+## Acciones
+
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su aliento debilitador.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 17 (2d10 + 6) de daño cortante.
+
+**Aliento de fuego (recarga 5–6).** Tirada de salvación de Destreza: CD 17, todas las criaturas en un cono de 9 m. Fallo: 55 (10d10) de daño de fuego. Éxito: la mitad del daño.
+
+**Aliento debilitador.** Tirada de salvación de Fuerza: CD 17, todas las criaturas que no estén afectadas ya por este aliento en un cono de 9 m. Fallo: el objetivo tendrá desventaja en las pruebas con d20 basadas en la Fuerza y restará 3 (1d6) a sus tiradas de daño. Repe-

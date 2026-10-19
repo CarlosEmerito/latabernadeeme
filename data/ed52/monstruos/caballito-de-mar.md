@@ -33,6 +33,8 @@ page: 380
 
 ## Rasgos
 
-**Respirar en el agua.** El caballito de mar solo puede respirar bajo el agua. Acciones
+**Respirar en el agua.** El caballito de mar solo puede respirar bajo el agua.
+
+## Acciones
 
 **Carrera burbujeante.** Mientras está bajo el agua, el caballito de mar se mueve hasta su velocidad nadando sin provocar ataques de oportunidad.

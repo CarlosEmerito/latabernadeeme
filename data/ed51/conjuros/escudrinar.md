@@ -20,9 +20,13 @@ page: 156
 
 Puedes ver y oír a una criatura concreta de tu elección que esté en el mismo plano de existencia que tú. El objetivo tiene que hacer una tirada de salvación de Sabiduría, modificada en función de lo bien que conozcas al objetivo y el tipo de conexión física que tengas con él. Si un objetivo sabe que estás lanzando este conjuro, puede fallar la tirada de salvación voluntariamente si quiere que lo observes.
 
-Modificador de la Conocimiento tirada de salvación De segundas (has oído hablar +5 del objetivo) De primera mano (has conocido +0 al objetivo) Familiar (conoces bien al objetivo) −5
+Modificador de la
 
-Modificador de la Conexión tirada de salvación Dibujo o retrato −2 Posesión o prenda −4 Parte del cuerpo, mechón −10 de pelo, trozo de uña o similar
+Conocimiento tirada de salvación De segundas (has oído hablar +5 del objetivo) De primera mano (has conocido +0 al objetivo) Familiar (conoces bien al objetivo) −5
+
+Modificador de la
+
+Conexión tirada de salvación Dibujo o retrato −2 Posesión o prenda −4 Parte del cuerpo, mechón −10 de pelo, trozo de uña o similar
 
 Si supera la tirada de salvación, el objetivo no se verá afectado y no podrás volver a usar este conjuro contra él durante 24 horas.
 

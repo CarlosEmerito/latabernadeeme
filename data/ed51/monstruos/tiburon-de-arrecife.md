@@ -33,7 +33,9 @@ page: 425
 
 ## Rasgos
 
-**Atacar en Manada.** El tiburón tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del tiburón se encuentra a 1,5 m o menos de la criatura y no está incapacitado. Respirar en el Agua. El tiburón solo puede respirar bajo el agua.
+**Atacar en Manada.** El tiburón tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del tiburón se encuentra a 1,5 m o menos de la criatura y no está incapacitado.
+
+**Respirar en el Agua.** El tiburón solo puede respirar bajo el agua.
 
 ## Acciones
 

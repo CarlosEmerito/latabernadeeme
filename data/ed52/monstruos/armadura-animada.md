@@ -31,6 +31,8 @@ srd: '5.2'
 page: 355
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Ataque múltiple.** La armadura realiza dos ataques con su golpe. Golpe. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño contundente.
+**Ataque múltiple.** La armadura realiza dos ataques con su golpe.
+
+**Golpe.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño contundente.

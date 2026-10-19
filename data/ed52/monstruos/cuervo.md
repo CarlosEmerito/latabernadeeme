@@ -33,6 +33,8 @@ page: 383
 
 ## Rasgos
 
-**Imitación.** El cuervo puede imitar sonidos sencillos que haya escuchado, como un susurro o un trino. Alguien que lo escuche podrá darse cuenta de que son imitaciones si supera una prueba de Sabiduría (Perspicacia) con CD 10. Acciones
+**Imitación.** El cuervo puede imitar sonidos sencillos que haya escuchado, como un susurro o un trino. Alguien que lo escuche podrá darse cuenta de que son imitaciones si supera una prueba de Sabiduría (Perspicacia) con CD 10.
+
+## Acciones
 
 **Pico.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 1 de daño perforante.

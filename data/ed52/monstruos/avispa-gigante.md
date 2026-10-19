@@ -33,6 +33,8 @@ page: 378
 
 ## Rasgos
 
-**Pasar volando.** La avispa no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo. Acciones
+**Pasar volando.** La avispa no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo.
+
+## Acciones
 
 **Aguijón.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante más 5 (2d4) de daño de veneno.

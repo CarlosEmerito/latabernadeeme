@@ -33,10 +33,18 @@ page: 283
 
 ## Rasgos
 
-**Armas Angelicales.** Los ataques con arma del deva son mágicos. Cuando el deva impacta con cualquier arma, esta inflige 4d8 de daño radiante adicional (ya incluido en el ataque). Lanzamiento de Conjuros Innato. La aptitud mágica del deva es el Carisma (CD de salvación de conjuros 17). Puede lanzar de forma innata los siguientes conjuros, necesitando solo componentes verbales: A voluntad: detectar el bien y el mal
+**Armas Angelicales.** Los ataques con arma del deva son mágicos. Cuando el deva impacta con cualquier arma, esta inflige 4d8 de daño radiante adicional (ya incluido en el ataque).
+
+**Lanzamiento de Conjuros Innato.** La aptitud mágica del deva es el Carisma (CD de salvación de conjuros 17). Puede lanzar de forma innata los siguientes conjuros, necesitando solo componentes verbales:
+
+**Resistencia Mágica.** El deva tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
 
 ## Acciones
 
-**Ataque múltiple.** El deva realiza dos ataques cuerpo a cuerpo. Maza. Ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d6 + 4) de daño contundente más 18 (4d8) de daño
+**Ataque múltiple.** El deva realiza dos ataques cuerpo a cuerpo.
 
-**radiante.** Cambiar de forma. El deva se transforma mágicamente en un humanoide o una bestia con un valor de desafío igual o menor al suyo, o vuelve a su auténtica forma. Si muere, recuperará su verdadera forma. Cualquier equipo que vista o lleve será absorbido o portado por la nueva forma, a elección del deva.
+**Maza.** Ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d6 + 4) de daño contundente más 18 (4d8) de daño
+
+**Cambiar de forma.** El deva se transforma mágicamente en un humanoide o una bestia con un valor de desafío igual o menor al suyo, o vuelve a su auténtica forma. Si muere, recuperará su verdadera forma. Cualquier equipo que vista o lleve será absorbido o portado por la nueva forma, a elección del deva.
+
+**Toque sanador (3/día).** El deva toca a otra criatura. Esta recupera mágicamente 20 (4d8 + 2) puntos de golpe y queda liberada de cualquier maldición, enfermedad, veneno, ceguera o sordera.

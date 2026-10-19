@@ -33,4 +33,8 @@ page: 359
 
 ## Acciones
 
-**Ataque múltiple.** El pirata realiza dos ataques con sus dagas. Puede sustituir un ataque por un uso de su garbo cautivador. Daga. Tirada de ataque cuerpo a cuerpo o a distancia: +5, alcance 1,5 m o 6/18 m a distancia. Acierto: 5 (1d4 + 3) de daño perforante. Garbo cautivador. Tirada de salvación de Sabiduría: CD 12, una criatura que el pirata pueda ver a 9 m o menos. Fallo: el objetivo tendrá el estado de hechizado hasta el principio del siguiente turno del pirata.
+**Ataque múltiple.** El pirata realiza dos ataques con sus dagas. Puede sustituir un ataque por un uso de su garbo cautivador.
+
+**Daga.** Tirada de ataque cuerpo a cuerpo o a distancia: +5, alcance 1,5 m o 6/18 m a distancia. Acierto: 5 (1d4 + 3) de daño perforante.
+
+**Garbo cautivador.** Tirada de salvación de Sabiduría: CD 12, una criatura que el pirata pueda ver a 9 m o menos. Fallo: el objetivo tendrá el estado de hechizado hasta el principio del siguiente turno del pirata.

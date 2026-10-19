@@ -31,6 +31,10 @@ srd: '5.2'
 page: 358
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. 5 (1d4 + 3) de daño perforante. Acierto: Acciones adicionales Teletransporte (recarga 4–6). El perro se teletransporta hasta 12 m a un espacio sin ocupar que pueda ver.
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. 5 (1d4 + 3) de daño perforante. Acierto:
+
+## Acciones adicionales
+
+**Teletransporte (recarga 4–6).** El perro se teletransporta hasta 12 m a un espacio sin ocupar que pueda ver.

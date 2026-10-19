@@ -33,7 +33,9 @@ page: 416
 
 ## Rasgos
 
-**Ecolocalización.** El murciélago perderá su visión ciega si está ensordecido. Oído Agudo. El murciélago tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído.
+**Ecolocalización.** El murciélago perderá su visión ciega si está ensordecido.
+
+**Oído Agudo.** El murciélago tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído.
 
 ## Acciones
 

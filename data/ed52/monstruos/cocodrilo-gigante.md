@@ -33,6 +33,12 @@ page: 382
 
 ## Rasgos
 
-**Aguantar la respiración.** El cocodrilo puede aguantar la respiración durante 1 hora. Acciones
+**Aguantar la respiración.** El cocodrilo puede aguantar la respiración durante 1 hora.
 
-**Ataque múltiple.** El cocodrilo realiza un ataque de mordisco y uno con su cola. Cola. Tirada de ataque cuerpo a cuerpo: +8, alcance 3 m. Acierto: 18 (3d8 + 5) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada. Mordisco. Tirada de ataque cuerpo a cuerpo: +8, alcance 1,5 m. Acierto: 21 (3d10 + 5) de daño perforante. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 15 para escapar). Mientras esté agarrada, tendrá el estado de apresada y no podrá ser objetivo de la cola del cocodrilo.
+## Acciones
+
+**Ataque múltiple.** El cocodrilo realiza un ataque de mordisco y uno con su cola.
+
+**Cola.** Tirada de ataque cuerpo a cuerpo: +8, alcance 3 m. Acierto: 18 (3d8 + 5) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +8, alcance 1,5 m. Acierto: 21 (3d10 + 5) de daño perforante. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 15 para escapar). Mientras esté agarrada, tendrá el estado de apresada y no podrá ser objetivo de la cola del cocodrilo.

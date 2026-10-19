@@ -33,10 +33,14 @@ page: 294
 
 ## Rasgos
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica del glabrezu es la Inteligencia (CD de salvación de conjuros 16). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: detectar magia, disipar magia, oscuridad 1/día cada uno: confusión, palabra de poder: aturdir,
+**Lanzamiento de Conjuros Innato.** La aptitud mágica del glabrezu es la Inteligencia (CD de salvación de conjuros 16). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
 
-**volar Resistencia Mágica.** El glabrezu tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
+**Resistencia Mágica.** El glabrezu tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
 
 ## Acciones
 
-**Ataque múltiple.** El glabrezu realiza cuatro ataques: dos con sus tenazas y dos con sus puñetazos. Como alternativa, puede hacer dos ataques con sus tenazas y lanzar un conjuro. Puñetazo. Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (2d4 + 2) de daño contundente. Tenaza. Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 3 m, un objetivo. Impacto: 16 (2d10 + 5) de daño contundente. Si el objetivo
+**Ataque múltiple.** El glabrezu realiza cuatro ataques: dos con sus tenazas y dos con sus puñetazos. Como alternativa, puede hacer dos ataques con sus tenazas y lanzar un conjuro.
+
+**Puñetazo.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (2d4 + 2) de daño contundente.
+
+**Tenaza.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 3 m, un objetivo. Impacto: 16 (2d10 + 5) de daño contundente. Si el objetivo

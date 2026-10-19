@@ -33,4 +33,6 @@ page: 377
 
 ## Acciones
 
-**Ataque múltiple.** El anquilosaurio realiza dos ataques con su cola. Cola. Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 9 (1d10 + 4) de daño contundente. Si el objetivo es una criatura Enorme o más pequeña, tendrá el estado de derribada.
+**Ataque múltiple.** El anquilosaurio realiza dos ataques con su cola.
+
+**Cola.** Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 9 (1d10 + 4) de daño contundente. Si el objetivo es una criatura Enorme o más pequeña, tendrá el estado de derribada.

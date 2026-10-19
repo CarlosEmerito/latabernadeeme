@@ -33,7 +33,11 @@ page: 290
 
 ## Rasgos
 
-**Amorfo.** El cieno puede moverse a través de un espacio de solo 2,5 cm de ancho sin tener que apretarse. Apariencia Falsa. Mientras el cieno permanezca inmóvil, no se le podrá distinguir de un estanque oleoso o de una roca húmeda. Corroer Metal. Cualquier arma no mágica hecha de metal que entre en contacto con el cieno se corroerá. Tras causar daño, el arma sufrirá un penalizador de −1 permanente y acumulativo a las tiradas de daño. Si este penalizador llega a ser de −5, el arma será destruida. Cualquier munición no mágica hecha de metal que impacte al cieno será destruida tras causar su daño.
+**Amorfo.** El cieno puede moverse a través de un espacio de solo 2,5 cm de ancho sin tener que apretarse.
+
+**Apariencia Falsa.** Mientras el cieno permanezca inmóvil, no se le podrá distinguir de un estanque oleoso o de una roca húmeda.
+
+**Corroer Metal.** Cualquier arma no mágica hecha de metal que entre en contacto con el cieno se corroerá. Tras causar daño, el arma sufrirá un penalizador de −1 permanente y acumulativo a las tiradas de daño. Si este penalizador llega a ser de −5, el arma será destruida. Cualquier munición no mágica hecha de metal que impacte al cieno será destruida tras causar su daño.
 
 ## Acciones
 

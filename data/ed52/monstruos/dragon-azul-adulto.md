@@ -33,16 +33,40 @@ page: 298
 
 ## Rasgos
 
-**Resistencia legendaria (3/día o 4/día en la guarida).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado. Acciones
+**Resistencia legendaria (3/día o 4/día en la guarida).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado.
 
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su lanzamiento de conjuros para lanzar hacer añicos. Desgarro. Tirada de ataque cuerpo a cuerpo: +12, alcance 3 m. Acierto: 16 (2d8 + 7) de daño cortante más 5 (1d10) de daño de relámpago. Aliento de relámpago (recarga 5–6). Tirada de salvación de Destreza: CD 19, todas las criaturas en una línea de 27 m de largo y 1,5 m de ancho. Fallo: 60 (11d10) de daño de relámpago. Éxito: la mitad del
+**Resistencia legendaria (4/día o 5/día en la guarida).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado.
 
-**daño.** Lanzamiento de conjuros. El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 18): A voluntad: detectar magia, hacer añicos, invisibilidad,
+## Acciones
+
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su lanzamiento de conjuros para lanzar hacer añicos.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +12, alcance 3 m. Acierto: 16 (2d8 + 7) de daño cortante más 5 (1d10) de daño de relámpago.
+
+**Aliento de relámpago (recarga 5–6).** Tirada de salvación de Destreza: CD 19, todas las criaturas en una línea de 27 m de largo y 1,5 m de ancho. Fallo: 60 (11d10) de daño de relámpago. Éxito: la mitad del
+
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 18):
+
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su lanzamiento de conjuros para lanzar hacer añicos (versión de nivel 3).
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +16, alcance 4,5 m. Acierto: 18 (2d8 + 9) de daño cortante más 11 (2d10) de daño de relámpago.
+
+**Aliento de relámpago (recarga 5–6).** Tirada de salvación de Destreza: CD 23, todas las criaturas en una línea de 36 m de largo y 3 m de ancho. Fallo: 88 (16d10) de daño de relámpago. Éxito: la mitad del daño.
+
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 22):
+
+## Acciones legendarias
+
+**Coletazo.** El dragón realiza un ataque de desgarro.
+
+**Estallido sónico.** El dragón utiliza su lanzamiento de conjuros para lanzar hacer añicos. El dragón no puede volver a realizar esta acción hasta el principio de su siguiente turno.
 
 **Vuelo encubierto.** El dragón utiliza su lanzamiento de conjuros para lanzarse invisibilidad a sí mismo y puede volar hasta la mitad de su velocidad volando. El dragón no puede volver a realizar esta acción hasta el principio de su siguiente turno.
 
-**MOD.** SALV. MOD. SALV. MOD. SALV. F 29 +9 +9 D 10 +0 +7 C 27 +8 +8 ue es on I 18 +4 +4 S 17 +3 +10 C 25 +7 +7 nt ab ar
+**MOD.** SALV. MOD. SALV. MOD. SALV.
 
-**Resistencia legendaria (4/día o 5/día en la guarida).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado. Acciones
+**Coletazo.** El dragón realiza un ataque de desgarro.
 
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su lanzamiento de conjuros para lanzar hacer añicos (versión de nivel 3). Desgarro. Tirada de ataque cuerpo a cuerpo: +16, alcance 4,5 m. Acierto: 18 (2d8 + 9) de daño cortante más 11 (2d10) de daño de relámpago. Aliento de relámpago (recarga 5–6). Tirada de salvación de Destreza: CD 23, todas las criaturas en una línea de 36 m de largo y 3 m de ancho. Fallo: 88 (16d10) de daño de relámpago. Éxito: la mitad del daño. Lanzamiento de conjuros. El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 22): A voluntad: detectar magia, hacer añicos (versión de
+**Estallido sónico.** El dragón utiliza su lanzamiento de conjuros para lanzar hacer añicos (versión de nivel 3).
+
+**Vuelo encubierto.** El dragón utiliza su lanzamiento de conjuros para lanzarse invisibilidad a sí mismo y puede volar hasta la mitad de su velocidad volando. El dragón no puede volver a realizar esta acción hasta el principio de su siguiente turno.

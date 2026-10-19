@@ -33,7 +33,9 @@ page: 409
 
 ## Rasgos
 
-**Enjambre.** El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa una rata Diminuta. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales. Olfato Agudo. El enjambre tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del olfato.
+**Enjambre.** El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa una rata Diminuta. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales.
+
+**Olfato Agudo.** El enjambre tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del olfato.
 
 ## Acciones
 

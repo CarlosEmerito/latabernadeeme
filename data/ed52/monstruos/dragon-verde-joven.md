@@ -33,6 +33,12 @@ page: 315
 
 ## Rasgos
 
-**Anfibio.** El dragón puede respirar tanto dentro como fuera del agua. Acciones
+**Anfibio.** El dragón puede respirar tanto dentro como fuera del agua.
 
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 11 (2d6 + 4) de daño cortante más 7 (2d6) de daño de veneno. Aliento venenoso (recarga 5–6). Tirada de salvación de Constitución: CD 14, todas las criaturas en un cono de 9 m. Fallo: 42 (12d6) de daño de veneno. Éxito: la mitad del daño.
+## Acciones
+
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 11 (2d6 + 4) de daño cortante más 7 (2d6) de daño de veneno.
+
+**Aliento venenoso (recarga 5–6).** Tirada de salvación de Constitución: CD 14, todas las criaturas en un cono de 9 m. Fallo: 42 (12d6) de daño de veneno. Éxito: la mitad del daño.

@@ -31,6 +31,10 @@ srd: '5.2'
 page: 391
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Desgarro.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño cortante. Acciones adicionales Huida veloz. La pantera realiza las acciones de destrabarse o esconderse.
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño cortante.
+
+## Acciones adicionales
+
+**Huida veloz.** La pantera realiza las acciones de destrabarse o esconderse.

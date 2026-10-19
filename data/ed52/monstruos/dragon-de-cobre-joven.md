@@ -33,4 +33,10 @@ page: 303
 
 ## Acciones
 
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su aliento ralentizador. Desgarro. Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 15 (2d10 + 4) de daño cortante. Aliento ácido (recarga 5–6). Tirada de salvación de Destreza: CD 14, todas las criaturas en una línea de 12 m de largo y 1,5 m de ancho. Fallo: 40 (9d8) de daño de ácido. Éxito: la mitad del daño. Aliento ralentizador. Tirada de salvación de Constitución: CD 14, todas las criaturas en un cono de 9 m. Fallo: el objetivo no podrá llevar a cabo reacciones, su velocidad se reducirá a la mitad y podrá realizar una acción o una acción adicional en su turno, pero no ambas. Este efecto durará hasta el final de su siguiente turno.
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su aliento ralentizador.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 15 (2d10 + 4) de daño cortante.
+
+**Aliento ácido (recarga 5–6).** Tirada de salvación de Destreza: CD 14, todas las criaturas en una línea de 12 m de largo y 1,5 m de ancho. Fallo: 40 (9d8) de daño de ácido. Éxito: la mitad del daño.
+
+**Aliento ralentizador.** Tirada de salvación de Constitución: CD 14, todas las criaturas en un cono de 9 m. Fallo: el objetivo no podrá llevar a cabo reacciones, su velocidad se reducirá a la mitad y podrá realizar una acción o una acción adicional en su turno, pero no ambas. Este efecto durará hasta el final de su siguiente turno.

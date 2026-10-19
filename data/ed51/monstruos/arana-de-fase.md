@@ -35,7 +35,9 @@ page: 398
 
 **Caminar por Telarañas.** La araña ignora todas las restricciones de movimiento causadas por cualquier tipo de red o telaraña.
 
-**Excursión Etérea.** Como acción adicional, la araña es capaz de pasar mágicamente del Plano Material al Plano Etéreo, o viceversa. Trepar cual Arácnido. La araña puede trepar por superficies difíciles e incluso recorrer techos boca abajo sin tener que realizar pruebas de característica.
+**Excursión Etérea.** Como acción adicional, la araña es capaz de pasar mágicamente del Plano Material al Plano Etéreo, o viceversa.
+
+**Trepar cual Arácnido.** La araña puede trepar por superficies difíciles e incluso recorrer techos boca abajo sin tener que realizar pruebas de característica.
 
 ## Acciones
 

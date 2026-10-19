@@ -33,6 +33,8 @@ page: 368
 
 ## Rasgos
 
-**Anfibio.** El sirénido puede respirar tanto dentro como fuera del agua. Acciones
+**Anfibio.** El sirénido puede respirar tanto dentro como fuera del agua.
 
-**Lanza marina.** Tirada de ataque cuerpo a cuerpo o a distancia: +2, alcance 1,5 m o 6/18 m a distancia. Acierto: 3 (1d6) de daño perforante más 2 (1d4) de daño de frío. Si el objetivo es una criatura, su velocidad se reducirá en 3 m hasta el final de su siguiente turno. Acierto o fallo: la lanza regresa mágicamente a la mano del sirénido inmediatamente después de un ataque a distancia. Solar
+## Acciones
+
+**Lanza marina.** Tirada de ataque cuerpo a cuerpo o a distancia: +2, alcance 1,5 m o 6/18 m a distancia. Acierto: 3 (1d6) de daño perforante más 2 (1d4) de daño de frío. Si el objetivo es una criatura, su velocidad se reducirá en 3 m hasta el final de su siguiente turno. Acierto o fallo: la lanza regresa mágicamente a la mano del sirénido inmediatamente después de un ataque a distancia.

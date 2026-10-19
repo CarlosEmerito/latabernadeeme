@@ -23,11 +23,17 @@ Un objetivo afectado no podrá llevar a cabo reacciones y deberá tirar 1d10 al 
 
 d10 Comportamiento 1 La criatura emplea todo su movimiento para
 
-moverse en una dirección aleatoria. Para determinar la dirección, tira 1d8 y asigna una dirección a cada cara del dado. La criatura no realizará ninguna acción este turno. 2–6 La criatura no se mueve ni realiza ninguna acción
+moverse en una dirección aleatoria. Para determinar la dirección, tira 1d8 y asigna una dirección a cada cara del dado. La criatura no realizará ninguna acción este turno.
 
-este turno. 7–8 La criatura usa su acción para realizar un ataque
+2–6 La criatura no se mueve ni realiza ninguna acción
 
-cuerpo a cuerpo contra otra criatura al azar que esté a su alcance. Si no hay otra ninguna criatura a su alcance, no hará nada durante este turno. 9–10 La criatura puede actuar y moverse con
+este turno.
+
+7–8 La criatura usa su acción para realizar un ataque
+
+cuerpo a cuerpo contra otra criatura al azar que esté a su alcance. Si no hay otra ninguna criatura a su alcance, no hará nada durante este turno.
+
+9–10 La criatura puede actuar y moverse con
 
 normalidad.
 

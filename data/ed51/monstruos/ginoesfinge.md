@@ -33,7 +33,11 @@ page: 337
 
 ## Rasgos
 
-**Armas Mágicas.** Los ataques con arma de la esfinge son mágicos. Inescrutable. La esfinge es inmune a cualquier efecto que pudiera detectar sus emociones o leer sus pensamientos, así como a los conjuros de adivinación a los que ella no quiera ser sometida. Las pruebas de Sabiduría (Perspicacia) realizadas para determinar sus intenciones o sinceridad tienen desventaja. Lanzamiento de Conjuros. La esfinge es una lanzadora de conjuros de nivel 9. Su aptitud mágica es la Inteligencia (CD de salvación de conjuros 16, +8 a impactar con ataques de conjuro). No necesita componentes materiales para lanzar sus conjuros. Tiene los siguientes conjuros de mago preparados: Trucos (a voluntad): ilusión menor, mano de mago,
+**Armas Mágicas.** Los ataques con arma de la esfinge son mágicos.
+
+**Inescrutable.** La esfinge es inmune a cualquier efecto que pudiera detectar sus emociones o leer sus pensamientos, así como a los conjuros de adivinación a los que ella no quiera ser sometida. Las pruebas de Sabiduría (Perspicacia) realizadas para determinar sus intenciones o sinceridad tienen desventaja.
+
+**Lanzamiento de Conjuros.** La esfinge es una lanzadora de conjuros de nivel 9. Su aptitud mágica es la Inteligencia (CD de salvación de conjuros 16, +8 a impactar con ataques de conjuro). No necesita componentes materiales para lanzar sus conjuros. Tiene los siguientes conjuros de mago preparados:
 
 ## Acciones
 
@@ -43,6 +47,10 @@ page: 337
 
 ## Acciones legendarias
 
-**garras.** Teletransporte (cuesta 2 acciones). La esfinge se
+**Ataque de garra.** La esfinge realiza un ataque con sus
+
+**Teletransporte (cuesta 2 acciones).** La esfinge se
+
+**Lanzar conjuro (cuesta 3 acciones).** La esfinge lanza
 
 **un conjuro de los de su lista de preparados.** Deberá utilizar un espacio de conjuro de la forma normal.

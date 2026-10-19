@@ -33,6 +33,8 @@ page: 397
 
 ## Acciones
 
-**Desgarro.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada. Acciones adicionales
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada.
+
+## Acciones adicionales
 
 **Huida veloz.** El tigre realiza las acciones de destrabarse o esconderse.

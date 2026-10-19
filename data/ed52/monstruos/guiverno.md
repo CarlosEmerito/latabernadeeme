@@ -33,4 +33,8 @@ page: 336
 
 ## Acciones
 
-**Ataque múltiple.** El guiverno realiza un ataque de mordisco y uno con su aguijón. Aguijón. Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 11 (2d6 + 4) de daño perforante más 24 (7d6) de daño de veneno y el objetivo tendrá el estado de envenenado hasta el principio del siguiente turno del guiverno. Mordisco. Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 13 (2d8 + 4) de daño perforante.
+**Ataque múltiple.** El guiverno realiza un ataque de mordisco y uno con su aguijón.
+
+**Aguijón.** Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 11 (2d6 + 4) de daño perforante más 24 (7d6) de daño de veneno y el objetivo tendrá el estado de envenenado hasta el principio del siguiente turno del guiverno.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 13 (2d8 + 4) de daño perforante.

@@ -33,13 +33,31 @@ page: 309
 
 ## Acciones
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d10 + 2) de daño perforante más 2 (1d4) de daño de frío. Aliento gélido (Recarga 5–6). El dragón exhala una ráfaga helada en un cono de 4,5 m. Todas las criaturas situadas en la zona deberán hacer una tirada de salvación de Constitución con CD 12; sufrirán 22 (5d8) de daño de frío si la fallan o la mitad del daño si la superan.
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d10 + 2) de daño perforante más 2 (1d4) de daño de frío.
 
-**Anfibio.** El dragón puede respirar tanto dentro como fuera del agua. Resistencia Legendaria (3/día). El dragón puede elegir tener éxito en una tirada de salvación que haya fallado.
+**Aliento gélido (Recarga 5–6).** El dragón exhala una ráfaga helada en un cono de 4,5 m. Todas las criaturas situadas en la zona deberán hacer una tirada de salvación de Constitución con CD 12; sufrirán 22 (5d8) de daño de frío si la fallan o la mitad del daño si la superan.
 
-**Ataque múltiple.** El dragón puede usar su presencia aterradora. Después realiza tres ataques: uno con su mordisco y dos con sus garras. Cola. Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 6 m, un objetivo. Impacto: 17 (2d8 + 8) de daño contundente. Garra. Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 3 m, un objetivo. Impacto: 15 (2d6 + 8) de daño cortante. Mordisco. Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 4,5 m, un objetivo. Impacto: 19 (2d10 + 8) de daño perforante más 9 (2d8) de daño de ácido. Aliento ácido (recarga 5–6). El dragón exhala ácido en una línea de 27 m de largo y 3 m de ancho. Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 22; sufrirán 67 (15d8) de daño de ácido si la fallan o la mitad del daño si la superan. Presencia aterradora. Todas las criaturas a elección del dragón que estén a 36 m o menos de él y sean conscientes de su presencia deberán superar una tirada de salvación de Sabiduría con CD 19 o quedarán asustadas durante 1 minuto. Una criatura puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Si una criatura supera la tirada de salvación o el efecto termina para ella, será inmune a la presencia aterradora del dragón durante las siguientes 24 horas.
+**Anfibio.** El dragón puede respirar tanto dentro como fuera del agua.
+
+**Resistencia Legendaria (3/día).** El dragón puede elegir tener éxito en una tirada de salvación que haya fallado.
+
+**Ataque múltiple.** El dragón puede usar su presencia aterradora. Después realiza tres ataques: uno con su mordisco y dos con sus garras.
+
+**Cola.** Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 6 m, un objetivo. Impacto: 17 (2d8 + 8) de daño contundente.
+
+**Garra.** Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 3 m, un objetivo. Impacto: 15 (2d6 + 8) de daño cortante.
+
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +15 a impactar, alcance 4,5 m, un objetivo. Impacto: 19 (2d10 + 8) de daño perforante más 9 (2d8) de daño de ácido.
+
+**Aliento ácido (recarga 5–6).** El dragón exhala ácido en una línea de 27 m de largo y 3 m de ancho. Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 22; sufrirán 67 (15d8) de daño de ácido si la fallan o la mitad del daño si la superan.
+
+**Presencia aterradora.** Todas las criaturas a elección del dragón que estén a 36 m o menos de él y sean conscientes de su presencia deberán superar una tirada de salvación de Sabiduría con CD 19 o quedarán asustadas durante 1 minuto. Una criatura puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Si una criatura supera la tirada de salvación o el efecto termina para ella, será inmune a la presencia aterradora del dragón durante las siguientes 24 horas.
 
 ## Acciones legendarias
+
+**Coletazo.** El dragón realiza un ataque con su cola.
+
+**Detectar.** El dragón realiza una prueba de Sabiduría
 
 **Atacar con las alas (cuesta 2 acciones).** El dragón bate
 

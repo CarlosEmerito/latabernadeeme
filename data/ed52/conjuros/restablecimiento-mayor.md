@@ -18,7 +18,9 @@ srd: '5.2'
 page: 181
 ---
 
-Tocas a una criatura y eliminas mágicamente uno de los siguientes efectos de ella: • 1 nivel de cansancio. • Los estados de hechizado o petrificado. • Una maldición, incluida la sintonización del obje-
+Tocas a una criatura y eliminas mágicamente uno de los siguientes efectos de ella:
+
+• 1 nivel de cansancio. • Los estados de hechizado o petrificado. • Una maldición, incluida la sintonización del obje-
 
 tivo con un objeto mágico maldito. • Cualquier reducción de una de las puntuaciones
 

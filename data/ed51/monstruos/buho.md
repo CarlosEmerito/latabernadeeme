@@ -33,7 +33,9 @@ page: 401
 
 ## Rasgos
 
-**Oído y Vista Agudos.** El búho tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído o de la vista. Pasar Volando. El búho no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo.
+**Oído y Vista Agudos.** El búho tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído o de la vista.
+
+**Pasar Volando.** El búho no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo.
 
 ## Acciones
 

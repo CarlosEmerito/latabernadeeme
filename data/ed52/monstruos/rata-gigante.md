@@ -33,6 +33,8 @@ page: 393
 
 ## Rasgos
 
-**Atacar en manada.** La rata tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados de la rata se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado. Acciones
+**Atacar en manada.** La rata tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados de la rata se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 5 (1d4 + 3) de daño perforante.

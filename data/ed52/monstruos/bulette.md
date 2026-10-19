@@ -33,8 +33,14 @@ page: 289
 
 ## Acciones
 
-**Ataque múltiple.** El bulette realiza dos ataques de mordisco. Mordisco. Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (2d12 + 4) de daño perforante. Salto mortífero. El bulette gasta 1,5 m de movimiento para saltar a un espacio a 4,5 m o menos que contenga una o varias criaturas Grandes o más pequeñas. Tirada de salvación de Destreza: CD 15, todas las criaturas situadas en el espacio de destino del bulette. Fallo: 19 (3d12) de daño contundente y el objetivo tiene el es-
+**Ataque múltiple.** El bulette realiza dos ataques de mordisco.
 
-**tado de derribado.** Éxito: la mitad del daño y el objetivo es empujado 1,5 m respecto al bulette en línea recta. Acciones adicionales
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (2d12 + 4) de daño perforante.
 
-**Salto.** El bulette gasta 3 m de movimiento para saltar hasta 9 m. Caballero
+**Salto mortífero.** El bulette gasta 1,5 m de movimiento para saltar a un espacio a 4,5 m o menos que contenga una o varias criaturas Grandes o más pequeñas. Tirada de salvación de Destreza: CD 15, todas las criaturas situadas en el espacio de destino del bulette. Fallo: 19 (3d12) de daño contundente y el objetivo tiene el es-
+
+**tado de derribado.** Éxito: la mitad del daño y el objetivo es empujado 1,5 m respecto al bulette en línea recta.
+
+## Acciones adicionales
+
+**Salto.** El bulette gasta 3 m de movimiento para saltar hasta 9 m.

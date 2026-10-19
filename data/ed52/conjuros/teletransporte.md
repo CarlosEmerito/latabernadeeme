@@ -22,7 +22,21 @@ Debes conocer el destino que elijas y también debe estar en el mismo plano de e
 
 Resultado del teletransporte
 
-Lejos Área del En el Familiaridad Percance similar objetivo objetivo Círculo — — — 01–00 permanente Objeto — — — 01–00 vinculado Muy familiar 01–05 06–13 14–24 25–00 Visto esporá- 01–33 34–43 44–53 54–00 dicamente Visto una vez 01–43 44–53 54–73 74–00 o descrito Destino falso 01–50 51–00 — —
+Lejos Área del En el
+
+Familiaridad Percance similar objetivo objetivo
+
+Círculo — — — 01–00 permanente
+
+Objeto — — — 01–00 vinculado
+
+Muy familiar 01–05 06–13 14–24 25–00
+
+Visto esporá- 01–33 34–43 44–53 54–00 dicamente
+
+Visto una vez 01–43 44–53 54–73 74–00 o descrito
+
+Destino falso 01–50 51–00 — —
 
 Familiaridad. Los términos de la columna “Familiaridad” de la tabla significan lo siguiente:
 
@@ -38,7 +52,9 @@ to más de una vez, pero que no conoces muy bien. • “Visto una vez o descrit
 
 has visto en una ocasión, quizá mediante la magia, o un sitio que conoces de segunda mano, quizá por un mapa. • “Destino falso” es un lugar que no existe.
 
-Es posible que trataras de escrudiñar el sanctasanctórum de un enemigo, pero que, en su lugar, vieras una ilusión, o puede que intentes teletransportarte a una ubicación que ya no existe. Percance. La magia impredecible del conjuro da como resultado un viaje complicado. Cada criatura que se teletransporta (o el objeto objetivo) recibe 3d10 de daño de fuerza y tu GM vuelve a tirar en la tabla para ver dónde acabáis (se pueden producir varios percances, que causarán daño cada una de las veces).
+Es posible que trataras de escrudiñar el sanctasanctórum de un enemigo, pero que, en su lugar, vieras una ilusión, o puede que intentes teletransportarte a una ubicación que ya no existe.
+
+Percance. La magia impredecible del conjuro da como resultado un viaje complicado. Cada criatura que se teletransporta (o el objeto objetivo) recibe 3d10 de daño de fuerza y tu GM vuelve a tirar en la tabla para ver dónde acabáis (se pueden producir varios percances, que causarán daño cada una de las veces).
 
 Área similar. Tu grupo y tú (o el objeto objetivo) aparecéis en una zona diferente pero que se parece visual o temáticamente al área objetivo. Llegaréis al espacio similar más cercano. Por ejemplo, si te dirigías a tu laboratorio, podrías acabar en el laboratorio de otra persona en la misma ciudad.
 

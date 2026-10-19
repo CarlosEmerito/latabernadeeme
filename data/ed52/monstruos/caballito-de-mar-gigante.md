@@ -33,8 +33,12 @@ page: 380
 
 ## Rasgos
 
-**Respirar en el agua.** El caballito de mar solo puede respirar bajo el agua. Acciones
+**Respirar en el agua.** El caballito de mar solo puede respirar bajo el agua.
 
-**Embestir.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 9 (2d6 + 2) de daño contundente u 11 (2d8 + 2) de daño contundente si el caballito de mar recorre al menos 6 m en línea recta hacia el objetivo justo antes de acertarle. Acciones adicionales
+## Acciones
+
+**Embestir.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 9 (2d6 + 2) de daño contundente u 11 (2d8 + 2) de daño contundente si el caballito de mar recorre al menos 6 m en línea recta hacia el objetivo justo antes de acertarle.
+
+## Acciones adicionales
 
 **Carrera burbujeante.** Mientras está bajo el agua, el caballito de mar se mueve hasta la mitad de su velocidad nadando sin provocar ataques de oportunidad.

@@ -33,4 +33,10 @@ page: 326
 
 ## Rasgos
 
-**Atributos Pasar volando.** La gárgola no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo. Acciones Ataque múltiple. La gárgola realiza dos ataques con sus garras. Garra. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 7 (2d4 + 2) de daño cortante. Garra reptante
+**Pasar volando.** La gárgola no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo.
+
+## Acciones
+
+**Ataque múltiple.** La gárgola realiza dos ataques con sus garras.
+
+**Garra.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 7 (2d4 + 2) de daño cortante.

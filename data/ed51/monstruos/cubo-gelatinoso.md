@@ -35,6 +35,8 @@ page: 291
 
 **Cubo de Cieno.** El cubo ocupa su espacio por completo. Otras criaturas podrán entrar en esta área, pero las que lo hagan serán sometidas a la acción de absorber del cubo y tendrán desventaja en la tirada de salvación.
 
+**Transparente.** Incluso cuando está a plena vista, es necesario superar una prueba de Sabiduría (Percepción) con CD 15 para detectar un cubo que no se haya movido o atacado. Si una criatura intenta entrar en el espacio del cubo sin ser consciente de su presencia, se verá sorprendida por este.
+
 ## Acciones
 
 **Pseudópodo.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 10 (3d6) de daño de ácido.

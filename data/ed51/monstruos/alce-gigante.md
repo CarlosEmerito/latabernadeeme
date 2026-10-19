@@ -37,4 +37,6 @@ page: 398
 
 ## Acciones
 
-**Cascos.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, una criatura derribada. Impacto: 22 (4d8 + 4) de daño contundente. Embestir. Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 3 m, un objetivo. Impacto: 11 (2d6 + 4) de daño contundente.
+**Cascos.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, una criatura derribada. Impacto: 22 (4d8 + 4) de daño contundente.
+
+**Embestir.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 3 m, un objetivo. Impacto: 11 (2d6 + 4) de daño contundente.

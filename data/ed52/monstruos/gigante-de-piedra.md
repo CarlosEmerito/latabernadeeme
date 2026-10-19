@@ -33,6 +33,12 @@ page: 329
 
 ## Acciones
 
-**Ataque múltiple.** El gigante realiza dos ataques con su garrote de piedra o pedrusco en cualquier combinación. Garrote de piedra. Tirada de ataque cuerpo a cuerpo: +9, alcance 4,5 m. Acierto: 22 (3d10 + 6) de daño contundente. Pedrusco. Tirada de ataque a distancia: +9, alcance 18/72 m. Acierto: 15 (2d8 + 6) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada. Reacciones
+**Ataque múltiple.** El gigante realiza dos ataques con su garrote de piedra o pedrusco en cualquier combinación.
+
+**Garrote de piedra.** Tirada de ataque cuerpo a cuerpo: +9, alcance 4,5 m. Acierto: 22 (3d10 + 6) de daño contundente.
+
+**Pedrusco.** Tirada de ataque a distancia: +9, alcance 18/72 m. Acierto: 15 (2d8 + 6) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada.
+
+## Reacciones
 
 **Desviar proyectiles (recarga 5–6).** Detonante: una tirada de ataque a distancia acierta al gigante y le hace daño contundente, cortante o perforante. Respuesta: el gigante reduce en 11 (1d10 + 6) el daño que recibe del ataque. Si lo reduce a 0, el gigante puede redirigir una parte de la fuerza del ataque. Tirada de salvación de Destreza: CD 17, una criatura que el gigante pueda ver a 18 m o menos. Fallo: 11 (1d10 + 6) de daño de fuerza.

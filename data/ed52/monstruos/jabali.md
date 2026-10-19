@@ -33,6 +33,8 @@ page: 387
 
 ## Rasgos
 
-**Furia maltrecha.** Mientras esté maltrecho, el jabalí tiene ventaja en las tiradas de ataque. Acciones
+**Furia maltrecha.** Mientras esté maltrecho, el jabalí tiene ventaja en las tiradas de ataque.
+
+## Acciones
 
 **Colmillos.** Tirada de ataque cuerpo a cuerpo: +3, alcance 1,5 m. Acierto: 4 (1d6 + 1) de daño perforante. Si el objetivo es una criatura Mediana o más pequeña y el jabalí recorre al menos 6 m en línea recta hacia ella justo antes de acertarle, esta recibirá 3 (1d6) de daño perforante adicional y tendrá el estado de derribada.

@@ -33,6 +33,18 @@ page: 332
 
 ## Rasgos
 
-**Absorción de fuego.** Siempre que fuese a recibir daño de fuego, el gólem recupera una cantidad de puntos de golpe igual al daño de fuego infligido. Forma inmutable. El gólem no puede cambiar de forma. Resistencia mágica. El gólem tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos. Acciones
+**Absorción de fuego.** Siempre que fuese a recibir daño de fuego, el gólem recupera una cantidad de puntos de golpe igual al daño de fuego infligido.
 
-**Ataque múltiple.** El gólem realiza dos ataques con su brazo cuchilla o su rayo ardiente en cualquier combinación. Brazo cuchilla. Tirada de ataque cuerpo a cuerpo: +12, alcance 3 m. Acierto: 20 (3d8 + 7) de daño cortante más 10 (3d6) de daño de fuego. Rayo ardiente. Tirada de ataque a distancia: +10, alcance 36 m. Acierto: 36 (8d8) de daño de fuego. Aliento venenoso (recarga 6). Tirada de salvación de Constitución: CD 18, todas las criaturas en un cono de 18 m. Fallo: 55 (10d10) de daño de veneno. Éxito: la mitad del daño. Gólem de piedra
+**Forma inmutable.** El gólem no puede cambiar de forma.
+
+**Resistencia mágica.** El gólem tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
+
+## Acciones
+
+**Ataque múltiple.** El gólem realiza dos ataques con su brazo cuchilla o su rayo ardiente en cualquier combinación.
+
+**Brazo cuchilla.** Tirada de ataque cuerpo a cuerpo: +12, alcance 3 m. Acierto: 20 (3d8 + 7) de daño cortante más 10 (3d6) de daño de fuego.
+
+**Rayo ardiente.** Tirada de ataque a distancia: +10, alcance 36 m. Acierto: 36 (8d8) de daño de fuego.
+
+**Aliento venenoso (recarga 6).** Tirada de salvación de Constitución: CD 18, todas las criaturas en un cono de 18 m. Fallo: 55 (10d10) de daño de veneno. Éxito: la mitad del daño.

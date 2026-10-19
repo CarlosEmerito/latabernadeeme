@@ -33,10 +33,14 @@ page: 342
 
 ## Rasgos
 
-**Fallecimiento Elemental.** Si el djinn muere, su cuerpo se desintegrará en una brisa cálida, quedando en su lugar únicamente el equipo que llevara o vistiera. Lanzamiento de Conjuros Innato. La aptitud mágica innata del djinn es el Carisma (CD de salvación de conjuros 17, +9 a impactar con ataques de conjuro). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: detectar el bien y el mal, detectar magia,
+**Fallecimiento Elemental.** Si el djinn muere, su cuerpo se desintegrará en una brisa cálida, quedando en su lugar únicamente el equipo que llevara o vistiera.
+
+**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del djinn es el Carisma (CD de salvación de conjuros 17, +9 a impactar con ataques de conjuro). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
 
 ## Acciones
 
-**Ataque múltiple.** El djinn realiza tres ataques con su cimitarra. Cimitarra. Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 1,5 m, un objetivo. Impacto: 12 (2d6 + 5) de daño cortante más 3 (1d6) de daño
+**Ataque múltiple.** El djinn realiza tres ataques con su cimitarra.
 
-**de relámpago o de trueno (a elección del djinn).** Crear torbellino. Un torbellino se forma mágicamente en un cilindro de 1,5 m de radio y 9 m de altura en un punto que el djinn pueda ver a 36 m o menos de él. Este fenómeno durará mientras el djinn mantenga la concentración (como si se concentrara en un conjuro).
+**Cimitarra.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 1,5 m, un objetivo. Impacto: 12 (2d6 + 5) de daño cortante más 3 (1d6) de daño
+
+**Crear torbellino.** Un torbellino se forma mágicamente en un cilindro de 1,5 m de radio y 9 m de altura en un punto que el djinn pueda ver a 36 m o menos de él. Este fenómeno durará mientras el djinn mantenga la concentración (como si se concentrara en un conjuro).

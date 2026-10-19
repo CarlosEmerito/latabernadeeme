@@ -18,6 +18,14 @@ Tocas a un humanoide muerto o una parte de sus restos. Siempre que la criatura n
 
 1d10 Especie 1d10 Especie
 
-1 Vuelve a tirar 6 Goliat 2 Dracónido 7 Humano 3 Elfo 8 Mediano 4 Enano 9 Orco 5 Gnomo 10 Tiefling
+1 Vuelve a tirar 6 Goliat
+
+2 Dracónido 7 Humano
+
+3 Elfo 8 Mediano
+
+4 Enano 9 Orco
+
+5 Gnomo 10 Tiefling
 
 La criatura reencarnada hace cualquier elección que ofrezca la descripción de la especie y recuerda su vida anterior. Conserva las capacidades que tenía en su forma original, pero los atributos de su especie nueva sustituyen a los de la anterior.

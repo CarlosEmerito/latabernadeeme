@@ -33,7 +33,9 @@ page: 415
 
 ## Rasgos
 
-**Frenesí Sangriento.** El mordedor tiene ventaja en las tiradas de ataque cuerpo a cuerpo contra cualquier criatura que no posea todos sus puntos de golpe. Respirar en el Agua. El mordedor solo puede respirar bajo el agua.
+**Frenesí Sangriento.** El mordedor tiene ventaja en las tiradas de ataque cuerpo a cuerpo contra cualquier criatura que no posea todos sus puntos de golpe.
+
+**Respirar en el Agua.** El mordedor solo puede respirar bajo el agua.
 
 ## Acciones
 

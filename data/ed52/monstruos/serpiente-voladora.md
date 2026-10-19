@@ -33,6 +33,8 @@ page: 395
 
 ## Rasgos
 
-**Pasar volando.** La serpiente no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo. Acciones
+**Pasar volando.** La serpiente no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 1 de daño perforante más 5 (2d4) de daño de veneno.

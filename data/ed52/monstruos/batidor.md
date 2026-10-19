@@ -31,6 +31,10 @@ srd: '5.2'
 page: 287
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Ataque múltiple.** El batidor realiza dos ataques con su arco largo o su espada corta en cualquier combinación. Espada corta. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante. Arco largo. Tirada de ataque a distancia: +4, alcance 45/180 m. Acierto: 6 (1d8 + 2) de daño perforante. Behir
+**Ataque múltiple.** El batidor realiza dos ataques con su arco largo o su espada corta en cualquier combinación.
+
+**Espada corta.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante.
+
+**Arco largo.** Tirada de ataque a distancia: +4, alcance 45/180 m. Acierto: 6 (1d8 + 2) de daño perforante.

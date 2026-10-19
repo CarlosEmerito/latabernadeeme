@@ -33,4 +33,10 @@ page: 378
 
 ## Rasgos
 
-**Atributos Anfibio.** El archelon puede respirar tanto dentro como fuera del agua. Acciones Ataque múltiple. El archelon realiza dos ataques de mordisco. Mordisco. Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 14 (3d6 + 4) de daño perforante.
+**Anfibio.** El archelon puede respirar tanto dentro como fuera del agua.
+
+## Acciones
+
+**Ataque múltiple.** El archelon realiza dos ataques de mordisco.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 14 (3d6 + 4) de daño perforante.

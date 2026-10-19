@@ -33,6 +33,8 @@ page: 387
 
 ## Acciones
 
-**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño perforante. Acciones adicionales
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño perforante.
+
+## Acciones adicionales
 
 **Rabia (1/día).** Inmediatamente después de hacer daño a una criatura que ya estuviera maltrecha, la hiena se podrá mover hasta la mitad de su velocidad y realizará un ataque de mordisco.

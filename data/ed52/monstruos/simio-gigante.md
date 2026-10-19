@@ -33,6 +33,12 @@ page: 395
 
 ## Acciones
 
-**Ataque múltiple.** El simio realiza dos ataques de puñetazo. Puñetazo. Tirada de ataque cuerpo a cuerpo: +9, alcance 3 m. Acierto: 22 (3d10 + 6) de daño contundente. Lanzamiento de pedrusco (recarga 6). El simio arroja un pedrusco a un punto que pueda ver a 27 m o menos. Tirada de salvación de Destreza: CD 17, todas las criaturas en una esfera de 1,5 m de radio centrada en ese punto. Fallo: 24 (7d6) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada. Éxito: solo la mitad del daño. Acciones adicionales
+**Ataque múltiple.** El simio realiza dos ataques de puñetazo.
+
+**Puñetazo.** Tirada de ataque cuerpo a cuerpo: +9, alcance 3 m. Acierto: 22 (3d10 + 6) de daño contundente.
+
+**Lanzamiento de pedrusco (recarga 6).** El simio arroja un pedrusco a un punto que pueda ver a 27 m o menos. Tirada de salvación de Destreza: CD 17, todas las criaturas en una esfera de 1,5 m de radio centrada en ese punto. Fallo: 24 (7d6) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada. Éxito: solo la mitad del daño.
+
+## Acciones adicionales
 
 **Salto.** El simio gasta 3 m de movimiento para saltar hasta 9 m.

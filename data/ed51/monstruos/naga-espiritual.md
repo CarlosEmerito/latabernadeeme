@@ -33,7 +33,9 @@ page: 369
 
 ## Rasgos
 
-**Lanzamiento de Conjuros.** La naga es una lanzadora de conjuros de nivel 10. Su aptitud mágica es la Inteligencia (CD de salvación de conjuros 14, +6 a impactar con ataques de conjuro) y solo necesita componentes verbales para lanzar sus conjuros. Tiene los siguientes conjuros de mago preparados: Trucos (a voluntad): ilusión menor, mano de mago,
+**Lanzamiento de Conjuros.** La naga es una lanzadora de conjuros de nivel 10. Su aptitud mágica es la Inteligencia (CD de salvación de conjuros 14, +6 a impactar con ataques de conjuro) y solo necesita componentes verbales para lanzar sus conjuros. Tiene los siguientes conjuros de mago preparados:
+
+**Rejuvenecimiento.** Si muere, la naga volverá a la vida tras 1d6 días y recuperará todos sus puntos de golpe. Solo un conjuro deseo puede evitar que este atributo tenga efecto.
 
 ## Acciones
 

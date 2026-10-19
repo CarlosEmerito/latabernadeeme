@@ -37,4 +37,8 @@ page: 311
 
 ## Acciones
 
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 9 (2d4 + 4) de daño cortante más 3 (1d6) de daño de ácido. Aliento ácido (recarga 5–6). Tirada de salvación de Destreza: CD 14, todas las criaturas en una línea de 9 m de largo y 1,5 m de ancho. Fallo: 49 (14d6) de daño de ácido. Éxito: la mitad del daño.
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 9 (2d4 + 4) de daño cortante más 3 (1d6) de daño de ácido.
+
+**Aliento ácido (recarga 5–6).** Tirada de salvación de Destreza: CD 14, todas las criaturas en una línea de 9 m de largo y 1,5 m de ancho. Fallo: 49 (14d6) de daño de ácido. Éxito: la mitad del daño.

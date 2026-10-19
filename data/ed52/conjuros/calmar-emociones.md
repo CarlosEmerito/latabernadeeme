@@ -15,7 +15,9 @@ srd: '5.2'
 page: 126
 ---
 
-Cada humanoide en una esfera de 6 m de radio centrada en un punto que elijas dentro del alcance deberá superar una tirada de salvación de Carisma o se verá afectado por uno de los siguientes efectos (elige uno por cada criatura): • La criatura tiene inmunidad a los estados de
+Cada humanoide en una esfera de 6 m de radio centrada en un punto que elijas dentro del alcance deberá superar una tirada de salvación de Carisma o se verá afectado por uno de los siguientes efectos (elige uno por cada criatura):
+
+• La criatura tiene inmunidad a los estados de
 
 asustada y hechizada hasta que el conjuro termine. Si la criatura ya estaba asustada o hechizada, se suprimen esos estados hasta que el conjuro termine. • La criatura se vuelve indiferente hacia las cria-
 

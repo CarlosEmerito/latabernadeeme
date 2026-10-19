@@ -33,6 +33,10 @@ page: 331
 
 ## Acciones
 
-**Cimitarra.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño cortante más 2 (1d4) de daño cortante si la tirada de ataque tenía ventaja. Arco corto. Tirada de ataque a distancia: +4, alcance 24/96 m. Acierto: 5 (1d6 + 2) de daño perforante más 2 (1d4) de daño perforante si la tirada de ataque tenía ventaja. Acciones adicionales
+**Cimitarra.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño cortante más 2 (1d4) de daño cortante si la tirada de ataque tenía ventaja.
+
+**Arco corto.** Tirada de ataque a distancia: +4, alcance 24/96 m. Acierto: 5 (1d6 + 2) de daño perforante más 2 (1d4) de daño perforante si la tirada de ataque tenía ventaja.
+
+## Acciones adicionales
 
 **Huida veloz.** El goblin realiza las acciones de destrabarse o esconderse.

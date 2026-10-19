@@ -33,7 +33,9 @@ page: 426
 
 ## Rasgos
 
-**Frenesí Sangriento.** El tiburón tiene ventaja en las tiradas de ataque cuerpo a cuerpo contra cualquier criatura que no posea todos sus puntos de golpe. Respirar en el Agua. El tiburón solo puede respirar bajo el agua.
+**Frenesí Sangriento.** El tiburón tiene ventaja en las tiradas de ataque cuerpo a cuerpo contra cualquier criatura que no posea todos sus puntos de golpe.
+
+**Respirar en el Agua.** El tiburón solo puede respirar bajo el agua.
 
 ## Acciones
 

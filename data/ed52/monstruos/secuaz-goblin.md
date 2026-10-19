@@ -31,6 +31,10 @@ srd: '5.2'
 page: 331
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Daga.** Tirada de ataque cuerpo a cuerpo o a distancia: +4, alcance 1,5 m o 6/18 m a distancia. Acierto: 4 (1d4 + 2) de daño perforante. Acciones adicionales Huida veloz. El goblin realiza las acciones de destrabarse o esconderse.
+**Daga.** Tirada de ataque cuerpo a cuerpo o a distancia: +4, alcance 1,5 m o 6/18 m a distancia. Acierto: 4 (1d4 + 2) de daño perforante.
+
+## Acciones adicionales
+
+**Huida veloz.** El goblin realiza las acciones de destrabarse o esconderse.

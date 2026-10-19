@@ -37,6 +37,8 @@ page: 430
 
 ## Acciones
 
-**Ataque múltiple.** El batidor realiza dos ataques cuerpo a cuerpo o dos ataques a distancia. Espada corta. Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
+**Ataque múltiple.** El batidor realiza dos ataques cuerpo a cuerpo o dos ataques a distancia.
+
+**Espada corta.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
 
 **Arco largo.** Ataque con arma a distancia: +4 a impactar, alcance 45/180 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante.

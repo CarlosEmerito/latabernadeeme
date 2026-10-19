@@ -33,9 +33,9 @@ page: 428
 
 ## Rasgos
 
-**Lanzamiento de Conjuros.** El archimago es un lanzador de conjuros de nivel 18. Su aptitud mágica es la Inteligencia (CD de salvación de conjuros 17, +9 a impactar con ataques de conjuro). Puede lanzar disfrazarse e invisibilidad a voluntad y tiene los siguientes conjuros de mago preparados: Trucos (a voluntad): agarre electrizante, descarga
+**Lanzamiento de Conjuros.** El archimago es un lanzador de conjuros de nivel 18. Su aptitud mágica es la Inteligencia (CD de salvación de conjuros 17, +9 a impactar con ataques de conjuro). Puede lanzar disfrazarse e invisibilidad a voluntad y tiene los siguientes conjuros de mago preparados:
 
-**antes de que empiece el combate.** Resistencia Mágica. El archimago tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
+**Resistencia Mágica.** El archimago tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
 
 ## Acciones
 

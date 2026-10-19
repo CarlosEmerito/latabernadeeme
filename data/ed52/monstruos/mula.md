@@ -33,4 +33,8 @@ page: 389
 
 ## Rasgos
 
-**Atributos Bestia de carga.** La mula se considera de un tamaño mayor para determinar su capacidad de carga. Acciones Cascos. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 4 (1d4 + 2) de daño contundente.
+**Bestia de carga.** La mula se considera de un tamaño mayor para determinar su capacidad de carga.
+
+## Acciones
+
+**Cascos.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 4 (1d4 + 2) de daño contundente.

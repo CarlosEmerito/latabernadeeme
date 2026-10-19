@@ -35,4 +35,6 @@ page: 400
 
 **Apariencia Falsa.** Mientras el arbusto permanezca inmóvil, no se le podrá distinguir de un arbusto normal y corriente.
 
-**Acciones Desgarrar.** Ataque con arma cuerpo a cuerpo: +1 a impactar, alcance 1,5 m, un objetivo. Impacto: 1 (1d4 − 1) de daño cortante.
+## Acciones
+
+**Desgarrar.** Ataque con arma cuerpo a cuerpo: +1 a impactar, alcance 1,5 m, un objetivo. Impacto: 1 (1d4 − 1) de daño cortante.

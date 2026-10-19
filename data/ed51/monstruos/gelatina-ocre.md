@@ -33,7 +33,9 @@ page: 291
 
 ## Rasgos
 
-**Amorfa.** La gelatina puede moverse a través de espacios de solo 2,5 cm de ancho sin tener que apretarse. Trepar cual Arácnido. La gelatina puede trepar por superficies difíciles e incluso recorrer techos boca abajo sin tener que realizar pruebas de característica.
+**Amorfa.** La gelatina puede moverse a través de espacios de solo 2,5 cm de ancho sin tener que apretarse.
+
+**Trepar cual Arácnido.** La gelatina puede trepar por superficies difíciles e incluso recorrer techos boca abajo sin tener que realizar pruebas de característica.
 
 ## Acciones
 

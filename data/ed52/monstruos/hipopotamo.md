@@ -33,4 +33,10 @@ page: 387
 
 ## Rasgos
 
-**Atributos Aguantar la respiración.** El hipopótamo puede aguantar la respiración durante 10 minutos. Acciones Ataque múltiple. El hipopótamo realiza dos ataques de mordisco. Mordisco. Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 16 (2d10 + 5) de daño perforante.
+**Aguantar la respiración.** El hipopótamo puede aguantar la respiración durante 10 minutos.
+
+## Acciones
+
+**Ataque múltiple.** El hipopótamo realiza dos ataques de mordisco.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 16 (2d10 + 5) de daño perforante.

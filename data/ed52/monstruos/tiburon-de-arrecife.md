@@ -33,6 +33,10 @@ page: 396
 
 ## Rasgos
 
-**Atacar en manada.** El tiburón tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del tiburón se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado. Respirar en el agua. El tiburón solo puede respirar bajo el agua. Acciones
+**Atacar en manada.** El tiburón tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del tiburón se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado.
+
+**Respirar en el agua.** El tiburón solo puede respirar bajo el agua.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 7 (2d4 + 2) de daño perforante.

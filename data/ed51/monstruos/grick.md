@@ -37,6 +37,8 @@ page: 349
 
 ## Acciones
 
-**Ataque múltiple.** El grick realiza un ataque con sus tentáculos. Si este impacta, puede llevar a cabo un ataque con su pico contra el mismo objetivo. Pico. Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
+**Ataque múltiple.** El grick realiza un ataque con sus tentáculos. Si este impacta, puede llevar a cabo un ataque con su pico contra el mismo objetivo.
+
+**Pico.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
 
 **Tentáculos.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 9 (2d6 + 2) de daño cortante.

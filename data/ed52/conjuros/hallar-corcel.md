@@ -26,13 +26,17 @@ Con un espacio de conjuro de nivel superior. Usa el nivel del espacio de conjuro
 
 Corcel sobrenatural
 
-Celestial, feérico o infernal Grande (a tu elección), neutral CA: 10 + 1 por cada nivel del conjuro PG: 5 + 10 por cada nivel del conjuro (el corcel tiene
+Celestial, feérico o infernal Grande (a tu elección), neutral
+
+CA: 10 + 1 por cada nivel del conjuro PG: 5 + 10 por cada nivel del conjuro (el corcel tiene
 
 una cantidad de dados de golpe [d10] igual al nivel del conjuro) Velocidad: 18 m, volar 18 m (requiere un conjuro
 
 de nivel 4 o superior)
 
-MOD. SALV. MOD. SALV. MOD. SALV. F 18 +4 +4 D 12 +1 +1 C 14 +2 +2 ue es on I 6 −2 −2 S 12 +1 +1 C 8 −1 −1 nt ab ar
+MOD. SALV. MOD. SALV. MOD. SALV.
+
+F 18 +4 +4 D 12 +1 +1 C 14 +2 +2 ue es on I 6 −2 −2 S 12 +1 +1 C 8 −1 −1 nt ab ar
 
 Sentidos: Percepción pasiva 11 Idiomas: telepatía 1,5 km (solo funciona contigo) VD: ninguno (0 PX; BC igual a tu bonificador por
 
@@ -40,8 +44,16 @@ competencia)
 
 Atributos
 
-Vínculo vital. Cuando recuperas puntos de golpe mediante un conjuro de nivel 1 o superior, el corcel recupera la misma cantidad de puntos de golpe si estás a 1,5 m o menos de él. Acciones
+Vínculo vital. Cuando recuperas puntos de golpe mediante un conjuro de nivel 1 o superior, el corcel recupera la misma cantidad de puntos de golpe si estás a 1,5 m o menos de él.
 
-Golpetazo sobrenatural. Tirada de ataque cuerpo a cuerpo: bonificador igual a tu modificador de ataque de conjuros, alcance 1,5 m. Acierto: 1d8 más el nivel de daño radiante (celestial), psíquico (feérico) o necrótico (infernal). Acciones adicionales
+Acciones
 
-Mirada siniestra (solo infernal; se recarga tras un descanso largo). Tirada de salvación de Sabiduría: CD igual a tu CD de salvación de conjuros, una criatura a 18 m o menos que el corcel pueda ver. Fallo: el objetivo tiene el estado de asustado hasta el final de tu siguiente turno. Paso feérico (solo feérico; se recarga tras un descanso largo). El corcel se teletransporta, junto con su jinete, a un espacio sin ocupar de tu elección a 18 m o menos del corcel. Toque sanador (solo celestial; se recarga tras un descanso largo). Una criatura a 1,5 m o menos del corcel recupera una cantidad de puntos de golpe igual a 2d8 más el nivel del conjuro.
+Golpetazo sobrenatural. Tirada de ataque cuerpo a cuerpo: bonificador igual a tu modificador de ataque de conjuros, alcance 1,5 m. Acierto: 1d8 más el nivel de daño radiante (celestial), psíquico (feérico) o necrótico (infernal).
+
+Acciones adicionales
+
+Mirada siniestra (solo infernal; se recarga tras un descanso largo). Tirada de salvación de Sabiduría: CD igual a tu CD de salvación de conjuros, una criatura a 18 m o menos que el corcel pueda ver. Fallo: el objetivo tiene el estado de asustado hasta el final de tu siguiente turno.
+
+Paso feérico (solo feérico; se recarga tras un descanso largo). El corcel se teletransporta, junto con su jinete, a un espacio sin ocupar de tu elección a 18 m o menos del corcel.
+
+Toque sanador (solo celestial; se recarga tras un descanso largo). Una criatura a 1,5 m o menos del corcel recupera una cantidad de puntos de golpe igual a 2d8 más el nivel del conjuro.

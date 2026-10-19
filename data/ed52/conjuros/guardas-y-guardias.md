@@ -27,7 +27,9 @@ Pasillos. Todos los pasillos protegidos se llenan de niebla y pasan a estar muy 
 
 Puertas. Todas las puertas de la zona protegida están cerradas de manera mágica, como si estuvieran afectadas por el conjuro cerradura arcana. Además, puedes cubrir hasta 10 puertas con una ilusión para que parezcan simples secciones de pared.
 
-Otro efecto del conjuro. Sitúas uno de los siguientes efectos mágicos dentro de la zona protegida: • Luces danzantes en cuatro pasillos con un patrón
+Otro efecto del conjuro. Sitúas uno de los siguientes efectos mágicos dentro de la zona protegida:
+
+• Luces danzantes en cuatro pasillos con un patrón
 
 sencillo que las luces reproducirán mientras dure guardas y guardias. • Boca mágica en dos lugares. • Nube apestosa en dos lugares (los vapores vol-
 

@@ -33,7 +33,9 @@ page: 413
 
 ## Rasgos
 
-**Atacar en Manada.** El lobo tiene ventaja en las tiradas de ataque contra una criatura si al menos uno de los aliados del lobo se encuentra a 1,5 m o menos de la criatura y no está incapacitado. Oído y Olfato Agudos. El lobo tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído o del olfato.
+**Atacar en Manada.** El lobo tiene ventaja en las tiradas de ataque contra una criatura si al menos uno de los aliados del lobo se encuentra a 1,5 m o menos de la criatura y no está incapacitado.
+
+**Oído y Olfato Agudos.** El lobo tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído o del olfato.
 
 ## Acciones
 

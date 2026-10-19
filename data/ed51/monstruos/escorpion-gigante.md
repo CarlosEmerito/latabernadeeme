@@ -33,4 +33,8 @@ page: 410
 
 ## Acciones
 
-**Ataque múltiple.** El escorpión realiza tres ataques: dos con sus pinzas y otro con su aguijón. Aguijón. Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 7 (1d10 + 2) de daño perforante y el objetivo deberá
+**Ataque múltiple.** El escorpión realiza tres ataques: dos con sus pinzas y otro con su aguijón.
+
+**Aguijón.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 7 (1d10 + 2) de daño perforante y el objetivo deberá
+
+**Pinza.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 6 (1d8 + 2) de daño contundente y el objetivo quedará agarrado (CD 12 para escapar). El escorpión tiene dos pinzas y cada una puede agarrar a un único objetivo.

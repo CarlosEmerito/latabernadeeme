@@ -33,8 +33,16 @@ page: 368
 
 ## Rasgos
 
-**Origen dracónico.** El semidragón está relacionado con un tipo de dragón asociado con uno de los siguientes tipos de daño (a elección de cada GM): ácido, frío, fuego, relámpago o veneno. Esta elección afecta a otros aspectos del perfil. Acciones
+**Origen dracónico.** El semidragón está relacionado con un tipo de dragón asociado con uno de los siguientes tipos de daño (a elección de cada GM): ácido, frío, fuego, relámpago o veneno. Esta elección afecta a otros aspectos del perfil.
 
-**Ataque múltiple.** El semidragón realiza dos ataques con sus garras. Garra. Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 6 (1d4 + 4) de daño cortante más 7 (2d6) de daño del tipo elegido para el atributo Origen dracónico. Aliento de dragón (recarga 5–6). Tirada de salvación de Destreza: CD 14, todas las criaturas en un cono de 9 m. Fallo: 28 (8d6) de daño del tipo elegido para el atributo Origen dracónico. Éxito: la mitad del daño. Acciones adicionales
+## Acciones
 
-**Salto.** El semidragón gasta 3 m de movimiento para saltar hasta 9 m. Sirénido
+**Ataque múltiple.** El semidragón realiza dos ataques con sus garras.
+
+**Garra.** Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 6 (1d4 + 4) de daño cortante más 7 (2d6) de daño del tipo elegido para el atributo Origen dracónico.
+
+**Aliento de dragón (recarga 5–6).** Tirada de salvación de Destreza: CD 14, todas las criaturas en un cono de 9 m. Fallo: 28 (8d6) de daño del tipo elegido para el atributo Origen dracónico. Éxito: la mitad del daño.
+
+## Acciones adicionales
+
+**Salto.** El semidragón gasta 3 m de movimiento para saltar hasta 9 m.

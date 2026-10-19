@@ -33,8 +33,14 @@ page: 392
 
 ## Rasgos
 
-**Compresión.** El pulpo puede moverse a través de un espacio de solo 2,5 cm de ancho sin gastar movimiento adicional para hacerlo. Respirar en el agua. El pulpo solo puede respirar bajo el agua. Acciones
+**Compresión.** El pulpo puede moverse a través de un espacio de solo 2,5 cm de ancho sin gastar movimiento adicional para hacerlo.
 
-**Tentáculos.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 1 de daño contundente. Reacciones
+**Respirar en el agua.** El pulpo solo puede respirar bajo el agua.
+
+## Acciones
+
+**Tentáculos.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 1 de daño contundente.
+
+## Reacciones
 
 **Nube de tinta (1/día).** Detonante: una criatura termina su turno a 1,5 m o menos del pulpo mientras está bajo el agua. Respuesta: el pulpo suelta tinta que llena un cubo de 1,5 m de lado centrado en él y se mueve hasta su velocidad nadando. El cubo está muy oscuro durante 1 minuto o hasta que una corriente fuerte o un efecto similar disperse la tinta.

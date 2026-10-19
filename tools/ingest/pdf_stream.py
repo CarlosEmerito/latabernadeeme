@@ -38,14 +38,17 @@ def lines_from_xml(xml: Path) -> list[list[dict]]:
     pages: list[list[dict]] = []
     for page in tree.iter(f"{NS}page"):
         words: list[dict] = []
-        for w in page.iter(f"{NS}word"):
-            text = (w.text or "").strip()
-            if not text:
-                continue
-            x0, x1 = float(w.get("xMin", 0)), float(w.get("xMax", 0))
-            y0, y1 = float(w.get("yMin", 0)), float(w.get("yMax", 0))
-            col = 0 if x1 <= GUTTER + 4 else (1 if x0 >= GUTTER - 4 else 2)
-            words.append({"x0": x0, "x1": x1, "y0": y0, "y1": y1, "h": y1 - y0, "col": col, "t": text})
+        for nb, block in enumerate(page.iter(f"{NS}block")):
+            for w in block.iter(f"{NS}word"):
+                text = (w.text or "").strip()
+                if not text:
+                    continue
+                x0, x1 = float(w.get("xMin", 0)), float(w.get("xMax", 0))
+                y0, y1 = float(w.get("yMin", 0)), float(w.get("yMax", 0))
+                col = 0 if x1 <= GUTTER + 4 else (1 if x0 >= GUTTER - 4 else 2)
+                words.append(
+                    {"x0": x0, "x1": x1, "y0": y0, "y1": y1, "h": y1 - y0, "col": col, "t": text, "b": nb}
+                )
 
         buckets: dict[tuple[int, int], list[dict]] = defaultdict(list)
         for w in words:
@@ -74,6 +77,7 @@ def lines_from_xml(xml: Path) -> list[list[dict]]:
                     "y": round(min(w["y0"] for w in items), 1),
                     "size": round(sorted(w["h"] for w in items)[len(items) // 2], 1),
                     "bold": False,
+                    "block": items[0].get("b", -1),
                     "text": text.strip(),
                 }
             )

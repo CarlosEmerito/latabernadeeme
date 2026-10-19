@@ -33,7 +33,9 @@ page: 402
 
 ## Rasgos
 
-**Carga.** Si el caballito de mar se mueve al menos 6 m en línea recta hacia un objetivo y luego le impacta con un ataque de embestir durante el mismo turno, el objetivo recibe 7 (2d6) de daño contundente adicional. Si el objetivo es una criatura, deberá superar una tirada de salvación de Fuerza con CD 11 o será derribada. Respirar en el Agua. El caballito de mar solo puede respirar bajo el agua.
+**Carga.** Si el caballito de mar se mueve al menos 6 m en línea recta hacia un objetivo y luego le impacta con un ataque de embestir durante el mismo turno, el objetivo recibe 7 (2d6) de daño contundente adicional. Si el objetivo es una criatura, deberá superar una tirada de salvación de Fuerza con CD 11 o será derribada.
+
+**Respirar en el Agua.** El caballito de mar solo puede respirar bajo el agua.
 
 ## Acciones
 

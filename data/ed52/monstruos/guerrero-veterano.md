@@ -33,6 +33,12 @@ page: 335
 
 ## Acciones
 
-**Ataque múltiple.** El guerrero realiza dos ataques con su espadón o su ballesta pesada. Espadón. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante. Ballesta pesada. Tirada de ataque a distancia: +3, alcance 30/120 m. Acierto: 12 (2d10 + 1) de daño perforante. Reacciones
+**Ataque múltiple.** El guerrero realiza dos ataques con su espadón o su ballesta pesada.
 
-**Parada.** Detonante: una tirada de ataque cuerpo a cuerpo acierta al guerrero mientras sostiene un arma. Respuesta: el guerrero suma 2 a su CA contra ese ataque, lo que puede hacer que falle. Guiverno
+**Espadón.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante.
+
+**Ballesta pesada.** Tirada de ataque a distancia: +3, alcance 30/120 m. Acierto: 12 (2d10 + 1) de daño perforante.
+
+## Reacciones
+
+**Parada.** Detonante: una tirada de ataque cuerpo a cuerpo acierta al guerrero mientras sostiene un arma. Respuesta: el guerrero suma 2 a su CA contra ese ataque, lo que puede hacer que falle.

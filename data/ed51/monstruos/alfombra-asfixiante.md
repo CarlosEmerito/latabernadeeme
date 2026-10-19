@@ -33,7 +33,11 @@ page: 370
 
 ## Rasgos
 
-**Apariencia Falsa.** Mientras la alfombra permanezca inmóvil, no se la podrá distinguir de una alfombra normal y corriente. Susceptibilidad a la Antimagia. La alfombra estará incapacitada mientras se encuentre en el área de un campo antimagia. Si es el objetivo de disipar magia, la alfombra deberá superar una tirada de salvación de Constitución contra la CD de salvación de conjuros del lanzador o quedará inconsciente durante 1 minuto. Transferir Daño. Mientras esté agarrando a una criatura, la alfombra solo recibe la mitad del daño que se le inflija. La otra mitad del daño lo recibe la criatura agarrada.
+**Apariencia Falsa.** Mientras la alfombra permanezca inmóvil, no se la podrá distinguir de una alfombra normal y corriente.
+
+**Susceptibilidad a la Antimagia.** La alfombra estará incapacitada mientras se encuentre en el área de un campo antimagia. Si es el objetivo de disipar magia, la alfombra deberá superar una tirada de salvación de Constitución contra la CD de salvación de conjuros del lanzador o quedará inconsciente durante 1 minuto.
+
+**Transferir Daño.** Mientras esté agarrando a una criatura, la alfombra solo recibe la mitad del daño que se le inflija. La otra mitad del daño lo recibe la criatura agarrada.
 
 ## Acciones
 

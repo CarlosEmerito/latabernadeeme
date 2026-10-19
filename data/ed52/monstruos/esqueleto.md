@@ -31,6 +31,8 @@ srd: '5.2'
 page: 323
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Espada corta.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño perforante. Arco corto. Tirada de ataque a distancia: +5, alcance 24/96 m. Acierto: 6 (1d6 + 3) de daño perforante.
+**Espada corta.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño perforante.
+
+**Arco corto.** Tirada de ataque a distancia: +5, alcance 24/96 m. Acierto: 6 (1d6 + 3) de daño perforante.

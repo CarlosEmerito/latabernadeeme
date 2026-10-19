@@ -33,6 +33,14 @@ page: 372
 
 ## Rasgos
 
-**Sensibilidad a la luz solar.** Bajo la luz del sol, el tumulario tiene desventaja en las pruebas de característica y las tiradas de ataque. Acciones
+**Sensibilidad a la luz solar.** Bajo la luz del sol, el tumulario tiene desventaja en las pruebas de característica y las tiradas de ataque.
 
-**Ataque múltiple.** El tumulario realiza dos ataques con su espada necrótica o su arco necrótico en cualquier combinación. Puede sustituir un ataque por una acción de consumir vida. Espada necrótica. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño cortante más 4 (1d8) de daño necrótico. Arco necrótico. Tirada de ataque a distancia: +4, alcance 45/180 m. Acierto: 6 (1d8 + 2) de daño perforante más 4 (1d8) de daño necrótico. Consumir vida. Tirada de salvación de Constitución: CD 13, una criatura a 1,5 m o menos. Fallo: 6 (1d8 + 2) de daño necrótico y los puntos de golpe máximos del objetivo se reducirán en una cantidad igual al daño sufrido.
+## Acciones
+
+**Ataque múltiple.** El tumulario realiza dos ataques con su espada necrótica o su arco necrótico en cualquier combinación. Puede sustituir un ataque por una acción de consumir vida.
+
+**Espada necrótica.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño cortante más 4 (1d8) de daño necrótico.
+
+**Arco necrótico.** Tirada de ataque a distancia: +4, alcance 45/180 m. Acierto: 6 (1d8 + 2) de daño perforante más 4 (1d8) de daño necrótico.
+
+**Consumir vida.** Tirada de salvación de Constitución: CD 13, una criatura a 1,5 m o menos. Fallo: 6 (1d8 + 2) de daño necrótico y los puntos de golpe máximos del objetivo se reducirán en una cantidad igual al daño sufrido.

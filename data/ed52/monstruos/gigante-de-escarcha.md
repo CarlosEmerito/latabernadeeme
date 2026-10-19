@@ -33,6 +33,12 @@ page: 327
 
 ## Acciones
 
-**Ataque múltiple.** El gigante realiza dos ataques con su hacha escarchada o su gran arco en cualquier combinación. Hacha escarchada. Tirada de ataque cuerpo a cuerpo: +9, alcance 3 m. Acierto: 19 (2d12 + 6) de daño cortante más 9 (2d8) de daño de frío. Gran arco. Tirada de ataque a distancia: +9, alcance 45/180 m. Acierto: 17 (2d10 + 6) de daño perforante más 7 (2d6) de daño de frío y la velocidad del objetivo se reducirá en 3 m hasta el final de su siguiente turno. Acciones adicionales
+**Ataque múltiple.** El gigante realiza dos ataques con su hacha escarchada o su gran arco en cualquier combinación.
 
-**Grito de guerra (recarga 5–6).** El gigante o una criatura de su elección que pueda verlo u oírlo obtiene 16 (2d10 + 5) puntos de golpe temporales y ventaja en las tiradas de ataque hasta el principio del siguiente turno del gigante. Gigante de fuego
+**Hacha escarchada.** Tirada de ataque cuerpo a cuerpo: +9, alcance 3 m. Acierto: 19 (2d12 + 6) de daño cortante más 9 (2d8) de daño de frío.
+
+**Gran arco.** Tirada de ataque a distancia: +9, alcance 45/180 m. Acierto: 17 (2d10 + 6) de daño perforante más 7 (2d6) de daño de frío y la velocidad del objetivo se reducirá en 3 m hasta el final de su siguiente turno.
+
+## Acciones adicionales
+
+**Grito de guerra (recarga 5–6).** El gigante o una criatura de su elección que pueda verlo u oírlo obtiene 16 (2d10 + 5) puntos de golpe temporales y ventaja en las tiradas de ataque hasta el principio del siguiente turno del gigante.

@@ -33,10 +33,14 @@ page: 414
 
 ## Rasgos
 
-**Atacar en Manada.** El lobo tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del lobo se encuentra a 1,5 m o menos de la criatura y no está incapacitado. Camuflarse en la Nieve. El lobo tiene ventaja en las pruebas de Destreza (Sigilo) para esconderse en terrenos cubiertos de nieve.
+**Atacar en Manada.** El lobo tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del lobo se encuentra a 1,5 m o menos de la criatura y no está incapacitado.
+
+**Camuflarse en la Nieve.** El lobo tiene ventaja en las pruebas de Destreza (Sigilo) para esconderse en terrenos cubiertos de nieve.
 
 **Oído y Olfato Agudos.** El lobo tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído o del olfato.
 
 ## Acciones
 
 **Mordisco.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 11 (2d6 + 4) de daño perforante. Si el objetivo es una
+
+**Aliento gélido (Recarga 5–6).** El lobo exhala una bocanada de viento gélido en un cono de 4,5 m. Todas las criaturas situadas en la zona deberán hacer una tirada de salvación de Destreza con CD 12; sufrirán 18 (4d8) de daño de frío si la fallan o la mitad del daño si la superan.

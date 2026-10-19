@@ -31,6 +31,12 @@ srd: '5.2'
 page: 323
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Espada corta.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante más 7 (2d6) de daño de veneno. Ballesta de mano. Tirada de ataque a distancia: +4, alcance 9/36 m. Acierto: 5 (1d6 + 2) de daño perforante más 7 (2d6) de daño de veneno. Acciones adicionales Acción astuta. El espía realiza las acciones de correr, destrabarse o esconderse. Esqueletos
+**Espada corta.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante más 7 (2d6) de daño de veneno.
+
+**Ballesta de mano.** Tirada de ataque a distancia: +4, alcance 9/36 m. Acierto: 5 (1d6 + 2) de daño perforante más 7 (2d6) de daño de veneno.
+
+## Acciones adicionales
+
+**Acción astuta.** El espía realiza las acciones de correr, destrabarse o esconderse.

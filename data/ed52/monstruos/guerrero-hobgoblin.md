@@ -37,4 +37,6 @@ page: 338
 
 ## Acciones
 
-**Espada larga.** Tirada de ataque cuerpo a cuerpo: +3, alcance 1,5 m. Acierto: 12 (2d10 + 1) de daño cortante. Arco largo. Tirada de ataque a distancia: +3, alcance 45/180 m. Acierto: 5 (1d8 + 1) de daño perforante más 7 (3d4) de daño de veneno.
+**Espada larga.** Tirada de ataque cuerpo a cuerpo: +3, alcance 1,5 m. Acierto: 12 (2d10 + 1) de daño cortante.
+
+**Arco largo.** Tirada de ataque a distancia: +3, alcance 45/180 m. Acierto: 5 (1d8 + 1) de daño perforante más 7 (3d4) de daño de veneno.

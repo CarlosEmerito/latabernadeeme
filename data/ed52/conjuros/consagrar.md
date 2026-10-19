@@ -18,7 +18,9 @@ Tocas un punto e impregnas una zona a su alrededor con poder sagrado o impío. E
 
 Protección sagrada. Elige cualquiera de los siguientes tipos de criatura: aberración, celestial, elemental, feérico, infernal o muerto viviente. Las criaturas de los tipos elegidos no podrán entrar en la zona voluntariamente, y cualquier criatura poseída o con los estados de asustada o hechizada a causa de ellas dejarán de estarlo mientras permanezcan en la zona.
 
-Efecto adicional. Vinculas un efecto adicional de la siguiente lista: Coraje. Las criaturas de cualesquiera tipos que
+Efecto adicional. Vinculas un efecto adicional de la siguiente lista:
+
+Coraje. Las criaturas de cualesquiera tipos que
 
 elijas no podrán obtener el estado de asustadas dentro de la zona. Descanso plácido. Los cadáveres enterrados en la
 

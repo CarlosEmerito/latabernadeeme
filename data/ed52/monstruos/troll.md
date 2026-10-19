@@ -33,9 +33,15 @@ page: 371
 
 ## Rasgos
 
-**Miembros repugnantes (4/día).** Si el troll termina cualquier turno maltrecho y ha sufrido 15 o más de daño cortante durante ese turno, uno de los miembros del troll será amputado, caerá en el espacio del trol y se convertirá en una extremidad de troll. La extremidad actuará inmediatamente después del turno del troll. El troll tendrá 1 nivel de cansancio por cada extremidad que le falte y le crecerán miembros de repuesto la siguiente vez que recupere puntos de golpe. Regeneración. El troll recupera 15 puntos de golpe al principio de cada uno de sus turnos. Si recibe daño de ácido o de fuego, este atributo no funcionará en su siguiente turno. El troll solo morirá si empieza su turno con 0 puntos de golpe y no se regenera. Acciones
+**Miembros repugnantes (4/día).** Si el troll termina cualquier turno maltrecho y ha sufrido 15 o más de daño cortante durante ese turno, uno de los miembros del troll será amputado, caerá en el espacio del trol y se convertirá en una extremidad de troll. La extremidad actuará inmediatamente después del turno del troll. El troll tendrá 1 nivel de cansancio por cada extremidad que le falte y le crecerán miembros de repuesto la siguiente vez que recupere puntos de golpe.
 
-**Ataque múltiple.** El troll realiza tres ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 11 (2d6 + 4) de daño cortante.
+**Regeneración.** El troll recupera 15 puntos de golpe al principio de cada uno de sus turnos. Si recibe daño de ácido o de fuego, este atributo no funcionará en su siguiente turno. El troll solo morirá si empieza su turno con 0 puntos de golpe y no se regenera.
+
+## Acciones
+
+**Ataque múltiple.** El troll realiza tres ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +7, alcance 3 m. Acierto: 11 (2d6 + 4) de daño cortante.
 
 ## Acciones adicionales
 

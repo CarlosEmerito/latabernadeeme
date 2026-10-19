@@ -33,7 +33,9 @@ page: 389
 
 ## Acciones
 
-**Ataque múltiple.** El mamut realiza dos ataques con sus colmillos. Colmillos. Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 18 (2d10 + 7) de daño perforante. Si el objetivo es una criatura Enorme o más pequeña y el mamut recorre al menos 6 m en línea recta hacia ella justo antes de acertarle, tendrá el estado de derribada.
+**Ataque múltiple.** El mamut realiza dos ataques con sus colmillos.
+
+**Colmillos.** Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 18 (2d10 + 7) de daño perforante. Si el objetivo es una criatura Enorme o más pequeña y el mamut recorre al menos 6 m en línea recta hacia ella justo antes de acertarle, tendrá el estado de derribada.
 
 ## Acciones adicionales
 

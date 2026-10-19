@@ -33,4 +33,4 @@ page: 341
 
 ## Acciones
 
-**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño perforante y la siguiente tirada de ataque realizada contra el objetivo antes del principio del siguiente turno del huargo tendrá ventaja. Ifrit
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño perforante y la siguiente tirada de ataque realizada contra el objetivo antes del principio del siguiente turno del huargo tendrá ventaja.

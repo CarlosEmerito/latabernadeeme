@@ -24,7 +24,15 @@ Precipitaciones
 
 Nivel Estado
 
-1 Despejado 2 Nubes escasas 3 Cielo cubierto o niebla de superficie 4 Lluvia, granizo o nieve 5 Lluvia torrencial, tormenta de granizo
+1 Despejado
+
+2 Nubes escasas
+
+3 Cielo cubierto o niebla de superficie
+
+4 Lluvia, granizo o nieve
+
+5 Lluvia torrencial, tormenta de granizo
 
 o ventisca
 
@@ -32,4 +40,14 @@ Temperatura Viento
 
 Nivel Estado Nivel Estado
 
-1 Ola de calor 1 Calmo 2 Caliente 2 Viento moderado 3 Templado 3 Viento fuerte 4 Fresco 4 Galerna 5 Frío 5 Tempestad 6 Frío extremo
+1 Ola de calor 1 Calmo
+
+2 Caliente 2 Viento moderado
+
+3 Templado 3 Viento fuerte
+
+4 Fresco 4 Galerna
+
+5 Frío 5 Tempestad
+
+6 Frío extremo

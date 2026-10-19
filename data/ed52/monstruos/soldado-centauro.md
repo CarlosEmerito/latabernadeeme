@@ -33,6 +33,12 @@ page: 290
 
 ## Acciones
 
-**Ataque múltiple.** El centauro realiza dos ataques con su pica o su arco largo en cualquier combinación. Pica. Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 9 (1d10 + 4) de daño perforante. Arco largo. Tirada de ataque a distancia: +4, alcance 45/180 m. Acierto: 6 (1d8 + 2) de daño perforante. Acciones adicionales
+**Ataque múltiple.** El centauro realiza dos ataques con su pica o su arco largo en cualquier combinación.
+
+**Pica.** Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 9 (1d10 + 4) de daño perforante.
+
+**Arco largo.** Tirada de ataque a distancia: +4, alcance 45/180 m. Acierto: 6 (1d8 + 2) de daño perforante.
+
+## Acciones adicionales
 
 **Carga pisoteadora (recarga 5–6).** El centauro se mueve hasta su velocidad sin provocar ataques de oportunidad y puede atravesar los espacios de criaturas Medianas o más pequeñas. Todas las criaturas en cuyo espacio entre el centauro se convertirán una vez en objetivos del siguiente efecto. Tirada de salvación de Fuerza: CD 14. Fallo: 7 (1d6 + 4) de daño contundente y el objetivo tiene el estado de derribado.

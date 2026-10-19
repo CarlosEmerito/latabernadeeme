@@ -33,4 +33,6 @@ page: 358
 
 ## Acciones
 
-**Ataque múltiple.** El perro del inframundo realiza dos ataques de mordisco. Mordisco. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 4 (1d4 + 2) de daño perforante. Si el objetivo es una criatura, sufre el siguiente efecto. Tirada de salvación de Constitución: CD 12. Primer fallo: el objetivo tendrá el estado de envenenado. Mientras el objetivo esté envenenado, sus puntos de golpe máximos no volverán a la normalidad cuando termine un descanso largo. Repetirá la tirada de salvación cada vez que pasen 24 horas y, si tiene éxito, se librará del efecto. Fallos posteriores: los puntos de golpe máximos del objetivo envenenado se reducirán en 5 (1d10). Perro intermitente
+**Ataque múltiple.** El perro del inframundo realiza dos ataques de mordisco.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 4 (1d4 + 2) de daño perforante. Si el objetivo es una criatura, sufre el siguiente efecto. Tirada de salvación de Constitución: CD 12. Primer fallo: el objetivo tendrá el estado de envenenado. Mientras el objetivo esté envenenado, sus puntos de golpe máximos no volverán a la normalidad cuando termine un descanso largo. Repetirá la tirada de salvación cada vez que pasen 24 horas y, si tiene éxito, se librará del efecto. Fallos posteriores: los puntos de golpe máximos del objetivo envenenado se reducirán en 5 (1d10).

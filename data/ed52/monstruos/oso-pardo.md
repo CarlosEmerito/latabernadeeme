@@ -33,4 +33,8 @@ page: 390
 
 ## Acciones
 
-**Ataque múltiple.** El oso realiza un ataque de mordisco y uno con sus garras. Garra. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 5 (1d4 + 3) de daño cortante. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada. Mordisco. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño perforante.
+**Ataque múltiple.** El oso realiza un ataque de mordisco y uno con sus garras.
+
+**Garra.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 5 (1d4 + 3) de daño cortante. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño perforante.

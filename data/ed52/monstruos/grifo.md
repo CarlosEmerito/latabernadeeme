@@ -33,4 +33,6 @@ page: 334
 
 ## Acciones
 
-**Ataque múltiple.** El grifo realiza dos ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 8 (1d8 + 4) de daño perforante. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de agarrada (CD 14 para escapar) por ambas garras delanteras del grifo.
+**Ataque múltiple.** El grifo realiza dos ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 8 (1d8 + 4) de daño perforante. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de agarrada (CD 14 para escapar) por ambas garras delanteras del grifo.

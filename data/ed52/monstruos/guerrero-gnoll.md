@@ -33,6 +33,10 @@ page: 330
 
 ## Acciones
 
-**Desgarro.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante. Arco óseo. Tirada de ataque a distancia: +3, alcance 45/180 m. Acierto: 6 (1d10 + 1) de daño perforante. Acciones adicionales
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante.
+
+**Arco óseo.** Tirada de ataque a distancia: +3, alcance 45/180 m. Acierto: 6 (1d10 + 1) de daño perforante.
+
+## Acciones adicionales
 
 **Rabia (1/día).** Inmediatamente después de hacer daño a una criatura que ya esté maltrecha, el gnoll se moverá hasta la mitad de su velocidad y realizará un ataque de desgarro.

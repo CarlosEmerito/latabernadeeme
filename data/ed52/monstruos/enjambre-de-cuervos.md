@@ -33,6 +33,10 @@ page: 384
 
 ## Rasgos
 
-**Enjambre.** El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa un cuervo Diminuto. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales. Acciones
+**Enjambre.** El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa un cuervo Diminuto. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales.
 
-**Picos.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante o 2 (1d4) de daño perforante si el enjambre está maltrecho. Cacofonía (recarga 6). Tirada de salvación de Sabiduría: CD 10, una criatura en el espacio del enjambre. Fallo: el objetivo tendrá el estado de ensordecido hasta el principio del siguiente turno del enjambre. Mientras esté ensordecido, el objetivo también tendrá desventaja en las pruebas de característica y las tiradas de ataque.
+## Acciones
+
+**Picos.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño perforante o 2 (1d4) de daño perforante si el enjambre está maltrecho.
+
+**Cacofonía (recarga 6).** Tirada de salvación de Sabiduría: CD 10, una criatura en el espacio del enjambre. Fallo: el objetivo tendrá el estado de ensordecido hasta el principio del siguiente turno del enjambre. Mientras esté ensordecido, el objetivo también tendrá desventaja en las pruebas de característica y las tiradas de ataque.

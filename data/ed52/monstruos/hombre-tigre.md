@@ -33,8 +33,18 @@ page: 340
 
 ## Acciones
 
-**Ataque múltiple.** El hombre tigre realiza dos ataques con su arañazo o su arco largo en cualquier combinación. Puede sustituir uno de ellos por un ataque de mordisco. Arañazo. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante. Mordisco (solo en forma de tigre o híbrida). Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 12 (2d8 + 3) de daño perforante. Si el objetivo es un
+**Ataque múltiple.** El hombre tigre realiza dos ataques con su arañazo o su arco largo en cualquier combinación. Puede sustituir uno de ellos por un ataque de mordisco.
+
+**Arañazo.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante.
+
+**Mordisco (solo en forma de tigre o híbrida).** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 12 (2d8 + 3) de daño perforante. Si el objetivo es un
 
 **humanoide, sufre el siguiente efecto.** Tirada de salvación de Constitución: CD 13. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se
 
-**Cambio de forma.** El hombre tigre adopta la forma de un híbrido de tigre-humanoide Grande o de un tigre Grande, o recupera su verdadera forma humanoide. Su perfil, salvo por el tamaño, es el mismo en todas las formas. Cualquier equipo que vista o lleve no se transformará. Merodear (solo en forma de tigre o híbrida). El hombre tigre se mueve hasta su velocidad sin provocar ataques de oportunidad. Al final de este movimiento, puede usar la acción de esconderse. Homúnculo
+**Arco largo (solo en forma humanoide o híbrida).** Tirada de ataque a distancia: +4, alcance 45/180 m. Acierto: 11 (2d8 + 2) de daño perforante.
+
+## Acciones adicionales
+
+**Cambio de forma.** El hombre tigre adopta la forma de un híbrido de tigre-humanoide Grande o de un tigre Grande, o recupera su verdadera forma humanoide. Su perfil, salvo por el tamaño, es el mismo en todas las formas. Cualquier equipo que vista o lleve no se transformará.
+
+**Merodear (solo en forma de tigre o híbrida).** El hombre tigre se mueve hasta su velocidad sin provocar ataques de oportunidad. Al final de este movimiento, puede usar la acción de esconderse.

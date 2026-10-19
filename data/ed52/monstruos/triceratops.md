@@ -33,4 +33,6 @@ page: 398
 
 ## Acciones
 
-**Ataque múltiple.** El triceratops realiza dos ataques de cornada. Cornada. Tirada de ataque cuerpo a cuerpo: +9, alcance 1,5 m. Acierto: 19 (2d12 + 6) de daño perforante. Si el objetivo es una criatura Enorme o más pequeña y el triceratops recorre al menos 6 m en línea recta hacia ella justo antes de acertarle, esta recibirá 9 (2d8) de daño perforante adicional y tendrá el estado de derribada.
+**Ataque múltiple.** El triceratops realiza dos ataques de cornada.
+
+**Cornada.** Tirada de ataque cuerpo a cuerpo: +9, alcance 1,5 m. Acierto: 19 (2d12 + 6) de daño perforante. Si el objetivo es una criatura Enorme o más pequeña y el triceratops recorre al menos 6 m en línea recta hacia ella justo antes de acertarle, esta recibirá 9 (2d8) de daño perforante adicional y tendrá el estado de derribada.

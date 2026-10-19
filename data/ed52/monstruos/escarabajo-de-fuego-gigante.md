@@ -33,4 +33,8 @@ page: 385
 
 ## Rasgos
 
-**Atributos Iluminación.** El escarabajo emite luz brillante en un radio de 3 m y luz tenue 3 m más allá. Acciones Mordisco. Tirada de ataque cuerpo a cuerpo: +1, alcance 1,5 m. Acierto: 1 de daño de fuego.
+**Iluminación.** El escarabajo emite luz brillante en un radio de 3 m y luz tenue 3 m más allá.
+
+## Acciones
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +1, alcance 1,5 m. Acierto: 1 de daño de fuego.

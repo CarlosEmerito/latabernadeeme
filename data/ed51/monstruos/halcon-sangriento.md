@@ -33,7 +33,9 @@ page: 411
 
 ## Rasgos
 
-**Atacar en Manada.** El halcón tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del halcón se encuentra a 1,5 m o menos de la criatura y no está incapacitado. Vista Aguda. El halcón tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan de la vista.
+**Atacar en Manada.** El halcón tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del halcón se encuentra a 1,5 m o menos de la criatura y no está incapacitado.
+
+**Vista Aguda.** El halcón tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan de la vista.
 
 ## Acciones
 

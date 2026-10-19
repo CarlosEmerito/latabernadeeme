@@ -31,6 +31,6 @@ srd: '5.2'
 page: 360
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Desgarrar.** Tirada de ataque cuerpo a cuerpo: +1, alcance 1,5 m. Acierto: 1 de daño cortante. Plebeyo
+**Desgarrar.** Tirada de ataque cuerpo a cuerpo: +1, alcance 1,5 m. Acierto: 1 de daño cortante.

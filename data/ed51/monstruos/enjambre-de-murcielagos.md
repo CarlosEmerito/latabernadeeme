@@ -33,7 +33,11 @@ page: 408
 
 ## Rasgos
 
-**Ecolocalización.** El enjambre perderá su visión ciega si está ensordecido. Enjambre. El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa un murciélago Diminuto. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales. Oído Agudo. El enjambre tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído.
+**Ecolocalización.** El enjambre perderá su visión ciega si está ensordecido.
+
+**Enjambre.** El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa un murciélago Diminuto. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales.
+
+**Oído Agudo.** El enjambre tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído.
 
 ## Acciones
 

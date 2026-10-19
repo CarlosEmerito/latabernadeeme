@@ -37,7 +37,9 @@ page: 353
 
 ## Acciones
 
-**Ataque múltiple.** El hombre lagarto realiza dos ataques cuerpo a cuerpo, cada uno con un arma distinta. Escudo con pinchos. Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
+**Ataque múltiple.** El hombre lagarto realiza dos ataques cuerpo a cuerpo, cada uno con un arma distinta.
+
+**Escudo con pinchos.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
 
 **Garrote pesado.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño contundente.
 

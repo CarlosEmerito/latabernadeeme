@@ -33,4 +33,8 @@ page: 397
 
 ## Acciones
 
-**Ataque múltiple.** El tiranosaurio realiza un ataque de mordisco y uno con su cola. Cola. Tirada de ataque cuerpo a cuerpo: +10, alcance 4,5 m. Acierto: 25 (4d8 + 7) de daño contundente. Si el objetivo es una criatura Enorme o más pequeña, tendrá el estado de derribada. Mordisco. Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 33 (4d12 + 7) de daño perforante. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 17 para escapar). Mientras esté agarrada, tendrá el estado de apresada y no podrá ser objetivo de la cola del tiranosaurio.
+**Ataque múltiple.** El tiranosaurio realiza un ataque de mordisco y uno con su cola.
+
+**Cola.** Tirada de ataque cuerpo a cuerpo: +10, alcance 4,5 m. Acierto: 25 (4d8 + 7) de daño contundente. Si el objetivo es una criatura Enorme o más pequeña, tendrá el estado de derribada.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 33 (4d12 + 7) de daño perforante. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 17 para escapar). Mientras esté agarrada, tendrá el estado de apresada y no podrá ser objetivo de la cola del tiranosaurio.

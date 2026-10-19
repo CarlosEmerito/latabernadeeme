@@ -35,4 +35,4 @@ page: 324
 
 **Probóscide.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño perforante y la estirge se engancha al objetivo. Mientras esté enganchada, no podrá hacer ataques con su probóscide y el objetivo sufrirá 5 (2d4) de daño necrótico al principio de cada turno de la estirge.
 
-**La estirge puede usar 1,5 m de su movimiento para desengancharse.** Como acción, el objetivo o una criatura a 1,5 m o menos de él puede desenganchar a la estirge. Ettercap
+**La estirge puede usar 1,5 m de su movimiento para desengancharse.** Como acción, el objetivo o una criatura a 1,5 m o menos de él puede desenganchar a la estirge.

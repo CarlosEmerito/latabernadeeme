@@ -33,7 +33,9 @@ page: 372
 
 ## Rasgos
 
-**Ataque por Sorpresa.** Si el osgo sorprende a una criatura y la impacta con un ataque durante el primer asalto del combate, ese ataque causa 7 (2d6) de daño adicional. Bruto. Las armas cuerpo a cuerpo infligen un dado adicional de su daño cuando el osgo impacta con ellas (ya incluido en el ataque).
+**Ataque por Sorpresa.** Si el osgo sorprende a una criatura y la impacta con un ataque durante el primer asalto del combate, ese ataque causa 7 (2d6) de daño adicional.
+
+**Bruto.** Las armas cuerpo a cuerpo infligen un dado adicional de su daño cuando el osgo impacta con ellas (ya incluido en el ataque).
 
 ## Acciones
 

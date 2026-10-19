@@ -33,7 +33,11 @@ page: 374
 
 ## Rasgos
 
-**Resistencia Mágica.** El pseudodragón tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos. Sentidos Agudos. El pseudodragón tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan de la vista, el oído o el olfato. Telepatía Limitada. El pseudodragón puede comunicarse mediante ideas, emociones o imágenes simples, mágicamente y de forma telepática, con cualquier criatura que esté a 30 m o menos de él y pueda entender al menos un idioma.
+**Resistencia Mágica.** El pseudodragón tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
+
+**Sentidos Agudos.** El pseudodragón tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan de la vista, el oído o el olfato.
+
+**Telepatía Limitada.** El pseudodragón puede comunicarse mediante ideas, emociones o imágenes simples, mágicamente y de forma telepática, con cualquier criatura que esté a 30 m o menos de él y pueda entender al menos un idioma.
 
 ## Acciones
 

@@ -33,7 +33,9 @@ page: 421
 
 ## Rasgos
 
-**Atacar en Manada.** La rata tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados de la rata se encuentra a 1,5 m o menos de la criatura y no está incapacitado. Olfato Agudo. La rata tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del olfato.
+**Atacar en Manada.** La rata tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados de la rata se encuentra a 1,5 m o menos de la criatura y no está incapacitado.
+
+**Olfato Agudo.** La rata tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del olfato.
 
 ## Acciones
 

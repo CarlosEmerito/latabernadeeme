@@ -33,8 +33,20 @@ page: 346
 
 ## Rasgos
 
-**Absorción de Ácido.** Siempre que reciba daño de ácido, el gólem no sufre ese daño y recupera una cantidad de puntos de golpe igual al daño de ácido infligido. Armas Mágicas. Los ataques con arma del gólem son mágicos. Berserk. Si el gólem empieza su turno con 60 puntos de golpe o menos, tira 1d6. Si sacas un 6, el gólem se ve poseído por una furia berserk. En cada uno de los turnos que pase en este estado, el gólem atacará a la criatura más cercana que pueda ver. Si no hay ninguna criatura lo bastante próxima como para que se mueva hasta ella y la ataque, el gólem atacará a un objeto, dando preferencia a los que son más pequeños que él. Una vez el gólem ha entrado en estado berserk, seguirá bajo sus efectos hasta que sea destruido o recupere todos sus puntos de golpe. Forma Inmutable. El gólem es inmune a cualquier conjuro o efecto que fuera a alterar su forma. Resistencia Mágica. El gólem tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
+**Absorción de Ácido.** Siempre que reciba daño de ácido, el gólem no sufre ese daño y recupera una cantidad de puntos de golpe igual al daño de ácido infligido.
+
+**Armas Mágicas.** Los ataques con arma del gólem son mágicos.
+
+**Berserk.** Si el gólem empieza su turno con 60 puntos de golpe o menos, tira 1d6. Si sacas un 6, el gólem se ve poseído por una furia berserk. En cada uno de los turnos que pase en este estado, el gólem atacará a la criatura más cercana que pueda ver. Si no hay ninguna criatura lo bastante próxima como para que se mueva hasta ella y la ataque, el gólem atacará a un objeto, dando preferencia a los que son más pequeños que él. Una vez el gólem ha entrado en estado berserk, seguirá bajo sus efectos hasta que sea destruido o recupere todos sus puntos de golpe.
+
+**Forma Inmutable.** El gólem es inmune a cualquier conjuro o efecto que fuera a alterar su forma.
+
+**Resistencia Mágica.** El gólem tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
 
 ## Acciones
 
-**Ataque múltiple.** El gólem realiza dos ataques con su golpe. Golpe. Ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 1,5 m, un objetivo. Impacto: 16 (2d10 + 5) de daño contundente. Si el objetivo
+**Ataque múltiple.** El gólem realiza dos ataques con su golpe.
+
+**Golpe.** Ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 1,5 m, un objetivo. Impacto: 16 (2d10 + 5) de daño contundente. Si el objetivo
+
+**Acelerar (recarga 5–6).** Hasta el final de su siguiente turno, el gólem obtiene mágicamente un bonificador de +2 a su CA, ventaja en tiradas de salvación de Destreza y la capacidad de realizar su golpe como acción adicional.

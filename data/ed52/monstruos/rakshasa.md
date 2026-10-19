@@ -33,8 +33,16 @@ page: 362
 
 ## Rasgos
 
-**Recuperación infernal.** Si el rakshasa muere fuera de los Nueve Infiernos, su cuerpo se convierte en icor, obtiene un cuerpo nuevo al instante y revive con todos sus puntos de golpe en algún lugar de los Nueve Infiernos. Resistencia mágica superior. El rakshasa supera automáticamente las tiradas de salvación contra conjuros y otros efectos mágicos, y las tiradas de ataque de conjuros contra él fallan automáticamente. Sin el permiso del rakshasa, ningún conjuro puede observarlo desde lejos ni detectar sus pensamientos, tipo de criatura o alineamiento. Acciones
+**Recuperación infernal.** Si el rakshasa muere fuera de los Nueve Infiernos, su cuerpo se convierte en icor, obtiene un cuerpo nuevo al instante y revive con todos sus puntos de golpe en algún lugar de los Nueve Infiernos.
 
-**Ataque múltiple.** El rakshasa realiza tres ataques con su toque maldito. Toque maldito. Tirada de ataque cuerpo a cuerpo: +10, alcance 1,5 m. Acierto: 12 (2d6 + 5) de daño cortante más 19 (3d12) de daño necrótico. Si el objetivo es una criatura, quedará maldita. Mientras esté maldita, la criatura no obtendrá beneficio alguno por finalizar un descanso corto o largo. Lanzamiento de conjuros. El rakshasa lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 18): A voluntad: detectar magia, detectar pensamientos, dis-
+**Resistencia mágica superior.** El rakshasa supera automáticamente las tiradas de salvación contra conjuros y otros efectos mágicos, y las tiradas de ataque de conjuros contra él fallan automáticamente. Sin el permiso del rakshasa, ningún conjuro puede observarlo desde lejos ni detectar sus pensamientos, tipo de criatura o alineamiento.
 
-**mayor, invisibilidad, volar Orden siniestra (recarga 5–6).** Tirada de salvación de Sabiduría: CD 18, todos los enemigos en una emanación de 9 m que se origina en el rakshasa. Fallo: 28 (8d6) de daño psíquico y el objetivo tendrá los estados de asustado e incapacitado hasta el principio del siguiente turno del rakshasa.
+## Acciones
+
+**Ataque múltiple.** El rakshasa realiza tres ataques con su toque maldito.
+
+**Toque maldito.** Tirada de ataque cuerpo a cuerpo: +10, alcance 1,5 m. Acierto: 12 (2d6 + 5) de daño cortante más 19 (3d12) de daño necrótico. Si el objetivo es una criatura, quedará maldita. Mientras esté maldita, la criatura no obtendrá beneficio alguno por finalizar un descanso corto o largo.
+
+**Lanzamiento de conjuros.** El rakshasa lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 18):
+
+**Orden siniestra (recarga 5–6).** Tirada de salvación de Sabiduría: CD 18, todos los enemigos en una emanación de 9 m que se origina en el rakshasa. Fallo: 28 (8d6) de daño psíquico y el objetivo tendrá los estados de asustado e incapacitado hasta el principio del siguiente turno del rakshasa.

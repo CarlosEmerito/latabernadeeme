@@ -33,8 +33,14 @@ page: 369
 
 ## Rasgos
 
-**Amorfa.** La sombra puede moverse a través de un espacio de solo 2,5 cm de ancho sin gastar movimiento adicional para hacerlo. Debilidad a la luz solar. Bajo la luz del sol, la sombra tiene desventaja en las pruebas con d20. Acciones
+**Amorfa.** La sombra puede moverse a través de un espacio de solo 2,5 cm de ancho sin gastar movimiento adicional para hacerlo.
 
-**Zarpazo debilitador.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño necrótico y la puntuación de Fuerza del objetivo se reduce en 1d4. Si su Fuerza se reduce a 0, morirá. Si un humanoide muere a causa de este ataque, una sombra surgirá de su cadáver tras 1d4 horas. Acciones adicionales
+**Debilidad a la luz solar.** Bajo la luz del sol, la sombra tiene desventaja en las pruebas con d20.
 
-**Esconderse en las sombras.** Con luz tenue o en la oscuridad, la sombra realiza la acción de esconderse. Súcubo
+## Acciones
+
+**Zarpazo debilitador.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño necrótico y la puntuación de Fuerza del objetivo se reduce en 1d4. Si su Fuerza se reduce a 0, morirá. Si un humanoide muere a causa de este ataque, una sombra surgirá de su cadáver tras 1d4 horas.
+
+## Acciones adicionales
+
+**Esconderse en las sombras.** Con luz tenue o en la oscuridad, la sombra realiza la acción de esconderse.

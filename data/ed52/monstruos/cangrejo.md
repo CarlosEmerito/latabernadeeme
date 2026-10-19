@@ -33,4 +33,8 @@ page: 381
 
 ## Rasgos
 
-**Atributos Anfibio.** El cangrejo puede respirar tanto dentro como fuera del agua. Acciones Pinza. Tirada de ataque cuerpo a cuerpo: +2, alcance 1,5 m. Acierto: 1 de daño contundente.
+**Anfibio.** El cangrejo puede respirar tanto dentro como fuera del agua.
+
+## Acciones
+
+**Pinza.** Tirada de ataque cuerpo a cuerpo: +2, alcance 1,5 m. Acierto: 1 de daño contundente.

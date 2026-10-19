@@ -33,4 +33,10 @@ page: 392
 
 ## Rasgos
 
-**Atributos Anfibia.** La rana puede respirar tanto dentro como fuera del agua. Saltar sin carrera. La rana puede hacer un salto de longitud de hasta 3 m o un salto de altura de hasta 1,5 m, tanto si ha cogido carrerilla como si no. Acciones Mordisco. Tirada de ataque cuerpo a cuerpo: +3, alcance 1,5 m. Acierto: 1 de daño perforante.
+**Anfibia.** La rana puede respirar tanto dentro como fuera del agua.
+
+**Saltar sin carrera.** La rana puede hacer un salto de longitud de hasta 3 m o un salto de altura de hasta 1,5 m, tanto si ha cogido carrerilla como si no.
+
+## Acciones
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +3, alcance 1,5 m. Acierto: 1 de daño perforante.

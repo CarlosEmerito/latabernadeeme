@@ -33,7 +33,11 @@ page: 335
 
 ## Rasgos
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica del drow es el Carisma (CD de salvación de conjuros 11). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: luces danzantes 1/día cada uno: fuego feérico, oscuridad Linaje Feérico. El drow tiene ventaja en las tiradas de salvación para evitar ser hechizado y la magia no puede dormirlo. Sensibilidad a la Luz Solar. Bajo la luz del sol, el drow tiene desventaja en las tiradas de ataque y las pruebas de Sabiduría (Percepción) que dependan de la vista.
+**Lanzamiento de Conjuros Innato.** La aptitud mágica del drow es el Carisma (CD de salvación de conjuros 11). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+
+**Linaje Feérico.** El drow tiene ventaja en las tiradas de salvación para evitar ser hechizado y la magia no puede dormirlo.
+
+**Sensibilidad a la Luz Solar.** Bajo la luz del sol, el drow tiene desventaja en las tiradas de ataque y las pruebas de Sabiduría (Percepción) que dependan de la vista.
 
 ## Acciones
 

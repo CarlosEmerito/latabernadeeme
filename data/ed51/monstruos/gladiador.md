@@ -33,11 +33,17 @@ page: 433
 
 ## Rasgos
 
-**Bruto.** Las armas cuerpo a cuerpo infligen un dado adicional de su daño cuando el gladiador impacta con ellas (ya incluido en el ataque). Valiente. El gladiador tiene ventaja en las tiradas de salvación para evitar que lo asusten.
+**Bruto.** Las armas cuerpo a cuerpo infligen un dado adicional de su daño cuando el gladiador impacta con ellas (ya incluido en el ataque).
+
+**Valiente.** El gladiador tiene ventaja en las tiradas de salvación para evitar que lo asusten.
 
 ## Acciones
 
-**Ataque múltiple.** El gladiador realiza tres ataques cuerpo a cuerpo o dos ataques a distancia. Golpe con escudo. Ataque con arma cuerpo a cuerpo: +7 a impactar, alcance 1,5 m, una criatura. Impacto: 9 (2d4 + 4) de daño contundente. Si el objetivo es una
+**Ataque múltiple.** El gladiador realiza tres ataques cuerpo a cuerpo o dos ataques a distancia.
+
+**Golpe con escudo.** Ataque con arma cuerpo a cuerpo: +7 a impactar, alcance 1,5 m, una criatura. Impacto: 9 (2d4 + 4) de daño contundente. Si el objetivo es una
+
+**Lanza.** Ataque con arma cuerpo a cuerpo o a distancia: +7 a impactar, alcance 1,5 m o 6/18 m a distancia, un objetivo. Impacto: 11 (2d6 + 4) de daño perforante o 13 (2d8 + 4) de daño perforante si se usa a dos manos en un ataque cuerpo a cuerpo.
 
 ## Reacciones
 

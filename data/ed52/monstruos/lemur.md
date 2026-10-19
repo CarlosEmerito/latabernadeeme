@@ -33,6 +33,8 @@ page: 344
 
 ## Rasgos
 
-**Recuperación en los Infiernos.** Si el lémur muere en los Nueve Infiernos, revive con todos sus puntos de golpe al cabo de 1d10 días salvo si lo mata una criatura bajo los efectos de un conjuro bendición o si se rocían sus restos con agua bendita. Acciones
+**Recuperación en los Infiernos.** Si el lémur muere en los Nueve Infiernos, revive con todos sus puntos de golpe al cabo de 1d10 días salvo si lo mata una criatura bajo los efectos de un conjuro bendición o si se rocían sus restos con agua bendita.
 
-**Baba repulsiva.** Tirada de ataque cuerpo a cuerpo: +2, alcance 1,5 m. Acierto: 2 (1d4) de daño de veneno. Liche
+## Acciones
+
+**Baba repulsiva.** Tirada de ataque cuerpo a cuerpo: +2, alcance 1,5 m. Acierto: 2 (1d4) de daño de veneno.

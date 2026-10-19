@@ -33,4 +33,6 @@ page: 394
 
 ## Acciones
 
-**Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño perforante. Constreñir. Tirada de salvación de Fuerza: CD 12, una criatura Mediana o más pequeña que la serpiente pueda ver a 1,5 m o menos. Fallo: 7 (3d4) de daño contundente y el objetivo tendrá el estado de agarrado (CD 12 para escapar).
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño perforante.
+
+**Constreñir.** Tirada de salvación de Fuerza: CD 12, una criatura Mediana o más pequeña que la serpiente pueda ver a 1,5 m o menos. Fallo: 7 (3d4) de daño contundente y el objetivo tendrá el estado de agarrado (CD 12 para escapar).

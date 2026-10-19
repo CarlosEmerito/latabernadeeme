@@ -37,8 +37,10 @@ page: 363
 
 ## Acciones
 
-**Ataque múltiple.** La medusa realiza tres ataques cuerpo a cuerpo (uno con su pelo de serpientes y dos con su espada corta) o dos ataques a distancia con su arco largo. Espada corta. Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
+**Ataque múltiple.** La medusa realiza tres ataques cuerpo a cuerpo (uno con su pelo de serpientes y dos con su espada corta) o dos ataques a distancia con su arco largo.
+
+**Espada corta.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
 
 **Pelo de serpientes.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, una criatura. Impacto: 4 (1d4 + 2) de daño perforante más 14 (4d6) de daño
 
-**de veneno.** Arco largo. Ataque con arma a distancia: +5 a impactar, alcance 45/180 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante más 7 (2d6) de daño de veneno.
+**Arco largo.** Ataque con arma a distancia: +5 a impactar, alcance 45/180 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante más 7 (2d6) de daño de veneno.

@@ -33,7 +33,11 @@ page: 381
 
 ## Rasgos
 
-**Amorfa.** La sombra puede moverse a través de espacios de solo 2,5 cm de ancho sin tener que apretarse. Debilidad a la Luz Solar. Si está bajo la luz del sol, la sombra tiene desventaja en tiradas de ataque, pruebas de característica y tiradas de salvación. Esconderse en las Sombras. Con luz tenue o en la oscuridad, la sombra puede realizar la acción de esconderse como acción adicional.
+**Amorfa.** La sombra puede moverse a través de espacios de solo 2,5 cm de ancho sin tener que apretarse.
+
+**Debilidad a la Luz Solar.** Si está bajo la luz del sol, la sombra tiene desventaja en tiradas de ataque, pruebas de característica y tiradas de salvación.
+
+**Esconderse en las Sombras.** Con luz tenue o en la oscuridad, la sombra puede realizar la acción de esconderse como acción adicional.
 
 ## Acciones
 

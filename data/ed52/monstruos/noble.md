@@ -33,6 +33,8 @@ page: 354
 
 ## Acciones
 
-**Estoque.** Tirada de ataque cuerpo a cuerpo: +3, alcance 1,5 m. Acierto: 5 (1d8 + 1) de daño perforante. Reacciones
+**Estoque.** Tirada de ataque cuerpo a cuerpo: +3, alcance 1,5 m. Acierto: 5 (1d8 + 1) de daño perforante.
+
+## Reacciones
 
 **Parada.** Detonante: una tirada de ataque cuerpo a cuerpo acierta al noble mientras sostiene un arma. Respuesta: el noble suma 2 a su CA contra ese ataque, lo que puede hacer que falle.

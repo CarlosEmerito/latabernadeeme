@@ -16,7 +16,9 @@ srd: '5.2'
 page: 158
 ---
 
-Tocas a una criatura, que deberá superar una tirada de salvación de Sabiduría o quedará maldecida hasta que el conjuro termine. Hasta que se rompa la maldición, el objetivo sufrirá uno de los siguientes efectos a tu elección: • Elige una característica. El objetivo tendrá des-
+Tocas a una criatura, que deberá superar una tirada de salvación de Sabiduría o quedará maldecida hasta que el conjuro termine. Hasta que se rompa la maldición, el objetivo sufrirá uno de los siguientes efectos a tu elección:
+
+• Elige una característica. El objetivo tendrá des-
 
 ventaja en las pruebas de característica y tiradas de salvación hechas con esa característica. • El objetivo tendrá desventaja en las tiradas de
 

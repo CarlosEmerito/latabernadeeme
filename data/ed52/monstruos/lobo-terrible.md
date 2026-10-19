@@ -33,6 +33,8 @@ page: 389
 
 ## Rasgos
 
-**Atacar en manada.** El lobo tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del lobo se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado. Acciones
+**Atacar en manada.** El lobo tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del lobo se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 8 (1d10 + 3) de daño perforante. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada.

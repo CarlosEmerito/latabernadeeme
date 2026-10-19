@@ -33,7 +33,9 @@ page: 356
 
 ## Rasgos
 
-**Rapto.** El osgo no necesita gastar movimiento adicional para desplazar a una criatura que tenga agarrada. Acciones
+**Rapto.** El osgo no necesita gastar movimiento adicional para desplazar a una criatura que tenga agarrada.
+
+## Acciones
 
 **Agarre.** Tirada de ataque cuerpo a cuerpo: +4, alcance 3 m. Acierto: 9 (2d6 + 2) de daño contundente. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de agarrada (CD 12 para escapar).
 

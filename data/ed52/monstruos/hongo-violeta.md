@@ -31,6 +31,8 @@ srd: '5.2'
 page: 341
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Ataque múltiple.** El hongo realiza dos ataques con su toque putrefacto. Toque putrefacto. Tirada de ataque cuerpo a cuerpo: +2, alcance 3 m. Acierto: 4 (1d8) de daño necrótico. Huargo
+**Ataque múltiple.** El hongo realiza dos ataques con su toque putrefacto.
+
+**Toque putrefacto.** Tirada de ataque cuerpo a cuerpo: +2, alcance 3 m. Acierto: 4 (1d8) de daño necrótico.

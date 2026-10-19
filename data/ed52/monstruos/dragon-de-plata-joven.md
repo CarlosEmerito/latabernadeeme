@@ -33,6 +33,12 @@ page: 309
 
 ## Acciones
 
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su aliento paralizante. Desgarro. Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 15 (2d8 + 6) de daño cortante. Aliento gélido (recarga 5–6). Tirada de salvación de Constitución: CD 17, todas las criaturas en un cono de
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Puede sustituir un ataque por un uso de su aliento paralizante.
 
-**9 m.** Fallo: 49 (11d8) de daño de frío. Éxito: la mitad del daño. Aliento paralizante. Tirada de salvación de Constitución: CD 17, todas las criaturas en un cono de 9 m. Primer fallo: el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno, momento en el que repetirá la tirada de salvación. Segundo fallo: el objetivo tendrá el estado de paralizado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente.
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 15 (2d8 + 6) de daño cortante.
+
+**Aliento gélido (recarga 5–6).** Tirada de salvación de Constitución: CD 17, todas las criaturas en un cono de
+
+**9 m.** Fallo: 49 (11d8) de daño de frío. Éxito: la mitad del daño.
+
+**Aliento paralizante.** Tirada de salvación de Constitución: CD 17, todas las criaturas en un cono de 9 m. Primer fallo: el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno, momento en el que repetirá la tirada de salvación. Segundo fallo: el objetivo tendrá el estado de paralizado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente.

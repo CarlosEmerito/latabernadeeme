@@ -33,4 +33,8 @@ page: 361
 
 ## Rasgos
 
-**Atributos Entrenamiento.** El plebeyo es competente en una habilidad a elección de cada GM y tiene ventaja siempre que realice una prueba de característica con esa habilidad. Acciones Garrote. Tirada de ataque cuerpo a cuerpo: +2, alcance 1,5 m. Acierto: 2 (1d4) de daño contundente. Pseudodragón
+**Entrenamiento.** El plebeyo es competente en una habilidad a elección de cada GM y tiene ventaja siempre que realice una prueba de característica con esa habilidad.
+
+## Acciones
+
+**Garrote.** Tirada de ataque cuerpo a cuerpo: +2, alcance 1,5 m. Acierto: 2 (1d4) de daño contundente.

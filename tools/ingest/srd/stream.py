@@ -34,6 +34,7 @@ class Line:
     y: float
     size: float
     text: str
+    block: int = -1
 
 
 def load(path: Path) -> list[Line]:
@@ -49,7 +50,7 @@ def load(path: Path) -> list[Line]:
                 .replace("\u2011", "-")
                 .replace("\u00ad", "")
             )
-            out.append(Line(d["page"], d["col"], d["x"], d["y"], d["size"], " ".join(text.split())))
+            out.append(Line(d["page"], d["col"], d["x"], d["y"], d["size"], " ".join(text.split()), int(d.get("block", -1))))
     return out
 
 
@@ -76,7 +77,8 @@ def paragraphs(lines: list[Line]) -> list[str]:
             same_col = (ln.page, ln.col) == (prev.page, prev.col)
             gap = ln.y - prev.y if same_col else 999
             indented = same_col and (ln.x - prev.x) > 5 and gap > pitch * 0.9
-            if not same_col or gap > pitch * 1.45 or indented:
+            otro_bloque = same_col and ln.block >= 0 and prev.block >= 0 and ln.block != prev.block
+            if not same_col or gap > pitch * 1.45 or indented or otro_bloque:
                 out.append(_join(cur))
                 cur = []
         cur.append(ln.text)

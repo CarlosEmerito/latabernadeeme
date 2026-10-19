@@ -33,6 +33,14 @@ page: 350
 
 ## Rasgos
 
-**Anfibio.** El merrow puede respirar tanto dentro como fuera del agua. Acciones
+**Anfibio.** El merrow puede respirar tanto dentro como fuera del agua.
 
-**Ataque múltiple.** El merrow realiza dos ataques con su arpón, sus garras o su mordisco en cualquier combinación. Arpón. Tirada de ataque cuerpo a cuerpo o a distancia: +6, alcance 1,5 m o 6/18 m a distancia. Acierto: 11 (2d6 + 4) de daño perforante. Si el objetivo es una criatura Grande o más pequeña, el merrow la atrae hasta 4,5 m en línea recta hacia él. Garra. Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 9 (2d4 + 4) de daño cortante. Mordisco. Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 6 (1d4 + 4) de daño perforante y el objetivo tendrá el estado de envenenado hasta el final del siguiente turno del merrow. Mimeto
+## Acciones
+
+**Ataque múltiple.** El merrow realiza dos ataques con su arpón, sus garras o su mordisco en cualquier combinación.
+
+**Arpón.** Tirada de ataque cuerpo a cuerpo o a distancia: +6, alcance 1,5 m o 6/18 m a distancia. Acierto: 11 (2d6 + 4) de daño perforante. Si el objetivo es una criatura Grande o más pequeña, el merrow la atrae hasta 4,5 m en línea recta hacia él.
+
+**Garra.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 9 (2d4 + 4) de daño cortante.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 6 (1d4 + 4) de daño perforante y el objetivo tendrá el estado de envenenado hasta el final del siguiente turno del merrow.

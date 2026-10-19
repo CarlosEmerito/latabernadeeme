@@ -33,6 +33,10 @@ page: 284
 
 ## Rasgos
 
-**Excavador.** El ankheg puede excavar a través de roca sólida a la mitad de su velocidad excavando y deja a su paso un túnel de 3 m de diámetro. Acciones
+**Excavador.** El ankheg puede excavar a través de roca sólida a la mitad de su velocidad excavando y deja a su paso un túnel de 3 m de diámetro.
 
-**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5 (con ventaja si el ankheg tiene agarrado al objetivo), alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante más 3 (1d6) de daño de ácido. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 13 para escapar). Chorro de ácido (recarga 6). Tirada de salvación de Destreza: CD 12, todas las criaturas en una línea de 9 m de largo y 1,5 m de ancho. Fallo: 14 (4d6) de daño de ácido. Éxito: la mitad del daño.
+## Acciones
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5 (con ventaja si el ankheg tiene agarrado al objetivo), alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante más 3 (1d6) de daño de ácido. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 13 para escapar).
+
+**Chorro de ácido (recarga 6).** Tirada de salvación de Destreza: CD 12, todas las criaturas en una línea de 9 m de largo y 1,5 m de ancho. Fallo: 14 (4d6) de daño de ácido. Éxito: la mitad del daño.

@@ -37,6 +37,12 @@ page: 373
 
 ## Acciones
 
-**Ataque múltiple.** El otyugh realiza tres ataques: uno con su mordisco y dos con sus tentáculos. Mordisco. Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 12 (2d8 + 3) de daño perforante. Si el objetivo es una
+**Ataque múltiple.** El otyugh realiza tres ataques: uno con su mordisco y dos con sus tentáculos.
 
-**perforante.** Si el objetivo es Mediano o más pequeño, quedará agarrado (CD 13 para escapar) y apresado hasta que el agarre termine. El otyugh tiene dos tentáculos y cada uno puede agarrar a un objetivo. Golpe con tentáculo. El otyugh golpea a las criaturas que tenga agarradas, ya sea contra el suelo o la una contra la otra. Cada una de las criaturas deberá superar una tirada de salvación de Constitución con CD 14 o recibirá 10 (2d6 + 3) de daño contundente y quedará aturdida hasta el final del siguiente turno del otyugh. Si la supera, recibirá la mitad del daño contundente y no quedará aturdida.
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 12 (2d8 + 3) de daño perforante. Si el objetivo es una
+
+**Tentáculo.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 3 m, un objetivo. Impacto: 7 (1d8 + 3) de daño contundente más 4 (1d8) de daño
+
+**perforante.** Si el objetivo es Mediano o más pequeño, quedará agarrado (CD 13 para escapar) y apresado hasta que el agarre termine. El otyugh tiene dos tentáculos y cada uno puede agarrar a un objetivo.
+
+**Golpe con tentáculo.** El otyugh golpea a las criaturas que tenga agarradas, ya sea contra el suelo o la una contra la otra. Cada una de las criaturas deberá superar una tirada de salvación de Constitución con CD 14 o recibirá 10 (2d6 + 3) de daño contundente y quedará aturdida hasta el final del siguiente turno del otyugh. Si la supera, recibirá la mitad del daño contundente y no quedará aturdida.

@@ -37,6 +37,8 @@ page: 346
 
 ## Acciones
 
-**Toque.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 7 (2d4 + 2) de daño de fuego. Si el objetivo es una criatura u objeto inflamable que no lleve o vista nadie, empieza a arder. Acciones adicionales
+**Toque.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 7 (2d4 + 2) de daño de fuego. Si el objetivo es una criatura u objeto inflamable que no lleve o vista nadie, empieza a arder.
 
-**Iluminación ardiente.** El magmin se prende fuego o extingue sus llamas. Mientras esté ardiendo, emitirá luz brillante en un radio de 3 m y luz tenue 3 m más allá. Magos
+## Acciones adicionales
+
+**Iluminación ardiente.** El magmin se prende fuego o extingue sus llamas. Mientras esté ardiendo, emitirá luz brillante en un radio de 3 m y luz tenue 3 m más allá.

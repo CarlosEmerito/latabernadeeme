@@ -31,6 +31,10 @@ srd: '5.2'
 page: 335
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Ataque múltiple.** El guardia realiza dos ataques con su espada larga o sus jabalinas en cualquier combinación. Espada larga. Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 15 (2d10 + 4) de daño cortante. Jabalina. Tirada de ataque cuerpo a cuerpo o a distancia: +6, alcance 1,5 m o 9/36 m a distancia. Acierto: 14 (3d6 + 4) de daño perforante.
+**Ataque múltiple.** El guardia realiza dos ataques con su espada larga o sus jabalinas en cualquier combinación.
+
+**Espada larga.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 15 (2d10 + 4) de daño cortante.
+
+**Jabalina.** Tirada de ataque cuerpo a cuerpo o a distancia: +6, alcance 1,5 m o 9/36 m a distancia. Acierto: 14 (3d6 + 4) de daño perforante.

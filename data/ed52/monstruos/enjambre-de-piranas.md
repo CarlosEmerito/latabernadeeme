@@ -33,6 +33,10 @@ page: 384
 
 ## Rasgos
 
-**Enjambre.** El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa una piraña Diminuta. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales. Respirar en el agua. El enjambre solo puede respirar bajo el agua. Acciones
+**Enjambre.** El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa una piraña Diminuta. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales.
+
+**Respirar en el agua.** El enjambre solo puede respirar bajo el agua.
+
+## Acciones
 
 **Mordiscos.** Tirada de ataque cuerpo a cuerpo: +5 (con ventaja si el objetivo no tiene todos sus puntos de golpe), alcance 1,5 m. Acierto: 8 (2d4 + 3) de daño perforante o 5 (1d4 + 3) de daño perforante si el enjambre está maltrecho.

@@ -31,6 +31,6 @@ srd: '5.2'
 page: 380
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Cascos.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño contundente.
+**Cascos.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño contundente.

@@ -33,7 +33,9 @@ page: 303
 
 ## Rasgos
 
-**Rejuvenecimiento Infernal.** Si el lémur muere en los Nueve Infiernos, volverá a la vida con todos sus puntos de golpe al cabo de 1d10 días, salvo si lo mata una criatura de alineamiento bueno afectada por un conjuro bendición o si se rocían los restos del lémur con agua bendita. Vista del Diablo. La oscuridad mágica no dificulta la visión en la oscuridad del lémur.
+**Rejuvenecimiento Infernal.** Si el lémur muere en los Nueve Infiernos, volverá a la vida con todos sus puntos de golpe al cabo de 1d10 días, salvo si lo mata una criatura de alineamiento bueno afectada por un conjuro bendición o si se rocían los restos del lémur con agua bendita.
+
+**Vista del Diablo.** La oscuridad mágica no dificulta la visión en la oscuridad del lémur.
 
 ## Acciones
 

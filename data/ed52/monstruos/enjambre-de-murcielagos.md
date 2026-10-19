@@ -33,6 +33,8 @@ page: 384
 
 ## Rasgos
 
-**Enjambre.** El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa un murciélago Diminuto. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales. Acciones
+**Enjambre.** El enjambre puede ocupar el espacio de otra criatura y viceversa, y es capaz de atravesar cualquier abertura por la que quepa un murciélago Diminuto. El enjambre no puede recuperar puntos de golpe ni obtener puntos de golpe temporales.
+
+## Acciones
 
 **Mordiscos.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (2d4) de daño perforante o 2 (1d4) de daño perforante si el enjambre está maltrecho.

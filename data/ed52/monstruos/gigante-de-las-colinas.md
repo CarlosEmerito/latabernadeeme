@@ -33,4 +33,8 @@ page: 328
 
 ## Acciones
 
-**Ataque múltiple.** El gigante hace dos ataques con su árbol garrote o su lanzamiento de basura en cualquier combinación. Árbol garrote. Tirada de ataque cuerpo a cuerpo: +8, alcance 3 m. Acierto: 18 (3d8 + 5) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada. Lanzamiento de basura. Tirada de ataque a distancia: +8, alcance 18/72 m. Acierto: 16 (2d10 + 5) de daño contundente y el objetivo tendrá el estado de envenenado hasta el final de su siguiente turno. Gigante de las nubes
+**Ataque múltiple.** El gigante hace dos ataques con su árbol garrote o su lanzamiento de basura en cualquier combinación.
+
+**Árbol garrote.** Tirada de ataque cuerpo a cuerpo: +8, alcance 3 m. Acierto: 18 (3d8 + 5) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de derribada.
+
+**Lanzamiento de basura.** Tirada de ataque a distancia: +8, alcance 18/72 m. Acierto: 16 (2d10 + 5) de daño contundente y el objetivo tendrá el estado de envenenado hasta el final de su siguiente turno.

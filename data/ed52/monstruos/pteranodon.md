@@ -33,4 +33,8 @@ page: 391
 
 ## Rasgos
 
-**Atributos Pasar volando.** El pteranodon no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo. Acciones Mordisco. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño perforante.
+**Pasar volando.** El pteranodon no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo.
+
+## Acciones
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño perforante.

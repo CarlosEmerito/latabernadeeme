@@ -18,7 +18,17 @@ page: 123
 
 Obtienes un presagio de una entidad de otro mundo sobre los resultados de un curso de acción que planees llevar a cabo en los próximos 30 minutos. Tu GM elige el presagio de la siguiente tabla.
 
-Presagios Presagio Para los resultados que sean... Fortuna Buenos Desdicha Malos Fortuna y Buenos y malos desdicha Indiferencia Ni buenos ni malos
+Presagios
+
+Presagio Para los resultados que sean...
+
+Fortuna Buenos
+
+Desdicha Malos
+
+Fortuna y Buenos y malos desdicha
+
+Indiferencia Ni buenos ni malos
 
 El conjuro no tiene en cuenta las circunstancias que puedan alterar los resultados, como lanzar otros conjuros.
 

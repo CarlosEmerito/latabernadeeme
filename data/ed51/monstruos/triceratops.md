@@ -37,4 +37,6 @@ page: 304
 
 ## Acciones
 
-**Cornada.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 1,5 m, un objetivo. Impacto: 24 (4d8 + 6) de daño perforante. Pisotón. Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 1,5 m, una criatura derribada. Impacto: 22 (3d10 + 6) de daño contundente.
+**Cornada.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 1,5 m, un objetivo. Impacto: 24 (4d8 + 6) de daño perforante.
+
+**Pisotón.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 1,5 m, una criatura derribada. Impacto: 22 (3d10 + 6) de daño contundente.

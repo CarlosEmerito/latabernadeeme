@@ -33,12 +33,32 @@ page: 352
 
 ## Rasgos
 
-**Recuperación de muerto viviente.** Si la destruyen, la momia obtendrá un cuerpo nuevo al cabo de 24 horas si su corazón permanece intacto y revivirá con todos sus puntos de golpe. El nuevo cuerpo aparecerá en un espacio sin ocupar en la guarida de la momia. El corazón es un objeto Diminuto con una CA de 17, 10 pg e inmunidad a todo el daño excepto al de fuego. Resistencia legendaria (3/día o 4/día en la guarida). La momia puede elegir tener éxito en una tirada de salvación que haya fallado. Resistencia mágica. La momia tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
+**Recuperación de muerto viviente.** Si la destruyen, la momia obtendrá un cuerpo nuevo al cabo de 24 horas si su corazón permanece intacto y revivirá con todos sus puntos de golpe. El nuevo cuerpo aparecerá en un espacio sin ocupar en la guarida de la momia. El corazón es un objeto Diminuto con una CA de 17, 10 pg e inmunidad a todo el daño excepto al de fuego.
+
+**Resistencia legendaria (3/día o 4/día en la guarida).** La momia puede elegir tener éxito en una tirada de salvación que haya fallado.
+
+**Resistencia mágica.** La momia tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
 
 ## Acciones
 
-**Ataque múltiple.** La momia realiza un ataque con su puño putrefacto o de canalizar energía negativa y utiliza su mirada espantosa. Puño putrefacto. Tirada de ataque cuerpo a cuerpo: +9, alcance 1,5 m. Acierto: 15 (2d10 + 4) de daño contundente más 10 (3d6) de daño necrótico. Si el objetivo es una criatura, quedará maldita. Mientras el objetivo esté maldito, no podrá recuperar puntos de golpe, no obtendrá beneficio alguno por finalizar un descanso largo y sus puntos de golpe máximos se reducirán en 10 (3d6) cada 24 horas. Una criatura morirá y se convertirá en polvo si este ataque reduce sus puntos de golpe a 0. Canalizar energía negativa. Tirada de ataque a distancia: +9, alcance 18 m. Acierto: 25 (6d6 + 4) de daño necrótico. Lanzamiento de conjuros. La momia lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 17, +9 a acertar con ataques de conjuro): A voluntad: disipar magia, taumaturgia 1/día cada uno: animar a los muertos, dañar, plaga de
+**Ataque múltiple.** La momia realiza un ataque con su puño putrefacto o de canalizar energía negativa y utiliza su mirada espantosa.
 
-**insectos (versión de nivel 7) Mirada espantosa.** Tirada de salvación de Sabiduría: CD 17, una criatura que la momia pueda ver a 18 m o menos. Fallo: 25 (6d6 + 4) de daño psíquico y el objetivo tendrá el estado de paralizado hasta el final del siguiente turno de la momia. Reacciones
+**Puño putrefacto.** Tirada de ataque cuerpo a cuerpo: +9, alcance 1,5 m. Acierto: 15 (2d10 + 4) de daño contundente más 10 (3d6) de daño necrótico. Si el objetivo es una criatura, quedará maldita. Mientras el objetivo esté maldito, no podrá recuperar puntos de golpe, no obtendrá beneficio alguno por finalizar un descanso largo y sus puntos de golpe máximos se reducirán en 10 (3d6) cada 24 horas. Una criatura morirá y se convertirá en polvo si este ataque reduce sus puntos de golpe a 0.
 
-**Torbellino de arena.** Detonante: una tirada de ataque acierta a la momia. Respuesta: la momia suma 2 a su CA contra ese ataque, lo que puede hacer que falle. Además, la momia se teletransporta hasta 18 m a un espacio sin ocupar que pueda ver. Todas las criaturas de su elección que pueda ver a 1,5 m o menos de su espacio de destino tendrán el estado de cegadas hasta el final del siguiente turno de la momia. Acciones legendarias Usos de acciones legendarias: 3 (4 en la guarida). Justo después del turno de otra criatura, la momia puede emplear un uso para llevar a cabo una de las siguientes acciones. La momia recupera todos los usos al principio de cada uno de sus turnos. Golpe necrótico. La momia realiza un ataque con su puño putrefacto o de canalizar energía negativa. Mirar con furia. La momia utiliza su mirada espantosa. La momia no puede volver a realizar esta acción hasta el principio de su siguiente turno. Orden terrorífica. La momia lanza orden imperiosa (versión de nivel 2) usando la misma aptitud mágica que para su lanzamiento de conjuros. La momia no
+**Canalizar energía negativa.** Tirada de ataque a distancia: +9, alcance 18 m. Acierto: 25 (6d6 + 4) de daño necrótico.
+
+**Lanzamiento de conjuros.** La momia lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 17, +9 a acertar con ataques de conjuro):
+
+**Mirada espantosa.** Tirada de salvación de Sabiduría: CD 17, una criatura que la momia pueda ver a 18 m o menos. Fallo: 25 (6d6 + 4) de daño psíquico y el objetivo tendrá el estado de paralizado hasta el final del siguiente turno de la momia.
+
+## Reacciones
+
+**Torbellino de arena.** Detonante: una tirada de ataque acierta a la momia. Respuesta: la momia suma 2 a su CA contra ese ataque, lo que puede hacer que falle. Además, la momia se teletransporta hasta 18 m a un espacio sin ocupar que pueda ver. Todas las criaturas de su elección que pueda ver a 1,5 m o menos de su espacio de destino tendrán el estado de cegadas hasta el final del siguiente turno de la momia.
+
+## Acciones legendarias
+
+**Golpe necrótico.** La momia realiza un ataque con su puño putrefacto o de canalizar energía negativa.
+
+**Mirar con furia.** La momia utiliza su mirada espantosa. La momia no puede volver a realizar esta acción hasta el principio de su siguiente turno.
+
+**Orden terrorífica.** La momia lanza orden imperiosa (versión de nivel 2) usando la misma aptitud mágica que para su lanzamiento de conjuros. La momia no

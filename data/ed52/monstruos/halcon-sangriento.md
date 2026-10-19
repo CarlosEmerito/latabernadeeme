@@ -33,6 +33,8 @@ page: 386
 
 ## Rasgos
 
-**Atacar en manada.** El halcón tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del halcón se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado. Acciones
+**Atacar en manada.** El halcón tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del halcón se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado.
+
+## Acciones
 
 **Pico.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 4 (1d4 + 2) de daño perforante o 6 (1d8 + 2) de daño perforante si el objetivo está maltrecho.

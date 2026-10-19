@@ -35,14 +35,24 @@ page: 360
 
 **Lanzamiento de Conjuros.** El liche es un lanzador de conjuros de nivel 18. Su aptitud mágica es la Inteligencia (CD de salvación de conjuros 20, +12 a impactar con ataques de conjuro). Tiene los siguientes conjuros de mago preparados:
 
+**Rejuvenecimiento.** Si posee una filacteria y es destruido, el liche obtendrá un cuerpo nuevo al cabo de 1d10 días, recuperará todos sus puntos de golpe y volverá a estar activo. El nuevo cuerpo aparecerá a 1,5 m o menos de la filacteria.
+
+**Resistencia a Expulsión.** El liche tiene ventaja en las tiradas de salvación contra cualquier efecto que expulse muertos vivientes.
+
+**Resistencia Legendaria (3/día).** El liche puede elegir tener éxito en una tirada de salvación que haya fallado.
+
 ## Acciones
 
 **Toque paralizante.** Ataque de conjuro cuerpo a cuerpo: +12 a impactar, alcance 1,5 m, una criatura. Impacto: 10 (3d6) de daño de frío. El objetivo deberá superar
 
 ## Acciones legendarias
 
+**Truco.** El liche lanza un truco.
+
 **Mirada aterradora (cuesta 2 acciones).** El liche fija
 
-**su mirada en una criatura que pueda ver a 3 m o menos de él.** El objetivo deberá superar una tirada de salvación de Sabiduría con CD 18 contra este efecto mágico o quedará asustado durante 1 minuto. El objetivo asustado puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Si un objetivo tiene éxito en la tirada de salvación o el efecto termina para él, será inmune a la mirada del liche durante las siguientes 24 horas. Toque paralizante (cuesta 2 acciones). El liche utiliza
+**su mirada en una criatura que pueda ver a 3 m o menos de él.** El objetivo deberá superar una tirada de salvación de Sabiduría con CD 18 contra este efecto mágico o quedará asustado durante 1 minuto. El objetivo asustado puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Si un objetivo tiene éxito en la tirada de salvación o el efecto termina para él, será inmune a la mirada del liche durante las siguientes 24 horas.
 
-**su toque paralizante.** Perturbar vida (cuesta 3 acciones). Todas las criaturas
+**Toque paralizante (cuesta 2 acciones).** El liche utiliza
+
+**Perturbar vida (cuesta 3 acciones).** Todas las criaturas

@@ -33,6 +33,8 @@ page: 341
 
 ## Rasgos
 
-**Enlace telepático.** Mientras el homúnculo se encuentre en el mismo plano de existencia que su amo, los dos pueden comunicarse telepáticamente entre sí. Acciones
+**Enlace telepático.** Mientras el homúnculo se encuentre en el mismo plano de existencia que su amo, los dos pueden comunicarse telepáticamente entre sí.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 1 de daño perforante y el objetivo sufrirá el siguiente efecto. Tirada de salvación de Constitución: CD 12. Fallo: el objetivo tendrá el estado de envenenado hasta el final del siguiente turno del homúnculo. Fallo por 5 o más: el objetivo tendrá el estado de envenenado durante 1 minuto. Mientras esté envenenado, tendrá el estado de inconsciente, que terminará antes si recibe cualquier daño.

@@ -33,8 +33,12 @@ page: 392
 
 ## Rasgos
 
-**Respirar en el agua.** El pulpo solo puede respirar bajo el agua. Puede aguantar la respiración durante 1 hora fuera del agua. Acciones
+**Respirar en el agua.** El pulpo solo puede respirar bajo el agua. Puede aguantar la respiración durante 1 hora fuera del agua.
 
-**Tentáculos.** Tirada de ataque cuerpo a cuerpo: +5, alcance 3 m. Acierto: 10 (2d6 + 3) de daño contundente. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de agarrada (CD 13 para escapar) por los ocho tentáculos. Mientras esté agarrada, tendrá el estado de apresada. Reacciones
+## Acciones
+
+**Tentáculos.** Tirada de ataque cuerpo a cuerpo: +5, alcance 3 m. Acierto: 10 (2d6 + 3) de daño contundente. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de agarrada (CD 13 para escapar) por los ocho tentáculos. Mientras esté agarrada, tendrá el estado de apresada.
+
+## Reacciones
 
 **Nube de tinta (1/día).** Detonante: el pulpo recibe daño mientras está bajo el agua. Respuesta: el pulpo suelta tinta que llena un cubo de 3 m de lado centrado en él y se mueve hasta su velocidad nadando. El cubo está muy oscuro durante 1 minuto o hasta que una corriente fuerte o un efecto similar disperse la tinta.

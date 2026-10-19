@@ -33,6 +33,8 @@ page: 378
 
 ## Rasgos
 
-**Atacar en manada.** El babuino tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del babuino se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado. Acciones
+**Atacar en manada.** El babuino tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del babuino se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +1, alcance 1,5 m. Acierto: 1 (1d4 − 1) de daño perforante.

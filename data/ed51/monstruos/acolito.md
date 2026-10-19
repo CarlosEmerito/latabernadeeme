@@ -33,7 +33,7 @@ page: 428
 
 ## Rasgos
 
-**Lanzamiento de Conjuros.** El acólito es un lanzador de conjuros de nivel 1. Su aptitud mágica es la Sabiduría (CD de salvación de conjuros 12, +4 a impactar con ataques de conjuro). Tiene los siguientes conjuros de clérigo preparados: Trucos (a voluntad): llama sagrada, luz, taumaturgia Nivel 1 (3 espacios): bendición, curar heridas, santuario
+**Lanzamiento de Conjuros.** El acólito es un lanzador de conjuros de nivel 1. Su aptitud mágica es la Sabiduría (CD de salvación de conjuros 12, +4 a impactar con ataques de conjuro). Tiene los siguientes conjuros de clérigo preparados:
 
 ## Acciones
 

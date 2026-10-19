@@ -33,7 +33,9 @@ page: 377
 
 ## Rasgos
 
-**Caminar por telarañas.** La araña ignora todas las restricciones de movimiento causadas por las telarañas y conoce la ubicación de cualquier otra criatura que esté en contacto con la misma telaraña. Trepar cual arácnido. La araña puede trepar por superficies difíciles e incluso recorrer techos sin tener que realizar pruebas de característica.
+**Caminar por telarañas.** La araña ignora todas las restricciones de movimiento causadas por las telarañas y conoce la ubicación de cualquier otra criatura que esté en contacto con la misma telaraña.
+
+**Trepar cual arácnido.** La araña puede trepar por superficies difíciles e incluso recorrer techos sin tener que realizar pruebas de característica.
 
 ## Acciones
 

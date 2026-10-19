@@ -33,4 +33,8 @@ page: 382
 
 ## Rasgos
 
-**Atributos Ágil.** El ciervo no provoca ataques de oportunidad cuando se mueve para ponerse fuera del alcance de un enemigo. Acciones Embestir. Tirada de ataque cuerpo a cuerpo: +2, alcance 1,5 m. Acierto: 2 (1d4) de daño contundente.
+**Ágil.** El ciervo no provoca ataques de oportunidad cuando se mueve para ponerse fuera del alcance de un enemigo.
+
+## Acciones
+
+**Embestir.** Tirada de ataque cuerpo a cuerpo: +2, alcance 1,5 m. Acierto: 2 (1d4) de daño contundente.

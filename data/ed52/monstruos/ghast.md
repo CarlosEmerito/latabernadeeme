@@ -33,6 +33,10 @@ page: 327
 
 ## Rasgos
 
-**Hedor.** Tirada de salvación de Constitución: CD 10, cualquier criatura que empiece su turno en una emanación de 1,5 m que se origina en el ghast. Fallo: el objetivo tendrá el estado de envenenado hasta el principio de su siguiente turno. Éxito: el objetivo será inmune al hedor de este ghast durante 24 horas. Acciones
+**Hedor.** Tirada de salvación de Constitución: CD 10, cualquier criatura que empiece su turno en una emanación de 1,5 m que se origina en el ghast. Fallo: el objetivo tendrá el estado de envenenado hasta el principio de su siguiente turno. Éxito: el objetivo será inmune al hedor de este ghast durante 24 horas.
 
-**Garra.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante. Si el objetivo es una criatura que no sea un muerto viviente, sufre el siguiente efecto. Tirada de salvación de Constitución: CD 10. Fallo: el objetivo tendrá el estado de paralizado hasta el final de su siguiente turno. Mordisco. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño perforante más 9 (2d8) de daño necrótico. Gigante de escarcha
+## Acciones
+
+**Garra.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante. Si el objetivo es una criatura que no sea un muerto viviente, sufre el siguiente efecto. Tirada de salvación de Constitución: CD 10. Fallo: el objetivo tendrá el estado de paralizado hasta el final de su siguiente turno.
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño perforante más 9 (2d8) de daño necrótico.

@@ -33,4 +33,8 @@ page: 328
 
 ## Acciones
 
-**Ataque múltiple.** El gigante realiza dos ataques con su espada flamígera o su lanzamiento de martillo en cualquier combinación. Espada flamígera. Tirada de ataque cuerpo a cuerpo: +11, alcance 3 m. Acierto: 21 (4d6 + 7) de daño cortante más 10 (3d6) de daño de fuego. Lanzamiento de martillo. Tirada de ataque a distancia: +11, alcance 18/72 m. Acierto: 23 (3d10 + 7) de daño contundente más 4 (1d8) de daño de fuego y el objetivo será empujado hasta 4,5 m respecto al gigante en línea recta y tendrá desventaja en la próxima tirada de ataque que haga antes del final de su siguiente turno.
+**Ataque múltiple.** El gigante realiza dos ataques con su espada flamígera o su lanzamiento de martillo en cualquier combinación.
+
+**Espada flamígera.** Tirada de ataque cuerpo a cuerpo: +11, alcance 3 m. Acierto: 21 (4d6 + 7) de daño cortante más 10 (3d6) de daño de fuego.
+
+**Lanzamiento de martillo.** Tirada de ataque a distancia: +11, alcance 18/72 m. Acierto: 23 (3d10 + 7) de daño contundente más 4 (1d8) de daño de fuego y el objetivo será empujado hasta 4,5 m respecto al gigante en línea recta y tendrá desventaja en la próxima tirada de ataque que haga antes del final de su siguiente turno.

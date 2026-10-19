@@ -33,8 +33,16 @@ page: 331
 
 ## Acciones
 
-**Ataque múltiple.** El goblin realiza dos ataques con su arco corto o su cimitarra en cualquier combinación. Cimitarra. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño cortante más 2 (1d4) de daño cortante si la tirada de ataque tenía ventaja. Arco corto. Tirada de ataque a distancia: +4, alcance 24/96 m. Acierto: 5 (1d6 + 2) de daño perforante más 2 (1d4) de daño perforante si la tirada de ataque tenía ventaja. Acciones adicionales
+**Ataque múltiple.** El goblin realiza dos ataques con su arco corto o su cimitarra en cualquier combinación.
 
-**Huida veloz.** El goblin realiza las acciones de destrabarse o esconderse. Reacciones
+**Cimitarra.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 5 (1d6 + 2) de daño cortante más 2 (1d4) de daño cortante si la tirada de ataque tenía ventaja.
 
-**Redirigir ataque.** Detonante: una criatura que el goblin pueda ver hace una tirada de ataque contra él. Respuesta: el goblin elige a un aliado Pequeño o Mediano a 1,5 m o menos de él. El goblin y ese aliado intercambian su posición y el aliado se convierte en el objetivo del ataque. Gólem de arcilla
+**Arco corto.** Tirada de ataque a distancia: +4, alcance 24/96 m. Acierto: 5 (1d6 + 2) de daño perforante más 2 (1d4) de daño perforante si la tirada de ataque tenía ventaja.
+
+## Acciones adicionales
+
+**Huida veloz.** El goblin realiza las acciones de destrabarse o esconderse.
+
+## Reacciones
+
+**Redirigir ataque.** Detonante: una criatura que el goblin pueda ver hace una tirada de ataque contra él. Respuesta: el goblin elige a un aliado Pequeño o Mediano a 1,5 m o menos de él. El goblin y ese aliado intercambian su posición y el aliado se convierte en el objetivo del ataque.

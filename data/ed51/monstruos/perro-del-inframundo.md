@@ -37,4 +37,6 @@ page: 418
 
 ## Acciones
 
-**Ataque múltiple.** El perro realiza dos ataques de mordisco. Mordisco. Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante. Si el objetivo es una
+**Ataque múltiple.** El perro realiza dos ataques de mordisco.
+
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante. Si el objetivo es una

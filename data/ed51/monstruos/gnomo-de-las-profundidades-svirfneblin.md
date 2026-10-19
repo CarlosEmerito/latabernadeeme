@@ -33,7 +33,11 @@ page: 345
 
 ## Rasgos
 
-**Astucia Gnoma.** El gnomo tiene ventaja en las tiradas de salvación de Inteligencia, Sabiduría y Carisma contra magia. Camuflarse en la Piedra. El gnomo tiene ventaja en las pruebas de Destreza (Sigilo) realizadas para esconderse en terrenos rocosos. Lanzamiento de Conjuros Innato. La aptitud mágica innata del gnomo es la Inteligencia (CD de salvación de conjuros 11). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: indetectable (solo lanzador) 1/día cada uno: contorno borroso, disfrazarse,
+**Astucia Gnoma.** El gnomo tiene ventaja en las tiradas de salvación de Inteligencia, Sabiduría y Carisma contra magia.
+
+**Camuflarse en la Piedra.** El gnomo tiene ventaja en las pruebas de Destreza (Sigilo) realizadas para esconderse en terrenos rocosos.
+
+**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del gnomo es la Inteligencia (CD de salvación de conjuros 11). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
 
 ## Acciones
 

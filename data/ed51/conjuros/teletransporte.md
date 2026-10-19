@@ -20,7 +20,11 @@ Este conjuro os transporta a un destino que elijas a ti y a hasta ocho criaturas
 
 Debes conocer el destino que elijas y también debe estar en el mismo plano de existencia que tú. Lo bien que conoces el destino es decisivo para conseguir llegar a él. Tu GM tira 1d100 y consulta la tabla.
 
-Apartado Área del En el Familiaridad Percance similar objetivo objetivo Círculo — — — 01–100 permanente Objeto asociado — — — 01–100 Muy familiar 01–05 06–13 14–24 25–100 Visto 01–33 34–43 44–53 54–100 esporádicamente Visto una vez 01–43 44–53 54–73 74–100 Descripción 01–43 44–53 54–73 74–100 Destino falso 01–50 51–100 — —
+Apartado
+
+Área del En el
+
+Familiaridad Percance similar objetivo objetivo Círculo — — — 01–100 permanente Objeto asociado — — — 01–100 Muy familiar 01–05 06–13 14–24 25–100 Visto 01–33 34–43 44–53 54–100 esporádicamente Visto una vez 01–43 44–53 54–73 74–100 Descripción 01–43 44–53 54–73 74–100 Destino falso 01–50 51–100 — —
 
 Familiaridad. “Círculo permanente” se refiere a un círculo de teletransportación permanente cuya secuencia de sellos conozcas. Por “objeto asociado” se entiende que posees un objeto tomado del destino deseado durante los últimos seis meses, como un libro de la biblioteca de un mago, ropa de cama de un dormitorio real o un trozo de mármol de la tumba secreta de un liche.
 

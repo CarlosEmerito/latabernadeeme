@@ -33,6 +33,12 @@ page: 299
 
 ## Rasgos
 
-**Caminar por el hielo.** El dragón puede moverse y trepar por superficies heladas sin tener que hacer pruebas de característica. Además, desplazarse por terreno difícil compuesto de nieve o hielo no le cuesta movimiento adicional. Acciones
+**Caminar por el hielo.** El dragón puede moverse y trepar por superficies heladas sin tener que hacer pruebas de característica. Además, desplazarse por terreno difícil compuesto de nieve o hielo no le cuesta movimiento adicional.
 
-**Ataque múltiple.** El dragón realiza dos ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño cortante más 2 (1d4) de daño de frío. Aliento gélido (recarga 5–6). Tirada de salvación de Constitución: CD 12, todas las criaturas en un cono de 4,5 m. Fallo: 22 (5d8) de daño de frío. Éxito: la mitad del daño.
+## Acciones
+
+**Ataque múltiple.** El dragón realiza dos ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño cortante más 2 (1d4) de daño de frío.
+
+**Aliento gélido (recarga 5–6).** Tirada de salvación de Constitución: CD 12, todas las criaturas en un cono de 4,5 m. Fallo: 22 (5d8) de daño de frío. Éxito: la mitad del daño.

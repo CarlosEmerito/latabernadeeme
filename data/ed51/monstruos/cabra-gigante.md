@@ -33,7 +33,9 @@ page: 403
 
 ## Rasgos
 
-**Carga.** Si la cabra se mueve al menos 6 m en línea recta hacia un objetivo y luego le impacta con un ataque de embestir durante el mismo turno, el objetivo recibe 5 (2d4) de daño contundente adicional. Si el objetivo es una criatura, deberá superar una tirada de salvación de Fuerza con CD 13 o será derribada. Paso Firme. La cabra tiene ventaja en las tiradas de salvación de Fuerza y Destreza contra efectos que fuesen a derribarla.
+**Carga.** Si la cabra se mueve al menos 6 m en línea recta hacia un objetivo y luego le impacta con un ataque de embestir durante el mismo turno, el objetivo recibe 5 (2d4) de daño contundente adicional. Si el objetivo es una criatura, deberá superar una tirada de salvación de Fuerza con CD 13 o será derribada.
+
+**Paso Firme.** La cabra tiene ventaja en las tiradas de salvación de Fuerza y Destreza contra efectos que fuesen a derribarla.
 
 ## Acciones
 

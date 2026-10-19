@@ -33,8 +33,14 @@ page: 373
 
 ## Rasgos
 
-**Conexión vampírica.** Mientras el siervo de vampiro y su amo estén en el mismo plano de existencia, el vampiro puede comunicarse con el siervo telepáticamente y percibir el mundo a través de sus sentidos. Acciones
+**Conexión vampírica.** Mientras el siervo de vampiro y su amo estén en el mismo plano de existencia, el vampiro puede comunicarse con el siervo telepáticamente y percibir el mundo a través de sus sentidos.
 
-**Ataque múltiple.** El siervo realiza dos ataques con sus dagas sombrías. Daga sombría. Tirada de ataque cuerpo a cuerpo o a distancia: +5, alcance 1,5 m o 6/18 m a distancia. Acierto: 5 (1d4 + 3) de daño perforante más 7 (3d4) de daño necrótico. Si este ataque reduce a 0 los puntos de golpe del objetivo, pasará a estar estable, pero tendrá el estado de envenenado durante 1 hora. Mientras tenga el estado de envenenado, tendrá también el estado de paralizado. Acciones adicionales
+## Acciones
+
+**Ataque múltiple.** El siervo realiza dos ataques con sus dagas sombrías.
+
+**Daga sombría.** Tirada de ataque cuerpo a cuerpo o a distancia: +5, alcance 1,5 m o 6/18 m a distancia. Acierto: 5 (1d4 + 3) de daño perforante más 7 (3d4) de daño necrótico. Si este ataque reduce a 0 los puntos de golpe del objetivo, pasará a estar estable, pero tendrá el estado de envenenado durante 1 hora. Mientras tenga el estado de envenenado, tendrá también el estado de paralizado.
+
+## Acciones adicionales
 
 **Agilidad de inmortal.** El siervo realiza las acciones de correr o destrabarse.

@@ -33,4 +33,10 @@ page: 338
 
 ## Rasgos
 
-**Atributos Pasar volando.** El hipogrifo no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo. Acciones Ataque múltiple. El hipogrifo realiza dos ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño cortante. Hobgoblins
+**Pasar volando.** El hipogrifo no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo.
+
+## Acciones
+
+**Ataque múltiple.** El hipogrifo realiza dos ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño cortante.

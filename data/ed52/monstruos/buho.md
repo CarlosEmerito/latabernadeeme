@@ -33,4 +33,8 @@ page: 379
 
 ## Rasgos
 
-**Atributos Pasar volando.** El búho no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo. Acciones Garras. Tirada de ataque cuerpo a cuerpo: +3, alcance 1,5 m. Acierto: 1 de daño cortante.
+**Pasar volando.** El búho no provoca ataques de oportunidad cuando vuela para ponerse fuera del alcance de un enemigo.
+
+## Acciones
+
+**Garras.** Tirada de ataque cuerpo a cuerpo: +3, alcance 1,5 m. Acierto: 1 de daño cortante.

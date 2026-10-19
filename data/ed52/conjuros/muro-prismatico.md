@@ -31,15 +31,25 @@ Orden Efectos
 
 1 Roja. Si falla la tirada: 12d6 de daño de fuego.
 
-Si supera la tirada: la mitad de daño. Efectos adicionales: los ataques a distancia no mágicos no pueden atravesar esta capa, que se destruye si recibe al menos 25 de daño de frío. 2 Naranja. Si falla la tirada: 12d6 de daño de
+Si supera la tirada: la mitad de daño. Efectos adicionales: los ataques a distancia no mágicos no pueden atravesar esta capa, que se destruye si recibe al menos 25 de daño de frío.
 
-ácido. Si supera la tirada: la mitad de daño. Efectos adicionales: los ataques a distancia mágicos no atraviesan esta capa, que puede destruirse mediante un viento fuerte (como el que crea ráfaga de viento). 3 Amarilla. Si falla la tirada: 12d6 de daño de
+2 Naranja. Si falla la tirada: 12d6 de daño de
 
-relámpago. Si supera la tirada: la mitad de daño. Efectos adicionales: la capa se destruye si recibe al menos 60 de daño de fuerza. 4 Verde. Si falla la tirada: 12d6 de daño de
+ácido. Si supera la tirada: la mitad de daño. Efectos adicionales: los ataques a distancia mágicos no atraviesan esta capa, que puede destruirse mediante un viento fuerte (como el que crea ráfaga de viento).
 
-veneno. Si supera la tirada: la mitad de daño. Efectos adicionales: un conjuro pasamuros u otro del mismo nivel o superior que puedan abrir un portal en una superficie sólida destruirán esta capa. 5 Azul. Si falla la tirada: 12d6 de daño de frío.
+3 Amarilla. Si falla la tirada: 12d6 de daño de
 
-Si supera la tirada: la mitad de daño. Efectos adicionales: la capa se destruye si recibe al menos 25 de daño de fuego. 6 Añil. Si falla la tirada: el objetivo tendrá el
+relámpago. Si supera la tirada: la mitad de daño. Efectos adicionales: la capa se destruye si recibe al menos 60 de daño de fuerza.
+
+4 Verde. Si falla la tirada: 12d6 de daño de
+
+veneno. Si supera la tirada: la mitad de daño. Efectos adicionales: un conjuro pasamuros u otro del mismo nivel o superior que puedan abrir un portal en una superficie sólida destruirán esta capa.
+
+5 Azul. Si falla la tirada: 12d6 de daño de frío.
+
+Si supera la tirada: la mitad de daño. Efectos adicionales: la capa se destruye si recibe al menos 25 de daño de fuego.
+
+6 Añil. Si falla la tirada: el objetivo tendrá el
 
 estado de apresado y hará una tirada de salvación de Constitución al final de cada uno de sus turnos. Si la supera tres veces, el estado terminará. Si la falla tres veces, tendrá el estado de petrificado hasta que lo libere un efecto como el del conjuro restablecimiento mayor. Los éxitos y los fallos no tienen por qué ser consecutivos: lleva la cuenta de ambos hasta que el objetivo tenga tres de un mismo tipo. Efectos adicionales: no es posible lanzar conjuros a través de esta capa, que puede destruirse mediante la luz brillante del conjuro luz del día.
 

@@ -33,4 +33,8 @@ page: 391
 
 ## Rasgos
 
-**Atributos Aguantar la respiración.** El plesiosaurio puede aguantar la respiración durante 1 hora. Acciones Mordisco. Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 11 (2d6 + 4) de daño perforante.
+**Aguantar la respiración.** El plesiosaurio puede aguantar la respiración durante 1 hora.
+
+## Acciones
+
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 11 (2d6 + 4) de daño perforante.

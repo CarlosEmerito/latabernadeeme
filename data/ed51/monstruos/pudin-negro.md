@@ -33,7 +33,11 @@ page: 292
 
 ## Rasgos
 
-**Amorfo.** El pudin puede moverse a través de un espacio de solo 2,5 cm de ancho sin tener que apretarse. Forma Corrosiva. Una criatura que toque al pudin o le impacte con un ataque cuerpo a cuerpo estando a 1,5 m o menos de él sufrirá 4 (1d8) de daño de ácido. Cualquier arma no mágica hecha de metal o madera que entre en contacto con el pudin se corroerá. Tras causar daño, el arma sufrirá un penalizador de −1 permanente y acumulativo a las tiradas de daño. Si este penalizador llega a ser de −5, el arma será destruida. Cualquier munición no mágica hecha de metal o madera que impacte al pudin será destruida tras causar su daño.
+**Amorfo.** El pudin puede moverse a través de un espacio de solo 2,5 cm de ancho sin tener que apretarse.
+
+**Forma Corrosiva.** Una criatura que toque al pudin o le impacte con un ataque cuerpo a cuerpo estando a 1,5 m o menos de él sufrirá 4 (1d8) de daño de ácido. Cualquier arma no mágica hecha de metal o madera que entre en contacto con el pudin se corroerá. Tras causar daño, el arma sufrirá un penalizador de −1 permanente y acumulativo a las tiradas de daño. Si este penalizador llega a ser de −5, el arma será destruida. Cualquier munición no mágica hecha de metal o madera que impacte al pudin será destruida tras causar su daño.
+
+**Trepar cual Arácnido.** El pudin puede trepar por superficies difíciles e incluso recorrer techos boca abajo sin tener que realizar pruebas de característica.
 
 ## Acciones
 

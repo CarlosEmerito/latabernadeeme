@@ -33,4 +33,8 @@ page: 334
 
 ## Acciones
 
-**Ataque múltiple.** El grick realiza un ataque con su pico y uno con sus tentáculos. Pico. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 9 (2d6 + 2) de daño perforante. Tentáculos. Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 7 (1d10 + 2) de daño cortante. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de agarrada (CD 12 para escapar) por los cuatro tentáculos. Grifo
+**Ataque múltiple.** El grick realiza un ataque con su pico y uno con sus tentáculos.
+
+**Pico.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 9 (2d6 + 2) de daño perforante.
+
+**Tentáculos.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 7 (1d10 + 2) de daño cortante. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de agarrada (CD 12 para escapar) por los cuatro tentáculos.

@@ -33,7 +33,9 @@ page: 435
 
 ## Rasgos
 
-**Lanzamiento de Conjuros.** El sacerdote es un lanzador de conjuros de nivel 5. Su aptitud mágica es la Sabiduría (CD de salvación de conjuros 13, +5 a impactar con ataques de conjuro). Tiene los siguientes conjuros de clérigo preparados: Trucos (a voluntad): llama sagrada, luz, taumaturgia Nivel 1 (4 espacios): curar heridas, saeta guía,
+**Lanzamiento de Conjuros.** El sacerdote es un lanzador de conjuros de nivel 5. Su aptitud mágica es la Sabiduría (CD de salvación de conjuros 13, +5 a impactar con ataques de conjuro). Tiene los siguientes conjuros de clérigo preparados:
+
+**Prerrogativa Divina.** Como acción adicional, el sacerdote puede gastar un espacio de conjuro para hacer que sus ataques con arma cuerpo a cuerpo causen mágicamente 10 (3d6) de daño radiante adicional si impactan. Este beneficio dura hasta el final del turno. Si el sacerdote gasta un espacio de conjuro de nivel 2 o más, el daño adicional aumenta en 1d6 por cada nivel por encima de 1 que tenga el espacio que haya empleado.
 
 ## Acciones
 

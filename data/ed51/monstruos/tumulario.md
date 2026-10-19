@@ -37,6 +37,10 @@ page: 384
 
 ## Acciones
 
-**Ataque múltiple.** El tumulario realiza dos ataques con su espada larga o dos ataques con su arco largo. Puede usar consumir vida en lugar de uno de los ataques con espada larga. Consumir vida. Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 5 (1d6 + 2) de daño necrótico. El objetivo deberá
+**Ataque múltiple.** El tumulario realiza dos ataques con su espada larga o dos ataques con su arco largo. Puede usar consumir vida en lugar de uno de los ataques con espada larga.
 
-**cortante si se usa a dos manos.** Arco largo. Ataque con arma a distancia: +4 a impactar, alcance 45/180 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante.
+**Consumir vida.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 5 (1d6 + 2) de daño necrótico. El objetivo deberá
+
+**Espada larga.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 6 (1d8 + 2) de daño cortante o 7 (1d10 + 2) de daño
+
+**Arco largo.** Ataque con arma a distancia: +4 a impactar, alcance 45/180 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante.

@@ -33,6 +33,14 @@ page: 290
 
 ## Rasgos
 
-**Anfibio.** El chuul puede respirar tanto dentro como fuera del agua. Sentir magia. El chuul percibe la magia en un radio de 36 m. Este atributo funciona, en todos los demás aspectos, igual que el conjuro detectar magia, pero no es mágico en sí mismo. Acciones
+**Anfibio.** El chuul puede respirar tanto dentro como fuera del agua.
 
-**Ataque múltiple.** El chuul realiza dos ataques con sus tenazas y utiliza sus tentáculos paralizadores. Tenaza. Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 9 (1d10 + 4) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 14 para escapar) por una de las dos tenazas. Tentáculos paralizadores. Tirada de salvación de Constitución: CD 13, una criatura agarrada por el chuul. Fallo: el objetivo tendrá el estado de envenenado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente. Mientras esté envenenado, tendrá el estado de paralizado. Cieno gris
+**Sentir magia.** El chuul percibe la magia en un radio de 36 m. Este atributo funciona, en todos los demás aspectos, igual que el conjuro detectar magia, pero no es mágico en sí mismo.
+
+## Acciones
+
+**Ataque múltiple.** El chuul realiza dos ataques con sus tenazas y utiliza sus tentáculos paralizadores.
+
+**Tenaza.** Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 9 (1d10 + 4) de daño contundente. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 14 para escapar) por una de las dos tenazas.
+
+**Tentáculos paralizadores.** Tirada de salvación de Constitución: CD 13, una criatura agarrada por el chuul. Fallo: el objetivo tendrá el estado de envenenado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente. Mientras esté envenenado, tendrá el estado de paralizado.

@@ -33,8 +33,18 @@ page: 337
 
 ## Rasgos
 
-**Hedor.** Tirada de salvación de Constitución: CD 16, cualquier criatura que empiece su turno en una emanación de 3 m que se origina en el hezrou. Fallo: el objetivo tendrá el estado de envenenado hasta el principio de su siguiente turno. Recuperación demoníaca. Si el hezrou muere fuera del Abismo, su cuerpo se disuelve en icor, obtiene un
+**Hedor.** Tirada de salvación de Constitución: CD 16, cualquier criatura que empiece su turno en una emanación de 3 m que se origina en el hezrou. Fallo: el objetivo tendrá el estado de envenenado hasta el principio de su siguiente turno.
 
-**Ataque múltiple.** El hezrou hace tres ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 6 (1d4 + 4) de daño cortante más 9 (2d8) de daño de veneno. Acciones adicionales
+**Recuperación demoníaca.** Si el hezrou muere fuera del Abismo, su cuerpo se disuelve en icor, obtiene un
 
-**Salto.** El hezrou gasta 3 m de movimiento para saltar hasta 9 m. Hidra
+**Resistencia mágica.** El hezrou tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
+
+## Acciones
+
+**Ataque múltiple.** El hezrou hace tres ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 6 (1d4 + 4) de daño cortante más 9 (2d8) de daño de veneno.
+
+## Acciones adicionales
+
+**Salto.** El hezrou gasta 3 m de movimiento para saltar hasta 9 m.

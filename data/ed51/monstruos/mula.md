@@ -33,7 +33,9 @@ page: 416
 
 ## Rasgos
 
-**Bestia de Carga.** La mula se considera un animal Grande para determinar su capacidad de carga. Paso Firme. La mula tiene ventaja en las tiradas de salvación de Fuerza y Destreza contra efectos que fuesen a derribarla.
+**Bestia de Carga.** La mula se considera un animal Grande para determinar su capacidad de carga.
+
+**Paso Firme.** La mula tiene ventaja en las tiradas de salvación de Fuerza y Destreza contra efectos que fuesen a derribarla.
 
 ## Acciones
 

@@ -33,6 +33,8 @@ page: 379
 
 ## Rasgos
 
-**Atacar en manada.** El buitre tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del buitre se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado. Acciones
+**Atacar en manada.** El buitre tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados del buitre se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado.
+
+## Acciones
 
 **Picotazo.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 9 (2d6 + 2) de daño perforante y el objetivo tendrá el estado de envenenado hasta el final de su siguiente turno.

@@ -33,6 +33,8 @@ page: 396
 
 ## Rasgos
 
-**Respirar en el agua.** El tiburón solo puede respirar bajo el agua. Acciones
+**Respirar en el agua.** El tiburón solo puede respirar bajo el agua.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +6 (con ventaja si el objetivo no tiene todos sus puntos de golpe), alcance 1,5 m. Acierto: 14 (3d6 + 4) de daño perforante.

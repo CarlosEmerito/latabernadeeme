@@ -33,4 +33,14 @@ page: 397
 
 ## Rasgos
 
-**Atributos Saltar con carrera.** Si se ha movido al menos 3 m justo antes, el tigre puede realizar un salto de longitud de hasta 7,5 m. Acciones Ataque múltiple. El tigre realiza dos ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 11 (2d6 + 4) de daño cortante. Acciones adicionales Huida veloz. El tigre realiza las acciones de destrabarse o esconderse.
+**Saltar con carrera.** Si se ha movido al menos 3 m justo antes, el tigre puede realizar un salto de longitud de hasta 7,5 m.
+
+## Acciones
+
+**Ataque múltiple.** El tigre realiza dos ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 11 (2d6 + 4) de daño cortante.
+
+## Acciones adicionales
+
+**Huida veloz.** El tigre realiza las acciones de destrabarse o esconderse.

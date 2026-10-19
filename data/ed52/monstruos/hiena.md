@@ -33,6 +33,8 @@ page: 386
 
 ## Rasgos
 
-**Atacar en manada.** La hiena tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados de la hiena se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado. Acciones
+**Atacar en manada.** La hiena tiene ventaja en una tirada de ataque contra una criatura si al menos uno de los aliados de la hiena se encuentra a 1,5 m o menos de la criatura y no tiene el estado de incapacitado.
+
+## Acciones
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +2, alcance 1,5 m. Acierto: 3 (1d6) de daño perforante.

@@ -33,7 +33,11 @@ page: 349
 
 ## Rasgos
 
-**Camuflarse en la Piedra.** El grimlock tiene ventaja en las pruebas de Destreza (Sigilo) realizadas para esconderse en terrenos rocosos. Oído y Olfato Agudos. El grimlock tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído o del olfato. Sentidos de Ciego. El grimlock perderá su visión ciega si está ensordecido y no puede usar el olfato.
+**Camuflarse en la Piedra.** El grimlock tiene ventaja en las pruebas de Destreza (Sigilo) realizadas para esconderse en terrenos rocosos.
+
+**Oído y Olfato Agudos.** El grimlock tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del oído o del olfato.
+
+**Sentidos de Ciego.** El grimlock perderá su visión ciega si está ensordecido y no puede usar el olfato.
 
 ## Acciones
 

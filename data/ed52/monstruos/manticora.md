@@ -31,6 +31,10 @@ srd: '5.2'
 page: 347
 ---
 
-## Rasgos
+## Acciones
 
-**Acciones Ataque múltiple.** La mantícora realiza tres ataques de desgarro o con sus púas de cola en cualquier combinación. Desgarro. Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño cortante. Púas de cola. Tirada de ataque a distancia: +5, alcance 30/60 m. Acierto: 7 (1d8 + 3) de daño perforante. Manto
+**Ataque múltiple.** La mantícora realiza tres ataques de desgarro o con sus púas de cola en cualquier combinación.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño cortante.
+
+**Púas de cola.** Tirada de ataque a distancia: +5, alcance 30/60 m. Acierto: 7 (1d8 + 3) de daño perforante.

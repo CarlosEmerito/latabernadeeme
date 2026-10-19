@@ -33,4 +33,6 @@ page: 324
 
 ## Acciones
 
-**Cornada.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 11 (2d6 + 4) de daño perforante. Si el objetivo es una criatura Grande o más pequeña y el esqueleto recorre al menos 6 m en línea recta hacia ella justo antes de acertarle, esta recibirá 9 (2d8) de daño perforante adicional y tendrá el estado de derribada. Golpe. Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 15 (2d10 + 4) de daño contundente. Estirge
+**Cornada.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 11 (2d6 + 4) de daño perforante. Si el objetivo es una criatura Grande o más pequeña y el esqueleto recorre al menos 6 m en línea recta hacia ella justo antes de acertarle, esta recibirá 9 (2d8) de daño perforante adicional y tendrá el estado de derribada.
+
+**Golpe.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 15 (2d10 + 4) de daño contundente.

@@ -33,8 +33,18 @@ page: 292
 
 ## Rasgos
 
-**Recuperación exaltada.** Si el deva muere fuera del Monte Celestia, su cuerpo desaparece, obtiene un cuerpo nuevo al instante y revive con todos sus puntos de golpe en algún lugar del Monte Celestia. Resistencia mágica. El deva tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos. Acciones
+**Recuperación exaltada.** Si el deva muere fuera del Monte Celestia, su cuerpo desaparece, obtiene un cuerpo nuevo al instante y revive con todos sus puntos de golpe en algún lugar del Monte Celestia.
 
-**Ataque múltiple.** El deva realiza dos ataques con su maza sagrada. Maza sagrada. Tirada de ataque cuerpo a cuerpo: +8, alcance 1,5 m. Acierto: 7 (1d6 + 4) de daño contundente más 18 (4d8) de daño radiante. Lanzamiento de conjuros. El deva lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 17): A voluntad: cambiar de forma (solo forma de bestia
+**Resistencia mágica.** El deva tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
 
-**Auxilio divino (2/día).** El deva lanza curar heridas, levantar maldición o restablecimiento menor usando la misma aptitud mágica que para su lanzamiento de conjuros. Diablillo
+## Acciones
+
+**Ataque múltiple.** El deva realiza dos ataques con su maza sagrada.
+
+**Maza sagrada.** Tirada de ataque cuerpo a cuerpo: +8, alcance 1,5 m. Acierto: 7 (1d6 + 4) de daño contundente más 18 (4d8) de daño radiante.
+
+**Lanzamiento de conjuros.** El deva lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 17):
+
+## Acciones adicionales
+
+**Auxilio divino (2/día).** El deva lanza curar heridas, levantar maldición o restablecimiento menor usando la misma aptitud mágica que para su lanzamiento de conjuros.

@@ -33,10 +33,16 @@ page: 285
 
 ## Rasgos
 
-**Evasión.** Si el asesino sufre un efecto que le permita hacer una tirada de salvación de Destreza para sufrir solo la mitad de daño, no recibe ningún daño si la supera y solo sufre la mitad si la falla. No puede usar este atributo si tiene el estado de incapacitado. Acciones
+**Evasión.** Si el asesino sufre un efecto que le permita hacer una tirada de salvación de Destreza para sufrir solo la mitad de daño, no recibe ningún daño si la supera y solo sufre la mitad si la falla. No puede usar este atributo si tiene el estado de incapacitado.
 
-**Ataque múltiple.** El asesino realiza tres ataques con su espada corta o su ballesta ligera en cualquier combinación. Espada corta. Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 7 (1d6 + 4) de daño perforante más 17 (5d6) de daño de veneno y el objetivo tendrá el estado de envenenado hasta el principio del siguiente turno del asesino.
+## Acciones
 
-**Ballesta ligera.** Tirada de ataque a distancia: +7, alcance 24/96 m. Acierto: 8 (1d8 + 4) de daño perforante más 21 (6d6) de daño de veneno. Acciones adicionales
+**Ataque múltiple.** El asesino realiza tres ataques con su espada corta o su ballesta ligera en cualquier combinación.
 
-**Acción astuta.** El asesino realiza las acciones de correr, destrabarse o esconderse. Azer
+**Espada corta.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 7 (1d6 + 4) de daño perforante más 17 (5d6) de daño de veneno y el objetivo tendrá el estado de envenenado hasta el principio del siguiente turno del asesino.
+
+**Ballesta ligera.** Tirada de ataque a distancia: +7, alcance 24/96 m. Acierto: 8 (1d8 + 4) de daño perforante más 21 (6d6) de daño de veneno.
+
+## Acciones adicionales
+
+**Acción astuta.** El asesino realiza las acciones de correr, destrabarse o esconderse.

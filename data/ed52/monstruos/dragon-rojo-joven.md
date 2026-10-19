@@ -33,4 +33,8 @@ page: 313
 
 ## Acciones
 
-**Ataque múltiple.** El dragón realiza tres ataques de desgarro. Desgarro. Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 13 (2d6 + 6) de daño cortante más 3 (1d6) de daño de fuego. Aliento de fuego (recarga 5–6). Tirada de salvación de Destreza: CD 17, todas las criaturas en un cono de 9 m. Fallo: 56 (16d6) de daño de fuego. Éxito: la mitad del daño.
+**Ataque múltiple.** El dragón realiza tres ataques de desgarro.
+
+**Desgarro.** Tirada de ataque cuerpo a cuerpo: +10, alcance 3 m. Acierto: 13 (2d6 + 6) de daño cortante más 3 (1d6) de daño de fuego.
+
+**Aliento de fuego (recarga 5–6).** Tirada de salvación de Destreza: CD 17, todas las criaturas en un cono de 9 m. Fallo: 56 (16d6) de daño de fuego. Éxito: la mitad del daño.

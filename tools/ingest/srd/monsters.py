@@ -261,6 +261,14 @@ def parse(lines: list[Line]) -> list[Monster]:
             m.speed = re.split(r"\s(?:MOD\.|FUE|[FDCIS]\s\d)", _between(blob, "Velocidad:", ()))[0]
         m.abilities = _parse_abilities(blob)
 
+        # Algunas páginas parten la etiqueta («CA: Iniciativa:» y los valores
+        # en la línea siguiente). Se reparte aquí.
+        if "Iniciativa" in (m.ac or ""):
+            mm = re.search(r"Iniciativa:\s*(\d+)\s*([+−-]\d+)\s*\((\d+)\)", m.ac)
+            if mm:
+                m.ac = mm.group(1)
+                m.initiative = f"{mm.group(2)} ({mm.group(3)})"
+
         # Resto del perfil: etiquetas de datos y rasgos/acciones.
         body: list[Line] = []
         last_field = ""

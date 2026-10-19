@@ -4,10 +4,10 @@ size: Mediana
 type: Bestia
 tags: ''
 alignment: sin alineamiento
-ac: 'Iniciativa: 12 +2 (12)'
+ac: '12'
 hp: 11 (2d8 + 2)
 speed: 12 m
-initiative: 12 +2 (12)
+initiative: +2 (12)
 abilities:
   fue: 14
   des: 15

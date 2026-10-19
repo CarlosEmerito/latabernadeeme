@@ -1,0 +1,164 @@
+---
+interface Faceta {
+  clave: string;
+  etiqueta: string;
+  valores: { valor: string; texto: string }[];
+}
+
+interface Columna {
+  clave: string;
+  etiqueta: string;
+  tipo?: "num" | "texto";
+  ocultoMovil?: boolean;
+}
+
+interface Fila {
+  href: string;
+  nombre: string;
+  chips?: string[];
+  celdas: Record<string, string | number>;
+  facetas: Record<string, string>;
+}
+
+interface Props {
+  columnas: Columna[];
+  filas: Fila[];
+  facetas: Faceta[];
+  buscador?: boolean;
+  placeholder?: string;
+  vacio?: string;
+}
+
+const {
+  columnas,
+  filas,
+  facetas,
+  buscador = true,
+  placeholder = "Filtrar por nombre…",
+  vacio = "No hay nada con esos filtros.",
+} = Astro.props;
+---
+
+<form class="toolbar" role="search" id="filtros" aria-label="Filtrar y ordenar">
+  {buscador && (
+    <label class="campo campo--texto">
+      <span class="oculto-visual">Buscar</span>
+      <input type="search" data-faceta="texto" placeholder={placeholder} autocomplete="off" />
+    </label>
+  )}
+  {facetas.map((f) => (
+    <label class="campo">
+      <span>{f.etiqueta}</span>
+      <select data-faceta={f.clave}>
+        <option value="">Todo</option>
+        {f.valores.map((v) => (
+          <option value={v.valor}>{v.texto}</option>
+        ))}
+      </select>
+    </label>
+  ))}
+  <button class="btn btn--fantasma" type="reset" id="limpiar">Limpiar</button>
+  <p class="cuenta" id="cuenta" aria-live="polite">{filas.length} entradas</p>
+</form>
+
+<table class="tabla" id="tabla">
+  <thead>
+    <tr>
+      {columnas.map((c) => (
+        <th
+          scope="col"
+          class:list={[c.tipo === "num" && "col-num", c.ocultoMovil && "oculto-movil"]}
+          data-orden={c.clave}
+          data-tipo={c.tipo ?? "texto"}
+          aria-sort="none"
+        >
+          <button type="button" style="all:unset;cursor:pointer">{c.etiqueta}</button>
+        </th>
+      ))}
+    </tr>
+  </thead>
+  <tbody id="cuerpo">
+    {filas.map((f) => (
+      <tr data-facetas={JSON.stringify(f.facetas)} data-buscar={f.nombre.toLowerCase()}>
+        {columnas.map((c, i) => (
+          <td class:list={[c.tipo === "num" && "col-num", c.ocultoMovil && "oculto-movil"]}>
+            {i === 0 ? (
+              <a href={f.href}>{f.nombre}</a>
+            ) : (
+              String(f.celdas[c.clave] ?? "")
+            )}
+            {i === 0 &&
+              f.chips?.map((chip) => (
+                <>
+                  {" "}
+                  <span class="chip">{chip}</span>
+                </>
+              ))}
+          </td>
+        ))}
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<p id="sin-resultados" class="muted" hidden>{vacio}</p>
+
+<script>
+  const form = document.getElementById("filtros") as HTMLFormElement | null;
+  const tabla = document.getElementById("tabla") as HTMLTableElement | null;
+  const cuerpo = document.getElementById("cuerpo");
+  const cuenta = document.getElementById("cuenta");
+  const sinResultados = document.getElementById("sin-resultados");
+
+  if (form && tabla && cuerpo) {
+    const filas = Array.from(cuerpo.querySelectorAll<HTMLTableRowElement>("tr"));
+
+    const aplicar = () => {
+      const campos = Array.from(form.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[data-faceta]"));
+      const activos = campos
+        .map((c) => ({ clave: c.dataset.faceta!, valor: c.value.trim().toLowerCase() }))
+        .filter((f) => f.valor);
+      let visibles = 0;
+      for (const fila of filas) {
+        const facetas = JSON.parse(fila.dataset.facetas || "{}") as Record<string, string>;
+        const texto = fila.dataset.buscar || "";
+        const cumple = activos.every((f) => {
+          if (f.clave === "texto") return texto.includes(f.valor);
+          return String(facetas[f.clave] ?? "").toLowerCase() === f.valor;
+        });
+        fila.hidden = !cumple;
+        if (cumple) visibles++;
+      }
+      if (cuenta) cuenta.textContent = `${visibles} ${visibles === 1 ? "entrada" : "entradas"}`;
+      if (sinResultados) sinResultados.hidden = visibles !== 0;
+    };
+
+    form.addEventListener("input", aplicar);
+    form.addEventListener("change", aplicar);
+    form.addEventListener("reset", () => setTimeout(aplicar, 0));
+
+    // Orden por columna.
+    const cabeceras = Array.from(tabla.querySelectorAll<HTMLTableCellElement>("th[data-orden]"));
+    cabeceras.forEach((th) => {
+      th.addEventListener("click", () => {
+        const clave = th.dataset.orden!;
+        const esNum = th.dataset.tipo === "num";
+        const yaAsc = th.getAttribute("aria-sort") === "ascending";
+        cabeceras.forEach((h) => h.setAttribute("aria-sort", "none"));
+        th.setAttribute("aria-sort", yaAsc ? "descending" : "ascending");
+        const indice = cabeceras.indexOf(th);
+        const ordenadas = [...filas].sort((a, b) => {
+          const va = a.children[indice]?.textContent?.trim() ?? "";
+          const vb = b.children[indice]?.textContent?.trim() ?? "";
+          if (esNum) {
+            const na = parseFloat(va.replace(",", ".")) || 0;
+            const nb = parseFloat(vb.replace(",", ".")) || 0;
+            return yaAsc ? na - nb : nb - na;
+          }
+          return yaAsc ? vb.localeCompare(va, "es") : va.localeCompare(vb, "es");
+        });
+        ordenadas.forEach((f) => cuerpo.appendChild(f));
+      });
+    });
+  }
+</script>

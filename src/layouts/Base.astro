@@ -1,18 +1,29 @@
 ---
 import "../styles/global.css";
+import { EDICIONES, TIPOS, TIPO_META, contar, type Edition, type Tipo } from "../lib/content";
 import { e } from "../lib/urls";
 
 interface Props {
   title: string;
   description?: string;
-  edicion?: "5e" | "5.5";
-  ruta?: string;
+  edicion?: Edition;
+  tipo?: Tipo;
+  ancho?: boolean;
 }
 
+const {
+  title,
+  description = "Referencia y herramientas de mesa para la quinta edición de D&D y las reglas de 2024.",
+  edicion,
+  tipo,
+  ancho = false,
+} = Astro.props;
+
 const SITIO = "La Taberna de Eme";
-const { title, description = "Herramientas y referencia para jugadores y Dungeon Masters de la quinta edición.", edicion, ruta = "" } = Astro.props;
-const rutaActual = Astro.url.pathname.replace(/\/$/, "") || "/";
-const esActiva = (href: string) => (rutaActual === href ? "page" : undefined);
+const ruta = Astro.url.pathname.replace(/\/$/, "") || "/";
+const activo = (href: string) => (ruta === href.replace(/\/$/, "") ? "page" : undefined);
+const meta = edicion ? EDICIONES[edicion] : null;
+const base = edicion ? e(`/${edicion}`) : "";
 ---
 
 <!doctype html>
@@ -23,48 +34,89 @@ const esActiva = (href: string) => (rutaActual === href ? "page" : undefined);
     <title>{title === SITIO ? title : `${title} · ${SITIO}`}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f6efdf" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#12100c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d0d0c" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href={e("/favicon.svg")} type="image/svg+xml" />
     <link rel="manifest" href={e("/manifest.webmanifest")} />
-    <meta property="og:title" content={`${title} · La Taberna de Eme`} />
+    <meta property="og:title" content={title === SITIO ? title : `${title} · ${SITIO}`} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
     <script is:inline>
-      // Tema guardado antes del primer pintado para no parpadear.
       try {
         const guardado = localStorage.getItem("tema");
-        const prefiereOscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.dataset.tema = guardado || (prefiereOscuro ? "oscuro" : "claro");
+        const oscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.tema = guardado || (oscuro ? "oscuro" : "claro");
       } catch (e) {}
     </script>
   </head>
   <body>
-    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <a class="salto" href="#contenido">Saltar al contenido</a>
 
-    <header class="cabecera">
-      <div class="cabecera__interior">
-        <a class="marca" href={e("/")}>
-          <span class="marca__emoji" aria-hidden="true">🍺</span>
-          <span>La Taberna de Eme</span>
-          <span class="marca__sub">D&D 5e</span>
-        </a>
-        <nav class="cabecera__nav" aria-label="Principal">
-          <a class="enlace-nav" href={e("/5e/")} aria-current={esActiva("/5e")}>5e</a>
-          <a class="enlace-nav" href={e("/5.5/")} aria-current={esActiva("/5.5")}>5.5</a>
-          <a class="enlace-nav" href={e("/mesa/")} aria-current={esActiva("/mesa")}>Mesa</a>
-          <a class="enlace-nav" href={e("/buscar/")} aria-current={esActiva("/buscar")}>Buscar</a>
-          <button class="boton-icono" id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro">
-            <span id="icono-tema" aria-hidden="true">◐</span>
-            <span class="visualmente-oculto">Cambiar tema</span>
-          </button>
-        </nav>
+    <header class="topbar">
+      <a class="marca" href={e("/")}>
+        <span class="marca__punto" aria-hidden="true"></span>
+        <span class="marca__nombre">La Taberna de Eme</span>
+      </a>
+
+      <form class="buscador-top" role="search" aria-label="Buscar en la taberna" action={e("/buscar/")} method="get">
+        <span class="lupa" aria-hidden="true">⌕</span>
+        <input type="search" name="q" placeholder="Conjuro, monstruo, objeto…" aria-label="Buscar en la taberna" />
+        <kbd>↵</kbd>
+      </form>
+
+      <div class="topbar__acciones">
+        <div class="segmento" role="group" aria-label="Edición">
+          <a href={e("/5e/")} aria-current={ruta.startsWith(e("/5e")) ? "page" : undefined}>5e</a>
+          <a href={e("/5.5/")} aria-current={ruta.startsWith(e("/5.5")) ? "page" : undefined}>5.5</a>
+        </div>
+        <a class="enlace-top" href={e("/mesa/")} aria-current={activo(e("/mesa/"))}>Mesa</a>
+        <button class="icono-btn" id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro">
+          <span id="icono-tema" aria-hidden="true">◐</span>
+        </button>
       </div>
     </header>
 
-    <main id="contenido" class:list={["envoltura"]}>
-      <slot />
-    </main>
+    <div class:list={["shell", ancho && "shell--ancho"]}>
+      {meta && (
+        <nav class="rail" aria-label="Contenido">
+          <div class="rail__grupo">
+            <p class="rail__titulo">{meta.srd}</p>
+            <ul class="rail__lista">
+              <li>
+                <a href={`${base}/`} aria-current={!tipo ? "page" : undefined}>
+                  <span>Portada</span>
+                </a>
+              </li>
+              {TIPOS.map((t) => {
+                const n = contar(edicion!, t);
+                if (n === 0) return null;
+                return (
+                  <li>
+                    <a href={`${base}/${t}/`} aria-current={tipo === t ? "page" : undefined}>
+                      <span>{TIPO_META[t].plural}</span>
+                      <span class="rail__cuenta">{n}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div class="rail__grupo rail__grupo--secundario">
+            <p class="rail__titulo">Otra edición</p>
+            <ul class="rail__lista">
+              <li>
+                <a href={e(`/${edicion === "5e" ? "5.5" : "5e"}/${tipo ? `${tipo}/` : ""}`)}>
+                  <span>{edicion === "5e" ? "SRD 5.2.1 · 2024" : "SRD 5.1 · 2014"}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      )}
+
+      <main class="main" id="contenido">
+        <slot />
+      </main>
+    </div>
 
     <footer class="pie">
       <div class="pie__interior">
@@ -72,24 +124,17 @@ const esActiva = (href: string) => (rutaActual === href ? "page" : undefined);
           <p>
             Esta obra incluye material procedente del documento de referencia del sistema 5.1
             («SRD 5.1») y del documento de referencia del sistema 5.2.1 («SRD 5.2.1») de Wizards of
-            the Coast LLC, disponibles en
-            <a href="https://www.dndbeyond.com/srd" rel="noopener">dndbeyond.com/srd</a>.
-          </p>
-          <p>
-            Ambos documentos se distribuyen bajo la licencia internacional de
-            atribución/reconocimiento 4.0 de Creative Commons, disponible en
-            <a href="https://creativecommons.org/licenses/by/4.0/legalcode.es" rel="noopener">creativecommons.org</a>.
+            the Coast LLC, disponibles en <a href="https://www.dndbeyond.com/srd" rel="noopener">dndbeyond.com/srd</a>.
+            Ambos se distribuyen bajo la licencia internacional de atribución 4.0 de Creative
+            Commons (<a href="https://creativecommons.org/licenses/by/4.0/legalcode.es" rel="noopener">CC BY 4.0</a>).
           </p>
         </div>
         <div>
           <p>
-            Herramienta no oficial, sin afiliación ni respaldo de Wizards of the Coast. Las marcas
-            de Dungeons &amp; Dragons pertenecen a sus titulares; aquí solo se usa el contenido
-            abierto del SRD.
+            Herramienta no oficial, sin afiliación ni respaldo de Wizards of the Coast. Las marcas de
+            Dungeons &amp; Dragons pertenecen a sus titulares.
           </p>
-          <p>
-            <a href={e("/licencias/")}>Licencias y fuentes</a> · <a href={e("/accesibilidad/")}>Accesibilidad</a>
-          </p>
+          <p><a href={e("/licencias/")}>Licencias y fuentes</a> · <a href={e("/accesibilidad/")}>Accesibilidad</a></p>
         </div>
       </div>
     </footer>
@@ -97,19 +142,27 @@ const esActiva = (href: string) => (rutaActual === href ? "page" : undefined);
     <script>
       const boton = document.getElementById("boton-tema");
       const icono = document.getElementById("icono-tema");
-      const pintarIcono = () => {
+      const pintar = () => {
         const oscuro = document.documentElement.dataset.tema === "oscuro";
-        icono.textContent = oscuro ? "☀" : "☾";
+        if (icono) icono.textContent = oscuro ? "☀" : "☾";
         boton?.setAttribute("aria-pressed", String(oscuro));
       };
-      pintarIcono();
+      pintar();
       boton?.addEventListener("click", () => {
         const oscuro = document.documentElement.dataset.tema === "oscuro";
         document.documentElement.dataset.tema = oscuro ? "claro" : "oscuro";
         try {
           localStorage.setItem("tema", document.documentElement.dataset.tema);
         } catch (e) {}
-        pintarIcono();
+        pintar();
+      });
+
+      // Atajo de búsqueda: "/" enfoca el campo.
+      document.addEventListener("keydown", (ev) => {
+        if (ev.key === "/" && !/input|textarea|select/i.test((ev.target as HTMLElement).tagName)) {
+          ev.preventDefault();
+          document.querySelector<HTMLInputElement>(".buscador-top input")?.focus();
+        }
       });
     </script>
   </body>

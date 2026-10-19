@@ -1,7 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import Lateral from "../../components/Lateral.astro";
-import { EDICIONES, TIPOS, TIPO_META, cargar, contar, type Edition } from "../../lib/content";
+import { EDICIONES, TIPOS, TIPO_META, contar, cargar, type Edition } from "../../lib/content";
 import { e } from "../../lib/urls";
 
 export function getStaticPaths() {
@@ -10,69 +9,67 @@ export function getStaticPaths() {
 
 const ed = Astro.params.ed as Edition;
 const meta = EDICIONES[ed];
-const tipos = TIPOS.filter((t) => contar(ed, t) > 0);
-
-const destacados = {
-  conjuros: cargar(ed, "conjuros").slice(0, 6),
-  monstruos: cargar(ed, "monstruos").slice(0, 6),
-};
+const secciones = TIPOS.map((t) => ({ t, n: contar(ed, t) })).filter((x) => x.n > 0);
+const total = secciones.reduce((n, s) => n + s.n, 0);
+const muestraConjuros = cargar(ed, "conjuros").slice(0, 8);
+const muestraMonstruos = cargar(ed, "monstruos").slice(0, 8);
 ---
 
-<Base title={meta.titulo} description={`Todo el contenido del ${meta.srd}: ${tipos.map((t) => TIPO_META[t].plural.toLowerCase()).join(", ")}.`}>
-  <div class="con-lateral">
-    <Lateral edicion={ed} />
+<Base title={meta.srd} description={`Todo el contenido del ${meta.srd} en español.`} edicion={ed}>
+  <header class="cabecera">
     <div>
-      <p class="ceja">{meta.srd} · {meta.nota}</p>
-      <h1>{meta.titulo}</h1>
-      <p class="entradilla">
+      <h1>{meta.srd} · {meta.nota}</h1>
+      <p class="cabecera__lede">
         {ed === "5e"
-          ? "El documento de referencia de 2014 en español, completo: conjuros, monstruos, objetos, clases, razas y reglas. Incluye lo que la revisión dejó fuera, como el semielfo, el semiorco y los planos de existencia."
-          : "El documento de referencia de 2024 en español, completo: conjuros, monstruos, objetos, clases, especies, trasfondos y el glosario de reglas revisado."}
+          ? "El documento de referencia de 2014, completo: incluye lo que la revisión dejó fuera, como el semielfo, el semiorco y los planos de existencia."
+          : "El documento de referencia de 2024, completo: clases revisadas, maestrías de arma, trasfondos y glosario de reglas."}
       </p>
+    </div>
+    <div class="cabecera__meta">
+      <span><b>{total}</b>entradas</span>
+      <span><b>{secciones.length}</b>secciones</span>
+    </div>
+  </header>
 
-      <div class="rejilla" style="margin-bottom:2.5rem">
-        {tipos.map((t) => (
-          <a class="tarjeta" href={e(`/${ed}/${t}/`)}>
-            <span class="tarjeta__nombre">
-              <span aria-hidden="true">{TIPO_META[t].icono}</span> {TIPO_META[t].plural}
-            </span>
-            <span class="tarjeta__meta">{contar(ed, t)} entradas</span>
-            <span class="tarjeta__texto">{TIPO_META[t].desc}</span>
-          </a>
+  <table class="tabla tabla--compacta" style="margin-bottom:2.5rem">
+    <thead>
+      <tr><th scope="col">Sección</th><th scope="col" class="col-num">Entradas</th><th scope="col">Qué hay</th></tr>
+    </thead>
+    <tbody>
+      {secciones.map((s) => (
+        <tr>
+          <td><a href={e(`/${ed}/${s.t}/`)}>{TIPO_META[s.t].plural}</a></td>
+          <td class="col-num">{s.n}</td>
+          <td class="col-tenue">{TIPO_META[s.t].desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="ediciones-tabla">
+    <div class="edicion-bloque">
+      <h2>Conjuros</h2>
+      <p class="edicion-bloque__nota">Los primeros por orden alfabético</p>
+      <ul>
+        {muestraConjuros.map((c) => (
+          <li>
+            <a href={e(`/${ed}/conjuros/${c.slug}/`)}>{c.data.name}</a>
+            <span class="num muted">{c.data.level === 0 ? "truco" : `n.º ${c.data.level}`}</span>
+          </li>
         ))}
-      </div>
-
-      {destacados.conjuros.length > 0 && (
-        <section aria-labelledby="conjuros-destacados">
-          <h2 id="conjuros-destacados">Conjuros</h2>
-          <ul class="lista-limpia" style="columns:2;column-gap:2rem">
-            {destacados.conjuros.map((c) => (
-              <li style="break-inside:avoid;margin-bottom:.35rem">
-                <a href={e(`/${ed}/conjuros/${c.slug}/`)}>{c.data.name}</a>{" "}
-                <span style="font-family:var(--fuente-ui);font-size:.78rem;color:var(--tinta-tenue)">
-                  {c.data.level === 0 ? "truco" : `nivel ${c.data.level}`}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {destacados.monstruos.length > 0 && (
-        <section aria-labelledby="monstruos-destacados" style="margin-top:2rem">
-          <h2 id="monstruos-destacados">Monstruos</h2>
-          <ul class="lista-limpia" style="columns:2;column-gap:2rem">
-            {destacados.monstruos.map((m) => (
-              <li style="break-inside:avoid;margin-bottom:.35rem">
-                <a href={e(`/${ed}/monstruos/${m.slug}/`)}>{m.data.name}</a>{" "}
-                <span style="font-family:var(--fuente-ui);font-size:.78rem;color:var(--tinta-tenue)">
-                  VD {m.data.cr}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      </ul>
+    </div>
+    <div class="edicion-bloque">
+      <h2>Monstruos</h2>
+      <p class="edicion-bloque__nota">Los primeros por orden alfabético</p>
+      <ul>
+        {muestraMonstruos.map((m) => (
+          <li>
+            <a href={e(`/${ed}/monstruos/${m.slug}/`)}>{m.data.name}</a>
+            <span class="num muted">VD {m.data.cr}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   </div>
 </Base>

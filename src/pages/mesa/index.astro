@@ -8,33 +8,27 @@ for (const o of objetos51) {
   const r = String(o.data.rarity || "sin rareza").toLowerCase();
   (porRareza[r] ??= []).push(String(o.data.name));
 }
-const botin = JSON.stringify(porRareza);
 ---
 
 <Base
-  title="Herramientas de mesa"
-  description="Generador de encuentros, orden de iniciativa, tiradas de dado, PNJ improvisados y botín para tus partidas de quinta edición."
+  title="Mesa"
+  description="Generador de encuentros, iniciativa, dados, PNJ y botín para tus partidas."
+  ancho
 >
-  <p class="ceja">Para el Dungeon Master</p>
-  <h1>Herramientas de mesa</h1>
-  <p class="entradilla">
-    Cuatro cosas que se usan de verdad en mitad de una sesión: montar un encuentro con el
-    presupuesto de experiencia, ordenar la iniciativa, tirar dados y sacar un PNJ o un tesoro
-    cuando la mesa improvisa.
-  </p>
+  <header class="cabecera">
+    <div>
+      <h1>Mesa</h1>
+      <p class="cabecera__lede">Cuatro cosas que se usan en mitad de una sesión, sin cuentas ni esperas.</p>
+    </div>
+  </header>
 
-  <div class="herramientas">
-    <section class="herramienta" aria-labelledby="t-encuentros">
-      <h2 id="t-encuentros">Encuentros</h2>
-      <p>Elige el tamaño del grupo, su nivel y la dificultad que buscas.</p>
+  <div class="mesa-grid">
+    <section class="mesa-panel" aria-labelledby="p-encuentros">
+      <h2 id="p-encuentros">Encuentros</h2>
       <fieldset>
-        <legend>Grupo</legend>
         <label>Personajes <input type="number" id="enc-pj" min="1" max="10" value="4" /></label>
         <label>Nivel <input type="number" id="enc-nivel" min="1" max="20" value="3" /></label>
-      </fieldset>
-      <fieldset>
-        <legend>Dificultad</legend>
-        <label>
+        <label>Dificultad
           <select id="enc-dif" aria-label="Dificultad del encuentro">
             <option value="facil">Fácil</option>
             <option value="media" selected>Media</option>
@@ -43,48 +37,41 @@ const botin = JSON.stringify(porRareza);
           </select>
         </label>
       </fieldset>
-      <button class="btn btn--principal" type="button" id="enc-calcular">Calcular presupuesto</button>
+      <button class="btn btn--acento" type="button" id="enc-calcular">Calcular presupuesto</button>
       <p class="salida" id="enc-salida" aria-live="polite"></p>
     </section>
 
-    <section class="herramienta" aria-labelledby="t-iniciativa">
-      <h2 id="t-iniciativa">Iniciativa</h2>
-      <p>Añade combatientes con su modificador; se ordenan solos.</p>
+    <section class="mesa-panel" aria-labelledby="p-iniciativa">
+      <h2 id="p-iniciativa">Iniciativa</h2>
       <fieldset>
-        <legend>Añadir</legend>
         <label>Nombre <input type="text" id="ini-nombre" placeholder="Goblin 1" /></label>
-        <label>Iniciativa <input type="number" id="ini-valor" value="10" /></label>
+        <label>Valor <input type="number" id="ini-valor" value="10" /></label>
       </fieldset>
       <button class="btn" type="button" id="ini-anadir">Añadir</button>
-      <button class="btn" type="button" id="ini-siguiente">Siguiente turno</button>
+      <button class="btn btn--fantasma" type="button" id="ini-siguiente">Siguiente turno</button>
       <ol id="ini-lista" class="salida" aria-live="polite"></ol>
     </section>
 
-    <section class="herramienta" aria-labelledby="t-dados">
-      <h2 id="t-dados">Dados</h2>
-      <p>Notación normal: <code>2d6+3</code>, <code>1d20</code>, <code>8d6</code>.</p>
+    <section class="mesa-panel" aria-labelledby="p-dados">
+      <h2 id="p-dados">Dados</h2>
       <fieldset>
-        <legend>Tirada</legend>
-        <label>Expresión <input type="text" id="dad-expresion" value="1d20+5" /></label>
-        <label><input type="checkbox" id="dad-ventaja" /> Ventaja / desventaja (2d20)</label>
+        <label>Tirada <input type="text" id="dad-expresion" value="1d20+5" /></label>
+        <label>Ventaja <input type="checkbox" id="dad-ventaja" /></label>
       </fieldset>
-      <button class="btn btn--principal" type="button" id="dad-tirar">Tirar</button>
+      <button class="btn btn--acento" type="button" id="dad-tirar">Tirar</button>
       <p class="salida" id="dad-salida" aria-live="polite"></p>
     </section>
 
-    <section class="herramienta" aria-labelledby="t-pnj">
-      <h2 id="t-pnj">PNJ de improviso</h2>
-      <p>Un nombre, un oficio y una manía para cuando la mesa pregunta por alguien que no existía.</p>
-      <button class="btn btn--principal" type="button" id="pnj-generar">Generar</button>
+    <section class="mesa-panel" aria-labelledby="p-pnj">
+      <h2 id="p-pnj">PNJ de improviso</h2>
+      <button class="btn btn--acento" type="button" id="pnj-generar">Generar</button>
       <p class="salida" id="pnj-salida" aria-live="polite"></p>
     </section>
 
-    <section class="herramienta" aria-labelledby="t-botin">
-      <h2 id="t-botin">Botín</h2>
-      <p>Monedas y un objeto mágico del SRD 5.1 según la rareza que elijas.</p>
+    <section class="mesa-panel" aria-labelledby="p-botin">
+      <h2 id="p-botin">Botín</h2>
       <fieldset>
-        <legend>Tesoro</legend>
-        <label>
+        <label>Rareza
           <select id="bot-rareza" aria-label="Rareza del objeto mágico">
             <option value="común">Común</option>
             <option value="poco común" selected>Poco común</option>
@@ -94,70 +81,44 @@ const botin = JSON.stringify(porRareza);
           </select>
         </label>
       </fieldset>
-      <button class="btn btn--principal" type="button" id="bot-generar">Generar botín</button>
+      <button class="btn btn--acento" type="button" id="bot-generar">Generar botín</button>
       <p class="salida" id="bot-salida" aria-live="polite"></p>
     </section>
   </div>
 
-  <script id="datos-botin" type="application/json" set:html={botin}></script>
+  <script id="datos-botin" type="application/json" set:html={JSON.stringify(porRareza)}></script>
 
   <script>
-    // ---- Encuentros: umbrales orientativos de PX por personaje y nivel.
     const UMBRALES: Record<number, [number, number, number, number]> = {
-      1: [25, 50, 75, 100],
-      2: [50, 100, 150, 200],
-      3: [75, 150, 225, 400],
-      4: [125, 250, 375, 500],
-      5: [250, 500, 750, 1100],
-      6: [300, 600, 900, 1400],
-      7: [350, 750, 1100, 1700],
-      8: [450, 900, 1400, 2100],
-      9: [550, 1100, 1600, 2400],
-      10: [600, 1200, 1900, 2800],
-      11: [800, 1600, 2400, 3600],
-      12: [1000, 2000, 3000, 4500],
-      13: [1100, 2200, 3400, 5100],
-      14: [1250, 2500, 3800, 5700],
-      15: [1400, 2800, 4300, 6400],
-      16: [1600, 3200, 4800, 7200],
-      17: [2000, 3900, 5900, 8800],
-      18: [2100, 4200, 6300, 9500],
-      19: [2400, 4900, 7300, 10900],
-      20: [2800, 5700, 8500, 12700],
+      1: [25, 50, 75, 100], 2: [50, 100, 150, 200], 3: [75, 150, 225, 400], 4: [125, 250, 375, 500],
+      5: [250, 500, 750, 1100], 6: [300, 600, 900, 1400], 7: [350, 750, 1100, 1700], 8: [450, 900, 1400, 2100],
+      9: [550, 1100, 1600, 2400], 10: [600, 1200, 1900, 2800], 11: [800, 1600, 2400, 3600], 12: [1000, 2000, 3000, 4500],
+      13: [1100, 2200, 3400, 5100], 14: [1250, 2500, 3800, 5700], 15: [1400, 2800, 4300, 6400], 16: [1600, 3200, 4800, 7200],
+      17: [2000, 3900, 5900, 8800], 18: [2100, 4200, 6300, 9500], 19: [2400, 4900, 7300, 10900], 20: [2800, 5700, 8500, 12700],
     };
-    const INDICE: Record<string, number> = { facil: 0, media: 1, dificil: 2, mortal: 3 };
+    const IDX: Record<string, number> = { facil: 0, media: 1, dificil: 2, mortal: 3 };
 
     document.getElementById("enc-calcular")?.addEventListener("click", () => {
       const pj = Number((document.getElementById("enc-pj") as HTMLInputElement).value);
       const nivel = Math.min(20, Math.max(1, Number((document.getElementById("enc-nivel") as HTMLInputElement).value)));
       const dif = (document.getElementById("enc-dif") as HTMLSelectElement).value;
-      const fila = UMBRALES[nivel];
-      const total = fila[INDICE[dif]] * pj;
-      const salida = document.getElementById("enc-salida")!;
-      salida.innerHTML =
-        `Presupuesto <strong>${total.toLocaleString("es-ES")} PX</strong> para ${pj} personajes de nivel ${nivel}. ` +
-        `Sirve para sumar criaturas: por ejemplo, ${Math.floor(total / 50)} criaturas de 50 PX o ${Math.floor(total / 200)} de 200 PX. ` +
-        `<br><span style="color:var(--tinta-tenue)">Orientativo: la dificultad real depende del terreno y de los recursos del grupo.</span>`;
+      const total = UMBRALES[nivel][IDX[dif]] * pj;
+      document.getElementById("enc-salida")!.innerHTML =
+        `<strong>${total.toLocaleString("es-ES")} PX</strong> para ${pj} personajes de nivel ${nivel}. ` +
+        `${Math.floor(total / 50)} criaturas de 50 PX o ${Math.floor(total / 200)} de 200 PX. ` +
+        `<span class="muted">Orientativo.</span>`;
     });
 
-    // ---- Iniciativa
-    type Combatiente = { nombre: string; valor: number };
-    let combatientes: Combatiente[] = [];
+    type C = { nombre: string; valor: number };
+    let combatientes: C[] = [];
     let turno = 0;
-
     const pintarIniciativa = () => {
       const lista = document.getElementById("ini-lista")!;
-      combatientes.sort((a, b) => b.valor - a.valor);
-      lista.innerHTML = combatientes
-        .map(
-          (c, i) =>
-            `<li${i === turno ? ' style="font-weight:700;color:var(--acento)"' : ""}>${i + 1}. ${c.nombre} — ${c.valor}${
-              i === turno ? " ←" : ""
-            }</li>`,
-        )
+      lista.innerHTML = [...combatientes]
+        .sort((a, b) => b.valor - a.valor)
+        .map((c, i) => `<li${i === turno ? ' style="font-weight:700;color:var(--accent)"' : ""}>${c.nombre} — ${c.valor}</li>`)
         .join("");
     };
-
     document.getElementById("ini-anadir")?.addEventListener("click", () => {
       const nombre = (document.getElementById("ini-nombre") as HTMLInputElement).value.trim() || "Sin nombre";
       const valor = Number((document.getElementById("ini-valor") as HTMLInputElement).value) || 0;
@@ -165,76 +126,46 @@ const botin = JSON.stringify(porRareza);
       (document.getElementById("ini-nombre") as HTMLInputElement).value = "";
       pintarIniciativa();
     });
-
     document.getElementById("ini-siguiente")?.addEventListener("click", () => {
-      if (combatientes.length === 0) return;
+      if (!combatientes.length) return;
+      combatientes.sort((a, b) => b.valor - a.valor);
       turno = (turno + 1) % combatientes.length;
       pintarIniciativa();
     });
 
-    // ---- Dados
-    const tirarDado = (caras: number) => Math.floor(Math.random() * caras) + 1;
-
+    const d = (caras: number) => Math.floor(Math.random() * caras) + 1;
     document.getElementById("dad-tirar")?.addEventListener("click", () => {
       const entrada = (document.getElementById("dad-expresion") as HTMLInputElement).value.replace(/\s/g, "");
       const m = /^(\d*)d(\d+)([+-]\d+)?$/i.exec(entrada);
       const salida = document.getElementById("dad-salida")!;
-      if (!m) {
-        salida.textContent = "No entiendo esa tirada. Prueba con 2d6+3.";
-        return;
-      }
-      const n = Number(m[1] || 1);
-      const caras = Number(m[2]);
-      const mod = Number(m[3] || 0);
-      const ventaja = (document.getElementById("dad-ventaja") as HTMLInputElement).checked;
-      if (n > 100 || caras > 1000) {
-        salida.textContent = "Demasiados dados.";
-        return;
-      }
-      const tiradas = Array.from({ length: n }, () => tirarDado(caras));
+      if (!m) return void (salida.textContent = "Formato: 2d6+3");
+      const n = Number(m[1] || 1), caras = Number(m[2]), mod = Number(m[3] || 0);
+      if (n > 100 || caras > 1000) return void (salida.textContent = "Demasiados dados.");
+      const tiradas = Array.from({ length: n }, () => d(caras));
       let total = tiradas.reduce((a, b) => a + b, 0) + mod;
       let extra = "";
-      if (ventaja && n === 1 && caras === 20) {
-        const otra = tirarDado(20);
-        const alto = Math.max(tiradas[0], otra);
-        const bajo = Math.min(tiradas[0], otra);
-        total = alto + mod;
-        extra = ` (la otra tirada fue ${bajo})`;
+      if ((document.getElementById("dad-ventaja") as HTMLInputElement).checked && n === 1 && caras === 20) {
+        const otra = d(20);
+        total = Math.max(tiradas[0], otra) + mod;
+        extra = ` (la otra: ${Math.min(tiradas[0], otra)})`;
       }
       salida.innerHTML = `<strong>${total}</strong> = [${tiradas.join(", ")}]${mod ? ` ${mod > 0 ? "+" : "−"} ${Math.abs(mod)}` : ""}${extra}`;
     });
 
-    // ---- PNJ
     const NOMBRES = ["Aldara", "Brumo", "Cassia", "Doran", "Elva", "Fermín", "Greta", "Hugo", "Isolda", "Jaro", "Kelia", "Lupo", "Mara", "Néstor", "Olga", "Pietro", "Quina", "Ramiro", "Sela", "Tobías", "Úrsula", "Vasco", "Wenda", "Ximena", "Yago", "Zoe"];
     const OFICIOS = ["herrero", "tabernero", "curandera", "guardia", "cartógrafo", "contrabandista", "escribano", "cazador", "barquero", "sepulturero", "juglar", "boticaria", "armero", "molinero", "sastre", "lacayo"];
-    const MANIAS = [
-      "no mira a los ojos cuando miente",
-      "habla siempre en susurros",
-      "cobra por adelantado y sin excepciones",
-      "tiene un cuervo que repite lo que oye",
-      "desconfía de cualquiera con espada",
-      "recuerda todas las deudas, hasta las de cobre",
-      "se ríe en el momento menos oportuno",
-      "lleva guantes incluso en verano",
-      "jura que vio algo en el bosque",
-      "no bebe nada que no sirva él mismo",
-    ];
-    const azar = <T,>(lista: T[]) => lista[Math.floor(Math.random() * lista.length)];
-
+    const MANIAS = ["no mira a los ojos cuando miente", "habla siempre en susurros", "cobra por adelantado y sin excepciones", "tiene un cuervo que repite lo que oye", "desconfía de cualquiera con espada", "recuerda todas las deudas, hasta las de cobre", "se ríe en el momento menos oportuno", "lleva guantes incluso en verano", "jura que vio algo en el bosque", "no bebe nada que no sirva él mismo"];
+    const azar = <T,>(xs: T[]) => xs[Math.floor(Math.random() * xs.length)];
     document.getElementById("pnj-generar")?.addEventListener("click", () => {
-      document.getElementById("pnj-salida")!.innerHTML =
-        `<strong>${azar(NOMBRES)}</strong>, ${azar(OFICIOS)}. ${azar(MANIAS).replace(/^/, "Se rumorea que ")}.`;
+      document.getElementById("pnj-salida")!.innerHTML = `<strong>${azar(NOMBRES)}</strong>, ${azar(OFICIOS)}. Se rumorea que ${azar(MANIAS)}.`;
     });
 
-    // ---- Botín
     document.getElementById("bot-generar")?.addEventListener("click", () => {
       const datos: Record<string, string[]> = JSON.parse(document.getElementById("datos-botin")!.textContent || "{}");
       const rareza = (document.getElementById("bot-rareza") as HTMLSelectElement).value;
       const lista = datos[rareza] || [];
-      const monedas = [Math.floor(Math.random() * 20) + 1, Math.floor(Math.random() * 100) + 1];
-      const objeto = lista.length ? azar(lista) : "un objeto sin identificar";
       document.getElementById("bot-salida")!.innerHTML =
-        `<strong>${monedas[0]} po</strong> y <strong>${monedas[1]} pp</strong>; además, <em>${objeto}</em>.`;
+        `<strong>${Math.floor(Math.random() * 20) + 1} po</strong> y <strong>${Math.floor(Math.random() * 100) + 1} pp</strong>; además, <em>${lista.length ? azar(lista) : "un objeto sin identificar"}</em>.`;
     });
   </script>
 </Base>

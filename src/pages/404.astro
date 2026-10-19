@@ -3,19 +3,16 @@ import Base from "../layouts/Base.astro";
 import { e } from "../lib/urls";
 ---
 
-<Base title="Página no encontrada" description="Esa página no existe en La Taberna de Eme.">
-  <section class="heroe">
-    <p class="heroe__sub">Error 404</p>
-    <h1>Aquí no hay nada</h1>
-    <p class="heroe__texto">
-      La página que buscas no existe, o el enlace que te han pasado está mal escrito. Puede que el
-      conjuro haya fallado.
-    </p>
-    <p>
-      <a class="btn btn--principal" href={e("/")}>Volver a la taberna</a>
-      <a class="btn" href={e("/5e/")}>Quinta edición</a>
-      <a class="btn" href={e("/5.5/")}>Reglas de 2024</a>
+<Base title="No encontrado" description="Esa página no existe." ancho>
+  <div class="vacio">
+    <p class="muted num" style="margin-bottom:0.5rem">404</p>
+    <h1 style="font-size:2rem;margin-bottom:0.5rem">Aquí no hay nada</h1>
+    <p class="muted">La página no existe o el enlace está mal escrito.</p>
+    <p style="margin-top:1.25rem;display:flex;gap:0.5rem;flex-wrap:wrap">
+      <a class="btn btn--acento" href={e("/")}>Volver al inicio</a>
+      <a class="btn" href={e("/5e/")}>SRD 5.1</a>
+      <a class="btn" href={e("/5.5/")}>SRD 5.2.1</a>
       <a class="btn" href={e("/buscar/")}>Buscar</a>
     </p>
-  </section>
+  </div>
 </Base>

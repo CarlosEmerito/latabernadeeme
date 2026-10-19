@@ -1,6 +1,5 @@
 ---
 import Base from "../../../layouts/Base.astro";
-import Lateral from "../../../components/Lateral.astro";
 import Detalle from "../../../components/Detalle.astro";
 import { EDICIONES, TIPO_META, cargar, type Edition, type Tipo, TIPOS } from "../../../lib/content";
 import { e } from "../../../lib/urls";
@@ -9,9 +8,7 @@ export function getStaticPaths() {
   const rutas: { params: { ed: string; tipo: string; slug: string } }[] = [];
   for (const ed of ["5e", "5.5"] as Edition[]) {
     for (const tipo of TIPOS) {
-      for (const e of cargar(ed, tipo)) {
-        rutas.push({ params: { ed, tipo, slug: e.slug } });
-      }
+      for (const en of cargar(ed, tipo)) rutas.push({ params: { ed, tipo, slug: en.slug } });
     }
   }
   return rutas;
@@ -21,14 +18,10 @@ const ed = Astro.params.ed as Edition;
 const tipo = Astro.params.tipo as Tipo;
 const slug = Astro.params.slug!;
 const entradas = cargar(ed, tipo);
-const indice = entradas.findIndex((e) => e.slug === slug);
+const indice = entradas.findIndex((x) => x.slug === slug);
 const entrada = entradas[indice];
-const anterior = indice > 0 ? entradas[indice - 1] : undefined;
-const siguiente = indice >= 0 && indice < entradas.length - 1 ? entradas[indice + 1] : undefined;
 
-if (!entrada) {
-  return Astro.redirect(e("/404/"));
-}
+if (!entrada) return Astro.redirect(e("/404/"));
 
 const meta = EDICIONES[ed];
 const t = TIPO_META[tipo];
@@ -41,28 +34,20 @@ const descripcion =
       : `${titulo} (${meta.srd}).`;
 ---
 
-<Base title={titulo} description={descripcion}>
-  <div class="con-lateral">
-    <Lateral edicion={ed} actual={tipo} />
-    <div>
-      <nav aria-label="Migas de pan" class="ceja" style="margin-bottom:1rem">
-        <a href={e(`/${ed}/`)} style="color:inherit">{meta.srd}</a> ›
-        <a href={e(`/${ed}/${tipo}/`)} style="color:inherit"> {t.plural}</a>
-      </nav>
-      <Detalle entrada={entrada} edicion={ed} tipo={tipo} />
+<Base title={titulo} description={descripcion} edicion={ed} tipo={tipo}>
+  <nav class="migas" aria-label="Migas de pan">
+    <a href={e(`/${ed}/`)}>{meta.srd}</a>
+    <span aria-hidden="true">/</span>
+    <a href={e(`/${ed}/${tipo}/`)}>{t.plural}</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{titulo}</span>
+  </nav>
 
-      <nav class="noprint" aria-label="Otras entradas" style="display:flex;justify-content:space-between;gap:1rem;margin-top:2rem;font-family:var(--fuente-ui);font-size:.88rem">
-        {anterior ? (
-          <a href={e(`/${ed}/${tipo}/${anterior.slug}/`)}>← {anterior.data.name}</a>
-        ) : (
-          <span />
-        )}
-        {siguiente ? (
-          <a href={e(`/${ed}/${tipo}/${siguiente.slug}/`)} style="text-align:right">{siguiente.data.name} →</a>
-        ) : (
-          <span />
-        )}
-      </nav>
-    </div>
-  </div>
+  <Detalle
+    entrada={entrada}
+    edicion={ed}
+    tipo={tipo}
+    anterior={indice > 0 ? entradas[indice - 1] : undefined}
+    siguiente={indice < entradas.length - 1 ? entradas[indice + 1] : undefined}
+  />
 </Base>

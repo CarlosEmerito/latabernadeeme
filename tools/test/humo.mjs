@@ -79,7 +79,7 @@ async function axeEn(pag, etiqueta) {
 
 const portada = await abrir(`${BASE}/`);
 try {
-  const d = await evaluar(portada, `({h1: document.querySelectorAll('h1').length, ediciones: document.querySelectorAll('.edicion').length, titulo: document.title})`);
+  const d = await evaluar(portada, `({h1: document.querySelectorAll('h1').length, ediciones: document.querySelectorAll('.edicion-bloque').length, titulo: document.title})`);
   if (d.h1 === 1 && d.ediciones === 2) bien("portada: un h1 y dos ediciones");
   else fallo("portada", JSON.stringify(d));
   await axeEn(portada, "portada");
@@ -91,9 +91,9 @@ const conjuro = await abrir(`${BASE}/5e/conjuros/bola-de-fuego/`);
 try {
   const d = await evaluar(
     conjuro,
-    `({h1: document.querySelector('h1')?.textContent, filas: document.querySelectorAll('.perfil__linea').length, parrafos: document.querySelectorAll('.prosa p').length, enlacesBase: [...document.querySelectorAll('a[href^="/"]')].every(a => a.getAttribute('href').startsWith('/latabernadeeme'))})`,
+    `({h1: document.querySelector('h1')?.textContent, filas: document.querySelectorAll('.aside dd').length, parrafos: document.querySelectorAll('.prosa p').length, enlacesBase: [...document.querySelectorAll('a[href^="/"]')].every(a => a.getAttribute('href').startsWith('/latabernadeeme'))})`,
   );
-  if (d.h1 === "Bola de fuego" && d.filas >= 5 && d.parrafos >= 2 && d.enlacesBase) bien("conjuro: ficha completa y enlaces con prefijo");
+  if (d.h1 === "Bola de fuego" && d.filas >= 4 && d.parrafos >= 2 && d.enlacesBase) bien("conjuro: ficha completa y enlaces con prefijo");
   else fallo("conjuro", JSON.stringify(d));
   await axeEn(conjuro, "conjuro");
 } catch (e) {
@@ -104,9 +104,9 @@ const monstruo = await abrir(`${BASE}/5.5/monstruos/guerrero-goblin/`);
 try {
   const d = await evaluar(
     monstruo,
-    `({h1: document.querySelector('h1')?.textContent, celdas: document.querySelectorAll('.caracteristicas__celda').length, filas: document.querySelectorAll('.perfil__linea').length})`,
+    `({h1: document.querySelector('h1')?.textContent, celdas: document.querySelectorAll('.habilidades > div').length, filas: document.querySelectorAll('.perfil__datos div').length})`,
   );
-  if (d.celdas === 6 && d.filas >= 5) bien(`monstruo: ${d.h1} con seis características`);
+  if (d.celdas === 6 && d.filas >= 6) bien(`monstruo: ${d.h1} con seis características`);
   else fallo("monstruo", JSON.stringify(d));
   await axeEn(monstruo, "monstruo");
 } catch (e) {
@@ -115,13 +115,13 @@ try {
 
 const listado = await abrir(`${BASE}/5e/conjuros/`);
 try {
-  const antes = await evaluar(listado, `document.querySelectorAll('.tarjeta:not([hidden])').length`);
+  const antes = await evaluar(listado, `document.querySelectorAll('#cuerpo tr:not([hidden])').length`);
   await evaluar(
     listado,
     `(() => { const s = document.querySelector('[data-faceta="nivel"]'); s.value='3'; s.dispatchEvent(new Event('change', {bubbles:true})); })()`,
   );
   await new Promise((r) => setTimeout(r, 300));
-  const despues = await evaluar(listado, `document.querySelectorAll('.tarjeta:not([hidden])').length`);
+  const despues = await evaluar(listado, `document.querySelectorAll('#cuerpo tr:not([hidden])').length`);
   const contador = await evaluar(listado, `document.getElementById('contador')?.textContent`);
   if (antes > 300 && despues > 20 && despues < antes) bien(`filtro por nivel 3: ${antes} -> ${despues} (${contador})`);
   else fallo("filtro", JSON.stringify({ antes, despues, contador }));
@@ -142,7 +142,7 @@ try {
     mesa,
     `(() => { document.getElementById('enc-calcular').click(); return document.getElementById('enc-salida').textContent; })()`,
   );
-  if (/Presupuesto/.test(enc)) bien(`encuentros: ${enc.trim().slice(0, 60)}`);
+  if (/PX/.test(enc)) bien(`encuentros: ${enc.trim().slice(0, 60)}`);
   else fallo("encuentros", enc);
 
   const ini = await evaluar(
@@ -155,7 +155,7 @@ try {
        return orden;
      })()`,
   );
-  if (Array.isArray(ini) && ini[0].startsWith("1. B")) bien(`iniciativa: ${ini.join(" | ")}`);
+  if (Array.isArray(ini) && ini[0].startsWith("B")) bien(`iniciativa: ${ini.join(" | ")}`);
   else fallo("iniciativa", JSON.stringify(ini));
 
   const pnj = await evaluar(mesa, `(() => { document.getElementById('pnj-generar').click(); return document.getElementById('pnj-salida').textContent; })()`);

@@ -1,17 +1,13 @@
 ---
 import Base from "../../../layouts/Base.astro";
-import Lateral from "../../../components/Lateral.astro";
-import Listado from "../../../components/Listado.astro";
+import Tabla from "../../../components/Tabla.astro";
 import { EDICIONES, TIPO_META, cargar, type Edition, type Tipo, TIPOS } from "../../../lib/content";
-import { preparar } from "../../../lib/facetas";
 import { e } from "../../../lib/urls";
 
 export function getStaticPaths() {
   const rutas: { params: { ed: string; tipo: string } }[] = [];
   for (const ed of ["5e", "5.5"] as Edition[]) {
-    for (const tipo of TIPOS) {
-      rutas.push({ params: { ed, tipo } });
-    }
+    for (const tipo of TIPOS) rutas.push({ params: { ed, tipo } });
   }
   return rutas;
 }
@@ -20,26 +16,219 @@ const ed = Astro.params.ed as Edition;
 const tipo = Astro.params.tipo as Tipo;
 const meta = EDICIONES[ed];
 const entradas = cargar(ed, tipo);
-const { facetas, items } = preparar(tipo, entradas);
-const t = TIPO_META[tipo];
+
+const unicos = (vals: any[]) =>
+  Array.from(new Set(vals.filter((v) => v !== undefined && v !== null && String(v).trim() !== "").map(String)));
+
+const ORDEN_NIVEL = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const ORDEN_CR = ["0", "1/8", "1/4", "1/2", ...Array.from({ length: 30 }, (_, i) => String(i + 1))];
+const ordenar = (vals: string[], orden?: string[]) =>
+  vals.sort((a, b) =>
+    orden
+      ? (orden.indexOf(a) === -1 ? 99 : orden.indexOf(a)) - (orden.indexOf(b) === -1 ? 99 : orden.indexOf(b)) ||
+        a.localeCompare(b, "es")
+      : a.localeCompare(b, "es"),
+  );
+
+const columnas: Record<string, { clave: string; etiqueta: string; tipo?: "num" | "texto"; ocultoMovil?: boolean }[]> = {
+  conjuros: [
+    { clave: "nivel", etiqueta: "Nivel", tipo: "num" },
+    { clave: "escuela", etiqueta: "Escuela" },
+    { clave: "clases", etiqueta: "Clases", ocultoMovil: true },
+    { clave: "ritual", etiqueta: "Ritual", ocultoMovil: true },
+  ],
+  monstruos: [
+    { clave: "vd", etiqueta: "VD", tipo: "num" },
+    { clave: "tipo", etiqueta: "Tipo" },
+    { clave: "tamano", etiqueta: "Tamaño", ocultoMovil: true },
+    { clave: "pg", etiqueta: "PG", tipo: "num", ocultoMovil: true },
+  ],
+  objetos: [
+    { clave: "tipo", etiqueta: "Tipo" },
+    { clave: "rareza", etiqueta: "Rareza" },
+    { clave: "sintonizacion", etiqueta: "Sintonización", ocultoMovil: true },
+  ],
+  equipo: [
+    { clave: "categoria", etiqueta: "Categoría" },
+    { clave: "precio", etiqueta: "Precio", tipo: "num" },
+    { clave: "peso", etiqueta: "Peso", tipo: "num", ocultoMovil: true },
+  ],
+  clases: [
+    { clave: "dado", etiqueta: "Dado" },
+    { clave: "caracteristica", etiqueta: "Característica" },
+  ],
+  especies: [
+    { clave: "tamano", etiqueta: "Tamaño" },
+    { clave: "velocidad", etiqueta: "Velocidad", ocultoMovil: true },
+  ],
+  trasfondos: [{ clave: "dote", etiqueta: "Dote" }],
+  dotes: [
+    { clave: "categoria", etiqueta: "Categoría" },
+    { clave: "prerrequisito", etiqueta: "Prerrequisito", ocultoMovil: true },
+  ],
+  reglas: [{ clave: "categoria", etiqueta: "Categoría" }],
+};
+
+const filas = entradas.map((en) => {
+  const d = en.data;
+  const base = { href: e(`/${ed}/${tipo}/${en.slug}/`), nombre: String(d.name ?? en.slug) };
+  switch (tipo) {
+    case "conjuros":
+      return {
+        ...base,
+        chips: d.level === 0 ? ["truco"] : undefined,
+        celdas: {
+          nivel: d.level === 0 ? "0" : String(d.level),
+          escuela: d.school,
+          clases: Array.isArray(d.classes) ? d.classes.join(", ") : "",
+          ritual: d.ritual ? "sí" : "",
+        },
+        facetas: {
+          nivel: String(d.level ?? ""),
+          escuela: String(d.school ?? ""),
+          clase: Array.isArray(d.classes) ? d.classes.join("|") : "",
+          ritual: d.ritual ? "sí" : "no",
+        },
+      };
+    case "monstruos":
+      return {
+        ...base,
+        celdas: { vd: String(d.cr), tipo: String(d.type), tamano: String(d.size), pg: String(d.hp).split(" ")[0] },
+        facetas: { vd: String(d.cr ?? ""), tipo: String(d.type ?? ""), tamano: String(d.size ?? "") },
+      };
+    case "objetos":
+      return {
+        ...base,
+        celdas: { tipo: d.type, rareza: d.rarity || "—", sintonizacion: d.attunement ? "sí" : "no" },
+        facetas: { rareza: String(d.rarity || "sin rareza"), sintonizacion: d.attunement ? "sí" : "no" },
+      };
+    case "equipo":
+      return {
+        ...base,
+        celdas: { categoria: d.category, precio: d.price || "—", peso: d.weight || "—" },
+        facetas: { categoria: String(d.category ?? "") },
+      };
+    case "clases":
+      return {
+        ...base,
+        celdas: { dado: d.hitDie || "—", caracteristica: d.primaryAbility || "—" },
+        facetas: {},
+      };
+    case "especies":
+      return { ...base, celdas: { tamano: d.size || "—", velocidad: d.speed || "—" }, facetas: {} };
+    case "trasfondos":
+      return { ...base, celdas: { dote: d.feat || "—" }, facetas: {} };
+    case "dotes":
+      return {
+        ...base,
+        celdas: { categoria: d.category || "—", prerrequisito: d.prerequisite || "—" },
+        facetas: { categoria: String(d.category ?? "") },
+      };
+    default:
+      return { ...base, celdas: { categoria: d.category || "—" }, facetas: { categoria: String(d.category ?? "") } };
+  }
+});
+
+const facetas: { clave: string; etiqueta: string; valores: { valor: string; texto: string }[] }[] = [];
+if (tipo === "conjuros") {
+  facetas.push({
+    clave: "nivel",
+    etiqueta: "Nivel",
+    valores: ordenar(unicos(filas.map((f) => f.facetas.nivel)), ORDEN_NIVEL).map((v) => ({
+      valor: v,
+      texto: v === "0" ? "Truco" : `Nivel ${v}`,
+    })),
+  });
+  facetas.push({
+    clave: "escuela",
+    etiqueta: "Escuela",
+    valores: ordenar(unicos(filas.map((f) => f.facetas.escuela))).map((v) => ({ valor: v, texto: v })),
+  });
+  const clases = ordenar(unicos(filas.flatMap((f) => (f.facetas.clase ? f.facetas.clase.split("|") : []))));
+  if (clases.length) {
+    facetas.push({ clave: "clase", etiqueta: "Clase", valores: clases.map((v) => ({ valor: v, texto: v })) });
+  }
+  facetas.push({
+    clave: "ritual",
+    etiqueta: "Ritual",
+    valores: [
+      { valor: "sí", texto: "Sí" },
+      { valor: "no", texto: "No" },
+    ],
+  });
+}
+if (tipo === "monstruos") {
+  facetas.push({
+    clave: "vd",
+    etiqueta: "VD",
+    valores: ordenar(unicos(filas.map((f) => f.facetas.vd)), ORDEN_CR).map((v) => ({ valor: v, texto: v })),
+  });
+  facetas.push({
+    clave: "tipo",
+    etiqueta: "Tipo",
+    valores: ordenar(unicos(filas.map((f) => f.facetas.tipo))).map((v) => ({ valor: v, texto: v })),
+  });
+  facetas.push({
+    clave: "tamano",
+    etiqueta: "Tamaño",
+    valores: ordenar(unicos(filas.map((f) => f.facetas.tamano)), [
+      "Diminuto",
+      "Pequeño",
+      "Mediano",
+      "Grande",
+      "Enorme",
+      "Gigante",
+    ]).map((v) => ({ valor: v, texto: v })),
+  });
+}
+if (tipo === "objetos") {
+  facetas.push({
+    clave: "rareza",
+    etiqueta: "Rareza",
+    valores: ordenar(unicos(filas.map((f) => f.facetas.rareza)), [
+      "común",
+      "poco común",
+      "raro",
+      "muy raro",
+      "legendario",
+      "varía",
+      "artefacto",
+      "sin rareza",
+    ]).map((v) => ({ valor: v, texto: v })),
+  });
+}
+if (["equipo", "dotes", "reglas"].includes(tipo)) {
+  const vals = ordenar(unicos(filas.map((f) => f.facetas.categoria)));
+  if (vals.length > 1) {
+    facetas.push({ clave: "categoria", etiqueta: "Categoría", valores: vals.map((v) => ({ valor: v, texto: v })) });
+  }
+}
 ---
 
-<Base title={`${t.plural} · ${meta.srd}`} description={`${entradas.length} ${t.plural.toLowerCase()} del ${meta.srd} en español.`}>
-  <div class="con-lateral">
-    <Lateral edicion={ed} actual={tipo} />
+<Base
+  title={`${TIPO_META[tipo].plural} · ${meta.srd}`}
+  description={`${entradas.length} ${TIPO_META[tipo].plural.toLowerCase()} del ${meta.srd}.`}
+  edicion={ed}
+  tipo={tipo}
+>
+  <header class="cabecera">
     <div>
-      <p class="ceja">{meta.srd} · {meta.nota}</p>
-      <div class="titulo-pagina">
-        <h1>{t.plural}</h1>
-        <span class="badge">{entradas.length}</span>
-      </div>
-      <p class="entradilla">{t.desc} del documento de referencia en español. Filtra por lo que necesites; todo el texto es el original.</p>
-
-      {entradas.length === 0 ? (
-        <p class="panel">Todavía no hay contenido de este tipo en esta edición.</p>
-      ) : (
-        <Listado base={e(`/${ed}/${tipo}`)} items={items} facetas={facetas} />
-      )}
+      <h1>{TIPO_META[tipo].plural}</h1>
+      <p class="cabecera__lede">{TIPO_META[tipo].desc} · {meta.srd} en español.</p>
     </div>
-  </div>
+    <div class="cabecera__meta">
+      <span><b>{entradas.length}</b>entradas</span>
+    </div>
+  </header>
+
+  {entradas.length === 0 ? (
+    <p class="muted" style="padding:2rem 0">Todavía no hay contenido de este tipo en esta edición.</p>
+  ) : (
+    <Tabla
+      columnas={columnas[tipo]}
+      filas={filas}
+      facetas={facetas}
+      placeholder={`Filtrar ${TIPO_META[tipo].plural.toLowerCase()}…`}
+    />
+  )}
 </Base>

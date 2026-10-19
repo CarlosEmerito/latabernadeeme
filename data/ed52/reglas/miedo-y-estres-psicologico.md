@@ -15,15 +15,9 @@ Muestras de CD de miedos
 
 | Ejemplo | CD de salvación |
 |---|---|
-| Cuando un personaje abra un sarcófago, | 10 |
-| de él surge una aparición inofensiva pero |  |
-| aterradora. |  |
-| Un personaje activa una trampa mágica | 15 |
-| que crea una manifestación ilusoria de sus |  |
-| miedos más profundos que solo él puede |  |
-| ver. |  |
-| Se abre un portal al Abismo y muestra un | 20 |
-| reino de tormento, matanzas y pesadillas. |  |
+| Cuando un personaje abra un sarcófago, de él surge una aparición inofensiva pero aterradora. | 10 |
+| Un personaje activa una trampa mágica que crea una manifestación ilusoria de sus miedos más profundos que solo él puede ver. | 15 |
+| Se abre un portal al Abismo y muestra un reino de tormento, matanzas y pesadillas. | 20 |
 
 Normalmente, una criatura asustada repite la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Según consideres, una criatura asustada puede verse sujeta a otros efectos mientras dure el estado de asustada. Plantéate estos ejemplos:
 
@@ -39,15 +33,9 @@ Muestras de efectos de estrés psicológico
 
 | Ejemplo | CD de salvación | Daño psíquico |
 |---|---|---|
-| Un personaje ingiere una sustan- | 10 | 1d6 |
-| cia alucinógena que distorsiona |  |  |
-| su percepción de la realidad. |  |  |
-| Un personaje toca un ídolo in- | 15 | 3d6 |
-| fernal que desgarra su mente y |  |  |
-| amenaza con hacerla añicos. |  |  |
-| Una trampa mágica lanza a un | 20 | 9d6 |
-| personaje al Reino Lejano hasta |  |  |
-| el final de su próximo turno. |  |  |
+| Un personaje ingiere una sustancia alucinógena que distorsiona su percepción de la realidad. | 10 | 1d6 |
+| Un personaje toca un ídolo infernal que desgarra su mente y amenaza con hacerla añicos. | 15 | 3d6 |
+| Una trampa mágica lanza a un personaje al Reino Lejano hasta el final de su próximo turno. | 20 | 9d6 |
 
 **Efectos prolongados**
 

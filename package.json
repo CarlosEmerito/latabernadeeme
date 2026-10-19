@@ -14,6 +14,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "datos": ".venv-ingest/bin/python tools/ingest/extract_core.py",
+    "datos:reglas": ".venv-ingest/bin/python tools/ingest/import_rules.py",
     "datos:pdf": ".venv-ingest/bin/python tools/ingest/descargar.py",
     "datos:flujo": ".venv-ingest/bin/python tools/ingest/pdf_stream.py",
     "verificar": ".venv-ingest/bin/python tools/verify/validar.py"

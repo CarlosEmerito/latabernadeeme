@@ -11,8 +11,7 @@ Cuando llevas a cabo la acción de estudiar, haces una prueba de Inteligencia pa
 
 | Habilidad | Áreas |
 |---|---|
-| Conocimiento | Conjuros, objetos mágicos, símbolos |
-| ­arcano | sobrenaturales, tradiciones mágicas, planos de existencia y determinadas criaturas (aberraciones, autómatas, elementales, feéricos y monstruosidades) |
+| Conocimiento arcano | Conjuros, objetos mágicos, símbolos sobrenaturales, tradiciones mágicas, planos de existencia y determinadas criaturas (aberraciones, autómatas, elementales, feéricos y monstruosidades) |
 | Historia | Acontecimientos y personajes históricos, civilizaciones antiguas, guerras y determinadas criaturas (gigantes y humanoides) |
 | Investigación | Trampas, códigos, enigmas y artilugios |
 | Naturaleza | Terreno, flora, clima y determinadas criaturas (bestias, cienos, dragones y plantas) |

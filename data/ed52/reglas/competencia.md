@@ -28,14 +28,13 @@ Habilidades
 |---|---|---|
 | Acrobacias | Destreza | Conservar el equilibrio |
 | Atletismo | Fuerza | Saltar más lejos de lo normal, algo. |
-| Conocimiento | Inteligencia | Recordar información acerca |
-| arcano |  | existencia. |
+| Conocimiento arcano | Inteligencia | Recordar información acerca existencia. |
 | Engaño | Carisma | Contar una mentira convincente |
 | Historia | Inteligencia | Recordar información sobre carácter histórico. |
 | Interpretación | Carisma | Actuar, contar una historia, |
 | Intimidación | Carisma | Asustar o amenazar a alguien |
 | Investigación | Inteligencia | Encontrar información oculta |
-| Juego de manos | Destreza | Vaciar los bolsillos a alguien, ­trucos de prestidigitación. |
+| Juego de manos | Destreza | Vaciar los bolsillos a alguien, trucos de prestidigitación. |
 | Medicina | Sabiduría | Diagnosticar una enfermedad reciente. |
 | Naturaleza | Inteligencia | Recordar información acerca |
 | Percepción | Sabiduría | Mediante una combinación alto. |
@@ -44,8 +43,7 @@ Habilidades
 | Religión | Inteligencia | Recordar información sobre |
 | Sigilo | Destreza | Pasar desapercibido al caminar |
 | Supervivencia | Sabiduría | Seguir huellas, forrajear, |
-| Trato con | Sabiduría | Tranquilizar o adiestrar |
-| animales |  | minada forma. |
+| Trato con animales | Sabiduría | Tranquilizar o adiestrar minada forma. |
 
 alguna de esas habilidades, pero no lo sumarás dos veces si eres competente en ambas. En ocasiones, tu bonificador por competencia se podría multiplicar o dividir (duplicarse o reducirse a la mitad, por ejemplo) antes de sumarlo. Por ejemplo, el rasgo Pericia (consulta el capítulo “Glosario de reglas”) duplica el bonificador por competencia en determinadas pruebas de característica. Cuando se emplee el bonificador, se podrá multiplicar o dividir solo una vez.
 

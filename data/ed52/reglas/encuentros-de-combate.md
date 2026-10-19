@@ -35,9 +35,8 @@ Mediante la tabla “Presupuesto de PX por personaje”, comprueba el nivel del 
 
 Presupuesto de PX por personaje
 
-| Nivel del | ——— Dificultad del encuentro ——— |  |  |
+| Nivel del grupo | Baja | Moderada | Alta |
 |---|---|---|---|
-| grupo | Baja | Moderada | Alta |
 | 1 | 50 | 75 | 100 |
 | 2 | 100 | 150 | 200 |
 | 3 | 150 | 225 | 400 |
@@ -50,7 +49,6 @@ Presupuesto de PX por personaje
 | 10 | 1600 | 2300 | 3100 |
 | 11 | 1900 | 2900 | 4100 |
 | 12 | 2200 | 3700 | 4700 |
-| grupo | Baja | Moderada | Alta |
 | 13 | 2600 | 4200 | 5400 |
 | 14 | 2900 | 4900 | 6200 |
 | 15 | 3300 | 5400 | 7800 |

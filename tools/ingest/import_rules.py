@@ -17,6 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import reglas_postfix  # noqa: E402
 from rutas import WORK  # noqa: E402
 from srd import rules  # noqa: E402
 from srd.rules import Spec  # noqa: E402
@@ -161,6 +162,7 @@ def main() -> int:
         run_edition("ed51", "es51.xml", "es51.bbox.xml", SPECS_51, 79, 390)
     if which in ("todas", "ed52"):
         run_edition("ed52", "es52.xml", "es52.bbox.xml", SPECS_52, 5, 226)
+    reglas_postfix.main()
     return 0
 
 

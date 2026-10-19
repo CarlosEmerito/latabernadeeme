@@ -218,7 +218,7 @@ def page_pitch(lines: list[Line]) -> float:
 
 
 def _join(a: str, b: str) -> str:
-    if a.endswith(("-", "\u2010", "\u2011")):
+    if a.endswith(("-", "\u2010", "\u2011", "\u00ad")):
         return a[:-1] + b
     return a + " " + b
 
@@ -498,7 +498,10 @@ def _cell_rows(words: list[tuple[float, float, float, str]]) -> list[list[tuple[
             else:
                 cur.append(w)
         out.append(cur)
-        cells.append([(min(v[0] for v in c), " ".join(v[3] for v in c)) for c in out])
+        cells.append([
+            (min(v[0] for v in c), " ".join(v[3] for v in c).replace("\u00ad", ""))
+            for c in out
+        ])
     return cells
 
 
@@ -519,6 +522,22 @@ def table_grid(rows: list[list[tuple[float, str]]]) -> list[list[str]]:
         for x, text in row:
             i = min(range(width), key=lambda j: abs(anchors[j] - x))
             line[i] = (line[i] + " " + text).strip() if line[i] else text
+        if (
+            grid
+            and line[0][:1].islower()
+            and any(line)
+            and not any(c.startswith("———") for c in grid[-1])
+        ):
+            # la primera celda de la fila continúa la anterior ("Destra-" / "barse")
+            prev = grid[-1]
+            for j, cell in enumerate(line):
+                if not cell:
+                    continue
+                if prev[j].endswith(("-", "\u2010", "\u2011")):
+                    prev[j] = prev[j][:-1] + cell
+                else:
+                    prev[j] = (prev[j] + " " + cell).strip()
+            continue
         if grid and line[0] == "" and grid[-1][0] and any(line):
             # celdas partidas en varias líneas dentro de la misma fila
             prev = grid[-1]
@@ -540,6 +559,15 @@ def table_grid(rows: list[list[tuple[float, str]]]) -> list[list[str]]:
                 grid[-1][j] = (prev + " " + line[j]).strip()
             continue
         grid.append(line)
+
+    # cabecera agrupada: "——— Dificultad del encuentro ———" sobre varias columnas
+    if len(grid) >= 2 and any(c.startswith("———") for c in grid[0]):
+        top = ["" if c.startswith("———") else c for c in grid[0]]
+        merged = []
+        for a, b in zip(top, grid[1]):
+            merged.append((a + " " + b).strip() if a and b else (a or b))
+        grid[0] = merged
+        grid.pop(1)
 
     # cabecera partida en dos líneas: "Gravedad de" / "la trampa"
     if len(grid) >= 2 and any(grid[1]) and not any("———" in c for c in grid[0]):
@@ -639,7 +667,11 @@ def render(blocks: list[Block]) -> str:
             if table:
                 parts.append(table)
         elif b.kind == "item":
-            items = [f"- {ln.lstrip('• ').strip()}" for ln in b.text.split("\n") if ln.strip()]
+            items = [
+                f"- {ln.strip()}"
+                for ln in re.split(r"\n|\s*•\s*", b.text.lstrip("• "))
+                if ln.strip()
+            ]
             parts.append("\n".join(items))
         else:
             if b.text.strip():

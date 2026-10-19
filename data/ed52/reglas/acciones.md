@@ -15,16 +15,13 @@ Acciones
 | Ayudar | Ayudas a otra criatura en una prueba de característica o tirada de ataque, o administras primeros auxilios. |
 | Buscar | Haces una prueba de Sabiduría (Medicina, Percepción, Perspicacia o Supervivencia). |
 | Correr | Durante el resto del turno, te concedes movimiento adicional equivalente a tu velocidad. |
-| Destra- | Tu movimiento no provocará ataques de |
-| barse | oportunidad durante el resto del turno. |
-| Escon- | Haces una prueba de Destreza (Sigilo). |
-| derse |  |
+| Destrabarse | Tu movimiento no provocará ataques de oportunidad durante el resto del turno. |
+| Esconderse | Haces una prueba de Destreza (Sigilo). |
 | Esquivar | Hasta el principio de tu siguiente turno, las tiradas de ataque contra ti tendrán desventaja y realizarás las tiradas de salvación de Destreza con ventaja. Perderás este beneficio si tienes el estado de incapacitado o si tu velocidad es 0. |
 | Estudiar | Haces una prueba de Inteligencia (Conocimiento arcano, Historia, Investigación, Naturaleza o Religión). |
-| Influir | Haces una prueba de Carisma (Engaño, Interpretación, Intimidación o Persuasión) o Sabiduría (Trato con animales) para ­cambiar la actitud de una criatura. |
-| Magia | Lanzas un conjuro, utilizas un objeto ­mágico o empleas un rasgo mágico. |
-| Preparar | Te preparas para llevar a cabo una acción |
-| una acción | en respuesta a un suceso que tú definas. |
+| Influir | Haces una prueba de Carisma (Engaño, Interpretación, Intimidación o Persuasión) o Sabiduría (Trato con animales) para cambiar la actitud de una criatura. |
+| Magia | Lanzas un conjuro, utilizas un objeto mágico o empleas un rasgo mágico. |
+| Preparar una acción | Te preparas para llevar a cabo una acción en respuesta a un suceso que tú definas. |
 | Utilizar | Usas un objeto no mágico. |
 
 Los personajes de los jugadores y los monstruos pueden hacer otras cosas que no se abarcan en estas acciones. Muchos rasgos de clase y otras características proporcionan opciones adicionales para tus acciones, y también puedes improvisar otras acciones. Para realizar una acción que no aparezca en las reglas, tu Game Master te dirá si esa acción es posible y qué tipo de prueba con d20 tienes que realizar (si fuera necesario).

@@ -51,7 +51,7 @@ Los siguientes ejemplos muestran cómo funcionan las enfermedades mágicas. No d
 
 Enfermedad mágica
 
-En ocasiones, las pociones y los elixires de baja calidad están contaminados con la fiebre carca­ jeante, que solo afecta a humanoides (curiosamente, los gnomos son inmunes). Una criatura sufre los siguientes efectos 1d4 días después de infectarse:
+En ocasiones, las pociones y los elixires de baja calidad están contaminados con la fiebre carcajeante, que solo afecta a humanoides (curiosamente, los gnomos son inmunes). Una criatura sufre los siguientes efectos 1d4 días después de infectarse:
 
 **Fiebre.** La criatura suma 1 nivel de cansancio, que durará hasta que la enfermedad termine para la criatura.
 

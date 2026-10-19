@@ -21,5 +21,4 @@ Pruebas de influencia
 | Carisma (Interpretación) | Entretener a un monstruo. |
 | Carisma (Intimidación) | Intimidar a un monstruo. |
 | Carisma (Persuasión) | Persuadir a un monstruo que te entienda. |
-| Sabiduría (Trato con | Convencer poco a poco a |
-| animales) | una bestia o monstruosidad. |
+| Sabiduría (Trato con animales) | Convencer poco a poco a una bestia o monstruosidad. |

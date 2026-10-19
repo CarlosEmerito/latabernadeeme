@@ -114,7 +114,7 @@ Solo una cada vez. Nunca puedes tener más de una inspiración heroica a la vez.
 
 Obtener inspiración heroica. Tu GM puede concederte inspiración heroica por diversos motivos. Por lo general, te recompensará con ella cuando hagas algo especialmente heroico, entretenido o propio de tu personaje. Se trata de una recompensa por hacer que la partida sea más divertida para todos los jugadores.
 
-Otras reglas podrían permitir que tu personaje obtenga inspiración heroica al margen de la decisión de tu GM. Por ejemplo, los personajes humanos ­comienzan cada día con inspiración heroica.
+Otras reglas podrían permitir que tu personaje obtenga inspiración heroica al margen de la decisión de tu GM. Por ejemplo, los personajes humanos comienzan cada día con inspiración heroica.
 
 **Clase de armadura**
 

@@ -27,8 +27,7 @@ Puntos de golpe de objetos
 | Diminuto (botella, cerradura) | 2 (1d4) | 5 (2d4) |
 | Pequeño (cofre, laúd) | 3 (1d6) | 10 (3d6) |
 | Mediano (barril, candelabro) | 4 (1d8) | 18 (4d8) |
-| Grande (carreta, mesa de | 5 (1d10) | 27 (5d10) |
-| comedor) |  |  |
+| Grande (carreta, mesa de comedor) | 5 (1d10) | 27 (5d10) |
 
 Tipos de daño y objetos. Los objetos tienen inmunidad al daño psíquico y de veneno. Cada GM puede decidir que determinados tipos de daño sean más o menos efectivos contra un objeto. Por ejemplo, el daño contundente sirve para destrozar cosas a golpes, pero no para cortar. Los objetos de papel o tela pueden ser vulnerables al daño de fuego.
 

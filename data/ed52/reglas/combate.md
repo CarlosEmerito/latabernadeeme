@@ -43,7 +43,7 @@ Casillas. Cada casilla representa 1,5 m.
 
 Velocidad. Te desplazas casilla a casilla por la cuadrícula, por lo que utilizas tu velocidad en incrementos de 1,5 m. Puedes traducir tu velocidad en casillas dividiéndola entre 1,5. Por ejemplo, una velocidad de 9 m se traduce en 6 casillas. Si sueles emplear una cuadrícula, plantéate anotar tu velocidad en casillas en tu hoja de personaje.
 
-Entrar en una casilla. Para entrar en una casilla, te debe quedar movimiento suficiente que tendrás que invertir. Cuesta 1 casilla de movimiento entrar en una casilla sin ocupar que esté adyacente a la ­c asilla en la que te encuentras (en perpendicular o diagonal). Entrar en una casilla de terreno ­difícil cuesta 2 casillas de movimiento. Otros efectos ­podrían aumentar el coste en casillas.
+Entrar en una casilla. Para entrar en una casilla, te debe quedar movimiento suficiente que tendrás que invertir. Cuesta 1 casilla de movimiento entrar en una casilla sin ocupar que esté adyacente a la c asilla en la que te encuentras (en perpendicular o diagonal). Entrar en una casilla de terreno difícil cuesta 2 casillas de movimiento. Otros efectos podrían aumentar el coste en casillas.
 
 Esquinas. Los movimientos en diagonal no pueden atravesar la esquina de un muro, un árbol grande u otro elemento del terreno que ocupe su espacio.
 
@@ -113,10 +113,8 @@ Los árboles, los muros, las criaturas y otros obstáculos pueden proporcionar c
 | Nivel | Beneficio para el objetivo | Qué lo ofrece |
 |---|---|---|
 | Media | Bonificador de +2 a la CA y a las tiradas de salvación de Destreza | Otra criatura o un objeto que cubra al menos la mitad del objetivo |
-| Tres | Bonificador de +5 | Un objeto que cubra al |
-| cuartos | a la CA y a las tiradas de salvación de Destreza | menos tres cuartos del objetivo |
-| Com- | No puede ser obje- | Un objeto que cubre |
-| pleta | tivo directo de ataques ni conjuros | todo el objetivo |
+| Tres cuartos | Bonificador de +5 a la CA y a las tiradas de salvación de Destreza | Un objeto que cubra al menos tres cuartos del objetivo |
+| Completa | No puede ser objetivo directo de ataques ni conjuros | Un objeto que cubre todo el objetivo |
 
 ## Ataques a distancia
 

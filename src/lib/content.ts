@@ -183,13 +183,8 @@ export function indice(ed: Edition, tipo: Tipo): Map<string, string> {
   return mapa;
 }
 
-export function buscarEntrada(ed: Edition, tipo: Tipo, slug: string): Entrada | undefined {
-  return cargar(ed, tipo).find((e) => e.slug === slug);
-}
-
-/** Convierte las menciones a conjuros del texto en enlaces internos. */
 /** Convierte «Nombre (nivel N)» en el título de un rasgo en una etiqueta aparte. */
-export const tramoDeNivel = (nivel: number): 1 | 2 | 3 | 4 =>
+const tramoDeNivel = (nivel: number): 1 | 2 | 3 | 4 =>
   nivel <= 4 ? 1 : nivel <= 10 ? 2 : nivel <= 16 ? 3 : 4;
 
 export function marcarNiveles(html: string): string {
@@ -261,14 +256,3 @@ export function enlazarConjuros(html: string, ed: Edition, tipoActual: Tipo): st
 export function contar(ed: Edition, tipo: Tipo): number {
   return cargar(ed, tipo).length;
 }
-
-export const NOMBRE_ESCUELA: Record<string, string> = {
-  Abjuración: "Abjuración",
-  Adivinación: "Adivinación",
-  Conjuración: "Conjuración",
-  Encantamiento: "Encantamiento",
-  Evocación: "Evocación",
-  Ilusionismo: "Ilusionismo",
-  Nigromancia: "Nigromancia",
-  Transmutación: "Transmutación",
-};

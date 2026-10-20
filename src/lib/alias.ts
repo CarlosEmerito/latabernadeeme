@@ -406,7 +406,7 @@ const INGLES: Record<string, string> = {
 };
 
 /** Español (en minúsculas) → inglés. */
-export const ALIAS_ES: Map<string, string> = new Map(
+const ALIAS_ES: Map<string, string> = new Map(
   Object.entries(INGLES).map(([en, es]) => [es.toLowerCase(), en]),
 );
 

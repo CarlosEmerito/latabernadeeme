@@ -11,7 +11,8 @@
  *   4. `tools/test/filtro.mjs` sobre `dist/`: que el filtro de texto de los
  *      listados venga plegado del HTML y «dragon» encuentre «Dragón».
  *   5. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
- *      quien lo importe, que es como se cuela código muerto que duplica otra
+ *      quien lo importe y ningún `export function` / `export const` suyo sin
+ *      quien lo llame, que es como se cuela código muerto que duplica otra
  *      implementación y confunde sobre cuál manda.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
@@ -52,11 +53,11 @@ if (filtro !== 0) {
   process.exit(filtro);
 }
 
-console.log("▶ Módulos sin importadores: huerfanos.mjs (src/lib/)");
+console.log("▶ Módulos y exports sin uso: huerfanos.mjs (src/lib/)");
 const huerfanos = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/huerfanos.mjs")]);
 if (huerfanos !== 0) {
-  console.error("✗ Hay módulos de src/lib/ que no importa nadie.");
+  console.error("✗ Hay módulos o símbolos exportados en src/lib/ que no usa nadie.");
   process.exit(huerfanos);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro y módulos sin huérfanos correctos.");
+console.log("✓ Datos, enlaces, ids, filtro y código muerto correctos.");

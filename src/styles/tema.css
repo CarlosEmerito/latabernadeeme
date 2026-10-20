@@ -1269,32 +1269,6 @@
   color: var(--t-color, var(--accent));
 }
 
-.figura {
-  margin: 0 0 1.5rem;
-}
-
-.figura img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  background: var(--surface-2);
-}
-
-.figura figcaption {
-  font-size: 0.72rem;
-  color: var(--ink-3);
-  margin-top: 0.4rem;
-  line-height: 1.4;
-}
-
-.figura figcaption a {
-  color: var(--ink-3);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
 .sigilo-entrada {
   display: block;
   width: 120px;
@@ -1310,19 +1284,6 @@
   margin-top: 2.5rem;
 }
 
-.tira .figura {
-  margin: 0;
-}
-
-.tira img {
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-}
-
-.tira figcaption {
-  font-size: 0.66rem;
-}
-
 @media (max-width: 760px) {
   .tira {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1330,7 +1291,6 @@
 }
 
 @media print {
-  .figura,
   .sigilo-entrada {
     display: none;
   }

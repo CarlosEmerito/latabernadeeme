@@ -8,14 +8,14 @@ Dos apartados, `5e` y `5.5`, con la misma estructura: conjuros, monstruos, objet
 
 | Edición | Conjuros | Monstruos | Objetos | Clases | Especies | Trasfondos | Dotes | Equipo | Reglas |
 |---|---|---|---|---|---|---|---|---|---|
-| 5e (SRD 5.1) | 319 | 302 | 240 | 12 | 9 | 1 | 1 | 213 | 44 |
-| 5.5 (SRD 5.2.1) | 339 | 315 | 258 | 12 | 9 | 4 | 17 | 188 | 174 |
+| 5e (SRD 5.1) | 319 | 317 | 240 | 12 | 9 | 1 | 1 | 213 | 47 |
+| 5.5 (SRD 5.2.1) | 339 | 330 | 258 | 12 | 9 | 4 | 17 | 188 | 174 |
 
-Los recuentos están verificados contra los documentos oficiales. El SRD 5.1
-solo contiene un trasfondo (acólito) y una dote (luchador), y el 5.2 cuatro
-trasfondos: no faltan, están así en el original.
-
-Los recuentos de conjuros y monstruos están verificados contra los documentos oficiales; las celdas con «—» son contenido en extracción.
+Los recuentos son el número de ficheros `.md` de cada carpeta de `data/`
+(`find data/<edición>/<tipo> -name '*.md' | wc -l`) y en conjuros y monstruos
+coinciden con los documentos oficiales. El SRD 5.1 solo contiene un trasfondo
+(acólito) y una dote (luchador), y el 5.2 cuatro trasfondos: no faltan, están
+así en el original.
 
 ## Por qué Markdown y no JSON
 
@@ -39,7 +39,7 @@ tools/ingest/
   srd/monsters.py   parser de perfiles de monstruo (5.1 y 5.2)
   extract_core.py   orquesta y escribe data/
 tools/verify/
-  validar.py        recuentos, campos obligatorios, cuerpos vacíos o desbordados
+  validar.py        recuentos, campos, cuerpos y tabla del README
 ```
 
 ```bash
@@ -61,7 +61,7 @@ npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 
 `verificar` ejecuta dos pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
 
-1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
+1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD y a la tabla del README, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
 2. `tools/test/enlaces.mjs`: cada `href` y `src` interno del HTML compilado apunta a una página o fichero que existe.
 
 `verificar:humo` sí necesita navegador: levanta `astro preview` en el puerto 8099, abre un Chrome headless con CDP en el 9223 con un perfil temporal, pasa `tools/test/humo.mjs` (navegación, herramientas de mesa, axe-core y avisos legales) y apaga los dos al terminar. Busca Chrome o Chromium en el `PATH`; `CHROME=/ruta/al/binario` para indicarlo a mano. Tarda alrededor de medio minuto.

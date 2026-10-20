@@ -28,13 +28,14 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
 
-      - name: Verificar los datos
-        run: |
-          python3 -m pip install --quiet pyyaml
-          python3 tools/verify/validar.py
+      - name: Instalar PyYAML para validar.py
+        run: python3 -m pip install --quiet pyyaml
 
       - name: Compilar el sitio (incluye índice de búsqueda)
         run: npm run build
+
+      - name: Verificar los datos y los enlaces internos
+        run: npm run verificar
 
       - uses: actions/configure-pages@v5
 

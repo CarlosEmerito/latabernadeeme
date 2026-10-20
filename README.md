@@ -51,6 +51,31 @@ python3 -m venv .venv-ingest && .venv-ingest/bin/pip install -r tools/requiremen
 
 Los PDF no se versionan: `descargar.py` los baja de `dndbeyond.com` y el repositorio solo guarda el resultado.
 
+## Comprobaciones
+
+```bash
+npm run build           # compila dist/ (Astro + índice de Pagefind)
+npm run verificar       # datos y enlaces internos; no necesita navegador
+npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
+```
+
+`verificar` ejecuta dos pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
+
+1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
+2. `tools/test/enlaces.mjs`: cada `href` y `src` interno del HTML compilado apunta a una página o fichero que existe.
+
+`verificar:humo` sí necesita navegador: levanta `astro preview` en el puerto 8099, abre un Chrome headless con CDP en el 9223 con un perfil temporal, pasa `tools/test/humo.mjs` (navegación, herramientas de mesa, axe-core y avisos legales) y apaga los dos al terminar. Busca Chrome o Chromium en el `PATH`; `CHROME=/ruta/al/binario` para indicarlo a mano. Tarda alrededor de medio minuto.
+
+Los mismos tres pasos a mano, cada uno en su terminal:
+
+```bash
+npx astro preview --port 8099
+google-chrome-stable --headless=new --remote-debugging-port=9223 --user-data-dir=/tmp/chrome-humo
+node tools/test/humo.mjs
+```
+
+El flujo de publicación (`.github/workflows/deploy.yml`) compila y ejecuta `npm run verificar` antes de subir el artefacto a GitHub Pages.
+
 ## Web
 
 - **Astro** en modo estático, sin servidor ni base de datos.

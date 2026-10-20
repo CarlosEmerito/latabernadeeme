@@ -20,7 +20,8 @@
     "verificar": "node tools/verify/verificar.mjs",
     "verificar:humo": "node tools/test/humo-entorno.mjs",
     "enlaces": "node tools/test/enlaces.mjs",
-    "ids": "node tools/test/ids.mjs"
+    "ids": "node tools/test/ids.mjs",
+    "huerfanos": "node tools/test/huerfanos.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

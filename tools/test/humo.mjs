@@ -352,6 +352,30 @@ try {
   fallo("marcas y avisos", String(e));
 }
 
+try {
+  const p = await abrir(`${BASE}/5.5/monstruos/lobo/`);
+  const d = await evaluar(
+    p,
+    `(() => { const f = document.querySelector('.figura img'); return f ? {alt: f.alt, srcset: !!f.srcset, credito: document.querySelector('.figura figcaption')?.textContent.trim().slice(0, 60)} : null; })()`,
+  );
+  if (d && d.alt && d.srcset && /Dominio/.test(d.credito)) bien(`grabado con crédito: ${d.credito}`);
+  else fallo("grabado", JSON.stringify(d));
+} catch (e) {
+  fallo("grabado", String(e));
+}
+
+try {
+  const p = await abrir(`${BASE}/5.5/monstruos/aboleth/`);
+  const d = await evaluar(
+    p,
+    `(() => { const s = document.querySelector('.sigilo-entrada'); return s ? {alt: s.alt, src: s.getAttribute('src')} : null; })()`,
+  );
+  if (d && d.alt && /sigilos/.test(d.src)) bien(`sigilo de respaldo: ${d.alt}`);
+  else fallo("sigilo", JSON.stringify(d));
+} catch (e) {
+  fallo("sigilo", String(e));
+}
+
 // Enlaces internos roos: se comprueban sobre el HTML compilado, no en el navegador.
 const malos = resultados.filter((r) => !r.ok);
 console.log("");

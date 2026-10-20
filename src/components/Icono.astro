@@ -1,0 +1,22 @@
+---
+const iconos = import.meta.glob("../assets/iconos/*.svg", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+}) as Record<string, string>;
+
+interface Props {
+  nombre: string;
+  clase?: string;
+}
+
+const { nombre, clase } = Astro.props;
+const clave = Object.keys(iconos).find((k) => k.endsWith(`/${nombre}.svg`));
+let svg = clave ? iconos[clave] : "";
+svg = svg
+  .replace(/<path d="M0 0h512v512H0z"\/>/g, "")
+  .replace(/fill="#fff"/g, 'fill="currentColor"')
+  .replace(/fill="#000"/g, 'fill="currentColor"');
+---
+
+{svg && <span class:list={["icono", clase]} aria-hidden="true" set:html={svg} />}

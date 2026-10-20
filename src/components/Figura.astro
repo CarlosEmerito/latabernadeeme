@@ -1,0 +1,52 @@
+---
+import type { Imagen } from "../lib/imagenes";
+import { e } from "../lib/urls";
+
+interface Props {
+  imagen: Imagen;
+  variante?: "ficha" | "tira";
+}
+
+const { imagen, variante = "ficha" } = Astro.props;
+
+const srcset = imagen.srcset
+  ? imagen.srcset
+      .split(", ")
+      .map((parte) => {
+        const [url, ancho] = parte.split(" ");
+        return `${e(url)} ${ancho}`;
+      })
+      .join(", ")
+  : undefined;
+---
+
+{
+  imagen.clase === "grabado" ? (
+    <figure class:list={["figura", `figura--${variante}`]}>
+      <img
+        src={e(imagen.src)}
+        srcset={srcset}
+        sizes={variante === "tira" ? "(max-width: 700px) 45vw, 220px" : "(max-width: 900px) 100vw, 620px"}
+        width={imagen.ancho}
+        height={imagen.alto}
+        alt={imagen.alt}
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>
+        {imagen.credito}
+        {imagen.licencia ? ` · ${imagen.licencia}` : ""}
+        {imagen.fuente ? (
+          <>
+            {" · "}
+            <a href={imagen.fuente} rel="noopener">
+              fuente
+            </a>
+          </>
+        ) : null}
+      </figcaption>
+    </figure>
+  ) : (
+    <img class="sigilo-entrada" src={e(imagen.src)} alt={imagen.alt} width="120" height="120" loading="lazy" decoding="async" />
+  )
+}

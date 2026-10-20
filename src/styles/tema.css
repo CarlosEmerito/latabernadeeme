@@ -1220,3 +1220,105 @@
   .pantalla { grid-template-columns: 1fr 1fr; }
   .pantalla-config { display: none; }
 }
+
+/* ----------------------------------------------------------- imágenes */
+
+.icono {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  flex: none;
+}
+
+.icono svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.icono--rail {
+  width: 15px;
+  height: 15px;
+  color: var(--ink-3);
+  margin-right: 0.45rem;
+  opacity: 0.85;
+}
+
+.rail__lista a:hover .icono--rail,
+.rail__lista a[aria-current="page"] .icono--rail {
+  color: var(--t-color, var(--accent));
+  opacity: 1;
+}
+
+.icono--banda {
+  width: 15px;
+  height: 15px;
+  color: var(--t-color, var(--accent));
+}
+
+.figura {
+  margin: 0 0 1.5rem;
+}
+
+.figura img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--surface-2);
+}
+
+.figura figcaption {
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  margin-top: 0.4rem;
+  line-height: 1.4;
+}
+
+.figura figcaption a {
+  color: var(--ink-3);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sigilo-entrada {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 0 0 1.25rem;
+  opacity: 0.9;
+}
+
+.tira {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.tira .figura {
+  margin: 0;
+}
+
+.tira img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.tira figcaption {
+  font-size: 0.66rem;
+}
+
+@media (max-width: 760px) {
+  .tira {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media print {
+  .figura,
+  .sigilo-entrada {
+    display: none;
+  }
+}

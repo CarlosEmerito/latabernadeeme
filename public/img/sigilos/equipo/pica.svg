@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img">
+  <g fill="none" stroke="#6a6450" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" opacity="0.92">
+    <circle cx="100" cy="100" r="86" stroke-width="2.2" />
+    <circle cx="100" cy="100" r="80" opacity="0.45" />
+    <polygon points="56.3,60.3 104.1,35.6 146.7,67.5 158.4,117.3 120.4,150.5 68.0,156.8 44.1,109.0" />
+    <line x1="56.3" y1="60.3" x2="158.4" y2="117.3" /><line x1="158.4" y1="117.3" x2="146.7" y2="67.5" /><line x1="68.0" y1="156.8" x2="120.4" y2="150.5" />
+    <circle cx="100" cy="100" r="11.6" />
+  </g>
+  <circle cx="56.3" cy="60.3" r="2.6" fill="#6a6450" stroke="none" /><circle cx="146.7" cy="67.5" r="2.6" fill="#6a6450" stroke="none" /><circle cx="120.4" cy="150.5" r="2.6" fill="#6a6450" stroke="none" /><circle cx="44.1" cy="109.0" r="2.6" fill="#6a6450" stroke="none" />
+</svg>

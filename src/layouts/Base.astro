@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/tema.css";
 import { EDICIONES, TIPOS, TIPO_META, contar, nombreTipo, type Edition, type Tipo } from "../lib/content";
 import { e } from "../lib/urls";
+import Icono from "../components/Icono.astro";
 
 interface Props {
   title: string;
@@ -110,6 +111,7 @@ const base = edicion ? e(`/${edicion}`) : "";
                 return (
                   <li>
                     <a href={`${base}/${t}/`} aria-current={tipo === t ? "page" : undefined}>
+                      <Icono nombre={`seccion-${t}`} clase="icono--rail" />
                       <span>{nombreTipo(edicion, t)}</span>
                       <span class="rail__cuenta">{n}</span>
                     </a>
@@ -172,6 +174,10 @@ const base = edicion ? e(`/${edicion}`) : "";
             <a href={e("/mesa/")}>Mesa</a> ·
             <a href={e("/licencias/")}>Licencias y fuentes</a> ·
             <a href={e("/accesibilidad/")}>Accesibilidad</a>
+          </p>
+          <p class="muted" style="font-size:.72rem">
+            Iconos de <a href="https://game-icons.net/" rel="noopener">game-icons.net</a> (CC BY 3.0) ·
+            grabados de dominio público del Met y de Cleveland
           </p>
         </div>
       </div>

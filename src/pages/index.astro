@@ -2,6 +2,8 @@
 import Base from "../layouts/Base.astro";
 import { EDICIONES, TIPOS, TIPO_META, contar, cargar, type Edition, type Tipo } from "../lib/content";
 import { e } from "../lib/urls";
+import Figura from "../components/Figura.astro";
+import { imagenDe } from "../lib/imagenes";
 
 const ediciones = (["5e", "5.5"] as Edition[]).map((ed) => ({
   ed,
@@ -41,6 +43,13 @@ const atajos = [
   buscar("5.5", "equipo", ["cota de malla", "cota-de-malla"]) ??
     buscar("5e", "equipo", ["cota de malla", "cota-de-malla"]),
 ].filter((x): x is { texto: string; href: string } => x !== null);
+
+const tira = [
+  { tipo: "monstruos", slug: "dragon-rojo-adulto", nombre: "Dragón rojo adulto" },
+  { tipo: "monstruos", slug: "lobo", nombre: "Lobo" },
+  { tipo: "equipo", slug: "espada-larga", nombre: "Espada larga" },
+  { tipo: "clases", slug: "mago", nombre: "Mago" },
+].map((x) => ({ ...x, imagen: imagenDe(x.tipo, x.slug, x.nombre) }));
 
 const totalConjuros = contar("5e", "conjuros") + contar("5.5", "conjuros");
 const totalMonstruos = contar("5e", "monstruos") + contar("5.5", "monstruos");
@@ -90,6 +99,12 @@ const totalEntradas = TIPOS.reduce((n, t) => n + contar("5e", t) + contar("5.5",
         })}
       </ul>
     </div>
+  </section>
+
+  <section class="tira" aria-label="Ilustraciones">
+    {tira.map((x) => (
+      <Figura imagen={x.imagen} variante="tira" />
+    ))}
   </section>
 
   <section class="ediciones" aria-label="Ediciones">

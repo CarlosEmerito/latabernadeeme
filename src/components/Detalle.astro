@@ -1,8 +1,11 @@
 ---
 import type { Entrada, Edition, Tipo } from "../lib/content";
-import { TIPO_META, enlazarConjuros } from "../lib/content";
+import { TIPO_META, enlazarConjuros, slugify } from "../lib/content";
 import { aliasDe } from "../lib/alias";
 import { e } from "../lib/urls";
+import Figura from "./Figura.astro";
+import Icono from "./Icono.astro";
+import { imagenDe } from "../lib/imagenes";
 
 interface Props {
   entrada: Entrada;
@@ -18,6 +21,13 @@ const d = entrada.data;
 const html = enlazarConjuros(entrada.html, edicion, tipo);
 const volver = e(`/${edicion}/${tipo}/`);
 const alias = aliasDe(String(d.name));
+const imagen = imagenDe(tipo, entrada.slug, String(d.name));
+const iconoContexto =
+  tipo === "conjuros" && d.school
+    ? `escuela-${slugify(String(d.school))}`
+    : tipo === "monstruos" && d.type
+      ? `tipo-${slugify(String(d.type))}`
+      : `seccion-${tipo}`;
 
 const mod = (v: number) => {
   const m = Math.floor((v - 10) / 2);
@@ -50,6 +60,7 @@ const exportable = {
 <div class="ficha">
   <article>
     <p class="ficha__banda">
+      <Icono nombre={iconoContexto} clase="icono--banda" />
       <b>{TIPO_META[tipo].singular}</b>
       <span aria-hidden="true">·</span>
       <a href={e("/licencias/")} title="Atribución y licencia">
@@ -66,6 +77,8 @@ const exportable = {
     </p>
 
     <h1 class="ficha__titulo">{d.name}</h1>
+
+    <Figura imagen={imagen} />
 
     {alias && (
       <p class="ficha__alias">

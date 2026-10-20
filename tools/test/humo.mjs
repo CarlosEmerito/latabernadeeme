@@ -129,6 +129,42 @@ try {
   fallo("filtro", String(e));
 }
 
+// El filtro de texto tiene que plegar tildes y mayúsculas: «dragon», «Dragón»
+// y «DRAGON» son la misma búsqueda, y antes dejaban la tabla vacía aunque
+// hubiera 43 dragones. Se teclea de verdad con `Input.insertText`; un evento
+// `input` sintético no pasaría por el mismo camino que el usuario.
+try {
+  const medir = (pag) =>
+    evaluar(
+      pag,
+      `({visibles: document.querySelectorAll('#cuerpo tr:not([hidden])').length,
+        total: document.querySelectorAll('#cuerpo tr').length,
+        aviso: !document.getElementById('sin-resultados').hidden,
+        cuenta: document.getElementById('cuenta')?.textContent})`,
+    );
+  const teclear = async (termino) => {
+    const pag = await abrir(`${BASE}/5.5/monstruos/`);
+    await evaluar(pag, `document.getElementById('f-texto').focus()`);
+    await pag.enviar("Input.insertText", { text: termino });
+    await new Promise((r) => setTimeout(r, 400));
+    return medir(pag);
+  };
+
+  const porParametro = await medir(await abrir(`${BASE}/5.5/monstruos/?q=dragon`));
+  const sinTilde = await teclear("dragon");
+  const conTilde = await teclear("dragón");
+  const mayusculas = await teclear("DRAGON");
+
+  const cifras = [porParametro, sinTilde, conTilde, mayusculas].map((d) => d.visibles);
+  if (cifras.every((n) => n > 0 && n === cifras[0]) && cifras[0] < porParametro.total && !porParametro.aviso) {
+    bien(`filtro de texto: dragon, dragón y DRAGON dan ${cifras[0]} de ${porParametro.total} (${sinTilde.cuenta})`);
+  } else {
+    fallo("filtro de texto con tildes", JSON.stringify({ porParametro, sinTilde, conTilde, mayusculas }));
+  }
+} catch (e) {
+  fallo("filtro de texto con tildes", String(e));
+}
+
 // La cabecera de la tabla tiene que cuadrar con sus celdas: la primera columna es
 // el nombre y el primer campo de cada tipo (VD, nivel, tipo, categoría) conserva
 // la suya. Sin esto, el nombre ocupaba la celda del primer campo y su valor

@@ -6,6 +6,8 @@
  *      cuerpos vacíos o desbordados y duplicados de `data/`.
  *   2. `tools/test/enlaces.mjs` sobre `dist/`: que cada enlace interno apunte a
  *      una página que existe.
+ *   3. `tools/test/filtro.mjs` sobre `dist/`: que el filtro de texto de los
+ *      listados venga plegado del HTML y «dragon» encuentre «Dragón».
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -31,4 +33,11 @@ if (enlaces !== 0) {
   process.exit(enlaces);
 }
 
-console.log("✓ Datos y enlaces correctos.");
+console.log("▶ Filtro de los listados: filtro.mjs (dist/)");
+const filtro = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/filtro.mjs")]);
+if (filtro !== 0) {
+  console.error("✗ El filtro de texto de los listados no pliega tildes.");
+  process.exit(filtro);
+}
+
+console.log("✓ Datos, enlaces y filtro correctos.");

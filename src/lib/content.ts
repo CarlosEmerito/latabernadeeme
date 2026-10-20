@@ -3,6 +3,7 @@ import path from "node:path";
 import { load as parseYaml } from "js-yaml";
 import MarkdownIt from "markdown-it";
 import { e } from "./urls";
+import { plegar } from "./texto";
 
 export type Edition = "5e" | "5.5";
 
@@ -84,10 +85,7 @@ md.renderer.rules.heading_open = (tokens, idx) => {
 };
 
 export function slugify(texto: string): string {
-  return texto
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
+  return plegar(texto)
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }

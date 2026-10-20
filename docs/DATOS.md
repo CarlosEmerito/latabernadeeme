@@ -136,6 +136,16 @@ srd: "5.1"
 Cuerpo: `## Rasgos de clase` (uno por `### Nombre (nivel N)`) y
 `## Subclases` (`### Nombre`).
 
+`primaryAbility` solo lleva valor cuando el SRD de esa edición lo declara: 5.2.1
+lo trae en la caja «Característica principal» y 5.1 no lo dice en ningún sitio
+(ni en el bloque de atributos ni en una sección de creación rápida), así que en
+`data/ed51/clases/` la cadena va vacía. No se copia de la otra edición: sería
+dato de 5.2.1 bajo una ficha que cita la página de 5.1, y la próxima
+regeneración lo borraría. Por eso los listados descartan las columnas cuyas
+celdas son todas el guion de relleno —también `category` en las dotes de 5.1 y
+`feat` en los trasfondos, que tampoco existen en ese SRD— y
+`tools/test/columnas.mjs` lo vigila.
+
 ### especies / trasfondos / dotes / reglas
 
 ```yaml

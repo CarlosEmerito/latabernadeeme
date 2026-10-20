@@ -22,7 +22,10 @@ import { e } from "../../lib/urls";
   <script is:inline>
     window.addEventListener("DOMContentLoaded", () => {
       if (typeof window.PagefindUI === "undefined") return;
-      new window.PagefindUI({
+      // Los formularios de la cabecera y de la portada envían GET ?q=… hasta aquí;
+      // Pagefind no lee la dirección por su cuenta, así que se le pasa el término.
+      const termino = (new URLSearchParams(window.location.search).get("q") ?? "").trim();
+      const ui = new window.PagefindUI({
         element: "#busqueda",
         showSubResults: true,
         showImages: false,
@@ -40,6 +43,7 @@ import { e } from "../../lib/urls";
           searching: "Buscando [SEARCH_TERM]…",
         },
       });
+      if (termino) ui.triggerSearch(termino);
     });
   </script>
 </Base>

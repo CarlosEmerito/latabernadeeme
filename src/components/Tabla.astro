@@ -45,6 +45,13 @@ const {
   nota,
 } = Astro.props;
 
+// La primera columna de la tabla es siempre el nombre: es la celda que enlaza a
+// la ficha. Se antepone aquí, en un único sitio, en vez de repetirla en las
+// nueve listas de columnas de cada tipo; si se declarara allí, su valor real
+// (VD, nivel, tipo…) seguiría sin celda propia.
+const COLUMNA_NOMBRE: Columna = { clave: "__nombre", etiqueta: "Nombre" };
+const columnasTabla: Columna[] = [COLUMNA_NOMBRE, ...columnas];
+
 // Recuento por valor, para que el menú diga cuántas hay antes de filtrar.
 const cuentaValor = (clave: string, valor: string) =>
   filas.filter((f) =>
@@ -125,7 +132,7 @@ const cuentaValor = (clave: string, valor: string) =>
   <table class="tabla" id="tabla">
     <thead>
       <tr>
-        {columnas.map((c) => (
+        {columnasTabla.map((c) => (
           <th
             scope="col"
             class:list={[c.tipo === "num" && "col-num", c.ocultoMovil && "oculto-movil"]}
@@ -145,9 +152,12 @@ const cuentaValor = (clave: string, valor: string) =>
           data-rangos={JSON.stringify(f.rangos ?? {})}
           data-buscar={f.nombre.toLowerCase()}
         >
-          {columnas.map((c, i) => (
+          <td class="col-nombre">
+            <a href={f.href}>{f.nombre}</a>
+          </td>
+          {columnas.map((c) => (
             <td class:list={[c.tipo === "num" && "col-num", c.ocultoMovil && "oculto-movil"]}>
-              {i === 0 ? <a href={f.href}>{f.nombre}</a> : String(f.celdas[c.clave] ?? "")}
+              {String(f.celdas[c.clave] ?? "")}
             </td>
           ))}
         </tr>
@@ -278,24 +288,36 @@ const cuentaValor = (clave: string, valor: string) =>
     });
 
     // Orden por columna.
+    const aNumero = (texto: string) => {
+      const limpio = texto.trim().replace(",", ".");
+      // Los VD fraccionarios («1/8», «1/4», «1/2») se leen como fracción:
+      // `parseFloat` los dejaría todos en 1 y el orden los empataría.
+      const fraccion = /^(\d+)\s*\/\s*(\d+)$/.exec(limpio);
+      if (fraccion) {
+        const denominador = Number(fraccion[2]);
+        return denominador ? Number(fraccion[1]) / denominador : 0;
+      }
+      const n = Number.parseFloat(limpio);
+      return Number.isFinite(n) ? n : 0;
+    };
+
     const cabeceras = Array.from(tabla.querySelectorAll<HTMLTableCellElement>("th[data-orden]"));
     for (const th of cabeceras) {
       th.addEventListener("click", () => {
-        const clave = th.dataset.orden!;
         const esNum = th.dataset.tipo === "num";
-        const yaAsc = th.getAttribute("aria-sort") === "ascending";
+        const nuevoAsc = th.getAttribute("aria-sort") !== "ascending";
         cabeceras.forEach((h) => h.setAttribute("aria-sort", "none"));
-        th.setAttribute("aria-sort", yaAsc ? "descending" : "ascending");
+        th.setAttribute("aria-sort", nuevoAsc ? "ascending" : "descending");
         const indice = cabeceras.indexOf(th);
         const ordenadas = [...filas].sort((a, b) => {
           const va = a.children[indice]?.textContent?.trim() ?? "";
           const vb = b.children[indice]?.textContent?.trim() ?? "";
           if (esNum) {
-            const na = Number.parseFloat(va.replace(",", ".")) || 0;
-            const nb = Number.parseFloat(vb.replace(",", ".")) || 0;
-            return yaAsc ? na - nb : nb - na;
+            const na = aNumero(va);
+            const nb = aNumero(vb);
+            return nuevoAsc ? na - nb : nb - na;
           }
-          return yaAsc ? vb.localeCompare(va, "es") : va.localeCompare(vb, "es");
+          return nuevoAsc ? va.localeCompare(vb, "es") : vb.localeCompare(va, "es");
         });
         ordenadas.forEach((f) => cuerpo.appendChild(f));
       });

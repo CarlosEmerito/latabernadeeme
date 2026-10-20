@@ -129,6 +129,72 @@ try {
   fallo("filtro", String(e));
 }
 
+// La cabecera de la tabla tiene que cuadrar con sus celdas: la primera columna es
+// el nombre y el primer campo de cada tipo (VD, nivel, tipo, categoría) conserva
+// la suya. Sin esto, el nombre ocupaba la celda del primer campo y su valor
+// desaparecía del listado sin que nadie lo notara.
+const LISTADOS = [
+  { ruta: "/5e/monstruos/", campo: "VD", valor: /^(\d+\/\d+|\d+)$/ },
+  { ruta: "/5e/conjuros/", campo: "Nivel", valor: /^(truco|\d+)$/ },
+  { ruta: "/5e/objetos/", campo: "Tipo", valor: /^\S/ },
+  { ruta: "/5e/equipo/", campo: "Categoría", valor: /^\S/ },
+];
+for (const caso of LISTADOS) {
+  try {
+    const p = await abrir(`${BASE}${caso.ruta}`);
+    const d = await evaluar(
+      p,
+      `(() => {
+        const cabeceras = [...document.querySelectorAll('#tabla thead th')].map((th) => th.textContent.trim());
+        const primera = document.querySelector('#cuerpo tr');
+        const celdas = [...primera.children].map((td) => td.textContent.trim());
+        const enlace = primera.querySelector('td:first-child a');
+        return { cabeceras, celdas, href: enlace?.getAttribute('href') ?? '' };
+      })()`,
+    );
+    const cabecerasOk = d.cabeceras[0] === "Nombre" && d.cabeceras[1] === caso.campo;
+    const celdasOk =
+      d.celdas.length === d.cabeceras.length &&
+      d.celdas[1] !== d.celdas[0] &&
+      caso.valor.test(d.celdas[1]) &&
+      d.href.length > 1;
+    if (cabecerasOk && celdasOk) bien(`${caso.ruta}: «Nombre» y «${caso.campo}» con su valor (${d.celdas[1]})`);
+    else fallo(`columnas ${caso.ruta}`, JSON.stringify(d));
+  } catch (e) {
+    fallo(`columnas ${caso.ruta}`, String(e));
+  }
+}
+
+// El orden numérico tiene que leer el valor, no el principio del texto: los VD
+// fraccionarios se quedaban en 1 y el clic no reordenaba nada.
+try {
+  const p = await abrir(`${BASE}/5e/monstruos/`);
+  await evaluar(
+    p,
+    `(() => {
+      const th = [...document.querySelectorAll('#tabla thead th')].find((t) => t.dataset.orden === 'vd');
+      th.querySelector('button').click();
+      return true;
+    })()`,
+  );
+  const vds = await evaluar(
+    p,
+    `[...document.querySelectorAll('#cuerpo tr')].map((tr) => tr.children[1].textContent.trim())`,
+  );
+  const valor = (t) => {
+    const f = /^(\d+)\/(\d+)$/.exec(t);
+    return f ? Number(f[1]) / Number(f[2]) : Number.parseFloat(t);
+  };
+  const nums = vds.map(valor);
+  const ascendente = nums.every((n, i) => i === 0 || nums[i - 1] <= n);
+  const pos = ["1/8", "1/4", "1/2", "1"].map((v) => vds.indexOf(v));
+  const fraccionesOk = pos.every((i) => i >= 0) && pos[0] < pos[1] && pos[1] < pos[2] && pos[2] < pos[3];
+  if (ascendente && fraccionesOk) bien(`orden por VD: ${vds.slice(0, 6).join(" · ")}`);
+  else fallo("orden por VD", JSON.stringify({ ascendente, fraccionesOk, pos, muestra: vds.slice(0, 8) }));
+} catch (e) {
+  fallo("orden por VD", String(e));
+}
+
 const mesa = await abrir(`${BASE}/mesa/`);
 try {
   const dados = await evaluar(

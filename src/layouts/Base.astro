@@ -27,6 +27,9 @@ const tituloCompleto = title === SITIO ? `${SITIO} — ${ETIQUETA} en español` 
 const ruta = Astro.url.pathname.replace(/\/$/, "") || "/";
 const activo = (href: string) => (ruta === href.replace(/\/$/, "") ? "page" : undefined);
 const meta = edicion ? EDICIONES[edicion] : null;
+// Sin edición no hay raíl; si la rejilla mantiene su columna, el contenido se
+// comprime a 236 px sin desbordar y la captura no lo delata.
+const anchoReal = ancho || !edicion;
 const base = edicion ? e(`/${edicion}`) : "";
 ---
 
@@ -94,7 +97,7 @@ const base = edicion ? e(`/${edicion}`) : "";
       </div>
     </header>
 
-    <div class:list={["shell", ancho && "shell--ancho"]}>
+    <div class:list={["shell", anchoReal && "shell--ancho"]}>
       {meta && (
         <nav class="rail" aria-label="Contenido">
           <div class="rail__grupo">

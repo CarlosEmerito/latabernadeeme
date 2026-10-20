@@ -1,7 +1,7 @@
 # Informe de validación
 
 Generado por `tools/verify/validar.py`.
-Total de entradas: **2488**. Bloques con incidencias: **0**.
+Total de entradas: **2490**. Bloques con incidencias: **0**.
 
 ## ed51 · clases — 12 entradas · OK
 
@@ -19,7 +19,7 @@ Total de entradas: **2488**. Bloques con incidencias: **0**.
 ## ed51 · objetos — 240 entradas · OK
 - Aviso, cuerpos más largos de lo esperado: 1 (baraja-de-multiples-cosas.md (7830 caracteres))
 
-## ed51 · reglas — 45 entradas · OK
+## ed51 · reglas — 47 entradas · OK
 
 ## ed51 · trasfondos — 1 entradas · OK
 

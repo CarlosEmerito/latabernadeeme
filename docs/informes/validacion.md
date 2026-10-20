@@ -1,7 +1,7 @@
 # Informe de validación
 
 Generado por `tools/verify/validar.py`.
-Total de entradas: **2490**. Bloques con incidencias: **0**.
+Total de entradas: **2490**. Apartados con incidencias: **0**.
 
 ## ed51 · clases — 12 entradas · OK
 
@@ -43,3 +43,7 @@ Total de entradas: **2490**. Bloques con incidencias: **0**.
 - Nombres repetidos: 1 (competencia)
 
 ## ed52 · trasfondos — 4 entradas · OK
+
+## README — tabla de recuentos
+
+- Las 18 celdas coinciden con los ficheros de `data/`.

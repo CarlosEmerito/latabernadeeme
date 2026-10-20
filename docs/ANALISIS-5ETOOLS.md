@@ -1,7 +1,11 @@
 # Análisis de 5etools y plan para La Taberna de Eme
 
-Documento de trabajo. No describe cambios ya hechos: es el estudio previo para decidir qué
-merece la pena traer. Fecha: 20 de octubre de 2026.
+Documento de trabajo. Fecha: 20 de octubre de 2026.
+
+> **Estado:** fases 1 y 2 implementadas (facetas múltiples, estado en URL, alias, tarjetas
+> emergentes, constructor de encuentros, vista de jugador, cartas imprimibles, exportación y
+> comparador de presencia). Quedan la fase 3 (escalado de criaturas, pantalla del DM, índice
+> temático) y el comparador de texto línea a línea.
 
 ---
 

@@ -23,6 +23,10 @@ const entrada = entradas[indice];
 
 if (!entrada) return Astro.redirect(e("/404/"));
 
+const otra: Edition = ed === "5e" ? "5.5" : "5e";
+const existeEnOtra = cargar(otra, tipo).some((x) => x.slug === slug);
+const otraEdicion = existeEnOtra ? { ed: otra, srd: EDICIONES[otra].srd } : undefined;
+
 const meta = EDICIONES[ed];
 const t = TIPO_META[tipo];
 const titulo = String(entrada.data.name);
@@ -49,5 +53,6 @@ const descripcion =
     tipo={tipo}
     anterior={indice > 0 ? entradas[indice - 1] : undefined}
     siguiente={indice < entradas.length - 1 ? entradas[indice + 1] : undefined}
+    otraEdicion={otraEdicion}
   />
 </Base>

@@ -1,0 +1,64 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { EDICIONES, cargar, slugify, type Edition } from "../../../lib/content";
+import { e } from "../../../lib/urls";
+
+export function getStaticPaths() {
+  return (["5e", "5.5"] as Edition[]).map((ed) => ({ params: { ed } }));
+}
+
+const ed = Astro.params.ed as Edition;
+const meta = EDICIONES[ed];
+
+const porClase = new Map<string, { nombre: string; slug: string; n: number }>();
+for (const c of cargar(ed, "conjuros")) {
+  if (!Array.isArray(c.data.classes)) continue;
+  for (const k of c.data.classes) {
+    const nombre = String(k);
+    const slug = slugify(nombre);
+    if (!porClase.has(slug)) porClase.set(slug, { nombre, slug, n: 0 });
+    porClase.get(slug)!.n++;
+  }
+}
+const clases = [...porClase.values()].sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+---
+
+<Base
+  title={`Cartas de conjuros · ${meta.srd}`}
+  description={`Cartas imprimibles de conjuros por clase, del ${meta.srd}.`}
+  edicion={ed}
+  ancho
+>
+  <header class="cabecera">
+    <div>
+      <h1>Cartas de conjuros</h1>
+      <p class="cabecera__lede">
+        Una página por clase, con sus conjuros en tarjetas listas para imprimir y recortar. Del{" "}
+        {meta.srd}.
+      </p>
+    </div>
+  </header>
+
+  <div class="panel-tabla">
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th scope="col">Clase</th>
+          <th scope="col" class="col-num">Conjuros</th>
+          <th scope="col">Imprimir</th>
+        </tr>
+      </thead>
+      <tbody>
+        {clases.map((c) => (
+          <tr>
+            <td><a href={e(`/${ed}/cartas/${c.slug}/`)}>{c.nombre}</a></td>
+            <td class="col-num">{c.n}</td>
+            <td class="col-tenue">
+              <a href={e(`/${ed}/cartas/${c.slug}/`)}>Abrir e imprimir →</a>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</Base>

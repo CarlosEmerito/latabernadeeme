@@ -19,24 +19,35 @@ const entradas = cargar(ed, tipo);
 const nombrePlural = nombreTipo(ed, tipo);
 
 const unicos = (vals: any[]) =>
-  Array.from(new Set(vals.filter((v) => v !== undefined && v !== null && String(v).trim() !== "").map(String)));
+  Array.from(
+    new Set(vals.filter((v) => v !== undefined && v !== null && String(v).trim() !== "").map(String)),
+  );
 
 const ORDEN_NIVEL = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const ORDEN_CR = ["0", "1/8", "1/4", "1/2", ...Array.from({ length: 30 }, (_, i) => String(i + 1))];
 const ordenar = (vals: string[], orden?: string[]) =>
-  vals.sort((a, b) =>
-    orden
-      ? (orden.indexOf(a) === -1 ? 99 : orden.indexOf(a)) - (orden.indexOf(b) === -1 ? 99 : orden.indexOf(b)) ||
-        a.localeCompare(b, "es")
-      : a.localeCompare(b, "es"),
+  vals.sort(
+    (a, b) =>
+      (orden
+        ? (orden.indexOf(a) === -1 ? 99 : orden.indexOf(a)) - (orden.indexOf(b) === -1 ? 99 : orden.indexOf(b))
+        : 0) || a.localeCompare(b, "es"),
   );
+
+const vdNum = (vd: unknown) => {
+  const s = String(vd ?? "").trim();
+  if (s.includes("/")) {
+    const [a, b] = s.split("/").map(Number);
+    return b ? a / b : 0;
+  }
+  const n = Number.parseFloat(s.replace(",", "."));
+  return Number.isFinite(n) ? n : 0;
+};
 
 const columnas: Record<string, { clave: string; etiqueta: string; tipo?: "num" | "texto"; ocultoMovil?: boolean }[]> = {
   conjuros: [
     { clave: "nivel", etiqueta: "Nivel", tipo: "num" },
     { clave: "escuela", etiqueta: "Escuela" },
     { clave: "clases", etiqueta: "Clases", ocultoMovil: true },
-    { clave: "ritual", etiqueta: "Ritual", ocultoMovil: true },
   ],
   monstruos: [
     { clave: "vd", etiqueta: "VD", tipo: "num" },
@@ -77,31 +88,40 @@ const filas = entradas.map((en) => {
     case "conjuros":
       return {
         ...base,
-        chips: d.level === 0 ? ["truco"] : undefined,
         celdas: {
-          nivel: d.level === 0 ? "0" : String(d.level),
+          nivel: d.level === 0 ? "truco" : String(d.level),
           escuela: d.school,
           clases: Array.isArray(d.classes) ? d.classes.join(", ") : "",
-          ritual: d.ritual ? "sí" : "",
         },
         facetas: {
-          nivel: String(d.level ?? ""),
+          nivel: d.level === 0 ? "truco" : String(d.level),
           escuela: String(d.school ?? ""),
           clase: Array.isArray(d.classes) ? d.classes.join("|") : "",
           ritual: d.ritual ? "sí" : "no",
         },
+        rangos: { nivel: Number(d.level ?? 0) },
       };
     case "monstruos":
       return {
         ...base,
-        celdas: { vd: String(d.cr), tipo: String(d.type), tamano: String(d.size), pg: String(d.hp).split(" ")[0] },
+        celdas: {
+          vd: String(d.cr),
+          tipo: String(d.type),
+          tamano: String(d.size),
+          pg: String(d.hp).split(" ")[0],
+        },
         facetas: { vd: String(d.cr ?? ""), tipo: String(d.type ?? ""), tamano: String(d.size ?? "") },
+        rangos: { vd: vdNum(d.cr), pg: Number.parseInt(String(d.hp ?? "0"), 10) || 0 },
       };
     case "objetos":
       return {
         ...base,
         celdas: { tipo: d.type, rareza: d.rarity || "—", sintonizacion: d.attunement ? "sí" : "no" },
-        facetas: { rareza: String(d.rarity || "sin rareza"), sintonizacion: d.attunement ? "sí" : "no" },
+        facetas: {
+          tipo: String(d.type ?? ""),
+          rareza: String(d.rarity || "sin rareza"),
+          sintonizacion: d.attunement ? "sí" : "no",
+        },
       };
     case "equipo":
       return {
@@ -130,63 +150,45 @@ const filas = entradas.map((en) => {
   }
 });
 
-const facetas: { clave: string; etiqueta: string; valores: { valor: string; texto: string }[] }[] = [];
+type Faceta = {
+  clave: string;
+  etiqueta: string;
+  tipo?: "lista" | "rango";
+  valores?: { valor: string; texto: string }[];
+  min?: number;
+  max?: number;
+  paso?: number;
+};
+
+const lista = (clave: string, etiqueta: string, orden?: string[], textos?: Record<string, string>): Faceta => ({
+  clave,
+  etiqueta,
+  valores: ordenar(unicos(filas.map((f) => f.facetas[clave])), orden).map((v) => ({
+    valor: v,
+    texto: textos?.[v] ?? v,
+  })),
+});
+
+const facetas: Faceta[] = [];
 if (tipo === "conjuros") {
-  facetas.push({
-    clave: "nivel",
-    etiqueta: "Nivel",
-    valores: ordenar(unicos(filas.map((f) => f.facetas.nivel)), ORDEN_NIVEL).map((v) => ({
-      valor: v,
-      texto: v === "0" ? "Truco" : `Nivel ${v}`,
-    })),
-  });
-  facetas.push({
-    clave: "escuela",
-    etiqueta: "Escuela",
-    valores: ordenar(unicos(filas.map((f) => f.facetas.escuela))).map((v) => ({ valor: v, texto: v })),
-  });
+  facetas.push(lista("nivel", "Nivel", ORDEN_NIVEL, { "0": "Truco" }));
+  facetas.push(lista("escuela", "Escuela"));
   const clases = ordenar(unicos(filas.flatMap((f) => (f.facetas.clase ? f.facetas.clase.split("|") : []))));
-  if (clases.length) {
+  if (clases.length > 1) {
     facetas.push({ clave: "clase", etiqueta: "Clase", valores: clases.map((v) => ({ valor: v, texto: v })) });
   }
-  facetas.push({
-    clave: "ritual",
-    etiqueta: "Ritual",
-    valores: [
-      { valor: "sí", texto: "Sí" },
-      { valor: "no", texto: "No" },
-    ],
-  });
+  facetas.push(lista("ritual", "Ritual"));
 }
 if (tipo === "monstruos") {
-  facetas.push({
-    clave: "vd",
-    etiqueta: "VD",
-    valores: ordenar(unicos(filas.map((f) => f.facetas.vd)), ORDEN_CR).map((v) => ({ valor: v, texto: v })),
-  });
-  facetas.push({
-    clave: "tipo",
-    etiqueta: "Tipo",
-    valores: ordenar(unicos(filas.map((f) => f.facetas.tipo))).map((v) => ({ valor: v, texto: v })),
-  });
-  facetas.push({
-    clave: "tamano",
-    etiqueta: "Tamaño",
-    valores: ordenar(unicos(filas.map((f) => f.facetas.tamano)), [
-      "Diminuto",
-      "Pequeño",
-      "Mediano",
-      "Grande",
-      "Enorme",
-      "Gigante",
-    ]).map((v) => ({ valor: v, texto: v })),
-  });
+  facetas.push({ clave: "vd", etiqueta: "VD", tipo: "rango", min: 0, max: 30, paso: 0.125 });
+  facetas.push(lista("tipo", "Tipo"));
+  facetas.push(lista("tamano", "Tamaño", ["Diminuto", "Pequeño", "Mediano", "Grande", "Enorme", "Gigante"]));
+  facetas.push({ clave: "pg", etiqueta: "PG", tipo: "rango", min: 0, max: 700, paso: 5 });
 }
 if (tipo === "objetos") {
-  facetas.push({
-    clave: "rareza",
-    etiqueta: "Rareza",
-    valores: ordenar(unicos(filas.map((f) => f.facetas.rareza)), [
+  facetas.push(lista("tipo", "Tipo"));
+  facetas.push(
+    lista("rareza", "Rareza", [
       "común",
       "poco común",
       "raro",
@@ -195,14 +197,13 @@ if (tipo === "objetos") {
       "varía",
       "artefacto",
       "sin rareza",
-    ]).map((v) => ({ valor: v, texto: v })),
-  });
+    ]),
+  );
+  facetas.push(lista("sintonizacion", "Sintonización"));
 }
 if (["equipo", "dotes", "reglas"].includes(tipo)) {
-  const vals = ordenar(unicos(filas.map((f) => f.facetas.categoria)));
-  if (vals.length > 1) {
-    facetas.push({ clave: "categoria", etiqueta: "Categoría", valores: vals.map((v) => ({ valor: v, texto: v })) });
-  }
+  const f = lista("categoria", "Categoría");
+  if ((f.valores?.length ?? 0) > 1) facetas.push(f);
 }
 ---
 
@@ -215,7 +216,9 @@ if (["equipo", "dotes", "reglas"].includes(tipo)) {
   <header class="cabecera">
     <div>
       <h1>{nombrePlural}</h1>
-      <p class="cabecera__lede">{TIPO_META[tipo].desc} · {meta.srd} en español.</p>
+      <p class="cabecera__lede">
+        {TIPO_META[tipo].desc} · {meta.srd} en español. {entradas.length} entradas.
+      </p>
     </div>
     <div class="cabecera__meta">
       <span><b>{entradas.length}</b>entradas</span>
@@ -225,13 +228,12 @@ if (["equipo", "dotes", "reglas"].includes(tipo)) {
   {entradas.length === 0 ? (
     <p class="muted" style="padding:2rem 0">Todavía no hay contenido de este tipo en esta edición.</p>
   ) : (
-    <div class="panel-tabla">
-      <Tabla
-        columnas={columnas[tipo]}
-        filas={filas}
-        facetas={facetas}
-        placeholder={`Filtrar ${nombrePlural.toLowerCase()}…`}
-      />
-    </div>
+    <Tabla
+      columnas={columnas[tipo]}
+      filas={filas}
+      facetas={facetas}
+      placeholder={`Filtrar ${nombrePlural.toLowerCase()}…`}
+      nota="Los filtros quedan en la dirección: copia el enlace y comparte exactamente esta vista."
+    />
   )}
 </Base>

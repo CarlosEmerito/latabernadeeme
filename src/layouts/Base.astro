@@ -109,6 +109,16 @@ const base = edicion ? e(`/${edicion}`) : "";
                   <span>{edicion === "5e" ? "SRD 5.2.1 · 2024" : "SRD 5.1 · 2014"}</span>
                 </a>
               </li>
+              <li>
+                <a href={e(`/${edicion}/cartas/`)}>
+                  <span>Cartas de conjuros</span>
+                </a>
+              </li>
+              <li>
+                <a href={e("/cambios/")}>
+                  <span>Qué cambia entre ediciones</span>
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -135,10 +145,119 @@ const base = edicion ? e(`/${edicion}`) : "";
             Herramienta no oficial, sin afiliación ni respaldo de Wizards of the Coast. Las marcas de
             Dungeons &amp; Dragons pertenecen a sus titulares.
           </p>
-          <p><a href={e("/licencias/")}>Licencias y fuentes</a> · <a href={e("/accesibilidad/")}>Accesibilidad</a></p>
+          <p>
+            <a href={e("/cambios/")}>Qué cambia entre ediciones</a> ·
+            <a href={e("/mesa/")}>Mesa</a> ·
+            <a href={e("/licencias/")}>Licencias y fuentes</a> ·
+            <a href={e("/accesibilidad/")}>Accesibilidad</a>
+          </p>
         </div>
       </div>
     </footer>
+
+    <script>
+      /* Tarjetas emergentes: al pasar o enfocar un enlace enlazado, se muestra un
+         resumen de la entrada. Es una mejora: el enlace funciona sin esto. */
+      const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+      const cacheDatos = new Map<string, Promise<any[]>>();
+      const cargarDatos = (ed: string) => {
+        if (!cacheDatos.has(ed)) {
+          cacheDatos.set(
+            ed,
+            fetch(`${BASE}/datos/${ed}.json`)
+              .then((r) => (r.ok ? r.json() : { entradas: [] }))
+              .then((j) => j.entradas ?? [])
+              .catch(() => []),
+          );
+        }
+        return cacheDatos.get(ed)!;
+      };
+
+      let tarjeta: HTMLDivElement | null = null;
+      let temporizador = 0;
+      let actual: HTMLAnchorElement | null = null;
+
+      const ocultar = () => {
+        window.clearTimeout(temporizador);
+        if (tarjeta) tarjeta.hidden = true;
+      };
+
+      const pintar = (e: any, a: HTMLAnchorElement) => {
+        if (!tarjeta) {
+          tarjeta = document.createElement("div");
+          tarjeta.className = "tarjeta-datos";
+          tarjeta.setAttribute("role", "tooltip");
+          tarjeta.hidden = true;
+          document.body.appendChild(tarjeta);
+        }
+        const d = e.d ?? {};
+        const filas: string[] = [];
+        if (e.t === "conjuros") {
+          filas.push(`<b>${d.nivel === 0 ? "Truco" : `Nivel ${d.nivel}`}</b> · ${d.escuela ?? ""}`);
+          if (d.tiempo) filas.push(`<span>Tiempo</span> ${d.tiempo}`);
+          if (d.alcance) filas.push(`<span>Alcance</span> ${d.alcance}`);
+          if (d.duracion) filas.push(`<span>Duración</span> ${d.duracion}`);
+        } else if (e.t === "monstruos") {
+          filas.push(`${d.tamano ?? ""} ${String(d.tipo ?? "").toLowerCase()} · <b>VD ${d.vd}</b>`);
+          if (d.ca) filas.push(`<span>CA</span> ${d.ca}`);
+          if (d.pg) filas.push(`<span>PG</span> ${d.pg}`);
+        } else {
+          if (d.rareza) filas.push(`<b>${d.rareza}</b>`);
+          if (d.precio) filas.push(`<span>Precio</span> ${d.precio}`);
+        }
+        tarjeta.innerHTML = `<p class="tarjeta-datos__n">${e.n}</p>${filas
+          .map((f) => `<p class="tarjeta-datos__f">${f}</p>`)
+          .join("")}<p class="tarjeta-datos__pie">${e.t === "conjuros" ? "Conjuro" : e.t === "monstruos" ? "Criatura" : "Objeto"}</p>`;
+        tarjeta.hidden = false;
+
+        const r = a.getBoundingClientRect();
+        const ancho = 300;
+        const izquierda = Math.min(Math.max(8, r.left), window.innerWidth - ancho - 8);
+        tarjeta.style.left = `${izquierda + window.scrollX}px`;
+        tarjeta.style.top = `${r.bottom + window.scrollY + 6}px`;
+      };
+
+      document.addEventListener("pointerover", (ev) => {
+        const a = (ev.target as HTMLElement)?.closest?.("a[data-tarjeta]") as HTMLAnchorElement | null;
+        if (!a || a === actual) return;
+        actual = a;
+        const clave = a.dataset.tarjeta!;
+        const ed = a.dataset.ed ?? "5.5";
+        window.clearTimeout(temporizador);
+        temporizador = window.setTimeout(async () => {
+          const entradas = await cargarDatos(ed);
+          const [tipo, slug] = clave.split("/");
+          const e = entradas.find((x: any) => x.t === tipo && x.s === slug);
+          if (e && actual === a) pintar(e, a);
+        }, 120);
+      });
+
+      document.addEventListener("pointerout", (ev) => {
+        const a = (ev.target as HTMLElement)?.closest?.("a[data-tarjeta]");
+        if (a) {
+          actual = null;
+          ocultar();
+        }
+      });
+
+      document.addEventListener("focusin", (ev) => {
+        const a = (ev.target as HTMLElement)?.closest?.("a[data-tarjeta]") as HTMLAnchorElement | null;
+        if (a) {
+          actual = a;
+          cargarDatos(a.dataset.ed ?? "5.5").then((entradas) => {
+            const [tipo, slug] = a.dataset.tarjeta!.split("/");
+            const e = entradas.find((x: any) => x.t === tipo && x.s === slug);
+            if (e) pintar(e, a);
+          });
+        }
+      });
+
+      document.addEventListener("focusout", ocultar);
+      document.addEventListener("keydown", (ev) => {
+        if (ev.key === "Escape") ocultar();
+      });
+      window.addEventListener("scroll", ocultar, { passive: true });
+    </script>
 
     <script>
       const boton = document.getElementById("boton-tema");

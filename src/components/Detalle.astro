@@ -1,8 +1,8 @@
 ---
 import type { Entrada, Edition, Tipo } from "../lib/content";
-import { enlazarConjuros } from "../lib/content";
+import { TIPO_META, enlazarConjuros } from "../lib/content";
+import { aliasDe } from "../lib/alias";
 import { e } from "../lib/urls";
-import { TIPO_META } from "../lib/content";
 
 interface Props {
   entrada: Entrada;
@@ -10,12 +10,14 @@ interface Props {
   tipo: Tipo;
   anterior?: Entrada;
   siguiente?: Entrada;
+  otraEdicion?: { ed: Edition; srd: string };
 }
 
-const { entrada, edicion, tipo, anterior, siguiente } = Astro.props;
+const { entrada, edicion, tipo, anterior, siguiente, otraEdicion } = Astro.props;
 const d = entrada.data;
 const html = enlazarConjuros(entrada.html, edicion, tipo);
 const volver = e(`/${edicion}/${tipo}/`);
+const alias = aliasDe(String(d.name));
 
 const mod = (v: number) => {
   const m = Math.floor((v - 10) / 2);
@@ -35,6 +37,14 @@ const filasPerfil = [
   ["Idiomas", d.languages],
   ["Equipo", d.gear],
 ].filter(([, v]) => v) as [string, string][];
+
+const exportable = {
+  tipo,
+  edicion,
+  srd: edicion === "5e" ? "SRD 5.1" : "SRD 5.2.1",
+  datos: d,
+  markdown: entrada.body,
+};
 ---
 
 <div class="ficha">
@@ -42,35 +52,24 @@ const filasPerfil = [
     <p class="ficha__banda">
       <b>{TIPO_META[tipo].singular}</b>
       <span aria-hidden="true">·</span>
-      <a href={e("/licencias/")} title="Atribución y licencia">{edicion === "5e" ? "SRD 5.1" : "SRD 5.2.1"} · p. {d.page}</a>
+      <a href={e("/licencias/")} title="Atribución y licencia">
+        {edicion === "5e" ? "SRD 5.1" : "SRD 5.2.1"} · p. {d.page}
+      </a>
       {tipo === "monstruos" && <><span aria-hidden="true">·</span><span>VD {d.cr}</span></>}
-      {tipo === "conjuros" && <><span aria-hidden="true">·</span><span>{d.level === 0 ? "Truco" : `Nivel ${d.level}`} de {d.school}</span></>}
+      {tipo === "conjuros" && (
+        <>
+          <span aria-hidden="true">·</span>
+          <span>{d.level === 0 ? "Truco" : `Nivel ${d.level}`} de {d.school}</span>
+        </>
+      )}
       {tipo === "objetos" && d.rarity && <><span aria-hidden="true">·</span><span>{d.rarity}</span></>}
     </p>
 
     <h1 class="ficha__titulo">{d.name}</h1>
 
-    {tipo === "monstruos" && (
-      <p class="ficha__sub">
-        {d.size} {String(d.type).toLowerCase()}{d.tags ? ` (${d.tags})` : ""}, {d.alignment} ·{" "}
-        <span class="num">VD {d.cr}</span>
-      </p>
-    )}
-
-    {tipo === "conjuros" && (
-      <p class="ficha__sub">
-        {d.level === 0 ? "Truco" : `Conjuro de nivel ${d.level}`} · {d.school}
-        {d.ritual ? " · ritual" : ""}
-        {d.concentration ? " · concentración" : ""}
-        {Array.isArray(d.classes) && d.classes.length > 0 ? ` · ${d.classes.join(", ")}` : ""}
-      </p>
-    )}
-
-    {tipo !== "conjuros" && tipo !== "monstruos" && (
-      <p class="ficha__sub">
-        {[d.category, d.type, d.rarity, d.size, d.hitDie && `dado ${d.hitDie}`]
-          .filter(Boolean)
-          .join(" · ")}
+    {alias && (
+      <p class="ficha__alias">
+        En inglés: <span lang="en">{alias}</span>
       </p>
     )}
 
@@ -112,22 +111,19 @@ const filasPerfil = [
       </section>
     )}
 
+    {tipo === "conjuros" && (
+      <dl class="lanzamiento">
+        <div><dt>Tiempo</dt><dd>{d.castingTime}</dd></div>
+        <div><dt>Alcance</dt><dd>{d.range}</dd></div>
+        <div><dt>Componentes</dt><dd>{d.components}</dd></div>
+        <div><dt>Duración</dt><dd>{d.duration}</dd></div>
+      </dl>
+    )}
+
     <div class="prosa" set:html={html} />
   </article>
 
   <aside class="aside" aria-label="Datos y navegación">
-    {tipo === "conjuros" && (
-      <div class="aside__bloque">
-        <h2 class="aside__titulo">Lanzamiento</h2>
-        <dl>
-          <dt>Tiempo</dt><dd>{d.castingTime}</dd>
-          <dt>Alcance</dt><dd>{d.range}</dd>
-          <dt>Componentes</dt><dd>{d.components}</dd>
-          <dt>Duración</dt><dd>{d.duration}</dd>
-        </dl>
-      </div>
-    )}
-
     {tipo === "conjuros" && Array.isArray(d.classes) && d.classes.length > 0 && (
       <div class="aside__bloque">
         <h2 class="aside__titulo">Listas</h2>
@@ -158,8 +154,18 @@ const filasPerfil = [
           {d.category && (<><dt>Categoría</dt><dd>{d.category}</dd></>)}
           {d.hitDie && (<><dt>Dado de golpe</dt><dd>{d.hitDie}</dd></>)}
           {d.primaryAbility && (<><dt>Característica</dt><dd>{d.primaryAbility}</dd></>)}
-          {Array.isArray(d.saves) && d.saves.length > 0 && (<><dt>Salvaciones</dt><dd>{d.saves.join(", ")}</dd></>)}
         </dl>
+      </div>
+    )}
+
+    {otraEdicion && (
+      <div class="aside__bloque">
+        <h2 class="aside__titulo">También en</h2>
+        <p style="margin:0">
+          <a href={e(`/${otraEdicion.ed}/${tipo}/${entrada.slug}/`)}>
+            Ver esta entrada en {otraEdicion.srd}
+          </a>
+        </p>
       </div>
     )}
 
@@ -169,13 +175,22 @@ const filasPerfil = [
         {edicion === "5e" ? "SRD 5.1" : "SRD 5.2.1"} · pág. <span class="num">{d.page}</span><br />
         <span class="muted">CC BY 4.0</span>
       </p>
-      <button class="btn noprint" type="button" onclick="window.print()">Imprimir</button>
+      <div class="acciones">
+        <button class="btn" type="button" id="copiar-md">Copiar Markdown</button>
+        <button class="btn" type="button" id="bajar-json">JSON</button>
+        <button class="btn" type="button" onclick="window.print()">Imprimir</button>
+      </div>
+      <p class="acciones__aviso" id="aviso-copia" role="status"></p>
     </div>
 
     {(anterior || siguiente) && (
       <div class="aside__bloque aside__nav noprint">
         {anterior ? <a href={e(`/${edicion}/${tipo}/${anterior.slug}/`)}>← {anterior.data.name}</a> : <span />}
-        {siguiente ? <a href={e(`/${edicion}/${tipo}/${siguiente.slug}/`)} style="text-align:right">{siguiente.data.name} →</a> : <span />}
+        {siguiente ? (
+          <a href={e(`/${edicion}/${tipo}/${siguiente.slug}/`)} style="text-align:right">{siguiente.data.name} →</a>
+        ) : (
+          <span />
+        )}
       </div>
     )}
 
@@ -184,3 +199,67 @@ const filasPerfil = [
     </div>
   </aside>
 </div>
+
+<script type="application/json" id="datos-entrada" set:html={JSON.stringify(exportable)}></script>
+<script>
+  const crudo = document.getElementById("datos-entrada")?.textContent;
+  if (crudo) {
+    const datos = JSON.parse(crudo) as { tipo: string; srd: string; datos: Record<string, any>; markdown: string };
+    const aviso = document.getElementById("aviso-copia");
+    const decir = (t: string) => {
+      if (!aviso) return;
+      aviso.textContent = t;
+      setTimeout(() => (aviso.textContent = ""), 2200);
+    };
+
+    const aMarkdown = () => {
+      const d = datos.datos;
+      const cabecera = [
+        `# ${d.name}`,
+        "",
+        `*${datos.srd}${d.page ? `, pág. ${d.page}` : ""}*`,
+        "",
+      ];
+      if (datos.tipo === "conjuros") {
+        cabecera.push(
+          `- **Tiempo:** ${d.castingTime}`,
+          `- **Alcance:** ${d.range}`,
+          `- **Componentes:** ${d.components}`,
+          `- **Duración:** ${d.duration}`,
+          "",
+        );
+      }
+      if (datos.tipo === "monstruos") {
+        cabecera.push(
+          `- **CA:** ${d.ac}`,
+          `- **PG:** ${d.hp}`,
+          `- **Velocidad:** ${d.speed}`,
+          `- **VD:** ${d.cr} (${d.xp} PX)`,
+          "",
+        );
+      }
+      cabecera.push(datos.markdown.trim(), "");
+      return cabecera.join("\n");
+    };
+
+    document.getElementById("copiar-md")?.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(aMarkdown());
+        decir("Copiado al portapapeles.");
+      } catch {
+        decir("No se pudo copiar. Usa la descarga JSON.");
+      }
+    });
+
+    document.getElementById("bajar-json")?.addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(datos, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${String(datos.datos.name).toLowerCase().replace(/[^a-z0-9]+/g, "-")}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      decir("Descargado.");
+    });
+  }
+</script>

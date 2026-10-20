@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { load as parseYaml } from "js-yaml";
 import MarkdownIt from "markdown-it";
+import { e } from "./urls";
 
 export type Edition = "5e" | "5.5";
 
@@ -159,19 +160,40 @@ export function buscarEntrada(ed: Edition, tipo: Tipo, slug: string): Entrada | 
 
 /** Convierte las menciones a conjuros del texto en enlaces internos. */
 export function enlazarConjuros(html: string, ed: Edition, tipoActual: Tipo): string {
-  /* Se enlazan solo las menciones en cursiva, que es como el SRD marca los
-     nombres de conjuros: <em>bola de fuego</em>. */
+  /* El SRD marca los nombres en negrita o cursiva, a menudo con un añadido
+     detrás («Paso brumoso (3/día).»). Se enlaza solo la parte que coincide con
+     el nombre exacto de otra entrada y el resto se conserva tal cual. */
   const conjuros = indice(ed, "conjuros");
   const monstruos = indice(ed, "monstruos");
-  return html.replace(/<em>([^<]{2,60})<\/em>/g, (todo, texto: string) => {
-    const clave = texto.trim().toLowerCase();
-    const slugConjuro = conjuros.get(clave);
-    if (slugConjuro && tipoActual !== "conjuros") {
-      return `<em><a href="/${ed}/conjuros/${slugConjuro}/">${texto}</a></em>`;
+
+  const enlace = (nombre: string): string | null => {
+    const clave = nombre.toLowerCase();
+    if (clave.length < 4) return null;
+    const slugConjuro = tipoActual !== "conjuros" ? conjuros.get(clave) : undefined;
+    if (slugConjuro) {
+      return `<a href="${e(`/${ed}/conjuros/${slugConjuro}/`)}" data-tarjeta="conjuros/${slugConjuro}" data-ed="${ed}">${nombre}</a>`;
     }
-    const slugMonstruo = monstruos.get(clave);
-    if (slugMonstruo && tipoActual !== "monstruos") {
-      return `<em><a href="/${ed}/monstruos/${slugMonstruo}/">${texto}</a></em>`;
+    const slugMonstruo = tipoActual !== "monstruos" ? monstruos.get(clave) : undefined;
+    if (slugMonstruo) {
+      return `<a href="${e(`/${ed}/monstruos/${slugMonstruo}/`)}" data-tarjeta="monstruos/${slugMonstruo}" data-ed="${ed}">${nombre}</a>`;
+    }
+    return null;
+  };
+
+  return html.replace(/<(em|strong)>([^<]{2,60})<\/\1>/g, (todo, etiqueta: string, bruto: string) => {
+    const limpio = bruto.trim();
+    const nucleo = limpio.replace(/[.,;:]+$/, "");
+    const cola = limpio.slice(nucleo.length);
+
+    // Candidatos: el texto entero y el nombre antes de un paréntesis o dos puntos.
+    const candidatos = [nucleo, nucleo.replace(/\s*\(.*$/, ""), nucleo.split(":")[0]];
+
+    for (const candidato of candidatos) {
+      const enlazado = enlace(candidato);
+      if (enlazado) {
+        const resto = nucleo.slice(candidato.length);
+        return `<${etiqueta}>${enlazado}${resto}${cola}</${etiqueta}>`;
+      }
     }
     return todo;
   });

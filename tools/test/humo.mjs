@@ -91,7 +91,7 @@ const conjuro = await abrir(`${BASE}/5e/conjuros/bola-de-fuego/`);
 try {
   const d = await evaluar(
     conjuro,
-    `({h1: document.querySelector('h1')?.textContent, filas: document.querySelectorAll('.aside dd').length, parrafos: document.querySelectorAll('.prosa p').length, enlacesBase: [...document.querySelectorAll('a[href^="/"]')].every(a => a.getAttribute('href').startsWith('/latabernadeeme'))})`,
+    `({h1: document.querySelector('h1')?.textContent, filas: document.querySelectorAll('.lanzamiento > div').length, parrafos: document.querySelectorAll('.prosa p').length, enlacesBase: [...document.querySelectorAll('a[href^="/"]')].every(a => a.getAttribute('href').startsWith('/latabernadeeme'))})`,
   );
   if (d.h1 === "Bola de fuego" && d.filas >= 4 && d.parrafos >= 2 && d.enlacesBase) bien("conjuro: ficha completa y enlaces con prefijo");
   else fallo("conjuro", JSON.stringify(d));
@@ -118,11 +118,11 @@ try {
   const antes = await evaluar(listado, `document.querySelectorAll('#cuerpo tr:not([hidden])').length`);
   await evaluar(
     listado,
-    `(() => { const s = document.querySelector('[data-faceta="nivel"]'); s.value='3'; s.dispatchEvent(new Event('change', {bubbles:true})); })()`,
+    `(() => { const c = [...document.querySelectorAll('[data-faceta="nivel"]')].find(x => x.value === '3'); c.checked = true; c.dispatchEvent(new Event('change', {bubbles:true})); })()`,
   );
   await new Promise((r) => setTimeout(r, 300));
   const despues = await evaluar(listado, `document.querySelectorAll('#cuerpo tr:not([hidden])').length`);
-  const contador = await evaluar(listado, `document.getElementById('contador')?.textContent`);
+  const contador = await evaluar(listado, `document.getElementById('cuenta')?.textContent`);
   if (antes > 300 && despues > 20 && despues < antes) bien(`filtro por nivel 3: ${antes} -> ${despues} (${contador})`);
   else fallo("filtro", JSON.stringify({ antes, despues, contador }));
 } catch (e) {
@@ -138,11 +138,18 @@ try {
   if (/^\d+ = \[/.test(dados.trim())) bien(`dados: ${dados.trim().slice(0, 40)}`);
   else fallo("dados", dados);
 
+  await evaluar(mesa, `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#enc-lista option')) { clearInterval(t); res(1); } }, 100); setTimeout(() => { clearInterval(t); res(0); }, 5000); })`);
   const enc = await evaluar(
     mesa,
-    `(() => { document.getElementById('enc-calcular').click(); return document.getElementById('enc-salida').textContent; })()`,
+    `(() => {
+       const i = document.getElementById('enc-buscar');
+       const o = [...document.querySelectorAll('#enc-lista option')].find(x => /Goblin/.test(x.value)) || document.querySelector('#enc-lista option');
+       i.value = o.value;
+       i.dispatchEvent(new Event('change', {bubbles: true}));
+       return document.getElementById('enc-salida').textContent;
+     })()`,
   );
-  if (/PX/.test(enc)) bien(`encuentros: ${enc.trim().slice(0, 60)}`);
+  if (/PX ajustados/.test(enc) && !/^0 PX/.test(enc.trim())) bien(`encuentros: ${enc.trim().replace(/\s+/g, " ").slice(0, 70)}`);
   else fallo("encuentros", enc);
 
   const ini = await evaluar(
@@ -174,6 +181,95 @@ try {
   else fallo("buscador", JSON.stringify(d));
 } catch (e) {
   fallo("buscador", String(e));
+}
+
+// --- Funciones nuevas: estado en URL, tarjetas, vista de jugador, cartas ---
+
+try {
+  const url = `${BASE}/5.5/conjuros/?nivel=3&escuela=${encodeURIComponent("Evocación")}`;
+  const p = await abrir(url);
+  const d = await evaluar(
+    p,
+    `({visibles: document.querySelectorAll('#cuerpo tr:not([hidden])').length,
+      marcadas: document.querySelectorAll('[data-faceta="nivel"]:checked').length,
+      cuenta: document.getElementById('cuenta')?.textContent,
+      url: location.search})`,
+  );
+  if (d.marcadas === 1 && d.visibles > 0 && d.visibles < 60)
+    bien(`estado en URL: ${d.cuenta} (${d.url})`);
+  else fallo("estado en URL", JSON.stringify(d));
+  await axeEn(p, "listado filtrado");
+} catch (e) {
+  fallo("estado en URL", String(e));
+}
+
+try {
+  const p = await abrir(`${BASE}/5.5/monstruos/mago/`);
+  const enlaces = await evaluar(p, `document.querySelectorAll('a[data-tarjeta]').length`);
+  await evaluar(
+    p,
+    `(() => { const a = document.querySelector('a[data-tarjeta]');
+      a.dispatchEvent(new Event('pointerover', {bubbles: true})); return true; })()`,
+  );
+  await new Promise((r) => setTimeout(r, 700));
+  const tarjeta = await evaluar(
+    p,
+    `(() => { const t = document.querySelector('.tarjeta-datos');
+      return t && !t.hidden ? {texto: t.textContent.replace(/\\s+/g, ' ').slice(0, 70)} : null; })()`,
+  );
+  if (enlaces > 0 && tarjeta) bien(`tarjeta emergente: ${tarjeta.texto}`);
+  else fallo("tarjeta emergente", JSON.stringify({ enlaces, tarjeta }));
+} catch (e) {
+  fallo("tarjeta emergente", String(e));
+}
+
+try {
+  const p = await abrir(`${BASE}/mesa/jugadores/`);
+  await evaluar(
+    p,
+    `localStorage.setItem('taberna:iniciativa', JSON.stringify({turno: 0, lista: [{nombre:'Aria', valor:18},{nombre:'Goblin', valor:12}]}))`,
+  );
+  await evaluar(p, `location.reload()`);
+  await new Promise((r) => setTimeout(r, 900));
+  const d = await evaluar(p, `({turno: document.getElementById('turno')?.textContent, filas: document.querySelectorAll('.jugadores__lista li').length})`);
+  if (d.filas === 2 && /Aria/.test(d.turno)) bien(`vista de jugador: ${d.turno}`);
+  else fallo("vista de jugador", JSON.stringify(d));
+  await axeEn(p, "vista de jugador");
+} catch (e) {
+  fallo("vista de jugador", String(e));
+}
+
+try {
+  const p = await abrir(`${BASE}/5.5/cartas/mago/`);
+  const cartas = await evaluar(p, `document.querySelectorAll('.carta').length`);
+  if (cartas > 20) bien(`cartas imprimibles: ${cartas}`);
+  else fallo("cartas imprimibles", String(cartas));
+} catch (e) {
+  fallo("cartas imprimibles", String(e));
+}
+
+try {
+  const p = await abrir(`${BASE}/cambios/`);
+  const d = await evaluar(
+    p,
+    `({bloques: document.querySelectorAll('details.cambios').length, metas: document.querySelectorAll('.cabecera__meta b').length})`,
+  );
+  if (d.bloques >= 5 && d.metas === 3) bien(`comparador de ediciones: ${d.bloques} secciones`);
+  else fallo("comparador de ediciones", JSON.stringify(d));
+  await axeEn(p, "cambios");
+} catch (e) {
+  fallo("comparador de ediciones", String(e));
+}
+
+try {
+  const p = await abrir(`${BASE}/5e/cartas/`);
+  const filas = await evaluar(p, `document.querySelectorAll('#cuerpo tr, .panel-tabla tbody tr').length`);
+  if (filas >= 6) bien(`índice de cartas: ${filas} clases`);
+  else fallo("índice de cartas", String(filas));
+  const q = await abrir(`${BASE}/5e/cartas/mago/`);
+  await axeEn(q, "cartas");
+} catch (e) {
+  fallo("índice de cartas", String(e));
 }
 
 // Enlaces internos roos: se comprueban sobre el HTML compilado, no en el navegador.

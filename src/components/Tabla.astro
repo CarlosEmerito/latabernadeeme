@@ -2,7 +2,11 @@
 interface Faceta {
   clave: string;
   etiqueta: string;
-  valores: { valor: string; texto: string }[];
+  tipo?: "lista" | "rango";
+  valores?: { valor: string; texto: string }[];
+  min?: number;
+  max?: number;
+  paso?: number;
 }
 
 interface Columna {
@@ -18,6 +22,7 @@ interface Fila {
   chips?: string[];
   celdas: Record<string, string | number>;
   facetas: Record<string, string>;
+  rangos?: Record<string, number>;
 }
 
 interface Props {
@@ -27,6 +32,7 @@ interface Props {
   buscador?: boolean;
   placeholder?: string;
   vacio?: string;
+  nota?: string;
 }
 
 const {
@@ -36,70 +42,119 @@ const {
   buscador = true,
   placeholder = "Filtrar por nombre…",
   vacio = "No hay nada con esos filtros.",
+  nota,
 } = Astro.props;
+
+// Recuento por valor, para que el menú diga cuántas hay antes de filtrar.
+const cuentaValor = (clave: string, valor: string) =>
+  filas.filter((f) =>
+    String(f.facetas[clave] ?? "")
+      .toLowerCase()
+      .split("|")
+      .includes(valor.toLowerCase()),
+  ).length;
 ---
 
 <form class="toolbar" role="search" id="filtros" aria-label="Filtrar y ordenar">
   {buscador && (
     <label class="campo campo--texto">
       <span class="oculto-visual">Buscar</span>
-      <input type="search" data-faceta="texto" placeholder={placeholder} autocomplete="off" />
+      <input type="search" id="f-texto" data-buscar placeholder={placeholder} autocomplete="off" />
     </label>
   )}
-  {facetas.map((f) => (
-    <label class="campo">
-      <span>{f.etiqueta}</span>
-      <select data-faceta={f.clave}>
-        <option value="">Todo</option>
-        {f.valores.map((v) => (
-          <option value={v.valor}>{v.texto}</option>
-        ))}
-      </select>
-    </label>
-  ))}
-  <button class="btn btn--fantasma" type="reset" id="limpiar">Limpiar</button>
+
+  {facetas.map((f) =>
+    f.tipo === "rango" ? (
+      <div class="campo campo--rango">
+        <span class="campo__etiqueta" id={`et-${f.clave}`}>{f.etiqueta}</span>
+        <div class="rango" role="group" aria-labelledby={`et-${f.clave}`}>
+          <input
+            type="number"
+            inputmode="numeric"
+            id={`f-${f.clave}-min`}
+            data-rango-min={f.clave}
+            min={f.min}
+            max={f.max}
+            step={f.paso ?? 1}
+            placeholder={String(f.min ?? "")}
+            aria-label={`${f.etiqueta}: mínimo`}
+          />
+          <span aria-hidden="true">–</span>
+          <input
+            type="number"
+            inputmode="numeric"
+            id={`f-${f.clave}-max`}
+            data-rango-max={f.clave}
+            min={f.min}
+            max={f.max}
+            step={f.paso ?? 1}
+            placeholder={String(f.max ?? "")}
+            aria-label={`${f.etiqueta}: máximo`}
+          />
+        </div>
+      </div>
+    ) : (
+      <details class="campo campo--faceta" data-clave={f.clave}>
+        <summary>
+          <span class="campo__etiqueta">{f.etiqueta}</span>
+          <span class="faceta__sel" data-sel aria-hidden="true"></span>
+        </summary>
+        <div class="faceta__menu">
+          {(f.valores ?? []).map((v) => {
+            const n = cuentaValor(f.clave, v.valor);
+            return (
+              <label class="faceta__op">
+                <input type="checkbox" value={v.valor} data-faceta={f.clave} disabled={n === 0} />
+                <span class="faceta__texto">{v.texto}</span>
+                <span class="faceta__n num">{n}</span>
+              </label>
+            );
+          })}
+        </div>
+      </details>
+    ),
+  )}
+
+  <button class="btn btn--fantasma" type="button" id="limpiar">Limpiar</button>
   <p class="cuenta" id="cuenta" aria-live="polite">{filas.length} entradas</p>
 </form>
 
-<table class="tabla" id="tabla">
-  <thead>
-    <tr>
-      {columnas.map((c) => (
-        <th
-          scope="col"
-          class:list={[c.tipo === "num" && "col-num", c.ocultoMovil && "oculto-movil"]}
-          data-orden={c.clave}
-          data-tipo={c.tipo ?? "texto"}
-          aria-sort="none"
-        >
-          <button type="button" style="all:unset;cursor:pointer">{c.etiqueta}</button>
-        </th>
-      ))}
-    </tr>
-  </thead>
-  <tbody id="cuerpo">
-    {filas.map((f) => (
-      <tr data-facetas={JSON.stringify(f.facetas)} data-buscar={f.nombre.toLowerCase()}>
-        {columnas.map((c, i) => (
-          <td class:list={[c.tipo === "num" && "col-num", c.ocultoMovil && "oculto-movil"]}>
-            {i === 0 ? (
-              <a href={f.href}>{f.nombre}</a>
-            ) : (
-              String(f.celdas[c.clave] ?? "")
-            )}
-            {i === 0 &&
-              f.chips?.map((chip) => (
-                <>
-                  {" "}
-                  <span class="chip">{chip}</span>
-                </>
-              ))}
-          </td>
+{nota && <p class="toolbar__nota muted">{nota}</p>}
+
+<div class="panel-tabla">
+  <table class="tabla" id="tabla">
+    <thead>
+      <tr>
+        {columnas.map((c) => (
+          <th
+            scope="col"
+            class:list={[c.tipo === "num" && "col-num", c.ocultoMovil && "oculto-movil"]}
+            data-orden={c.clave}
+            data-tipo={c.tipo ?? "texto"}
+            aria-sort="none"
+          >
+            <button type="button">{c.etiqueta}</button>
+          </th>
         ))}
       </tr>
-    ))}
-  </tbody>
-</table>
+    </thead>
+    <tbody id="cuerpo">
+      {filas.map((f) => (
+        <tr
+          data-facetas={JSON.stringify(f.facetas)}
+          data-rangos={JSON.stringify(f.rangos ?? {})}
+          data-buscar={f.nombre.toLowerCase()}
+        >
+          {columnas.map((c, i) => (
+            <td class:list={[c.tipo === "num" && "col-num", c.ocultoMovil && "oculto-movil"]}>
+              {i === 0 ? <a href={f.href}>{f.nombre}</a> : String(f.celdas[c.clave] ?? "")}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
 <p id="sin-resultados" class="muted" hidden>{vacio}</p>
 
@@ -109,37 +164,122 @@ const {
   const cuerpo = document.getElementById("cuerpo");
   const cuenta = document.getElementById("cuenta");
   const sinResultados = document.getElementById("sin-resultados");
+  const texto = document.getElementById("f-texto") as HTMLInputElement | null;
 
   if (form && tabla && cuerpo) {
     const filas = Array.from(cuerpo.querySelectorAll<HTMLTableRowElement>("tr"));
+    const casillas = Array.from(form.querySelectorAll<HTMLInputElement>("[data-faceta]"));
+    const rangos = Array.from(form.querySelectorAll<HTMLInputElement>("[data-rango-min], [data-rango-max]"));
+
+    const leerURL = () => {
+      const p = new URLSearchParams(location.search);
+      if (texto && p.get("q")) texto.value = p.get("q")!;
+      for (const casilla of casillas) {
+        const clave = casilla.dataset.faceta!;
+        const valores = (p.get(clave) ?? "").split(",").filter(Boolean).map((v) => v.toLowerCase());
+        casilla.checked = valores.includes(casilla.value.toLowerCase());
+      }
+      for (const input of rangos) {
+        const clave = input.dataset.rangoMin ?? input.dataset.rangoMax!;
+        const rango = (p.get(clave) ?? "").split("-");
+        if (!rango.length) continue;
+        if (input.dataset.rangoMin && rango[0]) input.value = rango[0];
+        if (input.dataset.rangoMax && rango[1]) input.value = rango[1];
+      }
+    };
+
+    const estado = () => {
+      const facetas = new Map<string, Set<string>>();
+      for (const casilla of casillas) {
+        if (!casilla.checked) continue;
+        const clave = casilla.dataset.faceta!;
+        if (!facetas.has(clave)) facetas.set(clave, new Set());
+        facetas.get(clave)!.add(casilla.value.toLowerCase());
+      }
+      const rangosActivos = new Map<string, [number, number]>();
+      for (const input of rangos) {
+        const clave = input.dataset.rangoMin ?? input.dataset.rangoMax!;
+        const actual = rangosActivos.get(clave) ?? [Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY];
+        const v = input.value.trim() === "" ? undefined : Number(input.value);
+        if (v !== undefined && !Number.isNaN(v)) {
+          if (input.dataset.rangoMin) actual[0] = v;
+          else actual[1] = v;
+        }
+        rangosActivos.set(clave, actual);
+      }
+      return { facetas, rangosActivos, q: (texto?.value ?? "").trim().toLowerCase() };
+    };
+
+    const escribirURL = (e: ReturnType<typeof estado>) => {
+      const p = new URLSearchParams();
+      if (e.q) p.set("q", e.q);
+      for (const [clave, valores] of e.facetas) if (valores.size) p.set(clave, [...valores].join(","));
+      for (const [clave, [min, max]] of e.rangosActivos) {
+        if (min !== Number.NEGATIVE_INFINITY || max !== Number.POSITIVE_INFINITY) {
+          const a = min === Number.NEGATIVE_INFINITY ? "" : String(min);
+          const b = max === Number.POSITIVE_INFINITY ? "" : String(max);
+          p.set(clave, `${a}-${b}`);
+        }
+      }
+      const qs = p.toString();
+      history.replaceState(null, "", qs ? `?${qs}` : location.pathname);
+      for (const detalle of form.querySelectorAll<HTMLDetailsElement>("details.campo--faceta")) {
+        const clave = detalle.dataset.clave!;
+        const n = e.facetas.get(clave)?.size ?? 0;
+        const sello = detalle.querySelector<HTMLElement>("[data-sel]")!;
+        sello.textContent = n ? String(n) : "";
+        detalle.classList.toggle("activa", n > 0);
+      }
+    };
 
     const aplicar = () => {
-      const campos = Array.from(form.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[data-faceta]"));
-      const activos = campos
-        .map((c) => ({ clave: c.dataset.faceta!, valor: c.value.trim().toLowerCase() }))
-        .filter((f) => f.valor);
+      const e = estado();
       let visibles = 0;
       for (const fila of filas) {
         const facetas = JSON.parse(fila.dataset.facetas || "{}") as Record<string, string>;
-        const texto = fila.dataset.buscar || "";
-        const cumple = activos.every((f) => {
-          if (f.clave === "texto") return texto.includes(f.valor);
-          return String(facetas[f.clave] ?? "").toLowerCase() === f.valor;
-        });
+        const nums = JSON.parse(fila.dataset.rangos || "{}") as Record<string, number>;
+        const nombre = fila.dataset.buscar || "";
+        let cumple = !e.q || nombre.includes(e.q);
+
+        if (cumple) {
+          for (const [clave, valores] of e.facetas) {
+            const propios = String(facetas[clave] ?? "").toLowerCase().split("|");
+            if (![...valores].some((v) => propios.includes(v))) {
+              cumple = false;
+              break;
+            }
+          }
+        }
+        if (cumple) {
+          for (const [clave, [min, max]] of e.rangosActivos) {
+            const v = nums[clave];
+            if (v === undefined || v < min || v > max) {
+              cumple = false;
+              break;
+            }
+          }
+        }
         fila.hidden = !cumple;
         if (cumple) visibles++;
       }
       if (cuenta) cuenta.textContent = `${visibles} ${visibles === 1 ? "entrada" : "entradas"}`;
       if (sinResultados) sinResultados.hidden = visibles !== 0;
+      escribirURL(e);
     };
 
     form.addEventListener("input", aplicar);
     form.addEventListener("change", aplicar);
-    form.addEventListener("reset", () => setTimeout(aplicar, 0));
+    form.addEventListener("submit", (ev) => ev.preventDefault());
+    document.getElementById("limpiar")?.addEventListener("click", () => {
+      form.reset();
+      if (texto) texto.value = "";
+      for (const d of form.querySelectorAll<HTMLDetailsElement>("details")) d.open = false;
+      aplicar();
+    });
 
     // Orden por columna.
     const cabeceras = Array.from(tabla.querySelectorAll<HTMLTableCellElement>("th[data-orden]"));
-    cabeceras.forEach((th) => {
+    for (const th of cabeceras) {
       th.addEventListener("click", () => {
         const clave = th.dataset.orden!;
         const esNum = th.dataset.tipo === "num";
@@ -151,14 +291,17 @@ const {
           const va = a.children[indice]?.textContent?.trim() ?? "";
           const vb = b.children[indice]?.textContent?.trim() ?? "";
           if (esNum) {
-            const na = parseFloat(va.replace(",", ".")) || 0;
-            const nb = parseFloat(vb.replace(",", ".")) || 0;
+            const na = Number.parseFloat(va.replace(",", ".")) || 0;
+            const nb = Number.parseFloat(vb.replace(",", ".")) || 0;
             return yaAsc ? na - nb : nb - na;
           }
           return yaAsc ? vb.localeCompare(va, "es") : va.localeCompare(vb, "es");
         });
         ordenadas.forEach((f) => cuerpo.appendChild(f));
       });
-    });
+    }
+
+    leerURL();
+    aplicar();
   }
 </script>

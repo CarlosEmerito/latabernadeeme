@@ -1,0 +1,63 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { e } from "../../../lib/urls";
+---
+
+<Base title="Iniciativa · vista de jugador" description="Orden de iniciativa para proyectar en la mesa." ancho>
+  <header class="cabecera">
+    <div>
+      <h1>Iniciativa</h1>
+      <p class="cabecera__lede">
+        Esta ventana se actualiza sola cuando cambia el orden en la página de mesa. Déjala abierta
+        en la pantalla de los jugadores.
+      </p>
+    </div>
+  </header>
+
+  <div class="jugadores" id="jugadores" aria-live="polite">
+    <p class="jugadores__turno" id="turno">Sin combate</p>
+    <ol class="jugadores__lista" id="lista"></ol>
+  </div>
+
+  <p class="muted" style="margin-top:2rem">
+    <a href={e("/mesa/")}>Volver a la mesa</a>
+  </p>
+
+  <script>
+    const CLAVE = "taberna:iniciativa";
+
+    const pintar = () => {
+      const turno = document.getElementById("turno");
+      const lista = document.getElementById("lista");
+      if (!turno || !lista) return;
+
+      let estado: { turno: number; lista: { nombre: string; valor: number }[] } | null = null;
+      try {
+        estado = JSON.parse(localStorage.getItem(CLAVE) || "null");
+      } catch {
+        estado = null;
+      }
+
+      if (!estado || !estado.lista?.length) {
+        turno.textContent = "Sin combate";
+        lista.innerHTML = "";
+        return;
+      }
+
+      const orden = [...estado.lista].sort((a, b) => b.valor - a.valor);
+      const i = Math.min(estado.turno, orden.length - 1);
+      turno.innerHTML = `Turno de <strong>${orden[i].nombre}</strong>`;
+      lista.innerHTML = orden
+        .map(
+          (c, n) =>
+            `<li${n === i ? ' class="activo"' : ""}><span>${c.nombre}</span><span class="num">${c.valor}</span></li>`,
+        )
+        .join("");
+    };
+
+    window.addEventListener("storage", (ev) => {
+      if (ev.key === CLAVE) pintar();
+    });
+    pintar();
+  </script>
+</Base>

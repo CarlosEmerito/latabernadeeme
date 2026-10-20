@@ -1,0 +1,85 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { EDICIONES, cargar, slugify, type Edition } from "../../../lib/content";
+import { e } from "../../../lib/urls";
+
+export function getStaticPaths() {
+  const rutas: { params: { ed: string; clase: string } }[] = [];
+  for (const ed of ["5e", "5.5"] as Edition[]) {
+    const clases = new Set<string>();
+    for (const c of cargar(ed, "conjuros")) {
+      if (Array.isArray(c.data.classes)) for (const k of c.data.classes) clases.add(String(k));
+    }
+    for (const clase of clases) rutas.push({ params: { ed, clase: slugify(clase) } });
+  }
+  return rutas;
+}
+
+const ed = Astro.params.ed as Edition;
+const claseSlug = Astro.params.clase!;
+const meta = EDICIONES[ed];
+
+const conjuros = cargar(ed, "conjuros").filter(
+  (c) => Array.isArray(c.data.classes) && c.data.classes.some((k: string) => slugify(k) === claseSlug),
+);
+const nombreClase = String(
+  conjuros[0]?.data.classes.find((k: string) => slugify(k) === claseSlug) ?? claseSlug,
+);
+
+const niveles = Array.from(new Set(conjuros.map((c) => Number(c.data.level ?? 0)))).sort((a, b) => a - b);
+const porNivel = new Map<number, typeof conjuros>();
+for (const n of niveles) porNivel.set(n, conjuros.filter((c) => Number(c.data.level ?? 0) === n));
+---
+
+<Base
+  title={`Cartas de conjuros · ${nombreClase} · ${meta.srd}`}
+  description={`Cartas imprimibles de los conjuros de ${nombreClase} del ${meta.srd}.`}
+  edicion={ed}
+  ancho
+>
+  <header class="cabecera noprint">
+    <div>
+      <h1>Cartas · {nombreClase}</h1>
+      <p class="cabecera__lede">
+        {conjuros.length} conjuros del {meta.srd}. Imprime a doble cara o en papel grueso; cada carta
+        evita cortarse entre páginas.
+      </p>
+    </div>
+    <div class="cabecera__meta">
+      <button class="btn btn--acento" type="button" onclick="window.print()">Imprimir</button>
+    </div>
+  </header>
+
+  <div class="cartas">
+    {niveles.map((n) => (
+      <>
+        <h2 class="cartas__nivel noprint">{n === 0 ? "Trucos" : `Nivel ${n}`}</h2>
+        {porNivel.get(n)!.map((c) => (
+          <article class="carta">
+            <header class="carta__cab">
+              <h3 class="carta__nombre">{c.data.name}</h3>
+              <p class="carta__sub">
+                {n === 0 ? "Truco" : `Nivel ${n}`} · {c.data.school}
+                {c.data.ritual ? " · ritual" : ""}
+              </p>
+            </header>
+            <dl class="carta__datos">
+              <div><dt>Tiempo</dt><dd>{c.data.castingTime}</dd></div>
+              <div><dt>Alcance</dt><dd>{c.data.range}</dd></div>
+              <div><dt>Comp.</dt><dd>{c.data.components}</dd></div>
+              <div><dt>Duración</dt><dd>{c.data.duration}</dd></div>
+            </dl>
+            <div class="carta__texto" set:html={c.html} />
+            <footer class="carta__pie">
+              {ed === "5e" ? "SRD 5.1" : "SRD 5.2.1"} · p. {c.data.page} · CC BY 4.0
+            </footer>
+          </article>
+        ))}
+      </>
+    ))}
+  </div>
+
+  <p class="muted noprint" style="margin-top:2rem">
+    <a href={e(`/${ed}/conjuros/`)}>← Volver a conjuros</a>
+  </p>
+</Base>

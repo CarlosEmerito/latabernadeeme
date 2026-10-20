@@ -1,0 +1,121 @@
+---
+import Base from "../../layouts/Base.astro";
+import { TIPOS, TIPO_META, EDICIONES, cargar, nombreTipo } from "../../lib/content";
+import { e } from "../../lib/urls";
+
+const filas = TIPOS.map((tipo) => {
+  const a = new Map(cargar("5e", tipo).map((x) => [x.slug, String(x.data.name)]));
+  const b = new Map(cargar("5.5", tipo).map((x) => [x.slug, String(x.data.name)]));
+  const soloA = [...a.keys()].filter((k) => !b.has(k));
+  const soloB = [...b.keys()].filter((k) => !a.has(k));
+  const comunes = [...a.keys()].filter((k) => b.has(k));
+  const renombrados = comunes.filter((k) => a.get(k) !== b.get(k));
+  return { tipo, soloA, soloB, comunes, renombrados, a, b };
+}).filter((f) => f.comunes.length + f.soloA.length + f.soloB.length > 0);
+
+const totalA = filas.reduce((n, f) => n + f.soloA.length, 0);
+const totalB = filas.reduce((n, f) => n + f.soloB.length, 0);
+const totalC = filas.reduce((n, f) => n + f.comunes.length, 0);
+---
+
+<Base
+  title="Qué cambia entre ediciones"
+  description="Qué contenido está solo en el SRD 5.1, solo en el 5.2.1 y qué se queda igual."
+  ancho
+>
+  <header class="cabecera">
+    <div>
+      <h1>Qué cambia entre ediciones</h1>
+      <p class="cabecera__lede">
+        Comparación por entrada, no por texto: qué existe en las dos, qué desapareció y qué se quedó
+        solo en las reglas nuevas.
+      </p>
+    </div>
+    <div class="cabecera__meta">
+      <span><b>{totalC}</b>en ambas</span>
+      <span><b>{totalA}</b>solo 5.1</span>
+      <span><b>{totalB}</b>solo 5.2.1</span>
+    </div>
+  </header>
+
+  <div class="panel-tabla" style="margin-bottom:2rem">
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th scope="col">Sección</th>
+          <th scope="col" class="col-num">En ambas</th>
+          <th scope="col" class="col-num">Solo 5.1</th>
+          <th scope="col" class="col-num">Solo 5.2.1</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filas.map((f) => (
+          <tr>
+            <td><a href={e(`/5e/${f.tipo}/`)}>{nombreTipo("5e", f.tipo)}</a></td>
+            <td class="col-num">{f.comunes.length}</td>
+            <td class="col-num">{f.soloA.length}</td>
+            <td class="col-num">{f.soloB.length}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  {filas.map((f) => (
+    <details class="cambios">
+      <summary>
+        <span class="cambios__titulo">{nombreTipo("5.5", f.tipo)}</span>
+        <span class="muted num">
+          {f.comunes.length} · {f.soloA.length} · {f.soloB.length}
+        </span>
+      </summary>
+
+      {f.soloA.length > 0 && (
+        <>
+          <h3>Solo en {EDICIONES["5e"].srd}</h3>
+          <ul class="cambios__lista">
+            {f.soloA.map((slug) => (
+              <li><a href={e(`/5e/${f.tipo}/${slug}/`)}>{f.a.get(slug)}</a></li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {f.soloB.length > 0 && (
+        <>
+          <h3>Solo en {EDICIONES["5.5"].srd}</h3>
+          <ul class="cambios__lista">
+            {f.soloB.map((slug) => (
+              <li><a href={e(`/5.5/${f.tipo}/${slug}/`)}>{f.b.get(slug)}</a></li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {f.renombrados.length > 0 && (
+        <>
+          <h3>Mismo concepto, otro nombre</h3>
+          <ul class="cambios__lista cambios__lista--par">
+            {f.renombrados.map((slug) => (
+              <li>
+                <a href={e(`/5e/${f.tipo}/${slug}/`)}>{f.a.get(slug)}</a>
+                <span aria-hidden="true">→</span>
+                <a href={e(`/5.5/${f.tipo}/${slug}/`)}>{f.b.get(slug)}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {f.soloA.length === 0 && f.soloB.length === 0 && f.renombrados.length === 0 && (
+        <p class="muted">Las dos ediciones coinciden en esta sección.</p>
+      )}
+    </details>
+  ))}
+
+  <p class="muted" style="margin-top:2rem;max-width:70ch">
+    La coincidencia se calcula por identificador de entrada, no por texto: dos fichas con el mismo
+    nombre pueden tener reglas distintas. El comparador de texto, línea a línea, es el paso
+    siguiente.
+  </p>
+</Base>

@@ -126,7 +126,7 @@ const filas = entradas.map((en) => {
     case "equipo":
       return {
         ...base,
-        celdas: { categoria: d.category, precio: d.price || "—", peso: d.weight || "—" },
+        celdas: { categoria: d.category || "—", precio: d.price || "—", peso: d.weight || "—" },
         facetas: { categoria: String(d.category ?? "") },
       };
     case "clases":

@@ -20,6 +20,12 @@
   --dotes: #8a4a1c;
   --reglas: #3f4a66;
   --equipo: #55503a;
+
+  /* Tramos de nivel de los rasgos de clase */
+  --tramo-1: #2c6340;
+  --tramo-2: #3a4d8c;
+  --tramo-3: #64407a;
+  --tramo-4: #8a4a1c;
 }
 
 :root[data-tema="oscuro"] {
@@ -32,6 +38,11 @@
   --dotes: #e0a273;
   --reglas: #a9b6d6;
   --equipo: #cfc7a9;
+
+  --tramo-1: #8fcf9f;
+  --tramo-2: #9db0ee;
+  --tramo-3: #c9a6de;
+  --tramo-4: #e5ac7c;
 }
 
 /* --------------------------------------------------- color según la sección */
@@ -1378,13 +1389,14 @@
   font-weight: 600;
   letter-spacing: -0.01em;
   text-transform: none;
-  color: var(--ink);
+  color: var(--t-color);
   margin: 2.2rem 0 0.8rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
+  padding: 0 0 0 0.7rem;
+  border-top: 0;
+  border-left: 4px solid var(--t-color);
 }
 
-.prosa h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.prosa h2:first-child { margin-top: 0; }
 
 .prosa h3 {
   display: flex;
@@ -1417,6 +1429,13 @@
   white-space: nowrap;
 }
 
+/* El color de la etiqueta dice el tramo de nivel: verde 1-4, azul 5-10,
+   púrpura 11-16, teja 17-20. */
+.prosa .nivel[data-tramo="1"] { color: var(--tramo-1); border-color: color-mix(in oklab, var(--tramo-1) 35%, transparent); }
+.prosa .nivel[data-tramo="2"] { color: var(--tramo-2); border-color: color-mix(in oklab, var(--tramo-2) 35%, transparent); }
+.prosa .nivel[data-tramo="3"] { color: var(--tramo-3); border-color: color-mix(in oklab, var(--tramo-3) 35%, transparent); }
+.prosa .nivel[data-tramo="4"] { color: var(--tramo-4); border-color: color-mix(in oklab, var(--tramo-4) 35%, transparent); }
+
 /* ------------------------------------------------- índice lateral */
 
 .indice ol {
@@ -1428,10 +1447,28 @@
 }
 
 .indice li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
   font-size: 0.8rem;
   line-height: 1.35;
   margin-bottom: 0.3rem;
 }
+
+.indice__punto {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--rule);
+  transform: translateY(-1px);
+}
+
+.indice__punto[data-tramo="0"] { background: var(--t-color); }
+.indice__punto[data-tramo="1"] { background: var(--tramo-1); }
+.indice__punto[data-tramo="2"] { background: var(--tramo-2); }
+.indice__punto[data-tramo="3"] { background: var(--tramo-3); }
+.indice__punto[data-tramo="4"] { background: var(--tramo-4); }
 
 .indice li.indice__sub {
   padding-left: 0.85rem;

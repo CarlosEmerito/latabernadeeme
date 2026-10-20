@@ -145,6 +145,7 @@ const exportable = {
         <ol>
           {secciones.map((sec) => (
             <li class:list={[sec.nivel === 3 && "indice__sub"]}>
+              <span class="indice__punto" data-tramo={sec.tramo} aria-hidden="true"></span>
               <a href={`#${sec.id}`}>{sec.texto}</a>
             </li>
           ))}

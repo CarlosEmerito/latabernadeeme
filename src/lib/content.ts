@@ -163,25 +163,33 @@ export function buscarEntrada(ed: Edition, tipo: Tipo, slug: string): Entrada | 
 
 /** Convierte las menciones a conjuros del texto en enlaces internos. */
 /** Convierte «Nombre (nivel N)» en el título de un rasgo en una etiqueta aparte. */
+export const tramoDeNivel = (nivel: number): 1 | 2 | 3 | 4 =>
+  nivel <= 4 ? 1 : nivel <= 10 ? 2 : nivel <= 16 ? 3 : 4;
+
 export function marcarNiveles(html: string): string {
   return html.replace(/(<h[34][^>]*>)([^<]*?)\s*\(nivel (\d+)\)(<\/h[34]>)/g,
     (_m, abre: string, texto: string, nivel: string, cierra: string) =>
-      `${abre}${texto.trim()}<span class="nivel">Nivel ${nivel}</span>${cierra}`);
+      `${abre}${texto.trim()}<span class="nivel" data-tramo="${tramoDeNivel(Number(nivel))}">Nivel ${nivel}</span>${cierra}`);
 }
 
 export interface Seccion {
   nivel: 2 | 3;
   id: string;
   texto: string;
+  tramo: 0 | 1 | 2 | 3 | 4;
 }
 
 /** Lista los títulos de una entrada para el índice lateral. */
 export function seccionesDe(html: string): Seccion[] {
-  return [...html.matchAll(/<h([23]) id="([^"]+)">([\s\S]*?)<\/h[23]>/g)].map((m) => ({
-    nivel: Number(m[1]) as 2 | 3,
-    id: m[2],
-    texto: m[3].replace(/<span class="nivel">[\s\S]*?<\/span>/, "").replace(/<[^>]+>/g, "").trim(),
-  }));
+  return [...html.matchAll(/<h([23]) id="([^"]+)">([\s\S]*?)<\/h[23]>/g)].map((m) => {
+    const tramo = /data-tramo="(\d)"/.exec(m[3]);
+    return {
+      nivel: Number(m[1]) as 2 | 3,
+      id: m[2],
+      texto: m[3].replace(/<span class="nivel"[\s\S]*?<\/span>/, "").replace(/<[^>]+>/g, "").trim(),
+      tramo: (tramo ? Number(tramo[1]) : 0) as 0 | 1 | 2 | 3 | 4,
+    };
+  });
 }
 
 export function enlazarConjuros(html: string, ed: Edition, tipoActual: Tipo): string {

@@ -255,6 +255,105 @@ try {
   fallo("orden por VD", String(e));
 }
 
+// Precio mezcla monedas y Peso mezcla unidades, así que la columna no puede
+// ordenar por el número bruto del texto: «5 pp» (medio oro) pesaba más que
+// «1 po» y «40 000 po» se leía 40 —la Aeronave caía al puesto 152 de 188—,
+// mientras que el Dardo (125 g) se ordenaba como 125 kg y bajaba al 185. Se
+// comprueban los dos extremos del orden en las dos ediciones y que el bloque de
+// gramos quede entero por delante de los kilos.
+// Los precios conocidos de cada edición en orden ascendente: los que mezclan
+// monedas, dos con separador de millar y el más caro —Aeronave en 5.2, Galera
+// en 5.1—, que tiene que quedar el último (y el primero al revés).
+const ORDEN_EQUIPO = [
+  {
+    ruta: "/5.5/equipo/",
+    caros: ["5 pc", "5 pp", "1 po", "1000 po", "3000 po", "10 000 po", "25 000 po", "30 000 po", "40 000 po"],
+  },
+  {
+    ruta: "/5e/equipo/",
+    caros: ["5 pc", "5 pp", "1 po", "1000 po", "3000 po", "10 000 po", "25 000 po", "30 000 po"],
+  },
+];
+for (const caso of ORDEN_EQUIPO) {
+  try {
+    const p = await abrir(`${BASE}${caso.ruta}`);
+    const clic = async (clave) =>
+      evaluar(
+        p,
+        `(() => {
+          const th = [...document.querySelectorAll('#tabla thead th')].find((t) => t.dataset.orden === '${clave}');
+          th.querySelector('button').click();
+          return th.getAttribute('aria-sort');
+        })()`,
+      );
+    const columna = async (i) =>
+      evaluar(
+        p,
+        `[...document.querySelectorAll('#cuerpo tr')].map((tr) => tr.children[${i}].textContent.trim())`,
+      );
+    // Con repetidos («5 pp» sale siete veces) vale la primera aparición, que es
+    // la que fija el bloque de esa moneda en el orden.
+    const pos = (lista, valor) => lista.indexOf(valor);
+    const enOrden = (lista, valores) => {
+      const puestos = valores.map((v) => pos(lista, v));
+      if (puestos.some((i) => i < 0)) return false;
+      return puestos.every((i, k) => k === 0 || puestos[k - 1] < i);
+    };
+
+    const caro = caso.caros[caso.caros.length - 1];
+    await clic("precio");
+    const precios = await columna(2);
+    await clic("precio");
+    const preciosDesc = await columna(2);
+    const ascOk = precios[precios.length - 1] === caro && enOrden(precios, caso.caros);
+    const descOk = preciosDesc[0] === caro && enOrden(preciosDesc, [...caso.caros].reverse());
+
+    await clic("peso");
+    const pesos = await columna(3);
+    await clic("peso");
+    const pesosDesc = await columna(3);
+    const primerGramo = pesos.findIndex((v) => v.endsWith(" g"));
+    const ultimoGramo = pesos.findLastIndex((v) => v.endsWith(" g"));
+    const gramosOk =
+      primerGramo > 0 &&
+      ultimoGramo > primerGramo &&
+      ultimoGramo < pesos.length - 1 &&
+      pesos.slice(0, primerGramo).every((v) => v === "—") &&
+      pesos.slice(primerGramo, ultimoGramo + 1).every((v) => v.endsWith(" g")) &&
+      pesos.slice(ultimoGramo + 1).every((v) => v.endsWith("kg")) &&
+      pesos.findLastIndex((v) => v === "125 g") < pesos.findIndex((v) => v === "250 g");
+    const primerGramoDesc = pesosDesc.findIndex((v) => v.endsWith(" g"));
+    const ultimoGramoDesc = pesosDesc.findLastIndex((v) => v.endsWith(" g"));
+    const gramosDescOk =
+      pesosDesc[0].endsWith("kg") &&
+      ultimoGramoDesc > primerGramoDesc &&
+      pesosDesc.slice(primerGramoDesc, ultimoGramoDesc + 1).every((v) => v.endsWith(" g")) &&
+      pesosDesc.slice(ultimoGramoDesc + 1).every((v) => v === "—") &&
+      pesosDesc.findIndex((v) => v === "125 g") > pesosDesc.findLastIndex((v) => v === "250 g");
+
+    if (ascOk && descOk && gramosOk && gramosDescOk)
+      bien(`orden por Precio y Peso ${caso.ruta}: ${caro} al final y al principio, gramos antes que kilos`);
+    else
+      fallo(
+        `orden por Precio y Peso ${caso.ruta}`,
+        JSON.stringify({
+          ascOk,
+          descOk,
+          gramosOk,
+          gramosDescOk,
+          precios: precios.slice(0, 5),
+          ultimosPrecios: precios.slice(-3),
+          preciosDesc: preciosDesc.slice(0, 3),
+          pesos: pesos.slice(0, 3),
+          pesosGramos: pesos.slice(primerGramo, primerGramo + 4),
+          pesosDesc: pesosDesc.slice(0, 3),
+        }),
+      );
+  } catch (e) {
+    fallo(`orden por Precio y Peso ${caso.ruta}`, String(e));
+  }
+}
+
 const mesa = await abrir(`${BASE}/mesa/`);
 try {
   const dados = await evaluar(

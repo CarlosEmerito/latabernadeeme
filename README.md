@@ -90,6 +90,10 @@ El flujo de publicación (`.github/workflows/deploy.yml`) compila y ejecuta `npm
 - El filtro de texto de cada listado ignora tildes y mayúsculas: «dragon» encuentra «Dragón». La
   normalización vive en `src/lib/texto.ts` (`plegar`), que comparten el atributo `data-buscar` del
   HTML y la consulta del cliente; `slugify` usa la misma función.
+- El orden por columna compara el valor, no el principio del texto. Precio mezcla monedas (po, pp,
+  pc) y Peso mezcla unidades (kg, g) en la misma columna, así que `src/lib/medidas.ts` los pasa a
+  oro y a kilos antes de comparar: «40 000 po» cuenta 40 000 —no 40— y «125 g» cuenta 0,125 kg.
+  Los VD fraccionarios («1/8», «1/4», «1/2») se leen como fracción.
 - Temas claro y oscuro, foco visible, navegación por teclado y estilos de impresión para llevar una ficha a la mesa.
 
 ```bash

@@ -172,6 +172,7 @@ const cuentaValor = (clave: string, valor: string) =>
 
 <script>
   import { plegar } from "../lib/texto";
+  import { valorDeOrden } from "../lib/medidas";
 
   const form = document.getElementById("filtros") as HTMLFormElement | null;
   const tabla = document.getElementById("tabla") as HTMLTableElement | null;
@@ -293,20 +294,9 @@ const cuentaValor = (clave: string, valor: string) =>
       aplicar();
     });
 
-    // Orden por columna.
-    const aNumero = (texto: string) => {
-      const limpio = texto.trim().replace(",", ".");
-      // Los VD fraccionarios («1/8», «1/4», «1/2») se leen como fracción:
-      // `parseFloat` los dejaría todos en 1 y el orden los empataría.
-      const fraccion = /^(\d+)\s*\/\s*(\d+)$/.exec(limpio);
-      if (fraccion) {
-        const denominador = Number(fraccion[2]);
-        return denominador ? Number(fraccion[1]) / denominador : 0;
-      }
-      const n = Number.parseFloat(limpio);
-      return Number.isFinite(n) ? n : 0;
-    };
-
+    // Orden por columna. El valor que se compara sale de `medidas.ts`: Precio
+    // mezcla monedas y Peso mezcla kilos con gramos, así que se convierten a una
+    // unidad común antes de comparar; el resto de columnas se leen tal cual.
     const cabeceras = Array.from(tabla.querySelectorAll<HTMLTableCellElement>("th[data-orden]"));
     for (const th of cabeceras) {
       th.addEventListener("click", () => {
@@ -319,8 +309,9 @@ const cuentaValor = (clave: string, valor: string) =>
           const va = a.children[indice]?.textContent?.trim() ?? "";
           const vb = b.children[indice]?.textContent?.trim() ?? "";
           if (esNum) {
-            const na = aNumero(va);
-            const nb = aNumero(vb);
+            const clave = th.dataset.orden ?? "";
+            const na = valorDeOrden(clave, va);
+            const nb = valorDeOrden(clave, vb);
             return nuevoAsc ? na - nb : nb - na;
           }
           return nuevoAsc ? va.localeCompare(vb, "es") : vb.localeCompare(va, "es");

@@ -87,6 +87,12 @@ srd: "5.1"
 Cuerpo: `## Rasgos`, `## Acciones`, `## Acciones adicionales`, `## Reacciones`,
 `## Acciones legendarias`, cada rasgo como `**Nombre.** texto`.
 
+`xp` se copia tal cual viene del SRD, con separador de millar y, en las criaturas con
+guarida, un segundo valor: `50 PX`, `18 000 PX`, `50 000 PX o 62 000 en la guarida; BC +7`.
+Quien lo lea tiene que quedarse con el valor base (lo que va antes del primer `PX`) y quitar
+los separadores: `src/lib/xp.ts` lo hace para el índice JSON y para las herramientas de
+`/mesa/`.
+
 ### objetos (`data/ed5x/objetos/*.md`)
 
 ```yaml
@@ -155,6 +161,9 @@ Decisión: **el Markdown es la fuente; el JSON es un derivado que se genera en c
   eso existe un índice por edición en `src/pages/datos/[ed].json.ts`, generado en el mismo build,
   con nombre, slug, tipo, facetas y datos clave. Nada de eso se escribe a mano: se calcula desde
   los Markdown, así que no puede desincronizarse.
+- Las facetas que se filtran y ordenan (`r`) van en número: el PX de un monstruo es un entero con
+  el valor base de `xp`, no el texto del frontmatter — que se conserva en `d.xp` para mostrarlo
+  tal cual.
 - Tamaño real: 306 KB sin comprimir y **35 KB con gzip** por edición. Cabe en una visita.
 
 Regla: si un dato se puede derivar, se deriva. El JSON nunca es la fuente de la verdad.

@@ -264,6 +264,75 @@ try {
   fallo("mesa", String(e));
 }
 
+// El PX del frontmatter viene con separador de millar y, en las criaturas con
+// guarida, con un segundo valor («50 000 PX o 62 000 en la guarida»). Quedarse
+// con el primer grupo de dígitos publicaba 18 PX para un Androesfinge de 18 000
+// y dejaba el constructor de encuentros sumando calderilla. Se compara ficha a
+// ficha el número del JSON con el valor base del texto.
+try {
+  const malas = [];
+  const altos = {};
+  let total = 0;
+  for (const ed of ["5e", "5.5"]) {
+    const j = await (await fetch(`${BASE}/datos/${ed}.json`)).json();
+    for (const x of j.entradas.filter((x) => x.t === "monstruos")) {
+      total++;
+      const esperado = Number(String(x.d.xp ?? "").split(/PX/i)[0].replace(/\D/g, "")) || 0;
+      if (x.r.xp !== esperado) malas.push(`${ed} ${x.n}: ${x.r.xp} en vez de ${esperado}`);
+      if (x.n === "Androesfinge" || x.n === "Dragón de oro anciano") altos[`${ed} ${x.n}`] = x.r.xp;
+    }
+  }
+  const altosOk = altos["5e Androesfinge"] === 18000 && altos["5e Dragón de oro anciano"] === 62000;
+  if (total >= 600 && !malas.length && altosOk)
+    bien(`PX del JSON: ${total} monstruos con su valor base (Androesfinge 18 000, dragón anciano 62 000)`);
+  else fallo("PX del JSON", JSON.stringify({ total, malas: malas.slice(0, 5), altos }));
+} catch (e) {
+  fallo("PX del JSON", String(e));
+}
+
+// Un VD alto tiene que valer lo que dice el manual en las tres herramientas:
+// el datalist con su PX, el total del constructor por encima de cualquier
+// presupuesto y la línea de PX de «Ajustar una criatura» distinta de cero.
+try {
+  const p = await abrir(`${BASE}/mesa/`);
+  await evaluar(p, `(() => { const s = document.getElementById('enc-ed'); s.value = '5e'; s.dispatchEvent(new Event('change', {bubbles: true})); })()`);
+  const etiqueta = await evaluar(
+    p,
+    `new Promise((res) => { const t = setInterval(() => {
+       const o = [...document.querySelectorAll('#enc-lista option')].find((x) => x.value === 'Dragón de oro anciano');
+       if (o) { clearInterval(t); res(o.textContent); }
+     }, 100); setTimeout(() => { clearInterval(t); res(''); }, 5000); })`,
+  );
+  const total = await evaluar(
+    p,
+    `(() => {
+       const i = document.getElementById('enc-buscar');
+       i.value = 'Dragón de oro anciano';
+       i.dispatchEvent(new Event('change', {bubbles: true}));
+       return document.getElementById('enc-salida').textContent;
+     })()`,
+  );
+  const ajuste = await evaluar(
+    p,
+    `(() => {
+       document.getElementById('aj-criatura').value = 'Dragón de oro anciano';
+       document.getElementById('aj-objetivo').value = '17';
+       document.getElementById('aj-calcular').click();
+       return document.getElementById('aj-salida').textContent;
+     })()`,
+  );
+  const pxAjuste = Number((/PX (\d[\d.]*)/.exec(ajuste) ?? [])[1]?.replace(/\./g, ""));
+  const ok =
+    /62\.000 PX/.test(etiqueta) &&
+    /62\.000 PX base/.test(total) &&
+    /Por encima/.test(total) &&
+    pxAjuste === 18000;
+  if (ok) bien(`VD alto: datalist «${etiqueta.trim()}», total «${total.trim().replace(/\s+/g, " ").slice(0, 60)}»`);
+  else fallo("VD alto", JSON.stringify({ etiqueta, total, ajuste, pxAjuste }));
+} catch (e) {
+  fallo("VD alto", String(e));
+}
+
 const buscar = await abrir(`${BASE}/buscar/`);
 try {
   const d = await evaluar(buscar, `({ui: typeof window.PagefindUI, cargado: !!document.querySelector('.pagefind-ui')})`);

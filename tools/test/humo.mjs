@@ -189,8 +189,32 @@ try {
   const ascendente = nums.every((n, i) => i === 0 || nums[i - 1] <= n);
   const pos = ["1/8", "1/4", "1/2", "1"].map((v) => vds.indexOf(v));
   const fraccionesOk = pos.every((i) => i >= 0) && pos[0] < pos[1] && pos[1] < pos[2] && pos[2] < pos[3];
-  if (ascendente && fraccionesOk) bien(`orden por VD: ${vds.slice(0, 6).join(" · ")}`);
-  else fallo("orden por VD", JSON.stringify({ ascendente, fraccionesOk, pos, muestra: vds.slice(0, 8) }));
+
+  // El segundo clic tiene que invertir el orden de verdad: el comparador
+  // numérico iba al revés y marcaba `aria-sort` ascendente ordenando al revés.
+  const ariaSegundo = await evaluar(
+    p,
+    `(() => {
+      const th = [...document.querySelectorAll('#tabla thead th')].find((t) => t.dataset.orden === 'vd');
+      th.querySelector('button').click();
+      return th.getAttribute('aria-sort');
+    })()`,
+  );
+  const vdsDesc = await evaluar(
+    p,
+    `[...document.querySelectorAll('#cuerpo tr')].map((tr) => tr.children[1].textContent.trim())`,
+  );
+  const numsDesc = vdsDesc.map(valor);
+  const descendente = numsDesc.every((n, i) => i === 0 || numsDesc[i - 1] >= n);
+  const ariaOk = ariaSegundo === "descending";
+
+  if (ascendente && fraccionesOk && descendente && ariaOk)
+    bien(`orden por VD: ${vds.slice(0, 6).join(" · ")} (y al revés)`);
+  else
+    fallo(
+      "orden por VD",
+      JSON.stringify({ ascendente, fraccionesOk, descendente, ariaOk, pos, muestra: vds.slice(0, 8) }),
+    );
 } catch (e) {
   fallo("orden por VD", String(e));
 }

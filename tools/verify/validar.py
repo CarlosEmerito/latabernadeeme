@@ -27,9 +27,9 @@ INFORME = RAIZ / "docs" / "informes" / "validacion.md"
 # Recuentos del SRD en español, comprobados contra los documentos oficiales.
 REFERENCIA = {
     ("ed51", "conjuros"): 319,
-    ("ed51", "monstruos"): 302,
+    ("ed51", "monstruos"): 317,
     ("ed52", "conjuros"): 339,
-    ("ed52", "monstruos"): 315,
+    ("ed52", "monstruos"): 330,
 }
 
 # Un cuerpo puede ser legítimamente largo (una clase con todas sus subclases

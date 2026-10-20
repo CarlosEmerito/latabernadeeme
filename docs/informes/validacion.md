@@ -1,7 +1,7 @@
 # Informe de validación
 
 Generado por `tools/verify/validar.py`.
-Total de entradas: **2457**. Bloques con incidencias: **0**.
+Total de entradas: **2487**. Bloques con incidencias: **0**.
 
 ## ed51 · clases — 12 entradas · OK
 
@@ -14,7 +14,7 @@ Total de entradas: **2457**. Bloques con incidencias: **0**.
 
 ## ed51 · especies — 9 entradas · OK
 
-## ed51 · monstruos — 302 entradas · OK
+## ed51 · monstruos — 317 entradas · OK
 
 ## ed51 · objetos — 240 entradas · OK
 - Aviso, cuerpos más largos de lo esperado: 1 (baraja-de-multiples-cosas.md (7830 caracteres))
@@ -34,7 +34,7 @@ Total de entradas: **2457**. Bloques con incidencias: **0**.
 
 ## ed52 · especies — 9 entradas · OK
 
-## ed52 · monstruos — 315 entradas · OK
+## ed52 · monstruos — 330 entradas · OK
 
 ## ed52 · objetos — 258 entradas · OK
 - Aviso, cuerpos más largos de lo esperado: 2 (baraja-misteriosa.md (8441 caracteres), estatuilla-de-poder-maravilloso.md (6110 caracteres))

@@ -25,7 +25,7 @@ TYPES = (
     "Semidiós",
 )
 
-SIZES = ("Diminuto", "Diminuta", "Pequeño", "Pequeña", "Mediano", "Mediana", "Grande", "Enorme", "Gigante")
+SIZES = ("Diminuto", "Diminuta", "Pequeño", "Pequeña", "Mediano", "Mediana", "Grande", "Enorme", "Gigante", "Gargantuesco", "Gargantuesca")
 
 TYPE_RE = re.compile(
     r"^(?:Enjambre de\s+)?(?:"

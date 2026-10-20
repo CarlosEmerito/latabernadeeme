@@ -1,0 +1,438 @@
+/* ============================================================================
+   Segunda capa: color por sección, jerarquía y aire.
+   ----------------------------------------------------------------------------
+   La base (global.css) mantiene la densidad de consulta. Aquí se añade lo que
+   faltaba para que no parezca una hoja de cálculo: un color propio por tipo de
+   contenido, cabeceras con más peso, contenido centrado y superficies donde
+   apoyar la tabla y la ficha.
+   ========================================================================= */
+
+:root {
+  --t-color: var(--accent);
+  --t-tinte: color-mix(in oklab, var(--t-color) 7%, var(--bg));
+
+  --conjuros: #3a4d8c;
+  --monstruos: #8c1d18;
+  --objetos: #7a5c14;
+  --clases: #2c6340;
+  --especies: #64407a;
+  --trasfondos: #1f5f6b;
+  --dotes: #8a4a1c;
+  --reglas: #3f4a66;
+  --equipo: #55503a;
+}
+
+:root[data-tema="oscuro"] {
+  --conjuros: #9db0f0;
+  --monstruos: #ef8b82;
+  --objetos: #d9b567;
+  --clases: #8fce9f;
+  --especies: #c2a0dc;
+  --trasfondos: #8ecdd8;
+  --dotes: #e0a273;
+  --reglas: #a9b6d6;
+  --equipo: #cfc7a9;
+}
+
+/* --------------------------------------------------- color según la sección */
+
+.main.tipo-conjuros { --t-color: var(--conjuros); }
+.main.tipo-monstruos { --t-color: var(--monstruos); }
+.main.tipo-objetos { --t-color: var(--objetos); }
+.main.tipo-clases { --t-color: var(--clases); }
+.main.tipo-especies { --t-color: var(--especies); }
+.main.tipo-trasfondos { --t-color: var(--trasfondos); }
+.main.tipo-dotes { --t-color: var(--dotes); }
+.main.tipo-reglas { --t-color: var(--reglas); }
+.main.tipo-equipo { --t-color: var(--equipo); }
+
+.main {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.5rem 2.25rem 4rem;
+}
+
+/* ------------------------------------------------------------- cabecera */
+
+.cabecera {
+  position: relative;
+  padding: 1.75rem 0 1.15rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cabecera::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 64px;
+  height: 2px;
+  background: var(--t-color);
+}
+
+.cabecera h1 {
+  font-size: clamp(2.1rem, 1.5rem + 1.6vw, 2.7rem);
+  letter-spacing: -0.02em;
+}
+
+.cabecera__lede {
+  font-size: 1rem;
+  color: var(--ink-2);
+  max-width: 58ch;
+}
+
+.cabecera__meta {
+  gap: 1.75rem;
+}
+
+.cabecera__meta b {
+  font-size: 1.35rem;
+  color: var(--t-color);
+}
+
+/* -------------------------------------------------------------- toolbar */
+
+.toolbar {
+  background: transparent;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.campo select:focus-visible,
+.campo input:focus-visible {
+  border-color: var(--t-color);
+}
+
+/* --------------------------------------------------------- tabla en panel */
+
+.panel-tabla {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--surface);
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.panel-tabla .tabla thead th {
+  background: var(--surface-2);
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule);
+  top: calc(var(--topbar) + 0px);
+}
+
+.panel-tabla .tabla tbody td {
+  padding: 0.5rem 0.75rem;
+}
+
+.panel-tabla .tabla tbody tr:hover {
+  background: color-mix(in oklab, var(--t-color) 5%, var(--surface));
+}
+
+.panel-tabla .tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.panel-tabla .tabla a {
+  color: var(--ink);
+}
+
+.panel-tabla .tabla a:hover {
+  color: var(--t-color);
+  text-decoration-color: var(--t-color);
+}
+
+.chip {
+  color: color-mix(in oklab, var(--t-color) 85%, var(--ink));
+  background: color-mix(in oklab, var(--t-color) 9%, transparent);
+  border-color: color-mix(in oklab, var(--t-color) 25%, var(--rule));
+}
+
+/* ------------------------------------------------------------- portada */
+
+.portada {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 3.5rem;
+  align-items: start;
+  padding: 3.25rem 0 0;
+}
+
+.portada__titulo {
+  font-size: clamp(2.4rem, 1.7rem + 2.4vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  max-width: 15ch;
+  margin-bottom: 1rem;
+}
+
+.portada__titulo em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.portada__lede {
+  color: var(--ink-2);
+  font-size: 1.05rem;
+  max-width: 46ch;
+  margin-bottom: 1.75rem;
+}
+
+.portada__buscar input {
+  height: 48px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgb(20 20 18 / 0.04);
+}
+
+.portada__buscar input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+.portada__panel {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.portada__panel-cab {
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface-2);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.portada__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem 0;
+}
+
+.portada__lista a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.1rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.portada__lista a:hover {
+  background: var(--surface-2);
+}
+
+.portada__lista .punto {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--c, var(--accent));
+  flex: none;
+}
+
+.portada__lista .num {
+  margin-left: auto;
+  color: var(--ink-3);
+}
+
+/* ediciones de la portada */
+
+.ediciones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.edicion-carta {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 1.4rem 1.5rem 1.25rem;
+  overflow: hidden;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.edicion-carta::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--c, var(--accent));
+}
+
+.edicion-carta:hover {
+  border-color: var(--c, var(--accent));
+  transform: translateY(-2px);
+}
+
+.edicion-carta__sello {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+.edicion-carta__titulo {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin: 0.25rem 0 0.35rem;
+  color: var(--ink);
+}
+
+.edicion-carta__desc {
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  margin-bottom: 1rem;
+  max-width: 40ch;
+}
+
+.edicion-carta__cifras {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.edicion-carta__cifra b {
+  display: block;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--c, var(--accent));
+}
+
+.edicion-carta__cifra span {
+  font-size: 0.72rem;
+  color: var(--ink-3);
+}
+
+@media (max-width: 900px) {
+  .portada {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+  .ediciones {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------- ficha */
+
+.ficha {
+  padding-top: 1.75rem;
+}
+
+.ficha__banda {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.25rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--t-color) 8%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--t-color) 20%, var(--rule));
+  font-size: 0.78rem;
+  color: color-mix(in oklab, var(--t-color) 70%, var(--ink));
+}
+
+.ficha__banda b {
+  font-weight: 600;
+}
+
+.ficha__titulo {
+  font-size: clamp(2.2rem, 1.6rem + 2vw, 3rem);
+  letter-spacing: -0.022em;
+}
+
+.ficha__sub {
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  margin-bottom: 1.5rem;
+}
+
+.perfil {
+  border-top: 3px solid var(--t-color, var(--accent));
+  background: color-mix(in oklab, var(--t-color) 4%, var(--surface));
+  border-radius: 0 0 6px 6px;
+  padding: 1.15rem 1.25rem 1.35rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.perfil__datos dt {
+  color: var(--t-color, var(--accent));
+}
+
+.habilidades {
+  border-color: color-mix(in oklab, var(--t-color) 20%, var(--rule));
+  background: color-mix(in oklab, var(--t-color) 20%, var(--rule));
+}
+
+.habilidades dd {
+  color: var(--ink);
+}
+
+.aside__bloque {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.aside__bloque + .aside__bloque {
+  margin-top: 0.75rem;
+  padding-top: 0.9rem;
+}
+
+.prosa h2 {
+  color: var(--t-color, var(--accent));
+}
+
+.prosa a {
+  color: var(--t-color, var(--accent));
+}
+
+/* ---------------------------------------------------------------- rail */
+
+.rail__lista a[aria-current="page"] {
+  background: color-mix(in oklab, var(--t-color) 12%, transparent);
+  color: color-mix(in oklab, var(--t-color) 80%, var(--ink));
+}
+
+.rail__lista a[aria-current="page"] .rail__cuenta {
+  color: inherit;
+}
+
+.rail__lista a:hover {
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------- móvil */
+
+@media (max-width: 980px) {
+  .main {
+    padding: 1.25rem 1rem 3rem;
+  }
+  .cabecera {
+    padding-top: 1rem;
+  }
+}
+
+/* Páginas sin raíl (portada, mesa, buscar): una sola columna.
+   Sin esto, la rejilla reserva la columna del raíl y el contenido se comprime. */
+.shell--ancho {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.shell--ancho .main {
+  max-width: 1080px;
+  width: 100%;
+}

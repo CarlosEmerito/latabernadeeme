@@ -6,16 +6,30 @@ import { e } from "../lib/urls";
 const ediciones = (["5e", "5.5"] as Edition[]).map((ed) => ({
   ed,
   ...EDICIONES[ed],
-  secciones: TIPOS.map((t) => ({ t, n: contar(ed, t) })).filter((x) => x.n > 0),
 }));
+
+const COLOR: Record<string, string> = {
+  conjuros: "var(--conjuros)",
+  monstruos: "var(--monstruos)",
+  objetos: "var(--objetos)",
+  clases: "var(--clases)",
+  especies: "var(--especies)",
+  trasfondos: "var(--trasfondos)",
+  dotes: "var(--dotes)",
+  reglas: "var(--reglas)",
+  equipo: "var(--equipo)",
+};
 
 const atajos = [
   { texto: "Bola de fuego", href: e("/5.5/conjuros/bola-de-fuego/") },
   { texto: "Goblin", href: e("/5.5/monstruos/goblin/") },
-  { texto: "Cota de malla", href: e("/5e/equipo/cota-de-malla/") },
   { texto: "Bárbaro", href: e("/5.5/clases/barbaro/") },
-  { texto: "Condiciones", href: e("/5.5/reglas/") },
+  { texto: "Cota de malla", href: e("/5e/equipo/cota-de-malla/") },
 ];
+
+const totalConjuros = contar("5e", "conjuros") + contar("5.5", "conjuros");
+const totalMonstruos = contar("5e", "monstruos") + contar("5.5", "monstruos");
+const totalEntradas = TIPOS.reduce((n, t) => n + contar("5e", t) + contar("5.5", t), 0);
 ---
 
 <Base
@@ -24,39 +38,67 @@ const atajos = [
   ancho
 >
   <section class="portada">
-    <h1 style="font-size:clamp(2rem,1.4rem+2vw,2.9rem);max-width:18ch">
-      Todo el SRD, en español y sin ruido.
-    </h1>
-    <p class="muted" style="max-width:60ch;margin-bottom:1.75rem">
-      Dos ediciones, {contar("5e", "conjuros") + contar("5.5", "conjuros")} conjuros,
-      {contar("5e", "monstruos") + contar("5.5", "monstruos")} monstruos y el resto del contenido
-      abierto, con búsqueda instantánea y filtros que funcionan sin JavaScript.
-    </p>
+    <div>
+      <h1 class="portada__titulo">Todo el SRD, <em>sin ruido</em>.</h1>
+      <p class="portada__lede">
+        Dos ediciones, {totalConjuros} conjuros, {totalMonstruos} monstruos y el resto del contenido
+        abierto en español. Consulta rápida, filtros que no estorban y herramientas de mesa.
+      </p>
 
-    <form class="portada__buscar" role="search" aria-label="Buscar en el catálogo" action={e("/buscar/")} method="get">
-      <label class="oculto-visual" for="q">Buscar</label>
-      <input id="q" type="search" name="q" placeholder="Busca un conjuro, un monstruo, un objeto…" />
-    </form>
-    <div class="portada__atajos">
-      <span>Prueba:</span>
-      {atajos.map((a) => <a href={a.href}>{a.texto}</a>)}
+      <form class="portada__buscar" role="search" aria-label="Buscar en el catálogo" action={e("/buscar/")} method="get">
+        <label class="oculto-visual" for="q">Buscar</label>
+        <input id="q" type="search" name="q" placeholder="Conjuro, monstruo, objeto, clase…" />
+      </form>
+
+      <div class="portada__atajos">
+        <span>Ir directo:</span>
+        {atajos.map((a) => <a href={a.href}>{a.texto}</a>)}
+      </div>
     </div>
 
-    <div class="ediciones-tabla">
-      {ediciones.map((ed) => (
-        <div class="edicion-bloque">
-          <h2>{ed.srd}</h2>
-          <p class="edicion-bloque__nota">{ed.nota} · <a href={e(`/${ed.ed}/`)}>entrar</a></p>
-          <ul>
-            {ed.secciones.map((s) => (
-              <li>
-                <a href={e(`/${ed.ed}/${s.t}/`)}>{TIPO_META[s.t].plural}</a>
-                <span class="num muted">{s.n}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div class="portada__panel">
+      <p class="portada__panel-cab">Explorar · {totalEntradas} entradas</p>
+      <ul class="portada__lista">
+        {TIPOS.map((t) => {
+          const n = contar("5e", t) + contar("5.5", t);
+          if (n === 0) return null;
+          return (
+            <li>
+              <a href={e(`/5.5/${t}/`)} style={`--c:${COLOR[t]}`}>
+                <span class="punto" aria-hidden="true"></span>
+                <span>{TIPO_META[t].plural}</span>
+                <span class="num">{n}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </div>
+  </section>
+
+  <section class="ediciones" aria-label="Ediciones">
+    {ediciones.map((ed) => (
+      <a
+        class="edicion-carta"
+        href={e(`/${ed.ed}/`)}
+        style={`--c:${ed.ed === "5e" ? "var(--monstruos)" : "var(--conjuros)"}`}
+      >
+        <p class="edicion-carta__sello">{ed.srd} · {ed.nota}</p>
+        <p class="edicion-carta__titulo">
+          {ed.ed === "5e" ? "Quinta edición" : "Quinta edición revisada"}
+        </p>
+        <p class="edicion-carta__desc">
+          {ed.ed === "5e"
+            ? "Las reglas de 2014, con las razas y opciones clásicas que la revisión dejó atrás."
+            : "Las reglas de 2024: clases revisadas, maestrías de arma y glosario nuevo."}
+        </p>
+        <span class="edicion-carta__cifras">
+          <span class="edicion-carta__cifra"><b>{contar(ed.ed, "conjuros")}</b><span>conjuros</span></span>
+          <span class="edicion-carta__cifra"><b>{contar(ed.ed, "monstruos")}</b><span>monstruos</span></span>
+          <span class="edicion-carta__cifra"><b>{contar(ed.ed, "objetos")}</b><span>objetos</span></span>
+          <span class="edicion-carta__cifra"><b>{contar(ed.ed, "clases")}</b><span>clases</span></span>
+        </span>
+      </a>
+    ))}
   </section>
 </Base>

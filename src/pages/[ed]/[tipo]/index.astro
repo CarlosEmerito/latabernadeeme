@@ -224,11 +224,13 @@ if (["equipo", "dotes", "reglas"].includes(tipo)) {
   {entradas.length === 0 ? (
     <p class="muted" style="padding:2rem 0">Todavía no hay contenido de este tipo en esta edición.</p>
   ) : (
-    <Tabla
-      columnas={columnas[tipo]}
-      filas={filas}
-      facetas={facetas}
-      placeholder={`Filtrar ${TIPO_META[tipo].plural.toLowerCase()}…`}
-    />
+    <div class="panel-tabla">
+      <Tabla
+        columnas={columnas[tipo]}
+        filas={filas}
+        facetas={facetas}
+        placeholder={`Filtrar ${TIPO_META[tipo].plural.toLowerCase()}…`}
+      />
+    </div>
   )}
 </Base>

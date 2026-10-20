@@ -79,7 +79,7 @@ async function axeEn(pag, etiqueta) {
 
 const portada = await abrir(`${BASE}/`);
 try {
-  const d = await evaluar(portada, `({h1: document.querySelectorAll('h1').length, ediciones: document.querySelectorAll('.edicion-bloque').length, titulo: document.title})`);
+  const d = await evaluar(portada, `({h1: document.querySelectorAll('h1').length, ediciones: document.querySelectorAll('.edicion-carta').length, titulo: document.title})`);
   if (d.h1 === 1 && d.ediciones === 2) bien("portada: un h1 y dos ediciones");
   else fallo("portada", JSON.stringify(d));
   await axeEn(portada, "portada");

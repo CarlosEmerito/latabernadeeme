@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import "../styles/tema.css";
 import { EDICIONES, TIPOS, TIPO_META, contar, type Edition, type Tipo } from "../lib/content";
 import { e } from "../lib/urls";
 
@@ -113,7 +114,7 @@ const base = edicion ? e(`/${edicion}`) : "";
         </nav>
       )}
 
-      <main class="main" id="contenido">
+      <main class:list={["main", tipo && `tipo-${tipo}`]} id="contenido">
         <slot />
       </main>
     </div>

@@ -2,6 +2,7 @@
 import type { Entrada, Edition, Tipo } from "../lib/content";
 import { enlazarConjuros } from "../lib/content";
 import { e } from "../lib/urls";
+import { TIPO_META } from "../lib/content";
 
 interface Props {
   entrada: Entrada;
@@ -38,6 +39,15 @@ const filasPerfil = [
 
 <div class="ficha">
   <article>
+    <p class="ficha__banda">
+      <b>{TIPO_META[tipo].singular}</b>
+      <span aria-hidden="true">·</span>
+      <span>{edicion === "5e" ? "SRD 5.1" : "SRD 5.2.1"}</span>
+      {tipo === "monstruos" && <><span aria-hidden="true">·</span><span>VD {d.cr}</span></>}
+      {tipo === "conjuros" && <><span aria-hidden="true">·</span><span>{d.level === 0 ? "Truco" : `Nivel ${d.level}`} de {d.school}</span></>}
+      {tipo === "objetos" && d.rarity && <><span aria-hidden="true">·</span><span>{d.rarity}</span></>}
+    </p>
+
     <h1 class="ficha__titulo">{d.name}</h1>
 
     {tipo === "monstruos" && (

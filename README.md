@@ -55,15 +55,16 @@ Los PDF no se versionan: `descargar.py` los baja de `dndbeyond.com` y el reposit
 
 ```bash
 npm run build           # compila dist/ (Astro + índice de Pagefind)
-npm run verificar       # datos, enlaces y filtro; no necesita navegador
+npm run verificar       # datos, enlaces, ids y filtro; no necesita navegador
 npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 ```
 
-`verificar` ejecuta tres pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
+`verificar` ejecuta cuatro pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
 
 1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD y a la tabla del README, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
-2. `tools/test/enlaces.mjs`: cada `href` y `src` interno del HTML compilado apunta a una página o fichero que existe.
-3. `tools/test/filtro.mjs`: el `data-buscar` de cada fila es el nombre plegado (sin tildes ni mayúsculas) y las búsquedas sin tilde encuentran filas en los listados grandes.
+2. `tools/test/enlaces.mjs`: cada `href` y `src` interno del HTML compilado apunta a una página o fichero que existe, y cada fragmento (`#seccion`) a un `id` de la página de destino.
+3. `tools/test/ids.mjs`: ninguna página repite un `id`. Los `id` de los encabezados salen del texto (`slugify`), y `IdsDeDocumento` numera los repetidos de una misma página —`-2`, `-3`…— para que el índice lateral enlace a cada apartado y no todos al primero.
+4. `tools/test/filtro.mjs`: el `data-buscar` de cada fila es el nombre plegado (sin tildes ni mayúsculas) y las búsquedas sin tilde encuentran filas en los listados grandes.
 
 `verificar:humo` sí necesita navegador: levanta `astro preview` en el puerto 8099, abre un Chrome headless con CDP en el 9223 con un perfil temporal, pasa `tools/test/humo.mjs` (navegación, herramientas de mesa, axe-core y avisos legales) y apaga los dos al terminar. Busca Chrome o Chromium en el `PATH`; `CHROME=/ruta/al/binario` para indicarlo a mano. Tarda alrededor de medio minuto.
 

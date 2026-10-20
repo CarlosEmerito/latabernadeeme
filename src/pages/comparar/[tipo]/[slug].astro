@@ -61,16 +61,32 @@ const nombre = String(b.data.name ?? a.data.name ?? slug);
       <span role="columnheader">{EDICIONES["5e"].srd}</span>
       <span role="columnheader">{EDICIONES["5.5"].srd}</span>
     </div>
-    {filas.map((f) => (
+    {filas.map((f) =>
+      (f.izq ?? f.der ?? "").startsWith("#") ? (
+        <div class="comparar__seccion" role="row">
+          <span role="cell" set:html={renderizar((f.izq ?? f.der)!)} />
+          {f.estado === "solo-izq" && <span class="comparar__seccion-nota">Solo en {EDICIONES["5e"].srd}</span>}
+          {f.estado === "solo-der" && <span class="comparar__seccion-nota">Solo en {EDICIONES["5.5"].srd}</span>}
+        </div>
+      ) : (
       <div class:list={["comparar__fila", `comparar__fila--${f.estado}`]} role="row">
         <div class="comparar__celda" role="cell">
-          {f.izq ? <div class="prosa" set:html={renderizar(f.izq)} /> : <p class="comparar__vacio">—</p>}
+          {f.izq ? (
+            <div class="prosa" set:html={renderizar(f.izq)} />
+          ) : (
+            <p class="comparar__vacio">Solo en {EDICIONES["5.5"].srd}</p>
+          )}
         </div>
         <div class="comparar__celda" role="cell">
-          {f.der ? <div class="prosa" set:html={renderizar(f.der)} /> : <p class="comparar__vacio">—</p>}
+          {f.der ? (
+            <div class="prosa" set:html={renderizar(f.der)} />
+          ) : (
+            <p class="comparar__vacio">Solo en {EDICIONES["5e"].srd}</p>
+          )}
         </div>
       </div>
-    ))}
+      ),
+    )}
   </div>
 
   <p class="muted" style="margin-top:2rem;max-width:70ch">

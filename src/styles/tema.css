@@ -1330,3 +1330,42 @@
 .toolbar ~ .panel-tabla .tabla thead th {
   top: calc(var(--topbar) + 56px);
 }
+
+.comparar__seccion {
+  padding: 0.55rem 0.85rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.comparar__seccion .prosa h2,
+.comparar__seccion .prosa h3 {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.comparar__vacio {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: center;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.comparar__seccion {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.comparar__seccion-nota {
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}

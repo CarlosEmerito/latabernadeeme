@@ -144,6 +144,7 @@ for (const o of objetos51) {
 
   <script>
     import { xpNumerico } from "../../lib/xp";
+    import { enteroEnRango } from "../../lib/encuentro";
 
     const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     const azar = <T,>(xs: T[]): T => xs[Math.floor(Math.random() * xs.length)];
@@ -196,10 +197,14 @@ for (const o of objetos51) {
         )
         .join("");
 
-      const pj = Number(($("enc-pj") as HTMLInputElement)?.value ?? 4);
-      const nivel = Math.min(20, Math.max(1, Number(($("enc-nivel") as HTMLInputElement)?.value ?? 3)));
+      // Los dos campos se teclean a mano: `type=number` no impide 0, 11, -3, un
+      // decimal ni dejarlos vacíos. Sin acotarlos, 0 dejaba el presupuesto en 0
+      // (ratio Infinity) y 3.5 se salía de UMBRALES y rompía el repintado.
+      const pj = enteroEnRango(($("enc-pj") as HTMLInputElement | null)?.value, 4, 1, 10);
+      const nivel = enteroEnRango(($("enc-nivel") as HTMLInputElement | null)?.value, 3, 1, 20);
       const dif = ($("enc-dif") as HTMLSelectElement)?.value ?? "media";
-      const presupuesto = UMBRALES[nivel][IDX[dif]] * pj;
+      const umbral = UMBRALES[nivel] ?? UMBRALES[3];
+      const presupuesto = umbral[IDX[dif] ?? IDX.media] * pj;
 
       const criaturas = anadidas.reduce((n, m) => n + m.qty, 0);
       const base = anadidas.reduce((n, m) => n + m.xp * m.qty, 0);
@@ -207,7 +212,7 @@ for (const o of objetos51) {
 
       if (!criaturas) {
         salida.innerHTML = `<p class="mesa-resumen__cifra">${presupuesto.toLocaleString("es-ES")} PX</p>
-          <p class="muted">Presupuesto para ${pj} personajes de nivel ${nivel} (${dif}). Añade criaturas para comparar.</p>`;
+          <p class="muted">Presupuesto para ${pj} ${pj === 1 ? "personaje" : "personajes"} de nivel ${nivel} (${dif}). Añade criaturas para comparar.</p>`;
         return;
       }
 

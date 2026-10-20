@@ -333,6 +333,83 @@ try {
   fallo("VD alto", String(e));
 }
 
+// Los campos del constructor de encuentros se teclean a mano y `type=number` no
+// impide 0, 11, -3, un decimal ni dejarlos vacíos. Con «Personajes» vacío el
+// presupuesto era 0 y el veredicto salía «Por encima (Infinity % del
+// presupuesto)»; con «Nivel» 3.5 no existe UMBRALES[3.5], el listener lanzaba un
+// TypeError y el panel se quedaba con el presupuesto anterior. Cualquier entrada
+// tiene que pintar un porcentaje finito y un valor fuera de rango tiene que valer
+// lo mismo que su extremo.
+try {
+  const p = await abrir(`${BASE}/mesa/`);
+  await evaluar(p, `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#enc-lista option')) { clearInterval(t); res(1); } }, 100); setTimeout(() => { clearInterval(t); res(0); }, 6000); })`);
+  const casos = await evaluar(
+    p,
+    `(() => {
+       const buscar = document.getElementById('enc-buscar');
+       const o = [...document.querySelectorAll('#enc-lista option')].find((x) => x.value === 'Guerrero goblin') || document.querySelector('#enc-lista option');
+       buscar.value = o.value;
+       buscar.dispatchEvent(new Event('change', {bubbles: true}));
+       const pj = document.getElementById('enc-pj');
+       const nivel = document.getElementById('enc-nivel');
+       const leer = () => document.getElementById('enc-salida').textContent.split(String.fromCharCode(10)).join(' ').replace(/[ ]{2,}/g, ' ').trim();
+       const casos = {};
+       const probar = (campo, etiqueta, valor) => {
+         campo.value = valor;
+         campo.dispatchEvent(new Event('input', {bubbles: true}));
+         casos[etiqueta] = leer();
+       };
+       probar(nivel, 'nivel=3', '3');
+       probar(pj, 'pj vacio', '');
+       probar(pj, 'pj=0', '0');
+       probar(pj, 'pj negativo', '-3');
+       probar(pj, 'pj=1', '1');
+       probar(pj, 'pj=10', '10');
+       probar(pj, 'pj=11', '11');
+       probar(pj, 'pj=4', '4');
+       probar(nivel, 'nivel=3.5', '3.5');
+       probar(nivel, 'nivel=4', '4');
+       probar(nivel, 'nivel vacio', '');
+       probar(nivel, 'nivel=0', '0');
+       probar(nivel, 'nivel=1', '1');
+       probar(nivel, 'nivel=20', '20');
+       probar(nivel, 'nivel=25', '25');
+       return casos;
+     })()`,
+  );
+  const presupuesto = (t) => Number((t.match(/presupuesto [0-9.]+ PX/) ?? [""])[0].replace(/[^0-9]/g, "")) || 0;
+  const porcentaje = (t) => {
+    const m = /([0-9]+) % del presupuesto/.exec(t);
+    return m ? Number(m[1]) : null;
+  };
+  const malos = [];
+  for (const [nombre, texto] of Object.entries(casos)) {
+    if (!/PX ajustados/.test(texto) || /Infinity|NaN/.test(texto) || porcentaje(texto) === null)
+      malos.push(`${nombre}: «${texto.slice(0, 70)}»`);
+  }
+  const equivalencias = [
+    ["pj=0", "pj=1"],
+    ["pj negativo", "pj=1"],
+    ["pj=11", "pj=10"],
+    ["pj vacio", "pj=4"],
+    ["nivel=3.5", "nivel=4"],
+    ["nivel vacio", "nivel=3"],
+    ["nivel=0", "nivel=1"],
+    ["nivel=25", "nivel=20"],
+  ];
+  for (const [a, b] of equivalencias) {
+    if (presupuesto(casos[a]) !== presupuesto(casos[b]) || !presupuesto(casos[a]))
+      malos.push(`${a} (${presupuesto(casos[a])}) no vale lo mismo que ${b} (${presupuesto(casos[b])})`);
+  }
+  if (!malos.length)
+    bien(
+      `encuentros acotados: vacío y 0 dan ${porcentaje(casos["pj=0"])} % de un presupuesto de ${presupuesto(casos["pj=0"])} PX, negativo otro tanto, 11 tope 10 y el nivel 3.5 pinta lo mismo que el 4 (${presupuesto(casos["nivel=3.5"])} PX)`,
+    );
+  else fallo("encuentros acotados", JSON.stringify(malos.slice(0, 4)));
+} catch (e) {
+  fallo("encuentros acotados", String(e));
+}
+
 const buscar = await abrir(`${BASE}/buscar/`);
 try {
   const d = await evaluar(buscar, `({ui: typeof window.PagefindUI, cargado: !!document.querySelector('.pagefind-ui')})`);

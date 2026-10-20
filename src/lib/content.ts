@@ -162,6 +162,28 @@ export function buscarEntrada(ed: Edition, tipo: Tipo, slug: string): Entrada | 
 }
 
 /** Convierte las menciones a conjuros del texto en enlaces internos. */
+/** Convierte «Nombre (nivel N)» en el título de un rasgo en una etiqueta aparte. */
+export function marcarNiveles(html: string): string {
+  return html.replace(/(<h[34][^>]*>)([^<]*?)\s*\(nivel (\d+)\)(<\/h[34]>)/g,
+    (_m, abre: string, texto: string, nivel: string, cierra: string) =>
+      `${abre}${texto.trim()}<span class="nivel">Nivel ${nivel}</span>${cierra}`);
+}
+
+export interface Seccion {
+  nivel: 2 | 3;
+  id: string;
+  texto: string;
+}
+
+/** Lista los títulos de una entrada para el índice lateral. */
+export function seccionesDe(html: string): Seccion[] {
+  return [...html.matchAll(/<h([23]) id="([^"]+)">([\s\S]*?)<\/h[23]>/g)].map((m) => ({
+    nivel: Number(m[1]) as 2 | 3,
+    id: m[2],
+    texto: m[3].replace(/<span class="nivel">[\s\S]*?<\/span>/, "").replace(/<[^>]+>/g, "").trim(),
+  }));
+}
+
 export function enlazarConjuros(html: string, ed: Edition, tipoActual: Tipo): string {
   /* El SRD marca los nombres en negrita o cursiva, a menudo con un añadido
      detrás («Paso brumoso (3/día).»). Se enlaza solo la parte que coincide con

@@ -1369,3 +1369,97 @@
   text-transform: uppercase;
   color: var(--ink-3);
 }
+
+/* ------------------------------------------- jerarquía de la prosa */
+
+.prosa h2 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--ink);
+  margin: 2.2rem 0 0.8rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.prosa h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
+.prosa h3 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1.7rem 0 0.45rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--rule);
+}
+
+.prosa h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.35rem;
+}
+
+.prosa .nivel {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.08rem 0.35rem;
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------- índice lateral */
+
+.indice ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 56vh;
+  overflow: auto;
+}
+
+.indice li {
+  font-size: 0.8rem;
+  line-height: 1.35;
+  margin-bottom: 0.3rem;
+}
+
+.indice li.indice__sub {
+  padding-left: 0.85rem;
+  font-size: 0.76rem;
+}
+
+.indice a {
+  color: var(--ink-2);
+  text-decoration: none;
+  display: block;
+  padding: 0.1rem 0;
+}
+
+.indice a:hover,
+.indice a:focus-visible {
+  color: var(--accent);
+}
+
+@media print {
+  .indice { display: none; }
+}
+
+/* En el comparador los títulos son etiquetas de bloque, no secciones. */
+.comparar .prosa h2,
+.comparar .prosa h3 {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+  font-family: var(--serif);
+}

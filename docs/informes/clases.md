@@ -63,7 +63,9 @@ entrega, ladrón (5.2).
    característica principal en el bloque de atributos (solo dados de golpe,
    competencias y equipo), así que el campo queda como cadena vacía en las
    12 clases de 5.1. En 5.2 se rellena desde la caja «Característica
-   principal».
+   principal». Como el listado no publica una columna cuyos valores son todos el
+   guion de relleno, `/5e/clases/` sale con Nombre y Dado y la columna aparece
+   solo en 5.2.1; lo vigila `tools/test/columnas.mjs`.
 2. **Tablas de 5.1 partidas en dos o tres paneles.** El flujo trae la tabla
    de progresión troceada por columnas (p. ej. Bárbaro niveles 1-7 en la
    primera columna y 8-20 en la segunda; los espacios de conjuro en un panel

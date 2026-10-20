@@ -150,6 +150,22 @@ const filas = entradas.map((en) => {
   }
 });
 
+// Una columna cuyos valores son todos el guion de relleno no informa de nada:
+// es un hueco con cabecera. Pasa cuando el dato no existe en esa edición —el
+// SRD 5.1 no declara la característica principal de sus clases, ni la categoría
+// de sus dotes, ni la dote de sus trasfondos (ver docs/DATOS.md)— y el listado
+// lo publicaba como doce guiones seguidos. Se descarta la columna en la edición
+// donde no hay dato y se conserva en la que sí lo tiene: el orden, las facetas y
+// el filtro no dependen de ella, así que la tabla queda igual con una columna
+// menos en vez de con una columna vacía.
+const VACIO = "—";
+const columnasConDatos = columnas[tipo].filter((col) =>
+  filas.some((f) => {
+    const valor = String((f.celdas as Record<string, string | number>)[col.clave] ?? "").trim();
+    return valor !== "" && valor !== VACIO;
+  }),
+);
+
 type Faceta = {
   clave: string;
   etiqueta: string;
@@ -230,7 +246,7 @@ if (["equipo", "dotes", "reglas"].includes(tipo)) {
     <p class="muted" style="padding:2rem 0">Todavía no hay contenido de este tipo en esta edición.</p>
   ) : (
     <Tabla
-      columnas={columnas[tipo]}
+      columnas={columnasConDatos}
       filas={filas}
       facetas={facetas}
       placeholder={`Filtrar ${nombrePlural.toLowerCase()}…`}

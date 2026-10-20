@@ -10,7 +10,11 @@
  *      que es lo que deja las anclas sin destino único.
  *   4. `tools/test/filtro.mjs` sobre `dist/`: que el filtro de texto de los
  *      listados venga plegado del HTML y «dragon» encuentre «Dragón».
- *   5. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
+ *   5. `tools/test/columnas.mjs` sobre `dist/`: que ningún listado publique una
+ *      columna entera de guiones —el SRD 5.1 no declara la característica de
+ *      sus clases ni la categoría de sus dotes— y que las celdas sigan
+ *      alineadas con sus cabeceras.
+ *   6. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
  *      quien lo importe y ningún `export function` / `export const` suyo sin
  *      quien lo llame, que es como se cuela código muerto que duplica otra
  *      implementación y confunde sobre cuál manda.
@@ -53,6 +57,13 @@ if (filtro !== 0) {
   process.exit(filtro);
 }
 
+console.log("▶ Columnas sin datos: columnas.mjs (dist/)");
+const columnas = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/columnas.mjs")]);
+if (columnas !== 0) {
+  console.error("✗ Algún listado publica una columna vacía o desalineada.");
+  process.exit(columnas);
+}
+
 console.log("▶ Módulos y exports sin uso: huerfanos.mjs (src/lib/)");
 const huerfanos = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/huerfanos.mjs")]);
 if (huerfanos !== 0) {
@@ -60,4 +71,4 @@ if (huerfanos !== 0) {
   process.exit(huerfanos);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro y código muerto correctos.");
+console.log("✓ Datos, enlaces, ids, filtro, columnas y código muerto correctos.");

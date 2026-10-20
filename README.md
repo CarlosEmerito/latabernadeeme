@@ -79,7 +79,9 @@ El flujo de publicación (`.github/workflows/deploy.yml`) compila y ejecuta `npm
 ## Web
 
 - **Astro** en modo estático, sin servidor ni base de datos.
-- **Pagefind** para la búsqueda, indexada en cada compilación.
+- **Pagefind** para la búsqueda, indexada en cada compilación. La vista `/buscar/` lee `?q=`, así que
+  los formularios de la cabecera y de la portada llegan con el término ya aplicado y una búsqueda se
+  puede enlazar: `/buscar/?q=goblin`.
 - **EB Garamond** e **Inter** autoalojadas (SIL OFL): ninguna petición a terceros.
 - Filtros que funcionan sin JavaScript; el contenido se sirve siempre renderizado.
 - Temas claro y oscuro, foco visible, navegación por teclado y estilos de impresión para llevar una ficha a la mesa.

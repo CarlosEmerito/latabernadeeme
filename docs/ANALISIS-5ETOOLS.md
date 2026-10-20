@@ -299,8 +299,11 @@ Criterio: impacto en mesa real ÷ esfuerzo, y que no rompa lo que ya funciona.
   fuente de verdad para las facetas y generar el HTML inicial con ella.
 - **Trampa de la tarjeta emergente**: si se implementa solo con JS, se pierde el funcionamiento sin
   script y el foco de teclado. Debe ser un `<a>` con contenido oculto, no un `div` con `onmouseover`.
-- **Pagefind y el estado en URL**: el buscador actual no acepta parámetros; para enlazar búsquedas
-  hay que leer `?q=` al cargar y pasarlo a la instancia de Pagefind.
+- **Pagefind y el estado en URL**: resuelto en la vista `/buscar/`. El bundle de Pagefind no lee
+  `location.search` ni acepta el término en el constructor (`trigger_search_term` se queda sin
+  efecto al crear la instancia), así que se lee `?q=` y se pasa con `ui.triggerSearch(termino)`.
+  Lo cubre `tools/test/humo.mjs`, comparando el resultado del parámetro con el de teclear el mismo
+  término por CDP.
 
 ---
 

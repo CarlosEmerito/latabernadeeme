@@ -338,6 +338,54 @@ try {
   const d = await evaluar(buscar, `({ui: typeof window.PagefindUI, cargado: !!document.querySelector('.pagefind-ui')})`);
   if (d.ui === "function") bien("buscador: Pagefind cargado");
   else fallo("buscador", JSON.stringify(d));
+
+  // El término de la dirección (?q=) tiene que llegar al campo y a los resultados:
+  // los formularios de la cabecera y de la portada envían GET hasta aquí.
+  const leerBusqueda = (pag) =>
+    evaluar(
+      pag,
+      `({valor: document.querySelector('.pagefind-ui__search-input')?.value ?? null,
+        resultados: document.querySelectorAll('.pagefind-ui__result').length,
+        mensaje: document.querySelector('.pagefind-ui__message')?.textContent ?? null})`,
+    );
+  const esperarResultados = async (pag, maximo = 4000) => {
+    const hasta = Date.now() + maximo;
+    let d = await leerBusqueda(pag);
+    while (Date.now() < hasta && d.resultados === 0) {
+      await new Promise((r) => setTimeout(r, 150));
+      d = await leerBusqueda(pag);
+    }
+    return d;
+  };
+
+  const conParametro = await abrir(`${BASE}/buscar/?q=goblin`);
+  const q = await esperarResultados(conParametro);
+  if (q.valor === "goblin" && q.resultados > 0) bien(`buscador: ?q=goblin deja «${q.valor}» con ${q.resultados} resultados`);
+  else fallo("buscador ?q=goblin", JSON.stringify(q));
+
+  const limpio = await leerBusqueda(buscar);
+  if (limpio.valor === "" && limpio.resultados === 0) bien("buscador: sin parámetro arranca vacío");
+  else fallo("buscador sin parámetro", JSON.stringify(limpio));
+
+  // Teclear el mismo término a mano tiene que dar el mismo número de resultados.
+  try {
+    await evaluar(buscar, `document.querySelector('.pagefind-ui__search-input').focus()`);
+    await buscar.enviar("Input.insertText", { text: "goblin" });
+    const tecleado = await esperarResultados(buscar);
+    if (tecleado.resultados === q.resultados && tecleado.resultados > 0)
+      bien(`buscador: teclear goblin da los mismos ${tecleado.resultados} resultados`);
+    else fallo("buscador tecleado", JSON.stringify({ tecleado, parametro: q }));
+  } catch (e) {
+    fallo("buscador tecleado", String(e));
+  }
+
+  // Varias palabras y acentos, que es donde se rompe el paso por la dirección.
+  for (const termino of ["bola de fuego", "poción"]) {
+    const pag = await abrir(`${BASE}/buscar/?q=${encodeURIComponent(termino)}`);
+    const d = await esperarResultados(pag);
+    if (d.valor === termino && d.resultados > 0) bien(`buscador: ?q=${termino} con ${d.resultados} resultados`);
+    else fallo(`buscador ?q=${termino}`, JSON.stringify(d));
+  }
 } catch (e) {
   fallo("buscador", String(e));
 }

@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import "../styles/tema.css";
-import { EDICIONES, TIPOS, TIPO_META, contar, type Edition, type Tipo } from "../lib/content";
+import { EDICIONES, TIPOS, TIPO_META, contar, nombreTipo, type Edition, type Tipo } from "../lib/content";
 import { e } from "../lib/urls";
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
 
 const {
   title,
-  description = "Referencia y herramientas de mesa para la quinta edición de D&D y las reglas de 2024.",
+  description = "Referencia y herramientas de mesa para la quinta edición de 2014 y las reglas de 2024.",
   edicion,
   tipo,
   ancho = false,
@@ -93,7 +93,7 @@ const base = edicion ? e(`/${edicion}`) : "";
                 return (
                   <li>
                     <a href={`${base}/${t}/`} aria-current={tipo === t ? "page" : undefined}>
-                      <span>{TIPO_META[t].plural}</span>
+                      <span>{nombreTipo(edicion, t)}</span>
                       <span class="rail__cuenta">{n}</span>
                     </a>
                   </li>

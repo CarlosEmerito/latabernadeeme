@@ -46,6 +46,19 @@ export const TIPO_META: Record<Tipo, { singular: string; plural: string; icono: 
   reglas: { singular: "Regla", plural: "Reglas", icono: "§", desc: "Cómo funciona el juego" },
 };
 
+// Cada edición nombra lo mismo de forma distinta: el SRD 5.1 habla de «razas» y el
+// 5.2 de «especies». Se respeta el término del documento, no se unifica.
+const NOMBRE_TIPO: Record<Edition, Partial<Record<Tipo, string>>> = {
+  "5e": { especies: "Razas" },
+  "5.5": { especies: "Especies" },
+};
+
+export function nombreTipo(ed: Edition | undefined, tipo: Tipo): string {
+  const base = TIPO_META[tipo].plural;
+  if (!ed) return base;
+  return NOMBRE_TIPO[ed][tipo] ?? base;
+}
+
 export interface Entrada {
   slug: string;
   data: Record<string, any>;

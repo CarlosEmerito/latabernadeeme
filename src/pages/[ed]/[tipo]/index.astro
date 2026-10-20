@@ -1,7 +1,7 @@
 ---
 import Base from "../../../layouts/Base.astro";
 import Tabla from "../../../components/Tabla.astro";
-import { EDICIONES, TIPO_META, cargar, type Edition, type Tipo, TIPOS } from "../../../lib/content";
+import { EDICIONES, TIPO_META, cargar, nombreTipo, type Edition, type Tipo, TIPOS } from "../../../lib/content";
 import { e } from "../../../lib/urls";
 
 export function getStaticPaths() {
@@ -16,6 +16,7 @@ const ed = Astro.params.ed as Edition;
 const tipo = Astro.params.tipo as Tipo;
 const meta = EDICIONES[ed];
 const entradas = cargar(ed, tipo);
+const nombrePlural = nombreTipo(ed, tipo);
 
 const unicos = (vals: any[]) =>
   Array.from(new Set(vals.filter((v) => v !== undefined && v !== null && String(v).trim() !== "").map(String)));
@@ -206,14 +207,14 @@ if (["equipo", "dotes", "reglas"].includes(tipo)) {
 ---
 
 <Base
-  title={`${TIPO_META[tipo].plural} · ${meta.srd}`}
-  description={`${entradas.length} ${TIPO_META[tipo].plural.toLowerCase()} del ${meta.srd}.`}
+  title={`${nombrePlural} · ${meta.srd}`}
+  description={`${entradas.length} ${nombrePlural.toLowerCase()} del ${meta.srd}.`}
   edicion={ed}
   tipo={tipo}
 >
   <header class="cabecera">
     <div>
-      <h1>{TIPO_META[tipo].plural}</h1>
+      <h1>{nombrePlural}</h1>
       <p class="cabecera__lede">{TIPO_META[tipo].desc} · {meta.srd} en español.</p>
     </div>
     <div class="cabecera__meta">
@@ -229,7 +230,7 @@ if (["equipo", "dotes", "reglas"].includes(tipo)) {
         columnas={columnas[tipo]}
         filas={filas}
         facetas={facetas}
-        placeholder={`Filtrar ${TIPO_META[tipo].plural.toLowerCase()}…`}
+        placeholder={`Filtrar ${nombrePlural.toLowerCase()}…`}
       />
     </div>
   )}

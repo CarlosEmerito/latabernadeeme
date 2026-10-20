@@ -1,6 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
-import { EDICIONES, TIPOS, TIPO_META, contar, cargar, type Edition } from "../../lib/content";
+import { EDICIONES, TIPOS, TIPO_META, contar, cargar, nombreTipo, type Edition } from "../../lib/content";
 import { e } from "../../lib/urls";
 
 export function getStaticPaths() {
@@ -39,7 +39,7 @@ const muestraMonstruos = cargar(ed, "monstruos").slice(0, 8);
     <tbody>
       {secciones.map((s) => (
         <tr>
-          <td><a href={e(`/${ed}/${s.t}/`)}>{TIPO_META[s.t].plural}</a></td>
+          <td><a href={e(`/${ed}/${s.t}/`)}>{nombreTipo(ed, s.t)}</a></td>
           <td class="col-num">{s.n}</td>
           <td class="col-tenue">{TIPO_META[s.t].desc}</td>
         </tr>

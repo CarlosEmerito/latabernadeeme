@@ -42,7 +42,7 @@ const filasPerfil = [
     <p class="ficha__banda">
       <b>{TIPO_META[tipo].singular}</b>
       <span aria-hidden="true">·</span>
-      <span>{edicion === "5e" ? "SRD 5.1" : "SRD 5.2.1"}</span>
+      <a href={e("/licencias/")} title="Atribución y licencia">{edicion === "5e" ? "SRD 5.1" : "SRD 5.2.1"} · p. {d.page}</a>
       {tipo === "monstruos" && <><span aria-hidden="true">·</span><span>VD {d.cr}</span></>}
       {tipo === "conjuros" && <><span aria-hidden="true">·</span><span>{d.level === 0 ? "Truco" : `Nivel ${d.level}`} de {d.school}</span></>}
       {tipo === "objetos" && d.rarity && <><span aria-hidden="true">·</span><span>{d.rarity}</span></>}

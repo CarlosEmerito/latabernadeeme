@@ -36,7 +36,7 @@ function unidadDe(texto: string): string | undefined {
 }
 
 /** Precio de una celda («5 pp», «40 000 po», «—») en piezas de oro. */
-export function precioEnOro(precio: unknown): number {
+function precioEnOro(precio: unknown): number {
   const texto = String(precio ?? "").trim();
   const unidad = unidadDe(texto);
   const factor = unidad ? ORO_POR_UNIDAD[unidad] : undefined;
@@ -46,7 +46,7 @@ export function precioEnOro(precio: unknown): number {
 }
 
 /** Peso de una celda («35 kg», «125 g», «—») en kilos. */
-export function pesoEnKilos(peso: unknown): number {
+function pesoEnKilos(peso: unknown): number {
   const texto = String(peso ?? "").trim();
   const unidad = unidadDe(texto);
   const factor = unidad ? KILOS_POR_UNIDAD[unidad] : undefined;

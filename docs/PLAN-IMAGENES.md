@@ -2,6 +2,10 @@
 
 Investigación previa. **No se ha añadido ninguna imagen al sitio.** Fecha: 20 de octubre de 2026.
 
+> **Decisión posterior, el mismo 20 de octubre:** los grabados se probaron y se retiraron por
+> no encajar con el tono del proyecto (commit `07d330c`). El sitio usa iconos de `game-icons.net` y
+> sigilos propios; este documento se conserva como investigación, no como plan vigente.
+
 ---
 
 ## 1. El punto de partida

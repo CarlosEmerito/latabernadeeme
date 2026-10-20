@@ -17,7 +17,8 @@
     "datos:reglas": ".venv-ingest/bin/python tools/ingest/import_rules.py",
     "datos:pdf": ".venv-ingest/bin/python tools/ingest/descargar.py",
     "datos:flujo": ".venv-ingest/bin/python tools/ingest/pdf_stream.py",
-    "verificar": ".venv-ingest/bin/python tools/verify/validar.py"
+    "verificar": "node tools/verify/validar.py && node tools/test/humo.mjs && node tools/test/enlaces.mjs",
+    "enlaces": "node tools/test/enlaces.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

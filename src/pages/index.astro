@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { EDICIONES, TIPOS, TIPO_META, contar, type Edition } from "../lib/content";
+import { EDICIONES, TIPOS, TIPO_META, contar, cargar, type Edition, type Tipo } from "../lib/content";
 import { e } from "../lib/urls";
 
 const ediciones = (["5e", "5.5"] as Edition[]).map((ed) => ({
@@ -20,12 +20,27 @@ const COLOR: Record<string, string> = {
   equipo: "var(--equipo)",
 };
 
+/* Los atajos se resuelven contra los datos, no se escriben a mano: un enlace
+   fijo se queda viejo en cuanto cambia un nombre o una edición. */
+const buscar = (ed: Edition, tipo: Tipo, nombres: string[]) => {
+  const entradas = cargar(ed, tipo);
+  for (const nombre of nombres) {
+    const clave = nombre.toLowerCase();
+    const hit = entradas.find(
+      (x) => String(x.data.name).toLowerCase() === clave || x.slug === clave,
+    );
+    if (hit) return { texto: String(hit.data.name), href: e(`/${ed}/${tipo}/${hit.slug}/`) };
+  }
+  return null;
+};
+
 const atajos = [
-  { texto: "Bola de fuego", href: e("/5.5/conjuros/bola-de-fuego/") },
-  { texto: "Goblin", href: e("/5.5/monstruos/goblin/") },
-  { texto: "Bárbaro", href: e("/5.5/clases/barbaro/") },
-  { texto: "Cota de malla", href: e("/5e/equipo/cota-de-malla/") },
-];
+  buscar("5.5", "conjuros", ["bola de fuego", "bola-de-fuego"]),
+  buscar("5.5", "monstruos", ["goblin", "guerrero goblin", "jefe goblin", "secuaz goblin"]),
+  buscar("5.5", "clases", ["bárbaro", "barbaro"]),
+  buscar("5.5", "equipo", ["cota de malla", "cota-de-malla"]) ??
+    buscar("5e", "equipo", ["cota de malla", "cota-de-malla"]),
+].filter((x): x is { texto: string; href: string } => x !== null);
 
 const totalConjuros = contar("5e", "conjuros") + contar("5.5", "conjuros");
 const totalMonstruos = contar("5e", "monstruos") + contar("5.5", "monstruos");

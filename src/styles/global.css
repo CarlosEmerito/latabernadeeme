@@ -600,7 +600,10 @@ kbd {
 
 .tabla {
   width: 100%;
-  border-collapse: collapse;
+  /* Con `collapse`, Chrome pinta un fantasma de la cabecera cuando las celdas
+     son `sticky`: se ve una fila duplicada encima de la real. */
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 0.875rem;
 }
 

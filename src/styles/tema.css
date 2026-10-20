@@ -110,7 +110,9 @@
   border: 1px solid var(--rule);
   border-radius: 6px;
   background: var(--surface);
-  overflow: hidden;
+  /* `clip` recorta las esquinas sin crear un contenedor de scroll, que es lo que
+     rompe `position: sticky` en la cabecera de la tabla. */
+  overflow: clip;
   margin-top: 1rem;
 }
 
@@ -1321,4 +1323,10 @@
   .sigilo-entrada {
     display: none;
   }
+}
+
+/* La cabecera de la tabla se pega debajo de la barra de filtros, no debajo de
+   la barra superior: si no, se mete detrás de los filtros al hacer scroll. */
+.toolbar ~ .panel-tabla .tabla thead th {
+  top: calc(var(--topbar) + 56px);
 }

@@ -26,7 +26,11 @@ interface Ficha {
 }
 
 let cache: Record<string, Ficha> | null = null;
-const leerManifiesto = () => (cache ??= JSON.parse(fs.readFileSync(MANIFIESTO, "utf8")));
+const leerManifiesto = (): Record<string, Ficha> => {
+  if (cache) return cache;
+  cache = fs.existsSync(MANIFIESTO) ? JSON.parse(fs.readFileSync(MANIFIESTO, "utf8")) : {};
+  return cache;
+};
 
 const existe = (ruta: string) => fs.existsSync(path.join(RAIZ, "public", ruta));
 

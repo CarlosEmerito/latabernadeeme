@@ -1,6 +1,6 @@
 ---
 import type { Entrada, Edition, Tipo } from "../lib/content";
-import { TIPO_META, enlazarConjuros, marcarNiveles, seccionesDe, slugify } from "../lib/content";
+import { IdsDeDocumento, TIPO_META, enlazarConjuros, marcarNiveles, seccionesDe, slugify } from "../lib/content";
 import { aliasDe } from "../lib/alias";
 import { e } from "../lib/urls";
 import Figura from "./Figura.astro";
@@ -18,7 +18,8 @@ interface Props {
 
 const { entrada, edicion, tipo, anterior, siguiente, otraEdicion } = Astro.props;
 const d = entrada.data;
-const html = marcarNiveles(enlazarConjuros(entrada.html, edicion, tipo));
+const ids = new IdsDeDocumento();
+const html = ids.aplicar(marcarNiveles(enlazarConjuros(entrada.html, edicion, tipo)));
 const secciones = seccionesDe(html);
 const conIndice = secciones.length >= 4 && entrada.body.length > 4000;
 const volver = e(`/${edicion}/${tipo}/`);

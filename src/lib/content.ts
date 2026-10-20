@@ -90,6 +90,34 @@ export function slugify(texto: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+/**
+ * Da ids únicos a los encabezados de un documento hecho de varios fragmentos.
+ *
+ * El primer encabezado con un id se queda como está y los siguientes pasan a
+ * `-2`, `-3`…, así que un ancla publicada sigue apuntando al primer apartado y
+ * el índice lateral puede enlazar a cada uno. Hace falta porque un id repetido
+ * es HTML inválido y porque las páginas juntan fragmentos que no se conocen
+ * entre sí: las cartas imprimen una ficha por conjuro y el comparador, dos
+ * columnas de la misma entrada.
+ *
+ * Cada documento (cada página) usa su propio registro.
+ */
+export class IdsDeDocumento {
+  private usados = new Set<string>();
+
+  aplicar(html: string): string {
+    return html.replace(
+      /<h([1-6])([^>]*?)\sid="([^"]+)"/g,
+      (_todo, nivel: string, resto: string, id: string) => {
+        let unico = id;
+        for (let n = 2; this.usados.has(unico); n++) unico = `${id}-${n}`;
+        this.usados.add(unico);
+        return `<h${nivel}${resto} id="${unico}"`;
+      },
+    );
+  }
+}
+
 const cache = new Map<string, Entrada[]>();
 
 function splitFrontmatter(raw: string): { data: Record<string, any>; body: string } {

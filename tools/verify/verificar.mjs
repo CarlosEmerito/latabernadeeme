@@ -4,9 +4,11 @@
  *   1. `tools/verify/validar.py` con un intérprete de Python (el venv de
  *      ingesta si existe, `python3` si no): recuentos, campos obligatorios,
  *      cuerpos vacíos o desbordados y duplicados de `data/`.
- *   2. `tools/test/enlaces.mjs` sobre `dist/`: que cada enlace interno apunte a
- *      una página que existe.
- *   3. `tools/test/filtro.mjs` sobre `dist/`: que el filtro de texto de los
+ *   2. `tools/test/enlaces.mjs` sobre `dist/`: que cada enlace interno —y cada
+ *      fragmento— apunte a una página y a un ancla que existen.
+ *   3. `tools/test/ids.mjs` sobre `dist/`: que ninguna página repita un `id`,
+ *      que es lo que deja las anclas sin destino único.
+ *   4. `tools/test/filtro.mjs` sobre `dist/`: que el filtro de texto de los
  *      listados venga plegado del HTML y «dragon» encuentre «Dragón».
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
@@ -33,6 +35,13 @@ if (enlaces !== 0) {
   process.exit(enlaces);
 }
 
+console.log("▶ Ids únicos: ids.mjs (dist/)");
+const ids = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/ids.mjs")]);
+if (ids !== 0) {
+  console.error("✗ Hay páginas con id repetidos.");
+  process.exit(ids);
+}
+
 console.log("▶ Filtro de los listados: filtro.mjs (dist/)");
 const filtro = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/filtro.mjs")]);
 if (filtro !== 0) {
@@ -40,4 +49,4 @@ if (filtro !== 0) {
   process.exit(filtro);
 }
 
-console.log("✓ Datos, enlaces y filtro correctos.");
+console.log("✓ Datos, enlaces, ids y filtro correctos.");

@@ -1,6 +1,6 @@
 ---
 import Base from "../../../layouts/Base.astro";
-import { cargar, renderizar, TIPO_META, EDICIONES, type Edition, type Tipo, TIPOS } from "../../../lib/content";
+import { IdsDeDocumento, cargar, renderizar, TIPO_META, EDICIONES, type Edition, type Tipo, TIPOS } from "../../../lib/content";
 import { alinear, resumen } from "../../../lib/diff";
 import { e } from "../../../lib/urls";
 
@@ -23,6 +23,11 @@ const b = cargar("5.5", tipo).find((x) => x.slug === slug)!;
 const filas = alinear(a.body, b.body);
 const r = resumen(filas);
 const nombre = String(b.data.name ?? a.data.name ?? slug);
+
+// Las dos columnas traen los mismos encabezados: un registro por página les da
+// sufijo a los repetidos para que cada uno tenga su ancla.
+const ids = new IdsDeDocumento();
+const bloque = (markdown: string) => ids.aplicar(renderizar(markdown));
 ---
 
 <Base
@@ -64,7 +69,7 @@ const nombre = String(b.data.name ?? a.data.name ?? slug);
     {filas.map((f) =>
       (f.izq ?? f.der ?? "").startsWith("#") ? (
         <div class="comparar__seccion" role="row">
-          <span role="cell" set:html={renderizar((f.izq ?? f.der)!)} />
+          <span role="cell" set:html={bloque((f.izq ?? f.der)!)} />
           {f.estado === "solo-izq" && <span class="comparar__seccion-nota">Solo en {EDICIONES["5e"].srd}</span>}
           {f.estado === "solo-der" && <span class="comparar__seccion-nota">Solo en {EDICIONES["5.5"].srd}</span>}
         </div>
@@ -72,14 +77,14 @@ const nombre = String(b.data.name ?? a.data.name ?? slug);
       <div class:list={["comparar__fila", `comparar__fila--${f.estado}`]} role="row">
         <div class="comparar__celda" role="cell">
           {f.izq ? (
-            <div class="prosa" set:html={renderizar(f.izq)} />
+            <div class="prosa" set:html={bloque(f.izq)} />
           ) : (
             <p class="comparar__vacio">Solo en {EDICIONES["5.5"].srd}</p>
           )}
         </div>
         <div class="comparar__celda" role="cell">
           {f.der ? (
-            <div class="prosa" set:html={renderizar(f.der)} />
+            <div class="prosa" set:html={bloque(f.der)} />
           ) : (
             <p class="comparar__vacio">Solo en {EDICIONES["5e"].srd}</p>
           )}

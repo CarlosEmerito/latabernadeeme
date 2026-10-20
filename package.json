@@ -19,7 +19,8 @@
     "datos:flujo": ".venv-ingest/bin/python tools/ingest/pdf_stream.py",
     "verificar": "node tools/verify/verificar.mjs",
     "verificar:humo": "node tools/test/humo-entorno.mjs",
-    "enlaces": "node tools/test/enlaces.mjs"
+    "enlaces": "node tools/test/enlaces.mjs",
+    "ids": "node tools/test/ids.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

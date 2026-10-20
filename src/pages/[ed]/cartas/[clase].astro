@@ -1,6 +1,6 @@
 ---
 import Base from "../../../layouts/Base.astro";
-import { EDICIONES, cargar, slugify, type Edition } from "../../../lib/content";
+import { EDICIONES, IdsDeDocumento, cargar, slugify, type Edition } from "../../../lib/content";
 import { e } from "../../../lib/urls";
 
 export function getStaticPaths() {
@@ -29,6 +29,10 @@ const nombreClase = String(
 const niveles = Array.from(new Set(conjuros.map((c) => Number(c.data.level ?? 0)))).sort((a, b) => a - b);
 const porNivel = new Map<number, typeof conjuros>();
 for (const n of niveles) porNivel.set(n, conjuros.filter((c) => Number(c.data.level ?? 0) === n));
+
+// Cada carta trae «A niveles superiores» y los id se repiten en la página: el
+// registro les da sufijo para que ningún encabezado comparta ancla con otro.
+const ids = new IdsDeDocumento();
 ---
 
 <Base
@@ -69,7 +73,7 @@ for (const n of niveles) porNivel.set(n, conjuros.filter((c) => Number(c.data.le
               <div><dt>Comp.</dt><dd>{c.data.components}</dd></div>
               <div><dt>Duración</dt><dd>{c.data.duration}</dd></div>
             </dl>
-            <div class="carta__texto" set:html={c.html} />
+            <div class="carta__texto" set:html={ids.aplicar(c.html)} />
             <footer class="carta__pie">
               {ed === "5e" ? "SRD 5.1" : "SRD 5.2.1"} · p. {c.data.page} · CC BY 4.0
             </footer>

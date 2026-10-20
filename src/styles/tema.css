@@ -1025,3 +1025,198 @@
   .carta__texto { font-size: 7.6pt; }
   body { background: #fff; }
 }
+
+/* --------------------------------------------------------- comparador */
+
+.comparar {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.comparar__cab {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--surface-2);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.comparar__cab span {
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.comparar__fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+
+.comparar__fila:last-child { border-bottom: 0; }
+
+.comparar__celda {
+  padding: 0.6rem 0.85rem;
+  font-size: 0.88rem;
+  min-width: 0;
+}
+
+.comparar__celda + .comparar__celda { border-left: 1px solid var(--rule); }
+.comparar__celda .prosa > :first-child { margin-top: 0; }
+.comparar__celda .prosa > :last-child { margin-bottom: 0; }
+.comparar__celda .prosa h2 { font-size: 0.95rem; }
+
+.comparar__fila--igual .comparar__celda { color: var(--ink-3); }
+.comparar__fila--cambia { background: color-mix(in oklab, #b45309 6%, transparent); }
+.comparar__fila--solo-izq .comparar__celda:first-child { background: color-mix(in oklab, #8c1d18 7%, transparent); }
+.comparar__fila--solo-der .comparar__celda:last-child { background: color-mix(in oklab, #2c6340 7%, transparent); }
+.comparar__vacio { color: var(--ink-3); margin: 0; text-align: center; }
+
+@media (max-width: 760px) {
+  .comparar__cab { grid-template-columns: 1fr; }
+  .comparar__cab span:last-child { display: none; }
+  .comparar__fila { grid-template-columns: 1fr; }
+  .comparar__celda + .comparar__celda {
+    border-left: 0;
+    border-top: 1px dashed var(--rule);
+  }
+}
+
+/* ------------------------------------------------ índice de reglas */
+
+.indice-temas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.75rem;
+}
+
+.indice-temas a {
+  font-size: 0.82rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: 99px;
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--ink-2);
+}
+
+.indice-temas a:hover {
+  border-color: var(--t-color, var(--accent));
+  color: var(--ink);
+}
+
+.indice-temas .num { color: var(--ink-3); margin-left: 0.25rem; }
+
+.tema {
+  margin-bottom: 2rem;
+  scroll-margin-top: 5rem;
+}
+
+.tema h2 {
+  font-size: 1.2rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0.6rem;
+}
+
+.tema__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0.25rem 1.5rem;
+}
+
+.tema__lista li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.9rem;
+}
+
+.tema__extracto {
+  display: block;
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  margin-top: 0.1rem;
+}
+
+/* ------------------------------------------------- pantalla del DM */
+
+.pantalla-config {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--surface);
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.pantalla-config__op {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.pantalla-config input { accent-color: var(--accent); }
+
+.pantalla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.pantalla__panel {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 1rem 1.1rem;
+  break-inside: avoid;
+}
+
+.pantalla__panel h2 {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.pantalla__lista { margin: 0; }
+
+.pantalla__lista > div {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.pantalla__lista > div:last-child { border-bottom: 0; }
+
+.pantalla__lista dt {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.1rem;
+}
+
+.pantalla__lista dd {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+
+@media print {
+  .pantalla { grid-template-columns: 1fr 1fr; }
+  .pantalla-config { display: none; }
+}

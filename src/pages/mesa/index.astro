@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { cargar } from "../../lib/content";
+import { e } from "../../lib/urls";
 
 const objetos51 = cargar("5e", "objetos");
 const porRareza: Record<string, string[]> = {};
@@ -58,6 +59,37 @@ for (const o of objetos51) {
 
       <div class="mesa-resumen" id="enc-salida" aria-live="polite"></div>
       <button class="btn btn--fantasma" type="button" id="enc-vaciar">Vaciar</button>
+    </section>
+
+
+    <section class="mesa-panel mesa-panel--ancho" aria-labelledby="p-ajustar">
+      <h2 id="p-ajustar">Ajustar una criatura</h2>
+      <p class="mesa-panel__nota">
+        Sube o baja el valor de desafío de una criatura del catálogo tomando como referencia la media
+        de PG y CA de las criaturas de ese VD. Es una aproximación de mesa, no una regla del manual.
+      </p>
+      <div class="mesa-fila">
+        <label class="mesa-ancho">Criatura
+          <input type="search" id="aj-criatura" list="enc-lista" placeholder="Guerrero goblin, trol, aboleth…" autocomplete="off" />
+        </label>
+        <label>VD actual <output id="aj-vd">—</output></label>
+        <label>VD objetivo <input type="number" id="aj-objetivo" min="0" max="30" step="1" value="5" /></label>
+        <button class="btn btn--acento" type="button" id="aj-calcular">Ajustar</button>
+      </div>
+      <div id="aj-salida" class="mesa-resumen" aria-live="polite">
+        <p class="muted">Elige una criatura y un VD objetivo.</p>
+      </div>
+    </section>
+
+    <section class="mesa-panel" aria-labelledby="p-vd">
+      <h2 id="p-vd">Estimar VD</h2>
+      <p class="mesa-panel__nota">Para una criatura propia: dime PG y CA y busco sus vecinas.</p>
+      <div class="mesa-fila">
+        <label>PG <input type="number" id="vd-pg" min="1" value="45" /></label>
+        <label>CA <input type="number" id="vd-ca" min="1" value="15" /></label>
+      </div>
+      <button class="btn btn--acento" type="button" id="vd-estimar">Estimar</button>
+      <p class="salida" id="vd-salida" aria-live="polite"></p>
     </section>
 
     <section class="mesa-panel" aria-labelledby="p-iniciativa">
@@ -221,6 +253,89 @@ for (const o of objetos51) {
     });
 
     cargarCatalogo("5.5").then(pintarEncuentro);
+
+
+    /* ------------------------------------------------- ajustar criaturas */
+
+    const mediana = (xs: number[]) => {
+      if (!xs.length) return 0;
+      const o = [...xs].sort((a, b) => a - b);
+      const m = Math.floor(o.length / 2);
+      return o.length % 2 ? o[m] : (o[m - 1] + o[m]) / 2;
+    };
+
+    const numeros = (s: unknown) => Number(String(s ?? "").match(/\d+/)?.[0] ?? 0) || 0;
+
+    const perfiles = () => {
+      const mapa = new Map<string, { hp: number[]; ac: number[]; xp: number[]; vd: string }>();
+      for (const m of catalogo) {
+        const clave = String(m.d.vd ?? "");
+        if (!mapa.has(clave)) mapa.set(clave, { hp: [], ac: [], xp: [], vd: clave });
+        const p = mapa.get(clave)!;
+        const hp = numeros(m.d.pg);
+        const ac = numeros(m.d.ca);
+        const xp = Number(m.d.xp) || 0;
+        if (hp) p.hp.push(hp);
+        if (ac) p.ac.push(ac);
+        if (xp) p.xp.push(xp);
+      }
+      return mapa;
+    };
+
+    $("aj-calcular")?.addEventListener("click", () => {
+      const salida = $("aj-salida");
+      const nombre = ($("aj-criatura") as HTMLInputElement).value.trim();
+      const objetivo = String(($("aj-objetivo") as HTMLInputElement).value).trim();
+      const m = catalogo.find((x) => x.n.toLowerCase() === nombre.toLowerCase());
+      const perfil = perfiles();
+      const destino = perfil.get(objetivo);
+
+      if (!m || !destino) {
+        if (salida) salida.innerHTML = `<p class="muted">Elige una criatura del catálogo y un VD que exista en él.</p>`;
+        return;
+      }
+
+      const origen = perfil.get(String(m.d.vd));
+      const hp = numeros(m.d.pg);
+      const ac = numeros(m.d.ca);
+      const factor = origen && mediana(origen.hp) ? mediana(destino.hp) / mediana(origen.hp) : 1;
+      const nuevoHp = Math.max(1, Math.round(hp * factor));
+      const nuevaAc = Math.max(1, ac + Math.round(mediana(destino.ac) - mediana(origen?.ac ?? [])));
+      const px = mediana(destino.xp);
+
+      if (salida)
+        salida.innerHTML = `<p class="mesa-resumen__cifra">VD ${objetivo} <span>antes ${m.d.vd}</span></p>
+          <p><b>PG</b> ${hp} → <b>${nuevoHp}</b> · <b>CA</b> ${ac} → <b>${nuevaAc}</b> · <b>PX</b> ${Math.round(px)}</p>
+          <p class="muted">Escala ×${factor.toFixed(2)} sobre la media del VD ${objetivo}. Sube o baja el daño de sus ataques en la misma proporción.</p>`;
+    });
+
+    /* ------------------------------------------------------- estimar VD */
+
+    $("vd-estimar")?.addEventListener("click", () => {
+      const pg = Number(($("vd-pg") as HTMLInputElement).value) || 0;
+      const ca = Number(($("vd-ca") as HTMLInputElement).value) || 0;
+      const salida = $("vd-salida");
+      if (!salida || !catalogo.length) return;
+
+      const vecinas = catalogo
+        .map((m) => ({
+          n: m.n,
+          vd: String(m.d.vd),
+          hp: numeros(m.d.pg),
+          ac: numeros(m.d.ca),
+        }))
+        .filter((m) => m.hp > 0 && m.ac > 0)
+        .map((m) => ({ ...m, d: Math.abs(Math.log2(m.hp / pg)) + Math.abs(m.ac - ca) / 4 }))
+        .sort((a, b) => a.d - b.d)
+        .slice(0, 7);
+
+      const pesos = new Map<string, number>();
+      for (const v of vecinas) pesos.set(v.vd, (pesos.get(v.vd) ?? 0) + 1);
+      const [vdFrecuente] = [...pesos.entries()].sort((a, b) => b[1] - a[1])[0];
+
+      salida.innerHTML = `<strong>VD ${vdFrecuente}</strong> probable.
+        <br><span class="muted">Se parece a ${vecinas.slice(0, 3).map((v) => `${v.n} (VD ${v.vd})`).join(", ")}.</span>`;
+    });
 
     /* ------------------------------------------------------------ iniciativa */
 

@@ -1,0 +1,80 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { cargar, renderizar, TIPO_META, EDICIONES, type Edition, type Tipo, TIPOS } from "../../../lib/content";
+import { alinear, resumen } from "../../../lib/diff";
+import { e } from "../../../lib/urls";
+
+export function getStaticPaths() {
+  const rutas: { params: { tipo: string; slug: string } }[] = [];
+  for (const tipo of TIPOS) {
+    const en52 = new Set(cargar("5.5", tipo).map((x) => x.slug));
+    for (const en of cargar("5e", tipo)) {
+      if (en52.has(en.slug)) rutas.push({ params: { tipo, slug: en.slug } });
+    }
+  }
+  return rutas;
+}
+
+const tipo = Astro.params.tipo as Tipo;
+const slug = Astro.params.slug!;
+const a = cargar("5e", tipo).find((x) => x.slug === slug)!;
+const b = cargar("5.5", tipo).find((x) => x.slug === slug)!;
+
+const filas = alinear(a.body, b.body);
+const r = resumen(filas);
+const nombre = String(b.data.name ?? a.data.name ?? slug);
+---
+
+<Base
+  title={`${nombre} · 2014 frente a 2024`}
+  description={`Comparación del texto de ${nombre} entre el SRD 5.1 y el 5.2.1.`}
+  tipo={tipo}
+>
+  <nav class="migas" aria-label="Migas de pan">
+    <a href={e("/cambios/")}>Qué cambia</a>
+    <span aria-hidden="true">/</span>
+    <a href={e(`/5.5/${tipo}/`)}>{TIPO_META[tipo].plural}</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{nombre}</span>
+  </nav>
+
+  <header class="cabecera">
+    <div>
+      <h1>{nombre}</h1>
+      <p class="cabecera__lede">
+        {EDICIONES["5e"].srd} frente a {EDICIONES["5.5"].srd}. {r.iguales} bloques idénticos,
+        {` ${r.cambian} `}reescritos, {r.soloIzq} que desaparecen y {r.soloDer} nuevos.
+      </p>
+    </div>
+    <div class="cabecera__meta">
+      <span><b>{r.porcentaje} %</b>texto igual</span>
+    </div>
+  </header>
+
+  <p class="muted" style="margin-bottom:1.25rem">
+    <a href={e(`/5e/${tipo}/${slug}/`)}>Ficha de 5.1</a> ·
+    <a href={e(`/5.5/${tipo}/${slug}/`)}>Ficha de 5.2.1</a>
+  </p>
+
+  <div class="comparar" role="table" aria-label="Comparación de texto">
+    <div class="comparar__cab" role="row">
+      <span role="columnheader">{EDICIONES["5e"].srd}</span>
+      <span role="columnheader">{EDICIONES["5.5"].srd}</span>
+    </div>
+    {filas.map((f) => (
+      <div class:list={["comparar__fila", `comparar__fila--${f.estado}`]} role="row">
+        <div class="comparar__celda" role="cell">
+          {f.izq ? <div class="prosa" set:html={renderizar(f.izq)} /> : <p class="comparar__vacio">—</p>}
+        </div>
+        <div class="comparar__celda" role="cell">
+          {f.der ? <div class="prosa" set:html={renderizar(f.der)} /> : <p class="comparar__vacio">—</p>}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="muted" style="margin-top:2rem;max-width:70ch">
+    La alineación empareja bloques por vocabulario, no por caracteres: dos párrafos con la misma
+    idea y distinta redacción salen como «reescrito», que es lo que son.
+  </p>
+</Base>

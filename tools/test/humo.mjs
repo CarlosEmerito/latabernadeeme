@@ -272,6 +272,71 @@ try {
   fallo("índice de cartas", String(e));
 }
 
+try {
+  const p = await abrir(`${BASE}/comparar/conjuros/bola-de-fuego/`);
+  const d = await evaluar(
+    p,
+    `({filas: document.querySelectorAll('.comparar__fila').length,
+      porcentaje: document.querySelector('.cabecera__meta b')?.textContent,
+      iguales: document.querySelectorAll('.comparar__fila--igual').length})`,
+  );
+  if (d.filas > 2) bien(`comparador: ${d.filas} bloques, ${d.porcentaje} igual`);
+  else fallo("comparador", JSON.stringify(d));
+  await axeEn(p, "comparador");
+} catch (e) {
+  fallo("comparador", String(e));
+}
+
+try {
+  const p = await abrir(`${BASE}/5e/reglas/indice/`);
+  const d = await evaluar(
+    p,
+    `({temas: document.querySelectorAll('.tema').length, enlaces: document.querySelectorAll('.tema__lista a').length})`,
+  );
+  if (d.temas >= 5 && d.enlaces >= 40) bien(`índice de reglas: ${d.temas} temas, ${d.enlaces} enlaces`);
+  else fallo("índice de reglas", JSON.stringify(d));
+  await axeEn(p, "índice de reglas");
+} catch (e) {
+  fallo("índice de reglas", String(e));
+}
+
+try {
+  const p = await abrir(`${BASE}/mesa/pantalla/`);
+  await evaluar(p, `localStorage.removeItem('taberna:pantalla'); location.reload(); 1`);
+  await new Promise((r) => setTimeout(r, 800));
+  const antes = await evaluar(p, `document.querySelectorAll('.pantalla__panel:not([hidden])').length`);
+  await evaluar(p, `(() => { const c = document.querySelector('#config input[data-panel]'); c.checked = false; c.dispatchEvent(new Event('change', {bubbles:true})); return 1; })()`);
+  const despues = await evaluar(p, `document.querySelectorAll('.pantalla__panel:not([hidden])').length`);
+  if (antes >= 4 && despues === antes - 1) bien(`pantalla del DM: ${antes} paneles, ocultar funciona`);
+  else fallo("pantalla del DM", JSON.stringify({ antes, despues }));
+  await axeEn(p, "pantalla del DM");
+} catch (e) {
+  fallo("pantalla del DM", String(e));
+}
+
+try {
+  const p = await abrir(`${BASE}/mesa/`);
+  await evaluar(p, `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#enc-lista option')) { clearInterval(t); res(1); } }, 100); setTimeout(() => { clearInterval(t); res(0); }, 6000); })`);
+  const d = await evaluar(
+    p,
+    `(() => {
+       const i = document.getElementById('aj-criatura');
+       const o = [...document.querySelectorAll('#enc-lista option')].find(x => /Guerrero goblin/.test(x.value)) || document.querySelector('#enc-lista option');
+       i.value = o.value;
+       document.getElementById('aj-objetivo').value = '5';
+       document.getElementById('aj-calcular').click();
+       const aj = document.getElementById('aj-salida').textContent.replace(/\s+/g, ' ');
+       document.getElementById('vd-estimar').click();
+       const vd = document.getElementById('vd-salida').textContent.replace(/\s+/g, ' ');
+       return {aj: aj.slice(0, 90), vd: vd.slice(0, 90)};
+     })()`,
+  );
+  if (/VD 5/.test(d.aj) && /VD/.test(d.vd)) bien(`ajustar y estimar VD: ${d.vd.slice(0, 50)}`);
+  else fallo("ajustar VD", JSON.stringify(d));
+} catch (e) {
+  fallo("ajustar VD", String(e));
+}
+
 // Enlaces internos roos: se comprueban sobre el HTML compilado, no en el navegador.
 const malos = resultados.filter((r) => !r.ok);
 console.log("");

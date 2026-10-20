@@ -1,0 +1,87 @@
+---
+import Base from "../../../../layouts/Base.astro";
+import { EDICIONES, cargar, type Edition } from "../../../../lib/content";
+import { e } from "../../../../lib/urls";
+
+export function getStaticPaths() {
+  return (["5e", "5.5"] as Edition[]).map((ed) => ({ params: { ed } }));
+}
+
+const ed = Astro.params.ed as Edition;
+const meta = EDICIONES[ed];
+const reglas = cargar(ed, "reglas");
+
+const ORDEN = ["Básico", "Combate", "Características", "Exploración", "Social", "Condiciones", "Peligros", "Glosario"];
+
+const porCategoria = new Map<string, typeof reglas>();
+for (const r of reglas) {
+  const cat = String(r.data.category ?? "Sin categoría");
+  if (!porCategoria.has(cat)) porCategoria.set(cat, []);
+  porCategoria.get(cat)!.push(r);
+}
+
+const categorias = [...porCategoria.keys()].sort((a, b) => {
+  const ia = ORDEN.indexOf(a);
+  const ib = ORDEN.indexOf(b);
+  return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.localeCompare(b, "es");
+});
+
+const ancla = (s: string) =>
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const extracto = (texto: string) => {
+  const limpio = texto
+    .replace(/^#+\s.*$/gm, "")
+    .replace(/\*\*|__|\*|_/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return limpio.length > 150 ? `${limpio.slice(0, 150).trimEnd()}…` : limpio;
+};
+---
+
+<Base
+  title={`Índice de reglas · ${meta.srd}`}
+  description={`Todas las reglas del ${meta.srd} agrupadas por tema.`}
+  edicion={ed}
+  tipo="reglas"
+>
+  <header class="cabecera">
+    <div>
+      <h1>Índice de reglas</h1>
+      <p class="cabecera__lede">
+        {reglas.length} entradas del {meta.srd} agrupadas por tema, para encontrar la regla sin saber
+        cómo se llama.
+      </p>
+    </div>
+    <div class="cabecera__meta">
+      <a class="btn" href={e(`/${ed}/reglas/`)}>Ver como tabla →</a>
+    </div>
+  </header>
+
+  <nav class="indice-temas" aria-label="Temas">
+    {categorias.map((cat) => (
+      <a href={`#${ancla(cat)}`}>
+        {cat} <span class="num">{porCategoria.get(cat)!.length}</span>
+      </a>
+    ))}
+  </nav>
+
+  {categorias.map((cat) => (
+    <section class="tema" id={ancla(cat)} aria-labelledby={`t-${ancla(cat)}`}>
+      <h2 id={`t-${ancla(cat)}`}>{cat}</h2>
+      <ul class="tema__lista">
+        {porCategoria.get(cat)!.map((r) => (
+          <li>
+            <a href={e(`/${ed}/reglas/${r.slug}/`)}>{r.data.name}</a>
+            {extracto(r.body) && <span class="tema__extracto">{extracto(r.body)}</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>

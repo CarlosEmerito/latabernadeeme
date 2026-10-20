@@ -222,6 +222,7 @@ if (["equipo", "dotes", "reglas"].includes(tipo)) {
     </div>
     <div class="cabecera__meta">
       <span><b>{entradas.length}</b>entradas</span>
+      {tipo === "reglas" && <a class="btn" href={e(`/${ed}/reglas/indice/`)}>Índice por temas →</a>}
     </div>
   </header>
 

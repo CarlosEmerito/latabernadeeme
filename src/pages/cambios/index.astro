@@ -92,6 +92,18 @@ const totalC = filas.reduce((n, f) => n + f.comunes.length, 0);
         </>
       )}
 
+      {f.comunes.length > 0 && (
+        <>
+          <h3>Comparar texto</h3>
+          <ul class="cambios__lista">
+            {f.comunes.slice(0, 24).map((slug) => (
+              <li><a href={e(`/comparar/${f.tipo}/${slug}/`)}>{f.b.get(slug)}</a></li>
+            ))}
+          </ul>
+          {f.comunes.length > 24 && <p class="muted">y {f.comunes.length - 24} más; cada ficha tiene su enlace de comparación.</p>}
+        </>
+      )}
+
       {f.renombrados.length > 0 && (
         <>
           <h3>Mismo concepto, otro nombre</h3>

@@ -71,6 +71,9 @@ export interface Entrada {
 
 const md = new MarkdownIt({ html: false, typographer: true, linkify: false });
 
+/** Renderiza un fragmento de Markdown (para comparar párrafos sueltos). */
+export const renderizar = (texto: string) => md.render(texto);
+
 md.renderer.rules.heading_open = (tokens, idx) => {
   const token = tokens[idx];
   const inline = tokens[idx + 1];

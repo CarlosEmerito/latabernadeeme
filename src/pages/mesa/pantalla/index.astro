@@ -1,0 +1,112 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { cargar, EDICIONES } from "../../../lib/content";
+import { e } from "../../../lib/urls";
+
+const reglas = cargar("5.5", "reglas");
+const CATEGORIAS = ["Condiciones", "Combate", "Exploración", "Peligros", "Social"];
+
+const porCategoria = new Map<string, typeof reglas>();
+for (const r of reglas) {
+  const cat = String(r.data.category ?? "");
+  if (!CATEGORIAS.includes(cat)) continue;
+  if (!porCategoria.has(cat)) porCategoria.set(cat, []);
+  porCategoria.get(cat)!.push(r);
+}
+
+const extracto = (texto: string) => {
+  const limpio = texto
+    .replace(/^#+\s.*$/gm, "")
+    .replace(/\*\*|__|\*|_/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return limpio.length > 260 ? `${limpio.slice(0, 260).trimEnd()}…` : limpio;
+};
+
+const ancla = (s: string) =>
+  s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+---
+
+<Base
+  title="Pantalla del DM"
+  description="Condiciones, acciones, exploración y peligros en una sola pantalla configurable."
+  ancho
+>
+  <header class="cabecera noprint">
+    <div>
+      <h1>Pantalla del DM</h1>
+      <p class="cabecera__lede">
+        Lo que se consulta en mitad de la partida, en una pantalla. Elige qué paneles quieres y la
+        elección se recuerda en este navegador.
+      </p>
+    </div>
+    <div class="cabecera__meta">
+      <a class="btn" href={e("/mesa/")}>← Mesa</a>
+      <button class="btn btn--acento" type="button" onclick="window.print()">Imprimir</button>
+    </div>
+  </header>
+
+  <div class="pantalla-config noprint" id="config" role="group" aria-label="Paneles visibles">
+    {[...porCategoria.keys()].map((cat) => (
+      <label class="pantalla-config__op">
+        <input type="checkbox" data-panel={ancla(cat)} checked />
+        <span>{cat}</span>
+      </label>
+    ))}
+  </div>
+
+  <div class="pantalla">
+    {[...porCategoria.entries()].map(([cat, entradas]) => (
+      <section class="pantalla__panel" data-panel={ancla(cat)} aria-labelledby={`p-${ancla(cat)}`}>
+        <h2 id={`p-${ancla(cat)}`}>{cat}</h2>
+        <dl class="pantalla__lista">
+          {entradas.map((r) => (
+            <div>
+              <dt>
+                <a href={e(`/5.5/reglas/${r.slug}/`)}>{r.data.name}</a>
+              </dt>
+              <dd>{extracto(r.body)}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))}
+  </div>
+
+  <p class="muted noprint" style="margin-top:1.5rem">
+    Texto del {EDICIONES["5.5"].srd}. · <a href={e("/5e/reglas/indice/")}>Índice de reglas de 5.1</a>
+  </p>
+
+  <script>
+    const CLAVE = "taberna:pantalla";
+    const casillas = [...document.querySelectorAll<HTMLInputElement>("#config input[data-panel]")];
+    const paneles = [...document.querySelectorAll<HTMLElement>("[data-panel]")].filter(
+      (x) => !x.closest("#config"),
+    );
+
+    const aplicar = () => {
+      for (const c of casillas) {
+        for (const p of paneles) if (p.dataset.panel === c.dataset.panel) p.hidden = !c.checked;
+      }
+      try {
+        localStorage.setItem(
+          CLAVE,
+          JSON.stringify(casillas.filter((c) => c.checked).map((c) => c.dataset.panel)),
+        );
+      } catch {}
+    };
+
+    try {
+      const guardado = JSON.parse(localStorage.getItem(CLAVE) || "null") as string[] | null;
+      if (guardado) for (const c of casillas) c.checked = guardado.includes(c.dataset.panel!);
+    } catch {}
+
+    for (const c of casillas) c.addEventListener("change", aplicar);
+    aplicar();
+  </script>
+</Base>

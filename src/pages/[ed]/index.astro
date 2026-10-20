@@ -18,7 +18,7 @@ const muestraMonstruos = cargar(ed, "monstruos").slice(0, 8);
 <Base title={meta.srd} description={`Todo el contenido del ${meta.srd} en español.`} edicion={ed}>
   <header class="cabecera">
     <div>
-      <h1>{meta.srd} · {meta.nota}</h1>
+      <h1>D&amp;D {ed === "5e" ? "5e" : "5.5e"} · {meta.srd} ({meta.nota.replace("Reglas de ", "")})</h1>
       <p class="cabecera__lede">
         {ed === "5e"
           ? "El documento de referencia de 2014, completo: incluye lo que la revisión dejó fuera, como el semielfo, el semiorco y los planos de existencia."

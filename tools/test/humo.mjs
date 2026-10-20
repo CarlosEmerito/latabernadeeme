@@ -337,6 +337,21 @@ try {
   fallo("ajustar VD", String(e));
 }
 
+try {
+  const p = await abrir(`${BASE}/5.5/conjuros/bola-de-fuego/`);
+  const d = await evaluar(
+    p,
+    `({titulo: document.title,
+      marcas: !!document.querySelector('.pie') && /marcas registradas de Wizards/.test(document.querySelector('.pie').textContent),
+      noAfiliado: /no está afiliado/.test(document.body.textContent),
+      ld: (() => { try { return !!JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent)['@context']; } catch { return false; } })()})`,
+  );
+  if (/D&D 5\.5e/.test(d.titulo) && d.marcas && d.noAfiliado && d.ld) bien(`marcas y avisos: «${d.titulo.slice(0, 40)}»`);
+  else fallo("marcas y avisos", JSON.stringify(d));
+} catch (e) {
+  fallo("marcas y avisos", String(e));
+}
+
 // Enlaces internos roos: se comprueban sobre el HTML compilado, no en el navegador.
 const malos = resultados.filter((r) => !r.ok);
 console.log("");

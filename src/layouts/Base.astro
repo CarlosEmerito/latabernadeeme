@@ -14,13 +14,15 @@ interface Props {
 
 const {
   title,
-  description = "Referencia y herramientas de mesa para la quinta edición de 2014 y las reglas de 2024.",
+  description = "Conjuros, monstruos, objetos, clases y reglas de D&D 5e (2014) y D&D 5.5e (2024) en español, con buscador, filtros y herramientas de mesa.",
   edicion,
   tipo,
   ancho = false,
 } = Astro.props;
 
 const SITIO = "La Taberna de Eme";
+const ETIQUETA = edicion ? (edicion === "5e" ? "D&D 5e" : "D&D 5.5e") : "D&D 5e y 5.5e";
+const tituloCompleto = title === SITIO ? `${SITIO} — ${ETIQUETA} en español` : `${title} · ${ETIQUETA}`;
 const ruta = Astro.url.pathname.replace(/\/$/, "") || "/";
 const activo = (href: string) => (ruta === href.replace(/\/$/, "") ? "page" : undefined);
 const meta = edicion ? EDICIONES[edicion] : null;
@@ -32,14 +34,29 @@ const base = edicion ? e(`/${edicion}`) : "";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title === SITIO ? title : `${title} · ${SITIO}`}</title>
+    <title>{tituloCompleto}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0d0d0c" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href={e("/favicon.svg")} type="image/svg+xml" />
     <link rel="manifest" href={e("/manifest.webmanifest")} />
-    <meta property="og:title" content={title === SITIO ? title : `${title} · ${SITIO}`} />
+    <script is:inline type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "La Taberna de Eme",
+        "alternateName": ["D&D 5e en español", "DnD 5e", "Dungeons & Dragons 5e", "5e y 5.5e"],
+        "inLanguage": "es-ES",
+        "description": "Referencia de D&D 5e y 5.5e en español: conjuros, monstruos, objetos y herramientas de mesa.",
+        "isAccessibleForFree": true
+      }
+    </script>
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:site_name" content={`${SITIO} · D&D 5e`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="keywords" content="D&D, DnD, Dungeons & Dragons, D&D 5e, 5e, 5.5e, D&D 2024, SRD, conjuros, monstruos, objetos mágicos, clases, reglas, herramientas de mesa, español" />
     <meta property="og:description" content={description} />
     <script is:inline>
       try {
@@ -80,7 +97,7 @@ const base = edicion ? e(`/${edicion}`) : "";
       {meta && (
         <nav class="rail" aria-label="Contenido">
           <div class="rail__grupo">
-            <p class="rail__titulo">{meta.srd}</p>
+            <p class="rail__titulo">D&amp;D {edicion === "5e" ? "5e" : "5.5e"} · {meta.srd}</p>
             <ul class="rail__lista">
               <li>
                 <a href={`${base}/`} aria-current={!tipo ? "page" : undefined}>
@@ -106,7 +123,7 @@ const base = edicion ? e(`/${edicion}`) : "";
             <ul class="rail__lista">
               <li>
                 <a href={e(`/${edicion === "5e" ? "5.5" : "5e"}/${tipo ? `${tipo}/` : ""}`)}>
-                  <span>{edicion === "5e" ? "SRD 5.2.1 · 2024" : "SRD 5.1 · 2014"}</span>
+                  <span>{edicion === "5e" ? "D&D 5.5e · SRD 5.2.1" : "D&D 5e · SRD 5.1"}</span>
                 </a>
               </li>
               <li>
@@ -142,8 +159,13 @@ const base = edicion ? e(`/${edicion}`) : "";
         </div>
         <div>
           <p>
-            Herramienta no oficial, sin afiliación ni respaldo de Wizards of the Coast. Las marcas de
-            Dungeons &amp; Dragons pertenecen a sus titulares.
+            <strong>Dungeons &amp; Dragons</strong>, <strong>D&amp;D</strong>, <strong>D&amp;D Beyond</strong>,
+            <strong>Wizards of the Coast</strong>, el ampersand del dragón y los nombres de sus productos son
+            marcas registradas de Wizards of the Coast LLC en EE. UU. y otros países.
+            <br />
+            La Taberna de Eme es un proyecto independiente: no está afiliado, patrocinado ni respaldado por
+            Wizards of the Coast. Declara ser <em>compatible con la quinta edición («5E»)</em>, conforme a lo
+            previsto en el propio SRD.
           </p>
           <p>
             <a href={e("/cambios/")}>Qué cambia entre ediciones</a> ·

@@ -1,14 +1,19 @@
 {
-  "name": "La Taberna de Eme",
-  "short_name": "La Taberna",
-  "description": "Referencia y herramientas de mesa para D&D quinta edición y las reglas de 2024.",
-  "lang": "es",
+  "name": "La Taberna de Eme — D&D 5e y 5.5e",
+  "short_name": "Taberna D&D",
+  "description": "Conjuros, monstruos, objetos y reglas de D&D 5e (2014) y D&D 5.5e (2024) en español.",
+  "lang": "es-ES",
   "start_url": ".",
   "scope": ".",
   "display": "standalone",
   "background_color": "#f6efdf",
   "theme_color": "#1d1812",
   "icons": [
-    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
   ]
 }

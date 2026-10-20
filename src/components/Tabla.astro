@@ -1,4 +1,6 @@
 ---
+import { plegar } from "../lib/texto";
+
 interface Faceta {
   clave: string;
   etiqueta: string;
@@ -150,7 +152,7 @@ const cuentaValor = (clave: string, valor: string) =>
         <tr
           data-facetas={JSON.stringify(f.facetas)}
           data-rangos={JSON.stringify(f.rangos ?? {})}
-          data-buscar={f.nombre.toLowerCase()}
+          data-buscar={plegar(f.nombre)}
         >
           <td class="col-nombre">
             <a href={f.href}>{f.nombre}</a>
@@ -169,6 +171,8 @@ const cuentaValor = (clave: string, valor: string) =>
 <p id="sin-resultados" class="muted" hidden>{vacio}</p>
 
 <script>
+  import { plegar } from "../lib/texto";
+
   const form = document.getElementById("filtros") as HTMLFormElement | null;
   const tabla = document.getElementById("tabla") as HTMLTableElement | null;
   const cuerpo = document.getElementById("cuerpo");
@@ -217,7 +221,9 @@ const cuentaValor = (clave: string, valor: string) =>
         }
         rangosActivos.set(clave, actual);
       }
-      return { facetas, rangosActivos, q: (texto?.value ?? "").trim().toLowerCase() };
+      // La consulta se pliega igual que `data-buscar`: si no, «dragón» (con
+      // tilde) no encontraría «Dragón» y «dragon» no encontraría nada.
+      return { facetas, rangosActivos, q: plegar((texto?.value ?? "").trim()) };
     };
 
     const escribirURL = (e: ReturnType<typeof estado>) => {

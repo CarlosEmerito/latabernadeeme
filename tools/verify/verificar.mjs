@@ -10,6 +10,9 @@
  *      que es lo que deja las anclas sin destino único.
  *   4. `tools/test/filtro.mjs` sobre `dist/`: que el filtro de texto de los
  *      listados venga plegado del HTML y «dragon» encuentre «Dragón».
+ *   5. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
+ *      quien lo importe, que es como se cuela código muerto que duplica otra
+ *      implementación y confunde sobre cuál manda.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -49,4 +52,11 @@ if (filtro !== 0) {
   process.exit(filtro);
 }
 
-console.log("✓ Datos, enlaces, ids y filtro correctos.");
+console.log("▶ Módulos sin importadores: huerfanos.mjs (src/lib/)");
+const huerfanos = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/huerfanos.mjs")]);
+if (huerfanos !== 0) {
+  console.error("✗ Hay módulos de src/lib/ que no importa nadie.");
+  process.exit(huerfanos);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro y módulos sin huérfanos correctos.");

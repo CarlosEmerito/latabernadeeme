@@ -143,6 +143,8 @@ for (const o of objetos51) {
   <script type="application/json" id="datos-botin" set:html={JSON.stringify(porRareza)}></script>
 
   <script>
+    import { xpNumerico } from "../../lib/xp";
+
     const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     const azar = <T,>(xs: T[]): T => xs[Math.floor(Math.random() * xs.length)];
 
@@ -159,7 +161,6 @@ for (const o of objetos51) {
     const multiplicador = (n: number) => (n <= 1 ? 1 : n === 2 ? 1.5 : n <= 6 ? 2 : n <= 10 ? 2.5 : n <= 14 ? 3 : 4);
 
     type Monstruo = { s: string; n: string; d: { vd: string; xp: number | string; tipo: string; tamano: string } };
-    const pxDe = (xp: unknown) => Number(String(xp ?? "").match(/\d+/)?.[0] ?? 0);
     let catalogo: Monstruo[] = [];
     let anadidas: { n: string; xp: number; qty: number }[] = [];
 
@@ -172,7 +173,7 @@ for (const o of objetos51) {
       const lista = $("enc-lista") as HTMLDataListElement | null;
       if (lista) {
         lista.innerHTML = catalogo
-          .map((m) => `<option value="${m.n.replace(/"/g, "&quot;")}">VD ${m.d.vd} · ${m.d.xp} PX</option>`)
+          .map((m) => `<option value="${m.n.replace(/"/g, "&quot;")}">VD ${m.d.vd} · ${xpNumerico(m.d.xp).toLocaleString("es-ES")} PX</option>`)
           .join("");
       }
     };
@@ -227,7 +228,7 @@ for (const o of objetos51) {
       if (!m) return;
       const ya = anadidas.find((x) => x.n === m.n);
       if (ya) ya.qty++;
-      else anadidas.push({ n: m.n, xp: pxDe(m.d.xp), qty: 1 });
+      else anadidas.push({ n: m.n, xp: xpNumerico(m.d.xp), qty: 1 });
       (ev.target as HTMLInputElement).value = "";
       pintarEncuentro();
     });
@@ -274,7 +275,7 @@ for (const o of objetos51) {
         const p = mapa.get(clave)!;
         const hp = numeros(m.d.pg);
         const ac = numeros(m.d.ca);
-        const xp = Number(m.d.xp) || 0;
+        const xp = xpNumerico(m.d.xp);
         if (hp) p.hp.push(hp);
         if (ac) p.ac.push(ac);
         if (xp) p.xp.push(xp);
@@ -305,7 +306,7 @@ for (const o of objetos51) {
 
       if (salida)
         salida.innerHTML = `<p class="mesa-resumen__cifra">VD ${objetivo} <span>antes ${m.d.vd}</span></p>
-          <p><b>PG</b> ${hp} → <b>${nuevoHp}</b> · <b>CA</b> ${ac} → <b>${nuevaAc}</b> · <b>PX</b> ${Math.round(px)}</p>
+          <p><b>PG</b> ${hp} → <b>${nuevoHp}</b> · <b>CA</b> ${ac} → <b>${nuevaAc}</b> · <b>PX</b> ${Math.round(px).toLocaleString("es-ES")}</p>
           <p class="muted">Escala ×${factor.toFixed(2)} sobre la media del VD ${objetivo}. Sube o baja el daño de sus ataques en la misma proporción.</p>`;
     });
 

@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { EDICIONES, TIPOS, cargar, type Edition } from "../../lib/content";
 import { aliasDe } from "../../lib/alias";
+import { xpNumerico } from "../../lib/xp";
 
 export function getStaticPaths() {
   return (["5e", "5.5"] as Edition[]).map((ed) => ({ params: { ed } }));
@@ -52,7 +53,7 @@ export const GET: APIRoute = ({ params }) => {
             tipo: String(d.type ?? ""),
             tamano: String(d.size ?? ""),
           };
-          base.r = { vd: vdNumerico(d.cr), xp: Number.parseInt(String(d.xp ?? "").match(/\d+/)?.[0] ?? "0", 10), pg: Number.parseInt(String(d.hp ?? "0"), 10) || 0 };
+          base.r = { vd: vdNumerico(d.cr), xp: xpNumerico(d.xp), pg: Number.parseInt(String(d.hp ?? "0"), 10) || 0 };
           base.d = { vd: d.cr, xp: d.xp, tipo: d.type, tamano: d.size, pg: d.hp, ca: d.ac };
           break;
         case "objetos":

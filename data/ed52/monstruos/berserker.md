@@ -1,9 +1,9 @@
 ---
 name: Berserker
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '13'
 hp: 67 (9d8 + 27)
 speed: 9 m

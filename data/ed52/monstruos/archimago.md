@@ -1,9 +1,9 @@
 ---
 name: Archimago
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
-tags: ''
-alignment: o Pequeño (mago), neutral
+tags: mago
+alignment: neutral
 ac: '17'
 hp: 170 (31d8 + 31)
 speed: 9 m

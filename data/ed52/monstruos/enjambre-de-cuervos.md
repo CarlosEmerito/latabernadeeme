@@ -2,8 +2,8 @@
 name: Enjambre de cuervos
 size: Mediano
 type: Enjambre
-tags: ''
-alignment: de bestias Diminutas, sin alineamiento
+tags: de bestias Diminutas
+alignment: sin alineamiento
 ac: '12'
 hp: 11 (2d8 + 2)
 speed: 3 m, volar 15 m

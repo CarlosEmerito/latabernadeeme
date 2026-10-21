@@ -1,9 +1,9 @@
 ---
 name: Plebeyo
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '10'
 hp: 4 (1d8)
 speed: 9 m

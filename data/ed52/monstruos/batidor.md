@@ -1,9 +1,9 @@
 ---
 name: Batidor
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '13'
 hp: 16 (3d8 + 3)
 speed: 9 m

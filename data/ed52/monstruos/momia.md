@@ -1,9 +1,9 @@
 ---
 name: Momia
-size: Mediano
+size: Mediano o Pequeño
 type: Muerto viviente
 tags: ''
-alignment: o Pequeño, legal malvado
+alignment: legal malvado
 ac: '11'
 hp: 58 (9d8 + 18)
 speed: 6 m

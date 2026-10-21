@@ -1,9 +1,9 @@
 ---
 name: Mago
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
-tags: ''
-alignment: o Pequeño (mago), neutral
+tags: mago
+alignment: neutral
 ac: '15'
 hp: 81 (18d8)
 speed: 9 m

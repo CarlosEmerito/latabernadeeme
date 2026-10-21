@@ -2,8 +2,8 @@
 name: Enjambre de insectos
 size: Mediano
 type: Enjambre
-tags: ''
-alignment: de bestias Diminutas, sin alineamiento
+tags: de bestias Diminutas
+alignment: sin alineamiento
 ac: 12 (armadura natural)
 hp: 22 (5d8)
 speed: 6 m, trepar 6 m

@@ -1,9 +1,9 @@
 ---
 name: Guerrero veterano
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '17'
 hp: 65 (10d8 + 20)
 speed: 9 m

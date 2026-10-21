@@ -1,9 +1,9 @@
 ---
 name: Siervo de vampiro
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral malvado
+alignment: neutral malvado
 ac: '15'
 hp: 65 (10d8 + 20)
 speed: 9 m, trepar 9 m

@@ -2,8 +2,8 @@
 name: Enjambre de serpientes venenosas
 size: Mediano
 type: Enjambre
-tags: ''
-alignment: de bestias Diminutas, sin alineamiento
+tags: de bestias Diminutas
+alignment: sin alineamiento
 ac: '14'
 hp: 36 (8d8)
 speed: 9 m, nadar 9 m

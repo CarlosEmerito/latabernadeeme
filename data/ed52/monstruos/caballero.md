@@ -1,9 +1,9 @@
 ---
 name: Caballero
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '18'
 hp: 52 (8d8 + 16)
 speed: 9 m

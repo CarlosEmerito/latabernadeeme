@@ -1,9 +1,9 @@
 ---
 name: Capitán pirata
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '17'
 hp: 84 (13d8 + 26)
 speed: 9 m

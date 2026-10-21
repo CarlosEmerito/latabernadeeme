@@ -1,9 +1,9 @@
 ---
 name: Sacerdote acólito
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
-tags: ''
-alignment: o Pequeño (clérigo), neutral
+tags: clérigo
+alignment: neutral
 ac: '13'
 hp: 11 (2d8 + 2)
 speed: 9 m

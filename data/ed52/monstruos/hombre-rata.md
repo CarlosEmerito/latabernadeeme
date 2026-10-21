@@ -1,9 +1,9 @@
 ---
 name: Hombre rata
-size: Mediana
+size: Mediana o Pequeña
 type: Monstruosidad
-tags: ''
-alignment: o Pequeña (licántropo), legal malvada
+tags: licántropo
+alignment: legal malvada
 ac: '13'
 hp: 60 (11d8 + 11)
 speed: 9 m, trepar 9 m

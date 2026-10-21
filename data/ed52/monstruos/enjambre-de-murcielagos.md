@@ -2,8 +2,8 @@
 name: Enjambre de murciélagos
 size: Grande
 type: Enjambre
-tags: ''
-alignment: de bestias Diminutas, sin alineamiento
+tags: de bestias Diminutas
+alignment: sin alineamiento
 ac: '12'
 hp: 11 (2d10)
 speed: 1,5 m, volar 9 m

@@ -1,9 +1,9 @@
 ---
 name: Gladiador
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '16'
 hp: 112 (15d8 + 45)
 speed: 9 m

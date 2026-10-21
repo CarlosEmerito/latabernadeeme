@@ -1,9 +1,9 @@
 ---
 name: Vampiro
-size: Mediano
+size: Mediano o Pequeño
 type: Muerto viviente
 tags: ''
-alignment: o Pequeño, legal malvado
+alignment: legal malvado
 ac: '16'
 hp: 195 (23d8 + 92)
 speed: 12 m, trepar 12 m

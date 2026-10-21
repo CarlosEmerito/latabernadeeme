@@ -1,9 +1,9 @@
 ---
 name: Capitán de la guardia
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '18'
 hp: 75 (10d8 + 30)
 speed: 9 m

@@ -2,8 +2,8 @@
 name: Enjambre de ratas
 size: Mediano
 type: Enjambre
-tags: ''
-alignment: de bestias Diminutas, sin alineamiento
+tags: de bestias Diminutas
+alignment: sin alineamiento
 ac: '10'
 hp: 24 (7d8 − 7)
 speed: 9 m

@@ -1,9 +1,9 @@
 ---
 name: Engendro vampírico
-size: Mediano
+size: Mediano o Pequeño
 type: Muerto viviente
 tags: ''
-alignment: o Pequeño, neutral malvado
+alignment: neutral malvado
 ac: '16'
 hp: 90 (12d8 + 36)
 speed: 9 m

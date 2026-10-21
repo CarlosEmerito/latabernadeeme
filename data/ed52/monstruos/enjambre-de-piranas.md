@@ -2,8 +2,8 @@
 name: Enjambre de pirañas
 size: Mediano
 type: Enjambre
-tags: ''
-alignment: de bestias Diminutas, sin alineamiento
+tags: de bestias Diminutas
+alignment: sin alineamiento
 ac: '13'
 hp: 28 (8d8 − 8)
 speed: 1,5 m, nadar 12 m

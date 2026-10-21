@@ -1,9 +1,9 @@
 ---
 name: Espía
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '12'
 hp: 27 (6d8)
 speed: 9 m, trepar 9 m

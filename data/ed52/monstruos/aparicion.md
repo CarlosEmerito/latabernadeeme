@@ -1,9 +1,9 @@
 ---
 name: Aparición
-size: Mediano
+size: Mediano o Pequeño
 type: Muerto viviente
 tags: ''
-alignment: o Pequeño, neutral malvado
+alignment: neutral malvado
 ac: '13'
 hp: 67 (9d8 + 27)
 speed: 1,5 m, volar 18 m (levitar)

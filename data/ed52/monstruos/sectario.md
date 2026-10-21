@@ -1,9 +1,9 @@
 ---
 name: Sectario
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '12'
 hp: 9 (2d8)
 speed: 9 m

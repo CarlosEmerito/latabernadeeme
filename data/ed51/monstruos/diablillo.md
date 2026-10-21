@@ -2,8 +2,8 @@
 name: Diablillo
 size: Diminuto
 type: Infernal
-tags: ''
-alignment: (diablo, cambiaformas), legal malvado
+tags: diablo, cambiaformas
+alignment: legal malvado
 ac: '13'
 hp: 10 (3d4 + 3)
 speed: 6 m, volar 12 m

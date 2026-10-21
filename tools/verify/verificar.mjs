@@ -34,6 +34,9 @@
  *  11. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
  *      las tipografías que el CSS carga —ni una de menos ni una de más— y que
  *      `package.json` no declare ninguna fuente sin importar.
+ *  12. `tools/test/tipo.py`: que la línea de tipo del perfil —tipo, tamaño y
+ *      alineamiento— se parta como toca, con el tamaño alternativo
+ *      («Mediano o Pequeño») y el complemento suelto del tipo en `tags`.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -122,4 +125,11 @@ if (fuentes !== 0) {
   process.exit(fuentes);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto y fuentes correctos.");
+console.log("▶ Línea de tipo del perfil: tipo.py (tools/ingest/srd/monsters.py)");
+const tipo = ejecutar(python, [path.join(RAIZ, "tools/test/tipo.py")]);
+if (tipo !== 0) {
+  console.error("✗ La línea de tipo de las criaturas se parte mal: el tamaño, los tags o el alineamiento acaban en el campo de al lado.");
+  process.exit(tipo);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes y línea de tipo correctos.");

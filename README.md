@@ -40,6 +40,8 @@ tools/ingest/
   extract_core.py   orquesta y escribe data/
 tools/verify/
   validar.py        recuentos, campos, cuerpos y tabla del README
+tools/test/
+  tipo.py           cómo parte la línea de tipo del perfil (tipo, tamaño, alineamiento)
 ```
 
 ```bash
@@ -55,13 +57,13 @@ Los PDF no se versionan: `descargar.py` los baja de `dndbeyond.com` y el reposit
 
 ```bash
 npm run build           # compila dist/ (Astro + índice de Pagefind)
-npm run verificar       # datos, enlaces, ids, filtro, tamaño, columnas, iconos, alias, iniciativa, huérfanos y fuentes; no necesita navegador
+npm run verificar       # datos, enlaces, ids, filtro, tamaño, columnas, iconos, alias, iniciativa, huérfanos, fuentes y línea de tipo; no necesita navegador
 npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 ```
 
-`verificar` ejecuta once pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
+`verificar` ejecuta doce pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
 
-1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD y a la tabla del README, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados. Además vigila el perfil de las criaturas: ningún valor de `saves`, `skills`, `senses`, `languages` ni del resto de campos puede quedarse a mitad (el PDF los parte en varias líneas) y unas fichas testigo —`dragon-azul-adulto`, `dragon-rojo-adulto`, `espia`, `liche`, `naga-guardiana` y `archimago`— llevan el texto exacto que se perdía. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
+1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD y a la tabla del README, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados. Además vigila el perfil de las criaturas: ningún valor de `saves`, `skills`, `senses`, `languages` ni del resto de campos puede quedarse a mitad (el PDF los parte en varias líneas), ninguna línea de tipo deja el tamaño o el complemento del tipo dentro del alineamiento, y unas fichas testigo —`dragon-azul-adulto`, `dragon-rojo-adulto`, `espia`, `liche`, `naga-guardiana` y `archimago`— llevan el texto exacto que se perdía. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
 2. `tools/test/enlaces.mjs`: cada `href` y `src` interno del HTML compilado apunta a una página o fichero que existe, y cada fragmento (`#seccion`) a un `id` de la página de destino.
 3. `tools/test/ids.mjs`: ninguna página repite un `id`. Los `id` de los encabezados salen del texto (`slugify`), y `IdsDeDocumento` numera los repetidos de una misma página —`-2`, `-3`…— para que el índice lateral enlace a cada apartado y no todos al primero.
 4. `tools/test/filtro.mjs`: el `data-buscar` de cada fila es el nombre plegado (sin tildes ni mayúsculas) y las búsquedas sin tilde encuentran filas en los listados grandes.
@@ -72,6 +74,7 @@ npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 9. `tools/test/iniciativa.mjs`: el combate guardado en el navegador se lee como un solo contrato en `/mesa/` y `/mesa/jugadores/` —JSON roto, entradas a medias y `turno` fuera de la lista incluidos—, para que recargar no deje las dos pantallas con combates distintos.
 10. `tools/test/huerfanos.mjs`: cada módulo de `src/lib/` lo importa alguien de `src/` o de `tools/`. Un módulo que nadie importa es código muerto que aparenta ser la fuente de la verdad; ya pasó con `src/lib/facetas.ts`, doscientas líneas de facetas que el listado de verdad no usaba.
 11. `tools/test/fuentes.mjs`: README y `/licencias/` acreditan exactamente las tipografías que carga `src/styles/global.css` —la lista sale del `metadata.json` de cada paquete `@fontsource` importado, así que la comparación va en los dos sentidos— y `package.json` no declara ninguna fuente sin importar. Nació de que las dos páginas acreditaran EB Garamond e Inter mientras el sitio cargaba Newsreader, Instrument Sans y Geist Mono, con 5,7 MB de dependencias que nadie importaba.
+12. `tools/test/tipo.py`: la línea de tipo del perfil —tipo, tamaño y alineamiento— se parte donde toca. Reconoce el tamaño alternativo (`Mediano o Pequeño`), la aclaración entre paréntesis vaya detrás del tamaño que vaya —con la coma de 5.1 delante incluida— y el complemento suelto del tipo (`de bestias Diminutas`), que va a `tags` y deja el tipo en `Enjambre`, que es de donde sale el icono de la banda. Nació de que 50 fichas publicaran «Mediano humanoide, o Pequeño, neutral» y «Grande enjambre, de bestias Diminutas, sin alineamiento»: lo que el parser no reconoce no se pierde, se queda en el campo de al lado, y el tamaño alternativo no llegaba al filtro Tamaño. Las líneas crudas van en el propio test porque `.cache/` no se versiona, y `validar.py` vigila el resultado ya en `data/`.
 
 `verificar:humo` sí necesita navegador: levanta `astro preview` en el puerto 8099, abre un Chrome headless con CDP en el 9223 con un perfil temporal, pasa `tools/test/humo.mjs` (navegación, herramientas de mesa, axe-core y avisos legales) y apaga los dos al terminar. Busca Chrome o Chromium en el `PATH`; `CHROME=/ruta/al/binario` para indicarlo a mano. Tarda alrededor de medio minuto.
 
@@ -85,7 +88,7 @@ node tools/test/humo.mjs
 
 ### Qué comprueba CI y qué queda en local
 
-El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los once pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, un filtro sin plegar, un tamaño partido en dos casillas, una columna vacía, una ficha sin icono, un alias cruzado o una tipografía mal acreditada paran el job `construir` y no se publica la versión nueva.
+El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los doce pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, un filtro sin plegar, un tamaño partido en dos casillas, una columna vacía, una ficha sin icono, un alias cruzado, una línea de tipo mal partida o una tipografía mal acreditada paran el job `construir` y no se publica la versión nueva.
 
 Lo que **no** corre en CI es `verificar:humo`: necesita un Chrome headless y un servidor de vista previa levantados, y el flujo no los monta. Las comprobaciones de `tools/test/humo.mjs` —navegación, herramientas de mesa, axe-core y avisos legales— siguen siendo locales, y toca pasarlas a mano cuando el cambio toca plantillas o las herramientas de `/mesa/`.
 

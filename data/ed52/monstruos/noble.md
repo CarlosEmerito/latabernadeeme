@@ -1,9 +1,9 @@
 ---
 name: Noble
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '15'
 hp: 9 (2d8)
 speed: 9 m

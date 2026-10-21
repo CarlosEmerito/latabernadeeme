@@ -1,9 +1,9 @@
 ---
 name: Hombre lobo
-size: Mediana
+size: Mediana o Pequeña
 type: Monstruosidad
-tags: ''
-alignment: o Pequeña (licántropo), caótica malvada
+tags: licántropo
+alignment: caótica malvada
 ac: '15'
 hp: 71 (11d8 + 22)
 speed: 9 m, 12 m (solo en forma de lobo)

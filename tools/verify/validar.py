@@ -7,6 +7,7 @@ Comprueba, por edición y tipo de contenido:
   - cuerpos vacíos o desproporcionados (síntoma de un corte mal hecho),
   - duplicados por nombre,
   - palabras partidas por un rótulo que se cuela dentro del valor,
+  - la línea de tipo de las criaturas (tipo, tamaño y alineamiento) mal partida,
   - la tabla de recuentos del README frente a los ficheros reales.
 
 Uso:
@@ -125,6 +126,26 @@ HABILIDADES = re.compile(r"(?i)\b\w*habilidades\w*\b")
 # Voces que acaban igual y no son un resto de rótulo.
 HABILIDADES_VALIDAS = {"habilidades", "inhabilidades", "responsabilidades"}
 
+# Los tamaños del SRD. Una palabra de esta lista dentro del alineamiento es un
+# trozo de la línea de tipo que se quedó en el campo de al lado.
+TAMANOS_SRD = (
+    "Diminuto",
+    "Diminuta",
+    "Pequeño",
+    "Pequeña",
+    "Mediano",
+    "Mediana",
+    "Grande",
+    "Enorme",
+    "Gigante",
+    "Gargantuesco",
+    "Gargantuesca",
+)
+TAMANO_EN_ALINEAMIENTO = re.compile(r"(?i)\b(?:" + "|".join(TAMANOS_SRD) + r")\b")
+# El complemento que el PDF pone suelto detrás del tamaño («de bestias
+# Diminutas», «de muertos vivientes Diminutos») pertenece a `tags`.
+COMPLEMENTO_DEL_TIPO = re.compile(r"(?i)^de\s+(?:bestias|muertos vivientes)\b")
+
 
 def _cadenas(valor: object) -> list[str]:
     """Todo el texto de un valor del frontmatter, por anidado que venga."""
@@ -153,6 +174,42 @@ def palabras_pegadas() -> list[str]:
                 continue
             vistas.add(palabra.lower())
             problemas.append(f"{f.parent.parent.name}/{f.parent.name}/{f.stem}: «{palabra}»")
+    return problemas
+
+
+def linea_de_tipo() -> list[str]:
+    """La línea del perfil (tipo, tamaño, alineamiento) bien partida.
+
+    El parser separa los tres campos con una expresión regular y lo que no
+    reconoce no se pierde: se queda en el campo de al lado. Así publicaron 50
+    fichas «Mediano humanoide, o Pequeño, neutral» y «Grande enjambre, de
+    bestias Diminutas, sin alineamiento» sin que nada fallara —el frontmatter
+    era válido—, y el tamaño alternativo no llegaba al filtro. Se vigila el
+    resultado, que es lo que se lee: el alineamiento no lleva palabras de
+    tamaño, ni el complemento suelto del tipo, ni una aclaración entre
+    paréntesis que en realidad pertenece a `tags`.
+    """
+    problemas: list[str] = []
+    for f in sorted(DATOS.glob("*/monstruos/*.md")):
+        contenido = leer(f)
+        if contenido is None:
+            continue
+        datos, _ = contenido
+        alineamiento = str(datos.get("alignment") or "").strip()
+        etiqueta = f"{f.parent.parent.name}/{f.stem}"
+        tamano = TAMANO_EN_ALINEAMIENTO.search(alineamiento)
+        if tamano:
+            problemas.append(
+                f"{etiqueta}: `alignment` lleva el tamaño «{tamano.group(0)}» («{alineamiento}»)"
+            )
+        elif alineamiento.startswith("("):
+            problemas.append(
+                f"{etiqueta}: `alignment` empieza con una aclaración del tipo («{alineamiento}»)"
+            )
+        elif COMPLEMENTO_DEL_TIPO.match(alineamiento):
+            problemas.append(
+                f"{etiqueta}: `alignment` lleva el complemento del tipo («{alineamiento}»)"
+            )
     return problemas
 
 
@@ -332,6 +389,23 @@ def main() -> int:
             lineas.append(f"  - …y {len(pegadas) - 15} más")
     else:
         lineas.append("- Ninguna palabra lleva «habilidades» pegada por delante ni por detrás.")
+    lineas.append("")
+
+    # La línea de tipo es lo primero que se lee de una ficha y lo que más se
+    # rompe al regenerar `data/`: si el parser no reconoce una forma, el trozo
+    # que sobra se queda en el alineamiento y nadie se entera.
+    tipos = linea_de_tipo()
+    lineas += ["## Línea de tipo (tipo, tamaño y alineamiento)", ""]
+    if tipos:
+        problemas += 1
+        lineas.append(f"- Alineamientos con un trozo de la línea de tipo: **{len(tipos)}**")
+        lineas += [f"  - {p}" for p in tipos[:15]]
+        if len(tipos) > 15:
+            lineas.append(f"  - …y {len(tipos) - 15} más")
+    else:
+        lineas.append(
+            "- Ningún alineamiento lleva el tamaño, una aclaración del tipo ni su complemento suelto."
+        )
     lineas.append("")
 
     lineas.insert(3, f"Total de entradas: **{total}**. Apartados con incidencias: **{problemas}**.")

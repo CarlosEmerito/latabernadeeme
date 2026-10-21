@@ -1,9 +1,9 @@
 ---
 name: Hombre oso
-size: Mediana
+size: Mediana o Pequeña
 type: Monstruosidad
-tags: ''
-alignment: o Pequeña (licántropo), neutral buena
+tags: licántropo
+alignment: neutral buena
 ac: '15'
 hp: 135 (18d8 + 54)
 speed: 9 m, 12 m (solo en forma de oso), trepar 9 m (solo en forma de oso)

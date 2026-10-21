@@ -1,9 +1,9 @@
 ---
 name: Señor de las momias
-size: Mediano
+size: Mediano o Pequeño
 type: Muerto viviente
-tags: ''
-alignment: o Pequeño (clérigo), legal malvado
+tags: clérigo
+alignment: legal malvado
 ac: '17'
 hp: 187 (25d8 + 75)
 speed: 9 m

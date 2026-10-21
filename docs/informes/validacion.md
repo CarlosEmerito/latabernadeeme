@@ -55,3 +55,7 @@ Total de entradas: **2490**. Apartados con incidencias: **0**.
 ## Rótulos dentro del valor
 
 - Ninguna palabra lleva «habilidades» pegada por delante ni por detrás.
+
+## Línea de tipo (tipo, tamaño y alineamiento)
+
+- Ningún alineamiento lleva el tamaño, una aclaración del tipo ni su complemento suelto.

@@ -2,8 +2,8 @@
 name: Enjambre de garras reptantes
 size: Mediano
 type: Enjambre
-tags: ''
-alignment: de muertos vivientes Diminutos, neutral malvado
+tags: de muertos vivientes Diminutos
+alignment: neutral malvado
 ac: '12'
 hp: 49 (11d8)
 speed: 9 m, trepar 9 m

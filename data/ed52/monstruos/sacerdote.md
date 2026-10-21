@@ -1,9 +1,9 @@
 ---
 name: Sacerdote
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
-tags: ''
-alignment: o Pequeño (clérigo), neutral
+tags: clérigo
+alignment: neutral
 ac: '13'
 hp: 38 (7d8 + 7)
 speed: 9 m

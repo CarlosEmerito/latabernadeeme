@@ -1,9 +1,9 @@
 ---
 name: Hombre jabalí
-size: Mediana
+size: Mediana o Pequeña
 type: Monstruosidad
-tags: ''
-alignment: o Pequeña (licántropo), neutral malvada
+tags: licántropo
+alignment: neutral malvada
 ac: '15'
 hp: 97 (15d8 + 30)
 speed: 9 m, 12 m (solo en forma de jabalí)

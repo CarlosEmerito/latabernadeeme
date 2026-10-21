@@ -1,9 +1,9 @@
 ---
 name: Hombre tigre
-size: Mediana
+size: Mediana o Pequeña
 type: Monstruosidad
-tags: ''
-alignment: o Pequeña (licántropo), neutral
+tags: licántropo
+alignment: neutral
 ac: '12'
 hp: 120 (16d8 + 48)
 speed: 9 m, 12 m (solo en forma de tigre)

@@ -124,18 +124,45 @@ def is_header(lines: list[Line], i: int) -> bool:
     return bool(TYPE_RE.match(nxt.text.strip())) and len(head.text) < 70
 
 
+_SIZE_RE = "|".join(SIZES)
+_KIND_RE = "(?:Enjambre de\\s+)?(?:" + "|".join(TYPES) + ")"
+
+# La línea del perfil: «Humanoide Mediano o Pequeño (mago), neutral». El tamaño
+# puede venir doble —el «o Pequeño» de las 36 fichas de 5.2.1— y la aclaración
+# entre paréntesis va detrás del tamaño que sea, no solo del primero; en 5.1 la
+# coma se cuela delante de ella («Infernal Diminuto, (diablo, cambiaformas),
+# legal malvado»). Sin las dos cosas, el trozo que sobra no se pierde: se queda
+# en el alineamiento y la ficha publica «Mediano humanoide, o Pequeño, neutral».
+TYPE_LINE_RE = re.compile(
+    r"^(?P<kind>" + _KIND_RE + ")"
+    r"\s+(?P<size>" + _SIZE_RE + ")"
+    r"(?:\s+[ou]\s+(?P<alt>" + _SIZE_RE + "))?"
+    r"\s*,?\s*(?:\((?P<tags>[^)]*)\))?"
+    r"\s*(?P<rest>.*)$",
+)
+
+# El complemento del tipo que el PDF pone suelto detrás del tamaño —«Enjambre
+# Mediano de bestias Diminutas»— tampoco es alineamiento: va a `tags`, que es
+# donde la ficha lo pinta entre paréntesis, y el tipo sigue siendo Enjambre, de
+# donde sale el icono de la banda. Restringido a las dos formas que usa el SRD
+# para no tragarse texto legítimo del alineamiento.
+LOOSE_TAGS_RE = re.compile(r"^(?P<tags>de\s+(?:bestias|muertos vivientes)\s+\w+)\s*,?\s*")
+
+
 def _split_type(text: str) -> tuple[str, str, str, str]:
-    m = re.match(
-        r"^(?P<kind>(?:Enjambre de\s+)?(?:"
-        + "|".join(TYPES)
-        + r"))\s+(?P<size>(?:"
-        + "|".join(SIZES)
-        + r"))\s*(?:\((?P<tags>[^)]*)\))?\s*,?\s*(?P<align>.*)$",
-        text,
-    )
+    m = TYPE_LINE_RE.match(text)
     if not m:
         return "", "", "", text
-    return m.group("kind"), m.group("size"), m.group("tags") or "", m.group("align").strip(" ,")
+    size = m.group("size")
+    if m.group("alt"):
+        size = f"{size} o {m.group('alt')}"
+    tags = m.group("tags") or ""
+    rest = m.group("rest")
+    suelto = LOOSE_TAGS_RE.match(rest)
+    if suelto:
+        tags = ", ".join(t for t in (tags, suelto.group("tags")) if t)
+        rest = rest[suelto.end() :]
+    return m.group("kind"), size, tags, rest.strip(" ,")
 
 
 def _split_feature(text: str) -> tuple[str, str]:

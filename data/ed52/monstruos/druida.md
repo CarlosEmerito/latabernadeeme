@@ -1,9 +1,9 @@
 ---
 name: Druida
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
-tags: ''
-alignment: o Pequeño (druida), neutral
+tags: druida
+alignment: neutral
 ac: '13'
 hp: 44 (8d8 + 8)
 speed: 9 m

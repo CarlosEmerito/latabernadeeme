@@ -1,9 +1,9 @@
 ---
 name: Bandido
-size: Mediano
+size: Mediano o Pequeño
 type: Humanoide
 tags: ''
-alignment: o Pequeño, neutral
+alignment: neutral
 ac: '12'
 hp: 11 (2d8 + 2)
 speed: 9 m

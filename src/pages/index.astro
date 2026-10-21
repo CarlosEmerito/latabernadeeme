@@ -82,22 +82,47 @@ const totalEntradas = TIPOS.reduce((n, t) => n + contar("5e", t) + contar("5.5",
     </div>
 
     <div class="portada__panel">
-      <p class="portada__panel-cab">Explorar · {totalEntradas} entradas</p>
-      <ul class="portada__lista">
-        {TIPOS.map((t) => {
-          const n = contar("5e", t) + contar("5.5", t);
-          if (n === 0) return null;
-          return (
-            <li>
-              <a href={e(`/5.5/${t}/`)} style={`--c:${COLOR[t]}`}>
-                <span class="punto" aria-hidden="true"></span>
-                <span>{TIPO_META[t].plural}</span>
-                <span class="num">{n}</span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
+      <table class="portada__tabla">
+        <caption class="portada__panel-cab">
+          Explorar · {totalEntradas} entradas en 5e y 5.5e
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col"><span class="oculto-visual">Sección</span></th>
+            <th scope="col">5e</th>
+            <th scope="col">5.5e</th>
+          </tr>
+        </thead>
+        <tbody>
+          {TIPOS.map((t) => {
+            /* Cada cifra es la del listado que abre, así que cada edición lleva
+               su columna y su enlace. Antes la fila sumaba las dos ediciones
+               (658 conjuros) y el enlace llevaba solo a 5.5, cuyo listado dice
+               339: el número de la portada no era el de la página que abría. */
+            const porEdicion = (["5e", "5.5"] as Edition[]).map((ed) => ({ ed, n: contar(ed, t) }));
+            if (porEdicion.every((x) => x.n === 0)) return null;
+            return (
+              <tr style={`--c:${COLOR[t]}`}>
+                <th scope="row">
+                  <span class="punto" aria-hidden="true"></span>
+                  {TIPO_META[t].plural}
+                </th>
+                {porEdicion.map(({ ed, n }) => (
+                  <td>
+                    {n === 0 ? (
+                      <span class="vacio" aria-hidden="true">
+                        —
+                      </span>
+                    ) : (
+                      <a href={e(`/${ed}/${t}/`)}>{n}</a>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   </section>
 

@@ -78,7 +78,7 @@ npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 13. `tools/test/seo.mjs`: cada una de las 3558 páginas publica **una sola** canónica absoluta —dominio, base del despliegue y una barra final—, `og:url` idéntica a ella, `og:type` con `article` en las fichas y `website` en la portada y los listados, `twitter:card` y una `og:image` que es el PNG del sigilo de esa ficha —o el genérico— y existe en `dist/` como imagen. El dominio se lee de `astro.config.mjs`, así que cambiarlo en un sitio y no en el otro rompe el paso. Nació de que ninguna de las 3558 páginas llevara canónica ni `og:image`: GitHub Pages sirve `/…/` y `/…/index.html` con un 200, cada ficha se indexaba dos veces y al pegar un enlace en WhatsApp, Telegram o X no salía ninguna imagen.
 14. `tools/test/duplicados.py`: dos fichas de la misma carpeta y la misma categoría no pueden compartir nombre. Monta carpetas temporales con el caso bueno y el malo, y comprueba las dos carpetas de equipo reales. `validar.py` ya apuntaba los nombres repetidos en el informe, pero no los sumaba a problemas: `/5.5/equipo/` publicó dos «Vara» —la pértiga de 3 m de la pág. 103 y el canalizador arcano de la pág. 105, las dos como «Equipo de aventurero»— y la pasada seguía en verde. El homónimo en categorías distintas —«Bastón» arma y «Bastón» canalizador, «Competencia» de características y del glosario— es legítimo y no cuenta.
 
-`verificar:humo` sí necesita navegador: levanta `astro preview` en el puerto 8099, abre un Chrome headless con CDP en el 9223 con un perfil temporal, pasa `tools/test/humo.mjs` (navegación, herramientas de mesa, axe-core y avisos legales) y apaga los dos al terminar. Busca Chrome o Chromium en el `PATH`; `CHROME=/ruta/al/binario` para indicarlo a mano. Tarda alrededor de medio minuto.
+`verificar:humo` sí necesita navegador: levanta `astro preview` en el puerto 8099, abre un Chrome headless con CDP en el 9223 con un perfil temporal, pasa `tools/test/humo.mjs` (navegación, herramientas de mesa, recuentos del panel Explorar, axe-core y avisos legales) y apaga los dos al terminar. Busca Chrome o Chromium en el `PATH`; `CHROME=/ruta/al/binario` para indicarlo a mano. Tarda alrededor de medio minuto.
 
 Los mismos tres pasos a mano, cada uno en su terminal:
 
@@ -92,7 +92,7 @@ node tools/test/humo.mjs
 
 El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los catorce pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, dos fichas con el mismo nombre en su categoría, un filtro sin plegar, un tamaño partido en dos casillas, una columna vacía, una ficha sin icono, un alias cruzado, una línea de tipo mal partida, una tipografía mal acreditada o una canónica sin `og:image` paran el job `construir` y no se publica la versión nueva.
 
-Lo que **no** corre en CI es `verificar:humo`: necesita un Chrome headless y un servidor de vista previa levantados, y el flujo no los monta. Las comprobaciones de `tools/test/humo.mjs` —navegación, herramientas de mesa, axe-core y avisos legales— siguen siendo locales, y toca pasarlas a mano cuando el cambio toca plantillas o las herramientas de `/mesa/`.
+Lo que **no** corre en CI es `verificar:humo`: necesita un Chrome headless y un servidor de vista previa levantados, y el flujo no los monta. Las comprobaciones de `tools/test/humo.mjs` —navegación, herramientas de mesa, recuentos del panel Explorar, axe-core y avisos legales— siguen siendo locales, y toca pasarlas a mano cuando el cambio toca plantillas o las herramientas de `/mesa/`.
 
 Y como el disparador es el push a `main`, el check llega después del merge: un enlace roto no se publica, pero ya está en `main`. La puerta que lo evita es local, así que las dos se pasan antes de mergear: `npm run build && npm run verificar`.
 
@@ -124,6 +124,11 @@ Y como el disparador es el push a `main`, el check llega después del merge: un 
   pc) y Peso mezcla unidades (kg, g) en la misma columna, así que `src/lib/medidas.ts` los pasa a
   oro y a kilos antes de comparar: «40 000 po» cuenta 40 000 —no 40— y «125 g» cuenta 0,125 kg.
   Los VD fraccionarios («1/8», «1/4», «1/2») se leen como fracción.
+- El **panel Explorar** de la portada publica una columna por edición —5e y 5.5e— y cada cifra
+  enlaza al listado de esa edición, así que el número que se lee es el de la página que abre; el
+  total del encabezado es la suma de las dos y lo dice. Antes cada fila sumaba las dos ediciones y
+  el enlace llevaba solo a 5.5: anunciaba 658 conjuros y el listado decía 339. `humo.mjs` cruza la
+  fila Conjuros con los dos listados y la suma de las celdas con el total.
 - **Herramientas de mesa** en `/mesa/`: constructor de encuentros, ajuste y estimación de VD,
   iniciativa con vista de jugador, dados, PNJ y botín. La **pantalla del DM** vive en
   `/mesa/pantalla/`, con paneles configurables e imprimibles; la barra de la sección enlaza las

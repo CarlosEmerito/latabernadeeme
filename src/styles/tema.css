@@ -219,38 +219,79 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-3);
+  text-align: left;
+  caption-side: top;
 }
 
-.portada__lista {
-  list-style: none;
-  margin: 0;
-  padding: 0.35rem 0;
-}
-
-.portada__lista a {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 1.1rem;
-  text-decoration: none;
+/* Una columna por edición: cada cifra es la del listado que abre. */
+.portada__tabla {
+  width: 100%;
+  border-collapse: collapse;
   font-size: 0.9rem;
 }
 
-.portada__lista a:hover {
-  background: var(--surface-2);
+.portada__tabla thead th {
+  padding: 0.5rem 0.6rem 0.4rem;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: right;
 }
 
-.portada__lista .punto {
+.portada__tabla thead th:first-child {
+  padding-left: 1.1rem;
+  text-align: left;
+}
+
+.portada__tabla tbody th,
+.portada__tabla tbody td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--rule) 60%, transparent);
+  font-weight: 500;
+  text-align: right;
+}
+
+.portada__tabla tbody tr:last-child th,
+.portada__tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.portada__tabla tbody th {
+  padding-left: 1.1rem;
+  text-align: left;
+}
+
+.portada__tabla thead th:last-child,
+.portada__tabla tbody tr:last-child td:last-child {
+  padding-right: 1.1rem;
+}
+
+.portada__tabla .punto {
+  display: inline-block;
   width: 7px;
   height: 7px;
+  margin-right: 0.5rem;
   border-radius: 2px;
   background: var(--c, var(--accent));
-  flex: none;
+  vertical-align: middle;
 }
 
-.portada__lista .num {
-  margin-left: auto;
+.portada__tabla tbody a {
   color: var(--ink-3);
+  text-decoration: none;
+}
+
+.portada__tabla tbody a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.portada__tabla .vacio {
+  color: color-mix(in oklab, var(--ink-3) 55%, transparent);
 }
 
 /* ediciones de la portada */

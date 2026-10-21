@@ -82,6 +82,41 @@ try {
   const d = await evaluar(portada, `({h1: document.querySelectorAll('h1').length, ediciones: document.querySelectorAll('.edicion-carta').length, titulo: document.title})`);
   if (d.h1 === 1 && d.ediciones === 2) bien("portada: un h1 y dos ediciones");
   else fallo("portada", JSON.stringify(d));
+
+  // El panel Explorar sumaba las dos ediciones en cada fila y enlazaba solo a
+  // 5.5: anunciaba 658 conjuros y el listado que abría decía 339. Cada edición
+  // lleva su columna, así que la cifra de la celda tiene que ser la del listado
+  // que abre y la suma de todas las celdas, el total del encabezado.
+  const panel = await evaluar(
+    portada,
+    `(() => {
+      const fila = [...document.querySelectorAll('.portada__tabla tbody tr')].find(
+        (tr) => tr.querySelector('th')?.textContent.trim() === 'Conjuros',
+      );
+      if (!fila) return null;
+      const cabecera = document.querySelector('.portada__panel-cab')?.textContent ?? '';
+      return {
+        celdas: [...fila.querySelectorAll('td a')].map((a) => ({ n: Number(a.textContent.trim()), href: a.getAttribute('href') })),
+        suma: [...document.querySelectorAll('.portada__tabla tbody td a')].reduce((n, a) => n + Number(a.textContent.trim()), 0),
+        total: Number(cabecera.match(/[0-9]+/)?.[0]),
+      };
+    })()`,
+  );
+  if (!panel || panel.celdas.length !== 2) {
+    fallo("portada: panel Explorar", JSON.stringify(panel));
+  } else {
+    const anunciados = [];
+    for (const celda of panel.celdas) {
+      const pagina = await abrir(new URL(celda.href, new URL(BASE).origin).href);
+      anunciados.push(await evaluar(pagina, `Number(document.querySelector('.cabecera__meta b')?.textContent)`));
+    }
+    if (panel.celdas.every((c, i) => c.n === anunciados[i]) && panel.suma === panel.total) {
+      bien(`portada: el panel Explorar cuadra con sus listados (${anunciados.join(" / ")}, ${panel.suma} en total)`);
+    } else {
+      fallo("portada: panel Explorar", JSON.stringify({ celdas: panel.celdas, anunciados, suma: panel.suma, total: panel.total }));
+    }
+  }
+
   await axeEn(portada, "portada");
 } catch (e) {
   fallo("portada", String(e));

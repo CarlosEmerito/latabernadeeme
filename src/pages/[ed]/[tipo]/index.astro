@@ -2,6 +2,7 @@
 import Base from "../../../layouts/Base.astro";
 import Tabla from "../../../components/Tabla.astro";
 import { EDICIONES, TIPO_META, cargar, nombreTipo, type Edition, type Tipo, TIPOS } from "../../../lib/content";
+import { TAMANOS, tamanosDe } from "../../../lib/tamano";
 import { e } from "../../../lib/urls";
 
 export function getStaticPaths() {
@@ -110,7 +111,7 @@ const filas = entradas.map((en) => {
           tamano: String(d.size),
           pg: String(d.hp).split(" ")[0],
         },
-        facetas: { vd: String(d.cr ?? ""), tipo: String(d.type ?? ""), tamano: String(d.size ?? "") },
+        facetas: { vd: String(d.cr ?? ""), tipo: String(d.type ?? ""), tamano: tamanosDe(d.size).join("|") },
         rangos: { vd: vdNum(d.cr), pg: Number.parseInt(String(d.hp ?? "0"), 10) || 0 },
       };
     case "objetos":
@@ -198,7 +199,15 @@ if (tipo === "conjuros") {
 if (tipo === "monstruos") {
   facetas.push({ clave: "vd", etiqueta: "VD", tipo: "rango", min: 0, max: 30, paso: 0.125 });
   facetas.push(lista("tipo", "Tipo"));
-  facetas.push(lista("tamano", "Tamaño", ["Diminuto", "Pequeño", "Mediano", "Grande", "Enorme", "Gigante"]));
+  // Una casilla por tamaño, no por grafía: `tamanosDe` ya agrupa «Mediana» con
+  // «Mediano» y separa el alternativo «Mediano o Pequeño» en dos, así que aquí
+  // solo queda reunir los valores distintos —una criatura puede traer más de
+  // uno— en el orden de la tabla de tamaños.
+  const tamanos = ordenar(
+    unicos(filas.flatMap((f) => (f.facetas.tamano ? f.facetas.tamano.split("|") : []))),
+    [...TAMANOS],
+  );
+  facetas.push({ clave: "tamano", etiqueta: "Tamaño", valores: tamanos.map((v) => ({ valor: v, texto: v })) });
   facetas.push({ clave: "pg", etiqueta: "PG", tipo: "rango", min: 0, max: 700, paso: 5 });
 }
 if (tipo === "objetos") {

@@ -129,6 +129,35 @@ try {
   fallo("filtro", String(e));
 }
 
+// El filtro Tamaño ofrece una casilla por tamaño, no una por grafía: el SRD
+// trae «Mediano» y «Mediana» según la concordancia de la línea, y partirlas
+// dejaba 39 de las 126 criaturas medianas de 5.2.1 fuera de la casilla que se
+// marca. Se comprueba con el recuento que anuncia la propia casilla y con las
+// filas que quedan a la vista al marcarla.
+for (const ed of ["5.5", "5e"]) {
+  try {
+    const p = await abrir(`${BASE}/${ed}/monstruos/`);
+    const d = await evaluar(
+      p,
+      `(() => {
+        const casillas = [...document.querySelectorAll('[data-faceta="tamano"]')];
+        const femeninas = casillas.filter((c) => /^(Diminuta|Peque\u00f1a|Mediana|Gargantuesca)$/.test(c.value)).map((c) => c.value);
+        const mediano = casillas.find((c) => c.value === "Mediano");
+        if (!mediano) return { casillas: casillas.length, femeninas, anunciado: null, visibles: null };
+        const anunciado = Number(mediano.closest("label").querySelector(".faceta__n").textContent);
+        mediano.checked = true;
+        mediano.dispatchEvent(new Event("change", { bubbles: true }));
+        return { casillas: casillas.length, femeninas, anunciado, visibles: document.querySelectorAll("#cuerpo tr:not([hidden])").length };
+      })()`,
+    );
+    if (d.casillas >= 1 && d.casillas <= 7 && d.femeninas.length === 0 && d.anunciado === d.visibles && d.visibles > 100)
+      bien(`filtro tamaño ${ed}: ${d.casillas} casillas, «Mediano» anuncia ${d.anunciado} y enseña ${d.visibles}`);
+    else fallo(`filtro tamaño ${ed}`, JSON.stringify(d));
+  } catch (e) {
+    fallo(`filtro tamaño ${ed}`, String(e));
+  }
+}
+
 // El filtro de texto tiene que plegar tildes y mayúsculas: «dragon», «Dragón»
 // y «DRAGON» son la misma búsqueda, y antes dejaban la tabla vacía aunque
 // hubiera 43 dragones. Se teclea de verdad con `Input.insertText`; un evento

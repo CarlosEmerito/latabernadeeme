@@ -200,6 +200,10 @@ Decisión: **el Markdown es la fuente; el JSON es un derivado que se genera en c
 - Las facetas que se filtran y ordenan (`r`) van en número: el PX de un monstruo es un entero con
   el valor base de `xp`, no el texto del frontmatter — que se conserva en `d.xp` para mostrarlo
   tal cual.
+- La faceta del tamaño (`f.tamano`) va agrupada, como en el filtro del listado: la forma canónica y,
+  si la criatura admite dos, separadas con `|` («Mediano|Pequeño»). `d.tamano` conserva la palabra
+  del SRD —«Mediana»— para enseñarla tal cual. La agrupación vive en `src/lib/tamano.ts` y la usan
+  el listado y este JSON, así que las dos facetas no pueden divergir.
 - Tamaño real: 306 KB sin comprimir y **35 KB con gzip** por edición. Cabe en una visita.
 
 Regla: si un dato se puede derivar, se deriva. El JSON nunca es la fuente de la verdad.

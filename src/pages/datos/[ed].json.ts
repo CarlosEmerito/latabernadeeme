@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { EDICIONES, TIPOS, cargar, type Edition } from "../../lib/content";
 import { aliasDe } from "../../lib/alias";
+import { tamanosDe } from "../../lib/tamano";
 import { xpNumerico } from "../../lib/xp";
 
 export function getStaticPaths() {
@@ -51,7 +52,10 @@ export const GET: APIRoute = ({ params }) => {
           base.f = {
             vd: String(d.cr ?? ""),
             tipo: String(d.type ?? ""),
-            tamano: String(d.size ?? ""),
+            // La faceta agrupa las grafías del tamaño («Mediana» cuenta como
+            // «Mediano») y separa el alternativo con «|», igual que el listado;
+            // `d.tamano` conserva la palabra del SRD para enseñarla tal cual.
+            tamano: tamanosDe(d.size).join("|"),
           };
           base.r = { vd: vdNumerico(d.cr), xp: xpNumerico(d.xp), pg: Number.parseInt(String(d.hp ?? "0"), 10) || 0 };
           base.d = { vd: d.cr, xp: d.xp, tipo: d.type, tamano: d.size, pg: d.hp, ca: d.ac };

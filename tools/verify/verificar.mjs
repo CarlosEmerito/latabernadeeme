@@ -10,24 +10,28 @@
  *      que es lo que deja las anclas sin destino único.
  *   4. `tools/test/filtro.mjs` sobre `dist/`: que el filtro de texto de los
  *      listados venga plegado del HTML y «dragon» encuentre «Dragón».
- *   5. `tools/test/columnas.mjs` sobre `dist/`: que ningún listado publique una
+ *   5. `tools/test/tamano.mjs` sobre `dist/`: que el filtro Tamaño del
+ *      bestiario publique una casilla por tamaño —«Mediano» y «Mediana» son la
+ *      misma— y que el recuento de cada casilla sea el de las filas que la
+ *      llevan, sin criaturas fuera.
+ *   6. `tools/test/columnas.mjs` sobre `dist/`: que ningún listado publique una
  *      columna entera de guiones —el SRD 5.1 no declara la característica de
  *      sus clases ni la categoría de sus dotes— y que las celdas sigan
  *      alineadas con sus cabeceras.
- *   6. `tools/test/iconos.mjs` sobre `dist/`: que toda ficha lleve el icono de
+ *   7. `tools/test/iconos.mjs` sobre `dist/`: que toda ficha lleve el icono de
  *      su banda, que es lo que delata un tipo o una escuela sin SVG.
- *   7. `tools/test/alias.mjs` sobre `dist/`: que cada ficha publique el alias
+ *   8. `tools/test/alias.mjs` sobre `dist/`: que cada ficha publique el alias
  *      inglés que le toca —por nombre o, si el nombre es ambiguo, por ficha— y
  *      que `/datos/<edición>.json` sirva el mismo que pinta la página.
- *   8. `tools/test/iniciativa.mjs`: que el combate guardado en el navegador se
+ *   9. `tools/test/iniciativa.mjs`: que el combate guardado en el navegador se
  *      lea como un solo contrato en `/mesa/` y `/mesa/jugadores/` —JSON roto,
  *      entradas a medias y `turno` fuera de la lista incluidos—, para que
  *      recargar no deje las dos pantallas con combates distintos.
- *   9. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
+ *  10. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
  *      quien lo importe y ningún `export function` / `export const` suyo sin
  *      quien lo llame, que es como se cuela código muerto que duplica otra
  *      implementación y confunde sobre cuál manda.
- *  10. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
+ *  11. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
  *      las tipografías que el CSS carga —ni una de menos ni una de más— y que
  *      `package.json` no declare ninguna fuente sin importar.
  *
@@ -67,6 +71,13 @@ const filtro = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/filtro.mj
 if (filtro !== 0) {
   console.error("✗ El filtro de texto de los listados no pliega tildes.");
   process.exit(filtro);
+}
+
+console.log("▶ Filtro Tamaño del bestiario: tamano.mjs (dist/)");
+const tamano = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/tamano.mjs")]);
+if (tamano !== 0) {
+  console.error("✗ El filtro Tamaño del bestiario parte las grafías del tamaño o pierde criaturas.");
+  process.exit(tamano);
 }
 
 console.log("▶ Columnas sin datos: columnas.mjs (dist/)");
@@ -111,4 +122,4 @@ if (fuentes !== 0) {
   process.exit(fuentes);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, columnas, iconos, alias, iniciativa, código muerto y fuentes correctos.");
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto y fuentes correctos.");

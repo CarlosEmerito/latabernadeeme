@@ -55,21 +55,23 @@ Los PDF no se versionan: `descargar.py` los baja de `dndbeyond.com` y el reposit
 
 ```bash
 npm run build           # compila dist/ (Astro + índice de Pagefind)
-npm run verificar       # datos, enlaces, ids, filtro, columnas, iconos, alias, huérfanos y fuentes; no necesita navegador
+npm run verificar       # datos, enlaces, ids, filtro, tamaño, columnas, iconos, alias, iniciativa, huérfanos y fuentes; no necesita navegador
 npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 ```
 
-`verificar` ejecuta nueve pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
+`verificar` ejecuta once pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
 
 1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD y a la tabla del README, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados. Además vigila el perfil de las criaturas: ningún valor de `saves`, `skills`, `senses`, `languages` ni del resto de campos puede quedarse a mitad (el PDF los parte en varias líneas) y unas fichas testigo —`dragon-azul-adulto`, `dragon-rojo-adulto`, `espia`, `liche`, `naga-guardiana` y `archimago`— llevan el texto exacto que se perdía. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
 2. `tools/test/enlaces.mjs`: cada `href` y `src` interno del HTML compilado apunta a una página o fichero que existe, y cada fragmento (`#seccion`) a un `id` de la página de destino.
 3. `tools/test/ids.mjs`: ninguna página repite un `id`. Los `id` de los encabezados salen del texto (`slugify`), y `IdsDeDocumento` numera los repetidos de una misma página —`-2`, `-3`…— para que el índice lateral enlace a cada apartado y no todos al primero.
 4. `tools/test/filtro.mjs`: el `data-buscar` de cada fila es el nombre plegado (sin tildes ni mayúsculas) y las búsquedas sin tilde encuentran filas en los listados grandes.
-5. `tools/test/columnas.mjs`: ningún listado publica una columna cuyos valores sean todos el guion de relleno, y cada fila tiene tantas celdas como cabeceras. El SRD 5.1 no declara la característica principal de sus clases, así que `/5e/clases/` sale con Nombre y Dado y la columna se queda en `/5.5/clases/`, donde el dato sí está.
-6. `tools/test/iconos.mjs`: toda ficha publicada lleva el icono de su banda. El dibujo se elige por el nombre del tipo (`tipo-<slug>`) o de la escuela (`escuela-<slug>`) y un SVG que falte no rompe el build: la banda se queda muda. Así se colaron 88 fichas sin icono, las de los tipos Autómata y Enjambre y las de la escuela Ilusionismo.
-7. `tools/test/alias.mjs`: cada ficha publica el alias inglés que le toca y `/datos/<edición>.json` sirve el mismo que pinta la página. El diccionario va de inglés a español y se invierte por el nombre visible, que no es único: «Mago» es el monstruo `Mage` y la clase `Wizard`. Las fichas cuyo nombre es ambiguo se resuelven por `tipo/slug` en `src/lib/alias.ts`, y una que publique el alias de otra ficha o se quede sin el suyo tumba este paso.
-8. `tools/test/huerfanos.mjs`: cada módulo de `src/lib/` lo importa alguien de `src/` o de `tools/`. Un módulo que nadie importa es código muerto que aparenta ser la fuente de la verdad; ya pasó con `src/lib/facetas.ts`, doscientas líneas de facetas que el listado de verdad no usaba.
-9. `tools/test/fuentes.mjs`: README y `/licencias/` acreditan exactamente las tipografías que carga `src/styles/global.css` —la lista sale del `metadata.json` de cada paquete `@fontsource` importado, así que la comparación va en los dos sentidos— y `package.json` no declara ninguna fuente sin importar. Nació de que las dos páginas acreditaran EB Garamond e Inter mientras el sitio cargaba Newsreader, Instrument Sans y Geist Mono, con 5,7 MB de dependencias que nadie importaba.
+5. `tools/test/tamano.mjs`: el filtro Tamaño del bestiario publica una casilla por tamaño y no una por grafía del SRD —«Mediano» y «Mediana» son la misma criatura mediana—, el recuento de cada casilla es el de las filas que la llevan y `/datos/<edición>.json` sirve la misma faceta que el listado. Nació de que las diez casillas dejaran 39 de las 126 criaturas medianas de 5.2.1 fuera de «Mediano»; la agrupación vive en `src/lib/tamano.ts`.
+6. `tools/test/columnas.mjs`: ningún listado publica una columna cuyos valores sean todos el guion de relleno, y cada fila tiene tantas celdas como cabeceras. El SRD 5.1 no declara la característica principal de sus clases, así que `/5e/clases/` sale con Nombre y Dado y la columna se queda en `/5.5/clases/`, donde el dato sí está.
+7. `tools/test/iconos.mjs`: toda ficha publicada lleva el icono de su banda. El dibujo se elige por el nombre del tipo (`tipo-<slug>`) o de la escuela (`escuela-<slug>`) y un SVG que falte no rompe el build: la banda se queda muda. Así se colaron 88 fichas sin icono, las de los tipos Autómata y Enjambre y las de la escuela Ilusionismo.
+8. `tools/test/alias.mjs`: cada ficha publica el alias inglés que le toca y `/datos/<edición>.json` sirve el mismo que pinta la página. El diccionario va de inglés a español y se invierte por el nombre visible, que no es único: «Mago» es el monstruo `Mage` y la clase `Wizard`. Las fichas cuyo nombre es ambiguo se resuelven por `tipo/slug` en `src/lib/alias.ts`, y una que publique el alias de otra ficha o se quede sin el suyo tumba este paso.
+9. `tools/test/iniciativa.mjs`: el combate guardado en el navegador se lee como un solo contrato en `/mesa/` y `/mesa/jugadores/` —JSON roto, entradas a medias y `turno` fuera de la lista incluidos—, para que recargar no deje las dos pantallas con combates distintos.
+10. `tools/test/huerfanos.mjs`: cada módulo de `src/lib/` lo importa alguien de `src/` o de `tools/`. Un módulo que nadie importa es código muerto que aparenta ser la fuente de la verdad; ya pasó con `src/lib/facetas.ts`, doscientas líneas de facetas que el listado de verdad no usaba.
+11. `tools/test/fuentes.mjs`: README y `/licencias/` acreditan exactamente las tipografías que carga `src/styles/global.css` —la lista sale del `metadata.json` de cada paquete `@fontsource` importado, así que la comparación va en los dos sentidos— y `package.json` no declara ninguna fuente sin importar. Nació de que las dos páginas acreditaran EB Garamond e Inter mientras el sitio cargaba Newsreader, Instrument Sans y Geist Mono, con 5,7 MB de dependencias que nadie importaba.
 
 `verificar:humo` sí necesita navegador: levanta `astro preview` en el puerto 8099, abre un Chrome headless con CDP en el 9223 con un perfil temporal, pasa `tools/test/humo.mjs` (navegación, herramientas de mesa, axe-core y avisos legales) y apaga los dos al terminar. Busca Chrome o Chromium en el `PATH`; `CHROME=/ruta/al/binario` para indicarlo a mano. Tarda alrededor de medio minuto.
 
@@ -83,7 +85,7 @@ node tools/test/humo.mjs
 
 ### Qué comprueba CI y qué queda en local
 
-El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los nueve pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, un filtro sin plegar, una columna vacía, una ficha sin icono, un alias cruzado o una tipografía mal acreditada paran el job `construir` y no se publica la versión nueva.
+El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los once pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, un filtro sin plegar, un tamaño partido en dos casillas, una columna vacía, una ficha sin icono, un alias cruzado o una tipografía mal acreditada paran el job `construir` y no se publica la versión nueva.
 
 Lo que **no** corre en CI es `verificar:humo`: necesita un Chrome headless y un servidor de vista previa levantados, y el flujo no los monta. Las comprobaciones de `tools/test/humo.mjs` —navegación, herramientas de mesa, axe-core y avisos legales— siguen siendo locales, y toca pasarlas a mano cuando el cambio toca plantillas o las herramientas de `/mesa/`.
 
@@ -102,6 +104,11 @@ Y como el disparador es el push a `main`, el check llega después del merge: un 
 - El filtro de texto de cada listado ignora tildes y mayúsculas: «dragon» encuentra «Dragón». La
   normalización vive en `src/lib/texto.ts` (`plegar`), que comparten el atributo `data-buscar` del
   HTML y la consulta del cliente; `slugify` usa la misma función.
+- El filtro Tamaño del bestiario agrupa las dos grafías que trae el SRD: «Mediano» y «Mediana» son
+  la misma casilla, y una criatura que puede ser de dos tamaños («Mediano o Pequeño») sale al
+  filtrar por cualquiera de ellos. La celda de la tabla conserva la palabra del original. La
+  agrupación vive en `src/lib/tamano.ts` (`tamanosDe`) y la usan el listado y `/datos/<edición>.json`,
+  así que la faceta del JSON y la del filtro no pueden divergir.
 - El orden por columna compara el valor, no el principio del texto. Precio mezcla monedas (po, pp,
   pc) y Peso mezcla unidades (kg, g) en la misma columna, así que `src/lib/medidas.ts` los pasa a
   oro y a kilos antes de comparar: «40 000 po» cuenta 40 000 —no 40— y «125 g» cuenta 0,125 kg.

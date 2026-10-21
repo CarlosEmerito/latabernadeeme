@@ -802,13 +802,34 @@ try {
        i.value = o.value;
        document.getElementById('aj-objetivo').value = '5';
        document.getElementById('aj-calcular').click();
-       const aj = document.getElementById('aj-salida').textContent.replace(/\s+/g, ' ');
-       document.getElementById('vd-estimar').click();
-       const vd = document.getElementById('vd-salida').textContent.replace(/\s+/g, ' ');
-       return {aj: aj.slice(0, 90), vd: vd.slice(0, 90)};
+       const aj = document.getElementById('aj-salida').textContent.replace(/\\s+/g, ' ');
+       const pg = document.getElementById('vd-pg');
+       const ca = document.getElementById('vd-ca');
+       const boton = document.getElementById('vd-estimar');
+       const salida = document.getElementById('vd-salida');
+       const estimar = (vpg, vca) => {
+         pg.value = vpg;
+         ca.value = vca;
+         salida.innerHTML = '';
+         boton.click();
+         return salida.textContent.replace(/\\s+/g, ' ').trim();
+       };
+       return {
+         aj: aj.slice(0, 90),
+         conDatos: estimar('45', '15'),
+         sinPg: estimar('', '15'),
+         sinCa: estimar('45', ''),
+       };
      })()`,
   );
-  if (/VD 5/.test(d.aj) && /VD/.test(d.vd)) bien(`ajustar y estimar VD: ${d.vd.slice(0, 50)}`);
+  if (
+    /VD 5/.test(d.aj) &&
+    /VD \d+ probable/.test(d.conDatos) &&
+    /PG mayor que 0/.test(d.sinPg) &&
+    !/probable/.test(d.sinPg) &&
+    /Sin CA/.test(d.sinCa)
+  )
+    bien(`ajustar y estimar VD: ${d.conDatos.slice(0, 50)}`);
   else fallo("ajustar VD", JSON.stringify(d));
 } catch (e) {
   fallo("ajustar VD", String(e));

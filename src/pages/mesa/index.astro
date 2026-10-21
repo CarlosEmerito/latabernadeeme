@@ -96,7 +96,7 @@ for (const o of objetos51) {
 
     <section class="mesa-panel" aria-labelledby="p-vd">
       <h2 id="p-vd">Estimar VD</h2>
-      <p class="mesa-panel__nota">Para una criatura propia: dime PG y CA y busco sus vecinas.</p>
+      <p class="mesa-panel__nota">Para una criatura propia: con su PG y su CA busco sus vecinas. Si no sabes la CA, se estima solo por PG.</p>
       <div class="mesa-fila">
         <label>PG <input type="number" id="vd-pg" min="1" value="45" /></label>
         <label>CA <input type="number" id="vd-ca" min="1" value="15" /></label>
@@ -330,11 +330,33 @@ for (const o of objetos51) {
 
     /* ------------------------------------------------------- estimar VD */
 
+    /**
+     * Campo numérico de la herramienta, en positivo o nada.
+     *
+     * `type=number` no impide dejar el campo vacío, y `Number("")` es 0, así
+     * que un PG en blanco entraba como 0 y `Math.log2(hp / 0)` daba Infinity
+     * para las 330 criaturas: todas empataban, el comparador devolvía NaN y la
+     * herramienta contestaba «VD 10 probable» con la primera del catálogo.
+     * Un 0 o un negativo tampoco son un PG ni una CA de verdad.
+     */
+    const positivo = (valor: string) => {
+      const n = Number(valor);
+      return Number.isFinite(n) && n > 0 ? n : 0;
+    };
+
     $("vd-estimar")?.addEventListener("click", () => {
-      const pg = Number(($("vd-pg") as HTMLInputElement).value) || 0;
-      const ca = Number(($("vd-ca") as HTMLInputElement).value) || 0;
+      const campoPg = $("vd-pg") as HTMLInputElement;
       const salida = $("vd-salida");
       if (!salida || !catalogo.length) return;
+
+      const pg = positivo(campoPg.value);
+      const ca = positivo(($("vd-ca") as HTMLInputElement).value);
+      if (!pg) {
+        campoPg.setAttribute("aria-invalid", "true");
+        salida.innerHTML = `<p class="muted">Escribe un PG mayor que 0: sin PG no hay con qué comparar.</p>`;
+        return;
+      }
+      campoPg.removeAttribute("aria-invalid");
 
       const vecinas = catalogo
         .map((m) => ({
@@ -343,17 +365,23 @@ for (const o of objetos51) {
           hp: numeros(m.d.pg),
           ac: numeros(m.d.ca),
         }))
-        .filter((m) => m.hp > 0 && m.ac > 0)
-        .map((m) => ({ ...m, d: Math.abs(Math.log2(m.hp / pg)) + Math.abs(m.ac - ca) / 4 }))
+        .filter((m) => m.hp > 0 && (!ca || m.ac > 0))
+        .map((m) => ({ ...m, d: Math.abs(Math.log2(m.hp / pg)) + (ca ? Math.abs(m.ac - ca) / 4 : 0) }))
         .sort((a, b) => a.d - b.d)
         .slice(0, 7);
+
+      if (!vecinas.length) {
+        salida.innerHTML = `<p class="muted">El catálogo no tiene criaturas con PG: no hay con qué comparar.</p>`;
+        return;
+      }
 
       const pesos = new Map<string, number>();
       for (const v of vecinas) pesos.set(v.vd, (pesos.get(v.vd) ?? 0) + 1);
       const [vdFrecuente] = [...pesos.entries()].sort((a, b) => b[1] - a[1])[0];
 
       salida.innerHTML = `<strong>VD ${vdFrecuente}</strong> probable.
-        <br><span class="muted">Se parece a ${vecinas.slice(0, 3).map((v) => `${v.n} (VD ${v.vd})`).join(", ")}.</span>`;
+        <br><span class="muted">Se parece a ${vecinas.slice(0, 3).map((v) => `${v.n} (VD ${v.vd})`).join(", ")}.</span>
+        ${ca ? "" : `<br><span class="muted">Sin CA: he comparado solo por PG. Escribe la CA para afinar.</span>`}`;
     });
 
     /* ------------------------------------------------------------ iniciativa */

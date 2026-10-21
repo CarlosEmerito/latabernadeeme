@@ -19,7 +19,7 @@ $ cd data/ed52/clases && ls | wc -l     → 12
 Comprobado además, fichero a fichero: 20 filas `| N |` en cada tabla de
 progresión, un `## Subclases` con al menos una subclase en las 24 clases y
 todos los rasgos con su nivel en el encabezado. `data/*/conjuros` y
-`data/*/monstruos` no se han modificado (319/302 y 339/315 ficheros).
+`data/*/monstruos` no se han modificado (319/317 y 339/330 ficheros).
 
 ## Recuento
 

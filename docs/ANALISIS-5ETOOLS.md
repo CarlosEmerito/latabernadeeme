@@ -216,7 +216,7 @@ cuando lleguen las islas de JavaScript.
 
 | Capacidad | 5etools | La Taberna de Eme | Distancia |
 |---|---|---|---|
-| Contenido del SRD completo en español | — | Sí, 2.457 entradas | Ventaja nuestra |
+| Contenido del SRD completo en español | — | Sí, 2.490 entradas | Ventaja nuestra |
 | Contenido de manuales y aventuras | Sí | No (ni se puede) | Legal, no técnica |
 | Dos ediciones conviviendo | Parcial (dos sitios) | Sí, hermanas en el mismo sitio | Ventaja nuestra |
 | Búsqueda global | Índice propio en cliente | Pagefind | Equiparable |

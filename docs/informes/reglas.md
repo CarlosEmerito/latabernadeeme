@@ -8,9 +8,14 @@ extraídos del PDF con `tools/ingest/import_rules.py` y el lector
 
 | Edición | Entradas | Palabras | Con tabla | Páginas de origen |
 |---|---|---|---|---|
-| SRD 5.1 | 44 | 30 516 | 9 | 79-110, 209-220, 389-390 |
-| SRD 5.2.1 | 174 | 34 005 | 20 | 5-20, 194-210, 211-222 |
-| **Total** | **218** | **64 521** | **29** | |
+| SRD 5.1 | 47 | 33 743 | 10 | 79-110, 209-220, 380, 389-391, 394 |
+| SRD 5.2.1 | 174 | 34 004 | 20 | 5-20, 194-210, 211-222 |
+| **Total** | **221** | **67 747** | **30** | |
+
+Las tres entradas de Ambientación del 5.1 llegaron después de que se escribiera
+este informe —los planos de existencia, los panteones y la plantilla de
+semidragón— y no lo actualizaron. `tools/test/cifras.py` mide estas cifras
+desde `data/` en cada pasada, así que ya no pueden volver a quedar atrás.
 
 ### SRD 5.1 por categoría
 
@@ -22,6 +27,7 @@ extraídos del PDF con `tools/ingest/import_rules.py` y el lector
 | Peligros | 4 |
 | Exploración | 3 |
 | Magia | 3 |
+| Ambientación | 3 |
 | Descanso | 2 |
 | Equipo | 1 |
 
@@ -96,6 +102,10 @@ fusión de celdas. Las listas de palabras sueltas de algunas voces del glosario
 ("Atacar Esconderse Preparar una Ayudar…") son así en el original: son
 diagramas de palabras, no texto corrido, y se han dejado literales.
 
+La Trigésima entrada con tabla es `data/ed51/reglas/panteones.md`, que no sale
+del algoritmo de extracción sino de `tools/ingest/extraer_panteones.py`: el
+apéndice de los panteones viene en dos columnas y se reconstruye por posición.
+
 ## Muestras
 
 - `data/ed51/reglas/ventaja-y-desventaja.md`
@@ -110,8 +120,8 @@ diagramas de palabras, no texto corrido, y se han dejado literales.
   nombre puede repetirse si la categoría lo separa; `validar.py` solo suspende la
   pasada cuando dos fichas de la misma carpeta y la misma categoría comparten
   nombre.
-- `tools/verify/validar.py` da las dos carpetas como OK (44 y 174 entradas) y el
-  sitio compila con las 218 fichas nuevas (`npm run build`).
+- `tools/verify/validar.py` da las dos carpetas como OK (47 y 174 entradas) y el
+  sitio compila con las 221 fichas (`npm run build`).
 - Para regenerar solo las reglas: `npm run datos:reglas`.
 
 ## Reproducir

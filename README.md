@@ -42,6 +42,7 @@ tools/verify/
   validar.py        recuentos, campos, cuerpos y tabla del README
 tools/test/
   tipo.py           cómo parte la línea de tipo del perfil (tipo, tamaño, alineamiento)
+  cifras.py         que los recuentos de los informes cuadren con los datos
 ```
 
 ```bash
@@ -57,11 +58,11 @@ Los PDF no se versionan: `descargar.py` los baja de `dndbeyond.com` y el reposit
 
 ```bash
 npm run build           # compila dist/ (Astro + índice de Pagefind + tarjetas sociales)
-npm run verificar       # datos, enlaces, ids, filtro, tamaño, columnas, iconos, alias, iniciativa, huérfanos, fuentes, línea de tipo, metadatos sociales y títulos únicos por sección; no necesita navegador
+npm run verificar       # datos, enlaces, ids, filtro, tamaño, columnas, iconos, alias, iniciativa, huérfanos, fuentes, línea de tipo, metadatos sociales, títulos únicos por sección y cifras de los informes; no necesita navegador
 npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 ```
 
-`verificar` ejecuta quince pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
+`verificar` ejecuta dieciséis pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
 
 1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD y a la tabla del README, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados por nombre dentro de la misma categoría —dos fichas con el mismo nombre y la misma categoría publican dos filas que el lector no puede distinguir y suspenden la pasada; el mismo nombre en categorías distintas es legítimo y lo separa la columna Categoría—. Además vigila el perfil de las criaturas: ningún valor de `saves`, `skills`, `senses`, `languages` ni del resto de campos puede quedarse a mitad (el PDF los parte en varias líneas), ninguna línea de tipo deja el tamaño o el complemento del tipo dentro del alineamiento, y unas fichas testigo —`dragon-azul-adulto`, `dragon-rojo-adulto`, `espia`, `liche`, `naga-guardiana` y `archimago`— llevan el texto exacto que se perdía. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
 2. `tools/test/enlaces.mjs`: cada `href` y `src` interno del HTML compilado apunta a una página o fichero que existe, y cada fragmento (`#seccion`) a un `id` de la página de destino.
@@ -78,6 +79,7 @@ npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 13. `tools/test/seo.mjs`: cada una de las 3558 páginas publica **una sola** canónica absoluta —dominio, base del despliegue y una barra final—, `og:url` idéntica a ella, `og:type` con `article` en las fichas y `website` en la portada y los listados, `twitter:card` y una `og:image` que es el PNG del sigilo de esa ficha —o el genérico— y existe en `dist/` como imagen. El dominio se lee de `astro.config.mjs`, así que cambiarlo en un sitio y no en el otro rompe el paso. Nació de que ninguna de las 3558 páginas llevara canónica ni `og:image`: GitHub Pages sirve `/…/` y `/…/index.html` con un 200, cada ficha se indexaba dos veces y al pegar un enlace en WhatsApp, Telegram o X no salía ninguna imagen.
 14. `tools/test/duplicados.py`: dos fichas de la misma carpeta y la misma categoría no pueden compartir nombre. Monta carpetas temporales con el caso bueno y el malo, y comprueba las dos carpetas de equipo reales. `validar.py` ya apuntaba los nombres repetidos en el informe, pero no los sumaba a problemas: `/5.5/equipo/` publicó dos «Vara» —la pértiga de 3 m de la pág. 103 y el canalizador arcano de la pág. 105, las dos como «Equipo de aventurero»— y la pasada seguía en verde. El homónimo en categorías distintas —«Bastón» arma y «Bastón» canalizador, «Competencia» de características y del glosario— es legítimo y no cuenta.
 15. `tools/test/titulos.mjs`: ninguna página comparte `<title>` con una de otra sección y todas publican uno. El título se componía como nombre + edición, así que `/5e/clases/mago/` y `/5e/monstruos/mago/` —una clase y una criatura— salían las dos como «Mago · D&D 5e» en la pestaña, en el historial y en Google, y en `/comparar/` compartían además la descripción; ahora el título lleva la sección («Mago · Clase · D&D 5e»). Los homónimos de la misma sección —«Bastón» arma y «Bastón» canalizador, que la categoría separa— se listan aparte y no suspenden el paso: lo que les toca es la ficha, no el título.
+16. `tools/test/cifras.py`: los recuentos que declaran los informes versionados tienen que cuadrar con `data/` y con `dist/datos/`. Mide las entradas, las palabras y las tablas de `docs/informes/reglas.md`, las fichas de `docs/informes/monstruos.md`, los ficheros por carpeta de `docs/informes/origenes-equipo.md` y de `docs/informes/objetos.md`, el total de entradas, el tamaño del índice y las listas de categorías de `docs/DATOS.md`, y las entradas y páginas que citan los documentos de plan. Nació de que los informes quedaran atrás sin que nada lo notara: `reglas.md` declaraba 44 reglas en el 5.1 y 218 en total (hay 47 y 221), `monstruos.md` decía 302 y 315 criaturas (hay 317 y 330) y `DATOS.md` hablaba de 2.457 entradas y de un índice de 306 KB (hay 2.490 y unos 300 KB). Es el mismo hueco que la tabla del README, que ya vigilaba `validar.py`.
 
 `verificar:humo` sí necesita navegador: levanta `astro preview` en el puerto 8099, abre un Chrome headless con CDP en el 9223 con un perfil temporal, pasa `tools/test/humo.mjs` (navegación, herramientas de mesa, recuentos del panel Explorar, axe-core y avisos legales) y apaga los dos al terminar. Busca Chrome o Chromium en el `PATH`; `CHROME=/ruta/al/binario` para indicarlo a mano. Tarda alrededor de medio minuto.
 
@@ -91,7 +93,7 @@ node tools/test/humo.mjs
 
 ### Qué comprueba CI y qué queda en local
 
-El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los quince pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, dos fichas con el mismo nombre en su categoría, dos páginas de secciones distintas con el mismo título, un filtro sin plegar, un tamaño partido en dos casillas, una columna vacía, una ficha sin icono, un alias cruzado, una línea de tipo mal partida, una tipografía mal acreditada o una canónica sin `og:image` paran el job `construir` y no se publica la versión nueva.
+El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los dieciséis pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, dos fichas con el mismo nombre en su categoría, dos páginas de secciones distintas con el mismo título, un filtro sin plegar, un tamaño partido en dos casillas, una columna vacía, una ficha sin icono, un alias cruzado, una línea de tipo mal partida, una tipografía mal acreditada, una canónica sin `og:image` o un informe que declara unas cifras que ya no cuadran paran el job `construir` y no se publica la versión nueva.
 
 Lo que **no** corre en CI es `verificar:humo`: necesita un Chrome headless y un servidor de vista previa levantados, y el flujo no los monta. Las comprobaciones de `tools/test/humo.mjs` —navegación, herramientas de mesa, recuentos del panel Explorar, axe-core y avisos legales— siguen siendo locales, y toca pasarlas a mano cuando el cambio toca plantillas o las herramientas de `/mesa/`.
 

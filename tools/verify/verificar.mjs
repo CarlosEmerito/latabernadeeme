@@ -47,6 +47,11 @@
  *  15. `tools/test/titulos.mjs` sobre `dist/`: que ninguna página comparta
  *      `<title>` con una de otra sección —«Escudo» conjuro y «Escudo» equipo
  *      salían iguales en la pestaña y en Google— y que todas tengan uno.
+ *  16. `tools/test/cifras.py`: que los recuentos que declaran los informes
+ *      versionados cuadren con `data/` y con `dist/datos/` —las entradas, las
+ *      palabras y las tablas de `reglas.md`, las fichas de `monstruos.md`, los
+ *      ficheros por carpeta de `origenes-equipo.md` y de `objetos.md`, y el
+ *      total de entradas y el tamaño del índice de `DATOS.md`.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -163,4 +168,11 @@ if (titulos !== 0) {
   process.exit(titulos);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos y títulos únicos por sección correctos.");
+console.log("▶ Cifras de los informes: cifras.py (data/ y dist/datos/)");
+const cifras = ejecutar(python, [path.join(RAIZ, "tools/test/cifras.py")]);
+if (cifras !== 0) {
+  console.error("✗ Los informes declaran recuentos que no cuadran con los datos.");
+  process.exit(cifras);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección y cifras de los informes correctos.");

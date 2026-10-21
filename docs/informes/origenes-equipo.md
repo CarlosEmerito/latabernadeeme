@@ -16,7 +16,7 @@ Fecha: 20 de octubre de 2026 · Generado por los scripts de `tools/ingest` (pipe
 | `equipo/` | 213 | 188 |
 | **Total nuevo** | **224** | **218** |
 
-Sin cambios (no se han tocado): `conjuros/` 319 y 339, `monstruos/` 302 y 315.
+Sin cambios (no se han tocado): `conjuros/` 319 y 339, `monstruos/` 317 y 330.
 
 ### Desglose de `equipo/`
 

@@ -73,7 +73,7 @@ un solo color de acento. Coherente con la tipografía serif y con el nombre del 
 ### B. Icono y sigilo
 Un icono por tipo y escuela (game-icons) y, para cada entrada, un **sigilo generado**: un SVG
 determinista a partir del nombre, con el color de su sección. 
-- **A favor:** cubre las 2.457 entradas sin una sola licencia discutible, pesa kilobytes y da
+- **A favor:** cubre las 2.490 entradas sin una sola licencia discutible, pesa kilobytes y da
   coherencia total. Es lo que hacen los sitios serios cuando no tienen arte.
 - **En contra:** no ilustra; identifica.
 

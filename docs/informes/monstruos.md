@@ -15,11 +15,16 @@ del PDF correspondiente).
 
 | Edición | Fichas | Sin campos | Características mal | Sin acciones | No literales |
 |---|---:|---:|---:|---:|---:|
-| 5e (SRD 5.1) | 302 | 0 | 0 | 3 | 0 |
-| 5.5 (SRD 5.2.1) | 315 | 0 | 0 | 1 | 0 |
+| 5e (SRD 5.1) | 317 | 0 | 0 | 3 | 0 |
+| 5.5 (SRD 5.2.1) | 330 | 0 | 0 | 1 | 0 |
 
 Las cuatro fichas «sin acciones» son criaturas que efectivamente no tienen
 ninguna en el original: caballito de mar, rana, chillón y hongo chillón.
+
+Las treinta criaturas que faltaban para llegar a 317 y 330 llegaron después de
+que se escribiera este informe, con `tools/ingest/completar_monstruos.py`. Las
+cifras se vuelven a medir en cada pasada con `tools/test/cifras.py`, así que ya
+no pueden quedar atrás.
 
 ## Qué estaba roto y cómo se arregló
 

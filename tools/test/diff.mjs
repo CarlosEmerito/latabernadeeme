@@ -161,6 +161,77 @@ comprueba("ningún encabezado frente a un párrafo", () => {
   }
 });
 
+// 7. Dos apartados con nombres distintos NO se emparejan, aunque compartan el
+//    nivel. El 5.2.1 renombró medio SRD, así que «Senda Primordial (nivel 3)»
+//    del 5.1 y «Subclase de bárbaro (nivel 3)» del 5.2.1 son apartados
+//    distintos: emparejarlos hacía que el nombre del 5.2.1 no llegara al HTML y
+//    la página escondía media redacción.
+comprueba("apartados con nombres distintos no se emparejan", () => {
+  const filas = alinear("### Senda Primordial (nivel 3)", "### Subclase de bárbaro (nivel 3)");
+  assert.equal(filas.length, 2, `filas: ${JSON.stringify(filas)}`);
+  assert.equal(filas[0].estado, "solo-izq");
+  assert.equal(filas[1].estado, "solo-der");
+  assert.equal(filas[0].der, undefined);
+  assert.equal(filas[1].izq, undefined);
+});
+
+// Y dos apartados con el mismo nombre pero niveles que no se tocan tampoco:
+// «Furia (nivel 1)» y «Furia (nivel 11)» son rasgos distintos.
+comprueba("apartados con el mismo nombre y niveles distintos no se emparejan", () => {
+  const filas = alinear("### Furia (nivel 1)", "### Furia (nivel 11)");
+  assert.equal(filas.length, 2, `filas: ${JSON.stringify(filas)}`);
+  assert.equal(filas[0].estado, "solo-izq");
+  assert.equal(filas[1].estado, "solo-der");
+});
+
+// Pero el mismo nombre con un nivel compartido sí es el mismo apartado, aunque
+// uno declare varios niveles: «Mejora de Característica (niveles 4, 8, 12, 16 y
+// 19)» del 5.1 y «Mejora de característica (nivel 4)» del 5.2.1.
+comprueba("apartados con el mismo nombre y un nivel en común sí se emparejan", () => {
+  const filas = alinear(
+    "### Mejora de Característica (niveles 4, 8, 12, 16 y 19)",
+    "### Mejora de característica (nivel 4)",
+  );
+  assert.equal(filas.length, 1, `filas: ${JSON.stringify(filas)}`);
+  assert.equal(filas[0].estado, "cambia");
+});
+
+// Un apartado que solo cambió de redacción también se empareja: el 5.1
+// llamaba «Crítico Brutal» a lo que el 5.2.1 llama «Golpe brutal», y el
+// apartado es el mismo aunque el nombre no coincida palabra por palabra.
+comprueba("un apartado renombrado se empareja con el suyo", () => {
+  const filas = alinear("### Crítico Brutal (niveles 9, 13 y 17)", "### Golpe brutal (nivel 9)");
+  assert.equal(filas.length, 1, `filas: ${JSON.stringify(filas)}`);
+  assert.equal(filas[0].estado, "cambia");
+  assert.ok(filas[0].izq.includes("Crítico Brutal"));
+  assert.ok(filas[0].der.includes("Golpe brutal"));
+});
+
+// Y un apartado sin nivel se empareja con otro sin nivel por su nombre.
+comprueba("apartados sin nivel se emparejan por su nombre", () => {
+  const filas = alinear("### Rasgos de clase", "### Rasgos de clase");
+  assert.equal(filas.length, 1);
+  assert.equal(filas[0].estado, "igual");
+});
+
+// 8. Un encabezado pegado a su párrafo se parte en dos bloques: el apartado y
+//    el texto que lo explica. Como bloque único, el párrafo no se alineaba con
+//    nada y su texto no llegaba a la página de comparación.
+comprueba("un encabezado pegado a su párrafo se parte en dos bloques", () => {
+  const filas = alinear("#### Frenesí (nivel 3)\nEl texto que explica el frenesí.", "#### Frenesí (nivel 3)");
+  assert.equal(filas.length, 2, `filas: ${JSON.stringify(filas)}`);
+  assert.equal(filas[0].izq, "#### Frenesí (nivel 3)");
+  assert.equal(filas[0].der, "#### Frenesí (nivel 3)");
+  assert.equal(filas[1].estado, "solo-izq");
+  assert.ok(filas[1].izq.includes("El texto que explica el frenesí."));
+});
+
+// Y `bloques` hace esa partición.
+comprueba("bloques separa el encabezado de su párrafo", () => {
+  assert.deepEqual(bloques("## Rasgos\n\nUno."), ["## Rasgos", "Uno."]);
+  assert.deepEqual(bloques("## Rasgos\nEl texto pegado."), ["## Rasgos", "El texto pegado."]);
+});
+
 // 6. Los cuatro contadores del resumen suman las filas que hay.
 comprueba("los contadores suman las filas", () => {
   const izq = "## Rasgos\n\nUno.\n\n## Acciones\n\nDos.";

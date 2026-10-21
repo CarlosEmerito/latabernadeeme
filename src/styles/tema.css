@@ -1415,6 +1415,28 @@
   gap: 1rem;
 }
 
+/* Un apartado que cambió de nombre se enseña con las dos redacciones: la del
+   5.1 y la del 5.2.1, cada una con su etiqueta. Antes solo se pintaba una y la
+   otra no llegaba al HTML. */
+.comparar__seccion-titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.comparar__seccion-edicion {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.comparar__seccion-titulo .comparar__seccion-edicion:not(:first-child) {
+  margin-left: 0.5rem;
+}
+
 .comparar__seccion-nota {
   font-size: 0.64rem;
   letter-spacing: 0.08em;

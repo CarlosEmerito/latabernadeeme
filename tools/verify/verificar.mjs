@@ -56,6 +56,9 @@
  *      palabras y las tablas de `reglas.md`, las fichas de `monstruos.md`, los
  *      ficheros por carpeta de `origenes-equipo.md` y de `objetos.md`, y el
  *      total de entradas y el tamaño del índice de `DATOS.md`.
+ *  18. `tools/test/secciones.mjs` sobre `dist/`: que todos los apartados de
+ *      las dos ediciones se publiquen en su página de comparación, que es donde
+ *      se ven las dos redacciones de un mismo apartado.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -186,4 +189,11 @@ if (cifras !== 0) {
   process.exit(cifras);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección y cifras de los informes correctos.");
+console.log("▶ Apartados del comparador: secciones.mjs (dist/)");
+const secciones = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/secciones.mjs")]);
+if (secciones !== 0) {
+  console.error("✗ Hay apartados de una edición que no se publican en su página de comparación.");
+  process.exit(secciones);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y apartados del comparador correctos.");

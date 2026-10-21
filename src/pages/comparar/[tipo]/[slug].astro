@@ -73,7 +73,21 @@ const bloque = (markdown: string) => ids.aplicar(renderizar(markdown));
     {filas.map((f) =>
       (f.izq ?? f.der ?? "").startsWith("#") ? (
         <div class="comparar__seccion" role="row">
-          <span role="cell" set:html={bloque((f.izq ?? f.der)!)} />
+          <span role="cell" class="comparar__seccion-titulo">
+            {f.izq && f.der && f.estado === "cambia" ? (
+              // Los dos apartados tienen nombres distintos: se enseñan las dos
+              // redacciones. Antes solo se pintaba la de la izquierda y el
+              // nombre del 5.2.1 no llegaba al HTML.
+              <>
+                <span class="comparar__seccion-edicion">{EDICIONES["5e"].srd}:</span>
+                <span set:html={bloque(f.izq)} />
+                <span class="comparar__seccion-edicion">{EDICIONES["5.5"].srd}:</span>
+                <span set:html={bloque(f.der)} />
+              </>
+            ) : (
+              <span set:html={bloque((f.izq ?? f.der)!)} />
+            )}
+          </span>
           {f.estado === "solo-izq" && <span class="comparar__seccion-nota">Solo en {EDICIONES["5e"].srd}</span>}
           {f.estado === "solo-der" && <span class="comparar__seccion-nota">Solo en {EDICIONES["5.5"].srd}</span>}
         </div>

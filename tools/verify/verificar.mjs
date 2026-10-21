@@ -19,11 +19,15 @@
  *   7. `tools/test/alias.mjs` sobre `dist/`: que cada ficha publique el alias
  *      inglés que le toca —por nombre o, si el nombre es ambiguo, por ficha— y
  *      que `/datos/<edición>.json` sirva el mismo que pinta la página.
- *   8. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
+ *   8. `tools/test/iniciativa.mjs`: que el combate guardado en el navegador se
+ *      lea como un solo contrato en `/mesa/` y `/mesa/jugadores/` —JSON roto,
+ *      entradas a medias y `turno` fuera de la lista incluidos—, para que
+ *      recargar no deje las dos pantallas con combates distintos.
+ *   9. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
  *      quien lo importe y ningún `export function` / `export const` suyo sin
  *      quien lo llame, que es como se cuela código muerto que duplica otra
  *      implementación y confunde sobre cuál manda.
- *   9. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
+ *  10. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
  *      las tipografías que el CSS carga —ni una de menos ni una de más— y que
  *      `package.json` no declare ninguna fuente sin importar.
  *
@@ -86,6 +90,13 @@ if (alias !== 0) {
   process.exit(alias);
 }
 
+console.log("▶ Combate guardado: iniciativa.mjs (src/lib/)");
+const iniciativa = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/iniciativa.mjs")]);
+if (iniciativa !== 0) {
+  console.error("✗ La iniciativa guardada no se lee igual en la mesa y en la vista de jugador.");
+  process.exit(iniciativa);
+}
+
 console.log("▶ Módulos y exports sin uso: huerfanos.mjs (src/lib/)");
 const huerfanos = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/huerfanos.mjs")]);
 if (huerfanos !== 0) {
@@ -100,4 +111,4 @@ if (fuentes !== 0) {
   process.exit(fuentes);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, columnas, iconos, alias, código muerto y fuentes correctos.");
+console.log("✓ Datos, enlaces, ids, filtro, columnas, iconos, alias, iniciativa, código muerto y fuentes correctos.");

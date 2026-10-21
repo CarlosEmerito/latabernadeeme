@@ -377,10 +377,29 @@ try {
   if (/PX ajustados/.test(enc) && !/^0 PX/.test(enc.trim())) bien(`encuentros: ${enc.trim().replace(/\s+/g, " ").slice(0, 70)}`);
   else fallo("encuentros", enc);
 
+  // El combate se guardaba en localStorage pero no se restauraba al cargar:
+  // recargar /mesa/ dejaba la lista vacía —«Siguiente turno» no hacía nada— y el
+  // primer «Añadir» borraba el orden que la vista de jugador seguía pintando. Se
+  // comprueba el ciclo entero: añadir dos, pasar turno, recargar y que el orden y
+  // el turno activo sigan donde estaban; añadir una tercera sin perder las otras.
+  const campos = `const n=document.getElementById('ini-nombre'), v=document.getElementById('ini-valor');`;
+  const leerCombate = () =>
+    evaluar(
+      mesa,
+      `(() => {
+         const filas = [...document.querySelectorAll('#ini-lista li')];
+         return {
+           orden: filas.map((li) => [...li.children].map((s) => s.textContent.trim())),
+           activa: filas.findIndex((li) => li.classList.contains('activo')),
+           guardado: JSON.parse(localStorage.getItem('taberna:iniciativa') || 'null'),
+         };
+       })()`,
+    );
+
   const ini = await evaluar(
     mesa,
     `(() => {
-       const n=document.getElementById('ini-nombre'), v=document.getElementById('ini-valor');
+       ${campos}
        n.value='A'; v.value='12'; document.getElementById('ini-anadir').click();
        n.value='B'; v.value='18'; document.getElementById('ini-anadir').click();
        const orden=[...document.querySelectorAll('#ini-lista li')].map(li=>li.textContent.trim());
@@ -389,6 +408,58 @@ try {
   );
   if (Array.isArray(ini) && ini[0].startsWith("B")) bien(`iniciativa: ${ini.join(" | ")}`);
   else fallo("iniciativa", JSON.stringify(ini));
+
+  await evaluar(mesa, `document.getElementById('ini-siguiente').click()`);
+  const antes = await leerCombate();
+  await ir(mesa, `${BASE}/mesa/`);
+  await evaluar(
+    mesa,
+    `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#ini-lista')) { clearInterval(t); res(1); } }, 50); setTimeout(() => { clearInterval(t); res(0); }, 4000); })`,
+  );
+  const despues = await leerCombate();
+  const nombresDe = (x) => (x?.orden ?? []).map((f) => f[0]).join(",");
+  const recargaOk =
+    antes.activa === 1 && despues.activa === 1 && nombresDe(antes) === "B,A" && nombresDe(despues) === "B,A";
+  if (recargaOk) bien(`iniciativa tras recargar: ${nombresDe(despues)} con el turno de ${despues.orden[1][0]}`);
+  else fallo("iniciativa tras recargar", JSON.stringify({ antes, despues }));
+
+  const trasAnadir = await evaluar(
+    mesa,
+    `(() => {
+       ${campos}
+       n.value='C'; v.value='15'; document.getElementById('ini-anadir').click();
+       return [...document.querySelectorAll('#ini-lista li')].map((li) => [...li.children].map((s) => s.textContent.trim()));
+     })()`,
+  );
+  if (trasAnadir.length === 3 && nombresDe({ orden: trasAnadir }) === "B,C,A")
+    bien(`iniciativa tras recargar y añadir: ${nombresDe({ orden: trasAnadir })}`);
+  else fallo("iniciativa tras recargar y añadir", JSON.stringify(trasAnadir));
+
+  // La vista de jugador lee la misma clave, así que abierta sin tocar /mesa/ tiene
+  // que enseñar el mismo combate (3 filas, turno del primero) y no otro.
+  const vista = await abrir(`${BASE}/mesa/jugadores/`);
+  const jugador = await evaluar(
+    vista,
+    `({ turno: document.getElementById('turno')?.textContent, filas: document.querySelectorAll('.jugadores__lista li').length, activa: [...document.querySelectorAll('.jugadores__lista li')].findIndex((li) => li.classList.contains('activo')) })`,
+  );
+  if (jugador.filas === 3 && jugador.activa === 0 && jugador.turno === "Turno de B")
+    bien(`vista de jugador comparte el combate: ${jugador.turno}`);
+  else fallo("vista de jugador comparte el combate", JSON.stringify(jugador));
+
+  // Una clave rota no puede llevarse por delante la página entera: la iniciativa
+  // vive en el mismo script que el resto de herramientas de la mesa.
+  await evaluar(mesa, `localStorage.setItem('taberna:iniciativa', '{roto')`);
+  await ir(mesa, `${BASE}/mesa/`);
+  const roto = await evaluar(
+    mesa,
+    `(() => {
+       document.getElementById('dad-expresion').value='1d20';
+       document.getElementById('dad-tirar').click();
+       return { filas: document.querySelectorAll('#ini-lista li').length, dados: document.getElementById('dad-salida').textContent.trim(), aviso: document.getElementById('ini-lista').textContent.trim() };
+     })()`,
+  );
+  if (roto.filas === 0 && roto.aviso === "" && /^[0-9]+ = /.test(roto.dados)) bien("iniciativa con la clave rota: sin combate y la mesa sigue viva");
+  else fallo("iniciativa con la clave rota", JSON.stringify(roto));
 
   const pnj = await evaluar(mesa, `(() => { document.getElementById('pnj-generar').click(); return document.getElementById('pnj-salida').textContent; })()`);
   if (pnj && pnj.includes(",")) bien(`pnj: ${pnj.slice(0, 40)}`);

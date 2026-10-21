@@ -111,7 +111,10 @@ Y como el disparador es el push a `main`, el check llega después del merge: un 
   `/mesa/pantalla/`, con paneles configurables e imprimibles; la barra de la sección enlaza las
   tres, así que ninguna queda solo en el sitemap. En el constructor de encuentros, escribir el
   nombre de una criatura y pulsar Intro la añade igual que elegirla en la lista (vale el nombre
-  exacto y también sin tildes); lo que no está en el catálogo se avisa ahí mismo.
+  exacto y también sin tildes); lo que no está en el catálogo se avisa ahí mismo. La **iniciativa
+  se guarda en el navegador** y se recupera al recargar —orden y turno activos—: `/mesa/` y
+  `/mesa/jugadores/` leen el mismo estado con `src/lib/iniciativa.ts`, así que la ventana de los
+  jugadores nunca enseña un combate que la mesa ya no tiene.
 - Temas claro y oscuro, foco visible, navegación por teclado y estilos de impresión para llevar una ficha a la mesa.
 
 ```bash

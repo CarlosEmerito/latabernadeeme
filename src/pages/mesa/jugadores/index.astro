@@ -27,39 +27,45 @@ import { e } from "../../../lib/urls";
   </p>
 
   <script>
-    const CLAVE = "taberna:iniciativa";
+    import { CLAVE_INICIATIVA, leerIniciativa } from "../../../lib/iniciativa";
 
     const pintar = () => {
       const turno = document.getElementById("turno");
       const lista = document.getElementById("lista");
       if (!turno || !lista) return;
 
-      let estado: { turno: number; lista: { nombre: string; valor: number }[] } | null = null;
+      let crudo: string | null = null;
       try {
-        estado = JSON.parse(localStorage.getItem(CLAVE) || "null");
-      } catch {
-        estado = null;
-      }
+        crudo = localStorage.getItem(CLAVE_INICIATIVA);
+      } catch {}
 
-      if (!estado || !estado.lista?.length) {
+      const estado = leerIniciativa(crudo);
+      if (!estado) {
         turno.textContent = "Sin combate";
-        lista.innerHTML = "";
+        lista.replaceChildren();
         return;
       }
 
-      const orden = [...estado.lista].sort((a, b) => b.valor - a.valor);
-      const i = Math.min(estado.turno, orden.length - 1);
-      turno.innerHTML = `Turno de <strong>${orden[i].nombre}</strong>`;
-      lista.innerHTML = orden
-        .map(
-          (c, n) =>
-            `<li${n === i ? ' class="activo"' : ""}><span>${c.nombre}</span><span class="num">${c.valor}</span></li>`,
-        )
-        .join("");
+      const activo = document.createElement("strong");
+      activo.textContent = estado.lista[estado.turno].nombre;
+      turno.replaceChildren("Turno de ", activo);
+      lista.replaceChildren(
+        ...estado.lista.map((c, i) => {
+          const fila = document.createElement("li");
+          if (i === estado.turno) fila.className = "activo";
+          const nombre = document.createElement("span");
+          nombre.textContent = c.nombre;
+          const valor = document.createElement("span");
+          valor.className = "num";
+          valor.textContent = String(c.valor);
+          fila.append(nombre, valor);
+          return fila;
+        }),
+      );
     };
 
     window.addEventListener("storage", (ev) => {
-      if (ev.key === CLAVE) pintar();
+      if (ev.key === CLAVE_INICIATIVA) pintar();
     });
     pintar();
   </script>

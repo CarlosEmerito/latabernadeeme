@@ -160,6 +160,7 @@ for (const o of objetos51) {
     import { xpNumerico } from "../../lib/xp";
     import { enteroEnRango } from "../../lib/encuentro";
     import { plegar } from "../../lib/texto";
+    import { CLAVE_INICIATIVA, leerIniciativa, type Combatiente } from "../../lib/iniciativa";
 
     const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     const azar = <T,>(xs: T[]): T => xs[Math.floor(Math.random() * xs.length)];
@@ -434,9 +435,8 @@ for (const o of objetos51) {
 
     /* ------------------------------------------------------------ iniciativa */
 
-    type C = { nombre: string; valor: number };
-    const CLAVE = "taberna:iniciativa";
-    let combatientes: C[] = [];
+    const CLAVE = CLAVE_INICIATIVA;
+    let combatientes: Combatiente[] = [];
     let turno = 0;
 
     const guardar = () => {
@@ -449,12 +449,20 @@ for (const o of objetos51) {
       const lista = $("ini-lista");
       if (!lista) return;
       combatientes.sort((a, b) => b.valor - a.valor);
-      lista.innerHTML = combatientes
-        .map(
-          (c, i) =>
-            `<li${i === turno ? ' class="activo"' : ""}><span>${c.nombre}</span><span class="num">${c.valor}</span></li>`,
-        )
-        .join("");
+      if (turno >= combatientes.length) turno = 0;
+      lista.replaceChildren(
+        ...combatientes.map((c, i) => {
+          const fila = document.createElement("li");
+          if (i === turno) fila.className = "activo";
+          const nombre = document.createElement("span");
+          nombre.textContent = c.nombre;
+          const valor = document.createElement("span");
+          valor.className = "num";
+          valor.textContent = String(c.valor);
+          fila.append(nombre, valor);
+          return fila;
+        }),
+      );
       guardar();
     };
 
@@ -477,6 +485,28 @@ for (const o of objetos51) {
       guardar();
       window.open(`${BASE}/mesa/jugadores/`, "vista-jugador", "width=1100,height=760");
     });
+
+    /*
+     * El combate vive en el navegador, así que al cargar hay que devolverlo a la
+     * pantalla. Sin esto, recargar /mesa/ dejaba la lista vacía —«Siguiente
+     * turno» no hacía nada— mientras la ventana de los jugadores seguía
+     * enseñando el combate guardado, y el primer «Añadir» reescribía la clave
+     * con una sola criatura y borraba el orden de la otra pantalla. Se lee con
+     * `leerIniciativa`, que valida y ordena igual que la vista del jugador.
+     */
+    const restaurar = () => {
+      let crudo: string | null = null;
+      try {
+        crudo = localStorage.getItem(CLAVE);
+      } catch {}
+      const guardado = leerIniciativa(crudo);
+      if (!guardado) return;
+      combatientes = guardado.lista;
+      turno = guardado.turno;
+    };
+
+    restaurar();
+    pintarIniciativa();
 
     /* ----------------------------------------------------------------- dados */
 

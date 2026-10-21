@@ -5,7 +5,7 @@ Comprueba, por edición y tipo de contenido:
   - número de entradas frente a los recuentos de referencia del SRD,
   - campos obligatorios vacíos,
   - cuerpos vacíos o desproporcionados (síntoma de un corte mal hecho),
-  - duplicados por nombre,
+  - duplicados por nombre dentro de la misma categoría,
   - palabras partidas por un rótulo que se cuela dentro del valor,
   - la línea de tipo de las criaturas (tipo, tamaño y alineamiento) mal partida,
   - la tabla de recuentos del README frente a los ficheros reales.
@@ -18,7 +18,6 @@ from __future__ import annotations
 import re
 import sys
 import unicodedata
-from collections import Counter
 from pathlib import Path
 
 import yaml
@@ -283,6 +282,95 @@ def recuentos_readme() -> tuple[dict[tuple[str, str], int], list[str]]:
     return recuentos, errores
 
 
+def nombres_repetidos(fichas: list[tuple[str, str]]) -> list[str]:
+    """Nombres que se repiten dentro de la misma carpeta y categoría.
+
+    Dos fichas pueden compartir nombre si son cosas distintas: el SRD 5.2 titula
+    «Competencia» al apartado de características (pág. 8) y a la voz del glosario
+    (pág. 198), y los dos SRD titulan «Bastón» al arma y al canalizador arcano.
+    Mientras la categoría las separe, el listado enseña la columna que las
+    distingue y no engaña a nadie.
+
+    Lo que no puede pasar es que dos fichas de la misma carpeta y la misma
+    categoría compartan nombre: `/5.5/equipo/` publicó dos «Vara» —la pértiga de
+    3 m de la tabla de equipo y el canalizador arcano, las dos como «Equipo de
+    aventurero»— y el validador las apuntaba en el informe sin suspender la
+    pasada, así que la web mostraba dos filas idénticas y nada fallaba.
+    """
+    vistas: dict[tuple[str, str], tuple[str, str, int]] = {}
+    for nombre, categoria in fichas:
+        nombre = nombre.strip()
+        categoria = categoria.strip()
+        if not nombre:
+            continue
+        clave = (nombre.casefold(), categoria.casefold())
+        previa = vistas.get(clave)
+        vistas[clave] = (nombre, categoria, 1 + (previa[2] if previa else 0))
+    return sorted(
+        f"{nombre} — {categoria or 'sin categoría'}"
+        for nombre, categoria, veces in vistas.values()
+        if veces > 1
+    )
+
+
+def revisar_carpeta(ed: str, carpeta: Path) -> tuple[list[str], int, int]:
+    """Revisa una carpeta de `data/`: devuelve (líneas, entradas, incidencias)."""
+    tipo = carpeta.name
+    ficheros = sorted(carpeta.glob("*.md"))
+    vacios: list[str] = []
+    faltan: list[str] = []
+    largos: list[str] = []
+    fichas: list[tuple[str, str]] = []
+
+    for f in ficheros:
+        contenido = leer(f)
+        if contenido is None:
+            faltan.append(f"{f.name} (sin frontmatter válido)")
+            continue
+        datos, cuerpo = contenido
+        fichas.append((str(datos.get("name") or ""), str(datos.get("category") or "")))
+        for campo in OBLIGATORIOS.get(tipo, ["name"]):
+            if datos.get(campo) in (None, "", []):
+                faltan.append(f"{f.name}: {campo}")
+        # En equipo y objetos la ficha puede vivir solo en el
+        # frontmatter (precio, peso, rareza): no es un error.
+        if len(cuerpo.strip()) == 0 and tipo not in ("equipo", "objetos"):
+            vacios.append(f.name)
+        elif len(cuerpo) > LIMITE_CUERPO.get(tipo, 20_000):
+            largos.append(f"{f.name} ({len(cuerpo)} caracteres)")
+
+    duplicados = nombres_repetidos(fichas)
+    referencia = REFERENCIA.get((ed, tipo))
+    estado = "OK"
+    incidencias = 0
+    if referencia is not None and len(ficheros) != referencia:
+        estado = f"DESCUADRE ({len(ficheros)} de {referencia})"
+        incidencias += 1
+    # Son fallos los campos obligatorios vacíos, los cuerpos vacíos y dos fichas
+    # con el mismo nombre en la misma categoría; un cuerpo largo solo es un
+    # aviso para revisar.
+    if faltan or vacios or duplicados:
+        incidencias += 1
+
+    lineas = [f"## {ed} · {tipo} — {len(ficheros)} entradas · {estado}"]
+    if faltan:
+        lineas.append(f"- Campos vacíos: **{len(faltan)}**")
+        lineas += [f"  - `{x}`" for x in faltan[:15]]
+        if len(faltan) > 15:
+            lineas.append(f"  - …y {len(faltan) - 15} más")
+    if vacios:
+        lineas.append(f"- Cuerpos vacíos: **{len(vacios)}** ({', '.join(vacios[:10])})")
+    if largos:
+        lineas.append(f"- Aviso, cuerpos más largos de lo esperado: {len(largos)} ({', '.join(largos[:5])})")
+    if duplicados:
+        lineas.append(
+            f"- Nombres repetidos en la misma categoría: **{len(duplicados)}** "
+            f"({'; '.join(duplicados[:8])})"
+        )
+    lineas.append("")
+    return lineas, len(ficheros), incidencias
+
+
 def main() -> int:
     lineas = ["# Informe de validación", "", "Generado por `tools/verify/validar.py`.", ""]
     problemas = 0
@@ -291,56 +379,11 @@ def main() -> int:
 
     for ed in sorted(p.name for p in DATOS.iterdir() if p.is_dir()):
         for carpeta in sorted(p for p in (DATOS / ed).iterdir() if p.is_dir()):
-            tipo = carpeta.name
-            ficheros = sorted(carpeta.glob("*.md"))
-            total += len(ficheros)
-            reales[(ed, tipo)] = len(ficheros)
-            vacios: list[str] = []
-            faltan: list[str] = []
-            largos: list[str] = []
-            nombres: Counter[str] = Counter()
-
-            for f in ficheros:
-                contenido = leer(f)
-                if contenido is None:
-                    faltan.append(f"{f.name} (sin frontmatter válido)")
-                    continue
-                datos, cuerpo = contenido
-                nombres[str(datos.get("name", "")).strip().lower()] += 1
-                for campo in OBLIGATORIOS.get(tipo, ["name"]):
-                    if datos.get(campo) in (None, "", []):
-                        faltan.append(f"{f.name}: {campo}")
-                # En equipo y objetos la ficha puede vivir solo en el
-                # frontmatter (precio, peso, rareza): no es un error.
-                if len(cuerpo.strip()) == 0 and tipo not in ("equipo", "objetos"):
-                    vacios.append(f.name)
-                elif len(cuerpo) > LIMITE_CUERPO.get(tipo, 20_000):
-                    largos.append(f"{f.name} ({len(cuerpo)} caracteres)")
-
-            duplicados = [n for n, c in nombres.items() if c > 1 and n]
-            referencia = REFERENCIA.get((ed, tipo))
-            estado = "OK"
-            if referencia is not None and len(ficheros) != referencia:
-                estado = f"DESCUADRE ({len(ficheros)} de {referencia})"
-                problemas += 1
-            # Solo son fallos los campos obligatorios vacíos y los cuerpos
-            # vacíos; un cuerpo largo es un aviso para revisar.
-            if faltan or vacios:
-                problemas += 1
-
-            lineas.append(f"## {ed} · {tipo} — {len(ficheros)} entradas · {estado}")
-            if faltan:
-                lineas.append(f"- Campos vacíos: **{len(faltan)}**")
-                lineas += [f"  - `{x}`" for x in faltan[:15]]
-                if len(faltan) > 15:
-                    lineas.append(f"  - …y {len(faltan) - 15} más")
-            if vacios:
-                lineas.append(f"- Cuerpos vacíos: **{len(vacios)}** ({', '.join(vacios[:10])})")
-            if largos:
-                lineas.append(f"- Aviso, cuerpos más largos de lo esperado: {len(largos)} ({', '.join(largos[:5])})")
-            if duplicados:
-                lineas.append(f"- Nombres repetidos: {len(duplicados)} ({', '.join(duplicados[:8])})")
-            lineas.append("")
+            bloque, entradas, incidencias = revisar_carpeta(ed, carpeta)
+            lineas += bloque
+            total += entradas
+            problemas += incidencias
+            reales[(ed, carpeta.name)] = entradas
 
     # La tabla del README es el dato que se lee de un vistazo y ya se quedó
     # atrás una vez: se compara con los ficheros reales en cada pasada.

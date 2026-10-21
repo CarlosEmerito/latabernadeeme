@@ -105,8 +105,11 @@ diagramas de palabras, no texto corrido, y se han dejado literales.
 ## Notas
 
 - El SRD 5.2.1 titula "Competencia" tanto el apartado de "Cómo jugar" como la
-  voz del glosario: la segunda queda como `competencia-2.md` (mismo criterio que
-  el resto del corpus con "bastón" o "vara"). Es el único nombre repetido.
+  voz del glosario: la segunda queda como `competencia-2.md`, el mismo criterio
+  que deja convivir "Bastón" arma con "Bastón" canalizador arcano en equipo. Un
+  nombre puede repetirse si la categoría lo separa; `validar.py` solo suspende la
+  pasada cuando dos fichas de la misma carpeta y la misma categoría comparten
+  nombre.
 - `tools/verify/validar.py` da las dos carpetas como OK (44 y 174 entradas) y el
   sitio compila con las 218 fichas nuevas (`npm run build`).
 - Para regenerar solo las reglas: `npm run datos:reglas`.

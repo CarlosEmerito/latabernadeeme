@@ -53,6 +53,14 @@ y 97 en 5.2 (el resto son objetos que el SRD solo lista en tabla, con `price` y
   «Mercancías», que no son objetos) y sin duplicados `(name, category)`.
 - Los dos objetos con nombre repetido en categorías distintas (`Bastón` arma y
   `Bastón` canalizador arcano) se resolvieron con el sufijo `-2` de `unique_path`.
+- La pértiga de 3 m de 5.2 se publica como `Vara (3 m)`, como ya hace 5.1. El
+  SRD 5.2.1 titula `Vara` tanto la pértiga de la tabla de equipo (pág. 103) como
+  el canalizador arcano (pág. 105) y las dos caen en «Equipo de aventurero», así
+  que `/5.5/equipo/` enseñaba dos filas del mismo nombre y misma categoría que
+  solo se distinguían por el precio. La descripción del propio SRD dice que «una
+  vara mide 3 m de longitud» (pág. 108), que es el desambiguador que 5.1 ya
+  lleva en la tabla. `tools/test/duplicados.py` vigila que no vuelva a haber dos
+  fichas iguales en su categoría.
 
 ## Discrepancias y lagunas
 

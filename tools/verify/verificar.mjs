@@ -40,6 +40,10 @@
  *  13. `tools/test/seo.mjs` sobre `dist/`: que cada página publique una sola
  *      canónica absoluta, `og:url` idéntica, `og:type` de ficha o de listado,
  *      `twitter:card` y una `og:image` que sea el PNG de su sigilo y exista.
+ *  14. `tools/test/duplicados.py`: que dos fichas de la misma carpeta y la
+ *      misma categoría no compartan nombre —el listado publicaría dos filas
+ *      indistinguibles— y que el homónimo en categorías distintas siga
+ *      permitido.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -142,4 +146,11 @@ if (seo !== 0) {
   process.exit(seo);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo y metadatos sociales correctos.");
+console.log("▶ Nombres repetidos: duplicados.py (data/)");
+const duplicados = ejecutar(python, [path.join(RAIZ, "tools/test/duplicados.py")]);
+if (duplicados !== 0) {
+  console.error("✗ Dos fichas de la misma carpeta y categoría comparten nombre: el listado publica filas indistinguibles.");
+  process.exit(duplicados);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales y nombres repetidos correctos.");

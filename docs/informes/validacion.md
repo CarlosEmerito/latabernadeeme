@@ -10,7 +10,6 @@ Total de entradas: **2490**. Apartados con incidencias: **0**.
 ## ed51 · dotes — 1 entradas · OK
 
 ## ed51 · equipo — 213 entradas · OK
-- Nombres repetidos: 1 (bastón)
 
 ## ed51 · especies — 9 entradas · OK
 
@@ -30,7 +29,6 @@ Total de entradas: **2490**. Apartados con incidencias: **0**.
 ## ed52 · dotes — 17 entradas · OK
 
 ## ed52 · equipo — 188 entradas · OK
-- Nombres repetidos: 2 (bastón, vara)
 
 ## ed52 · especies — 9 entradas · OK
 
@@ -40,7 +38,6 @@ Total de entradas: **2490**. Apartados con incidencias: **0**.
 - Aviso, cuerpos más largos de lo esperado: 2 (baraja-misteriosa.md (8441 caracteres), estatuilla-de-poder-maravilloso.md (6110 caracteres))
 
 ## ed52 · reglas — 174 entradas · OK
-- Nombres repetidos: 1 (competencia)
 
 ## ed52 · trasfondos — 4 entradas · OK
 

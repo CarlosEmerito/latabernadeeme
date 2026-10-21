@@ -20,6 +20,9 @@
  *      quien lo importe y ningún `export function` / `export const` suyo sin
  *      quien lo llame, que es como se cuela código muerto que duplica otra
  *      implementación y confunde sobre cuál manda.
+ *   8. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
+ *      las tipografías que el CSS carga —ni una de menos ni una de más— y que
+ *      `package.json` no declare ninguna fuente sin importar.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -80,4 +83,11 @@ if (huerfanos !== 0) {
   process.exit(huerfanos);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, columnas, iconos y código muerto correctos.");
+console.log("▶ Tipografías acreditadas: fuentes.mjs (src/ y dist/)");
+const fuentes = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/fuentes.mjs")]);
+if (fuentes !== 0) {
+  console.error("✗ La atribución de tipografías no coincide con lo que carga el sitio.");
+  process.exit(fuentes);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, columnas, iconos, código muerto y fuentes correctos.");

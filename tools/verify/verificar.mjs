@@ -14,7 +14,9 @@
  *      columna entera de guiones —el SRD 5.1 no declara la característica de
  *      sus clases ni la categoría de sus dotes— y que las celdas sigan
  *      alineadas con sus cabeceras.
- *   6. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
+ *   6. `tools/test/iconos.mjs` sobre `dist/`: que toda ficha lleve el icono de
+ *      su banda, que es lo que delata un tipo o una escuela sin SVG.
+ *   7. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
  *      quien lo importe y ningún `export function` / `export const` suyo sin
  *      quien lo llame, que es como se cuela código muerto que duplica otra
  *      implementación y confunde sobre cuál manda.
@@ -64,6 +66,13 @@ if (columnas !== 0) {
   process.exit(columnas);
 }
 
+console.log("▶ Icono de la banda: iconos.mjs (dist/)");
+const iconos = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/iconos.mjs")]);
+if (iconos !== 0) {
+  console.error("✗ Alguna ficha sale sin el icono de su banda.");
+  process.exit(iconos);
+}
+
 console.log("▶ Módulos y exports sin uso: huerfanos.mjs (src/lib/)");
 const huerfanos = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/huerfanos.mjs")]);
 if (huerfanos !== 0) {
@@ -71,4 +80,4 @@ if (huerfanos !== 0) {
   process.exit(huerfanos);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, columnas y código muerto correctos.");
+console.log("✓ Datos, enlaces, ids, filtro, columnas, iconos y código muerto correctos.");

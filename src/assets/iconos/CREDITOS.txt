@@ -12,7 +12,7 @@ escuela-evocacion.svg — sbed — game-icons.net — CC BY 3.0
 escuela-abjuracion.svg — sbed — game-icons.net — CC BY 3.0
 escuela-adivinacion.svg — lorc — game-icons.net — CC BY 3.0
 escuela-encantamiento.svg — lorc — game-icons.net — CC BY 3.0
-escuela-ilusion.svg — lorc — game-icons.net — CC BY 3.0
+escuela-ilusionismo.svg — lorc — game-icons.net — CC BY 3.0
 escuela-nigromancia.svg — sbed — game-icons.net — CC BY 3.0
 escuela-transmutacion.svg — lorc — game-icons.net — CC BY 3.0
 escuela-conjuracion.svg — lorc — game-icons.net — CC BY 3.0
@@ -30,3 +30,5 @@ tipo-monstruosidad.svg — lorc — game-icons.net — CC BY 3.0
 tipo-muerto-viviente.svg — delapouite — game-icons.net — CC BY 3.0
 tipo-cieno.svg — delapouite — game-icons.net — CC BY 3.0
 tipo-planta.svg — delapouite — game-icons.net — CC BY 3.0
+tipo-automata.svg — lorc — game-icons.net — CC BY 3.0
+tipo-enjambre.svg — delapouite — game-icons.net — CC BY 3.0

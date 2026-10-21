@@ -30,7 +30,7 @@ const MAPA = {
   "escuela-abjuracion": "shield.svg",
   "escuela-adivinacion": "third-eye.svg",
   "escuela-encantamiento": "crowned-heart.svg",
-  "escuela-ilusion": "tribal-mask.svg",
+  "escuela-ilusionismo": "tribal-mask.svg",
   "escuela-nigromancia": "death-skull.svg",
   "escuela-transmutacion": "frog.svg",
   "escuela-conjuracion": "magic-portal.svg",
@@ -49,6 +49,12 @@ const MAPA = {
   "tipo-muerto-viviente": "shambling-zombie.svg",
   "tipo-cieno": "slime.svg",
   "tipo-planta": "carnivorous-plant.svg",
+  // Dos tipos del bestiario que se quedaron sin icono: el autómata es un objeto
+  // animado y el enjambre un grupo de criaturas diminutas. A 20 px se leen como
+  // un golem mecánico y un montón de hormigas, y ninguno se confunde con la
+  // tuerca del constructo ni con la zarpa de la bestia.
+  "tipo-automata": "robot-golem.svg",
+  "tipo-enjambre": "ants.svg",
 };
 
 function descargar() {

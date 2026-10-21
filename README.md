@@ -58,11 +58,11 @@ Los PDF no se versionan: `descargar.py` los baja de `dndbeyond.com` y el reposit
 
 ```bash
 npm run build           # compila dist/ (Astro + índice de Pagefind + tarjetas sociales)
-npm run verificar       # datos, enlaces, ids, filtro, tamaño, columnas, iconos, alias, iniciativa, huérfanos, fuentes, línea de tipo, metadatos sociales, títulos únicos por sección, cifras de los informes y apartados del comparador; no necesita navegador
+npm run verificar       # datos, enlaces, ids, filtro, tamaño, columnas, iconos, alias, iniciativa, huérfanos, fuentes, línea de tipo, metadatos sociales, títulos únicos por sección, cifras de los informes, apartados del comparador y presupuesto de encuentros; no necesita navegador
 npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 ```
 
-`verificar` ejecuta dieciocho pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
+`verificar` ejecuta diecinueve pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
 
 1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD y a la tabla del README, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados por nombre dentro de la misma categoría —dos fichas con el mismo nombre y la misma categoría publican dos filas que el lector no puede distinguir y suspenden la pasada; el mismo nombre en categorías distintas es legítimo y lo separa la columna Categoría—. Además vigila el perfil de las criaturas: ningún valor de `saves`, `skills`, `senses`, `languages` ni del resto de campos puede quedarse a mitad (el PDF los parte en varias líneas), ninguna línea de tipo deja el tamaño o el complemento del tipo dentro del alineamiento, y unas fichas testigo —`dragon-azul-adulto`, `dragon-rojo-adulto`, `espia`, `liche`, `naga-guardiana` y `archimago`— llevan el texto exacto que se perdía. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
 2. `tools/test/enlaces.mjs`: cada `href` y `src` interno del HTML compilado apunta a una página o fichero que existe, y cada fragmento (`#seccion`) a un `id` de la página de destino.
@@ -82,6 +82,7 @@ npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 16. `tools/test/titulos.mjs`: ninguna página comparte `<title>` con una de otra sección y todas publican uno. El título se componía como nombre + edición, así que `/5e/clases/mago/` y `/5e/monstruos/mago/` —una clase y una criatura— salían las dos como «Mago · D&D 5e» en la pestaña, en el historial y en Google, y en `/comparar/` compartían además la descripción; ahora el título lleva la sección («Mago · Clase · D&D 5e»). Los homónimos de la misma sección —«Bastón» arma y «Bastón» canalizador, que la categoría separa— se listan aparte y no suspenden el paso: lo que les toca es la ficha, no el título.
 17. `tools/test/cifras.py`: los recuentos que declaran los informes versionados tienen que cuadrar con `data/` y con `dist/datos/`. Mide las entradas, las palabras y las tablas de `docs/informes/reglas.md`, las fichas de `docs/informes/monstruos.md`, los ficheros por carpeta de `docs/informes/origenes-equipo.md` y de `docs/informes/objetos.md`, el total de entradas, el tamaño del índice y las listas de categorías de `docs/DATOS.md`, y las entradas y páginas que citan los documentos de plan. Nació de que los informes quedaran atrás sin que nada lo notara: `reglas.md` declaraba 44 reglas en el 5.1 y 218 en total (hay 47 y 221), `monstruos.md` decía 302 y 315 criaturas (hay 317 y 330) y `DATOS.md` hablaba de 2.457 entradas y de un índice de 306 KB (hay 2.490 y unos 300 KB). Es el mismo hueco que la tabla del README, que ya vigilaba `validar.py`.
 18. `tools/test/secciones.mjs`: todos los apartados de las dos ediciones tienen que publicarse en su página de comparación. El comparador alinea los bloques de las dos ediciones del SRD y los pinta en una tabla de dos columnas; cuando los dos apartados tienen nombres distintos —«Senda Primordial (nivel 3)» en el 5.1 y «Subclase de bárbaro (nivel 3)» en el 5.2.1— la fila se pintaba con un solo `<span role="cell">` y el nombre del 5.2.1 no llegaba al HTML: 118 apartados en 23 páginas, casi todos rasgos de clase, que es donde más se renombró el SRD en 2024. La puerta mira el HTML publicado y dice qué apartado falta y en qué página.
+19. `tools/test/presupuesto.mjs`: el presupuesto de PX del constructor de encuentros tiene que salir de la tabla del SRD 5.2.1 —«Presupuesto de PX por personaje», con dificultad baja, moderada y alta y **sin** ajuste por número de criaturas— y el catálogo de 5.1 usa su propia tabla, con cuatro dificultades y el ajuste. La puerta compara el módulo `src/lib/presupuesto.ts` con el markdown de `data/ed52/reglas/encuentros-de-combate.md` y vigila que las columnas no se cruzen. Nació de que el panel aplicara siempre la tabla de 2014 sobre el catálogo de 2024: cuatro guerreros goblin (200 PX) salían «Por encima (133 % del presupuesto)» cuando la regla de 2024 los deja en un tercio de 600 PX.
 
 `verificar:humo` sí necesita navegador: levanta `astro preview` en el puerto 8099, abre un Chrome headless con CDP en el 9223 con un perfil temporal, pasa `tools/test/humo.mjs` (navegación, herramientas de mesa, recuentos del panel Explorar, axe-core y avisos legales) y apaga los dos al terminar. Busca Chrome o Chromium en el `PATH`; `CHROME=/ruta/al/binario` para indicarlo a mano. Tarda alrededor de medio minuto.
 
@@ -95,7 +96,7 @@ node tools/test/humo.mjs
 
 ### Qué comprueba CI y qué queda en local
 
-El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los dieciocho pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, dos fichas con el mismo nombre en su categoría, dos páginas de secciones distintas con el mismo título, un filtro sin plegar, un tamaño partido en dos casillas, un encabezado emparejado con un párrafo, una columna vacía, una ficha sin icono, un alias cruzado, una línea de tipo mal partida, una tipografía mal acreditada, una canónica sin `og:image`, un informe que declara unas cifras que ya no cuadran o un apartado que no se publica en su página de comparación paran el job `construir` y no se publica la versión nueva.
+El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los diecinueve pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, dos fichas con el mismo nombre en su categoría, dos páginas de secciones distintas con el mismo título, un filtro sin plegar, un tamaño partido en dos casillas, un encabezado emparejado con un párrafo, una columna vacía, una ficha sin icono, un alias cruzado, una línea de tipo mal partida, una tipografía mal acreditada, una canónica sin `og:image`, un informe que declara unas cifras que ya no cuadran, un apartado que no se publica en su página de comparación o un presupuesto de encuentros que no sale de la tabla del SRD paran el job `construir` y no se publica la versión nueva.
 
 Lo que **no** corre en CI es `verificar:humo`: necesita un Chrome headless y un servidor de vista previa levantados, y el flujo no los monta. Las comprobaciones de `tools/test/humo.mjs` —navegación, herramientas de mesa, recuentos del panel Explorar, axe-core y avisos legales— siguen siendo locales, y toca pasarlas a mano cuando el cambio toca plantillas o las herramientas de `/mesa/`.
 
@@ -139,10 +140,15 @@ Y como el disparador es el push a `main`, el check llega después del merge: un 
   `/mesa/pantalla/`, con paneles configurables e imprimibles; la barra de la sección enlaza las
   tres, así que ninguna queda solo en el sitemap. En el constructor de encuentros, escribir el
   nombre de una criatura y pulsar Intro la añade igual que elegirla en la lista (vale el nombre
-  exacto y también sin tildes); lo que no está en el catálogo se avisa ahí mismo. La **iniciativa
-  se guarda en el navegador** y se recupera al recargar —orden y turno activos—: `/mesa/` y
-  `/mesa/jugadores/` leen el mismo estado con `src/lib/iniciativa.ts`, así que la ventana de los
-  jugadores nunca enseña un combate que la mesa ya no tiene.
+  exacto y también sin tildes); lo que no está en el catálogo se avisa ahí mismo. El **presupuesto
+  de PX depende del catálogo**: el 5.2.1 usa la tabla «Presupuesto de PX por personaje» del SRD
+  (baja, moderada y alta, sin ajuste por número de criaturas) y el 5.1 la del DMG de 2014 (fácil,
+  media, difícil y mortal, con el ajuste). El panel dice qué regla está usando y el selector de
+  dificultad se rehace con las de esa edición, así que no se pueden mezclar; los números viven en
+  `src/lib/presupuesto.ts` y `tools/test/presupuesto.mjs` los compara con el markdown del SRD. La
+  **iniciativa se guarda en el navegador** y se recupera al recargar —orden y turno activos—:
+  `/mesa/` y `/mesa/jugadores/` leen el mismo estado con `src/lib/iniciativa.ts`, así que la ventana
+  de los jugadores nunca enseña un combate que la mesa ya no tiene.
 - Temas claro y oscuro, foco visible, navegación por teclado y estilos de impresión para llevar una ficha a la mesa.
 
 ```bash

@@ -803,6 +803,124 @@ try {
   fallo("encuentros acotados", String(e));
 }
 
+// El presupuesto del constructor depende del catálogo, y cada edición mide
+// distinto: el 5.2.1 usa la tabla «Presupuesto de PX por personaje» del SRD
+// (baja, moderada y alta, sin ajuste por número de criaturas) y el 5.1 la del
+// DMG de 2014 (fácil, media, difícil y mortal, con el ajuste). El panel
+// aplicaba siempre la de 2014, así que cuatro guerreros goblin (200 PX) salían
+// «Por encima (133 % del presupuesto)» con el catálogo de 2024, que los deja en
+// un tercio de 600 PX.
+try {
+  const p = await abrir(`${BASE}/mesa/`);
+
+  /** Espera a que el catálogo pedido esté en la lista de criaturas. */
+  const esperarCatalogo = (nombre) =>
+    evaluar(
+      p,
+      `new Promise((res) => { const t = setInterval(() => {
+         const o = [...document.querySelectorAll('#enc-lista option')].find((x) => x.value === ${JSON.stringify(nombre)});
+         if (o) { clearInterval(t); res(1); }
+       }, 100); setTimeout(() => { clearInterval(t); res(0); }, 8000); })`,
+    );
+
+  /** El estado del panel: lo que dice la salida, las dificultades y la regla. */
+  const ESTADO = `(() => {
+     const salida = document.getElementById('enc-salida');
+     const dif = document.getElementById('enc-dif');
+     const regla = document.getElementById('enc-regla');
+     return {
+       salida: salida.textContent.split(String.fromCharCode(10)).join(' ').replace(/[ ]{2,}/g, ' ').trim(),
+       opciones: [...dif.options].map((o) => o.value),
+       etiquetas: [...dif.options].map((o) => o.textContent),
+       valor: dif.value,
+       regla: regla ? regla.textContent : '',
+     };
+   })()`;
+
+  /** Ajusta los campos del constructor y añade `veces` criaturas. */
+  const montar = (dificultad, criatura, veces) =>
+    evaluar(
+      p,
+      `(() => {
+         const pj = document.getElementById('enc-pj');
+         const nivel = document.getElementById('enc-nivel');
+         const dif = document.getElementById('enc-dif');
+         pj.value = '4'; pj.dispatchEvent(new Event('input', {bubbles: true}));
+         nivel.value = '3'; nivel.dispatchEvent(new Event('input', {bubbles: true}));
+         dif.value = ${JSON.stringify(dificultad)}; dif.dispatchEvent(new Event('input', {bubbles: true}));
+         const buscar = document.getElementById('enc-buscar');
+         for (let i = 0; i < ${veces}; i++) {
+           buscar.value = ${JSON.stringify(criatura)};
+           buscar.dispatchEvent(new Event('change', {bubbles: true}));
+         }
+         return ${ESTADO};
+       })()`,
+    );
+
+  const cambiarCatalogo = (ed) =>
+    evaluar(
+      p,
+      `(() => { const s = document.getElementById('enc-ed'); s.value = ${JSON.stringify(ed)}; s.dispatchEvent(new Event('change', {bubbles: true})); return 1; })()`,
+    );
+
+  await esperarCatalogo("Guerrero goblin");
+
+  // 5.2.1: 4 PJ de nivel 3 en dificultad baja = 150 × 4 = 600 PX, y cuatro
+  // guerreros goblin (50 PX cada uno) son 200 PX sin ajuste: un tercio.
+  const ed52 = await montar("baja", "Guerrero goblin", 4);
+  const presupuestoDe = (t) => Number((/presupuesto ([0-9.]+) PX/.exec(t) ?? ["", "0"])[1].replace(/[^0-9]/g, "")) || 0;
+
+  const fallos52 = [];
+  if (JSON.stringify(ed52.opciones) !== JSON.stringify(["baja", "moderada", "alta"]))
+    fallos52.push(`las dificultades del 5.2.1 son ${JSON.stringify(ed52.opciones)} y deberían ser baja, moderada y alta`);
+  if (JSON.stringify(ed52.etiquetas) !== JSON.stringify(["Baja", "Moderada", "Alta"]))
+    fallos52.push(`las etiquetas del 5.2.1 son ${JSON.stringify(ed52.etiquetas)}`);
+  if (ed52.valor !== "baja") fallos52.push(`la dificultad elegida es «${ed52.valor}» y debería ser «baja»`);
+  if (!/5\.2\.1 \(2024\)/.test(ed52.regla)) fallos52.push(`la regla no dice qué tabla se usa: «${ed52.regla}»`);
+  if (!/200 PX ajustados/.test(ed52.salida)) fallos52.push(`el total no es el de 200 PX: «${ed52.salida.slice(0, 80)}»`);
+  if (presupuestoDe(ed52.salida) !== 600) fallos52.push(`el presupuesto es ${presupuestoDe(ed52.salida)} PX y deberían ser 600`);
+  if (!/Holgado/.test(ed52.salida)) fallos52.push(`el veredicto no es «Holgado»: «${ed52.salida.slice(0, 90)}»`);
+  if (!/33 % del presupuesto/.test(ed52.salida)) fallos52.push(`el porcentaje no es el 33 %: «${ed52.salida.slice(0, 90)}»`);
+  if (/×/.test(ed52.salida)) fallos52.push(`el 5.2.1 no lleva ajuste por número de criaturas: «${ed52.salida.slice(0, 90)}»`);
+
+  // 5.1: 4 PJ de nivel 3 en dificultad fácil = 75 × 4 = 300 PX, y los mismos
+  // cuatro goblin (200 PX) se ajustan por el multiplicador: 400 PX, por encima.
+  await cambiarCatalogo("5e");
+  await esperarCatalogo("Goblin");
+  const ed51 = await montar("facil", "Goblin", 4);
+
+  const fallos51 = [];
+  if (JSON.stringify(ed51.opciones) !== JSON.stringify(["facil", "media", "dificil", "mortal"]))
+    fallos51.push(`las dificultades del 5.1 son ${JSON.stringify(ed51.opciones)}`);
+  if (!/DMG de 2014/.test(ed51.regla)) fallos51.push(`la regla no dice qué tabla se usa: «${ed51.regla}»`);
+  if (!/400 PX ajustados/.test(ed51.salida)) fallos51.push(`el total no es el de 400 PX: «${ed51.salida.slice(0, 80)}»`);
+  if (presupuestoDe(ed51.salida) !== 300) fallos51.push(`el presupuesto es ${presupuestoDe(ed51.salida)} PX y deberían ser 300`);
+  if (!/Por encima/.test(ed51.salida)) fallos51.push(`el veredicto no es «Por encima»: «${ed51.salida.slice(0, 90)}»`);
+  if (!/× 2 por 4 criaturas/.test(ed51.salida)) fallos51.push(`falta el ajuste por número de criaturas: «${ed51.salida.slice(0, 90)}»`);
+
+  // La dificultad de la otra edición no puede quedarse marcada: al volver al
+  // 5.2.1, «fácil» no existe ahí y el panel tiene que volver a la suya.
+  await cambiarCatalogo("5.5");
+  await esperarCatalogo("Guerrero goblin");
+  const vuelta = await evaluar(p, `(() => {
+     const dif = document.getElementById('enc-dif');
+     return { valor: dif.value, opciones: [...dif.options].map((o) => o.value) };
+   })()`);
+  const fallosVuelta = [];
+  if (vuelta.valor !== "moderada") fallosVuelta.push(`al volver al 5.2.1 la dificultad es «${vuelta.valor}» y debería ser «moderada»`);
+  if (JSON.stringify(vuelta.opciones) !== JSON.stringify(["baja", "moderada", "alta"]))
+    fallosVuelta.push(`al volver al 5.2.1 las dificultades son ${JSON.stringify(vuelta.opciones)}`);
+
+  const malos = [...fallos52, ...fallos51, ...fallosVuelta];
+  if (!malos.length)
+    bien(
+      `presupuesto por catálogo: 5.2.1 da 600 PX y 200 ajustados (33 %, holgado, sin ajuste), 5.1 da 300 PX y 400 ajustados (133 %, por encima, × 2)`,
+    );
+  else fallo("presupuesto por catálogo", JSON.stringify(malos.slice(0, 5)));
+} catch (e) {
+  fallo("presupuesto por catálogo", String(e));
+}
+
 const buscar = await abrir(`${BASE}/buscar/`);
 try {
   const d = await evaluar(buscar, `({ui: typeof window.PagefindUI, cargado: !!document.querySelector('.pagefind-ui')})`);

@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import MesaNav from "../../components/MesaNav.astro";
 import { cargar } from "../../lib/content";
 import { e } from "../../lib/urls";
+import { REGLAS, dificultadPorDefecto, dificultadesDe } from "../../lib/presupuesto";
 
 const objetos51 = cargar("5e", "objetos");
 const porRareza: Record<string, string[]> = {};
@@ -10,6 +11,14 @@ for (const o of objetos51) {
   const r = String(o.data.rarity || "sin rareza").toLowerCase();
   (porRareza[r] ??= []).push(String(o.data.name));
 }
+
+// El panel arranca con el catálogo 5.2.1, así que las dificultades que se
+// publican en el HTML son las suyas. El script las rehace al cambiar de
+// catálogo; estas son las que ve quien lee la página sin ejecutar nada.
+const catalogoInicial = "5.5";
+const reglaInicial = REGLAS[catalogoInicial];
+const dificultadesIniciales = dificultadesDe(catalogoInicial);
+const dificultadInicial = dificultadPorDefecto(catalogoInicial);
 ---
 
 <Base title="Mesa" description="Constructor de encuentros, iniciativa, dados, PNJ y botín para tus partidas." ancho>
@@ -38,9 +47,8 @@ for (const o of objetos51) {
 
     <section class="mesa-panel mesa-panel--ancho" aria-labelledby="p-encuentros">
       <h2 id="p-encuentros">Encuentros</h2>
-      <p class="mesa-panel__nota">
-        Presupuesto de PX de las reglas de 2014. Añade criaturas del catálogo y compara el total
-        ajustado con lo que aguanta el grupo.
+      <p class="mesa-panel__nota" id="enc-regla">
+        Presupuesto de PX de {reglaInicial.titulo}. {reglaInicial.nota}
       </p>
 
       <div class="mesa-fila">
@@ -54,10 +62,9 @@ for (const o of objetos51) {
         <label>Nivel <input type="number" id="enc-nivel" min="1" max="20" value="3" /></label>
         <label>Dificultad
           <select id="enc-dif" aria-label="Dificultad del encuentro">
-            <option value="facil">Fácil</option>
-            <option value="media" selected>Media</option>
-            <option value="dificil">Difícil</option>
-            <option value="mortal">Mortal</option>
+            {dificultadesIniciales.map((d) => (
+              <option value={d.clave} selected={d.clave === dificultadInicial.clave}>{d.etiqueta}</option>
+            ))}
           </select>
         </label>
       </div>
@@ -159,6 +166,18 @@ for (const o of objetos51) {
   <script>
     import { xpNumerico } from "../../lib/xp";
     import { enteroEnRango } from "../../lib/encuentro";
+    import {
+      edicionDe,
+      dificultadDe,
+      dificultadPorDefecto,
+      dificultadesDe,
+      multiplicadorDe,
+      presupuestoDe,
+      reglaDe,
+      totalDe,
+      veredictoDe,
+      type EdicionEncuentro,
+    } from "../../lib/presupuesto";
     import { plegar } from "../../lib/texto";
     import { CLAVE_INICIATIVA, leerIniciativa, type Combatiente } from "../../lib/iniciativa";
 
@@ -167,21 +186,45 @@ for (const o of objetos51) {
 
     /* ------------------------------------------------------------ encuentros */
 
-    const UMBRALES: Record<number, [number, number, number, number]> = {
-      1: [25, 50, 75, 100], 2: [50, 100, 150, 200], 3: [75, 150, 225, 400], 4: [125, 250, 375, 500],
-      5: [250, 500, 750, 1100], 6: [300, 600, 900, 1400], 7: [350, 750, 1100, 1700], 8: [450, 900, 1400, 2100],
-      9: [550, 1100, 1600, 2400], 10: [600, 1200, 1900, 2800], 11: [800, 1600, 2400, 3600], 12: [1000, 2000, 3000, 4500],
-      13: [1100, 2200, 3400, 5100], 14: [1250, 2500, 3800, 5700], 15: [1400, 2800, 4300, 6400], 16: [1600, 3200, 4800, 7200],
-      17: [2000, 3900, 5900, 8800], 18: [2100, 4200, 6300, 9500], 19: [2400, 4900, 7300, 10900], 20: [2800, 5700, 8500, 12700],
-    };
-    const IDX: Record<string, number> = { facil: 0, media: 1, dificil: 2, mortal: 3 };
-    const multiplicador = (n: number) => (n <= 1 ? 1 : n === 2 ? 1.5 : n <= 6 ? 2 : n <= 10 ? 2.5 : n <= 14 ? 3 : 4);
-
     type Monstruo = { s: string; n: string; d: { vd: string; xp: number | string; tipo: string; tamano: string } };
     let catalogo: Monstruo[] = [];
     let anadidas: { n: string; xp: number; qty: number }[] = [];
 
     const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T | null;
+
+    /* La regla del presupuesto depende del catálogo: el 5.2.1 trae tres
+       dificultades y ningún ajuste por número de criaturas; el 5.1, cuatro
+       dificultades y el ajuste. Se aplica la que toca al catálogo elegido, y
+       el selector de dificultad se rehace con ella para que no se puedan
+       mezclar —el fallo era aplicar la tabla de 2014 sobre el catálogo de
+       2024, que mandaba al veredicto al DM en mitad de la partida. */
+    let edicion: EdicionEncuentro = "5.5";
+
+    const pintarDificultades = () => {
+      const select = $("enc-dif") as HTMLSelectElement | null;
+      if (!select) return;
+      const lista = dificultadesDe(edicion);
+      const actual = select.value;
+      select.replaceChildren(
+        ...lista.map((d) => {
+          const opcion = document.createElement("option");
+          opcion.value = d.clave;
+          opcion.textContent = d.etiqueta;
+          return opcion;
+        }),
+      );
+      // Si la dificultad que había era de la otra edición, se vuelve a la de por
+      // defecto de esta: dejarla marcada pintaría un veredicto con una regla
+      // que no es la del catálogo.
+      select.value = lista.some((d) => d.clave === actual) ? actual : dificultadPorDefecto(edicion).clave;
+    };
+
+    const pintarRegla = () => {
+      const nota = $("enc-regla");
+      if (!nota) return;
+      const regla = reglaDe(edicion);
+      nota.textContent = `Presupuesto de PX de ${regla.titulo}. ${regla.nota}`;
+    };
 
     const cargarCatalogo = async (ed: string) => {
       const r = await fetch(`${BASE}/datos/${ed}.json`);
@@ -215,32 +258,32 @@ for (const o of objetos51) {
 
       // Los dos campos se teclean a mano: `type=number` no impide 0, 11, -3, un
       // decimal ni dejarlos vacíos. Sin acotarlos, 0 dejaba el presupuesto en 0
-      // (ratio Infinity) y 3.5 se salía de UMBRALES y rompía el repintado.
+      // (ratio Infinity) y 3.5 se salía de la tabla y rompía el repintado.
       const pj = enteroEnRango(($("enc-pj") as HTMLInputElement | null)?.value, 4, 1, 10);
       const nivel = enteroEnRango(($("enc-nivel") as HTMLInputElement | null)?.value, 3, 1, 20);
-      const dif = ($("enc-dif") as HTMLSelectElement)?.value ?? "media";
-      const umbral = UMBRALES[nivel] ?? UMBRALES[3];
-      const presupuesto = umbral[IDX[dif] ?? IDX.media] * pj;
+      const dif = ($("enc-dif") as HTMLSelectElement)?.value ?? dificultadPorDefecto(edicion).clave;
+      const presupuesto = presupuestoDe(edicion, nivel, dif, pj);
+      const etiquetaDificultad = dificultadDe(edicion, dif).etiqueta;
 
       const criaturas = anadidas.reduce((n, m) => n + m.qty, 0);
       const base = anadidas.reduce((n, m) => n + m.xp * m.qty, 0);
-      const ajustado = Math.round(base * multiplicador(criaturas));
+      const multiplicador = multiplicadorDe(edicion, criaturas);
+      const ajustado = totalDe(edicion, base, criaturas);
 
       if (!criaturas) {
         salida.innerHTML = `<p class="mesa-resumen__cifra">${presupuesto.toLocaleString("es-ES")} PX</p>
-          <p class="muted">Presupuesto para ${pj} ${pj === 1 ? "personaje" : "personajes"} de nivel ${nivel} (${dif}). Añade criaturas para comparar.</p>`;
+          <p class="muted">Presupuesto para ${pj} ${pj === 1 ? "personaje" : "personajes"} de nivel ${nivel} (${etiquetaDificultad.toLowerCase()}). Añade criaturas para comparar.</p>`;
         return;
       }
 
       const ratio = ajustado / presupuesto;
-      const veredicto =
-        ratio < 0.6 ? ["Holgado", "bien"] : ratio < 1 ? ["En presupuesto", "bien"] : ratio < 1.25 ? ["Al límite", "ojo"] : ["Por encima", "mal"];
+      const veredicto = veredictoDe(ratio);
 
       salida.innerHTML = `<p class="mesa-resumen__cifra">${ajustado.toLocaleString("es-ES")} <span>PX ajustados</span></p>
-        <p class="muted">${base.toLocaleString("es-ES")} PX base × ${multiplicador(criaturas)} por ${criaturas} ${
-          criaturas === 1 ? "criatura" : "criaturas"
-        } · presupuesto ${presupuesto.toLocaleString("es-ES")} PX</p>
-        <p class="mesa-veredicto mesa-veredicto--${veredicto[1]}">${veredicto[0]} (${Math.round(ratio * 100)} % del presupuesto)</p>`;
+        <p class="muted">${base.toLocaleString("es-ES")} PX base${
+          multiplicador === 1 ? "" : ` × ${multiplicador} por ${criaturas} ${criaturas === 1 ? "criatura" : "criaturas"}`
+        } · presupuesto ${presupuesto.toLocaleString("es-ES")} PX (${etiquetaDificultad.toLowerCase()})</p>
+        <p class="mesa-veredicto mesa-veredicto--${veredicto.clase}">${veredicto.texto} (${Math.round(ratio * 100)} % del presupuesto)</p>`;
     };
 
     /* El datalist solo dispara `change` al elegir una sugerencia, así que el
@@ -314,12 +357,20 @@ for (const o of objetos51) {
       pintarEncuentro();
     });
     $("enc-ed")?.addEventListener("change", async (ev) => {
+      // El catálogo manda sobre la regla: al cambiarlo se rehacen las
+      // dificultades y el texto que dice qué tabla se está usando, antes de
+      // cargar las criaturas del catálogo nuevo.
+      edicion = edicionDe((ev.target as HTMLSelectElement).value);
+      pintarDificultades();
+      pintarRegla();
       await cargarCatalogo((ev.target as HTMLSelectElement).value);
       anadidas = [];
       avisar("");
       pintarEncuentro();
     });
 
+    pintarDificultades();
+    pintarRegla();
     cargarCatalogo("5.5").then(pintarEncuentro);
 
 

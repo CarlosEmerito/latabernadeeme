@@ -59,6 +59,10 @@
  *  18. `tools/test/secciones.mjs` sobre `dist/`: que todos los apartados de
  *      las dos ediciones se publiquen en su página de comparación, que es donde
  *      se ven las dos redacciones de un mismo apartado.
+ *  19. `tools/test/presupuesto.mjs`: que la tabla de PX por personaje del
+ *      5.2.1 que usa el constructor de encuentros sea la del SRD, con sus tres
+ *      dificultades y sin ajuste por número de criaturas, y que el 5.1 use su
+ *      tabla y su ajuste.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -196,4 +200,11 @@ if (secciones !== 0) {
   process.exit(secciones);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y apartados del comparador correctos.");
+console.log("▶ Presupuesto de encuentros: presupuesto.mjs (src/lib/ y data/)");
+const presupuesto = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/presupuesto.mjs")]);
+if (presupuesto !== 0) {
+  console.error("✗ El presupuesto de PX del constructor no coincide con la tabla del SRD.");
+  process.exit(presupuesto);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador y presupuesto de encuentros correctos.");

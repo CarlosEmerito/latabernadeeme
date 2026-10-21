@@ -21,7 +21,7 @@ resistances: ''
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
-senses: sentir vibraciones 18 m, visión ciega 9 m
+senses: sentir vibraciones 18 m, visión ciega 9 m; Percepción pasiva 9
 languages: ninguno
 cr: '15'
 xp: 13 000 PX; BC +5

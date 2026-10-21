@@ -15,7 +15,7 @@ abilities:
   int: 16
   sab: 19
   car: 18
-saves: ''
+saves: Des +8, Con +7, Int +7, Sab +8, Car +8
 skills: ''
 resistances: ''
 immunities: veneno

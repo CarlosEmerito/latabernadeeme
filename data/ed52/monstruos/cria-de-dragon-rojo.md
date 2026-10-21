@@ -21,7 +21,7 @@ resistances: ''
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
-senses: visión ciega 3 m, visión en la oscuridad 18 m
+senses: visión ciega 3 m, visión en la oscuridad 18 m; Percepción pasiva 14
 languages: dracónico
 cr: '4'
 xp: 1100 PX; BC +2

@@ -16,7 +16,7 @@ abilities:
   sab: 14
   car: 16
 saves: ''
-skills: Engaño +7, Percepción +6, Perspicacia +6
+skills: Engaño +7, Percepción +6, Perspicacia +6, Sigilo +6
 resistances: frío, fuego; contundente, cortante y perforante de ataques no mágicos con armas que no sean de plata
 immunities: ''
 conditionImmunities: hechizado

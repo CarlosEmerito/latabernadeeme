@@ -16,7 +16,7 @@ abilities:
   sab: 18
   car: 18
 saves: Fue +14, Con +10, Sab +9, Car +9
-skills: Atletismo +14, Conocimiento Arcano +8
+skills: Atletismo +14, Conocimiento Arcano +8, Historia +8, Percepción +9
 resistances: frío
 immunities: relámpago, trueno
 conditionImmunities: ''

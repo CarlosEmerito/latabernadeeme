@@ -16,7 +16,7 @@ abilities:
   sab: 18
   car: 18
 saves: ''
-skills: Conocimiento Arcano +12, Historia +12
+skills: Conocimiento Arcano +12, Historia +12, Percepción +8, Religión +8
 resistances: contundente, cortante y perforante de ataques no mágicos
 immunities: psíquico
 conditionImmunities: asustado, hechizado

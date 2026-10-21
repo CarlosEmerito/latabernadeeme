@@ -16,7 +16,7 @@ abilities:
   sab: 13
   car: 11
 saves: ''
-skills: Atletismo +6, Percepción +3
+skills: Atletismo +6, Percepción +3, Supervivencia +3
 resistances: ''
 immunities: ''
 conditionImmunities: ''

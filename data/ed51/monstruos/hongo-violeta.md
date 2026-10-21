@@ -21,7 +21,7 @@ resistances: ''
 immunities: ''
 conditionImmunities: asustado, cegado, ensordecido
 vulnerabilities: ''
-senses: visión ciega 9 m (ciego más allá de este radio)
+senses: visión ciega 9 m (ciego más allá de este radio), Percepción pasiva 6
 languages: —
 cr: 1/4
 xp: 50 PX

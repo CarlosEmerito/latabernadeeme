@@ -16,12 +16,12 @@ abilities:
   sab: 17
   car: 19
 saves: Des +8, Con +14, Sab +10, Car +11
-skills: Engaño +11, Percepción +17
+skills: Engaño +11, Percepción +17, Perspicacia +10, Persuasión +11, Sigilo +8
 resistances: ''
 immunities: veneno
 conditionImmunities: envenenado
 vulnerabilities: ''
-senses: visión ciega 18 m, visión en la oscuridad 36 m
+senses: visión ciega 18 m, visión en la oscuridad 36 m, Percepción pasiva 27
 languages: común, dracónico
 cr: '22'
 xp: 41 000 PX

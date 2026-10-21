@@ -16,7 +16,7 @@ abilities:
   sab: 18
   car: 18
 saves: ''
-skills: Conocimiento arcano +12, Historia +12
+skills: Conocimiento arcano +12, Historia +12, Percepción +8, Religión +12
 resistances: ''
 immunities: ''
 conditionImmunities: ''

@@ -21,7 +21,7 @@ resistances: ''
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
-senses: visión ciega 3 m, visión en la oscuridad 18 m
+senses: visión ciega 3 m, visión en la oscuridad 18 m; Percepción pasiva 10
 languages: entiende las órdenes recibidas en cualquier idioma, pero no puede hablar
 cr: '7'
 xp: 2900 PX; BC +3

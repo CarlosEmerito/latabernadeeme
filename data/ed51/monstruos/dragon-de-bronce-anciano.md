@@ -15,13 +15,13 @@ abilities:
   int: 18
   sab: 17
   car: 21
-saves: Des +7, Con +15, Sab +10
+saves: Des +7, Con +15, Sab +10, Car +12
 skills: Percepción +17, Perspicacia +10, Sigilo +7
 resistances: ''
 immunities: relámpago
 conditionImmunities: ''
 vulnerabilities: ''
-senses: visión ciega 18 m, visión en la oscuridad 36 m
+senses: visión ciega 18 m, visión en la oscuridad 36 m, Percepción pasiva 27
 languages: común, dracónico
 cr: '22'
 xp: 41 000 PX

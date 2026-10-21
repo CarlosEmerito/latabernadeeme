@@ -15,7 +15,7 @@ abilities:
   int: 22
   sab: 18
   car: 20
-saves: Fue +17, Des +7, Con +14, Int +13
+saves: Fue +17, Des +7, Con +14, Int +13, Sab +11
 skills: ''
 resistances: ''
 immunities: relámpago; contundente, cortante y perforante de ataques no mágicos

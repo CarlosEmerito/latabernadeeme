@@ -16,7 +16,7 @@ abilities:
   sab: 14
   car: 16
 saves: ''
-skills: Engaño +6, Percepción +5, Perspicacia +5
+skills: Engaño +6, Percepción +5, Perspicacia +5, Sigilo +5
 resistances: ''
 immunities: ''
 conditionImmunities: ''

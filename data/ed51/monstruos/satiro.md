@@ -21,7 +21,7 @@ resistances: ''
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
-senses: ''
+senses: Percepción pasiva 12
 languages: común, elfo, silvano
 cr: 1/2
 xp: 100 PX

@@ -21,7 +21,7 @@ resistances: ''
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
-senses: sentir vibraciones 18 m, visión en la oscuridad
+senses: sentir vibraciones 18 m, visión en la oscuridad 18 m; Percepción pasiva 10
 languages: primordial (terrano)
 cr: '5'
 xp: 1800 PX; BC +3

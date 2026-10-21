@@ -47,3 +47,7 @@ Total de entradas: **2490**. Apartados con incidencias: **0**.
 ## README — tabla de recuentos
 
 - Las 18 celdas coinciden con los ficheros de `data/`.
+
+## Perfil de las criaturas
+
+- Ningún campo del perfil acaba cortado y las fichas testigo están completas.

@@ -16,7 +16,7 @@ abilities:
   sab: 15
   car: 11
 saves: ''
-skills: Medicina +4, Naturaleza +3
+skills: Medicina +4, Naturaleza +3, Percepción +4
 resistances: ''
 immunities: ''
 conditionImmunities: ''

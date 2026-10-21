@@ -21,7 +21,7 @@ resistances: ''
 immunities: ácido
 conditionImmunities: ''
 vulnerabilities: ''
-senses: visión ciega 18 m, visión en la oscuridad 36 m
+senses: visión ciega 18 m, visión en la oscuridad 36 m, Percepción pasiva 21
 languages: común, dracónico
 cr: '14'
 xp: 11 500 PX

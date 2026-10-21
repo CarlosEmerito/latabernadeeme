@@ -16,11 +16,14 @@
  *      alineadas con sus cabeceras.
  *   6. `tools/test/iconos.mjs` sobre `dist/`: que toda ficha lleve el icono de
  *      su banda, que es lo que delata un tipo o una escuela sin SVG.
- *   7. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
+ *   7. `tools/test/alias.mjs` sobre `dist/`: que cada ficha publique el alias
+ *      inglés que le toca —por nombre o, si el nombre es ambiguo, por ficha— y
+ *      que `/datos/<edición>.json` sirva el mismo que pinta la página.
+ *   8. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
  *      quien lo importe y ningún `export function` / `export const` suyo sin
  *      quien lo llame, que es como se cuela código muerto que duplica otra
  *      implementación y confunde sobre cuál manda.
- *   8. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
+ *   9. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
  *      las tipografías que el CSS carga —ni una de menos ni una de más— y que
  *      `package.json` no declare ninguna fuente sin importar.
  *
@@ -76,6 +79,13 @@ if (iconos !== 0) {
   process.exit(iconos);
 }
 
+console.log("▶ Alias inglés de las fichas: alias.mjs (dist/)");
+const alias = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/alias.mjs")]);
+if (alias !== 0) {
+  console.error("✗ Alguna ficha publica un alias que no es el suyo.");
+  process.exit(alias);
+}
+
 console.log("▶ Módulos y exports sin uso: huerfanos.mjs (src/lib/)");
 const huerfanos = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/huerfanos.mjs")]);
 if (huerfanos !== 0) {
@@ -90,4 +100,4 @@ if (fuentes !== 0) {
   process.exit(fuentes);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, columnas, iconos, código muerto y fuentes correctos.");
+console.log("✓ Datos, enlaces, ids, filtro, columnas, iconos, alias, código muerto y fuentes correctos.");

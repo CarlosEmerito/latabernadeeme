@@ -405,11 +405,43 @@ const INGLES: Record<string, string> = {
   "Tiefling": "Tiefling",
 };
 
-/** Español (en minúsculas) → inglés. */
-const ALIAS_ES: Map<string, string> = new Map(
-  Object.entries(INGLES).map(([en, es]) => [es.toLowerCase(), en]),
-);
+/**
+ * Fichas cuyo nombre español comparten dos términos ingleses distintos, que es
+ * justo lo que el nombre visible no puede resolver: el monstruo del SRD es
+ * `Mage` y la clase es `Wizard`, y las dos se llaman «Mago». La clave es
+ * `tipo/slug`, que sí identifica la ficha; vale para las dos ediciones porque el
+ * término del SRD es el mismo. Lo vigila `tools/test/alias.mjs`.
+ */
+const POR_FICHA: Record<string, string> = {
+  "monstruos/mago": "Mage",
+  "clases/mago": "Wizard",
+};
 
-export function aliasDe(nombre: string): string | undefined {
-  return ALIAS_ES.get(String(nombre).trim().toLowerCase());
+/**
+ * Español (en minúsculas) → términos ingleses que lo comparten. Se guardan
+ * todos: cuando hay más de uno el nombre no basta para elegir, y `aliasDe`
+ * devuelve `undefined` en vez de quedarse con el último del diccionario (que es
+ * como el monstruo Mago acabó publicando «En inglés: Wizard»).
+ */
+const ALIAS_ES: Map<string, string[]> = new Map();
+for (const [en, es] of Object.entries(INGLES)) {
+  const clave = es.trim().toLowerCase();
+  const terminos = ALIAS_ES.get(clave);
+  if (!terminos) ALIAS_ES.set(clave, [en]);
+  else if (!terminos.includes(en)) terminos.push(en);
+}
+
+/**
+ * Alias inglés de una ficha: por `tipo/slug` si el nombre es ambiguo, por nombre
+ * en el resto. `tipo` y `slug` son opcionales para las llamadas que solo tienen
+ * el nombre; sin ellos, un nombre ambiguo no devuelve nada antes que devolver un
+ * término que puede ser el de otra ficha.
+ */
+export function aliasDe(nombre: string, tipo?: string, slug?: string): string | undefined {
+  if (tipo && slug) {
+    const ficha = POR_FICHA[`${tipo}/${slug}`];
+    if (ficha) return ficha;
+  }
+  const terminos = ALIAS_ES.get(String(nombre).trim().toLowerCase());
+  return terminos?.length === 1 ? terminos[0] : undefined;
 }

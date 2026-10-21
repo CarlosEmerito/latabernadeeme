@@ -64,9 +64,10 @@ for (const o of objetos51) {
 
       <label class="mesa-buscador">
         <span>Añadir criatura</span>
-        <input type="search" id="enc-buscar" list="enc-lista" placeholder="Goblin, lobo, dragón rojo…" autocomplete="off" />
+        <input type="search" id="enc-buscar" list="enc-lista" placeholder="Goblin, lobo, dragón rojo…" autocomplete="off" aria-describedby="enc-aviso" />
         <datalist id="enc-lista"></datalist>
       </label>
+      <p class="mesa-aviso" id="enc-aviso" role="status" hidden></p>
 
       <ul id="enc-anadidas" class="mesa-anadidas" aria-live="polite"></ul>
 
@@ -158,6 +159,7 @@ for (const o of objetos51) {
   <script>
     import { xpNumerico } from "../../lib/xp";
     import { enteroEnRango } from "../../lib/encuentro";
+    import { plegar } from "../../lib/texto";
 
     const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     const azar = <T,>(xs: T[]): T => xs[Math.floor(Math.random() * xs.length)];
@@ -240,16 +242,61 @@ for (const o of objetos51) {
         <p class="mesa-veredicto mesa-veredicto--${veredicto[1]}">${veredicto[0]} (${Math.round(ratio * 100)} % del presupuesto)</p>`;
     };
 
-    $("enc-buscar")?.addEventListener("change", (ev) => {
-      const valor = (ev.target as HTMLInputElement).value.trim();
-      const m = catalogo.find((x) => x.n.toLowerCase() === valor.toLowerCase());
-      if (!m) return;
+    /* El datalist solo dispara `change` al elegir una sugerencia, así que el
+       teclado se quedaba sin respuesta: escribir el nombre y pulsar Intro no
+       añadía nada. Intro y `change` comparten ahora el mismo camino, y lo que no
+       case con el catálogo se dice en el propio panel en vez de en silencio. */
+    const avisar = (texto: string) => {
+      const aviso = $("enc-aviso");
+      if (!aviso) return;
+      aviso.textContent = texto;
+      aviso.hidden = !texto;
+    };
+
+    const anadirCriatura = (texto: string): Monstruo | null => {
+      const buscado = plegar(texto.trim());
+      if (!buscado) return null;
+      // Vale el nombre exacto y, si no lo hay, un único parecido: «dragon rojo»
+      // sin tilde encuentra «Dragón rojo», pero «goblin» es ambiguo y se avisa.
+      const exacta = catalogo.find((x) => plegar(x.n) === buscado);
+      const parecidas = exacta ? [] : catalogo.filter((x) => plegar(x.n).includes(buscado));
+      const m = exacta ?? (parecidas.length === 1 ? parecidas[0] : null);
+      if (!m) {
+        avisar(
+          parecidas.length
+            ? `«${texto.trim()}» coincide con ${parecidas.length} criaturas: ${parecidas
+                .slice(0, 3)
+                .map((x) => x.n)
+                .join(", ")}${parecidas.length > 3 ? "…" : ""}. Elige una de la lista.`
+            : `No hay ninguna criatura que se llame «${texto.trim()}» en este catálogo.`,
+        );
+        return null;
+      }
       const ya = anadidas.find((x) => x.n === m.n);
       if (ya) ya.qty++;
       else anadidas.push({ n: m.n, xp: xpNumerico(m.d.xp), qty: 1 });
-      (ev.target as HTMLInputElement).value = "";
+      avisar("");
       pintarEncuentro();
+      return m;
+    };
+
+    const campoBuscar = $("enc-buscar") as HTMLInputElement | null;
+
+    // Al añadir, el campo se vacía y el foco sigue en él para encadenar criaturas.
+    const confirmarCriatura = () => {
+      if (!campoBuscar || !anadirCriatura(campoBuscar.value)) return;
+      campoBuscar.value = "";
+      campoBuscar.focus();
+    };
+
+    campoBuscar?.addEventListener("change", confirmarCriatura);
+    campoBuscar?.addEventListener("keydown", (ev) => {
+      if (ev.key !== "Enter") return;
+      ev.preventDefault();
+      confirmarCriatura();
     });
+    // El aviso deja de tener sentido en cuanto se corrige el texto.
+    campoBuscar?.addEventListener("input", () => avisar(""));
 
     $("enc-anadidas")?.addEventListener("click", (ev) => {
       const b = (ev.target as HTMLElement).closest("button");
@@ -268,6 +315,7 @@ for (const o of objetos51) {
     $("enc-ed")?.addEventListener("change", async (ev) => {
       await cargarCatalogo((ev.target as HTMLSelectElement).value);
       anadidas = [];
+      avisar("");
       pintarEncuentro();
     });
 

@@ -1,0 +1,30 @@
+---
+/**
+ * Pestañas de la sección «Mesa».
+ *
+ * Las tres herramientas de mesa viven en URLs distintas y ninguna enlazaba a
+ * las demás: la pantalla del DM compilaba y no la alcanzaba nadie. Esta barra
+ * deja cada una a un clic desde las otras y marca la actual con aria-current.
+ */
+import { e } from "../lib/urls";
+
+const ruta = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+const enlaces = [
+  { href: e("/mesa/"), texto: "Herramientas" },
+  { href: e("/mesa/pantalla/"), texto: "Pantalla del DM" },
+  { href: e("/mesa/jugadores/"), texto: "Vista de jugador" },
+];
+
+const activo = (href: string) => (ruta === href.replace(/\/$/, "") ? "page" : undefined);
+---
+
+<nav class="mesa-nav noprint" aria-label="Herramientas de mesa">
+  {
+    enlaces.map(({ href, texto }) => (
+      <a href={href} aria-current={activo(href)}>
+        {texto}
+      </a>
+    ))
+  }
+</nav>

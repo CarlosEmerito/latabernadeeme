@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import MesaNav from "../../components/MesaNav.astro";
 import { cargar } from "../../lib/content";
 import { e } from "../../lib/urls";
 
@@ -22,7 +23,19 @@ for (const o of objetos51) {
     </div>
   </header>
 
+  <MesaNav />
+
   <div class="mesa-grid">
+    <section class="mesa-panel mesa-panel--ancho" aria-labelledby="p-pantalla">
+      <h2 id="p-pantalla">Pantalla del DM</h2>
+      <p class="mesa-panel__nota">
+        Condiciones, acciones, exploración y peligros en una sola pantalla. Elige qué paneles
+        quieres, la elección se recuerda en este navegador y se imprime tal cual para tenerla
+        delante en la partida.
+      </p>
+      <a class="btn btn--acento" href={e("/mesa/pantalla/")}>Abrir la pantalla del DM</a>
+    </section>
+
     <section class="mesa-panel mesa-panel--ancho" aria-labelledby="p-encuentros">
       <h2 id="p-encuentros">Encuentros</h2>
       <p class="mesa-panel__nota">

@@ -23,6 +23,10 @@ const b = cargar("5.5", tipo).find((x) => x.slug === slug)!;
 const filas = alinear(a.body, b.body);
 const r = resumen(filas);
 const nombre = String(b.data.name ?? a.data.name ?? slug);
+// La sección nombra la comparación: «Escudo» es un conjuro y un escudo de
+// equipo, y /comparar/conjuros/escudo/ y /comparar/equipo/escudo/ salían con el
+// mismo título y la misma descripción.
+const seccion = TIPO_META[tipo].singular;
 
 // Las dos columnas traen los mismos encabezados: un registro por página les da
 // sufijo a los repetidos para que cada uno tenga su ancla.
@@ -31,8 +35,8 @@ const bloque = (markdown: string) => ids.aplicar(renderizar(markdown));
 ---
 
 <Base
-  title={`${nombre} · 2014 frente a 2024`}
-  description={`Comparación del texto de ${nombre} entre el SRD 5.1 y el 5.2.1.`}
+  title={`${nombre} · ${seccion} · 2014 frente a 2024`}
+  description={`Comparación del texto de ${nombre} (${seccion.toLowerCase()}) entre el SRD 5.1 y el 5.2.1.`}
   tipo={tipo}
 >
   <nav class="migas" aria-label="Migas de pan">

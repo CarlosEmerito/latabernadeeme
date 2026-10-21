@@ -31,16 +31,19 @@ const otraEdicion = existeEnOtra ? { ed: otra, srd: EDICIONES[otra].srd } : unde
 const meta = EDICIONES[ed];
 const t = TIPO_META[tipo];
 const titulo = String(entrada.data.name);
+// La sección va en el título y en la descripción: «Escudo» es un conjuro y un
+// escudo de equipo, y las dos fichas se anunciaban igual.
+const seccion = t.singular.toLowerCase();
 const descripcion =
   tipo === "monstruos"
     ? `${titulo}, VD ${entrada.data.cr} (${meta.srd}).`
     : tipo === "conjuros"
       ? `${titulo}, ${entrada.data.level === 0 ? "truco" : `conjuro de nivel ${entrada.data.level}`} de ${entrada.data.school} (${meta.srd}).`
-      : `${titulo} (${meta.srd}).`;
+      : `${titulo}, ${seccion} (${meta.srd}).`;
 const sigilo = imagenDe(tipo, slug, titulo).src;
 ---
 
-<Base title={titulo} description={descripcion} edicion={ed} tipo={tipo} imagen={sigilo} tipoOg="article">
+<Base title={titulo} description={descripcion} edicion={ed} tipo={tipo} seccion={t.singular} imagen={sigilo} tipoOg="article">
   <nav class="migas" aria-label="Migas de pan">
     <a href={e(`/${ed}/`)}>{meta.srd}</a>
     <span aria-hidden="true">/</span>

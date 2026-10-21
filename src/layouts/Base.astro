@@ -14,6 +14,12 @@ interface Props {
   ancho?: boolean;
   /** Sigilo de la entrada, para la tarjeta social; sin él se usa el genérico. */
   imagen?: string;
+  /**
+   * Sección de la entrada («Conjuro», «Equipo», «Clase»…). Va en el título
+   * porque el nombre no basta: «Escudo» es un conjuro y un escudo de equipo, y
+   * sin la sección las dos fichas salían con el mismo `<title>`.
+   */
+  seccion?: string;
   /** `article` en las fichas, `website` en la portada y los listados. */
   tipoOg?: "website" | "article";
 }
@@ -25,12 +31,16 @@ const {
   tipo,
   ancho = false,
   imagen,
+  seccion,
   tipoOg = "website",
 } = Astro.props;
 
 const SITIO = "La Taberna de Eme";
 const ETIQUETA = edicion ? (edicion === "5e" ? "D&D 5e" : "D&D 5.5e") : "D&D 5e y 5.5e";
-const tituloCompleto = title === SITIO ? `${SITIO} — ${ETIQUETA} en español` : `${title} · ${ETIQUETA}`;
+const tituloCompleto =
+  title === SITIO
+    ? `${SITIO} — ${ETIQUETA} en español`
+    : [title, seccion, ETIQUETA].filter(Boolean).join(" · ");
 const ruta = Astro.url.pathname.replace(/\/$/, "") || "/";
 const activo = (href: string) => (ruta === href.replace(/\/$/, "") ? "page" : undefined);
 const meta = edicion ? EDICIONES[edicion] : null;

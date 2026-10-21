@@ -44,6 +44,9 @@
  *      misma categoría no compartan nombre —el listado publicaría dos filas
  *      indistinguibles— y que el homónimo en categorías distintas siga
  *      permitido.
+ *  15. `tools/test/titulos.mjs` sobre `dist/`: que ninguna página comparta
+ *      `<title>` con una de otra sección —«Escudo» conjuro y «Escudo» equipo
+ *      salían iguales en la pestaña y en Google— y que todas tengan uno.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -153,4 +156,11 @@ if (duplicados !== 0) {
   process.exit(duplicados);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales y nombres repetidos correctos.");
+console.log("▶ Títulos únicos por sección: titulos.mjs (dist/)");
+const titulos = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/titulos.mjs")]);
+if (titulos !== 0) {
+  console.error("✗ Hay páginas de secciones distintas con el mismo título: la pestaña y el resultado de búsqueda no las distinguen.");
+  process.exit(titulos);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos y títulos únicos por sección correctos.");

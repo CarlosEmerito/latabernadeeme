@@ -51,3 +51,7 @@ Total de entradas: **2490**. Apartados con incidencias: **0**.
 ## Perfil de las criaturas
 
 - Ningún campo del perfil acaba cortado y las fichas testigo están completas.
+
+## Rótulos dentro del valor
+
+- Ninguna palabra lleva «habilidades» pegada por delante ni por detrás.

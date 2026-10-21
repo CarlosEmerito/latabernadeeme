@@ -5,7 +5,7 @@ primaryAbility: Destreza y Sabiduría
 saves:
 - Fuerza
 - Destreza
-skillChoices: 'Elige tres: Atletismo, Investigahabilidades ción, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales'
+skillChoices: 'Elige tres: Atletismo, Investigación, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales'
 armor: Armaduras ligeras y medias y escudos
 weapons: Armas sencillas y marciales
 tools: ''
@@ -18,7 +18,7 @@ page: 58
 - **Característica principal:** Destreza y Sabiduría
 - **Dado de puntos de golpe:** 1d10 por nivel de explorador
 - **Competencias en tiradas de salvación:** Fuerza y Destreza
-- **Competencias en habilidades:** Elige tres: Atletismo, Investigahabilidades ción, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales
+- **Competencias en habilidades:** Elige tres: Atletismo, Investigación, Naturaleza, Percepción, Perspicacia, Sigilo, Supervivencia o Trato con animales
 - **Competencias con armas:** Armas sencillas y marciales
 - **Entrenamiento con armaduras:** Armaduras ligeras y medias y escudos
 - **Equipo inicial:** Elige A o B: (A) armadura de cuero tachonado, cimitarra, espada corta, arco largo, 20 flechas, aljaba, canalizador druídico (rama de muérdago), paquete de explorador y 7 po, o (B) 150 po

@@ -18,9 +18,9 @@ sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(HERE.parents[1]))
 
 from stream import Line, load, page_pitch  # noqa: E402
+from rutas import WORK  # noqa: E402
 from write_data import clean_paragraph, slug, unique_path, write_entry  # noqa: E402
 
-WORK = Path("/home/emerito/.hermes/cache/scratch/srd/work")
 ROOT = HERE.parents[3]
 DATA = ROOT / "data"
 
@@ -691,22 +691,13 @@ BOX_ROWS = [
     ("Entrenamiento con armaduras", "Entrenamiento con"),
     ("Equipo inicial", "Equipo inicial"),
 ]
-BOX_FRAGMENTS = {"principal", "de golpe", "tiradas de salvación", "en habilidades",
-                 "armas", "herramientas", "armaduras"}
-
-
-BOX_ROWS = [
-    ("Característica principal", "Característica"),
-    ("Dado de puntos de golpe", "Dado de puntos"),
-    ("Competencias en tiradas de salvación", "Competencias en"),
-    ("Competencias en habilidades", "Competencias"),
-    ("Competencias con armas", "Competencias con"),
-    ("Competencias con herramientas", "Competencias con"),
-    ("Entrenamiento con armaduras", "Entrenamiento con"),
-    ("Equipo inicial", "Equipo inicial"),
-]
-BOX_FRAGMENTS = {"principal", "de golpe", "golpe", "tiradas de salvación", "en habilidades",
-                 "armas", "herramientas", "armaduras"}
+# Restos del rótulo que Poppler deja como línea suelta en la columna izquierda.
+# No se puede descartar por posición: cuando el valor continúa en la misma
+# línea base, el resto del rótulo viaja pegado a él («armaduras y escudos»,
+# «armas marciales que tengan la pro-»), y ahí «armas» sí es parte del valor.
+BOX_FRAGMENTS = {"principal", "de golpe", "golpe", "tiradas de salvación",
+                 "en habilidades", "habilidades", "armas", "herramientas",
+                 "armaduras"}
 
 
 def attribute_box52(raw: list[Line], page: int) -> list[tuple[str, str]]:
@@ -761,7 +752,10 @@ def attribute_box52(raw: list[Line], page: int) -> list[tuple[str, str]]:
             (right if l.x >= mid else parts).append(l.text)
         preface = [t for t in right if re.match(r"^(Elige|Escoge)\b", t)]
         rest = [t for t in right if t not in preface]
-        value = _join([p for p in preface + parts + rest if p])
+        value = fix_text(_join([p for p in preface + parts + rest if p]))
+        # Un resto del rótulo que se cuele con espacios («... arcano habilidades,
+        # ...») se va aquí; pegado a media palabra lo delata `validar.py`, que no
+        # puede arreglarlo sin saber qué palabra se partió.
         value = re.sub(r"\s+habilidades\s+", " ", value)
         out.append((label, clean_paragraph(value)))
     return out

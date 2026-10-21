@@ -7,7 +7,7 @@ saves:
 - Carisma
 skillChoices: 'Elige dos: Conocimiento arcano, Engaño, Historia, Intimidación, Investigación, Naturaleza o Religión'
 armor: Armaduras ligeras
-weapons: Amas sencillas
+weapons: Armas sencillas
 tools: ''
 srd: '5.2'
 page: 40
@@ -19,7 +19,7 @@ page: 40
 - **Dado de puntos de golpe:** 1d8 por nivel de brujo
 - **Competencias en tiradas de salvación:** Sabiduría y Carisma
 - **Competencias en habilidades:** Elige dos: Conocimiento arcano, Engaño, Historia, Intimidación, Investigación, Naturaleza o Religión
-- **Competencias con armas:** Amas sencillas
+- **Competencias con armas:** Armas sencillas
 - **Entrenamiento con armaduras:** Armaduras ligeras
 - **Equipo inicial:** Elige A o B: (A) armadura de cuero, hoz, 2 dagas, canalizador arcano (orbe), libro (de conocimiento oculto), paquete de erudito y 15 po, o (B) 100 po
 

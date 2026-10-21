@@ -7,7 +7,7 @@ saves:
 - Carisma
 skillChoices: 'Elige dos: Historia, Medicina, Perspicacia, Persuasión o Religión'
 armor: Armaduras ligeras y medias y escudos
-weapons: Amas sencillas
+weapons: Armas sencillas
 tools: ''
 srd: '5.2'
 page: 47
@@ -19,7 +19,7 @@ page: 47
 - **Dado de puntos de golpe:** 1d8 por nivel de clérigo
 - **Competencias en tiradas de salvación:** Sabiduría y Carisma
 - **Competencias en habilidades:** Elige dos: Historia, Medicina, Perspicacia, Persuasión o Religión
-- **Competencias con armas:** Amas sencillas
+- **Competencias con armas:** Armas sencillas
 - **Entrenamiento con armaduras:** Armaduras ligeras y medias y escudos
 - **Equipo inicial:** Elige A o B: (A) camisa de malla, escudo, maza, paquete de sacerdote, símbolo sagrado y 7 po, o (B) 110 po
 

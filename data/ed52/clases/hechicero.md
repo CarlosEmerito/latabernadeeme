@@ -5,9 +5,9 @@ primaryAbility: Carisma
 saves:
 - Constitución
 - Carisma
-skillChoices: 'Elige dos: Conocimiento arhabilidades cano, Engaño, Intimidación, Perspicacia, Persuasión o Religión'
+skillChoices: 'Elige dos: Conocimiento arcano, Engaño, Intimidación, Perspicacia, Persuasión o Religión'
 armor: Ninguna
-weapons: Amas sencillas
+weapons: Armas sencillas
 tools: ''
 srd: '5.2'
 page: 64
@@ -18,8 +18,8 @@ page: 64
 - **Característica principal:** Carisma
 - **Dado de puntos de golpe:** 1d6 por nivel de hechicero
 - **Competencias en tiradas de salvación:** Constitución y Carisma
-- **Competencias en habilidades:** Elige dos: Conocimiento arhabilidades cano, Engaño, Intimidación, Perspicacia, Persuasión o Religión
-- **Competencias con armas:** Amas sencillas
+- **Competencias en habilidades:** Elige dos: Conocimiento arcano, Engaño, Intimidación, Perspicacia, Persuasión o Religión
+- **Competencias con armas:** Armas sencillas
 - **Entrenamiento con armaduras:** Ninguna
 - **Equipo inicial:** Elige A o B: (A) lanza, 2 dagas, canalizador arcano (cristal), paquete de explorador de mazmorras y 28 po, o (B) 50 po
 

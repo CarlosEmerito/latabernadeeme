@@ -5,9 +5,9 @@ primaryAbility: Inteligencia
 saves:
 - Inteligencia
 - Sabiduría
-skillChoices: 'Elige dos: Conocimiento arhabilidades cano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión'
+skillChoices: 'Elige dos: Conocimiento arcano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión'
 armor: Ninguna
-weapons: Amas sencillas
+weapons: Armas sencillas
 tools: ''
 srd: '5.2'
 page: 71
@@ -18,8 +18,8 @@ page: 71
 - **Característica principal:** Inteligencia
 - **Dado de puntos de golpe:** 1d6 por nivel de mago
 - **Competencias en tiradas de salvación:** Inteligencia y Sabiduría
-- **Competencias en habilidades:** Elige dos: Conocimiento arhabilidades cano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión
-- **Competencias con armas:** Amas sencillas
+- **Competencias en habilidades:** Elige dos: Conocimiento arcano, Historia, Investigación, Medicina, Naturaleza, Perspicacia o Religión
+- **Competencias con armas:** Armas sencillas
 - **Entrenamiento con armaduras:** Ninguna
 - **Equipo inicial:** Elige A o B: (A) 2 dagas, canalizador arcano (bastón), libro de conjuros, paquete de erudito, túnica y 5 po, o (B) 55 po
 

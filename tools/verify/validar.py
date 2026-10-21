@@ -6,6 +6,7 @@ Comprueba, por edición y tipo de contenido:
   - campos obligatorios vacíos,
   - cuerpos vacíos o desproporcionados (síntoma de un corte mal hecho),
   - duplicados por nombre,
+  - palabras partidas por un rótulo que se cuela dentro del valor,
   - la tabla de recuentos del README frente a los ficheros reales.
 
 Uso:
@@ -112,6 +113,46 @@ def perfil_completo() -> list[str]:
             valor = str(datos.get(campo) or "")
             if texto not in valor:
                 problemas.append(f"{ed}/{ficha}: {campo} debería contener «{texto}» y dice «{valor}»")
+    return problemas
+
+
+# El rótulo «(Competencias en) habilidades» de la caja de 5.2 se cuela a veces
+# dentro del valor de al lado cuando este parte con guion: «Conocimiento
+# ar-habilidades cano», «Investigahabilidades ción». Es texto público y la
+# validación lo daba por bueno, así que se buscan las palabras que lleven
+# «habilidades» pegada por delante o por detrás.
+HABILIDADES = re.compile(r"(?i)\b\w*habilidades\w*\b")
+# Voces que acaban igual y no son un resto de rótulo.
+HABILIDADES_VALIDAS = {"habilidades", "inhabilidades", "responsabilidades"}
+
+
+def _cadenas(valor: object) -> list[str]:
+    """Todo el texto de un valor del frontmatter, por anidado que venga."""
+    if isinstance(valor, str):
+        return [valor]
+    if isinstance(valor, dict):
+        return [s for v in valor.values() for s in _cadenas(v)]
+    if isinstance(valor, list):
+        return [s for v in valor for s in _cadenas(v)]
+    return []
+
+
+def palabras_pegadas() -> list[str]:
+    """Palabras donde el rótulo «habilidades» se ha metido dentro del valor."""
+    problemas: list[str] = []
+    for f in sorted(DATOS.glob("*/*/*.md")):
+        contenido = leer(f)
+        if contenido is None:
+            continue
+        datos, cuerpo = contenido
+        texto = "\n".join([*_cadenas(datos), cuerpo])
+        vistas: set[str] = set()
+        for m in HABILIDADES.finditer(texto):
+            palabra = m.group(0)
+            if palabra.lower() in HABILIDADES_VALIDAS or palabra.lower() in vistas:
+                continue
+            vistas.add(palabra.lower())
+            problemas.append(f"{f.parent.parent.name}/{f.parent.name}/{f.stem}: «{palabra}»")
     return problemas
 
 
@@ -277,6 +318,20 @@ def main() -> int:
             lineas.append(f"  - …y {len(perfil) - 15} más")
     else:
         lineas.append("- Ningún campo del perfil acaba cortado y las fichas testigo están completas.")
+    lineas.append("")
+
+    # La caja de atributos de 5.2 parte los rótulos en dos líneas y el
+    # linealizador los puede meter dentro del valor vecino, a media palabra.
+    pegadas = palabras_pegadas()
+    lineas += ["## Rótulos dentro del valor", ""]
+    if pegadas:
+        problemas += 1
+        lineas.append(f"- Palabras con «habilidades» pegada a otra: **{len(pegadas)}**")
+        lineas += [f"  - {p}" for p in pegadas[:15]]
+        if len(pegadas) > 15:
+            lineas.append(f"  - …y {len(pegadas) - 15} más")
+    else:
+        lineas.append("- Ninguna palabra lleva «habilidades» pegada por delante ni por detrás.")
     lineas.append("")
 
     lineas.insert(3, f"Total de entradas: **{total}**. Apartados con incidencias: **{problemas}**.")

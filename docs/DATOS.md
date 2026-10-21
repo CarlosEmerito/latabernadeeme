@@ -146,6 +146,32 @@ celdas son todas el guion de relleno —también `category` en las dotes de 5.1 
 `feat` en los trasfondos, que tampoco existen en ese SRD— y
 `tools/test/columnas.mjs` lo vigila.
 
+#### La caja de atributos de 5.2 y los rótulos partidos
+
+La caja «Atributos básicos de …» de 5.2 tiene dos columnas: el rótulo a la
+izquierda y el valor a la derecha. El PDF parte los rótulos largos en dos
+líneas («Competencias en» / «habilidades») y el flujo de texto las deja en la
+misma línea base que el valor, así que `tools/ingest/srd/classes.py` tiene que
+descartar esos restos antes de unir el valor. Si se cuelan y el valor viene
+partido con guion, el rótulo se mete a media palabra: «Conocimiento
+arhabilidades cano», «Investigahabilidades ción». El arreglo va en el parser de
+clases (`BOX_FRAGMENTS`), no en `pdf_stream.py`: ese flujo es común a conjuros,
+monstruos, objetos y reglas, y separar ahí las columnas cambiaría la extracción
+de todo el sitio por un fallo de una caja.
+
+`tools/verify/validar.py` vigila el resultado: cualquier palabra que lleve
+«habilidades» pegada por delante o por detrás hace fallar la validación y
+aparece con su fichero en `docs/informes/validacion.md`. Un cambio de
+maquetación del PDF volvería a colarlo, y un valor pegado no se puede arreglar
+solo con una regla de texto.
+
+Estos cinco ficheros (`mago`, `hechicero`, `explorador`, `clérigo` y `brujo`)
+se parchearon a mano en su día y no se regeneró la carpeta entera: el flujo de
+`.cache/srd/work/e52.jsonl` se había reconstruido después de extraer `data/` y
+arrastraba cambios de prosa ajenos a la tarea. La corrección del parser impide
+que el fallo vuelva en la próxima regeneración; el parche de datos solo arregla
+lo que ya está publicado.
+
 ### especies / trasfondos / dotes / reglas
 
 ```yaml

@@ -21,7 +21,7 @@ resistances: ''
 immunities: relámpago
 conditionImmunities: ''
 vulnerabilities: ''
-senses: visión ciega 9 m, visión en la oscuridad 36 m
+senses: visión ciega 9 m, visión en la oscuridad 36 m, Percepción pasiva 19
 languages: común, dracónico
 cr: '9'
 xp: 5000 PX

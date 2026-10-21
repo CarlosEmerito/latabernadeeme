@@ -16,7 +16,7 @@ abilities:
   sab: 11
   car: 10
 saves: Des +6, Int +4
-skills: Acrobacias +6, Engaño +3, Percepción +3
+skills: Acrobacias +6, Engaño +3, Percepción +3, Sigilo +9
 resistances: veneno
 immunities: ''
 conditionImmunities: ''

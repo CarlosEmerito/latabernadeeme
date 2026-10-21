@@ -21,7 +21,7 @@ resistances: ''
 immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
-senses: ''
+senses: Percepción pasiva 11
 languages: entiende abisal, común e infernal pero no puede hablar
 cr: '3'
 xp: 700 PX

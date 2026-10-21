@@ -21,7 +21,7 @@ resistances: ''
 immunities: frío
 conditionImmunities: ''
 vulnerabilities: ''
-senses: visión ciega 18 m, visión en la oscuridad 36 m
+senses: visión ciega 18 m, visión en la oscuridad 36 m, Percepción pasiva 21
 languages: común, dracónico
 cr: '13'
 xp: 10 000 PX

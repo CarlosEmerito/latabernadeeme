@@ -16,7 +16,7 @@ abilities:
   sab: 12
   car: 15
 saves: Des +3, Con +6, Sab +4, Car +5
-skills: Conocimiento Arcano +5, Engaño +8
+skills: Conocimiento Arcano +5, Engaño +8, Percepción +4
 resistances: ''
 immunities: ''
 conditionImmunities: ''

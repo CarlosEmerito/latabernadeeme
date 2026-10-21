@@ -15,13 +15,13 @@ abilities:
   int: 16
   sab: 15
   car: 19
-saves: ''
+saves: Des +9, Con +14, Sab +9, Car +11
 skills: Percepción +16, Sigilo +9
 resistances: ''
 immunities: ácido
 conditionImmunities: ''
 vulnerabilities: ''
-senses: visión ciega 18 m, visión en la oscuridad 36 m
+senses: visión ciega 18 m, visión en la oscuridad 36 m, Percepción pasiva 26
 languages: común, dracónico
 cr: '21'
 xp: 33 000 PX

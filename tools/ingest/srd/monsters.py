@@ -160,6 +160,31 @@ def _between(text: str, start: str, stops: tuple[str, ...]) -> str:
 
 ALL_LABELS = STAT_LABELS + ("Clase de Armadura:", "CA:", "Puntos de golpe:", "Velocidad:")
 
+# Una etiqueta nueva del perfil («Inmunidades:», «VD:», «Equipo:») cierra el
+# valor de la anterior, y una fila de la tabla de características («FUE DES
+# CON...», «25 (+7) 10 (+0)...») tampoco es una continuación.
+NEW_LABEL_RE = re.compile(r"^[A-ZÁÉÍÓÚÑ][\wáéíóúüñÁÉÍÓÚÑ .,'’/-]{0,45}:")
+# Una fila de la tabla de características es una retahíla de "puntuación
+# (modificador)": «25 (+7) 10 (+0) …». Un solo «0 (10 PX)» es el valor de
+# Desafío de una criatura de VD 0, no una fila.
+STAT_ROW_RE = re.compile(r"^(?:MOD\.\s*SAL\.|FUE\s|Fue\s|[FDCIS]\s+[−-]?\d|(?:[−-]?\d+\s*\([+−-]?\d+\)\s*){2,}$)")
+STAT_ABBREV_RE = re.compile(r"^(?:Fue|Des|Con|Int|Sab|Car|FUE|DES|CON|INT|SAB|CAR)\b")
+
+
+def _is_profile_value(text: str) -> bool:
+    """¿La línea es un valor del perfil y no una etiqueta ni una fila de la tabla?"""
+    t = text.strip()
+    if not t or t in SECTION_HEADS or t.endswith(":"):
+        return False
+    if any(t.startswith(lbl) for lbl in ALL_LABELS):
+        return False
+    return not (NEW_LABEL_RE.match(t) or STAT_ROW_RE.match(t) or TYPE_RE.match(t))
+
+
+def _same_paragraph(a: Line, b: Line) -> bool:
+    """Mismo párrafo según el maquetador: misma página, columna y bloque."""
+    return a.page == b.page and a.col == b.col and a.block >= 0 and a.block == b.block
+
 
 def join_dangling_labels(lines: list[Line]) -> list[Line]:
     """Une 'Clase de Armadura:' con el valor de la línea siguiente."""
@@ -169,8 +194,18 @@ def join_dangling_labels(lines: list[Line]) -> list[Line]:
         cur = lines[i]
         if cur.text.rstrip().endswith(":") and i + 1 < len(lines):
             nxt = lines[i + 1]
-            if not any(nxt.text.startswith(lbl) for lbl in ALL_LABELS) and nxt.text[:1].isdigit():
-                out.append(Line(cur.page, cur.col, cur.x, cur.y, cur.size, f"{cur.text} {nxt.text}".strip()))
+            # El valor empieza por dígito o por la abreviatura de una
+            # característica («Des +6, Con +13»), o comparte párrafo con una
+            # etiqueta del perfil y es un valor suyo. El rótulo de un rasgo o
+            # una acción también acaba en «:» («Golpe. Ataque con arma cuerpo
+            # a cuerpo:»), pero no es una etiqueta del perfil y unirlo aquí
+            # partía el rasgo en dos párrafos y perdía el segundo.
+            es_del_perfil = any(cur.text.strip().startswith(lbl) for lbl in ALL_LABELS)
+            sigue_valor = nxt.text[:1].isdigit() or bool(STAT_ABBREV_RE.match(nxt.text.strip()))
+            if _is_profile_value(nxt.text) and (sigue_valor or (es_del_perfil and _same_paragraph(cur, nxt))):
+                out.append(
+                    Line(cur.page, cur.col, cur.x, cur.y, cur.size, f"{cur.text} {nxt.text}".strip(), cur.block)
+                )
                 i += 2
                 continue
         out.append(cur)
@@ -183,7 +218,11 @@ def merge_continuations(lines: list[Line]) -> list[Line]:
 
     El PDF parte los valores largos ("Clase de Armadura: 11 en forma
     humanoide, 12" + "(armadura natural) en formas de lobo...") y también la
-    línea de tipo de la criatura.
+    línea de tipo de la criatura. El corte no siempre deja la continuación en
+    minúscula: «Sentidos: ... 36 m,» + «Percepción pasiva 22» o «Habilidades:
+    ... Historia +9,» + «Percepción +6» empiezan por mayúscula y comparten
+    bloque con la etiqueta, así que el bloque del maquetador es la señal que
+    distingue una continuación de una etiqueta nueva.
     """
     out: list[Line] = []
     i = 0
@@ -195,13 +234,15 @@ def merge_continuations(lines: list[Line]) -> list[Line]:
             while j < len(lines):
                 nxt = lines[j].text.strip()
                 if (
-                    nxt[:1].islower() or nxt.startswith("(")
-                ) and not any(nxt.startswith(lbl) for lbl in ALL_LABELS) and len(nxt) < 90:
+                    _is_profile_value(nxt)
+                    and len(nxt) < 90
+                    and (nxt[:1].islower() or nxt.startswith("(") or _same_paragraph(cur, lines[j]))
+                ):
                     text = f"{text} {nxt}"
                     j += 1
                     continue
                 break
-            out.append(Line(cur.page, cur.col, cur.x, cur.y, cur.size, text))
+            out.append(Line(cur.page, cur.col, cur.x, cur.y, cur.size, text, cur.block))
             i = j
             continue
         out.append(cur)

@@ -22,7 +22,7 @@ immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m, Percepción pasiva 16
-languages: ''
+languages: —
 cr: '8'
 xp: 3900 PX
 proficiency: ''

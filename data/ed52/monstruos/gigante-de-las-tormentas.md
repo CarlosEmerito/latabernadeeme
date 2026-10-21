@@ -16,12 +16,12 @@ abilities:
   sab: 20
   car: 18
 saves: ''
-skills: Atletismo +14, Conocimiento arcano +8
+skills: Atletismo +14, Conocimiento arcano +8, Historia +8, Percepción +10
 resistances: ''
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
-senses: visión en la oscuridad 36 m, visión verdadera
+senses: visión en la oscuridad 36 m, visión verdadera 9 m; Percepción pasiva 20
 languages: común, gigante
 cr: '13'
 xp: 10 000 PX; BC +5

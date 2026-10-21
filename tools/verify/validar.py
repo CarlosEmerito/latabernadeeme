@@ -60,6 +60,60 @@ OBLIGATORIOS = {
     "reglas": ["name"],
 }
 
+# Campos del perfil que el PDF parte en varias líneas dentro del mismo bloque.
+# Una continuación que empieza por mayúscula («Percepción pasiva 22») se perdía
+# entera: primero se recortaba el valor y después el trozo suelto se tiraba como
+# si fuera un rasgo. Un valor cortado se queda acabado en coma o en palabra
+# suelta, así que se vigilan las dos cosas: el final de cada valor y unas fichas
+# testigo con el texto exacto que faltaba.
+CAMPOS_PERFIL = (
+    "saves",
+    "skills",
+    "senses",
+    "languages",
+    "immunities",
+    "resistances",
+    "conditionImmunities",
+    "vulnerabilities",
+    "gear",
+)
+COLAS_DE_CORTE = (",", " de", " y", " o", " con", " para")
+
+PERFIL_TESTIGO = {
+    ("ed51", "dragon-azul-adulto"): {"senses": "Percepción pasiva 22", "skills": "Percepción +12"},
+    ("ed51", "dragon-rojo-adulto"): {"saves": "Des +6, Con +13, Sab +7, Car +11"},
+    ("ed51", "espia"): {"skills": "Juego de Manos +4"},
+    ("ed51", "liche"): {"skills": "Percepción +9, Perspicacia +9"},
+    ("ed51", "naga-guardiana"): {"saves": "Des +8, Con +7, Int +7, Sab +8, Car +8"},
+    ("ed52", "archimago"): {"skills": "Percepción +6"},
+}
+
+
+def perfil_completo() -> list[str]:
+    """Valores del perfil cortados a mitad y fichas testigo incompletas."""
+    problemas: list[str] = []
+    for f in sorted(DATOS.glob("*/monstruos/*.md")):
+        contenido = leer(f)
+        if contenido is None:
+            continue
+        datos, _ = contenido
+        for campo in CAMPOS_PERFIL:
+            valor = str(datos.get(campo) or "").strip()
+            if valor.endswith(COLAS_DE_CORTE):
+                problemas.append(f"{f.parent.parent.name}/{f.stem}: {campo} acaba cortado («{valor[-40:]}»)")
+    for (ed, ficha), esperado in PERFIL_TESTIGO.items():
+        f = DATOS / ed / "monstruos" / f"{ficha}.md"
+        contenido = leer(f)
+        if contenido is None:
+            problemas.append(f"{ed}/{ficha}: no existe la ficha testigo")
+            continue
+        datos, _ = contenido
+        for campo, texto in esperado.items():
+            valor = str(datos.get(campo) or "")
+            if texto not in valor:
+                problemas.append(f"{ed}/{ficha}: {campo} debería contener «{texto}» y dice «{valor}»")
+    return problemas
+
 
 def leer(ruta: Path) -> tuple[dict, str] | None:
     raw = ruta.read_text(encoding="utf-8")
@@ -209,6 +263,20 @@ def main() -> int:
         lineas += [f"- Celda sin carpeta en `data/`: `{ed}/{tipo}`" for ed, tipo in sobrantes]
     else:
         lineas.append(f"- Las {len(declarados)} celdas coinciden con los ficheros de `data/`.")
+    lineas.append("")
+
+    # El perfil de las criaturas es lo que el DM consulta en la mesa: un valor
+    # cortado se publica tal cual, así que se comprueba en cada pasada.
+    perfil = perfil_completo()
+    lineas += ["## Perfil de las criaturas", ""]
+    if perfil:
+        problemas += 1
+        lineas.append(f"- Valores cortados o fichas testigo incompletas: **{len(perfil)}**")
+        lineas += [f"  - {p}" for p in perfil[:15]]
+        if len(perfil) > 15:
+            lineas.append(f"  - …y {len(perfil) - 15} más")
+    else:
+        lineas.append("- Ningún campo del perfil acaba cortado y las fichas testigo están completas.")
     lineas.append("")
 
     lineas.insert(3, f"Total de entradas: **{total}**. Apartados con incidencias: **{problemas}**.")

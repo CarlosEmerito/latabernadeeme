@@ -16,7 +16,7 @@ abilities:
   sab: 14
   car: 16
 saves: Con +10, Int +12, Sab +9
-skills: Conocimiento Arcano +18, Historia +12
+skills: Conocimiento Arcano +18, Historia +12, Percepción +9, Perspicacia +9
 resistances: frío, necrótico, relámpago
 immunities: veneno; contundente, cortante y perforante de ataques no mágicos
 conditionImmunities: asustado, cansancio, envenenado, hechizado, paralizado

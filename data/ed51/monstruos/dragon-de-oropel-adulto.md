@@ -16,12 +16,12 @@ abilities:
   sab: 13
   car: 17
 saves: Des +5, Con +10, Sab +6, Car +8
-skills: Historia +7, Percepción +11
+skills: Historia +7, Percepción +11, Persuasión +8, Sigilo +5
 resistances: ''
 immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
-senses: visión ciega 18 m, visión en la oscuridad 36 m
+senses: visión ciega 18 m, visión en la oscuridad 36 m, Percepción pasiva 21
 languages: común, dracónico
 cr: '13'
 xp: 10 000 PX

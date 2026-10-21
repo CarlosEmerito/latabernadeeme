@@ -16,12 +16,12 @@ abilities:
   sab: 12
   car: 14
 saves: ''
-skills: Engaño +4, Perspicacia +3, Persuasión +4
+skills: Engaño +4, Perspicacia +3, Persuasión +4, Sigilo +5
 resistances: frío; contundente, cortante y perforante de ataques no mágicos con armas que no sean de plata
 immunities: fuego, veneno
 conditionImmunities: envenenado
 vulnerabilities: ''
-senses: visión en la oscuridad 36 m
+senses: visión en la oscuridad 36 m, Percepción pasiva 11
 languages: común, infernal
 cr: '1'
 xp: 200 PX

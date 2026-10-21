@@ -21,7 +21,7 @@ resistances: contundente, cortante y perforante de ataques no mágicos con armas
 immunities: frío, fuego, veneno
 conditionImmunities: envenenado
 vulnerabilities: ''
-senses: visión ciega 18 m, visión en la oscuridad 36 m
+senses: visión ciega 18 m, visión en la oscuridad 36 m, Percepción pasiva 12
 languages: infernal, telepatía 36 m
 cr: '14'
 xp: 11 500 PX

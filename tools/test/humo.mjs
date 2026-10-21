@@ -399,6 +399,64 @@ try {
   fallo("mesa", String(e));
 }
 
+// La pantalla del DM compilaba y el humo la abría por URL, pero no había ni un
+// enlace a ella en todo el sitio: un DM que no supiera la dirección no llegaba.
+// Se comprueba el recorrido de verdad, con un clic del ratón sobre la tarjeta de
+// /mesa/ (Input.dispatchMouseEvent, no navegar a mano), y que la barra de la
+// sección enlaza las tres herramientas y marca la que se está viendo.
+try {
+  const p = await abrir(`${BASE}/mesa/`);
+  const enlace = await evaluar(
+    p,
+    `(() => {
+       const a = document.querySelector('.mesa-grid a[href$="/mesa/pantalla/"]');
+       if (!a) return null;
+       a.scrollIntoView({ block: 'center' });
+       const r = a.getBoundingClientRect();
+       return {
+         x: Math.round(r.left + r.width / 2),
+         y: Math.round(r.top + r.height / 2),
+         ancho: Math.round(r.width),
+         alto: Math.round(r.height),
+         texto: a.textContent.split(String.fromCharCode(10)).join(' ').replace(/[ ]{2,}/g, ' ').trim(),
+       };
+     })()`,
+  );
+  if (!enlace || enlace.ancho < 1 || enlace.alto < 1 || !enlace.texto.toLowerCase().includes("pantalla"))
+    fallo("enlace a la pantalla del DM", JSON.stringify(enlace));
+  else {
+    for (const tipo of ["mousePressed", "mouseReleased"])
+      await p.enviar("Input.dispatchMouseEvent", {
+        type: tipo,
+        x: enlace.x,
+        y: enlace.y,
+        button: "left",
+        buttons: tipo === "mousePressed" ? 1 : 0,
+        clickCount: 1,
+      });
+    await new Promise((r) => setTimeout(r, 1000));
+    const d = await evaluar(
+      p,
+      `(() => {
+         const h1 = document.querySelector('h1');
+         const nav = document.querySelector('.mesa-nav');
+         const actual = nav ? nav.querySelector('a[aria-current="page"]') : null;
+         return {
+           ruta: location.pathname,
+           h1: h1 ? h1.textContent : '',
+           nav: nav ? nav.querySelectorAll('a').length : 0,
+           actual: actual ? actual.textContent.trim() : '',
+         };
+       })()`,
+    );
+    if (d.ruta.endsWith("/mesa/pantalla/") && d.h1 === "Pantalla del DM" && d.nav === 3 && d.actual === "Pantalla del DM")
+      bien(`pantalla del DM: «${enlace.texto}» (${enlace.ancho}×${enlace.alto} px) lleva a ${d.ruta}`);
+    else fallo("enlace a la pantalla del DM", JSON.stringify({ enlace, destino: d }));
+  }
+} catch (e) {
+  fallo("enlace a la pantalla del DM", String(e));
+}
+
 // El PX del frontmatter viene con separador de millar y, en las criaturas con
 // guarida, con un segundo valor («50 000 PX o 62 000 en la guarida»). Quedarse
 // con el primer grupo de dígitos publicaba 18 PX para un Androesfinge de 18 000

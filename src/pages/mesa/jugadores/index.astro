@@ -1,5 +1,6 @@
 ---
 import Base from "../../../layouts/Base.astro";
+import MesaNav from "../../../components/MesaNav.astro";
 import { e } from "../../../lib/urls";
 ---
 
@@ -13,6 +14,8 @@ import { e } from "../../../lib/urls";
       </p>
     </div>
   </header>
+
+  <MesaNav />
 
   <div class="jugadores" id="jugadores" aria-live="polite">
     <p class="jugadores__turno" id="turno">Sin combate</p>

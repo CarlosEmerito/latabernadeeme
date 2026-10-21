@@ -1,5 +1,6 @@
 ---
 import Base from "../../../layouts/Base.astro";
+import MesaNav from "../../../components/MesaNav.astro";
 import { cargar, EDICIONES } from "../../../lib/content";
 import { e } from "../../../lib/urls";
 
@@ -46,10 +47,11 @@ const ancla = (s: string) =>
       </p>
     </div>
     <div class="cabecera__meta">
-      <a class="btn" href={e("/mesa/")}>← Mesa</a>
       <button class="btn btn--acento" type="button" onclick="window.print()">Imprimir</button>
     </div>
   </header>
+
+  <MesaNav />
 
   <div class="pantalla-config noprint" id="config" role="group" aria-label="Paneles visibles">
     {[...porCategoria.keys()].map((cat) => (

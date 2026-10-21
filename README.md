@@ -101,6 +101,10 @@ Y como el disparador es el push a `main`, el check llega después del merge: un 
   pc) y Peso mezcla unidades (kg, g) en la misma columna, así que `src/lib/medidas.ts` los pasa a
   oro y a kilos antes de comparar: «40 000 po» cuenta 40 000 —no 40— y «125 g» cuenta 0,125 kg.
   Los VD fraccionarios («1/8», «1/4», «1/2») se leen como fracción.
+- **Herramientas de mesa** en `/mesa/`: constructor de encuentros, ajuste y estimación de VD,
+  iniciativa con vista de jugador, dados, PNJ y botín. La **pantalla del DM** vive en
+  `/mesa/pantalla/`, con paneles configurables e imprimibles; la barra de la sección enlaza las
+  tres, así que ninguna queda solo en el sitemap.
 - Temas claro y oscuro, foco visible, navegación por teclado y estilos de impresión para llevar una ficha a la mesa.
 
 ```bash

@@ -704,6 +704,37 @@
   max-width: 70ch;
 }
 
+/* Pestañas de la sección: la pantalla del DM no enlazaba desde ninguna parte y
+   el humo la abría por URL, así que un DM que no supiera la dirección no
+   llegaba. La barra deja las tres herramientas a un clic y marca la actual. */
+.mesa-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+  margin: 0 0 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.mesa-nav a {
+  padding: 0.5rem 0.75rem;
+  margin-bottom: -1px;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.mesa-nav a:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
+.mesa-nav a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom-color: var(--t-color);
+}
+
 .mesa-fila {
   display: flex;
   flex-wrap: wrap;

@@ -14,40 +14,44 @@
  *      bestiario publique una casilla por tamaño —«Mediano» y «Mediana» son la
  *      misma— y que el recuento de cada casilla sea el de las filas que la
  *      llevan, sin criaturas fuera.
- *   6. `tools/test/columnas.mjs` sobre `dist/`: que ningún listado publique una
+ *   6. `tools/test/diff.mjs`: que la alineación de bloques del comparador
+ *      empareje un encabezado con otro encabezado y nunca con un párrafo, que
+ *      el orden de los bloques se conserve y que los cuatro contadores del
+ *      resumen sumen las filas que hay.
+ *   7. `tools/test/columnas.mjs` sobre `dist/`: que ningún listado publique una
  *      columna entera de guiones —el SRD 5.1 no declara la característica de
  *      sus clases ni la categoría de sus dotes— y que las celdas sigan
  *      alineadas con sus cabeceras.
- *   7. `tools/test/iconos.mjs` sobre `dist/`: que toda ficha lleve el icono de
+ *   8. `tools/test/iconos.mjs` sobre `dist/`: que toda ficha lleve el icono de
  *      su banda, que es lo que delata un tipo o una escuela sin SVG.
- *   8. `tools/test/alias.mjs` sobre `dist/`: que cada ficha publique el alias
+ *   9. `tools/test/alias.mjs` sobre `dist/`: que cada ficha publique el alias
  *      inglés que le toca —por nombre o, si el nombre es ambiguo, por ficha— y
  *      que `/datos/<edición>.json` sirva el mismo que pinta la página.
- *   9. `tools/test/iniciativa.mjs`: que el combate guardado en el navegador se
+ *  10. `tools/test/iniciativa.mjs`: que el combate guardado en el navegador se
  *      lea como un solo contrato en `/mesa/` y `/mesa/jugadores/` —JSON roto,
  *      entradas a medias y `turno` fuera de la lista incluidos—, para que
  *      recargar no deje las dos pantallas con combates distintos.
- *  10. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
+ *  11. `tools/test/huerfanos.mjs`: que ningún módulo de `src/lib/` se quede sin
  *      quien lo importe y ningún `export function` / `export const` suyo sin
  *      quien lo llame, que es como se cuela código muerto que duplica otra
  *      implementación y confunde sobre cuál manda.
- *  11. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
+ *  12. `tools/test/fuentes.mjs`: que README y `/licencias/` acrediten exactamente
  *      las tipografías que el CSS carga —ni una de menos ni una de más— y que
  *      `package.json` no declare ninguna fuente sin importar.
- *  12. `tools/test/tipo.py`: que la línea de tipo del perfil —tipo, tamaño y
+ *  13. `tools/test/tipo.py`: que la línea de tipo del perfil —tipo, tamaño y
  *      alineamiento— se parta como toca, con el tamaño alternativo
  *      («Mediano o Pequeño») y el complemento suelto del tipo en `tags`.
- *  13. `tools/test/seo.mjs` sobre `dist/`: que cada página publique una sola
+ *  14. `tools/test/seo.mjs` sobre `dist/`: que cada página publique una sola
  *      canónica absoluta, `og:url` idéntica, `og:type` de ficha o de listado,
  *      `twitter:card` y una `og:image` que sea el PNG de su sigilo y exista.
- *  14. `tools/test/duplicados.py`: que dos fichas de la misma carpeta y la
+ *  15. `tools/test/duplicados.py`: que dos fichas de la misma carpeta y la
  *      misma categoría no compartan nombre —el listado publicaría dos filas
  *      indistinguibles— y que el homónimo en categorías distintas siga
  *      permitido.
- *  15. `tools/test/titulos.mjs` sobre `dist/`: que ninguna página comparta
+ *  16. `tools/test/titulos.mjs` sobre `dist/`: que ninguna página comparta
  *      `<title>` con una de otra sección —«Escudo» conjuro y «Escudo» equipo
  *      salían iguales en la pestaña y en Google— y que todas tengan uno.
- *  16. `tools/test/cifras.py`: que los recuentos que declaran los informes
+ *  17. `tools/test/cifras.py`: que los recuentos que declaran los informes
  *      versionados cuadren con `data/` y con `dist/datos/` —las entradas, las
  *      palabras y las tablas de `reglas.md`, las fichas de `monstruos.md`, los
  *      ficheros por carpeta de `origenes-equipo.md` y de `objetos.md`, y el
@@ -96,6 +100,13 @@ const tamano = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/tamano.mj
 if (tamano !== 0) {
   console.error("✗ El filtro Tamaño del bestiario parte las grafías del tamaño o pierde criaturas.");
   process.exit(tamano);
+}
+
+console.log("▶ Alineación del comparador: diff.mjs (src/lib/)");
+const diff = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/diff.mjs")]);
+if (diff !== 0) {
+  console.error("✗ La alineación del comparador empareja un encabezado con un párrafo.");
+  process.exit(diff);
 }
 
 console.log("▶ Columnas sin datos: columnas.mjs (dist/)");
@@ -175,4 +186,4 @@ if (cifras !== 0) {
   process.exit(cifras);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección y cifras de los informes correctos.");
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección y cifras de los informes correctos.");

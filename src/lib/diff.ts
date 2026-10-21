@@ -75,7 +75,17 @@ export function bloques(texto: string): string[] {
 
 const esTitulo = (s: string) => /^#{1,6}\s/.test(s);
 
-/** Alineación global con punteros: un título solo se empareja con un título. */
+/**
+ * Alineación global con punteros: un título solo se empareja con un título.
+ *
+ * La restricción no es un detalle del puntaje sino de la estructura: un
+ * encabezado nunca se empareja con un párrafo. Antes el cruce valía -1.2, el
+ * mismo precio que saltarse los dos bloques (-0.6 por arriba y -0.6 por la
+ * izquierda), y el empate se resolvía a favor de la diagonal, así que un
+ * «## Acciones adicionales» que solo existe en el 5.2.1 salía enfrente del
+ * párrafo de al lado como «reescrito» y se llevaba por delante la nota de que
+ * el apartado es nuevo.
+ */
 export function alinear(izquierda: string, derecha: string): Fila[] {
   const A = bloques(izquierda);
   const B = bloques(derecha);
@@ -99,19 +109,28 @@ export function alinear(izquierda: string, derecha: string): Fila[] {
     for (let j = 1; j <= m; j++) {
       const mismoTipo = esTitulo(A[i - 1]) === esTitulo(B[j - 1]);
       const s = mismoTipo ? similitud(A[i - 1], B[j - 1]) : 0;
-      const diagonal = S[i - 1][j - 1] + (s >= UMBRAL ? s : mismoTipo ? -1 : -1.2);
+      // Un encabezado y un párrafo no son el mismo bloque: la diagonal no vale
+      // y el emparejamiento se descarta por completo, sin puntaje. Antes valía
+      // -1.2, que es exactamente lo que cuestan los dos huecos, y el empate
+      // se resolvía a favor de la diagonal: el título se emparejaba con el
+      // párrafo de al lado.
+      const diagonal = mismoTipo ? S[i - 1][j - 1] + (s >= UMBRAL ? s : -1) : Number.NEGATIVE_INFINITY;
       const arriba = S[i - 1][j] - HUECO;
       const izquierda2 = S[i][j - 1] - HUECO;
 
       if (diagonal >= arriba && diagonal >= izquierda2) {
         S[i][j] = diagonal;
         desde[i][j] = 0;
-      } else if (arriba >= izquierda2) {
-        S[i][j] = arriba;
-        desde[i][j] = 1;
-      } else {
+      } else if (izquierda2 >= arriba) {
+        // Empate entre los dos huecos: se consume primero el bloque de la
+        // derecha, así que en la tabla el bloque suelto de la izquierda sale
+        // antes. Las columnas van 5.1 | 5.2.1 y lo que solo está en 2014 se
+        // lee antes que lo que solo está en 2024.
         S[i][j] = izquierda2;
         desde[i][j] = 2;
+      } else {
+        S[i][j] = arriba;
+        desde[i][j] = 1;
       }
     }
   }

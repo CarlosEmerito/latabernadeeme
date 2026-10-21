@@ -37,6 +37,9 @@
  *  12. `tools/test/tipo.py`: que la línea de tipo del perfil —tipo, tamaño y
  *      alineamiento— se parta como toca, con el tamaño alternativo
  *      («Mediano o Pequeño») y el complemento suelto del tipo en `tags`.
+ *  13. `tools/test/seo.mjs` sobre `dist/`: que cada página publique una sola
+ *      canónica absoluta, `og:url` idéntica, `og:type` de ficha o de listado,
+ *      `twitter:card` y una `og:image` que sea el PNG de su sigilo y exista.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -132,4 +135,11 @@ if (tipo !== 0) {
   process.exit(tipo);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes y línea de tipo correctos.");
+console.log("▶ Metadatos sociales: seo.mjs (dist/)");
+const seo = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/seo.mjs")]);
+if (seo !== 0) {
+  console.error("✗ Alguna página publica mal la canónica, el og:type o la tarjeta social.");
+  process.exit(seo);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo y metadatos sociales correctos.");

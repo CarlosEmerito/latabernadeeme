@@ -1028,6 +1028,47 @@ try {
   fallo("sigilo", String(e));
 }
 
+// La vista previa al compartir: canónica, og:url y tarjeta. El SVG del sigilo no
+// lo pintan las redes sociales, así que la tarjeta es un PNG rasterizado; se
+// pide al servidor para comprobar que existe y que es una imagen, no solo que la
+// etiqueta esté escrita.
+try {
+  const malos = [];
+  const raiz = BASE.endsWith("/") ? BASE.slice(0, -1) : BASE;
+  for (const caso of [
+    { ruta: "/5.5/conjuros/bola-de-fuego/", tipo: "article" },
+    { ruta: "/5e/conjuros/", tipo: "website" },
+  ]) {
+    const p = await abrir(`${raiz}${caso.ruta}`);
+    const d = await evaluar(
+      p,
+      `(() => {
+         const contenido = (sel) => document.querySelector(sel)?.getAttribute('content') ?? '';
+         return {
+           ruta: location.pathname,
+           canonica: document.querySelector('link[rel="canonical"]')?.getAttribute('href') ?? '',
+           ogUrl: contenido('meta[property="og:url"]'),
+           ogType: contenido('meta[property="og:type"]'),
+           ogImage: contenido('meta[property="og:image"]'),
+           card: contenido('meta[name="twitter:card"]'),
+         };
+       })()`,
+    );
+    const origen = d.ogImage.split("/").slice(0, 3).join("/");
+    const relativa = d.ogImage.slice(origen.length);
+    const respuesta = await fetch(`${new URL(BASE).origin}${relativa}`);
+    const mime = respuesta.headers.get("content-type") ?? "";
+    const urlOk = origen.startsWith("https://") && d.canonica === `${origen}${d.ruta}` && d.ogUrl === d.canonica;
+    const imagenOk = relativa.endsWith(".png") && respuesta.ok && mime.startsWith("image/png");
+    if (!urlOk || d.ogType !== caso.tipo || !d.card.startsWith("summary") || !imagenOk)
+      malos.push({ ...caso, ...d, estado: respuesta.status, mime });
+  }
+  if (!malos.length) bien("tarjeta social: canónica y og:url con el mismo PNG en una ficha y un listado");
+  else fallo("tarjeta social", JSON.stringify(malos));
+} catch (e) {
+  fallo("tarjeta social", String(e));
+}
+
 // Enlaces internos roos: se comprueban sobre el HTML compilado, no en el navegador.
 const malos = resultados.filter((r) => !r.ok);
 console.log("");

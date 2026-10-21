@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/tema.css";
 import { EDICIONES, TIPOS, TIPO_META, contar, nombreTipo, type Edition, type Tipo } from "../lib/content";
 import { e } from "../lib/urls";
+import { tarjetaDe } from "../lib/imagenes";
 import Icono from "../components/Icono.astro";
 
 interface Props {
@@ -11,6 +12,10 @@ interface Props {
   edicion?: Edition;
   tipo?: Tipo;
   ancho?: boolean;
+  /** Sigilo de la entrada, para la tarjeta social; sin él se usa el genérico. */
+  imagen?: string;
+  /** `article` en las fichas, `website` en la portada y los listados. */
+  tipoOg?: "website" | "article";
 }
 
 const {
@@ -19,6 +24,8 @@ const {
   edicion,
   tipo,
   ancho = false,
+  imagen,
+  tipoOg = "website",
 } = Astro.props;
 
 const SITIO = "La Taberna de Eme";
@@ -31,6 +38,15 @@ const meta = edicion ? EDICIONES[edicion] : null;
 // comprime a 236 px sin desbordar y la captura no lo delata.
 const anchoReal = ancho || !edicion;
 const base = edicion ? e(`/${edicion}`) : "";
+// La canónica lleva el dominio, la base del despliegue y una sola barra final:
+// el sitio se publica con `trailingSlash: "always"` y GitHub Pages sirve además
+// `/…/index.html`, así que sin canónica cada ficha es indexable en dos
+// direcciones y el buscador elige por su cuenta cuál guarda.
+const rutaCanonica = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonica = new URL(rutaCanonica, Astro.site ?? Astro.url).href;
+// Las redes no pintan un SVG: la tarjeta es el mismo sigilo rasterizado.
+const tarjeta = new URL(e(tarjetaDe(imagen)), Astro.site ?? Astro.url).href;
+const altTarjeta = imagen ? `Sigilo de ${title}` : SITIO;
 ---
 
 <!doctype html>
@@ -40,6 +56,7 @@ const base = edicion ? e(`/${edicion}`) : "";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{tituloCompleto}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonica} />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0d0d0c" media="(prefers-color-scheme: dark)" />
@@ -58,10 +75,21 @@ const base = edicion ? e(`/${edicion}`) : "";
     </script>
     <meta property="og:title" content={tituloCompleto} />
     <meta property="og:site_name" content={`${SITIO} · D&D 5e`} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={tipoOg} />
+    <meta property="og:url" content={canonica} />
     <meta property="og:locale" content="es_ES" />
     <meta name="keywords" content="D&D, DnD, Dungeons & Dragons, D&D 5e, 5e, 5.5e, D&D 2024, SRD, conjuros, monstruos, objetos mágicos, clases, reglas, herramientas de mesa, español" />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={tarjeta} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="315" />
+    <meta property="og:image:alt" content={altTarjeta} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={tituloCompleto} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={tarjeta} />
+    <meta name="twitter:image:alt" content={altTarjeta} />
     <script is:inline>
       try {
         const guardado = localStorage.getItem("tema");

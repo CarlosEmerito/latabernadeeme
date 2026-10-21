@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "build": "astro build && pagefind --site dist && node tools/seo/og.mjs",
     "build:sin-indice": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -34,6 +34,7 @@
     "pagefind": "^1.5.2"
   },
   "devDependencies": {
-    "axe-core": "^4.14.0"
+    "axe-core": "^4.14.0",
+    "sharp": "^0.35.5"
   }
 }

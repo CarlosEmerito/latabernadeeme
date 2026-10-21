@@ -23,3 +23,13 @@ export function imagenDe(tipo: string, slug: string, nombre: string): Imagen {
     alt: `Sigilo de ${nombre}`,
   };
 }
+
+/**
+ * Tarjeta social de una entrada: el mismo sigilo, rasterizado por
+ * `tools/seo/og.mjs` en `dist/img/og/`. Las redes sociales no pintan un SVG en
+ * la vista previa, así que `og:image` necesita el PNG. Sin sigilo, el genérico.
+ */
+export function tarjetaDe(sigilo?: string): string {
+  const ruta = sigilo?.startsWith("/img/sigilos/") ? sigilo : GENERICO;
+  return ruta.replace("/img/sigilos/", "/img/og/").replace(/\.svg$/, ".png");
+}

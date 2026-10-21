@@ -3,6 +3,7 @@ import Base from "../../../layouts/Base.astro";
 import Detalle from "../../../components/Detalle.astro";
 import { EDICIONES, TIPO_META, cargar, type Edition, type Tipo, TIPOS } from "../../../lib/content";
 import { e } from "../../../lib/urls";
+import { imagenDe } from "../../../lib/imagenes";
 
 export function getStaticPaths() {
   const rutas: { params: { ed: string; tipo: string; slug: string } }[] = [];
@@ -36,9 +37,10 @@ const descripcion =
     : tipo === "conjuros"
       ? `${titulo}, ${entrada.data.level === 0 ? "truco" : `conjuro de nivel ${entrada.data.level}`} de ${entrada.data.school} (${meta.srd}).`
       : `${titulo} (${meta.srd}).`;
+const sigilo = imagenDe(tipo, slug, titulo).src;
 ---
 
-<Base title={titulo} description={descripcion} edicion={ed} tipo={tipo}>
+<Base title={titulo} description={descripcion} edicion={ed} tipo={tipo} imagen={sigilo} tipoOg="article">
   <nav class="migas" aria-label="Migas de pan">
     <a href={e(`/${ed}/`)}>{meta.srd}</a>
     <span aria-hidden="true">/</span>

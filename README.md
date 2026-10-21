@@ -78,7 +78,13 @@ google-chrome-stable --headless=new --remote-debugging-port=9223 --user-data-dir
 node tools/test/humo.mjs
 ```
 
-El flujo de publicación (`.github/workflows/deploy.yml`) compila y ejecuta `npm run verificar` antes de subir el artefacto a GitHub Pages.
+### Qué comprueba CI y qué queda en local
+
+El flujo de publicación (`.github/workflows/deploy.yml`) se dispara con cada push a `main` —y a mano con `workflow_dispatch`— y antes de subir el artefacto a GitHub Pages hace dos cosas: `npm run build` y `npm run verificar`. Es decir, que los seis pasos de arriba corren en cada publicación: un enlace interno roto, un `id` repetido, un dato descuadrado, un filtro sin plegar o una columna vacía paran el job `construir` y no se publica la versión nueva.
+
+Lo que **no** corre en CI es `verificar:humo`: necesita un Chrome headless y un servidor de vista previa levantados, y el flujo no los monta. Las comprobaciones de `tools/test/humo.mjs` —navegación, herramientas de mesa, axe-core y avisos legales— siguen siendo locales, y toca pasarlas a mano cuando el cambio toca plantillas o las herramientas de `/mesa/`.
+
+Y como el disparador es el push a `main`, el check llega después del merge: un enlace roto no se publica, pero ya está en `main`. La puerta que lo evita es local, así que las dos se pasan antes de mergear: `npm run build && npm run verificar`.
 
 ## Web
 

@@ -399,6 +399,71 @@ try {
   fallo("mesa", String(e));
 }
 
+// El campo «Añadir criatura» solo escuchaba `change`, que el datalist dispara al
+// elegir una sugerencia: escribir el nombre y pulsar Intro dejaba el texto en el
+// campo sin añadir nada, que es justo el gesto natural sobre el primer campo de la
+// herramienta. Se teclea y se pulsa Intro con el teclado de verdad (CDP
+// `Input.insertText` + `Input.dispatchKeyEvent`): un `KeyboardEvent` sintético no
+// recorre el mismo camino que el usuario.
+try {
+  const p = await abrir(`${BASE}/mesa/`);
+  await evaluar(p, `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#enc-lista option')) { clearInterval(t); res(1); } }, 100); setTimeout(() => { clearInterval(t); res(0); }, 6000); })`);
+  const leer = () =>
+    evaluar(
+      p,
+      `(() => {
+         const campo = document.getElementById('enc-buscar');
+         const aviso = document.getElementById('enc-aviso');
+         const plano = (s) => s.split(String.fromCharCode(10)).join(' ').replace(/[ ]{2,}/g, ' ').trim();
+         return {
+           anadidas: document.querySelectorAll('#enc-anadidas li').length,
+           campo: campo.value,
+           foco: document.activeElement ? (document.activeElement.id || document.activeElement.tagName) : '',
+           salida: plano(document.getElementById('enc-salida').textContent),
+           aviso: aviso && !aviso.hidden ? plano(aviso.textContent) : '',
+         };
+       })()`,
+    );
+  const teclear = async (texto) => {
+    await evaluar(p, `(() => { const c = document.getElementById('enc-buscar'); c.value = ''; c.focus(); return 1; })()`);
+    await p.enviar("Input.insertText", { text: texto });
+  };
+  const intro = async () => {
+    for (const tipo of ["keyDown", "keyUp"])
+      await p.enviar("Input.dispatchKeyEvent", {
+        type: tipo,
+        key: "Enter",
+        code: "Enter",
+        windowsVirtualKeyCode: 13,
+        nativeVirtualKeyCode: 13,
+      });
+    await new Promise((r) => setTimeout(r, 300));
+  };
+
+  await teclear("Guerrero goblin");
+  await intro();
+  const exacto = await leer();
+  await teclear("Zarabanda de prueba");
+  await intro();
+  const ausente = await leer();
+
+  const okExacto =
+    exacto.anadidas === 1 &&
+    exacto.campo === "" &&
+    exacto.foco === "enc-buscar" &&
+    exacto.aviso === "" &&
+    /PX ajustados/.test(exacto.salida);
+  const okAusente =
+    ausente.anadidas === 1 &&
+    ausente.campo === "Zarabanda de prueba" &&
+    /Zarabanda de prueba/.test(ausente.aviso);
+  if (okExacto && okAusente)
+    bien(`Introducir criatura: «Guerrero goblin» añadida con Intro y aviso al escribir un nombre que no existe`);
+  else fallo("Introducir criatura", JSON.stringify({ exacto, ausente }));
+} catch (e) {
+  fallo("Introducir criatura", String(e));
+}
+
 // La pantalla del DM compilaba y el humo la abría por URL, pero no había ni un
 // enlace a ella en todo el sitio: un DM que no supiera la dirección no llegaba.
 // Se comprueba el recorrido de verdad, con un clic del ratón sobre la tarjeta de

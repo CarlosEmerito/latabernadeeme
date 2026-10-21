@@ -105,7 +105,9 @@ Y como el disparador es el push a `main`, el check llega después del merge: un 
 - **Herramientas de mesa** en `/mesa/`: constructor de encuentros, ajuste y estimación de VD,
   iniciativa con vista de jugador, dados, PNJ y botín. La **pantalla del DM** vive en
   `/mesa/pantalla/`, con paneles configurables e imprimibles; la barra de la sección enlaza las
-  tres, así que ninguna queda solo en el sitemap.
+  tres, así que ninguna queda solo en el sitemap. En el constructor de encuentros, escribir el
+  nombre de una criatura y pulsar Intro la añade igual que elegirla en la lista (vale el nombre
+  exacto y también sin tildes); lo que no está en el catálogo se avisa ahí mismo.
 - Temas claro y oscuro, foco visible, navegación por teclado y estilos de impresión para llevar una ficha a la mesa.
 
 ```bash

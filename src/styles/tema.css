@@ -781,6 +781,14 @@
   max-width: 32rem;
 }
 
+/* Lo que el buscador de criaturas no encuentra se dice aquí: antes el campo se
+   quedaba con el texto y el panel no cambiaba, sin pista de por qué. */
+.mesa-aviso {
+  margin: -0.5rem 0 0.9rem;
+  font-size: 0.84rem;
+  color: #8a4a1c;
+}
+
 .mesa-check {
   flex-direction: row !important;
   align-items: center;
@@ -868,6 +876,7 @@
 :root[data-tema="oscuro"] .mesa-veredicto--bien { color: #8fce9f; }
 :root[data-tema="oscuro"] .mesa-veredicto--ojo { color: #e0a273; }
 :root[data-tema="oscuro"] .mesa-veredicto--mal { color: #ef8b82; }
+:root[data-tema="oscuro"] .mesa-aviso { color: #e0a273; }
 
 .mesa-iniciativa {
   list-style: none;

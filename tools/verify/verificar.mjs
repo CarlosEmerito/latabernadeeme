@@ -71,6 +71,13 @@
  *      botón «Copiar Markdown» lleve el PX con su unidad una sola vez. La
  *      puerta ejecuta el script que el navegador carga en la ficha y mira lo
  *      que va al portapapeles, no una copia de la regla escrita a mano.
+ *  22. `tools/test/gastos.mjs` sobre `data/` y `dist/`: que la ficha de gastos
+ *      del SRD 5.2.1 publique sus tres tablas con sus filas y sus precios.
+ *  23. `tools/test/bytecode.mjs`: que el índice de git no tenga ningún `.pyc`
+ *      ni nada bajo `__pycache__/`, y que el `.gitignore` siga tapando el
+ *      bytecode. Un `.pyc` guarda el mtime del fuente, así que solo vale en la
+ *      máquina donde se compiló y deja el árbol sucio en cualquier clon en
+ *      cuanto se importa el módulo.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -236,4 +243,11 @@ if (gastos !== 0) {
   process.exit(gastos);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1 y Markdown copiado correctos.");
+console.log("▶ Bytecode de Python versionado: bytecode.mjs (índice de git)");
+const bytecode = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/bytecode.mjs")]);
+if (bytecode !== 0) {
+  console.error("✗ El repositorio versiona bytecode de Python: deja el árbol sucio en cuanto se importa un módulo.");
+  process.exit(bytecode);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado y bytecode sin versionar correctos.");

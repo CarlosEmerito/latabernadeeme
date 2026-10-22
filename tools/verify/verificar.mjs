@@ -78,6 +78,12 @@
  *      bytecode. Un `.pyc` guarda el mtime del fuente, así que solo vale en la
  *      máquina donde se compiló y deja el árbol sucio en cualquier clon en
  *      cuanto se importa el módulo.
+ *  24. `tools/test/ajustar.mjs`: que «Ajustar una criatura» encuentre las
+ *      criaturas con diacrítico escribiéndolas sin tilde.
+ *  25. `tools/test/pantalla.mjs`: que la pantalla del DM publique las reglas de
+ *      combate del 5.2.1 —las que el SRD de 2024 dejó en el glosario—, que
+ *      cada categoría del catálogo tenga su panel entero y que la lista viva en
+ *      `src/lib/pantalla.ts`, que lanza si una regla se queda sin panel.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -257,4 +263,11 @@ if (ajustar !== 0) {
   process.exit(ajustar);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar y búsqueda de criaturas sin tilde correctos.");
+console.log("▶ Reglas de la pantalla del DM: pantalla.mjs (data/ y dist/)");
+const pantalla = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/pantalla.mjs")]);
+if (pantalla !== 0) {
+  console.error("✗ La pantalla del DM no publica las reglas que dice publicar o descarta alguna en silencio.");
+  process.exit(pantalla);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde y reglas de la pantalla del DM correctos.");

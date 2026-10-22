@@ -9,8 +9,37 @@
  * Uso: node tools/test/humo.mjs [urlBase]
  */
 import fs from "node:fs";
+import { load as parseYaml } from "js-yaml";
+import { panelesDe } from "../../src/lib/pantalla.ts";
 
 const BASE = process.argv[2] ?? "http://localhost:8099/latabernadeeme";
+
+/**
+ * Cuántas reglas tiene que publicar la pantalla del DM según `data/`.
+ *
+ * La pantalla compilaba con 28 de las 174 reglas del 5.2.1 y el humo la daba
+ * por buena porque solo miraba que hubiera unos cuantos paneles. El número
+ * sale del catálogo con el mismo módulo que usa la plantilla, así que una
+ * lista que se quede corta ya no pasa.
+ */
+function pantallaEsperada() {
+  const dir = new URL("../../data/ed52/reglas/", import.meta.url);
+  const reglas = fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => {
+      const crudo = fs.readFileSync(new URL(f, dir), "utf8");
+      const fin = crudo.indexOf("\n---\n", 4);
+      const fm = crudo.startsWith("---") && fin > 0 ? crudo.slice(4, fin) : "";
+      return { slug: f.replace(/\.md$/, ""), data: (fm && parseYaml(fm)) || {} };
+    });
+  const paneles = panelesDe(reglas);
+  return {
+    total: reglas.length,
+    publicadas: paneles.reduce((n, p) => n + p.entradas.length, 0),
+    paneles: paneles.length,
+  };
+}
 const CDP = "http://localhost:9223";
 const axe = fs.readFileSync(new URL("../../node_modules/axe-core/axe.min.js", import.meta.url), "utf8");
 
@@ -1177,10 +1206,26 @@ try {
 }
 
 try {
+  const esperado = pantallaEsperada();
   const p = await abrir(`${BASE}/mesa/pantalla/`);
   await evaluar(p, `localStorage.removeItem('taberna:pantalla'); location.reload(); 1`);
   await new Promise((r) => setTimeout(r, 800));
   const antes = await evaluar(p, `document.querySelectorAll('.pantalla__panel:not([hidden])').length`);
+  const publicado = await evaluar(
+    p,
+    `(() => { const c = document.querySelector('.pantalla'); return { paneles: document.querySelectorAll('.pantalla__panel').length, reglas: document.querySelectorAll('.pantalla__lista > div').length, enlaces: document.querySelectorAll('.pantalla__lista > div dt a').length, declaradas: Number(c.dataset.publicadas), total: Number(c.dataset.total) }; })()`,
+  );
+  if (
+    publicado.paneles === esperado.paneles &&
+    publicado.reglas === esperado.publicadas &&
+    publicado.enlaces === esperado.publicadas &&
+    publicado.declaradas === esperado.publicadas &&
+    publicado.total === esperado.total
+  )
+    bien(
+      `pantalla del DM: ${publicado.reglas} de las ${publicado.total} reglas del 5.2.1 en ${publicado.paneles} paneles`,
+    );
+  else fallo("pantalla del DM: reglas publicadas", JSON.stringify({ ...publicado, esperado }));
   await evaluar(p, `(() => { const c = document.querySelector('#config input[data-panel]'); c.checked = false; c.dispatchEvent(new Event('change', {bubbles:true})); return 1; })()`);
   const despues = await evaluar(p, `document.querySelectorAll('.pantalla__panel:not([hidden])').length`);
   if (antes >= 4 && despues === antes - 1) bien(`pantalla del DM: ${antes} paneles, ocultar funciona`);

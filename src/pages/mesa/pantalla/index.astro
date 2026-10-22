@@ -2,18 +2,16 @@
 import Base from "../../../layouts/Base.astro";
 import MesaNav from "../../../components/MesaNav.astro";
 import { cargar, EDICIONES } from "../../../lib/content";
+import { panelesDe, fueraDePantalla } from "../../../lib/pantalla";
 import { e } from "../../../lib/urls";
 
+// La lista de paneles vive en `src/lib/pantalla.ts`, que la resuelve contra el
+// catálogo y lanza si una regla se queda sin panel. Aquí no se filtra nada.
 const reglas = cargar("5.5", "reglas");
-const CATEGORIAS = ["Condiciones", "Combate", "Exploración", "Peligros", "Social"];
-
-const porCategoria = new Map<string, typeof reglas>();
-for (const r of reglas) {
-  const cat = String(r.data.category ?? "");
-  if (!CATEGORIAS.includes(cat)) continue;
-  if (!porCategoria.has(cat)) porCategoria.set(cat, []);
-  porCategoria.get(cat)!.push(r);
-}
+const paneles = panelesDe(reglas);
+const fuera = fueraDePantalla(reglas);
+const publicadas = paneles.reduce((n, p) => n + p.entradas.length, 0);
+const edicion = EDICIONES["5.5"];
 
 const extracto = (texto: string) => {
   const limpio = texto
@@ -23,19 +21,11 @@ const extracto = (texto: string) => {
     .trim();
   return limpio.length > 260 ? `${limpio.slice(0, 260).trimEnd()}…` : limpio;
 };
-
-const ancla = (s: string) =>
-  s
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 ---
 
 <Base
   title="Pantalla del DM"
-  description="Condiciones, acciones, exploración y peligros en una sola pantalla configurable."
+  description="Combate, condiciones, pruebas, daño, descanso, exploración y peligros del SRD 5.2.1 en una sola pantalla configurable e imprimible."
   ancho
 >
   <header class="cabecera noprint">
@@ -44,6 +34,11 @@ const ancla = (s: string) =>
       <p class="cabecera__lede">
         Lo que se consulta en mitad de la partida, en una pantalla. Elige qué paneles quieres y la
         elección se recuerda en este navegador.
+      </p>
+      <p class="cabecera__meta">
+        Publica {publicadas} de las {reglas.length} reglas del {edicion.srd} en {paneles.length} paneles;
+        las {fuera.length} que faltan son el glosario completo, en el
+        <a href={e("/5.5/reglas/indice/")}>índice de reglas</a>.
       </p>
     </div>
     <div class="cabecera__meta">
@@ -54,20 +49,20 @@ const ancla = (s: string) =>
   <MesaNav />
 
   <div class="pantalla-config noprint" id="config" role="group" aria-label="Paneles visibles">
-    {[...porCategoria.keys()].map((cat) => (
+    {paneles.map((p) => (
       <label class="pantalla-config__op">
-        <input type="checkbox" data-panel={ancla(cat)} checked />
-        <span>{cat}</span>
+        <input type="checkbox" data-panel={p.id} checked />
+        <span>{p.titulo}</span>
       </label>
     ))}
   </div>
 
-  <div class="pantalla">
-    {[...porCategoria.entries()].map(([cat, entradas]) => (
-      <section class="pantalla__panel" data-panel={ancla(cat)} aria-labelledby={`p-${ancla(cat)}`}>
-        <h2 id={`p-${ancla(cat)}`}>{cat}</h2>
+  <div class="pantalla" data-publicadas={publicadas} data-total={reglas.length}>
+    {paneles.map((p) => (
+      <section class="pantalla__panel" data-panel={p.id} aria-labelledby={`p-${p.id}`}>
+        <h2 id={`p-${p.id}`}>{p.titulo}</h2>
         <dl class="pantalla__lista">
-          {entradas.map((r) => (
+          {p.entradas.map((r) => (
             <div>
               <dt>
                 <a href={e(`/5.5/reglas/${r.slug}/`)}>{r.data.name}</a>
@@ -81,15 +76,16 @@ const ancla = (s: string) =>
   </div>
 
   <p class="muted noprint" style="margin-top:1.5rem">
-    Texto del {EDICIONES["5.5"].srd}. · <a href={e("/5e/reglas/indice/")}>Índice de reglas de 5.1</a>
+    Texto del {edicion.srd} ({edicion.nota.toLowerCase()}): {publicadas} de las {reglas.length} reglas,
+    las {fuera.length} restantes en el
+    <a href={e("/5.5/reglas/indice/")}>índice de reglas de {edicion.srd}</a>. La sección Mesa usa este
+    catálogo; las reglas de 5.1 tienen su propio índice.
   </p>
 
   <script>
     const CLAVE = "taberna:pantalla";
     const casillas = [...document.querySelectorAll<HTMLInputElement>("#config input[data-panel]")];
-    const paneles = [...document.querySelectorAll<HTMLElement>("[data-panel]")].filter(
-      (x) => !x.closest("#config"),
-    );
+    const paneles = [...document.querySelectorAll<HTMLElement>(".pantalla [data-panel]")];
 
     const aplicar = () => {
       for (const c of casillas) {

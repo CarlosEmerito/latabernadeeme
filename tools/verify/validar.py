@@ -434,6 +434,46 @@ def revisar_carpeta(ed: str, carpeta: Path) -> tuple[list[str], int, int]:
     return lineas, len(ficheros), incidencias
 
 
+# El 5.2.1 llega con la palabra partida por el guion del maquetador y el trozo
+# pegado donde cayó: 101 líneas de `data/ed52/` acaban en guion partiendo una
+# palabra (más 3 del 5.1) y 23 la parten en mitad de la línea («mate- riales»,
+# «al me- nos»). De las primeras, 89 continúan en minúscula y se recomponen
+# uniendo el guion; las otras 15 viajan a otra frase («de he- la lista … chizar
+# persona», «el es-» + «**tado de derribado**»). La tabla del PDF no se
+# versiona, así que las frases testigo van escritas aquí tal y como deben
+# leerse, con el texto linealizado (`.cache/srd/work/es52.txt`) como referencia.
+CORTE_AL_FINAL = re.compile(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]-[ \t]*$", re.M)
+CORTE_EN_MEDIO = re.compile(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+-[ \t]+[a-záéíóúüñ]")
+CORTES_TESTIGO = {
+    ("ed52", "monstruos", "bulette"): "el objetivo tiene el estado de derribado",
+    ("ed52", "conjuros", "cofre-oculto"): "construido de materiales raros",
+    ("ed52", "conjuros", "reencarnar"): "que valgan al menos 1000 po",
+    ("ed52", "clases", "bardo"): "de la lista de conjuros de bardo. Se recomiendan hechizar persona",
+    ("ed51", "reglas", "los-planos-de-existencia"): "gobernadas por principios espirituales",
+}
+
+
+def cortes_de_palabra() -> list[str]:
+    """Palabras partidas por el guion del PDF en los ficheros de `data/`."""
+    problemas: list[str] = []
+    for f in sorted(DATOS.glob("*/*/*.md")):
+        texto = f.read_text(encoding="utf-8")
+        etiqueta = f"{f.parent.parent.name}/{f.parent.name}/{f.stem}"
+        for patron, forma in ((CORTE_AL_FINAL, "acaba en guion"), (CORTE_EN_MEDIO, "guion dentro de palabra")):
+            for m in patron.finditer(texto):
+                linea = texto[: m.start()].count("\n") + 1
+                trozo = texto[max(0, m.start() - 25) : m.end() + 15].replace("\n", " ")
+                problemas.append(f"{etiqueta}:{linea}: {forma} («…{trozo.strip()}…»)")
+    for (ed, carpeta, ficha), esperado in CORTES_TESTIGO.items():
+        f = DATOS / ed / carpeta / f"{ficha}.md"
+        if not f.exists():
+            problemas.append(f"{ed}/{carpeta}/{ficha}: no existe la ficha testigo")
+            continue
+        if esperado not in f.read_text(encoding="utf-8"):
+            problemas.append(f"{ed}/{carpeta}/{ficha}: debería decir «{esperado}»")
+    return problemas
+
+
 def main() -> int:
     lineas = ["# Informe de validación", "", "Generado por `tools/verify/validar.py`.", ""]
     problemas = 0
@@ -530,6 +570,20 @@ def main() -> int:
         lineas.append(
             "- Ningún alineamiento lleva el tamaño, una aclaración del tipo ni su complemento suelto."
         )
+    lineas.append("")
+
+    # El guion del maquetador parte palabras dentro del texto publicado: la
+    # ficha se lee mal y, en los casos peores, el trozo viaja a otra frase.
+    cortes = cortes_de_palabra()
+    lineas += ["## Cortes de palabra", ""]
+    if cortes:
+        problemas += 1
+        lineas.append(f"- Cortes de palabra y frases testigo mal escritas: **{len(cortes)}**")
+        lineas += [f"  - {p}" for p in cortes[:15]]
+        if len(cortes) > 15:
+            lineas.append(f"  - …y {len(cortes) - 15} más")
+    else:
+        lineas.append("- Ninguna palabra queda partida por el guion y las frases testigo se leen enteras.")
     lineas.append("")
 
     lineas.insert(3, f"Total de entradas: **{total}**. Apartados con incidencias: **{problemas}**.")

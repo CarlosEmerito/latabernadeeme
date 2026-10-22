@@ -129,7 +129,54 @@ for (const fichero of paginas) {
   else if (fs.statSync(ficheroImagen).size < 1024) anotar(nombre, `og:image diminuta: ${imagen}`);
 }
 
+// La descripción de un listado es el resumen que enseñan Google y las redes:
+// tiene que concordar con lo que cuenta. «193 equipo» y «1 dotes» salían así
+// porque la plantilla pegaba el plural del tipo detrás del recuento sin mirar
+// el número ni qué palabra era. La frase del tipo se fija aquí —con el
+// partitivo del equipo, que lo que hay dentro son piezas, y el singular de
+// uno— y el recuento se lee de `data/`, no de la página que se está mirando.
+const FRASES = {
+  conjuros: ["conjuro", "conjuros"],
+  monstruos: ["monstruo", "monstruos"],
+  objetos: ["objeto mágico", "objetos mágicos"],
+  equipo: ["pieza de equipo", "piezas de equipo"],
+  clases: ["clase", "clases"],
+  especies: ["especie", "especies"],
+  trasfondos: ["trasfondo", "trasfondos"],
+  dotes: ["dote", "dotes"],
+  reglas: ["regla", "reglas"],
+};
+// El sitio respeta el término de cada documento —el 5.1 dice «razas» y el 5.2
+// «especies»—, así que la frase del recuento también: «9 razas del SRD 5.1».
+const POR_EDICION = { "5e": { especies: ["raza", "razas"] } };
+const EDICIONES = {
+  "5e": { dir: "ed51", srd: "SRD 5.1" },
+  "5.5": { dir: "ed52", srd: "SRD 5.2.1" },
+};
+let descripciones = 0;
+for (const [ed, { dir, srd }] of Object.entries(EDICIONES)) {
+  for (const tipo of TIPOS) {
+    const fichero = path.join(DIST, ed, tipo, "index.html");
+    if (!fs.existsSync(fichero)) {
+      anotar(`${ed}/${tipo}/`, "no existe el listado");
+      continue;
+    }
+    const directorio = path.join(RAIZ, "data", dir, tipo);
+    const n = fs.existsSync(directorio)
+      ? fs.readdirSync(directorio).filter((f) => f.endsWith(".md")).length
+      : 0;
+    const [uno, varios] = POR_EDICION[ed]?.[tipo] ?? FRASES[tipo] ?? [tipo, tipo];
+    const esperada = `${n} ${n === 1 ? uno : varios} del ${srd}.`;
+    const descripcion = metas(fs.readFileSync(fichero, "utf8"), "name", "description")[0] ?? "";
+    descripciones++;
+    if (descripcion !== esperada) {
+      anotar(`${ed}/${tipo}/`, `descripción «${descripcion}» en vez de «${esperada}»`);
+    }
+  }
+}
+
 console.log(`Metadatos sociales comprobados: ${paginas.length} páginas (${fichas} fichas, ${listados} portadas y listados)`);
+console.log(`Descripciones de listado comprobadas: ${descripciones} (recuento de \`data/\` y concordancia del número)`);
 if (fallos.length === 0) {
   console.log(`Canónica, og:url, og:type y og:image correctos en todas, con la tarjeta en dist/ (${SITIO}${BASE}).`);
   process.exit(0);

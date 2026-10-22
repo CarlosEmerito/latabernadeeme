@@ -67,6 +67,10 @@
  *      en las dos ediciones —por identidad, no por identificador de fichero— y
  *      que toda entrada que existe en las dos ediciones tenga su página de
  *      comparación.
+ *  21. `tools/test/markdown.mjs` sobre `dist/`: que el Markdown que copia el
+ *      botón «Copiar Markdown» lleve el PX con su unidad una sola vez. La
+ *      puerta ejecuta el script que el navegador carga en la ficha y mira lo
+ *      que va al portapapeles, no una copia de la regla escrita a mano.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -218,4 +222,11 @@ if (emparejar !== 0) {
   process.exit(emparejar);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros y emparejamiento entre ediciones correctos.");
+console.log("▶ Markdown que se copia: markdown.mjs (dist/)");
+const markdown = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/markdown.mjs")]);
+if (markdown !== 0) {
+  console.error("✗ El Markdown que copia el botón «Copiar Markdown» repite la unidad del PX.");
+  process.exit(markdown);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones y Markdown copiado correctos.");

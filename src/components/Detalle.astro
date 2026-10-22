@@ -236,6 +236,8 @@ const exportable = {
 
 <script type="application/json" id="datos-entrada" set:html={JSON.stringify(exportable)}></script>
 <script>
+  import { markdownDe } from "../lib/markdown.ts";
+
   const crudo = document.getElementById("datos-entrada")?.textContent;
   if (crudo) {
     const datos = JSON.parse(crudo) as { tipo: string; srd: string; datos: Record<string, any>; markdown: string };
@@ -246,35 +248,7 @@ const exportable = {
       setTimeout(() => (aviso.textContent = ""), 2200);
     };
 
-    const aMarkdown = () => {
-      const d = datos.datos;
-      const cabecera = [
-        `# ${d.name}`,
-        "",
-        `*${datos.srd}${d.page ? `, pág. ${d.page}` : ""}*`,
-        "",
-      ];
-      if (datos.tipo === "conjuros") {
-        cabecera.push(
-          `- **Tiempo:** ${d.castingTime}`,
-          `- **Alcance:** ${d.range}`,
-          `- **Componentes:** ${d.components}`,
-          `- **Duración:** ${d.duration}`,
-          "",
-        );
-      }
-      if (datos.tipo === "monstruos") {
-        cabecera.push(
-          `- **CA:** ${d.ac}`,
-          `- **PG:** ${d.hp}`,
-          `- **Velocidad:** ${d.speed}`,
-          `- **VD:** ${d.cr} (${d.xp} PX)`,
-          "",
-        );
-      }
-      cabecera.push(datos.markdown.trim(), "");
-      return cabecera.join("\n");
-    };
+    const aMarkdown = () => markdownDe(datos);
 
     document.getElementById("copiar-md")?.addEventListener("click", async () => {
       try {

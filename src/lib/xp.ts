@@ -17,3 +17,18 @@ export function xpNumerico(xp: unknown): number {
   const n = Number.parseInt(digitos, 10);
   return Number.isFinite(n) ? n : 0;
 }
+
+/**
+ * El PX como se escribe en la ficha, con la unidad puesta una sola vez.
+ *
+ * El frontmatter ya trae la unidad dentro —«50 PX», «5900 PX o 7200 en la
+ * guarida; BC +4»—, así que añadir «PX» encima la repetía: el Markdown que
+ * copiaba el botón salía con «50 PX PX» y con un «PX» colgando detrás del
+ * «BC +4», que ya no es un PX. Aquí la unidad se pone solo si el dato no la
+ * trae, y el valor con guarida se copia entero.
+ */
+export function xpConUnidad(xp: unknown): string {
+  const texto = String(xp ?? "").trim();
+  if (!texto) return "";
+  return /\bpx\b/i.test(texto) ? texto : `${texto} PX`;
+}

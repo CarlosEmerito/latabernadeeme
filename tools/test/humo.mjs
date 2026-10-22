@@ -148,6 +148,45 @@ try {
   fallo("monstruo", String(e));
 }
 
+// El botón «Copiar Markdown» tiene que seguir registrado y tiene que generar
+// el Markdown con el PX con su unidad una sola vez. El texto se arma en un
+// módulo aparte (`src/lib/markdown.ts`), así que el script de la ficha ahora
+// es un bundle: si el import no llegara al navegador, el botón se quedaría
+// sin registrar y el aviso saldría vacío. Se comprueba lo que el navegador
+// genera, no el código.
+for (const [ed, ruta, xpEsperado] of [
+  ["5.5", "aboleth", "5900 PX o 7200 en la guarida; BC +4"],
+  ["5e", "goblin", "50 PX"],
+]) {
+  try {
+    const p = await abrir(`${BASE}/${ed}/monstruos/${ruta}/`);
+    const d = await evaluar(
+      p,
+      `(() => {
+        const boton = document.getElementById("copiar-md");
+        if (!boton) return { boton: false };
+        let copiado = null;
+        const portapapeles = navigator.clipboard ?? {};
+        const original = portapapeles.writeText?.bind(portapapeles);
+        portapapeles.writeText = async (t) => { copiado = t; if (!original) return; return original(t).catch(() => {}); };
+        boton.click();
+        const linea = (copiado ?? "").split("\\n").find((l) => l.startsWith("- **VD:**"));
+        return { boton: true, linea, aviso: document.getElementById("aviso-copia")?.textContent ?? "" };
+      })()`,
+    );
+    const ok =
+      d.boton &&
+      d.linea &&
+      d.linea.includes(xpEsperado) &&
+      !/PX\\s+PX/i.test(d.linea) &&
+      !/BC\\s*\\+\\d+\\s*PX/i.test(d.linea);
+    if (ok) bien(`markdown ${ed}/${ruta}: «${d.linea}»`);
+    else fallo(`markdown ${ed}/${ruta}`, JSON.stringify(d));
+  } catch (e) {
+    fallo(`markdown ${ed}/${ruta}`, String(e));
+  }
+}
+
 const listado = await abrir(`${BASE}/5e/conjuros/`);
 try {
   const antes = await evaluar(listado, `document.querySelectorAll('#cuerpo tr:not([hidden])').length`);

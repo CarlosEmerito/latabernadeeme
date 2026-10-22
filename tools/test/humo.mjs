@@ -464,6 +464,35 @@ try {
   if (/^\d+ = \[/.test(dados.trim())) bien(`dados: ${dados.trim().slice(0, 40)}`);
   else fallo("dados", dados);
 
+  // La ventaja tira dos d20 y suma el mayor, pero la salida pintaba la lista de
+  // dados con el primero solo y «la otra» con el menor: cuando el segundo dado
+  // era el que sumaba, la tirada se anunciaba con el mismo número dos veces y
+  // el que había contado no aparecía. Se fuerza el azar para que la tirada sea
+  // reproducible: 0,1 y 0,9 son un 3 y un 19.
+  const ventaja = await evaluar(
+    mesa,
+    `(() => {
+      const azar = Math.random;
+      const cola = [0.1, 0.9];
+      Math.random = () => (cola.length ? cola.shift() : azar());
+      const expresion = document.getElementById('dad-expresion');
+      const casilla = document.getElementById('dad-ventaja');
+      expresion.value = '1d20+0';
+      casilla.checked = true;
+      document.getElementById('dad-tirar').click();
+      const salida = document.getElementById('dad-salida').textContent;
+      casilla.checked = false;
+      Math.random = azar;
+      return salida;
+    })()`,
+  );
+  const totalVentaja = Number((/^(\d+)/.exec(ventaja.trim()) ?? [])[1]);
+  const dadosVentaja = (ventaja.match(/\d+/g) ?? []).map(Number).slice(1);
+  if (totalVentaja !== 19) fallo("dados con ventaja", `el total no es el dado mayor: ${ventaja}`);
+  else if (!dadosVentaja.includes(19) || !dadosVentaja.includes(3))
+    fallo("dados con ventaja", `no enseña los dos d20 tirados: ${ventaja}`);
+  else bien(`dados con ventaja: ${ventaja.trim()}`);
+
   await evaluar(mesa, `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#enc-lista option')) { clearInterval(t); res(1); } }, 100); setTimeout(() => { clearInterval(t); res(0); }, 5000); })`);
   const enc = await evaluar(
     mesa,

@@ -765,6 +765,48 @@ try {
   fallo("VD alto", String(e));
 }
 
+// «Ajustar una criatura» comparaba el nombre con `toLowerCase()`, que pasa a
+// minúsculas pero no quita tildes: «aguila» no encontraba «Águila» y el panel
+// contestaba que el VD no existía, culpando al campo que estaba bien. Se prueba
+// en el navegador lo que ve el lector: el nombre sin tilde ajusta igual que con
+// ella, y los dos fallos —criatura que no está en el catálogo y VD sin ninguna
+// criatura— dan mensajes distintos, porque se arreglan de maneras distintas.
+try {
+  const p = await abrir(`${BASE}/mesa/`);
+  await evaluar(p, `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#enc-lista option')) { clearInterval(t); res(1); } }, 100); setTimeout(() => { clearInterval(t); res(0); }, 6000); })`);
+  const casos = await evaluar(
+    p,
+    `(() => {
+       const leer = () => document.getElementById('aj-salida').textContent.split(String.fromCharCode(10)).join(' ').replace(/[ ]{2,}/g, ' ').trim();
+       const probar = (nombre, vd) => {
+         document.getElementById('aj-criatura').value = nombre;
+         document.getElementById('aj-objetivo').value = vd;
+         document.getElementById('aj-calcular').click();
+         return leer();
+       };
+       return {
+         sinTilde: probar('aguila', '5'),
+         conTilde: probar('Águila', '5'),
+         mayusculas: probar('AGUILA', '5'),
+         sinCriatura: probar('criatura inventada', '5'),
+         sinVd: probar('Águila', '18'),
+       };
+    })()`,
+  );
+  const ajusta = (texto) => /antes 0/.test(texto) && /PG [0-9]+ /.test(texto);
+  const ok =
+    ajusta(casos.sinTilde) &&
+    ajusta(casos.conTilde) &&
+    ajusta(casos.mayusculas) &&
+    /No hay ninguna criatura que se llame .criatura inventada./.test(casos.sinCriatura) &&
+    /no tiene ninguna criatura con VD 18/.test(casos.sinVd) &&
+    casos.sinCriatura !== casos.sinVd;
+  if (ok) bien(`ajustar con y sin tilde: «aguila» -> ${casos.sinTilde.slice(0, 40)}`);
+  else fallo("ajustar tildes", JSON.stringify(casos));
+} catch (e) {
+  fallo("ajustar tildes", String(e));
+}
+
 // Los campos del constructor de encuentros se teclean a mano y `type=number` no
 // impide 0, 11, -3, un decimal ni dejarlos vacíos. Con «Personajes» vacío el
 // presupuesto era 0 y el veredicto salía «Por encima (Infinity % del

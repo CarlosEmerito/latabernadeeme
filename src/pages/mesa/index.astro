@@ -179,6 +179,7 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       type EdicionEncuentro,
     } from "../../lib/presupuesto";
     import { plegar } from "../../lib/texto";
+    import { buscarPorNombre } from "../../lib/criaturas";
     import { CLAVE_INICIATIVA, leerIniciativa, type Combatiente } from "../../lib/iniciativa";
 
     const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -405,12 +406,33 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       const salida = $("aj-salida");
       const nombre = ($("aj-criatura") as HTMLInputElement).value.trim();
       const objetivo = String(($("aj-objetivo") as HTMLInputElement).value).trim();
-      const m = catalogo.find((x) => x.n.toLowerCase() === nombre.toLowerCase());
+      const m = buscarPorNombre(catalogo, nombre);
       const perfil = perfiles();
       const destino = perfil.get(objetivo);
 
-      if (!m || !destino) {
-        if (salida) salida.innerHTML = `<p class="muted">Elige una criatura del catálogo y un VD que exista en él.</p>`;
+      /* Dos fallos distintos no comparten mensaje: un nombre que no está en el
+         catálogo y un VD sin ninguna criatura se arreglan de maneras distintas,
+         y culpar al VD cuando lo que sobraba era una tilde dejaba al lector
+         probando números que sí existen. El texto va con `textContent`, no en
+         la plantilla: el nombre lo escribe quien mira la página. */
+      const aviso = (texto: string) => {
+        if (!salida) return;
+        const p = document.createElement("p");
+        p.className = "muted";
+        p.textContent = texto;
+        salida.replaceChildren(p);
+      };
+
+      if (!m) {
+        aviso(
+          nombre
+            ? `No hay ninguna criatura que se llame «${nombre}» en este catálogo.`
+            : "Escribe el nombre de una criatura del catálogo.",
+        );
+        return;
+      }
+      if (!destino) {
+        aviso(`El catálogo no tiene ninguna criatura con VD ${objetivo}: no hay media con la que escalar. Prueba otro VD.`);
         return;
       }
 

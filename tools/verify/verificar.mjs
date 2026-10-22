@@ -250,4 +250,11 @@ if (bytecode !== 0) {
   process.exit(bytecode);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado y bytecode sin versionar correctos.");
+console.log("▶ Búsqueda de criaturas sin tilde: ajustar.mjs (dist/datos/ y src/lib/)");
+const ajustar = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/ajustar.mjs")]);
+if (ajustar !== 0) {
+  console.error("✗ «Ajustar una criatura» no encuentra las criaturas cuyo nombre lleva tilde cuando se escribe sin ella.");
+  process.exit(ajustar);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar y búsqueda de criaturas sin tilde correctos.");

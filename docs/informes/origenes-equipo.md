@@ -91,8 +91,18 @@ y 97 en 5.2 (el resto son objetos que el SRD solo lista en tabla, con `price` y
    cuerpo). La tabla «Ancestros dracónicos» sí era limpia y va como tabla Markdown en
    `ed52/especies/draconido.md`.
 4. **«Comida, bebida y alojamiento» de 5.2** (pág. 110) tiene el mismo problema de
-   celdas intercaladas; `ed52/equipo/gastos.md` conserva la tabla de niveles de vida y
-   deja una nota indicando que esa tabla queda pendiente de revisión manual.
+   celdas intercaladas: la tabla sale en dos pares de columnas —«Elemento |
+   Precio | Elemento | Precio»— que el flujo entrega mezclados, así que el
+   extractor no pudo reasignarlas y la ficha se quedó con una nota de «pendiente
+   de una pasada manual». Reconstruida a mano desde las coordenadas del PDF
+   (`.cache/srd/work/e52.jsonl` y `e52.bbox.xml`), la tabla sí sale: reordenar
+   las celdas por su posición devuelve las veinte filas con su precio al lado
+   —«Cerveza (jarra) 4 pc», la comida de «Miserable 1 pc» a «Aristocrática
+   6 pp», la estancia en posada de «Miserable 7 pc» a «Aristocrática 4 po», pan,
+   queso y el vino—, y las otras dos tablas del capítulo, «Asalariados» (pág.
+   111) y «Servicios de lanzamiento de conjuros» (pág. 111), también se
+   reconstruyeron enteras. `tools/test/gastos.mjs` vigila que las tres tablas
+   lleguen completas a la página.
 5. **Tabla de munición de 5.2** (pág. 106): las celdas Tipo/Cantidad/Recipiente llegan
    fundidas («Balas de 10 Bolsa arma de fuego»), así que no se han creado entradas de
    munición en esa edición (en 5.1 sí están: flechas, virotes, balas, dardos).

@@ -21,4 +21,45 @@ page: 110
 
 ## Comida, bebida y alojamiento
 
-La tabla «Comida, bebida y alojamiento» de esta edición llega con las celdas de las dos columnas intercaladas en el flujo del PDF y no se ha podido reconstruir fila a fila; queda pendiente de una pasada manual sobre la pág. 110.
+| Elemento | Precio |
+| --- | --- |
+| Cerveza (jarra) | 4 pc |
+| **Comida** | |
+| Miserable | 1 pc |
+| Pobre | 2 pc |
+| Modesta | 1 pp |
+| Copiosa | 2 pp |
+| Lujosa | 3 po |
+| Aristocrática | 6 pp |
+| **Estancia en posada por día** | |
+| Miserable | 7 pc |
+| Pobre | 1 pp |
+| Modesta | 5 pp |
+| Cómoda | 8 pp |
+| Lujosa | 2 po |
+| Aristocrática | 4 po |
+| Pan (hogaza) | 2 pc |
+| Queso (cuña) | 1 pp |
+| **Vino (botella)** | |
+| Común | 2 pp |
+| De calidad | 10 po |
+
+## Asalariados
+
+| Servicio | Remuneración |
+| --- | --- |
+| Asalariado cualificado | 2 po al día |
+| Asalariado no cualificado | 2 pp al día |
+| Mensajero | 1 o 2 pc por kilómetro |
+
+## Servicios de lanzamiento de conjuros
+
+| Nivel del conjuro | Disponibilidad | Remuneración |
+| --- | --- | --- |
+| Truco | Aldea, pueblo o ciudad | 30 po |
+| 1 | Aldea, pueblo o ciudad | 50 po |
+| 2 | Aldea, pueblo o ciudad | 200 po |
+| 3 | Solo pueblo o ciudad | 300 po |
+| 4–5 | Solo pueblo o ciudad | 2000 po |
+| 6–8 | Solo ciudad | 20 000 po |
+| 9 | Solo ciudad | 100 000 po |

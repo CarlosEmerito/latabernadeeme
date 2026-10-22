@@ -229,4 +229,11 @@ if (markdown !== 0) {
   process.exit(markdown);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones y Markdown copiado correctos.");
+console.log("▶ Gastos del SRD 5.2.1: gastos.mjs (data/ y dist/)");
+const gastos = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/gastos.mjs")]);
+if (gastos !== 0) {
+  console.error("✗ La ficha de gastos del SRD 5.2.1 no publica sus tres tablas con sus filas y sus precios.");
+  process.exit(gastos);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1 y Markdown copiado correctos.");

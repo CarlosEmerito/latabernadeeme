@@ -84,6 +84,10 @@
  *      combate del 5.2.1 —las que el SRD de 2024 dejó en el glosario—, que
  *      cada categoría del catálogo tenga su panel entero y que la lista viva en
  *      `src/lib/pantalla.ts`, que lanza si una regla se queda sin panel.
+ *  26. `tools/test/humo-espera.mjs`: que las pestañas del humo esperen a la
+ *      carga de la página —no a 800 ms de reloj— y se cierren, que es lo que
+ *      hacía intermitente la comprobación de la tarjeta social. Usa pestañas
+ *      falsas, así que no necesita navegador.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -270,4 +274,11 @@ if (pantalla !== 0) {
   process.exit(pantalla);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde y reglas de la pantalla del DM correctos.");
+console.log("▶ Pestañas del humo: humo-espera.mjs (tools/test/cdp.mjs)");
+const humoEspera = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/humo-espera.mjs")]);
+if (humoEspera !== 0) {
+  console.error("✗ Las pestañas del humo no esperan a la carga o no se cierran: la tarjeta social volverá a dar rojo espurio.");
+  process.exit(humoEspera);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM y espera de carga de las pestañas del humo correctos.");

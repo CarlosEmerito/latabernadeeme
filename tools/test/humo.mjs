@@ -6,11 +6,17 @@
  * principales. No sustituye a una revisión manual con lector de pantalla, pero
  * detecta lo que se rompe al tocar plantillas.
  *
+ * Las pestañas las lleva `tools/test/cdp.mjs`: cada página se abre esperando a
+ * `Page.loadEventFired` —no a un reloj— y las que sobran se cierran, porque la
+ * espera fija de 800 ms leía el `<head>` vacío en cuanto el perfil acumulaba
+ * documentos abiertos.
+ *
  * Uso: node tools/test/humo.mjs [urlBase]
  */
 import fs from "node:fs";
 import { load as parseYaml } from "js-yaml";
 import { panelesDe } from "../../src/lib/pantalla.ts";
+import { Pestanas, evaluar } from "./cdp.mjs";
 
 const BASE = process.argv[2] ?? "http://localhost:8099/latabernadeeme";
 
@@ -43,58 +49,21 @@ function pantallaEsperada() {
 const CDP = "http://localhost:9223";
 const axe = fs.readFileSync(new URL("../../node_modules/axe-core/axe.min.js", import.meta.url), "utf8");
 
+/**
+ * Las pestañas de la pasada. `abrir()` espera a que la página cargue y las que
+ * sobran se cierran solas: la espera fija de 800 ms y las 37 pestañas abiertas
+ * hacían que la última comprobación —la tarjeta social— leyera el `<head>`
+ * vacío de vez en cuando.
+ */
+const pestanas = new Pestanas({ cdp: CDP });
+
 const resultados = [];
 const fallo = (nombre, detalle) => resultados.push({ ok: false, nombre, detalle });
 const bien = (nombre) => resultados.push({ ok: true, nombre });
 
-async function nuevaPestana(url) {
-  const r = await fetch(`${CDP}/json/new?${encodeURIComponent(url)}`, { method: "PUT" });
-  const t = await r.json();
-  const ws = new WebSocket(t.webSocketDebuggerUrl);
-  await new Promise((res, rej) => {
-    ws.onopen = res;
-    ws.onerror = rej;
-  });
-  let id = 0;
-  const pendientes = new Map();
-  ws.onmessage = (ev) => {
-    const msg = JSON.parse(ev.data);
-    if (msg.id && pendientes.has(msg.id)) {
-      pendientes.get(msg.id)(msg);
-      pendientes.delete(msg.id);
-    }
-  };
-  const enviar = (method, params = {}) =>
-    new Promise((res) => {
-      const n = ++id;
-      pendientes.set(n, res);
-      ws.send(JSON.stringify({ id: n, method, params }));
-    });
-  await enviar("Page.enable");
-  await enviar("Runtime.enable");
-  return { ws, enviar, id: t.id };
-}
+const abrir = (url) => pestanas.abrir(url);
 
-async function evaluar(pag, expresion) {
-  const r = await pag.enviar("Runtime.evaluate", {
-    expression: expresion,
-    returnByValue: true,
-    awaitPromise: true,
-  });
-  if (r.result?.exceptionDetails) throw new Error(JSON.stringify(r.result.exceptionDetails).slice(0, 300));
-  return r.result?.result?.value;
-}
-
-async function ir(pag, url) {
-  await pag.enviar("Page.navigate", { url });
-  await new Promise((r) => setTimeout(r, 700));
-}
-
-async function abrir(url) {
-  const pag = await nuevaPestana(url);
-  await new Promise((r) => setTimeout(r, 800));
-  return pag;
-}
+const ir = (pag, url) => pestanas.ir(pag, url);
 
 async function axeEn(pag, etiqueta) {
   await evaluar(pag, axe);
@@ -1134,8 +1103,7 @@ try {
     p,
     `localStorage.setItem('taberna:iniciativa', JSON.stringify({turno: 0, lista: [{nombre:'Aria', valor:18},{nombre:'Goblin', valor:12}]}))`,
   );
-  await evaluar(p, `location.reload()`);
-  await new Promise((r) => setTimeout(r, 900));
+  await ir(p, `${BASE}/mesa/jugadores/`);
   const d = await evaluar(p, `({turno: document.getElementById('turno')?.textContent, filas: document.querySelectorAll('.jugadores__lista li').length})`);
   if (d.filas === 2 && /Aria/.test(d.turno)) bien(`vista de jugador: ${d.turno}`);
   else fallo("vista de jugador", JSON.stringify(d));
@@ -1208,8 +1176,9 @@ try {
 try {
   const esperado = pantallaEsperada();
   const p = await abrir(`${BASE}/mesa/pantalla/`);
-  await evaluar(p, `localStorage.removeItem('taberna:pantalla'); location.reload(); 1`);
-  await new Promise((r) => setTimeout(r, 800));
+  await evaluar(p, `localStorage.removeItem('taberna:pantalla'); 1`);
+  // Se vuelve a navegar en vez de recargar y contar 800 ms: `ir` espera la carga.
+  await ir(p, `${BASE}/mesa/pantalla/`);
   const antes = await evaluar(p, `document.querySelectorAll('.pantalla__panel:not([hidden])').length`);
   const publicado = await evaluar(
     p,
@@ -1349,6 +1318,11 @@ try {
 }
 
 // Enlaces internos roos: se comprueban sobre el HTML compilado, no en el navegador.
+//
+// Las pestañas se cierran antes de leer los resultados: el perfil de Chrome se
+// queda sin documentos abiertos y la pasada no deja 37 vivos esperando a que
+// muera el proceso.
+await pestanas.cerrarTodas();
 const malos = resultados.filter((r) => !r.ok);
 console.log("");
 for (const r of resultados) console.log(`${r.ok ? "✓" : "✗"} ${r.nombre}${r.detalle ? ` — ${r.detalle}` : ""}`);

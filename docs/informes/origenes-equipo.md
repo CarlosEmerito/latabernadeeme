@@ -13,8 +13,8 @@ Fecha: 20 de octubre de 2026 · Generado por los scripts de `tools/ingest` (pipe
 | `especies/` | 9 | 9 |
 | `trasfondos/` | 1 | 4 |
 | `dotes/` | 1 | 17 |
-| `equipo/` | 213 | 188 |
-| **Total nuevo** | **224** | **218** |
+| `equipo/` | 220 | 193 |
+| **Total nuevo** | **231** | **223** |
 
 Sin cambios (no se han tocado): `conjuros/` 319 y 339, `monstruos/` 317 y 330.
 
@@ -25,7 +25,7 @@ Sin cambios (no se han tocado): `conjuros/` 319 y 339, `monstruos/` 317 y 330.
 | Arma | 37 | 38 |
 | Armadura (incluye escudo) | 13 | 13 |
 | Herramienta | 35 | 22 |
-| Equipo de aventurero | 99 | 89 |
+| Equipo de aventurero | 106 | 94 |
 | Montura | 8 | 11 |
 | Vehículo | 19 | 14 |
 | Mercancía (`mercancias.md`) | 1 | — |

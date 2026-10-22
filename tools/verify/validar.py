@@ -116,6 +116,69 @@ def perfil_completo() -> list[str]:
     return problemas
 
 
+# Los doce objetos del SRD que faltaban en el catálogo de equipo: los siete
+# paquetes del 5.1 (pág. 71, que en el PDF salen en prosa y no en tabla) y las
+# cinco municiones del 5.2 (pág. 106, con su propia tabla). El nombre y el
+# precio van aquí para que una regeneración no los vuelva a perder: el
+# recuento del README se actualiza a partir de los ficheros, así que un hueco
+# no se veía por ningún lado.
+EQUIPO_TESTIGO = {
+    ("ed51", "paquete-de-artista"): ("Paquete de artista", "40 po"),
+    ("ed51", "paquete-de-diplomatico"): ("Paquete de diplomático", "39 po"),
+    ("ed51", "paquete-de-erudito"): ("Paquete de erudito", "40 po"),
+    ("ed51", "paquete-de-explorador"): ("Paquete de explorador", "10 po"),
+    ("ed51", "paquete-de-explorador-de-mazmorras"): ("Paquete de explorador de mazmorras", "12 po"),
+    ("ed51", "paquete-de-ladron"): ("Paquete de ladrón", "16 po"),
+    ("ed51", "paquete-de-sacerdote"): ("Paquete de sacerdote", "19 po"),
+    ("ed52", "balas-de-arma-de-fuego-10"): ("Balas de arma de fuego (10)", "3 po"),
+    ("ed52", "dardos-50"): ("Dardos (50)", "1 po"),
+    ("ed52", "flechas-20"): ("Flechas (20)", "1 po"),
+    ("ed52", "proyectiles-de-honda-20"): ("Proyectiles de honda (20)", "4 pc"),
+    ("ed52", "virotes-20"): ("Virotes (20)", "1 po"),
+}
+
+# Un nombre de equipo que acaba en preposición está cortado: «Paquete de
+# explorador de» es la fila del PDF partida en dos líneas, con la
+# continuación («mazmorras») en la línea siguiente.
+COLAS_DE_CORTE_EQUIPO = (" de", " y", " o", " con", " para")
+
+
+def equipo_completo() -> list[str]:
+    """Los doce objetos que faltaban y los nombres de equipo cortados."""
+    problemas: list[str] = []
+    for (ed, ficha), (nombre, precio) in EQUIPO_TESTIGO.items():
+        f = DATOS / ed / "equipo" / f"{ficha}.md"
+        # `leer` revienta si el fichero no existe: aquí el que falta es
+        # justamente lo que hay que decir.
+        if not f.exists():
+            problemas.append(f"{ed}/equipo/{ficha}: no existe la ficha testigo")
+            continue
+        contenido = leer(f)
+        if contenido is None:
+            problemas.append(f"{ed}/equipo/{ficha}: la ficha testigo no tiene frontmatter")
+            continue
+        datos, _ = contenido
+        if str(datos.get("name") or "") != nombre:
+            problemas.append(
+                f"{ed}/equipo/{ficha}: debería llamarse «{nombre}» y se llama «{datos.get('name')}»"
+            )
+        if str(datos.get("price") or "") != precio:
+            problemas.append(
+                f"{ed}/equipo/{ficha}: debería costar «{precio}» y cuesta «{datos.get('price')}»"
+            )
+    for f in sorted(DATOS.glob("*/equipo/*.md")):
+        contenido = leer(f)
+        if contenido is None:
+            continue
+        datos, _ = contenido
+        nombre = str(datos.get("name") or "").strip()
+        if nombre.endswith(COLAS_DE_CORTE_EQUIPO):
+            problemas.append(
+                f"{f.parent.parent.name}/{f.stem}: el nombre acaba en preposición («{nombre}»), está cortado"
+            )
+    return problemas
+
+
 # El rótulo «(Competencias en) habilidades» de la caja de 5.2 se cuela a veces
 # dentro del valor de al lado cuando este parte con guion: «Conocimiento
 # ar-habilidades cano», «Investigahabilidades ción». Es texto público y la
@@ -418,6 +481,24 @@ def main() -> int:
             lineas.append(f"  - …y {len(perfil) - 15} más")
     else:
         lineas.append("- Ningún campo del perfil acaba cortado y las fichas testigo están completas.")
+    lineas.append("")
+
+    # El catálogo de equipo tiene que seguir cubriendo el capítulo del SRD:
+    # los siete paquetes del 5.1 y las cinco municiones del 5.2 se perdían
+    # porque el extractor de equipo solo leía tablas, y una regeneración los
+    # volvería a perder sin que ningún recuento lo notara.
+    equipo = equipo_completo()
+    lineas += ["## Catálogo de equipo", ""]
+    if equipo:
+        problemas += 1
+        lineas.append(f"- Objetos que faltaban o nombres cortados: **{len(equipo)}**")
+        lineas += [f"  - {p}" for p in equipo[:15]]
+        if len(equipo) > 15:
+            lineas.append(f"  - …y {len(equipo) - 15} más")
+    else:
+        lineas.append(
+            "- Los doce objetos que faltaban están y ningún nombre de equipo acaba cortado."
+        )
     lineas.append("")
 
     # La caja de atributos de 5.2 parte los rótulos en dos líneas y el

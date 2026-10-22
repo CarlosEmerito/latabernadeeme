@@ -1,7 +1,7 @@
 # Informe de validación
 
 Generado por `tools/verify/validar.py`.
-Total de entradas: **2490**. Apartados con incidencias: **0**.
+Total de entradas: **2502**. Apartados con incidencias: **0**.
 
 ## ed51 · clases — 12 entradas · OK
 
@@ -9,7 +9,7 @@ Total de entradas: **2490**. Apartados con incidencias: **0**.
 
 ## ed51 · dotes — 1 entradas · OK
 
-## ed51 · equipo — 213 entradas · OK
+## ed51 · equipo — 220 entradas · OK
 
 ## ed51 · especies — 9 entradas · OK
 
@@ -28,7 +28,7 @@ Total de entradas: **2490**. Apartados con incidencias: **0**.
 
 ## ed52 · dotes — 17 entradas · OK
 
-## ed52 · equipo — 188 entradas · OK
+## ed52 · equipo — 193 entradas · OK
 
 ## ed52 · especies — 9 entradas · OK
 
@@ -48,6 +48,10 @@ Total de entradas: **2490**. Apartados con incidencias: **0**.
 ## Perfil de las criaturas
 
 - Ningún campo del perfil acaba cortado y las fichas testigo están completas.
+
+## Catálogo de equipo
+
+- Los doce objetos que faltaban están y ningún nombre de equipo acaba cortado.
 
 ## Rótulos dentro del valor
 

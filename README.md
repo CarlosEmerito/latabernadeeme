@@ -8,8 +8,8 @@ Dos apartados, `5e` y `5.5`, con la misma estructura: conjuros, monstruos, objet
 
 | Edición | Conjuros | Monstruos | Objetos | Clases | Especies | Trasfondos | Dotes | Equipo | Reglas |
 |---|---|---|---|---|---|---|---|---|---|
-| 5e (SRD 5.1) | 319 | 317 | 240 | 12 | 9 | 1 | 1 | 213 | 47 |
-| 5.5 (SRD 5.2.1) | 339 | 330 | 258 | 12 | 9 | 4 | 17 | 188 | 174 |
+| 5e (SRD 5.1) | 319 | 317 | 240 | 12 | 9 | 1 | 1 | 220 | 47 |
+| 5.5 (SRD 5.2.1) | 339 | 330 | 258 | 12 | 9 | 4 | 17 | 193 | 174 |
 
 Los recuentos son el número de ficheros `.md` de cada carpeta de `data/`
 (`find data/<edición>/<tipo> -name '*.md' | wc -l`) y en conjuros y monstruos
@@ -38,6 +38,9 @@ tools/ingest/
   srd/spells.py     parser de conjuros (5.1 y 5.2)
   srd/monsters.py   parser de perfiles de monstruo (5.1 y 5.2)
   extract_core.py   orquesta y escribe data/
+  paquetes.py       los siete paquetes de equipo del 5.1 (en prosa, no en tabla)
+  municion.py       la tabla de munición del 5.2 (pág. 106)
+  reparar_paquete.py  el paquete de explorador de mazmorras del 5.2, con el nombre partido
 tools/verify/
   validar.py        recuentos, campos, cuerpos y tabla del README
 tools/test/
@@ -49,6 +52,9 @@ tools/test/
 python3 -m venv .venv-ingest && .venv-ingest/bin/pip install -r tools/requirements.txt
 .venv-ingest/bin/python tools/ingest/descargar.py      # PDF -> .cache/srd/work/*.jsonl
 .venv-ingest/bin/python tools/ingest/extract_core.py
+.venv-ingest/bin/python tools/ingest/paquetes.py      # equipo del 5.1 que no sale de las tablas
+.venv-ingest/bin/python tools/ingest/municion.py      # la tabla de munición del 5.2
+.venv-ingest/bin/python tools/ingest/reparar_paquete.py
 .venv-ingest/bin/python tools/verify/validar.py
 ```
 
@@ -64,7 +70,7 @@ npm run verificar:humo  # pruebas de humo en Chrome headless; necesita navegador
 
 `verificar` ejecuta veintiún pasos y compila el sitio antes del segundo si `dist/` no existe, así que también vale en un clon recién hecho:
 
-1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD y a la tabla del README, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados por nombre dentro de la misma categoría —dos fichas con el mismo nombre y la misma categoría publican dos filas que el lector no puede distinguir y suspenden la pasada; el mismo nombre en categorías distintas es legítimo y lo separa la columna Categoría—. Además vigila el perfil de las criaturas: ningún valor de `saves`, `skills`, `senses`, `languages` ni del resto de campos puede quedarse a mitad (el PDF los parte en varias líneas), ninguna línea de tipo deja el tamaño o el complemento del tipo dentro del alineamiento, y unas fichas testigo —`dragon-azul-adulto`, `dragon-rojo-adulto`, `espia`, `liche`, `naga-guardiana` y `archimago`— llevan el texto exacto que se perdía. Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
+1. `tools/verify/validar.py`: recuentos por edición y tipo frente a los del SRD y a la tabla del README, campos obligatorios vacíos, cuerpos cortados o desbordados y duplicados por nombre dentro de la misma categoría —dos fichas con el mismo nombre y la misma categoría publican dos filas que el lector no puede distinguir y suspenden la pasada; el mismo nombre en categorías distintas es legítimo y lo separa la columna Categoría—. Además vigila el perfil de las criaturas: ningún valor de `saves`, `skills`, `senses`, `languages` ni del resto de campos puede quedarse a mitad (el PDF los parte en varias líneas), ninguna línea de tipo deja el tamaño o el complemento del tipo dentro del alineamiento, y unas fichas testigo —`dragon-azul-adulto`, `dragon-rojo-adulto`, `espia`, `liche`, `naga-guardiana` y `archimago`— llevan el texto exacto que se perdía. Y vigila el catálogo de equipo: los doce objetos que faltaban —los siete paquetes del 5.1 y las cinco municiones del 5.2— tienen que estar, con su nombre y su precio, y ningún nombre de equipo puede acabar en preposición («Paquete de explorador de» es una fila del PDF partida en dos líneas). Necesita Python con PyYAML: usa `.venv-ingest/bin/python` si existe, `python3` si no, y `PYTHON=/ruta/python` para forzar otro.
 2. `tools/test/enlaces.mjs`: cada `href` y `src` interno del HTML compilado apunta a una página o fichero que existe, y cada fragmento (`#seccion`) a un `id` de la página de destino.
 3. `tools/test/ids.mjs`: ninguna página repite un `id`. Los `id` de los encabezados salen del texto (`slugify`), y `IdsDeDocumento` numera los repetidos de una misma página —`-2`, `-3`…— para que el índice lateral enlace a cada apartado y no todos al primero.
 4. `tools/test/filtro.mjs`: el `data-buscar` de cada fila es el nombre plegado (sin tildes ni mayúsculas) y las búsquedas sin tilde encuentran filas en los listados grandes.

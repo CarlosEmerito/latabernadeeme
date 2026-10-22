@@ -201,8 +201,8 @@ Decisión: **el Markdown es la fuente; el JSON es un derivado que se genera en c
 
 - Una entrada por fichero, con frontmatter YAML, es lo que permite revisar un cambio en un diff,
   corregir una errata a mano y saber qué licencia y qué página tiene cada texto. Un JSON único de
-  2.490 entradas no se revisa.
-- El cliente necesita otra cosa: para filtrar, comparar y buscar no puede leer 2.490 ficheros. Por
+  2.502 entradas no se revisa.
+- El cliente necesita otra cosa: para filtrar, comparar y buscar no puede leer 2.502 ficheros. Por
   eso existe un índice por edición en `src/pages/datos/[ed].json.ts`, generado en el mismo build,
   con nombre, slug, tipo, facetas y datos clave. Nada de eso se escribe a mano: se calcula desde
   los Markdown, así que no puede desincronizarse.
@@ -217,8 +217,8 @@ Decisión: **el Markdown es la fuente; el JSON es un derivado que se genera en c
 
   | Edición | Sin comprimir | Con gzip |
   |---|---|---|
-  | 5e | 293 KB | 37 KB |
-  | 5.5 | 313 KB | 38 KB |
+  | 5e | 294 KB | 37 KB |
+  | 5.5 | 314 KB | 38 KB |
 
   Cabe en una visita. `tools/test/cifras.py` vuelve a medir estos números desde
   `dist/datos/` en cada pasada, así que no pueden quedar atrás cuando crecen las

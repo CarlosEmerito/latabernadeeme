@@ -434,6 +434,29 @@ def revisar_carpeta(ed: str, carpeta: Path) -> tuple[list[str], int, int]:
     return lineas, len(ficheros), incidencias
 
 
+# El pie de página del PDF («Documento de referencia del sistema 5.1.» y su
+# número de página) y la línea de la licencia («Prohibida la reventa…») se
+# colaron en el texto de 64 objetos —las 33 fichas del 5.1 y 31 del 5.2—: es lo
+# último que lee quien abre la ficha y lo que se lleva el botón de Markdown. El
+# filtro existe en el resto del pipeline (`FOOTER_RE` e `is_footer` en
+# `tools/ingest/linearize.py`); el camino de los objetos no lo aplicó.
+PIES_DE_PAGINA = ("Documento de referencia del sistema", "Prohibida la reventa")
+
+
+def pies_de_pagina() -> list[str]:
+    """Pies de página del PDF publicados dentro del texto de una ficha."""
+    problemas: list[str] = []
+    for f in sorted(DATOS.glob("*/*/*.md")):
+        texto = f.read_text(encoding="utf-8")
+        cuerpo = texto.split("---", 2)[-1] if texto.startswith("---") else texto
+        for pie in PIES_DE_PAGINA:
+            if pie in cuerpo:
+                problemas.append(
+                    f"{f.parent.parent.name}/{f.parent.name}/{f.stem}: lleva «{pie}» dentro del texto"
+                )
+    return problemas
+
+
 def main() -> int:
     lineas = ["# Informe de validación", "", "Generado por `tools/verify/validar.py`.", ""]
     problemas = 0
@@ -530,6 +553,20 @@ def main() -> int:
         lineas.append(
             "- Ningún alineamiento lleva el tamaño, una aclaración del tipo ni su complemento suelto."
         )
+    lineas.append("")
+
+    # El pie de página del PDF es texto de maqueta, no del SRD: si viaja con el
+    # objeto, la ficha acaba contando en qué página estaba.
+    pies = pies_de_pagina()
+    lineas += ["## Pies de página dentro del texto", ""]
+    if pies:
+        problemas += 1
+        lineas.append(f"- Fichas con el pie del PDF dentro de su texto: **{len(pies)}**")
+        lineas += [f"  - {p}" for p in pies[:15]]
+        if len(pies) > 15:
+            lineas.append(f"  - …y {len(pies) - 15} más")
+    else:
+        lineas.append("- Ningún texto de ficha lleva el pie de página del PDF ni la línea de la licencia.")
     lineas.append("")
 
     lineas.insert(3, f"Total de entradas: **{total}**. Apartados con incidencias: **{problemas}**.")

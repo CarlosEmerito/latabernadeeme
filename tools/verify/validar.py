@@ -116,6 +116,67 @@ def perfil_completo() -> list[str]:
     return problemas
 
 
+# Las tiradas de salvación del 5.2 viajan en la tercera columna de la tabla de
+# características («F 23 +6 +6»: puntuación, modificador, salvación) y
+# `_parse_abilities` solo lee la puntuación, así que las 330 fichas del 5.2 se
+# publican sin la fila «Tiradas de salvación» mientras el 5.1 sí la trae (92 de
+# 317). La tabla del PDF no se versiona (`.cache/`), así que las líneas crudas
+# que se perdían van escritas aquí, ficha a ficha, y el mínimo por edición deja
+# que el catálogo crezca sin poner la puerta en rojo.
+SALVACIONES_TESTIGO = {
+    ("ed52", "archimago"): "Int +9, Sab +6",
+    ("ed52", "dragon-rojo-joven"): "Des +4, Sab +4",
+    ("ed52", "dragon-rojo-anciano"): "Des +7, Sab +9",
+    ("ed51", "dragon-rojo-adulto"): "Des +6, Con +13, Sab +7, Car +11",
+}
+SALVACIONES_MINIMO = {"ed51": 90, "ed52": 40}
+SALVACION = re.compile(r"^(?:Fue|Des|Con|Int|Sab|Car) [+−-]\d+$")
+
+
+def _salvaciones(valor: object) -> set[str]:
+    """«Des +7, Sab +9» → {"Des +7", "Sab +9"}, sin depender del orden."""
+    return {trozo.strip() for trozo in str(valor or "").split(",") if trozo.strip()}
+
+
+def salvaciones_completas() -> list[str]:
+    """Fichas que deberían declarar tiradas de salvación y no las declaran."""
+    problemas: list[str] = []
+    for (ed, ficha), esperado in SALVACIONES_TESTIGO.items():
+        f = DATOS / ed / "monstruos" / f"{ficha}.md"
+        if not f.exists():
+            problemas.append(f"{ed}/{ficha}: no existe la ficha testigo")
+            continue
+        contenido = leer(f)
+        if contenido is None:
+            problemas.append(f"{ed}/{ficha}: la ficha testigo no tiene frontmatter válido")
+            continue
+        datos, _ = contenido
+        valor = str(datos.get("saves") or "")
+        tiene = _salvaciones(valor)
+        falta = sorted(_salvaciones(esperado) - tiene)
+        if falta:
+            problemas.append(
+                f"{ed}/{ficha}: saves debería declarar {', '.join(falta)} y dice «{valor}»"
+            )
+        for trozo in sorted(tiene):
+            if not SALVACION.match(trozo):
+                problemas.append(
+                    f"{ed}/{ficha}: saves trae «{trozo}», que no es «Abreviatura +N»"
+                )
+    for ed, minimo in SALVACIONES_MINIMO.items():
+        con = 0
+        for f in sorted(DATOS.glob(f"{ed}/monstruos/*.md")):
+            contenido = leer(f)
+            if contenido is not None and str(contenido[0].get("saves") or "").strip():
+                con += 1
+        if con < minimo:
+            problemas.append(
+                f"{ed}: solo {con} fichas declaran tiradas de salvación y la tabla del SRD "
+                f"da al menos {minimo}"
+            )
+    return problemas
+
+
 # Los doce objetos del SRD que faltaban en el catálogo de equipo: los siete
 # paquetes del 5.1 (pág. 71, que en el PDF salen en prosa y no en tabla) y las
 # cinco municiones del 5.2 (pág. 106, con su propia tabla). El nombre y el
@@ -481,6 +542,24 @@ def main() -> int:
             lineas.append(f"  - …y {len(perfil) - 15} más")
     else:
         lineas.append("- Ningún campo del perfil acaba cortado y las fichas testigo están completas.")
+    lineas.append("")
+
+    # Las tiradas de salvación del 5.2 viven en la tercera columna de la tabla
+    # de características y no en una etiqueta, así que el parser las perdía sin
+    # romper nada: la ficha salía más corta y en paz. Se vigilan las fichas
+    # testigo y un mínimo por edición.
+    salvaciones = salvaciones_completas()
+    lineas += ["## Tiradas de salvación", ""]
+    if salvaciones:
+        problemas += 1
+        lineas.append(f"- Fichas sin las salvaciones que les da el SRD: **{len(salvaciones)}**")
+        lineas += [f"  - {p}" for p in salvaciones[:15]]
+        if len(salvaciones) > 15:
+            lineas.append(f"  - …y {len(salvaciones) - 15} más")
+    else:
+        lineas.append(
+            "- Las fichas testigo declaran sus salvaciones y cada edición pasa su mínimo."
+        )
     lineas.append("")
 
     # El catálogo de equipo tiene que seguir cubriendo el capítulo del SRD:

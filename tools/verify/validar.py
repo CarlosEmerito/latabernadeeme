@@ -177,6 +177,72 @@ def salvaciones_completas() -> list[str]:
     return problemas
 
 
+# Las inmunidades, resistencias y vulnerabilidades del 5.2 llevan **una sola
+# etiqueta** por campo, con los tipos de daño y los estados separados por «;»
+# («Inmunidades: veneno; cansancio, envenenado»), y `STAT_LABELS` solo conoce
+# las de 2014 («Inmunidad a daño:», «Inmunidad a estados:»…), así que las
+# cuatro filas salen vacías en las 330 fichas y el DM no ve que el esqueleto es
+# inmune al veneno y vulnerable al contundente. El equipo se pierde por la misma
+# puerta cuando la línea «Equipo:» cae antes de «Sentidos:». La tabla del PDF no
+# se versiona, así que los valores van escritos aquí, ficha a ficha.
+PERFIL_TESTIGO_5_2 = {
+    ("ed52", "esqueleto"): {
+        "immunities": "veneno",
+        "conditionImmunities": "cansancio, envenenado",
+        "vulnerabilities": "contundente",
+        "gear": "arco corto, espada corta",
+    },
+    ("ed52", "couatl"): {
+        "resistances": "contundente, cortante, perforante",
+        "immunities": "psíquico, radiante",
+    },
+    ("ed52", "behir"): {"immunities": "relámpago"},
+    ("ed52", "elemental-de-tierra"): {
+        "immunities": "veneno",
+        "conditionImmunities": "cansancio, envenenado, inconsciente, paralizado, petrificado",
+        "vulnerabilities": "trueno",
+    },
+}
+# El flujo del PDF da 148 criaturas con «Inmunidades:», 70 con «Resistencias:»,
+# 15 con «Vulnerabilidades:» y 44 con «Equipo:». El mínimo deja crecer el
+# catálogo sin poner la puerta en rojo por una ficha nueva.
+CAMPO_MINIMO_5_2 = {"immunities": 140, "resistances": 65, "vulnerabilities": 14, "gear": 40}
+
+
+def perfil_del_5_2() -> list[str]:
+    """Inmunidades, resistencias, vulnerabilidades y equipo del SRD 5.2."""
+    problemas: list[str] = []
+    for (ed, ficha), esperado in PERFIL_TESTIGO_5_2.items():
+        f = DATOS / ed / "monstruos" / f"{ficha}.md"
+        if not f.exists():
+            problemas.append(f"{ed}/{ficha}: no existe la ficha testigo")
+            continue
+        contenido = leer(f)
+        if contenido is None:
+            problemas.append(f"{ed}/{ficha}: la ficha testigo no tiene frontmatter válido")
+            continue
+        datos, _ = contenido
+        for campo, texto in esperado.items():
+            valor = str(datos.get(campo) or "").strip()
+            if valor != texto:
+                problemas.append(f"{ed}/{ficha}: {campo} debería ser «{texto}» y dice «{valor}»")
+        for campo in ("immunities", "conditionImmunities", "resistances", "vulnerabilities"):
+            if campo not in datos:
+                problemas.append(f"{ed}/{ficha}: la ficha no declara el campo {campo}")
+    for campo, minimo in CAMPO_MINIMO_5_2.items():
+        con = 0
+        for f in sorted(DATOS.glob("ed52/monstruos/*.md")):
+            contenido = leer(f)
+            if contenido is not None and str(contenido[0].get(campo) or "").strip():
+                con += 1
+        if con < minimo:
+            problemas.append(
+                f"ed52: solo {con} fichas declaran {campo} y el flujo del SRD da al menos {minimo}"
+            )
+    return problemas
+
+
+
 # Los doce objetos del SRD que faltaban en el catálogo de equipo: los siete
 # paquetes del 5.1 (pág. 71, que en el PDF salen en prosa y no en tabla) y las
 # cinco municiones del 5.2 (pág. 106, con su propia tabla). El nombre y el
@@ -559,6 +625,24 @@ def main() -> int:
     else:
         lineas.append(
             "- Las fichas testigo declaran sus salvaciones y cada edición pasa su mínimo."
+        )
+    lineas.append("")
+
+    # Las inmunidades, resistencias y vulnerabilidades del 5.2 se perdían por la
+    # misma puerta que las salvaciones: el parser no conoce las etiquetas de
+    # 2024 y las tiraba en silencio. Se vigilan las fichas testigo y un mínimo.
+    perfil52 = perfil_del_5_2()
+    lineas += ["## Inmunidades, resistencias y vulnerabilidades del 5.2", ""]
+    if perfil52:
+        problemas += 1
+        lineas.append(f"- Campos del perfil del 5.2 perdidos: **{len(perfil52)}**")
+        lineas += [f"  - {p}" for p in perfil52[:15]]
+        if len(perfil52) > 15:
+            lineas.append(f"  - …y {len(perfil52) - 15} más")
+    else:
+        lineas.append(
+            "- Las fichas testigo del 5.2 declaran sus inmunidades, resistencias, "
+            "vulnerabilidades y equipo, y el catálogo pasa sus mínimos."
         )
     lineas.append("")
 

@@ -61,6 +61,18 @@ y 97 en 5.2 (el resto son objetos que el SRD solo lista en tabla, con `price` y
   vara mide 3 m de longitud» (pág. 108), que es el desambiguador que 5.1 ya
   lleva en la tabla. `tools/test/duplicados.py` vigila que no vuelva a haber dos
   fichas iguales en su categoría.
+- Los dos ficheros de la «Vara» de 5.2 llevan el nombre que les toca:
+  `vara.md` es la varita de 1 kg (10 po, pág. 105) y `vara-3-m.md` es la
+  pértiga de 3 m (5 pc, pág. 103), igual que en 5.1 (`vara.md` y
+  `vara-3-m.md`). Antes, el identificador lo decidía el orden de aparición en
+  el PDF —las filas de la tabla cambiaron de orden en el 5.2.1— y quedaron
+  intercambiados: `vara` era la varita en 5.1 y la pértiga en 5.2.1. Eso no
+  solo dejaba las URL mudas: el comparador emparejaba por identificador, así que
+  `/comparar/equipo/vara/` comparaba la varita de 2014 con la pértiga de 2024 y
+  afirmaba que la pértiga era nueva en 2024, cuando en el 5.1 también estaba
+  (pág. 71). El emparejamiento ahora es por identidad —el nombre que da el
+  SRD, con el paréntesis final como desambiguador— y
+  `tools/test/emparejar.mjs` vigila que ninguna pareja cruce objetos.
 
 ## Discrepancias y lagunas
 

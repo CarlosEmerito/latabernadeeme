@@ -2,6 +2,7 @@
 import Base from "../../../layouts/Base.astro";
 import Detalle from "../../../components/Detalle.astro";
 import { EDICIONES, TIPO_META, cargar, type Edition, type Tipo, TIPOS } from "../../../lib/content";
+import { emparejar, parDe } from "../../../lib/emparejar";
 import { e } from "../../../lib/urls";
 import { imagenDe } from "../../../lib/imagenes";
 
@@ -25,8 +26,17 @@ const entrada = entradas[indice];
 if (!entrada) return Astro.redirect(e("/404/"));
 
 const otra: Edition = ed === "5e" ? "5.5" : "5e";
-const existeEnOtra = cargar(otra, tipo).some((x) => x.slug === slug);
-const otraEdicion = existeEnOtra ? { ed: otra, srd: EDICIONES[otra].srd } : undefined;
+// La contraparte es la entrada de la otra edición que es el **mismo objeto**,
+// no la que comparte identificador: en el equipo del 5.2.1 el orden de las
+// filas de la tabla cambió y los dos ficheros de la «Vara» se renumeraron, así
+// que el identificador `vara` es la varita en el 5.1 y la pértiga en el 5.2.1.
+// Con el identificador, la ficha de la varita en el 5.2.1 no ofrecía su
+// versión de 2014 y la de la pértiga no ofrecía la de 2024.
+const par = parDe(emparejar(cargar("5e", tipo), cargar("5.5", tipo)), slug, ed === "5e" ? "a" : "b");
+const contraparte = par ? (ed === "5e" ? par.b : par.a) : undefined;
+const otraEdicion = contraparte
+  ? { ed: otra, srd: EDICIONES[otra].srd, slug: contraparte.slug }
+  : undefined;
 
 const meta = EDICIONES[ed];
 const t = TIPO_META[tipo];

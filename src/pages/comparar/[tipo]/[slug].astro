@@ -2,14 +2,20 @@
 import Base from "../../../layouts/Base.astro";
 import { IdsDeDocumento, cargar, renderizar, TIPO_META, EDICIONES, type Edition, type Tipo, TIPOS } from "../../../lib/content";
 import { alinear, resumen } from "../../../lib/diff";
+import { emparejar, parDe } from "../../../lib/emparejar";
 import { e } from "../../../lib/urls";
 
+// El emparejamiento es por identidad del objeto, no por identificador de
+// fichero: el identificador lo decide el orden de aparición en el PDF, y en el
+// equipo del 5.2.1 cambiaron el orden de las filas, así que `vara` significa
+// una cosa en el 5.1 (la varita de 1 kg) y otra en el 5.2.1 (la pértiga de 3
+// m). Emparejar por identificador cruzaba las dos y publicaba que la pértiga
+// era nueva en 2024.
 export function getStaticPaths() {
   const rutas: { params: { tipo: string; slug: string } }[] = [];
   for (const tipo of TIPOS) {
-    const en52 = new Set(cargar("5.5", tipo).map((x) => x.slug));
-    for (const en of cargar("5e", tipo)) {
-      if (en52.has(en.slug)) rutas.push({ params: { tipo, slug: en.slug } });
+    for (const par of emparejar(cargar("5e", tipo), cargar("5.5", tipo))) {
+      rutas.push({ params: { tipo, slug: par.a.slug } });
     }
   }
   return rutas;
@@ -17,16 +23,70 @@ export function getStaticPaths() {
 
 const tipo = Astro.params.tipo as Tipo;
 const slug = Astro.params.slug!;
-const a = cargar("5e", tipo).find((x) => x.slug === slug)!;
-const b = cargar("5.5", tipo).find((x) => x.slug === slug)!;
+const par = parDe(emparejar(cargar("5e", tipo), cargar("5.5", tipo)), slug, "a")!;
+const a = par.a;
+const b = par.b;
 
 const filas = alinear(a.body, b.body);
 const r = resumen(filas);
-const nombre = String(b.data.name ?? a.data.name ?? slug);
+// Los dos lados pueden llamarse distinto —«Vara» en el 5.1 y «Vara (3 m)» en
+// el 5.2.1— y entonces la página enseña las dos redacciones, no una sola: la
+// del 5.2.1 no es la del 5.1 con otro nombre, es el mismo objeto nombrado de
+// otra forma.
+const nombreA = String(a.data.name ?? a.slug);
+const nombreB = String(b.data.name ?? b.slug);
+const nombre = nombreA === nombreB ? nombreA : `${nombreA} · ${nombreB}`;
 // La sección nombra la comparación: «Escudo» es un conjuro y un escudo de
 // equipo, y /comparar/conjuros/escudo/ y /comparar/equipo/escudo/ salían con el
 // mismo título y la misma descripción.
 const seccion = TIPO_META[tipo].singular;
+
+// Los datos de la ficha no están en el cuerpo: en el equipo y los objetos el
+// SRD los deja en la tabla y el cuerpo está vacío a propósito. Sin ellos, la
+// comparación del equipo no enseñaba ni el precio ni el peso, y la única fila
+// de la «Vara» era la prosa nueva del 5.2.1. Cada lado enseña sus datos.
+const DATOS_POR_TIPO: Record<string, [string, string][]> = {
+  equipo: [
+    ["Precio", "price"],
+    ["Peso", "weight"],
+    ["Categoría", "category"],
+  ],
+  objetos: [
+    ["Tipo", "type"],
+    ["Rareza", "rarity"],
+  ],
+  conjuros: [
+    ["Nivel", "level"],
+    ["Escuela", "school"],
+  ],
+  clases: [
+    ["Dado de golpe", "hitDie"],
+    ["Característica principal", "primaryAbility"],
+  ],
+  especies: [
+    ["Tamaño", "size"],
+    ["Velocidad", "speed"],
+  ],
+  dotes: [
+    ["Categoría", "category"],
+    ["Prerrequisito", "prerequisite"],
+  ],
+  reglas: [["Categoría", "category"]],
+  trasfondos: [["Dote", "feat"]],
+};
+
+const datosDe = (entrada: (typeof a) | (typeof b)) =>
+  (DATOS_POR_TIPO[tipo] ?? [])
+    .map(([etiqueta, campo]) => {
+      const valor = entrada.data[campo];
+      if (valor === undefined || valor === null || valor === "") return null;
+      if (typeof valor === "object") return null;
+      return { etiqueta, valor: String(valor) };
+    })
+    .filter((x): x is { etiqueta: string; valor: string } => x !== null);
+
+const datosA = datosDe(a);
+const datosB = datosDe(b);
 
 // Las dos columnas traen los mismos encabezados: un registro por página les da
 // sufijo a los repetidos para que cada uno tenga su ancla.
@@ -61,8 +121,8 @@ const bloque = (markdown: string) => ids.aplicar(renderizar(markdown));
   </header>
 
   <p class="muted" style="margin-bottom:1.25rem">
-    <a href={e(`/5e/${tipo}/${slug}/`)}>Ficha de 5.1</a> ·
-    <a href={e(`/5.5/${tipo}/${slug}/`)}>Ficha de 5.2.1</a>
+    <a href={e(`/5e/${tipo}/${a.slug}/`)}>Ficha de 5.1</a> ·
+    <a href={e(`/5.5/${tipo}/${b.slug}/`)}>Ficha de 5.2.1</a>
   </p>
 
   <div class="comparar" role="table" aria-label="Comparación de texto">
@@ -70,6 +130,42 @@ const bloque = (markdown: string) => ids.aplicar(renderizar(markdown));
       <span role="columnheader">{EDICIONES["5e"].srd}</span>
       <span role="columnheader">{EDICIONES["5.5"].srd}</span>
     </div>
+    {(datosA.length > 0 || datosB.length > 0) && (
+      // Los datos de la ficha: en el equipo y los objetos el SRD los deja en la
+      // tabla y el cuerpo está vacío, así que sin esta fila la comparación no
+      // enseñaba ni el precio ni el peso. Cada lado enseña los suyos, y el que
+      // no los tiene deja su celda vacía.
+      <div class="comparar__fila comparar__fila--datos" role="row">
+        <div class="comparar__celda" role="cell">
+          {datosA.length > 0 ? (
+            <dl class="comparar__datos">
+              {datosA.map((d) => (
+                <div>
+                  <dt>{d.etiqueta}</dt>
+                  <dd>{d.valor}</dd>
+                </div>
+              ))}
+            </dl>
+          ) : (
+            <p class="comparar__vacio">Sin datos</p>
+          )}
+        </div>
+        <div class="comparar__celda" role="cell">
+          {datosB.length > 0 ? (
+            <dl class="comparar__datos">
+              {datosB.map((d) => (
+                <div>
+                  <dt>{d.etiqueta}</dt>
+                  <dd>{d.valor}</dd>
+                </div>
+              ))}
+            </dl>
+          ) : (
+            <p class="comparar__vacio">Sin datos</p>
+          )}
+        </div>
+      </div>
+    )}
     {filas.map((f) =>
       (f.izq ?? f.der ?? "").startsWith("#") ? (
         <div class="comparar__seccion" role="row">

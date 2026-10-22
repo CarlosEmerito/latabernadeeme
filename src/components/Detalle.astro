@@ -13,7 +13,8 @@ interface Props {
   tipo: Tipo;
   anterior?: Entrada;
   siguiente?: Entrada;
-  otraEdicion?: { ed: Edition; srd: string };
+  /** La entrada de la otra edición que es el mismo objeto, si la hay. */
+  otraEdicion?: { ed: Edition; srd: string; slug: string };
 }
 
 const { entrada, edicion, tipo, anterior, siguiente, otraEdicion } = Astro.props;
@@ -191,11 +192,13 @@ const exportable = {
       <div class="aside__bloque">
         <h2 class="aside__titulo">También en</h2>
         <p style="margin:0">
-          <a href={e(`/${otraEdicion.ed}/${tipo}/${entrada.slug}/`)}>
+          <a href={e(`/${otraEdicion.ed}/${tipo}/${otraEdicion.slug}/`)}>
             Ver esta entrada en {otraEdicion.srd}
           </a>
           <br />
-          <a href={e(`/comparar/${tipo}/${entrada.slug}/`)}>Comparar los dos textos →</a>
+          <a href={e(`/comparar/${tipo}/${edicion === "5e" ? entrada.slug : otraEdicion.slug}/`)}>
+            Comparar los dos textos →
+          </a>
         </p>
       </div>
     )}

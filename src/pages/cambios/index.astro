@@ -1,16 +1,29 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { TIPOS, TIPO_META, EDICIONES, cargar, nombreTipo } from "../../lib/content";
+import { emparejar } from "../../lib/emparejar";
 import { e } from "../../lib/urls";
 
+// La coincidencia es por identidad del objeto, no por identificador de
+// fichero: el identificador lo decide el orden de aparición en el PDF, y en el
+// equipo del 5.2.1 el orden de las filas de la tabla cambió, así que los dos
+// ficheros de la «Vara» se renumeraron. Por identificador, la «Vara» salía
+// como renombrada (la varita de 1 kg frente a la pértiga de 3 m) cuando son
+// dos objetos distintos, y el cambio real —la pértiga con su descripción
+// nueva en el 5.2.1— no se veía por ninguna parte.
 const filas = TIPOS.map((tipo) => {
   const a = new Map(cargar("5e", tipo).map((x) => [x.slug, String(x.data.name)]));
   const b = new Map(cargar("5.5", tipo).map((x) => [x.slug, String(x.data.name)]));
-  const soloA = [...a.keys()].filter((k) => !b.has(k));
-  const soloB = [...b.keys()].filter((k) => !a.has(k));
-  const comunes = [...a.keys()].filter((k) => b.has(k));
-  const renombrados = comunes.filter((k) => a.get(k) !== b.get(k));
-  return { tipo, soloA, soloB, comunes, renombrados, a, b };
+  const pares = emparejar(cargar("5e", tipo), cargar("5.5", tipo));
+  const emparejadosA = new Set(pares.map((p) => p.a.slug));
+  const emparejadosB = new Set(pares.map((p) => p.b.slug));
+  const soloA = [...a.keys()].filter((k) => !emparejadosA.has(k));
+  const soloB = [...b.keys()].filter((k) => !emparejadosB.has(k));
+  const comunes = pares.map((p) => p.a.slug);
+  const renombrados = pares
+    .filter((p) => a.get(p.a.slug) !== b.get(p.b.slug))
+    .map((p) => p.a.slug);
+  return { tipo, soloA, soloB, comunes, renombrados, a, b, pares };
 }).filter((f) => f.comunes.length + f.soloA.length + f.soloB.length > 0);
 
 const totalA = filas.reduce((n, f) => n + f.soloA.length, 0);
@@ -108,13 +121,15 @@ const totalC = filas.reduce((n, f) => n + f.comunes.length, 0);
         <>
           <h3>Mismo concepto, otro nombre</h3>
           <ul class="cambios__lista cambios__lista--par">
-            {f.renombrados.map((slug) => (
-              <li>
-                <a href={e(`/5e/${f.tipo}/${slug}/`)}>{f.a.get(slug)}</a>
-                <span aria-hidden="true">→</span>
-                <a href={e(`/5.5/${f.tipo}/${slug}/`)}>{f.b.get(slug)}</a>
-              </li>
-            ))}
+            {f.pares
+              .filter((p) => f.renombrados.includes(p.a.slug))
+              .map((p) => (
+                <li>
+                  <a href={e(`/5e/${f.tipo}/${p.a.slug}/`)}>{f.a.get(p.a.slug)}</a>
+                  <span aria-hidden="true">→</span>
+                  <a href={e(`/5.5/${f.tipo}/${p.b.slug}/`)}>{f.b.get(p.b.slug)}</a>
+                </li>
+              ))}
           </ul>
         </>
       )}

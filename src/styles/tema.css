@@ -1169,6 +1169,25 @@
 .comparar__fila--solo-der .comparar__celda:last-child { background: color-mix(in oklab, #2c6340 7%, transparent); }
 .comparar__vacio { color: var(--ink-3); margin: 0; text-align: center; }
 
+/* Los datos de la ficha: en el equipo y los objetos el SRD los deja en la
+   tabla y el cuerpo está vacío, así que esta fila es la que enseña el precio
+   y el peso de cada lado. */
+.comparar__fila--datos { background: var(--surface-2); }
+.comparar__datos {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+.comparar__datos div { display: flex; gap: 0.35rem; align-items: baseline; }
+.comparar__datos dt {
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.comparar__datos dd { margin: 0; }
+
 @media (max-width: 760px) {
   .comparar__cab { grid-template-columns: 1fr; }
   .comparar__cab span:last-child { display: none; }

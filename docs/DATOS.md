@@ -23,6 +23,15 @@ data/
 El `slug` es el nombre en minúsculas, sin tildes ni signos, con guiones:
 `Bola de fuego` → `bola-de-fuego.md`.
 
+El identificador de un fichero lo decide **el orden de aparición en el PDF**, no
+el objeto: las tablas del SRD se reordenaron entre ediciones y los ficheros se
+renumeraron. Por eso el identificador no sirve para decir si dos entradas de
+ediciones distintas son el mismo objeto —la «Vara» del 5.1 es la varita de 1 kg
+y la del 5.2.1 la pértiga de 3 m—, y el emparejamiento del comparador va por
+**identidad**: el nombre que le da el SRD, con el paréntesis final separado
+como desambiguador. `src/lib/emparejar.ts` lo resuelve y
+`tools/test/emparejar.mjs` lo vigila.
+
 ## Reglas de conversión
 
 - El texto es **literal del SRD en español**. No se reescribe ni se resume.

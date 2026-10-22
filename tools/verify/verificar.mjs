@@ -63,6 +63,10 @@
  *      5.2.1 que usa el constructor de encuentros sea la del SRD, con sus tres
  *      dificultades y sin ajuste por número de criaturas, y que el 5.1 use su
  *      tabla y su ajuste.
+ *  20. `tools/test/emparejar.mjs`: que el comparador empareje el mismo objeto
+ *      en las dos ediciones —por identidad, no por identificador de fichero— y
+ *      que toda entrada que existe en las dos ediciones tenga su página de
+ *      comparación.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -207,4 +211,11 @@ if (presupuesto !== 0) {
   process.exit(presupuesto);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador y presupuesto de encuentros correctos.");
+console.log("▶ Emparejamiento entre ediciones: emparejar.mjs (data/ y src/lib/)");
+const emparejar = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/emparejar.mjs")]);
+if (emparejar !== 0) {
+  console.error("✗ El comparador empareja objetos distintos o deja entradas sin comparar.");
+  process.exit(emparejar);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros y emparejamiento entre ediciones correctos.");

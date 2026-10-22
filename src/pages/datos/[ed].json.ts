@@ -24,7 +24,7 @@ export const GET: APIRoute = ({ params }) => {
   const entradas = TIPOS.flatMap((tipo) =>
     cargar(ed, tipo).map((en) => {
       const d = en.data;
-      const alias = aliasDe(String(d.name ?? en.slug), tipo, en.slug);
+      const alias = aliasDe(String(d.name ?? en.slug), tipo, en.slug, ed);
       const base: Record<string, any> = { s: en.slug, t: tipo, n: String(d.name ?? en.slug) };
       if (alias) base.a = alias;
 

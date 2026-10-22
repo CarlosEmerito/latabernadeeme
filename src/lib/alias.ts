@@ -1,29 +1,43 @@
 /**
  * Alias en inglés de los términos más buscados.
  *
- * Se escribe en la dirección inglés → español y se invierte al cargar: así una
- * entrada del mapa que no exista en los datos simplemente no se aplica, sin
- * romper nada. Solo se incluyen términos cuya traducción oficial en español
- * está comprobada contra `data/`.
+ * Se escribe en la dirección inglés → español y se invierte al cargar. Cada
+ * entrada apunta al nombre que el SRD en español da a esa ficha, no a una
+ * traducción libre: hay 93 términos que estaban atados a un nombre que el SRD
+ * no usa («Thunderwave» apuntaba a «Onda atronadora» y la ficha se llama «Ola
+ * atronadora»), así que la línea «En inglés: …» no salía en ninguna página y
+ * quien buscaba el conjuro en inglés no llegaba a él. `tools/test/alias.mjs`
+ * vigila que toda entrada apunte a una ficha real y que toda ficha con un
+ * término lo publique.
+ *
+ * Las tres tablas de abajo cubren los tres casos que el nombre solo no
+ * resuelve:
+ *
+ *   - `INGLES`: el término inglés y el nombre español de la ficha, comunes a
+ *     las dos ediciones.
+ *   - `POR_EDICION`: los términos cuyo nombre español cambió entre el SRD 5.1
+ *     (2014) y el 5.2.1 (2024), o cuya ficha solo existe en una de las dos.
+ *   - `POR_FICHA`: las fichas cuyo nombre español lo comparten varias, o dos
+ *     conjuros distintos en inglés que el SRD en español unificó en uno.
  */
 const INGLES: Record<string, string> = {
   // Conjuros
   "Acid Splash": "Salpicadura ácida",
   "Aid": "Auxilio",
-  "Animal Friendship": "Amistad con los animales",
-  "Animate Dead": "Animar muertos",
+  "Animal Friendship": "Hablar con los animales",
+  "Animate Dead": "Animar a los muertos",
   "Bane": "Perdición",
   "Banishment": "Destierro",
-  "Bless": "Bendecir",
+  "Bless": "Bendición",
   "Burning Hands": "Manos ardientes",
   "Charm Person": "Hechizar persona",
   "Chill Touch": "Toque helado",
-  "Cloudkill": "Nube mortal",
-  "Command": "Orden",
-  "Comprehend Languages": "Comprender idiomas",
+  "Cloudkill": "Nube aniquiladora",
+  "Command": "Orden imperiosa",
+  "Comprehend Languages": "Entender idiomas",
   "Cone of Cold": "Cono de frío",
   "Confusion": "Confusión",
-  "Control Water": "Controlar el agua",
+  "Control Water": "Controlar agua",
   "Counterspell": "Contrahechizo",
   "Cure Wounds": "Curar heridas",
   "Dancing Lights": "Luces danzantes",
@@ -33,21 +47,21 @@ const INGLES: Record<string, string> = {
   "Dimension Door": "Puerta dimensional",
   "Disintegrate": "Desintegrar",
   "Dispel Magic": "Disipar magia",
-  "Fear": "Miedo",
+  "Fear": "Terror",
   "Feather Fall": "Caída de pluma",
   "Finger of Death": "Dedo de la muerte",
   "Fireball": "Bola de fuego",
   "Fly": "Volar",
-  "Fog Cloud": "Nube de niebla",
+  "Fog Cloud": "Nube de oscurecimiento",
   "Forcecage": "Jaula de fuerza",
   "Gaseous Form": "Forma gaseosa",
-  "Greater Invisibility": "Invisibilidad mayor",
-  "Greater Restoration": "Restauración mayor",
+  "Greater Invisibility": "Invisibilidad mejorada",
+  "Greater Restoration": "Restablecimiento mayor",
   "Guidance": "Guía",
-  "Guiding Bolt": "Rayo guía",
+  "Guiding Bolt": "Saeta guía",
   "Haste": "Acelerar",
   "Heal": "Curar",
-  "Healing Word": "Palabra curativa",
+  "Healing Word": "Palabra de curación",
   "Hold Person": "Inmovilizar persona",
   "Hunter's Mark": "Marca del cazador",
   "Ice Storm": "Tormenta de hielo",
@@ -56,16 +70,16 @@ const INGLES: Record<string, string> = {
   "Insect Plague": "Plaga de insectos",
   "Invisibility": "Invisibilidad",
   "Jump": "Salto",
-  "Lesser Restoration": "Restauración menor",
+  "Lesser Restoration": "Restablecimiento menor",
   "Light": "Luz",
   "Lightning Bolt": "Relámpago",
-  "Longstrider": "Zancada larga",
+  "Longstrider": "Zancada prodigiosa",
   "Mage Armor": "Armadura de mago",
   "Mage Hand": "Mano de mago",
   "Magic Missile": "Proyectil mágico",
   "Mass Cure Wounds": "Curar heridas en masa",
   "Message": "Mensaje",
-  "Meteor Swarm": "Enjambre de meteoros",
+  "Meteor Swarm": "Tormenta de meteoritos",
   "Minor Illusion": "Ilusión menor",
   "Mirror Image": "Imagen múltiple",
   "Misty Step": "Paso brumoso",
@@ -75,10 +89,10 @@ const INGLES: Record<string, string> = {
   "Prayer of Healing": "Plegaria de curación",
   "Prestidigitation": "Prestidigitación",
   "Protection from Evil and Good": "Protección contra el bien y el mal",
-  "Raise Dead": "Levantar a los muertos",
-  "Remove Curse": "Quitar maldición",
+  "Raise Dead": "Alzar a los muertos",
+  "Remove Curse": "Levantar maldición",
   "Resurrection": "Resurrección",
-  "Revivify": "Revivificar",
+  "Revivify": "Revivir",
   "Sacred Flame": "Llama sagrada",
   "Sanctuary": "Santuario",
   "Shield": "Escudo",
@@ -89,13 +103,13 @@ const INGLES: Record<string, string> = {
   "Spiritual Weapon": "Arma espiritual",
   "Suggestion": "Sugestión",
   "Teleport": "Teletransporte",
-  "Thunderwave": "Onda atronadora",
-  "Time Stop": "Detener el tiempo",
-  "True Strike": "Golpe certero",
+  "Thunderwave": "Ola atronadora",
+  "Time Stop": "Parar el tiempo",
+  "True Strike": "Impacto certero",
   "Wall of Fire": "Muro de fuego",
   "Wall of Force": "Muro de fuerza",
   "Wall of Stone": "Muro de piedra",
-  "Water Breathing": "Respiración acuática",
+  "Water Breathing": "Respirar bajo el agua",
   "Water Walk": "Caminar sobre el agua",
   "Web": "Telaraña",
   "Wish": "Deseo",
@@ -106,36 +120,31 @@ const INGLES: Record<string, string> = {
   "Ancient Red Dragon": "Dragón rojo anciano",
   "Balor": "Balor",
   "Bandit": "Bandido",
-  "Bugbear": "Osgo",
   "Commoner": "Plebeyo",
-  "Cultist": "Cultista",
+  "Cultist": "Sectario",
   "Gelatinous Cube": "Cubo gelatinoso",
   "Giant Rat": "Rata gigante",
   "Giant Spider": "Araña gigante",
-  "Gnoll": "Gnoll",
-  "Goblin": "Goblin",
   "Guard": "Guardia",
-  "Hobgoblin": "Hobgoblin",
   "Hydra": "Hidra",
   "Imp": "Diablillo",
   "Knight": "Caballero",
-  "Kobold": "Kobold",
   "Kraken": "Kraken",
   "Lich": "Liche",
   "Mage": "Mago",
-  "Mimic": "Mímico",
+  "Mimic": "Mimeto",
   "Noble": "Noble",
   "Ogre": "Ogro",
   "Orc": "Orco",
   "Owlbear": "Oso lechuza",
   "Priest": "Sacerdote",
   "Pseudodragon": "Pseudodragón",
-  "Quasit": "Cuasit",
+  "Quasit": "Quasit",
   "Roc": "Roc",
   "Skeleton": "Esqueleto",
   "Stirge": "Estirge",
-  "Tarrasque": "Tarrasque",
-  "Troll": "Trol",
+  "Tarrasque": "Tarasca",
+  "Troll": "Troll",
   "Vampire": "Vampiro",
   "Werewolf": "Hombre lobo",
   "Wolf": "Lobo",
@@ -147,17 +156,16 @@ const INGLES: Record<string, string> = {
   "Bag of Holding": "Bolsa de contención",
   "Belt of Giant Strength": "Cinturón de fuerza de gigante",
   "Bracers of Defense": "Brazales de defensa",
-  "Deck of Many Things": "Baraja de muchas cosas",
   "Flame Tongue": "Lengua de fuego",
   "Gauntlets of Ogre Power": "Guanteletes de fuerza de ogro",
   "Holy Avenger": "Vengadora sagrada",
-  "Oathbow": "Arco del juramento",
+  "Oathbow": "Arco juramentado",
   "Potion of Healing": "Poción de curación",
   "Ring of Protection": "Anillo de protección",
   "Sphere of Annihilation": "Esfera de aniquilación",
   "Staff of Power": "Bastón de poder",
-  "Sun Blade": "Hoja solar",
-  "Vorpal Sword": "Espada vorpalina",
+  "Sun Blade": "Espada solar",
+  "Vorpal Sword": "Espada vorpal",
   "Wand of Magic Missiles": "Varita de proyectiles mágicos",
 
   // Ampliación: criaturas
@@ -177,11 +185,10 @@ const INGLES: Record<string, string> = {
   "Basilisk": "Basilisco",
   "Chimera": "Quimera",
   "Cockatrice": "Cocatriz",
-  "Cyclops": "Cíclope",
-  "Ettin": "Etín",
+  "Ettin": "Ettin",
   "Gargoyle": "Gárgola",
   "Ghost": "Fantasma",
-  "Gorgon": "Gorgona",
+  "Gorgon": "Gorgon",
   "Griffon": "Grifo",
   "Harpy": "Arpía",
   "Hell Hound": "Sabueso infernal",
@@ -189,28 +196,23 @@ const INGLES: Record<string, string> = {
   "Lamia": "Lamia",
   "Manticore": "Mantícora",
   "Medusa": "Medusa",
-  "Minotaur": "Minotauro",
   "Mummy": "Momia",
   "Nightmare": "Pesadilla",
-  "Ochre Jelly": "Cieno ocre",
+  "Ochre Jelly": "Gelatina ocre",
   "Pegasus": "Pegaso",
   "Phase Spider": "Araña de fase",
   "Purple Worm": "Gusano púrpura",
   "Rakshasa": "Rakshasa",
   "Remorhaz": "Remorhaz",
-  "Sahuagin": "Sahuagin",
   "Salamander": "Salamandra",
   "Satyr": "Sátiro",
   "Shadow": "Sombra",
-  "Shambling Mound": "Montículo andante",
   "Shield Guardian": "Guardián escudo",
   "Specter": "Espectro",
-  "Sphinx": "Esfinge",
   "Treant": "Ent",
   "Unicorn": "Unicornio",
   "Will-o'-Wisp": "Fuego fatuo",
   "Winter Wolf": "Lobo invernal",
-  "Worg": "Worg",
   "Wyvern": "Guiverno",
   "Hill Giant": "Gigante de las colinas",
   "Stone Giant": "Gigante de piedra",
@@ -224,51 +226,48 @@ const INGLES: Record<string, string> = {
   "Animal Messenger": "Mensajero animal",
   "Arcane Lock": "Cerradura arcana",
   "Augury": "Augurio",
-  "Barkskin": "Piel de corteza",
-  "Blink": "Parpadeo",
+  "Barkskin": "Piel robliza",
   "Calm Emotions": "Calmar emociones",
   "Clairvoyance": "Clarividencia",
-  "Cloud of Daggers": "Nube de dagas",
   "Color Spray": "Rociada de color",
   "Commune": "Comunión",
   "Compulsion": "Compulsión",
   "Contagion": "Contagio",
-  "Continual Flame": "Llama continua",
+  "Continual Flame": "Llama permanente",
   "Create or Destroy Water": "Crear o destruir agua",
   "Creation": "Creación",
-  "Crown of Madness": "Corona de locura",
   "Daylight": "Luz del día",
   "Divine Favor": "Favor divino",
   "Dominate Beast": "Dominar bestia",
   "Dominate Person": "Dominar persona",
-  "Dream": "Sueño",
-  "Elemental Weapon": "Arma elemental",
-  "Enhance Ability": "Mejorar característica",
+  "Dream": "Ensueño",
+  "Elemental Weapon": "Gema elemental",
+  "Enhance Ability": "Potenciar característica",
   "Enlarge/Reduce": "Agrandar/reducir",
-  "Entangle": "Enredar",
-  "Enthrall": "Cautivar",
-  "Etherealness": "Etereidad",
+  "Entangle": "Enmarañar",
+  "Enthrall": "Cautiverio",
+  "Etherealness": "Excursión etérea",
   "Fabricate": "Fabricar",
-  "Faithful Hound": "Sabueso fiel",
-  "False Life": "Vida falsa",
+  "Faithful Hound": "Mastín fiel",
+  "False Life": "Falsa vida",
   "Find Familiar": "Encontrar familiar",
-  "Find Steed": "Encontrar corcel",
+  "Find Steed": "Hallar corcel",
   "Find the Path": "Encontrar el camino",
-  "Flame Blade": "Hoja de llama",
-  "Flame Strike": "Golpe de llama",
-  "Flaming Sphere": "Esfera flamígera",
-  "Flesh to Stone": "Carne a piedra",
+  "Flame Blade": "Hoja de fuego",
+  "Flame Strike": "Golpe flamígero",
+  "Flaming Sphere": "Esfera de llamas",
+  "Flesh to Stone": "De la carne a la piedra",
   "Forbiddance": "Prohibición",
   "Freedom of Movement": "Libertad de movimiento",
   "Giant Insect": "Insecto gigante",
-  "Glibness": "Locuacidad",
+  "Glibness": "Labia",
   "Globe of Invulnerability": "Globo de invulnerabilidad",
   "Glyph of Warding": "Glifo custodio",
-  "Goodberry": "Baya buena",
+  "Goodberry": "Buenas bayas",
   "Grease": "Grasa",
   "Guardian of Faith": "Guardián de la fe",
-  "Guards and Wards": "Guardias y defensas",
-  "Hallow": "Santificar",
+  "Guards and Wards": "Guardas y guardias",
+  "Hallow": "Consagrar",
   "Hallucinatory Terrain": "Terreno alucinatorio",
   "Heat Metal": "Calentar metal",
   "Heroism": "Heroísmo",
@@ -276,52 +275,50 @@ const INGLES: Record<string, string> = {
   "Hold Monster": "Inmovilizar monstruo",
   "Holy Aura": "Aura sagrada",
   "Hypnotic Pattern": "Patrón hipnótico",
-  "Ice Knife": "Daga de hielo",
-  "Illusory Script": "Escritura ilusoria",
-  "Imprisonment": "Encarcelamiento",
+  "Illusory Script": "Texto ilusorio",
+  "Imprisonment": "Cautiverio",
   "Incendiary Cloud": "Nube incendiaria",
   "Knock": "Abrir",
-  "Legend Lore": "Saber legendario",
-  "Levitate": "Levitación",
+  "Legend Lore": "Conocer las leyendas",
+  "Levitate": "Levitar",
   "Locate Creature": "Localizar criatura",
   "Locate Object": "Localizar objeto",
   "Magic Circle": "Círculo mágico",
-  "Magic Jar": "Jarra mágica",
+  "Magic Jar": "Urna mágica",
   "Magic Mouth": "Boca mágica",
   "Magic Weapon": "Arma mágica",
   "Major Image": "Imagen mayor",
   "Mass Suggestion": "Sugestión en masa",
   "Meld into Stone": "Fundirse con la piedra",
-  "Mending": "Remendar",
+  "Mending": "Reparar",
   "Mind Blank": "Mente en blanco",
   "Mirage Arcane": "Espejismo arcano",
-  "Mislead": "Despistar",
-  "Modify Memory": "Modificar memoria",
+  "Mislead": "Engañar",
+  "Modify Memory": "Alterar los recuerdos",
   "Move Earth": "Mover la tierra",
   "Nondetection": "Indetectable",
-  "Passwall": "Pasar por la pared",
+  "Passwall": "Pasamuros",
   "Phantasmal Killer": "Asesino fantasmal",
-  "Phantom Steed": "Corcel fantasmal",
+  "Phantom Steed": "Corcel fantasma",
   "Planar Ally": "Aliado planar",
   "Planar Binding": "Atadura planar",
-  "Plant Growth": "Crecimiento de plantas",
+  "Plant Growth": "Crecimiento vegetal",
   "Poison Spray": "Rociada venenosa",
   "Prismatic Spray": "Rociada prismática",
   "Prismatic Wall": "Muro prismático",
-  "Produce Flame": "Producir llama",
+  "Produce Flame": "Crear llama",
   "Programmed Illusion": "Ilusión programada",
   "Project Image": "Proyectar imagen",
   "Purify Food and Drink": "Purificar comida y bebida",
   "Ray of Enfeeblement": "Rayo debilitador",
-  "Ray of Sickness": "Rayo de enfermedad",
   "Regenerate": "Regenerar",
   "Reincarnate": "Reencarnar",
   "Reverse Gravity": "Invertir la gravedad",
   "Rope Trick": "Truco de la cuerda",
   "Scorching Ray": "Rayo abrasador",
   "Scrying": "Escudriñar",
-  "See Invisibility": "Ver lo invisible",
-  "Sequester": "Aislar",
+  "See Invisibility": "Ver invisibilidad",
+  "Sequester": "Recluir",
   "Shapechange": "Cambiar de forma",
   "Silent Image": "Imagen silenciosa",
   "Simulacrum": "Simulacro",
@@ -330,46 +327,40 @@ const INGLES: Record<string, string> = {
   "Speak with Dead": "Hablar con los muertos",
   "Speak with Plants": "Hablar con las plantas",
   "Spider Climb": "Trepar cual arácnido",
-  "Spike Growth": "Crecimiento de espinas",
-  "Spirit Guardians": "Guardianes espirituales",
-  "Stinking Cloud": "Nube fétida",
-  "Stoneskin": "Piel de piedra",
-  "Storm of Vengeance": "Tormenta de venganza",
+  "Spike Growth": "Crecimiento espinoso",
+  "Spirit Guardians": "Espíritus guardianes",
+  "Stinking Cloud": "Nube apestosa",
+  "Stoneskin": "Piel pétrea",
+  "Storm of Vengeance": "Tormenta de la venganza",
   "Sunbeam": "Rayo solar",
-  "Sunburst": "Estallido solar",
+  "Sunburst": "Explosión solar",
   "Symbol": "Símbolo",
   "Telekinesis": "Telequinesis",
-  "Teleportation Circle": "Círculo de teletransporte",
+  "Teleportation Circle": "Círculo de teletransportación",
   "Thaumaturgy": "Taumaturgia",
-  "Thorn Whip": "Látigo de espinas",
-  "Tongues": "Lenguas",
-  "Tree Stride": "Zancada arbórea",
-  "True Seeing": "Visión verdadera",
+  "Tongues": "Don de lenguas",
+  "Tree Stride": "Paso arbóreo",
   "Unseen Servant": "Sirviente invisible",
   "Vampiric Touch": "Toque vampírico",
-  "Vicious Mockery": "Burla cruel",
+  "Vicious Mockery": "Burla dañina",
   "Wall of Ice": "Muro de hielo",
   "Wall of Thorns": "Muro de espinas",
   "Warding Bond": "Vínculo protector",
   "Wind Wall": "Muro de viento",
-  "Witch Bolt": "Rayo embrujador",
-  "Word of Recall": "Palabra de retorno",
+  "Word of Recall": "Palabra de regreso",
   "Zone of Truth": "Zona de la verdad",
 
   // Equipo
   "Backpack": "Mochila",
-  "Battleaxe": "Hacha de batalla",
+  "Battleaxe": "Hacha de guerra",
   "Chain Mail": "Cota de malla",
   "Dagger": "Daga",
-  "Greataxe": "Hacha grande",
+  "Greataxe": "Hacha a dos manos",
   "Greatsword": "Espadón",
-  "Leather Armor": "Armadura de cuero",
   "Longbow": "Arco largo",
   "Longsword": "Espada larga",
   "Mace": "Maza",
   "Plate Armor": "Armadura de placas",
-  "Rations": "Raciones",
-  "Rope": "Cuerda",
   "Shortbow": "Arco corto",
   "Shortsword": "Espada corta",
   "Spear": "Lanza",
@@ -389,32 +380,77 @@ const INGLES: Record<string, string> = {
   "Sorcerer": "Hechicero",
   "Warlock": "Brujo",
   "Wizard": "Mago",
-  "Criminal": "Criminal",
-  "Sage": "Sabio",
-  "Soldier": "Soldado",
 
   // Especies
   "Dragonborn": "Dracónido",
   "Dwarf": "Enano",
   "Elf": "Elfo",
   "Gnome": "Gnomo",
-  "Half-Elf": "Semielfo",
-  "Half-Orc": "Semiorco",
   "Halfling": "Mediano",
   "Human": "Humano",
   "Tiefling": "Tiefling",
 };
 
 /**
- * Fichas cuyo nombre español comparten dos términos ingleses distintos, que es
- * justo lo que el nombre visible no puede resolver: el monstruo del SRD es
- * `Mage` y la clase es `Wizard`, y las dos se llaman «Mago». La clave es
- * `tipo/slug`, que sí identifica la ficha; vale para las dos ediciones porque el
- * término del SRD es el mismo. Lo vigila `tools/test/alias.mjs`.
+ * Términos que solo aplican a una edición, porque el nombre español de la
+ * ficha cambió entre el SRD 5.1 (2014) y el 5.2.1 (2024) o porque la ficha solo
+ * existe en una de las dos. La clave es la edición que publica el sitio.
+ *
+ * Sin esto, «Goblin» («Goblins» en 5.2.1 y «Goblin» en 5.1) o «Deck of Many
+ * Things» («Baraja de múltiples cosas» en 5.1 y «Baraja misteriosa» en 5.2.1)
+ * se quedarían sin línea en una de las dos ediciones.
+ */
+const POR_EDICION: Record<string, Record<string, string>> = {
+  "5e": {
+    "Bugbear": "Osgo",
+    "Deck of Many Things": "Baraja de múltiples cosas",
+    "Gnoll": "Gnoll",
+    "Goblin": "Goblin",
+    "Half-Elf": "Semielfo",
+    "Half-Orc": "Semiorco",
+    "Hobgoblin": "Hobgoblin",
+    "Kobold": "Kobold",
+    "Minotaur": "Minotauro",
+    "Sahuagin": "Sahuagin",
+  },
+  "5.5": {
+    "Criminal": "Criminal",
+    "Deck of Many Things": "Baraja misteriosa",
+    "Ice Knife": "Cuchillo de hielo",
+    "Leather Armor": "Armadura de cuero",
+    "Rations": "Raciones",
+    "Ray of Sickness": "Rayo nauseabundo",
+    "Rope": "Cuerda",
+    "Sage": "Erudito",
+    "Soldier": "Soldado",
+    "Sphinx": "Esfinge de las maravillas",
+    "True Seeing": "Visión veraz",
+  },
+};
+
+/**
+ * Fichas cuyo nombre español no basta para elegir el término inglés. La clave
+ * es `tipo/slug`, que sí identifica la ficha.
+ *
+ *   - «Mago» es el monstruo `Mage` del SRD y la clase `Wizard`, y las dos se
+ *     llaman igual: sin la clave, una de las dos publicaba el término de la
+ *     otra.
+ *   - `Enthrall` (nivel 2, Encantamiento) e `Imprisonment` (nivel 9,
+ *     Abjuración) son dos conjuros distintos en inglés; el SRD en español los
+ *     llama «Embelesar» y «Cautiverio», así que cada uno va a su ficha.
+ *   - `Animal Friendship` (nivel 1, Encantamiento) y `Speak with Animals`
+ *     (nivel 1, Adivinación) son otros dos conjuros distintos que el SRD en
+ *     español unificó en «Hablar con los animales»; el que se publica es el
+ *     segundo, que es el que dice la ficha.
+ *
+ * Lo vigila `tools/test/alias.mjs`.
  */
 const POR_FICHA: Record<string, string> = {
   "monstruos/mago": "Mage",
   "clases/mago": "Wizard",
+  "conjuros/embelesar": "Enthrall",
+  "conjuros/cautiverio": "Imprisonment",
+  "conjuros/hablar-con-los-animales": "Speak with Animals",
 };
 
 /**
@@ -432,16 +468,50 @@ for (const [en, es] of Object.entries(INGLES)) {
 }
 
 /**
- * Alias inglés de una ficha: por `tipo/slug` si el nombre es ambiguo, por nombre
- * en el resto. `tipo` y `slug` son opcionales para las llamadas que solo tienen
- * el nombre; sin ellos, un nombre ambiguo no devuelve nada antes que devolver un
- * término que puede ser el de otra ficha.
+ * Español (en minúsculas) → términos ingleses, ya tenidos en cuenta los que
+ * solo aplican a una edición. Se usa cuando la ficha no necesita la clave por
+ * `tipo/slug`.
  */
-export function aliasDe(nombre: string, tipo?: string, slug?: string): string | undefined {
+const ALIAS_EDICION: Map<string, Map<string, string[]>> = new Map();
+for (const ed of Object.keys(POR_EDICION)) {
+  const porNombre = new Map<string, string[]>();
+  const propio = POR_EDICION[ed];
+  for (const [en, es] of Object.entries(INGLES)) {
+    const clave = es.trim().toLowerCase();
+    const terminos = porNombre.get(clave) ?? [];
+    terminos.push(en);
+    porNombre.set(clave, terminos);
+  }
+  for (const [en, es] of Object.entries(propio)) {
+    const clave = es.trim().toLowerCase();
+    const terminos = porNombre.get(clave) ?? [];
+    terminos.push(en);
+    porNombre.set(clave, terminos);
+  }
+  ALIAS_EDICION.set(ed, porNombre);
+}
+
+/**
+ * Alias inglés de una ficha: por `tipo/slug` si el nombre es ambiguo, por
+ * nombre en el resto. `tipo` y `slug` son opcionales para las llamadas que
+ * solo tienen el nombre; sin ellos, un nombre ambiguo no devuelve nada antes
+ * que devolver un término que puede ser el de otra ficha.
+ *
+ * `edicion` es la que publica el sitio (`5e` o `5.5`): sin ella se busca en
+ * el diccionario común.
+ */
+export function aliasDe(
+  nombre: string,
+  tipo?: string,
+  slug?: string,
+  edicion?: string,
+): string | undefined {
   if (tipo && slug) {
     const ficha = POR_FICHA[`${tipo}/${slug}`];
     if (ficha) return ficha;
   }
-  const terminos = ALIAS_ES.get(String(nombre).trim().toLowerCase());
+  const clave = String(nombre).trim().toLowerCase();
+  const porNombre = edicion ? ALIAS_EDICION.get(edicion) : undefined;
+  const terminos = porNombre?.get(clave) ?? ALIAS_ES.get(clave);
   return terminos?.length === 1 ? terminos[0] : undefined;
 }

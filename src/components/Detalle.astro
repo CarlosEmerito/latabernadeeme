@@ -24,7 +24,7 @@ const html = ids.aplicar(marcarNiveles(enlazarConjuros(entrada.html, edicion, ti
 const secciones = seccionesDe(html);
 const conIndice = secciones.length >= 4 && entrada.body.length > 4000;
 const volver = e(`/${edicion}/${tipo}/`);
-const alias = aliasDe(String(d.name), tipo, entrada.slug);
+const alias = aliasDe(String(d.name), tipo, entrada.slug, edicion);
 const imagen = imagenDe(tipo, entrada.slug, String(d.name));
 const iconoContexto =
   tipo === "conjuros" && d.school

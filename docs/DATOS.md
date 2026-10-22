@@ -217,8 +217,8 @@ Decisión: **el Markdown es la fuente; el JSON es un derivado que se genera en c
 
   | Edición | Sin comprimir | Con gzip |
   |---|---|---|
-  | 5e | 294 KB | 37 KB |
-  | 5.5 | 314 KB | 38 KB |
+  | 5e | 296 KB | 37 KB |
+  | 5.5 | 316 KB | 38 KB |
 
   Cabe en una visita. `tools/test/cifras.py` vuelve a medir estos números desde
   `dist/datos/` en cada pasada, así que no pueden quedar atrás cuando crecen las

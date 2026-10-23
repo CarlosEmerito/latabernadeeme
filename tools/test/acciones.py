@@ -111,6 +111,20 @@ for explicacion, cuerpo, rasgo, trozos in CASOS:
         for t in faltan:
             print(f"    le falta {t!r}")
 
+# La lista de conjuros del perfil del 5.2 acaba en el nombre del último conjuro,
+# sin punto: «A voluntad: …, 2/día cada uno: …, 1/día cada uno: …, invisibilidad».
+# No falta nada ahí, y se reconoce por sus rótulos. Una tabla del SRD tampoco
+# lleva punto en ninguna celda.
+LISTA_CONJUROS = re.compile(r"(?:\bA voluntad:|\b\d+/d[ií]a\b)")
+
+
+def acaba_en_lista(parrafo: str) -> bool:
+    """¿El párrafo final es una lista de conjuros o una tabla, sin punto final?"""
+    if LISTA_CONJUROS.search(parrafo) and "." not in parrafo.rsplit(":", 1)[-1]:
+        return True
+    return "." not in parrafo and ":" not in parrafo
+
+
 # Barrido de lo publicado: ninguna ficha puede acabar a media frase.
 cortadas = []
 for edicion in ("ed51", "ed52"):
@@ -123,7 +137,9 @@ for edicion in ("ed51", "ed52"):
             ultimo = renglones[-1].strip().strip("*").strip()
             if not ultimo or ultimo.startswith("|") or TABLA.match(ultimo) or CIERRE.search(ultimo):
                 continue
-            cortadas.append((f"{edicion}/{tipo}/{ficha.name}", ultimo[-60:]))
+            # Una etiqueta suelta al final sí es un corte: el valor no llegó.
+            if ultimo.endswith(":") or not acaba_en_lista(cuerpo.split("\n\n")[-1].strip()):
+                cortadas.append((f"{edicion}/{tipo}/{ficha.name}", ultimo[-60:]))
 
 if cortadas:
     fallos += 1

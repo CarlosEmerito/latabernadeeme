@@ -216,6 +216,40 @@ python3 tools/ingest/reparar_cortes.py            # repara data/
 python3 tools/ingest/reparar_cortes.py --check    # solo cuenta, no escribe
 ```
 
+#### Los párrafos que se cortaban de más
+
+`stream.paragraphs()` une las líneas de un párrafo y decide dónde empieza el siguiente. Tres reglas
+partían de más y el trozo que quedaba suelto no empieza por «Nombre. », así que `_split_feature()`
+lo descartaba **en silencio**: 56 criaturas y 7 conjuros publicaban la última acción a media frase
+(«…el objetivo deberá superar» y ahí se acababa el mordisco de la araña).
+
+- **La línea que se une a un rótulo ocupa dos renglones.** `join_dangling_labels()` une
+  «Impacto:» con el valor de la línea siguiente y la línea resultante guardaba la `y` de la
+  primera, así que el hueco hasta la de después valía dos renglones y `paragraphs()` cortaba ahí.
+  Ahora la línea lleva `end_y` —dónde acaba de verdad— y el hueco se mide desde ahí.
+- **La sangría de la continuación.** El maquetador sangra ~9 pt la continuación de una acción y
+  esa sangría abría un párrafo nuevo. Ahora una línea que arranca en minúscula con la frase
+  anterior abierta continúa el párrafo, cambie de bloque, de columna o de página: el salto lo puso
+  el maquetador, no el texto. Es la misma regla que arregló el texto que cruzaba de columna en 20
+  criaturas.
+- **El final del conjuro se comía un renglón.** El cuerpo de un conjuro terminaba en
+  `len(lines) - 1` y miraba solo la línea siguiente para saber si empezaba otro, así que se perdía
+  el último renglón de cada ficha y, cuando el conjuro siguiente se llamaba «Truco de la cuerda»,
+  su nombre se tomaba por una línea de escuela. El corte lo decide ahora `_abre_ficha()`: un
+  nombre corto con su línea de escuela detrás.
+
+En `monsters.parse()` un párrafo sin nombre ya no se tira: se pega al rasgo anterior si lo pilla a
+media frase o si es prosa entera (la introducción de una variante, «Los piratas son los bandidos del
+mar…»). Lo que se queda fuera son las cabeceras de página y las filas de tabla, que no acaban en
+punto. Y `_recoloca_etiqueta()` devuelve a su sitio una etiqueta que el flujo deja detrás de su
+valor («…6 (1d8 + 2) de daño perforante. Acierto:» → «… Acierto: 6 (1d8 + 2) de daño perforante.»).
+
+Lo vigila el paso 28 de `npm run verificar` (`tools/test/acciones.py`): fija las líneas crudas de
+los dos cortes reales, los pasa por `monsters.parse()` y barre `data/`: ninguna ficha de criatura o
+conjuro puede acabar a media frase. Una ficha **sí** puede acabar sin punto cuando el SRD cierra ahí
+una lista de conjuros («1/día cada uno: …, invisibilidad») o una tabla; lo que no puede es terminar
+en una etiqueta suelta.
+
 #### El pie de página del PDF
 
 El texto linealizado trae, al final de cada hoja, la línea legal del documento —«Documento de

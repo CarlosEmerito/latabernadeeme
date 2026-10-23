@@ -39,7 +39,7 @@ page: 351
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +5 (con ventaja si el mimeto tiene agarrado al objetivo), alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño perforante o 12 (2d8 + 3) de daño perforante si el mimeto tiene agarrado al objetivo, más 4 (1d8) de daño de ácido.
 
-**Pseudópodo.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño contundente más 4 (1d8) de daño de ácido. Si el objetivo es una
+**Pseudópodo.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño contundente más 4 (1d8) de daño de ácido. Si el objetivo es una criatura Grande o más pequeña, tendrá el estado de agarrada (CD 13 para escapar). Las pruebas de característica para escapar de este agarre tienen desventaja.
 
 ## Acciones adicionales
 

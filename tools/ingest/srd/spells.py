@@ -64,13 +64,35 @@ def _title_class(name: str) -> str:
     return CLASS_NAMES.get(key, name.strip().capitalize())
 
 
+# La línea de escuela de un truco del 5.2 es «Truco de <escuela> (clases)», y
+# «Truco de la cuerda» es el NOMBRE de un conjuro: sin exigir la escuela detrás,
+# el nombre se tomaba por una línea de escuela y el cuerpo del conjuro anterior
+# se cortaba un renglón antes (T-0241).
 SCHOOL_START = re.compile(
-    r"^(?:" + "|".join(SCHOOLS) + r")\s+(?:de nivel \d+|nivel \d+|nivel \d+ \()|^Truco de "
+    r"^(?:(?:" + "|".join(SCHOOLS) + r")\s+(?:de nivel \d+|nivel \d+|nivel \d+ \())"
+    r"|^Truco de (?i:" + "|".join(SCHOOLS) + r")\b"
 )
 
 
 def _looks_like_school_start(text: str) -> bool:
     return bool(SCHOOL_START.match(text)) or bool(_match_school(text))
+
+
+def _abre_ficha(lines: list[Line], j: int) -> bool:
+    """¿La línea `j` abre la ficha de un conjuro (nombre corto y escuela detrás)?
+
+    El nombre de un conjuro puede parecerse a una línea de escuela —«Truco de la
+    cuerda» empieza como el «Truco de …» de los trucos del 5.2—, así que mirar
+    solo la línea siguiente al cuerpo cortaba antes de tiempo y el último
+    párrafo perdía su renglón final en silencio (T-0241: «…a una criatura
+    adicional por» y ahí se acababa la ficha de trepar cual arácnido).
+    """
+    if j + 1 >= len(lines):
+        return False
+    nombre = lines[j].text.strip()
+    if len(nombre) > 70 or _looks_like_school_start(nombre):
+        return False
+    return _looks_like_school_start(lines[j + 1].text.strip())
 
 
 def _match_school(line: str) -> re.Match | None:
@@ -165,10 +187,13 @@ def parse(lines: list[Line]) -> list[Spell]:
             continue
         j += 1
 
+        # El cuerpo llega hasta el nombre del conjuro siguiente, y ese nombre
+        # entra en el cuerpo: el corte se decide en `_abre_ficha`. La condición
+        # `j < len(lines) - 1` de antes se comía además el último renglón de la
+        # sección (T-0241).
         body_lines: list[Line] = []
-        while j < len(lines) - 1:
-            nxt = lines[j + 1].text.strip()
-            if _looks_like_school_start(nxt):
+        while j < len(lines):
+            if _abre_ficha(lines, j):
                 break
             body_lines.append(lines[j])
             j += 1

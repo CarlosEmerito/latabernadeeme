@@ -41,6 +41,6 @@ page: 344
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (3d8 + 4) de daño perforante.
 
-**Tentáculo.** Tirada de ataque cuerpo a cuerpo: +7, alcance 18 m. Acierto: el objetivo tendrá el estado de agarrado (CD 14 para escapar) por uno de los seis tentáculos y el de envenenado hasta que el agarre termine.
+**Tentáculo.** Tirada de ataque cuerpo a cuerpo: +7, alcance 18 m. Acierto: el objetivo tendrá el estado de agarrado (CD 14 para escapar) por uno de los seis tentáculos y el de envenenado hasta que el agarre termine. El tentáculo se puede dañar y soltará a una criatura agarrada cuando se destruya (CA de 20, 10 pg e inmunidad al daño psíquico y de veneno). Dañar el tentáculo no daña al lacero y un tentáculo destruido vuelve a crecer al principio del siguiente turno del lacero.
 
 **Atraer.** El lacero arrastra a todas las criaturas que tenga agarradas hasta 9 m en línea recta hacia él.

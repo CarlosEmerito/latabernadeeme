@@ -43,4 +43,4 @@ page: 353
 
 **Rayo necrótico.** Tirada de ataque a distancia: +6, alcance 18 m. Acierto: 21 (6d6) de daño necrótico.
 
-**Lanzamiento de conjuros.** La naga lanza uno de los siguientes conjuros, que no requiere componentes somáticos o materiales y utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 14):
+**Lanzamiento de conjuros.** La naga lanza uno de los siguientes conjuros, que no requiere componentes somáticos o materiales y utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 14): A voluntad: detectar magia, ilusión menor, mano de mago, respirar bajo el agua 2/día cada uno: detectar pensamientos, inmovilizar persona (versión de nivel 3), puerta dimensional, relámpago (versión de nivel 4)

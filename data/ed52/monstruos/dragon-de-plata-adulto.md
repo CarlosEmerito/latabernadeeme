@@ -45,7 +45,7 @@ page: 310
 
 **Aliento paralizante.** Tirada de salvación de Constitución: CD 20, todas las criaturas en un cono de 18 m. Primer fallo: el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno, momento en el que repetirá la tirada de salvación. Segundo fallo: el objetivo tendrá el estado de paralizado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 19, +11 a acertar con ataques de conjuro):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 19, +11 a acertar con ataques de conjuro): A voluntad: cambiar de forma (solo forma de bestia o humanoide, no se obtienen puntos de golpe temporales del conjuro y no se requieren concentración ni puntos de golpe temporales para mantener el conjuro), cuchillo de hielo, detectar magia, inmovilizar monstruo 1/día cada uno: tormenta de hielo (versión de nivel 5), zona de la verdad
 
 ## Acciones legendarias
 

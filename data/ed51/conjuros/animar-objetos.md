@@ -44,9 +44,7 @@ Enorme 80 10 +8 a impactar, 18 6
 
 Un objeto animado es un autómata cuyo tamaño determina su CA, sus puntos de golpe, sus ataques, su Fuerza y su Destreza. Tiene una Constitución de 10, una Inteligencia y una Sabiduría de 3 y un Carisma de 1. Su velocidad es de 9 m; si no tiene piernas u otros apéndices que pueda usar para desplazarse, en su lugar tendrá una velocidad volando de 9 m y podrá levitar. Si el objeto está firmemente asegurado a una superficie o a un objeto de mayor tamaño, como una cadena fijada en una pared, su velocidad será 0. Tiene visión ciega en un radio de 9 m y es ciego más allá. Cuando los puntos de golpe del objeto animado se reduzcan a 0, recuperará su forma de objeto original y cualquier daño sobrante se aplicará a esa forma original.
 
-Si ordenas a un objeto que ataque, podrá realizar un único ataque cuerpo a cuerpo contra una criatura
-
-que se encuentre a 1,5 m o menos de él. Realizará un ataque con su golpe, cuyo bonificador de ataque y el daño contundente que inflige los determina su tamaño. Tu GM podría decidir que, por su forma, un objeto específico cause daño cortante o perforante.
+Si ordenas a un objeto que ataque, podrá realizar un único ataque cuerpo a cuerpo contra una criatura que se encuentre a 1,5 m o menos de él. Realizará un ataque con su golpe, cuyo bonificador de ataque y el daño contundente que inflige los determina su tamaño. Tu GM podría decidir que, por su forma, un objeto específico cause daño cortante o perforante.
 
 ## A niveles superiores
 

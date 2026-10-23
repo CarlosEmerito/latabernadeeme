@@ -45,7 +45,7 @@ page: 308
 
 **Aliento somnífero.** Tirada de salvación de Constitución: CD 21, todas las criaturas en un cono de 27 m. Fallo: el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno, momento en el que repetirá la tirada de salvación. Segundo fallo: el objetivo tendrá el estado de inconsciente durante 10 minutos. Este efecto acabará si el objetivo sufre daño o si una criatura que se encuentre a 1,5 m o menos de él lleva a cabo una acción para despertarlo.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 20):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 20): A voluntad: cambiar de forma (solo forma de bestia o humanoide, no se obtienen puntos de golpe temporales del conjuro y no se requieren concentración ni puntos de golpe temporales para mantener el conjuro), detectar magia, hablar con los animales, ilusión menor, rayo abrasador (versión de nivel 3) 1/día cada uno: controlar el clima, detectar pensamientos
 
 ## Acciones legendarias
 

@@ -43,7 +43,7 @@ page: 313
 
 **Aliento de fuego (recarga 5–6).** Tirada de salvación de Destreza: CD 21, todas las criaturas en un cono de 18 m. Fallo: 59 (17d6) de daño de fuego. Éxito: la mitad del daño.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 20, +12 a acertar con ataques de conjuro):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 20, +12 a acertar con ataques de conjuro): A voluntad: detectar magia, orden imperiosa (versión de nivel 2), rayo abrasador 1/día: bola de fuego
 
 ## Acciones legendarias
 

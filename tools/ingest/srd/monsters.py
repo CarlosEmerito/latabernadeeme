@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
-from .stream import Line, paragraphs
+from .stream import CIERRE_RE, Line, paragraphs
 
 TYPES = (
     "Aberración",
@@ -155,6 +155,21 @@ class Monster:
     page: int = 0
 
 
+def _duplica_cabecera(lines: list[Line], i: int) -> bool:
+    """El PDF repite el nombre de la criatura: cabecera de página y título.
+
+    En el 5.2 la línea del nombre sale dos veces seguidas («Doppelganger» a
+    156,2 y a 180,5 en la pág. 297) y solo la segunda lleva detrás la línea de
+    tipo, así que `is_header()` no reconoce la primera y el nombre entraba en el
+    cuerpo de la criatura anterior (T-0241).
+    """
+    return (
+        i + 1 < len(lines)
+        and lines[i].text.strip() == lines[i + 1].text.strip()
+        and is_header(lines, i + 1)
+    )
+
+
 def is_header(lines: list[Line], i: int) -> bool:
     if i + 1 >= len(lines):
         return False
@@ -211,6 +226,27 @@ def _split_feature(text: str) -> tuple[str, str]:
     if m and not m.group(1).lower().startswith(("por ejemplo", "es decir")):
         return m.group(1).strip(), m.group(2).strip()
     return "", text.strip()
+
+
+# Una etiqueta que el flujo deja suelta al final de la línea («Acierto:») y la
+# tirada de daño a la que etiqueta. La etiqueta se recoloca delante del valor,
+# que ya está publicado: si no, la acción acaba en una etiqueta sin número.
+ETIQUETA_SUELTA_RE = re.compile(r"\s+([A-ZÁÉÍÓÚÑ][\wáéíóúüñÁÉÍÓÚÑ ]{0,25}:)$")
+TIRO_DE_DANO_RE = re.compile(r"\d+ \(\d+d\d+(?:\s*[+−-]\s*\d+)?\)")
+
+
+def _recoloca_etiqueta(detalle: str) -> str:
+    """Mueve al sitio una etiqueta que el flujo puso detrás de su valor."""
+    m = ETIQUETA_SUELTA_RE.search(detalle)
+    if not m:
+        return detalle
+    sin = detalle[: m.start()].rstrip()
+    tiro = None
+    for tiro in TIRO_DE_DANO_RE.finditer(sin):
+        pass
+    if tiro is None:
+        return detalle
+    return f"{sin[: tiro.start()].rstrip()} {m.group(1)} {sin[tiro.start() :].strip()}"
 
 
 def _between(text: str, start: str, stops: tuple[str, ...]) -> str:
@@ -270,8 +306,23 @@ def join_dangling_labels(lines: list[Line]) -> list[Line]:
             es_del_perfil = any(cur.text.strip().startswith(lbl) for lbl in ALL_LABELS)
             sigue_valor = nxt.text[:1].isdigit() or bool(STAT_ABBREV_RE.match(nxt.text.strip()))
             if _is_profile_value(nxt.text) and (sigue_valor or (es_del_perfil and _same_paragraph(cur, nxt))):
+                # La línea unida ocupa dos renglones y `end_y` guarda dónde
+                # acaba. Si solo se moviera la `y`, el hueco hasta la línea
+                # siguiente valdría dos renglones y `stream.paragraphs()`
+                # cortaría ahí el párrafo: el trozo suelto no empieza por
+                # «Nombre. », `_split_feature()` lo descarta y la ficha publica
+                # la acción a media frase (T-0241, el «Impacto:» del mordisco).
                 out.append(
-                    Line(cur.page, cur.col, cur.x, cur.y, cur.size, f"{cur.text} {nxt.text}".strip(), cur.block)
+                    Line(
+                        cur.page,
+                        cur.col,
+                        cur.x,
+                        cur.y,
+                        cur.size,
+                        f"{cur.text} {nxt.text}".strip(),
+                        cur.block,
+                        end_y=nxt.y,
+                    )
                 )
                 i += 2
                 continue
@@ -309,7 +360,10 @@ def merge_continuations(lines: list[Line]) -> list[Line]:
                     j += 1
                     continue
                 break
-            out.append(Line(cur.page, cur.col, cur.x, cur.y, cur.size, text, cur.block))
+            # `end_y` es la `y` de la última línea consumida, igual que en
+            # `join_dangling_labels`: la línea unida ocupa varios renglones y el
+            # hueco con la siguiente se mide desde ahí, no desde el principio.
+            out.append(Line(cur.page, cur.col, cur.x, cur.y, cur.size, text, cur.block, end_y=lines[j - 1].y))
             i = j
             continue
         out.append(cur)
@@ -398,7 +452,7 @@ def parse(lines: list[Line]) -> list[Monster]:
         # Velocidad y la tabla, y el equipo se pierde (13 de las 44 criaturas).
         j = i + 2
         hdr: list[str] = []
-        while j < len(lines) and not is_header(lines, j):
+        while j < len(lines) and not is_header(lines, j) and not _duplica_cabecera(lines, j):
             text = lines[j].text.strip()
             if text.startswith(("Habilidades:", "Tiradas de salvación:", "Sentidos:", "Equipo:", "Resistencia a daño:", "Inmunidad a daño:", "Inmunidad a estados:", "Vulnerabilidad a daño:", "Inmunidades:", "Resistencias:", "Vulnerabilidades:", "Idiomas:", "Desafío:", "VD:")):
                 break
@@ -430,7 +484,7 @@ def parse(lines: list[Line]) -> list[Monster]:
         # Resto del perfil: etiquetas de datos y rasgos/acciones.
         body: list[Line] = []
         last_field = ""
-        while j < len(lines) and not is_header(lines, j):
+        while j < len(lines) and not is_header(lines, j) and not _duplica_cabecera(lines, j):
             text = lines[j].text.strip()
             matched = False
             for label in STAT_LABELS:
@@ -489,7 +543,26 @@ def parse(lines: list[Line]) -> list[Monster]:
                 continue
             name, detail = _split_feature(text)
             if name:
-                getattr(m, current).append((name, detail))
+                getattr(m, current).append((name, _recoloca_etiqueta(detail)))
+                continue
+            # Un párrafo que no empieza por «Nombre. » es la continuación del
+            # rasgo anterior —llega con la frase abierta, o es prosa larga que
+            # el maquetador sangró— y descartarlo publicaba la ficha cortada sin
+            # que fallara ninguna puerta (T-0241). Lo que se queda fuera son las
+            # cabeceras de página y los títulos de sección del PDF, que son
+            # cortos: «Doppelganger», «Monstruos (D) Demonios».
+            seccion = getattr(m, current)
+            # Se pega si el rasgo anterior está a media frase, o si es prosa
+            # entera (cierra frase y tiene cuerpo): la introducción de una
+            # variante («Los piratas son los bandidos del mar…») llega así. Las
+            # cabeceras de página y las filas de tabla del PDF, que se cuelan en
+            # el cuerpo, no acaban en punto y se quedan fuera.
+            if seccion and (
+                not CIERRE_RE.search(seccion[-1][1].rstrip())
+                or (len(text.split()) > 6 and bool(CIERRE_RE.search(text)))
+            ):
+                nombre_previo, detalle_previo = seccion[-1]
+                seccion[-1] = (nombre_previo, f"{detalle_previo} {text}".strip())
 
         monsters.append(m)
         i = j

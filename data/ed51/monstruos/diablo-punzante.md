@@ -47,4 +47,4 @@ page: 302
 
 **Garra.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 6 (1d6 + 3) de daño perforante.
 
-**Arrojar llama.** Ataque de conjuro a distancia: +5 a impactar, alcance 45 m, un objetivo. Impacto: 10 (3d6) de daño de fuego. Si el objetivo es un objeto
+**Arrojar llama.** Ataque de conjuro a distancia: +5 a impactar, alcance 45 m, un objetivo. Impacto: 10 (3d6) de daño de fuego. Si el objetivo es un objeto inflamable que no lleve o vista nadie, también arde.

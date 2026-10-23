@@ -33,7 +33,7 @@ page: 334
 
 ## Rasgos
 
-**Forma de Fuego.** El elemental puede moverse a través de un espacio de solo 2,5 cm de ancho sin tener que apretarse. Una criatura que toque al elemental o le impacte con un ataque cuerpo a cuerpo estando a 1,5 m o menos de él sufrirá 5 (1d10) de daño de fuego. Además, el elemental puede entrar en el espacio de una criatura hostil y detenerse allí. La primera vez en un turno que se interne en el espacio de otra criatura, esta recibirá 5 (1d10) de daño de fuego y empezará a arder; hasta que alguien utilice una acción para extinguir el fuego, la criatura sufrirá
+**Forma de Fuego.** El elemental puede moverse a través de un espacio de solo 2,5 cm de ancho sin tener que apretarse. Una criatura que toque al elemental o le impacte con un ataque cuerpo a cuerpo estando a 1,5 m o menos de él sufrirá 5 (1d10) de daño de fuego. Además, el elemental puede entrar en el espacio de una criatura hostil y detenerse allí. La primera vez en un turno que se interne en el espacio de otra criatura, esta recibirá 5 (1d10) de daño de fuego y empezará a arder; hasta que alguien utilice una acción para extinguir el fuego, la criatura sufrirá 5 (1d10) de daño de fuego al principio de cada uno de sus turnos.
 
 **Iluminar.** El elemental emite luz brillante en un radio de 9 m y luz tenue 9 m más allá.
 

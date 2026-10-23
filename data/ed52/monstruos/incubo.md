@@ -41,7 +41,7 @@ page: 342
 
 **Toque inquietante.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 15 (3d6 + 5) de daño psíquico y el objetivo estará maldito durante 24 horas o hasta que el íncubo muera. Hasta que la maldición termine, el objetivo no obtendrá ningún beneficio al finalizar descansos cortos.
 
-**Lanzamiento de conjuros.** El íncubo lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 15):
+**Lanzamiento de conjuros.** El íncubo lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 15): A voluntad: disfrazarse, excursión etérea 1/día cada uno: ensueño, patrón hipnótico
 
 ## Acciones adicionales
 

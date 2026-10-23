@@ -45,7 +45,7 @@ page: 316
 
 **Aliento venenoso (recarga 5–6).** Tirada de salvación de Constitución: CD 22, todas las criaturas en un cono de 27 m. Fallo: 77 (22d6) de daño de veneno. Éxito: la mitad del daño.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 21):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 21): A voluntad: clavo mental (versión de nivel 5), detectar magia 1/día cada uno: alterar los recuerdos, geas
 
 ## Acciones legendarias
 

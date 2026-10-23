@@ -53,8 +53,6 @@ page: 312
 
 **Coletazo.** El dragón realiza un ataque con su cola.
 
-**Detectar.** El dragón realiza una prueba de Sabiduría
+**Detectar.** El dragón realiza una prueba de Sabiduría (Percepción).
 
-**Atacar con las alas (cuesta 2 acciones).** El dragón
-
-**bate las alas.** Todas las criaturas a 3 m o menos de él deberán superar una tirada de salvación de Destreza con CD 22 o sufrirán 15 (2d6 + 8) de daño contundente y serán derribadas. Luego, el dragón puede volar hasta la mitad de su velocidad volando.
+**Atacar con las alas (cuesta 2 acciones).** El dragón bate las alas. Todas las criaturas a 3 m o menos de él deberán superar una tirada de salvación de Destreza con CD 22 o sufrirán 15 (2d6 + 8) de daño contundente y serán derribadas. Luego, el dragón puede volar hasta la mitad de su velocidad volando.

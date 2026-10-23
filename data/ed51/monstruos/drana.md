@@ -35,7 +35,7 @@ page: 330
 
 **Caminar por Telarañas.** La draña ignora todas las restricciones al movimiento causadas por cualquier tipo de red o telaraña.
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica innata de la draña es la Sabiduría (CD de salvación de conjuros 13). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica innata de la draña es la Sabiduría (CD de salvación de conjuros 13). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: luces danzantes 1/día cada uno: fuego feérico, oscuridad
 
 **Linaje Feérico.** La draña tiene ventaja en las tiradas de salvación para evitar ser hechizada y la magia no puede dormirla.
 
@@ -47,8 +47,8 @@ page: 330
 
 **Ataque múltiple.** La draña realiza tres ataques, ya sea con su espada larga o su arco largo. Puede sustituir uno de los ataques por un ataque de mordisco.
 
-**Espada larga.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d8 + 3) de daño cortante u 8 (1d10 + 3) de daño
+**Espada larga.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d8 + 3) de daño cortante u 8 (1d10 + 3) de daño cortante si se usa a dos manos.
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, una criatura. Impacto: 2 (1d4) de daño perforante más 9 (2d8) de daño de
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, una criatura. Impacto: 2 (1d4) de daño perforante más 9 (2d8) de daño de veneno.
 
 **Arco largo.** Ataque con arma a distancia: +6 a impactar, alcance 45/180 m, un objetivo. Impacto: 7 (1d8 + 3) de daño perforante más 4 (1d8) de daño de veneno.

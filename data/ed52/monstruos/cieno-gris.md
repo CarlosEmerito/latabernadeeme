@@ -35,7 +35,7 @@ page: 290
 
 **Amorfo.** El cieno puede moverse a través de un espacio de solo 2,5 cm de ancho sin gastar movimiento adicional para hacerlo.
 
-**Forma corrosiva.** La munición no mágica se destruirá de inmediato tras impactar en el cieno y causarle daño. Cualquier arma no mágica recibirá un penalizador acumulativo de −1 a las tiradas de ataque inmediatamente después de causar daño al cieno y entrar en contacto con él. Si el penalizador llega a −5, el arma se destruirá. El penalizador se puede eliminar lanzando el conjuro reparar sobre el arma.
+**Forma corrosiva.** La munición no mágica se destruirá de inmediato tras impactar en el cieno y causarle daño. Cualquier arma no mágica recibirá un penalizador acumulativo de −1 a las tiradas de ataque inmediatamente después de causar daño al cieno y entrar en contacto con él. Si el penalizador llega a −5, el arma se destruirá. El penalizador se puede eliminar lanzando el conjuro reparar sobre el arma. El cieno es capaz de devorar 5 cm de madera o metal no mágicos en 1 asalto.
 
 ## Acciones
 

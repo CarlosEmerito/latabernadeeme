@@ -40,15 +40,7 @@ Destino falso 01–50 51–00 — —
 
 Familiaridad. Los términos de la columna “Familiaridad” de la tabla significan lo siguiente:
 
-• “Círculo permanente” se refiere a un círculo de
-
-teletransportación permanente cuya secuencia de sellos conozcas. • “Objeto vinculado” quiere decir que posees un
-
-objeto tomado del destino deseado en los últimos seis meses, como un libro de la biblioteca de un mago. • “Muy familiar” es un sitio que has visitado
-
-a menudo, que has estudiado detenidamente o que puedas ver cuando lanzas el conjuro. • “Visto esporádicamente” es un lugar que has visto más de una vez, pero que no conoces muy bien. • “Visto una vez o descrito” es un lugar que solo
-
-has visto en una ocasión, quizá mediante la magia, o un sitio que conoces de segunda mano, quizá por un mapa. • “Destino falso” es un lugar que no existe.
+• “Círculo permanente” se refiere a un círculo de teletransportación permanente cuya secuencia de sellos conozcas. • “Objeto vinculado” quiere decir que posees un objeto tomado del destino deseado en los últimos seis meses, como un libro de la biblioteca de un mago. • “Muy familiar” es un sitio que has visitado a menudo, que has estudiado detenidamente o que puedas ver cuando lanzas el conjuro. • “Visto esporádicamente” es un lugar que has visto más de una vez, pero que no conoces muy bien. • “Visto una vez o descrito” es un lugar que solo has visto en una ocasión, quizá mediante la magia, o un sitio que conoces de segunda mano, quizá por un mapa. • “Destino falso” es un lugar que no existe.
 
 Es posible que trataras de escrudiñar el sanctasanctórum de un enemigo, pero que, en su lugar, vieras una ilusión, o puede que intentes teletransportarte a una ubicación que ya no existe.
 

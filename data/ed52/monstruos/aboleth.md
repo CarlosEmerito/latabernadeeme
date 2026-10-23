@@ -35,7 +35,7 @@ page: 283
 
 **Anfibio.** El aboleth puede respirar tanto dentro como fuera del agua.
 
-**Nube mucosa.** Mientras permanezca bajo el agua, el aboleth estará rodeado por una mucosa. Tirada de salvación de Constitución: CD 14, todas las criaturas en una emanación de 1,5 m que se origina en el aboleth al final de su turno. Fallo: el objetivo estará maldito. Hasta que la maldición termine, la piel del objetivo se volverá viscosa, el objetivo podrá respirar tanto dentro como fuera del agua y no podrá recuperar puntos de golpe excepto si está bajo el agua.
+**Nube mucosa.** Mientras permanezca bajo el agua, el aboleth estará rodeado por una mucosa. Tirada de salvación de Constitución: CD 14, todas las criaturas en una emanación de 1,5 m que se origina en el aboleth al final de su turno. Fallo: el objetivo estará maldito. Hasta que la maldición termine, la piel del objetivo se volverá viscosa, el objetivo podrá respirar tanto dentro como fuera del agua y no podrá recuperar puntos de golpe excepto si está bajo el agua. Mientras la criatura maldita esté fuera de una masa de agua, recibirá 6 (1d12) de daño de ácido al final de cada periodo de 10 minutos, a menos que se le aplique humedad a su piel antes de que transcurra este tiempo.
 
 **Recuperación sobrenatural.** Si es destruido, el aboleth obtiene un nuevo cuerpo tras 5d10 días y revive con todos sus puntos de golpe en el Reino Lejano o en otro lugar a elección de cada GM.
 
@@ -51,7 +51,7 @@ page: 283
 
 **Consumir recuerdos.** Tirada de salvación de Inteligencia: CD 16, una criatura a 9 m o menos que esté agarrada o hechizada por el aboleth. Fallo: 10 (3d6) de daño psíquico. Éxito: la mitad del daño. Fallo o éxito: el aboleth obtendrá los recuerdos del objetivo si este es un humanoide y sus puntos de golpe se reducen a 0 por esta acción.
 
-**Dominar la mente (2/día).** Tirada de salvación de Sabiduría: CD 16, una criatura que el aboleth pueda ver a 9 m o menos. Fallo: el objetivo tendrá el estado de hechizado hasta que el aboleth muera o esté en un plano de existencia diferente al del objetivo. Mientras esté hechizado, el objetivo actuará como aliado del aboleth y estará bajo su control si se encuentra a 18 m o menos de él. Además, el aboleth y el objetivo se podrán comunicar telepáticamente entre sí a cualquier distancia.
+**Dominar la mente (2/día).** Tirada de salvación de Sabiduría: CD 16, una criatura que el aboleth pueda ver a 9 m o menos. Fallo: el objetivo tendrá el estado de hechizado hasta que el aboleth muera o esté en un plano de existencia diferente al del objetivo. Mientras esté hechizado, el objetivo actuará como aliado del aboleth y estará bajo su control si se encuentra a 18 m o menos de él. Además, el aboleth y el objetivo se podrán comunicar telepáticamente entre sí a cualquier distancia. El objetivo repetirá la tirada de salvación siempre que reciba daño y tras cada 24 horas que pase a al menos 1,5 km de distancia del aboleth; si la supera, se librará del efecto.
 
 ## Acciones legendarias
 

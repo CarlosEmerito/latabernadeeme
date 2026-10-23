@@ -41,4 +41,4 @@ page: 398
 
 ## Acciones
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 1 de daño perforante y el objetivo deberá superar
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 1 de daño perforante y el objetivo deberá superar una tirada de salvación de Constitución con CD 9 o recibirá 2 (1d4) de daño de veneno.

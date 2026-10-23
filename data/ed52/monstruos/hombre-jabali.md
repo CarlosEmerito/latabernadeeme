@@ -35,11 +35,9 @@ page: 338
 
 **Ataque múltiple.** El hombre jabalí realiza dos ataques con sus colmillos o sus jabalinas en cualquier combinación. Puede sustituir uno de ellos por un ataque de mordisco.
 
-**Colmillos (solo en forma de jabalí o híbrida).** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño perforante. Si el objetivo es una
+**Colmillos (solo en forma de jabalí o híbrida).** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño perforante. Si el objetivo es una criatura Mediana o más pequeña y el hombre jabalí recorre al menos 6 m en línea recta hacia ella justo antes de acertarle, esta recibirá 7 (2d6) de daño perforante adicional y tendrá el estado de derribada.
 
-**Mordisco (solo en forma de jabalí o híbrida).** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 12 (2d8 + 3) de daño perforante. Si el objetivo es un
-
-**humanoide, sufre el siguiente efecto.** Tirada de salvación de Constitución: CD 12. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre jabalí controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre jabalí durante 24 horas.
+**Mordisco (solo en forma de jabalí o híbrida).** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 12 (2d8 + 3) de daño perforante. Si el objetivo es un humanoide, sufre el siguiente efecto. Tirada de salvación de Constitución: CD 12. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre jabalí controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre jabalí durante 24 horas.
 
 **Jabalina (solo en forma humanoide o híbrida).** Tirada de ataque cuerpo a cuerpo o a distancia: +5, alcance 1,5 m o 9/36 m a distancia. Acierto: 13 (3d6 + 3) de daño perforante.
 

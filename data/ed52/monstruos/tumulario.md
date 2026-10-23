@@ -43,4 +43,4 @@ page: 372
 
 **Arco necrótico.** Tirada de ataque a distancia: +4, alcance 45/180 m. Acierto: 6 (1d8 + 2) de daño perforante más 4 (1d8) de daño necrótico.
 
-**Consumir vida.** Tirada de salvación de Constitución: CD 13, una criatura a 1,5 m o menos. Fallo: 6 (1d8 + 2) de daño necrótico y los puntos de golpe máximos del objetivo se reducirán en una cantidad igual al daño sufrido.
+**Consumir vida.** Tirada de salvación de Constitución: CD 13, una criatura a 1,5 m o menos. Fallo: 6 (1d8 + 2) de daño necrótico y los puntos de golpe máximos del objetivo se reducirán en una cantidad igual al daño sufrido. Un humanoide que muera por este ataque se alzará 24 horas después como un zombi bajo el control del tumulario, a menos que se le devuelva a la vida o su cuerpo sea destruido. El tumulario no puede tener más de doce zombis bajo su control a la vez.

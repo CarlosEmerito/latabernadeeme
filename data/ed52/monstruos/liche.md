@@ -45,7 +45,7 @@ page: 345
 
 **Toque paralizante.** Tirada de ataque cuerpo a cuerpo: +12, alcance 1,5 m. Acierto: 15 (3d6 + 5) de daño de frío y el objetivo tendrá el estado de paralizado hasta el principio del siguiente turno del liche.
 
-**Lanzamiento de conjuros.** El liche lanza uno de los siguientes conjuros, que utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 20):
+**Lanzamiento de conjuros.** El liche lanza uno de los siguientes conjuros, que utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 20): A voluntad: bola de fuego (versión de nivel 5), detectar magia, detectar pensamientos, disipar magia, invisibilidad, mano de mago, prestidigitación, relámpago (versión de nivel 5) 2/día cada uno: animar a los muertos, desplazamiento entre planos, puerta dimensional 1/día cada uno: dedo de la muerte, escudriñar, palabra de poder: matar, relámpago en cadena
 
 ## Reacciones
 

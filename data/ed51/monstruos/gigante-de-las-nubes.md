@@ -33,7 +33,7 @@ page: 344
 
 ## Rasgos
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del gigante es el Carisma. Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del gigante es el Carisma. Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: detectar magia, luz, nube de oscurecimiento 3/día cada uno: caída de pluma, paso brumoso, telequinesis, volar 1/día cada uno: controlar el clima, forma gaseosa
 
 **Olfato Agudo.** El gigante tiene ventaja en las pruebas de Sabiduría (Percepción) que dependan del olfato.
 

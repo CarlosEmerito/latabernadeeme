@@ -49,7 +49,7 @@ page: 369
 
 **Arco asesino.** Tirada de salvación de Destreza: CD 21, una criatura que el solar pueda ver a 180 m o menos. Fallo: si la criatura tiene 100 puntos de golpe o menos, morirá. De lo contrario, sufrirá 24 (4d8 + 6) de daño perforante más 36 (8d8) de daño radiante.
 
-**Lanzamiento de conjuros.** El solar lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 25):
+**Lanzamiento de conjuros.** El solar lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 25): A voluntad: detectar el bien y el mal 1/día cada uno: comunión, controlar el clima, disipar el bien y el mal, resurrección
 
 ## Acciones adicionales
 

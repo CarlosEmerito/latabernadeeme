@@ -21,9 +21,7 @@ Mientras dure este sortilegio, puedes afectar al recuerdo de un suceso que haya 
 
 Debes hablarle al objetivo para describir cómo se ven afectados sus recuerdos y este debe poder comprender tu idioma para que los recuerdos modificados se asienten. Su mente llenará cualquier hueco que falte en los detalles de tu descripción. Si el conjuro termina antes de que hayas finalizado de describir los recuerdos modificados, la memoria de la criatura no se verá afectada. De lo contrario, los recuerdos modificados ocuparán el lugar de los reales en cuanto el conjuro termine.
 
-Un recuerdo modificado no tiene por qué afectar al comportamiento de una criatura, en especial si contradice sus inclinaciones naturales, su
-
-alineamiento o sus creencias. Un recuerdo modificado que no sea lógico, como cuánto disfrutó bañándose en ácido, se difumina y puede que solo lo considere un mal sueño. Tu GM podría considerar que un recuerdo modificado carece de sentido como para afectar a una criatura de ninguna manera importante.
+Un recuerdo modificado no tiene por qué afectar al comportamiento de una criatura, en especial si contradice sus inclinaciones naturales, su alineamiento o sus creencias. Un recuerdo modificado que no sea lógico, como cuánto disfrutó bañándose en ácido, se difumina y puede que solo lo considere un mal sueño. Tu GM podría considerar que un recuerdo modificado carece de sentido como para afectar a una criatura de ninguna manera importante.
 
 Un conjuro levantar maldición o restablecimiento mayor lanzado sobre el objetivo restaurará los recuerdos auténticos de la criatura.
 

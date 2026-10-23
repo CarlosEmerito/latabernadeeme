@@ -14,9 +14,7 @@ srd: '5.1'
 page: 168
 ---
 
-Transformas a hasta diez ciempiés, tres arañas, cinco avispas o un escorpión dentro del alcance en versiones gigantes de su forma natural hasta que termine el conjuro. Un ciempiés se convierte en un
-
-ciempiés gigante; una araña, en una araña gigante; una avispa, en una avispa gigante, y un escorpión, en un escorpión gigante.
+Transformas a hasta diez ciempiés, tres arañas, cinco avispas o un escorpión dentro del alcance en versiones gigantes de su forma natural hasta que termine el conjuro. Un ciempiés se convierte en un ciempiés gigante; una araña, en una araña gigante; una avispa, en una avispa gigante, y un escorpión, en un escorpión gigante.
 
 Cada criatura obedece tus órdenes verbales y en combate actúa en tu turno cada asalto. Tu GM tiene el perfil de estas criaturas y resuelve sus acciones y su movimiento.
 

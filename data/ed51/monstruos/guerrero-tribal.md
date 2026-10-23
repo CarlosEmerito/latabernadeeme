@@ -37,4 +37,4 @@ page: 434
 
 ## Acciones
 
-**Lanza.** Ataque con arma cuerpo a cuerpo o a distancia: +3 a impactar, alcance 1,5 m o 6/18 m a distancia, un objetivo. Impacto: 4 (1d6 + 1) de daño perforante o 5 (1d8 + 1) de daño perforante si se usa a dos manos en un ataque cuerpo a cuerpo.
+**Lanza.** Ataque con arma cuerpo a cuerpo o a distancia: +3 a impactar, alcance 1,5 m o 6/18 m a distancia, un objetivo. Impacto: 4 (1d6 + 1) de daño perforante o 5 (1d8 + 1) de daño perforante si se usa a dos manos en un ataque cuerpo a cuerpo. Los viven fuera del alcance de guerreros tribales la civilización y se sustentan mediante la caza y la pesca. Cada tribu actúa de acuerdo con los deseos de su jefe, que suele ser un miembro bendecido por los dioses o el guerrero más fuerte o veterano.

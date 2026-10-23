@@ -18,9 +18,7 @@ page: 134
 
 Hasta que el conjuro termine, controlas cualquier masa de agua que esté en un área de tu elección y con forma de cubo de hasta 30 m de lado, y usas uno de los siguientes efectos. Como acción de magia en tus siguientes turnos, puedes repetir el mismo efecto o elegir uno distinto.
 
-Abrir las aguas. Haces que las aguas de la zona se separen y creen un canal, que se extiende a lo largo de toda el área del conjuro, con las aguas separadas formando un muro a ambos lados. El canal se mantendrá hasta que el conjuro termine o hasta que
-
-elijas un efecto distinto. Posteriormente, el agua irá llenando el canal lentamente durante el siguiente asalto hasta recuperar su nivel normal.
+Abrir las aguas. Haces que las aguas de la zona se separen y creen un canal, que se extiende a lo largo de toda el área del conjuro, con las aguas separadas formando un muro a ambos lados. El canal se mantendrá hasta que el conjuro termine o hasta que elijas un efecto distinto. Posteriormente, el agua irá llenando el canal lentamente durante el siguiente asalto hasta recuperar su nivel normal.
 
 El nivel del agua permanecerá elevado hasta que el conjuro termine o hasta que elijas un efecto distinto. Si este efecto ha producido una ola, esta se repetirá al principio de tu siguiente turno mientras dure el efecto de la inundación.
 

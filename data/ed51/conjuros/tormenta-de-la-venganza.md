@@ -24,6 +24,4 @@ Asalto 3. Convocas seis relámpagos que surgen de la nube y golpean a seis criat
 
 Asalto 4. De la nube caen bolas de granizo. Todas las criaturas que estén debajo de ella sufrirán 2d6 de daño contundente.
 
-Asaltos 5–10. La zona bajo la nube se ve asolada por vendavales y aguanieve. El área se vuelve terreno difícil y está muy oscura. Todas las criaturas
-
-que estén allí sufren 1d6 de daño de frío. No se pueden realizar ataques con arma a distancia en esa área. El viento y la lluvia cuentan como una distracción grave a efectos de mantener la concentración en conjuros. Por último, las ráfagas de viento fuerte (de 30 a 75 km/h) dispersan automáticamente la niebla, la bruma y cualquier fenómeno similar que se produzca en la zona, tanto natural como mágico.
+Asaltos 5–10. La zona bajo la nube se ve asolada por vendavales y aguanieve. El área se vuelve terreno difícil y está muy oscura. Todas las criaturas que estén allí sufren 1d6 de daño de frío. No se pueden realizar ataques con arma a distancia en esa área. El viento y la lluvia cuentan como una distracción grave a efectos de mantener la concentración en conjuros. Por último, las ráfagas de viento fuerte (de 30 a 75 km/h) dispersan automáticamente la niebla, la bruma y cualquier fenómeno similar que se produzca en la zona, tanto natural como mágico.

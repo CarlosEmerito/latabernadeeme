@@ -15,9 +15,7 @@ srd: '5.1'
 page: 130
 ---
 
-Hasta que termine el conjuro, asumes la forma de una criatura distinta. Esta nueva forma puede ser
-
-de cualquier criatura con un valor de desafío igual a tu nivel o inferior. La criatura no puede ser un autómata ni un muerto viviente y debes haber visto alguna de ese tipo al menos una vez. Te transformas en un ejemplar típico de esa criatura, sin niveles de clase ni el atributo Lanzamiento de Conjuros.
+Hasta que termine el conjuro, asumes la forma de una criatura distinta. Esta nueva forma puede ser de cualquier criatura con un valor de desafío igual a tu nivel o inferior. La criatura no puede ser un autómata ni un muerto viviente y debes haber visto alguna de ese tipo al menos una vez. Te transformas en un ejemplar típico de esa criatura, sin niveles de clase ni el atributo Lanzamiento de Conjuros.
 
 Tu perfil se sustituye por el de la criatura elegida, aunque conservas tu alineamiento y tus puntuaciones de Inteligencia, Sabiduría y Carisma. También conservas todas tus competencias en habilidades y tiradas de salvación, además de ganar las que tenga la criatura. Si tiene las mismas competencias que tú y el bonificador que aparece en su perfil es mayor que el tuyo, utiliza el de la criatura. No puedes usar las acciones legendarias ni las acciones en guarida de la nueva forma.
 

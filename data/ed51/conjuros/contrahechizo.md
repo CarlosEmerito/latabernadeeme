@@ -20,6 +20,4 @@ Intentas interrumpir a una criatura que esté lanzando un conjuro. Si la criatur
 
 ## A niveles superiores
 
-Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 4 o superior,
-
-el conjuro interrumpido no tiene efecto si su nivel es menor o igual al nivel del espacio de conjuro que hayas empleado.
+Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 4 o superior, el conjuro interrumpido no tiene efecto si su nivel es menor o igual al nivel del espacio de conjuro que hayas empleado.

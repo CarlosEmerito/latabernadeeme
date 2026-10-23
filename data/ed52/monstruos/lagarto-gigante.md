@@ -37,4 +37,4 @@ page: 388
 
 ## Acciones
 
-**Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. 6 (1d8 + 2) de daño perforante. Acierto:
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño perforante.

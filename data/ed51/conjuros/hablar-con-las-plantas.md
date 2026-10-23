@@ -24,6 +24,4 @@ Las plantas podrían desempeñar otras tareas en tu nombre, a discreción de tu 
 
 Si hay una criatura de tipo “planta” en la zona, puedes comunicarte con ella como si compartierais un idioma común, pero no obtienes ninguna capacidad mágica de influir en ella.
 
-Este conjuro puede provocar que las plantas
-
-enmarañar creadas por el conjuro liberen a una criatura apresada.
+Este conjuro puede provocar que las plantas creadas por el conjuro liberen a una enmarañar criatura apresada.

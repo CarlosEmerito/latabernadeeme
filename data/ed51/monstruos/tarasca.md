@@ -53,14 +53,14 @@ page: 382
 
 **Mordisco.** Ataque con arma cuerpo a cuerpo: +19 a impactar, alcance 3 m, un objetivo. Impacto: 36 (4d12 + 10) de daño perforante. Si el objetivo es una criatura, quedará agarrada (CD 20 para escapar). Hasta que el agarre termine, el objetivo estará apresado y la tarasca no podrá morder a otro objetivo.
 
-**Engullir.** La tarasca hace un ataque de mordisco contra una criatura Grande o más pequeña a la que esté agarrando. Si el ataque impacta, el objetivo será engullido, recibirá el daño del mordisco y el agarre terminará. La criatura engullida estará apresada y cegada, tendrá cobertura completa contra los ataques y otros efectos fuera de la tarasca y recibirá 56 (16d6) de daño de ácido al principio de cada uno de los turnos de la tarasca.
+**Engullir.** La tarasca hace un ataque de mordisco contra una criatura Grande o más pequeña a la que esté agarrando. Si el ataque impacta, el objetivo será engullido, recibirá el daño del mordisco y el agarre terminará. La criatura engullida estará apresada y cegada, tendrá cobertura completa contra los ataques y otros efectos fuera de la tarasca y recibirá 56 (16d6) de daño de ácido al principio de cada uno de los turnos de la tarasca. Si la tarasca sufre 60 de daño o más en un solo turno por parte de una criatura que esté dentro de ella, deberá superar una tirada de salvación de Constitución con CD 20 al final de ese turno o regurgitará a todas las criaturas engullidas, que caerán derribadas en un espacio a 3 m o menos de la tarasca. Si la tarasca muere, una criatura engullida dejará de estar apresada por ella y podrá gastar 9 m de movimiento para escapar del cadáver, del que saldrá derribada.
 
 **Presencia aterradora.** Todas las criaturas a elección de la tarasca que estén a 36 m o menos de ella y sean conscientes de su presencia deberán superar una tirada de salvación de Sabiduría con CD 17 o quedarán asustadas durante 1 minuto. Una criatura puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Tendrá desventaja en esta tirada si la tarasca está dentro de su línea de visión. Si una criatura supera la tirada de salvación o el efecto termina para ella, será inmune a la presencia aterradora de la tarasca durante las siguientes 24 horas.
 
 ## Acciones legendarias
 
-**Atacar.** La tarasca realiza un ataque con sus garras
+**Atacar.** La tarasca realiza un ataque con sus garras o su cola.
 
-**Moverse.** La tarasca se mueve hasta la mitad de su
+**Moverse.** La tarasca se mueve hasta la mitad de su velocidad.
 
-**Masticar (cuesta 2 acciones).** La tarasca realiza un
+**Masticar (cuesta 2 acciones).** La tarasca realiza un ataque con su mordisco o usa engullir.

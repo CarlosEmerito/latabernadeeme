@@ -39,4 +39,4 @@ page: 337
 
 ## Acciones
 
-**Consumir vida.** Ataque de conjuro cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 10 (3d6) de daño necrótico. El objetivo deberá superar
+**Consumir vida.** Ataque de conjuro cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 10 (3d6) de daño necrótico. El objetivo deberá superar una tirada de salvación de Constitución con CD 10 o sus puntos de golpe máximos se reducirán en una cantidad igual al daño recibido. La reducción dura hasta que la criatura finalice un descanso largo. El objetivo muere si este efecto reduce sus puntos de golpe máximos a 0.

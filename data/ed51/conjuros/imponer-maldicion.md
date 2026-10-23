@@ -18,13 +18,7 @@ page: 167
 
 Tocas a una criatura, la cual debe superar una tirada de salvación de Sabiduría o quedará maldecida hasta que termine el conjuro. Cuando lances este conjuro, elige la naturaleza de la maldición de entre estas opciones:
 
-• Elige una puntuación de característica. Mientras
-
-el objetivo esté maldito, tendrá desventaja en las pruebas de característica y tiradas de salvación hechas con esa puntuación de característica. • Mientras el objetivo esté maldito, tendrá
-
-desventaja en las tiradas de ataque contra ti. • Mientras el objetivo esté maldito, deberá realizar
-
-una tirada de salvación de Sabiduría al principio de cada uno de sus turnos. Si la falla, malgastará su acción ese turno sin hacer nada. • Mientras el objetivo esté maldito, tus ataques y conjuros le infligirán 1d8 de daño necrótico adicional.
+• Elige una puntuación de característica. Mientras el objetivo esté maldito, tendrá desventaja en las pruebas de característica y tiradas de salvación hechas con esa puntuación de característica. • Mientras el objetivo esté maldito, tendrá desventaja en las tiradas de ataque contra ti. • Mientras el objetivo esté maldito, deberá realizar una tirada de salvación de Sabiduría al principio de cada uno de sus turnos. Si la falla, malgastará su acción ese turno sin hacer nada. • Mientras el objetivo esté maldito, tus ataques y conjuros le infligirán 1d8 de daño necrótico adicional.
 
 Un conjuro levantar maldición pone fin a este efecto. Si tu GM lo cree conveniente, puedes elegir un efecto alternativo para la maldición, pero este no podrá ser más poderoso que los descritos anteriormente y tu GM tendrá la última palabra sobre él.
 

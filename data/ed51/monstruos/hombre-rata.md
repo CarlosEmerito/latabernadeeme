@@ -45,6 +45,4 @@ page: 359
 
 **Mordisco (solo en forma de rata o híbrida).** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d4 + 2) de daño perforante. Si el objetivo es un humanoide, deberá superar una tirada de salvación de Constitución con CD 11 o sufrirá la maldición de la licantropía de los hombres rata.
 
-**Ballesta de mano (solo en forma humanoide o híbrida).** Ataque con arma a distancia: +4 a impactar,
-
-**alcance 9/36 m, un objetivo.** Impacto: 5 (1d6 + 2) de daño perforante.
+**Ballesta de mano (solo en forma humanoide o híbrida).** Ataque con arma a distancia: +4 a impactar, alcance 9/36 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.

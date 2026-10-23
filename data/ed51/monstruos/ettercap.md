@@ -45,8 +45,6 @@ page: 339
 
 **Garras.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (2d4 + 2) de daño cortante.
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 6 (1d8 + 2) de daño perforante más 4 (1d8) de daño
-
-**de veneno.** El objetivo deberá superar una tirada de salvación de Constitución con CD 11 o quedará envenenado durante 1 minuto. La criatura puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto.
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 6 (1d8 + 2) de daño perforante más 4 (1d8) de daño de veneno. El objetivo deberá superar una tirada de salvación de Constitución con CD 11 o quedará envenenado durante 1 minuto. La criatura puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto.
 
 **Telaraña (recarga 5–6).** Ataque con arma a distancia: +4 a impactar, alcance 9/18 m, una criatura Grande o más pequeña. Impacto: La criatura queda apresada por la telaraña. Como acción, la criatura apresada puede hacer una prueba de Fuerza con CD 11, escapando de la telaraña si tiene éxito. Este efecto también terminará si la telaraña es destruida. Esta tiene una CA de 10, 5 puntos de golpe, vulnerabilidad al daño de fuego e inmunidad al daño contundente, psíquico y de veneno.

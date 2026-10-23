@@ -45,10 +45,6 @@ page: 318
 
 **Ataques de aliento (recarga 5–6).** El dragón usa uno de los siguientes ataques de aliento:
 
-**Aliento de relámpago.** El dragón exhala relámpagos en
+**Aliento de relámpago.** El dragón exhala relámpagos en una línea de 18 m de largo y 1,5 m de ancho. Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 15; sufrirán 55 (10d10) de daño de relámpago si la fallan o la mitad del daño si la superan.
 
-**una línea de 18 m de largo y 1,5 m de ancho.** Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 15; sufrirán 55 (10d10) de daño de relámpago si la fallan o la mitad del daño si la superan.
-
-**Aliento repulsor.** El dragón exhala energía repulsora
-
-**en un cono de 9 m.** Todas las criaturas situadas en esa zona deberán superar una tirada de salvación de Fuerza con CD 15. Si la fallan, serán empujadas 12 m en dirección contraria al dragón.
+**Aliento repulsor.** El dragón exhala energía repulsora en un cono de 9 m. Todas las criaturas situadas en esa zona deberán superar una tirada de salvación de Fuerza con CD 15. Si la fallan, serán empujadas 12 m en dirección contraria al dragón.

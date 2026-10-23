@@ -41,7 +41,7 @@ page: 291
 
 **Constreñir.** Tirada de salvación de Fuerza: CD 15, una criatura Mediana o más pequeña que el couatl pueda ver a 1,5 m o menos. Fallo: 8 (1d6 + 5) de daño contundente. El objetivo tendrá el estado de agarrado (CD 13 para escapar) y el de apresado hasta que el agarre termine.
 
-**Lanzamiento de conjuros.** El couatl lanza uno de los siguientes conjuros, que no requiere componentes y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 15):
+**Lanzamiento de conjuros.** El couatl lanza uno de los siguientes conjuros, que no requiere componentes y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 15): A voluntad: cambiar de forma (solo forma de bestia o humanoide, no se obtienen puntos de golpe temporales del conjuro y no se requieren concentración ni puntos de golpe temporales para mantener el conjuro), detectar el bien y el mal, detectar magia, detectar pensamientos 1/día cada uno: crear comida y agua, dormir, ensueño, escudriñar, restablecimiento mayor
 
 ## Acciones adicionales
 

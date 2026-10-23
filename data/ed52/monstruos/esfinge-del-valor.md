@@ -43,11 +43,11 @@ page: 322
 
 **Garra.** Tirada de ataque cuerpo a cuerpo: +12, alcance 1,5 m. Acierto: 20 (4d6 + 6) de daño cortante.
 
-**Lanzamiento de conjuros.** La esfinge lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 20):
+**Lanzamiento de conjuros.** La esfinge lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 20): A voluntad: detectar el bien y el mal, taumaturgia 1/día cada uno: detectar magia, disipar magia, festín de héroes, restablecimiento mayor, zona de la verdad
 
 **Rugido (3/día).** La esfinge emite un rugido mágico. Cada vez que ruja, el rugido tendrá un efecto distinto, como se detalla a continuación (la secuencia se reinicia cada vez que haga un descanso largo):
 
-**Primer rugido.** Tirada de salvación de Sabiduría:
+**Primer rugido.** Tirada de salvación de Sabiduría: CD 20, todos los enemigos en una emanación de 150 m que se origina en la esfinge. Fallo: el objetivo tendrá el estado de asustado durante 1 minuto. Segundo rugido. Tirada de salvación de Sabiduría: CD 20, todos los enemigos en una emanación de 150 m que se origina en la esfinge. Fallo: el objetivo tendrá el estado de paralizado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente. Tercer rugido. Tirada de salvación de Constitución: CD 20, todos los enemigos en una emanación de 150 m que se origina en la esfinge. Fallo: 44 (8d10) de daño de trueno y el objetivo tendrá el estado de derribado. Éxito: solo la mitad del daño.
 
 ## Acciones legendarias
 

@@ -43,7 +43,7 @@ page: 302
 
 **Espada larga.** Ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 1,5 m, un objetivo. Impacto: 8 (1d8 + 4) de daño cortante o 9 (1d10 + 4) de daño cortante si se usa a dos manos, más 13 (3d8) de daño de veneno.
 
-**Arco largo.** Ataque con arma a distancia: +7 a impactar, alcance 45/180 m, un objetivo. Impacto: 7 (1d8 + 3) de daño perforante más 13 (3d8) de daño de veneno y el objetivo deberá superar una tirada de salvación de Constitución con CD 14 o quedará envenenado. El veneno permanece hasta que es eliminado mediante
+**Arco largo.** Ataque con arma a distancia: +7 a impactar, alcance 45/180 m, un objetivo. Impacto: 7 (1d8 + 3) de daño perforante más 13 (3d8) de daño de veneno y el objetivo deberá superar una tirada de salvación de Constitución con CD 14 o quedará envenenado. El veneno permanece hasta que es eliminado mediante un conjuro restablecimiento menor u otro efecto mágico similar.
 
 ## Reacciones
 

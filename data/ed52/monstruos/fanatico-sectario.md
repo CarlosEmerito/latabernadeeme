@@ -35,7 +35,7 @@ page: 368
 
 **Cuchilla de pacto.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 6 (1d8 + 2) de daño cortante más 7 (2d6) de daño necrótico.
 
-**Lanzamiento de conjuros.** El sectario lanza uno de los siguientes conjuros, que utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 12, +4 a acertar con ataques de conjuro):
+**Lanzamiento de conjuros.** El sectario lanza uno de los siguientes conjuros, que utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 12, +4 a acertar con ataques de conjuro): A voluntad: luz, taumaturgia 2/día: orden imperiosa 1/día: inmovilizar persona
 
 ## Acciones adicionales
 

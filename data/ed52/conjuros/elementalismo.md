@@ -20,9 +20,7 @@ Controlas los elementos y creas uno de los siguientes efectos dentro del alcance
 
 Esculpir los elementos. Haces que la tierra, arena, fuego, humo, niebla o agua que quepan en un cubo de 30 cm de lado adopten una forma tosca (como la de una criatura) durante 1 hora.
 
-Invocar el agua. Creas un rocío de fría niebla que humedece ligeramente a las criaturas y objetos en un cubo de 1,5 m de lado. Como alternativa, creas una taza de agua limpia, ya sea en un recipiente
-
-abierto o sobre una superficie, y el agua se evapora al cabo de 1 minuto.
+Invocar el agua. Creas un rocío de fría niebla que humedece ligeramente a las criaturas y objetos en un cubo de 1,5 m de lado. Como alternativa, creas una taza de agua limpia, ya sea en un recipiente abierto o sobre una superficie, y el agua se evapora al cabo de 1 minuto.
 
 Invocar el aire. Creas una brisa lo bastante fuerte como para ondear telas, remover polvo, agitar hojas y cerrar puertas y contraventanas abiertas en un cubo de 1,5 m de lado. Las puertas y contraventanas que algo o alguien mantenga abiertas no se ven afectadas.
 

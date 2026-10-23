@@ -43,6 +43,6 @@ page: 329
 
 **Rayo.** Tirada de ataque a distancia: +14, alcance 150 m. Acierto: 22 (2d12 + 9) de daño de relámpago y el objetivo tendrá los estados de cegado y ensordecido hasta el principio del siguiente turno del gigante.
 
-**Lanzamiento de conjuros.** El gigante lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 18):
+**Lanzamiento de conjuros.** El gigante lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 18): A voluntad: detectar magia, luz 1/día: controlar el clima
 
 **Tormenta de relámpagos (recarga 5–6).** Tirada de salvación de Destreza: CD 18, todas las criaturas en un cilindro de 3 m de radio y 12 m de alto que se origina en un punto que el gigante pueda ver a 150 m o menos. Fallo: 55 (10d10) de daño de relámpago. Éxito: la mitad del daño.

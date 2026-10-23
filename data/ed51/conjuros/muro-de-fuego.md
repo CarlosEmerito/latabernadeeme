@@ -20,9 +20,7 @@ Creas un muro de fuego en una superficie sólida dentro del alcance. Puedes form
 
 Cuando el muro aparezca, todas las criaturas situadas en su área de efecto deberán hacer una tirada de salvación de Destreza. Si la fallan, sufrirán 5d8 de daño de fuego, o la mitad del daño si la superan.
 
-Un lado del muro, que seleccionas cuando lanzas el conjuro, causa 5d8 de daño de fuego a cada criatura que termine su turno a 3 m o menos de ese lado o dentro del muro. Una criatura recibirá el mismo daño cuando entre en el muro por primera
-
-vez en un turno o termine su turno allí. El otro lado del muro no causa ningún daño.
+Un lado del muro, que seleccionas cuando lanzas el conjuro, causa 5d8 de daño de fuego a cada criatura que termine su turno a 3 m o menos de ese lado o dentro del muro. Una criatura recibirá el mismo daño cuando entre en el muro por primera vez en un turno o termine su turno allí. El otro lado del muro no causa ningún daño.
 
 ## A niveles superiores
 

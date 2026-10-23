@@ -47,7 +47,7 @@ page: 352
 
 **Canalizar energía negativa.** Tirada de ataque a distancia: +9, alcance 18 m. Acierto: 25 (6d6 + 4) de daño necrótico.
 
-**Lanzamiento de conjuros.** La momia lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 17, +9 a acertar con ataques de conjuro):
+**Lanzamiento de conjuros.** La momia lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 17, +9 a acertar con ataques de conjuro): A voluntad: disipar magia, taumaturgia 1/día cada uno: animar a los muertos, dañar, plaga de insectos (versión de nivel 7)
 
 **Mirada espantosa.** Tirada de salvación de Sabiduría: CD 17, una criatura que la momia pueda ver a 18 m o menos. Fallo: 25 (6d6 + 4) de daño psíquico y el objetivo tendrá el estado de paralizado hasta el final del siguiente turno de la momia.
 
@@ -61,4 +61,4 @@ page: 352
 
 **Mirar con furia.** La momia utiliza su mirada espantosa. La momia no puede volver a realizar esta acción hasta el principio de su siguiente turno.
 
-**Orden terrorífica.** La momia lanza orden imperiosa (versión de nivel 2) usando la misma aptitud mágica que para su lanzamiento de conjuros. La momia no
+**Orden terrorífica.** La momia lanza orden imperiosa (versión de nivel 2) usando la misma aptitud mágica que para su lanzamiento de conjuros. La momia no puede volver a realizar esta acción hasta el principio de su siguiente turno.

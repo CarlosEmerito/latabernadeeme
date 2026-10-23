@@ -39,8 +39,6 @@ page: 420
 
 ## Acciones
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d6 + 1) de daño perforante y el objetivo quedará
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d6 + 1) de daño perforante y el objetivo quedará agarrado (CD 11 para escapar). Hasta que el agarre termine, el objetivo estará apresado y la rana no podrá morder a otro objetivo.
 
-**agarrado (CD 11 para escapar).** Hasta que el agarre termine, el objetivo estará apresado y la rana no podrá morder a otro objetivo.
-
-**Engullir.** La rana hace un ataque de mordisco contra un objetivo Pequeño o más pequeño al que esté agarrando. Si el ataque impacta, el objetivo será engullido y el agarre terminará. El objetivo engullido estará apresado y cegado, tendrá cobertura completa contra los ataques y otros efectos fuera de la rana y recibirá 5 (2d4) de daño de ácido al principio de cada uno de los turnos de la rana. La rana solo puede engullir a un objetivo a la vez.
+**Engullir.** La rana hace un ataque de mordisco contra un objetivo Pequeño o más pequeño al que esté agarrando. Si el ataque impacta, el objetivo será engullido y el agarre terminará. El objetivo engullido estará apresado y cegado, tendrá cobertura completa contra los ataques y otros efectos fuera de la rana y recibirá 5 (2d4) de daño de ácido al principio de cada uno de los turnos de la rana. La rana solo puede engullir a un objetivo a la vez. Si la rana muere, una criatura engullida dejará de estar apresada por ella y podrá gastar 1,5 m de movimiento para escapar del cadáver, del que saldrá derribada.

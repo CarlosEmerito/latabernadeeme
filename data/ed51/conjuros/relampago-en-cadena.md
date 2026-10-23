@@ -21,6 +21,4 @@ Cada objetivo deberá hacer una tirada de salvación de Destreza y sufrirá 10d8
 
 ## A niveles superiores
 
-Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 7 o superior,
-
-surge un relámpago adicional del primer objetivo a otro objetivo por cada nivel por encima de 6 que tenga el espacio que hayas empleado.
+Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 7 o superior, surge un relámpago adicional del primer objetivo a otro objetivo por cada nivel por encima de 6 que tenga el espacio que hayas empleado.

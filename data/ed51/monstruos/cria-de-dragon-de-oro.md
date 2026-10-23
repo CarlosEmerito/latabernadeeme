@@ -41,9 +41,7 @@ page: 324
 
 **Ataques de aliento (recarga 5–6).** El dragón usa uno de los siguientes ataques de aliento:
 
-**Aliento de fuego.** El dragón exhala fuego en un cono
-
-**de 4,5 m.** Todas las criaturas situadas en la zona deberán hacer una tirada de salvación de Destreza con CD 13; sufrirán 22 (4d10) de daño de fuego si la fallan o la mitad del daño si la superan.
+**Aliento de fuego.** El dragón exhala fuego en un cono de 4,5 m. Todas las criaturas situadas en la zona deberán hacer una tirada de salvación de Destreza con CD 13; sufrirán 22 (4d10) de daño de fuego si la fallan o la mitad del daño si la superan.
 
 **Aliento debilitador.** El dragón exhala gas en un cono de
 

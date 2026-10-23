@@ -45,4 +45,4 @@ page: 357
 
 **Mordisco (solo en forma de lobo o híbrida).** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante. Si el objetivo es un humanoide, deberá superar una tirada de salvación de Constitución con CD 12 o sufrirá la maldición de la licantropía de los hombres lobo.
 
-**Lanza (solo en forma humanoide).** Ataque con arma cuerpo a cuerpo o a distancia: +4 a impactar, alcance 1,5 m o 6/18 m a distancia, una criatura. Impacto: 5 (1d6 + 2) de daño perforante o 6 (1d8 + 2) de daño
+**Lanza (solo en forma humanoide).** Ataque con arma cuerpo a cuerpo o a distancia: +4 a impactar, alcance 1,5 m o 6/18 m a distancia, una criatura. Impacto: 5 (1d6 + 2) de daño perforante o 6 (1d8 + 2) de daño perforante si se usa a dos manos en un ataque cuerpo a cuerpo.

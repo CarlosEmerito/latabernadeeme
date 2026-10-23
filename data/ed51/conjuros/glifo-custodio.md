@@ -32,6 +32,4 @@ Runas explosivas. Cuando se activa, el glifo estalla con energía mágica en una
 
 ## A niveles superiores
 
-Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 4 o superior,
-
-runas explosivas el daño de un glifo de aumenta en 1d8 por cada nivel por encima de 3 que tenga el espacio que hayas empleado. Si creas un glifo de conjuro, puedes almacenar cualquier conjuro de hasta el mismo nivel que el espacio de conjuro que hayas empleado para el glifo custodio.
+Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 4 o superior, el daño de un glifo de aumenta en runas explosivas 1d8 por cada nivel por encima de 3 que tenga el espacio que hayas empleado. Si creas un glifo de conjuro, puedes almacenar cualquier conjuro de hasta el mismo nivel que el espacio de conjuro que hayas empleado para el glifo custodio.

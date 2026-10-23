@@ -14,9 +14,7 @@ srd: '5.1'
 page: 139
 ---
 
-Tocas un punto e impregnas una zona a su alrededor con poder sagrado (o impío). El área puede tener un radio de hasta 18 m y el conjuro falla si el radio
-
-incluye cualquier zona que ya esté bajo el efecto de un conjuro consagrar. La zona afectada queda sujeta a los siguientes efectos.
+Tocas un punto e impregnas una zona a su alrededor con poder sagrado (o impío). El área puede tener un radio de hasta 18 m y el conjuro falla si el radio incluye cualquier zona que ya esté bajo el efecto de un conjuro consagrar. La zona afectada queda sujeta a los siguientes efectos.
 
 En primer lugar, celestiales, elementales, feéricos, infernales y muertos vivientes no pueden entrar en el área y esas criaturas tampoco pueden asustar, hechizar o poseer a otras criaturas que estén en ella. Cualquier criatura asustada, hechizada o poseída por una criatura de los tipos anteriores dejará de estar asustada, hechizada o poseída al entrar en la zona. Puedes excluir del efecto a uno o más de estos tipos de criaturas.
 

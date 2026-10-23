@@ -28,19 +28,13 @@ Corcel sobrenatural
 
 Celestial, feérico o infernal Grande (a tu elección), neutral
 
-CA: 10 + 1 por cada nivel del conjuro PG: 5 + 10 por cada nivel del conjuro (el corcel tiene
-
-una cantidad de dados de golpe [d10] igual al nivel del conjuro) Velocidad: 18 m, volar 18 m (requiere un conjuro
-
-de nivel 4 o superior)
+CA: 10 + 1 por cada nivel del conjuro PG: 5 + 10 por cada nivel del conjuro (el corcel tiene una cantidad de dados de golpe [d10] igual al nivel del conjuro) Velocidad: 18 m, volar 18 m (requiere un conjuro de nivel 4 o superior)
 
 MOD. SALV. MOD. SALV. MOD. SALV.
 
 F 18 +4 +4 D 12 +1 +1 C 14 +2 +2 ue es on I 6 −2 −2 S 12 +1 +1 C 8 −1 −1 nt ab ar
 
-Sentidos: Percepción pasiva 11 Idiomas: telepatía 1,5 km (solo funciona contigo) VD: ninguno (0 PX; BC igual a tu bonificador por
-
-competencia)
+Sentidos: Percepción pasiva 11 Idiomas: telepatía 1,5 km (solo funciona contigo) VD: ninguno (0 PX; BC igual a tu bonificador por competencia)
 
 Atributos
 

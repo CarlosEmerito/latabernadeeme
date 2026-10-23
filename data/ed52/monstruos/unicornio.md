@@ -45,7 +45,7 @@ page: 372
 
 **Cuerno radiante.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 9 (1d10 + 4) de daño radiante.
 
-**Lanzamiento de conjuros.** El unicornio lanza uno de los siguientes conjuros, que no requiere componentes y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 14):
+**Lanzamiento de conjuros.** El unicornio lanza uno de los siguientes conjuros, que no requiere componentes y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 14): A voluntad: detectar el bien y el mal, saber druídico 1/día cada uno: calmar emociones, disipar el bien y el mal, enmarañar, palabra de regreso, pasar sin rastro
 
 ## Acciones adicionales
 

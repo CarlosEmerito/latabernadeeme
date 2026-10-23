@@ -19,9 +19,7 @@ page: 186
 
 Tocas a una criatura y le concedes una mejora mágica. Elige uno de los siguientes efectos, que el objetivo obtendrá hasta que el conjuro termine.
 
-Agilidad de gato. El objetivo tiene ventaja en las pruebas de Destreza. Además, no sufre daños por
-
-caídas desde 6 m de altura o menos si no está incapacitado.
+Agilidad de gato. El objetivo tiene ventaja en las pruebas de Destreza. Además, no sufre daños por caídas desde 6 m de altura o menos si no está incapacitado.
 
 Astucia de zorro. El objetivo tiene ventaja en las pruebas de Inteligencia.
 

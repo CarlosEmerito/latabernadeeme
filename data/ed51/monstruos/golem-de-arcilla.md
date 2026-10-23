@@ -47,6 +47,6 @@ page: 346
 
 **Ataque múltiple.** El gólem realiza dos ataques con su golpe.
 
-**Golpe.** Ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 1,5 m, un objetivo. Impacto: 16 (2d10 + 5) de daño contundente. Si el objetivo
+**Golpe.** Ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 1,5 m, un objetivo. Impacto: 16 (2d10 + 5) de daño contundente. Si el objetivo es una criatura, deberá superar una tirada de salvación de Constitución con CD 15 o sus puntos de golpe máximos se reducirán en una cantidad igual al daño recibido. El objetivo muere si este ataque reduce sus puntos de golpe máximos a 0. Esta reducción permanece hasta que sea eliminada mediante un conjuro restablecimiento mayor u otro efecto mágico.
 
 **Acelerar (recarga 5–6).** Hasta el final de su siguiente turno, el gólem obtiene mágicamente un bonificador de +2 a su CA, ventaja en tiradas de salvación de Destreza y la capacidad de realizar su golpe como acción adicional.

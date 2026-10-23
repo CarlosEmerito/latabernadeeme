@@ -19,10 +19,6 @@ Entras en comunión con la naturaleza brevemente, lo que te permite obtener cier
 
 Conoces al instante hasta tres hechos de tu elección sobre cualquiera de los temas siguientes relacionados con la zona:
 
-• Terreno y masas de agua. • Plantas, minerales, animales o gentes más
-
-comunes. • Celestiales, feéricos, elementales, infernales
-
-o muertos vivientes poderosos. • Influencia de otros planos de existencia. • Edificaciones.
+• Terreno y masas de agua. • Plantas, minerales, animales o gentes más comunes. • Celestiales, feéricos, elementales, infernales o muertos vivientes poderosos. • Influencia de otros planos de existencia. • Edificaciones.
 
 Por ejemplo, podrías conocer la ubicación de muertos vivientes poderosos en la zona, dónde hay grandes fuentes de agua potable o la ubicación de cualquier localidad cercana.

@@ -141,8 +141,14 @@ const totalC = filas.reduce((n, f) => n + f.comunes.length, 0);
   ))}
 
   <p class="muted" style="margin-top:2rem;max-width:70ch">
-    La coincidencia se calcula por identificador de entrada, no por texto: dos fichas con el mismo
-    nombre pueden tener reglas distintas. El comparador de texto, línea a línea, es el paso
+    La coincidencia se calcula por identidad del objeto, no por identificador de fichero: lo que
+    empareja dos entradas es el nombre que les da el SRD, con el paréntesis final —«Vara (3 m)»—
+    leído aparte, porque es el desambiguador que separa dos objetos que se llaman igual. La
+    categoría es lo que distingue a los homónimos legítimos («Bastón» arma y «Bastón» canalizador
+    arcano, «Competencia» de características y del glosario). El identificador de fichero solo entra
+    al final, para las entradas que el SRD renombró, porque lo decide el orden de aparición en el
+    PDF y cambia de una edición a otra: por eso una entrada puede cambiar de nombre entre las dos
+    ediciones y seguir contando como «en ambas». El comparador de texto, línea a línea, es el paso
     siguiente.
   </p>
 </Base>

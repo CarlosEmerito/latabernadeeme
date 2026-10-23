@@ -307,4 +307,11 @@ if (acciones !== 0) {
   process.exit(acciones);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF y texto de rasgos y acciones sin cortar correctos.");
+console.log("▶ Texto de la página de cambios: cambios.mjs (dist/ y src/lib/)");
+const cambios = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/cambios.mjs")]);
+if (cambios !== 0) {
+  console.error("✗ El texto de /cambios/ describe un criterio de emparejamiento distinto del que aplica el código.");
+  process.exit(cambios);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar y texto de la página de cambios correctos.");

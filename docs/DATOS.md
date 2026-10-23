@@ -29,8 +29,12 @@ renumeraron. Por eso el identificador no sirve para decir si dos entradas de
 ediciones distintas son el mismo objeto —la «Vara» del 5.1 es la varita de 1 kg
 y la del 5.2.1 la pértiga de 3 m—, y el emparejamiento del comparador va por
 **identidad**: el nombre que le da el SRD, con el paréntesis final separado
-como desambiguador. `src/lib/emparejar.ts` lo resuelve y
-`tools/test/emparejar.mjs` lo vigila.
+como desambiguador. La categoría es lo que separa los homónimos legítimos
+(«Bastón» arma y «Bastón» canalizador arcano) y el identificador de fichero solo
+entra como último recurso de las entradas que el SRD renombró. `src/lib/emparejar.ts`
+lo resuelve y `tools/test/emparejar.mjs` lo vigila; `/cambios/` lo explica así al
+lector y `tools/test/cambios.mjs` comprueba que el texto publicado y el código
+digan lo mismo.
 
 ## Reglas de conversión
 

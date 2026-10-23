@@ -41,15 +41,9 @@ una cabra gigante hasta 3 horas. La cabra no
 
 puede atacar, pero puedes quitarle los cuernos sin
 
-peligro alguno y emplearlos como armas. Un cuer-
+peligro alguno y emplearlos como armas. Un cuerno se convierte en una lanza +1 y el otro se convierte en una espada larga +2. Quitarle un cuerno
 
-no se convierte en una lanza +1 y el otro se con-
-
-vierte en una espada larga +2. Quitarle un cuerno
-
-requiere una acción de magia, y las armas desa-
-
-parecen y los cuernos regresan a su sitio cuando
+requiere una acción de magia, y las armas desaparecen y los cuernos regresan a su sitio cuando
 
 la cabra recupera su forma de estatuilla. Mientras
 

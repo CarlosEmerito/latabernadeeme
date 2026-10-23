@@ -57,9 +57,7 @@ Muchos conjuros son instantáneos: dañan, curan, crean o alteran a una criatura
 
 Algunos conjuros exigen mantener la concentración si se quiere que su magia permanezca activa. Los conjuros de este tipo terminan si el personaje pierde la concentración. En el apartado “Duración” de los conjuros se indica si estos exigen concentración o no, así como el tiempo que se puede pasar concentrado. Puedes dejar de concentrarte en cualquier momento (no requiere acción). La actividad habitual de un combate, como moverse o atacar, no interfiere en la concentración, pero los siguientes sucesos sí que pueden romperla:
 
-- Lanzar otro conjuro que necesite concentra-
-
-ción. Dejarás de tener concentración en un conjuro si lanzas otro que también la requiera. Por tanto, no puedes concentrarte en dos conjuros a la vez.
+- Lanzar otro conjuro que necesite concentración. Dejarás de tener concentración en un conjuro si lanzas otro que también la requiera. Por tanto, no puedes concentrarte en dos conjuros a la vez.
 
 - Recibir daño. Cada vez que sufras daño mientras te concentras en un conjuro, tendrás que hacer una tirada de salvación de Constitución para mantener la concentración. La CD será de 10 o la mitad del daño sufrido, lo que sea mayor. Si recibes daño de varias fuentes, como una flecha y el aliento de un dragón, deberás hacer una tirada de salvación distinta para cada fuente de daño.
 - Quedar incapacitado o morir. Perderás la concentración si te incapacitan o mueres.

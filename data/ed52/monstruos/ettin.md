@@ -19,7 +19,7 @@ saves: ''
 skills: Percepción +4
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: asustado, aturdido, cegado, ensordecido, hechizado, inconsciente
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 14
 languages: gigante

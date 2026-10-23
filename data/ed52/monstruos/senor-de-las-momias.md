@@ -15,12 +15,12 @@ abilities:
   int: 11
   sab: 19
   car: 16
-saves: ''
+saves: Int +5, Sab +9
 skills: Historia +5, Percepción +9, Religión +5
 resistances: ''
-immunities: ''
-conditionImmunities: ''
-vulnerabilities: ''
+immunities: necrótico, veneno
+conditionImmunities: asustado, cansancio, envenenado, hechizado, paralizado
+vulnerabilities: fuego
 senses: visión verdadera 18 m; Percepción pasiva 19
 languages: común y otros tres idiomas
 cr: '15'

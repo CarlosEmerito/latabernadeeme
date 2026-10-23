@@ -15,7 +15,7 @@ abilities:
   int: 2
   sab: 12
   car: 5
-saves: ''
+saves: Fue +6
 skills: ''
 resistances: ''
 immunities: ''

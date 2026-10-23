@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: Acción
 range: Toque
-components: V, M (una luciérnaga o musgo fosfores- cente)
+components: V, M (una luciérnaga o musgo fosforescente)
 duration: 1 hora
 classes:
 - Bardo

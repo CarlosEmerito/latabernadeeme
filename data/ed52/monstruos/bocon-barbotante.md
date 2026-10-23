@@ -19,7 +19,7 @@ saves: ''
 skills: ''
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: derribado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 10
 languages: ninguno

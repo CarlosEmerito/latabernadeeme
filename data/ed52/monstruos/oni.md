@@ -15,9 +15,9 @@ abilities:
   int: 14
   sab: 12
   car: 15
-saves: ''
+saves: Des +3, Con +6, Sab +4, Car +5
 skills: Conocimiento arcano +5, Engaño +8, Percepción +4
-resistances: ''
+resistances: frío
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
@@ -45,7 +45,7 @@ page: 355
 
 **Cambio de forma.** El oni se convierte en un humanoide Pequeño o Mediano, un gigante Grande o recupera su auténtica forma. Su perfil, salvo por el tamaño, es el mismo en todas las formas. Cualquier equipo que vista o lleve no se transformará.
 
-**Lanzamiento de conjuros.** El oni lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 13): 1/día cada uno: dormir, forma gaseosa, hechizar per-
+**Lanzamiento de conjuros.** El oni lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 13): 1/día cada uno: dormir, forma gaseosa, hechizar persona (versión de nivel 2), oscuridad
 
 ## Acciones adicionales
 

@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: Acción adicional
 range: Toque
-components: V, S, M (la pata trasera de un saltamon- tes)
+components: V, S, M (la pata trasera de un saltamontes)
 duration: 1 minuto
 classes:
 - Druida

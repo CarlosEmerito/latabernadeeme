@@ -15,10 +15,10 @@ abilities:
   int: 16
   sab: 15
   car: 19
-saves: ''
+saves: Sab +6, Car +8
 skills: ''
 resistances: ''
-immunities: ''
+immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m; Percepción pasiva 12

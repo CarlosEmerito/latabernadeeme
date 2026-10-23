@@ -17,9 +17,9 @@ abilities:
   car: 2
 saves: ''
 skills: Sigilo +2
-resistances: ''
+resistances: ácido, frío, fuego
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: agarrado, apresado, asustado, cansancio, cegado, derribado, ensordecido, hechizado
 vulnerabilities: ''
 senses: visión ciega 18 m; Percepción pasiva 8
 languages: ninguno

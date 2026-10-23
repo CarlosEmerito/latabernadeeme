@@ -4,7 +4,7 @@ level: 1
 school: Abjuración
 ritual: false
 concentration: false
-castingTime: Reacción, que llevas a cabo cuando te acierta una tirada de ataque o eres el obje- tivo del conjuro proyectil mágico
+castingTime: Reacción, que llevas a cabo cuando te acierta una tirada de ataque o eres el objetivo del conjuro proyectil mágico
 range: Lanzador
 components: V, S
 duration: 1 asalto

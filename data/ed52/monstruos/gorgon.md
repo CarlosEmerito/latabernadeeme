@@ -19,7 +19,7 @@ saves: ''
 skills: Percepción +7
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: cansancio, petrificado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 17
 languages: ninguno

@@ -18,8 +18,8 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: fuego, psíquico, veneno
+conditionImmunities: asustado, cansancio, envenenado, hechizado, paralizado, petrificado
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m; Percepción pasiva 10
 languages: entiende común y otros dos idiomas, pero no puede hablar

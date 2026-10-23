@@ -18,8 +18,8 @@ abilities:
 saves: ''
 skills: Sigilo +5
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: ácido
+conditionImmunities: derribado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 11
 languages: ninguno

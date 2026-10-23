@@ -15,11 +15,11 @@ abilities:
   int: 11
   sab: 10
   car: 8
-saves: ''
+saves: Sab +2
 skills: ''
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: necrótico
+immunities: veneno
+conditionImmunities: cansancio, envenenado, hechizado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 10
 languages: común

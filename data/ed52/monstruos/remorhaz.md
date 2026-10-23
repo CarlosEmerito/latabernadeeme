@@ -18,7 +18,7 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
+immunities: frío, fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: sentir vibraciones 18 m, visión en la oscuridad 18 m; Percepción pasiva 10

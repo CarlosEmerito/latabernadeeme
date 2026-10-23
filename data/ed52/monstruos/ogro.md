@@ -26,7 +26,7 @@ languages: común, gigante
 cr: '2'
 xp: 450 PX; BC +2
 proficiency: ''
-gear: ''
+gear: garrote grande, jabalinas (3)
 srd: '5.2'
 page: 355
 ---

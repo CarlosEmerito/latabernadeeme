@@ -26,7 +26,7 @@ languages: común
 cr: 1/2
 xp: 100 PX; BC +2
 proficiency: ''
-gear: ''
+gear: armadura de cuero, ballesta pesada, maza
 srd: '5.2'
 page: 357
 ---

@@ -15,10 +15,10 @@ abilities:
   int: 18
   sab: 20
   car: 18
-saves: ''
+saves: Con +5, Sab +7
 skills: ''
-resistances: ''
-immunities: ''
+resistances: contundente, cortante, perforante
+immunities: psíquico, radiante
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 15

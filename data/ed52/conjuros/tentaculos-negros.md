@@ -14,9 +14,7 @@ srd: '5.2'
 page: 188
 ---
 
-Unos tentáculos color ébano que se retuercen llenan un cuadrado en el suelo de 6 m de lado que puedas ver dentro del alcance. Hasta que termine el conju-
-
-ro, estos tentáculos convertirán la zona en terreno difícil.
+Unos tentáculos color ébano que se retuercen llenan un cuadrado en el suelo de 6 m de lado que puedas ver dentro del alcance. Hasta que termine el conjuro, estos tentáculos convertirán la zona en terreno difícil.
 
 Todas las criaturas situadas en esa zona hacen una tirada de salvación de Fuerza. Si la fallan, sufrirán 3d6 de daño contundente y tendrán el estado de apresadas hasta que el conjuro termine. Una criatura también deberá hacer la tirada si entra en la zona o termina su turno en ella. Cada criatura solo hace esta tirada una vez por turno.
 

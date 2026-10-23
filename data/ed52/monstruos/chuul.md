@@ -18,8 +18,8 @@ abilities:
 saves: ''
 skills: Percepción +4
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: veneno
+conditionImmunities: envenenado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 14
 languages: entiende habla de las profundidades, pero no puede hablar

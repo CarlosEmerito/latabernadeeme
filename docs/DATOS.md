@@ -102,6 +102,17 @@ Quien lo lea tiene que quedarse con el valor base (lo que va antes del primer `P
 los separadores: `src/lib/xp.ts` lo hace para el índice JSON y para las herramientas de
 `/mesa/`.
 
+`saves`, `resistances`, `immunities`, `conditionImmunities`, `vulnerabilities` y `gear` salen
+del perfil de la criatura, y cada edición lo escribe a su manera. El 5.1 los da con etiqueta
+propia (`Tiradas de salvación:`, `Inmunidad a daño:`, `Inmunidad a estados:`…). El 5.2 usa **una
+sola etiqueta por campo**, con los tipos de daño y los estados en la misma lista separados por
+`;` (`Inmunidades: veneno; cansancio, envenenado`): lo de antes del `;` es daño y lo de después
+estados, pero como hay criaturas que solo tienen estados (`Cieno gris`), el reparto se hace por
+nombre contra la lista cerrada de estados, no por la posición. Las salvaciones del 5.2 no llevan
+etiqueta: son la **tercera columna** de la tabla de características (`F 23 +6 +6`: puntuación,
+modificador, salvación) y solo se publican cuando no coinciden con el modificador, que es cuando
+la criatura tiene competencia; la del secuaz goblin se queda vacía, como en el SRD.
+
 ### objetos (`data/ed5x/objetos/*.md`)
 
 ```yaml
@@ -180,6 +191,30 @@ se parchearon a mano en su día y no se regeneró la carpeta entera: el flujo de
 arrastraba cambios de prosa ajenos a la tarea. La corrección del parser impide
 que el fallo vuelva en la próxima regeneración; el parche de datos solo arregla
 lo que ya está publicado.
+
+#### Los cortes de palabra del maquetador
+
+El PDF parte palabras con guion al final de la línea, y en el 5.2 el trozo que sobra viaja a otra
+frase (`de he-` / `la lista de conjuros de bardo` / `chizar persona`, con la negrita abriéndose en
+mitad de la palabra en `bulette`). Los escritores recomponen ahora la palabra al unir líneas
+(`stream.paragraphs` y `spells._extract_props`, más `items._sin_pies` para el texto plano), y
+`tools/verify/validar.py` —el paso 1 de `npm run verificar`— vigila las dos formas del corte,
+guion a fin de línea y guion dentro de la palabra, más cinco frases testigo completas: un corte
+nuevo tumba la puerta.
+
+`conjuros` y `monstruos` se regeneran con `tools/ingest/extract_core.py` y salen limpios.
+`objetos`, `clases` y `reglas` no: se generaron con versiones anteriores del pipeline que ya no
+reproducen `data/` (volver a pasarlas cambia cientos de fichas por motivos que no son este
+arreglo), así que lo publicado se repara con `tools/ingest/reparar_cortes.py`. Ese script quita el
+pie de página que parte una palabra, une los cortes y escribe enteras las frases en las que el
+trozo se fue a otro sitio —el texto correcto está copiado de `.cache/srd/work/es5x.txt`, que sí lo
+conserva en orden—. Es idempotente y falla si una frase testigo no aparece donde debería. Se pasa
+después de cualquier regeneración:
+
+```bash
+python3 tools/ingest/reparar_cortes.py            # repara data/
+python3 tools/ingest/reparar_cortes.py --check    # solo cuenta, no escribe
+```
 
 ### especies / trasfondos / dotes / reglas
 

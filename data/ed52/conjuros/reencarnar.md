@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: 1 hora
 range: Toque
-components: V, S, M (aceites raros que valgan al me- nos 1000 po, que se consumen como parte del con- juro)
+components: V, S, M (aceites raros que valgan al menos 1000 po, que se consumen como parte del conjuro)
 duration: Instantáneo
 classes:
 - Druida

@@ -17,7 +17,7 @@ abilities:
   car: 10
 saves: ''
 skills: Percepción +6
-resistances: ''
+resistances: necrótico, radiante
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''

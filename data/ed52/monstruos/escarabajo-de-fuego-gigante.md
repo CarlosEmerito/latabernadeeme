@@ -17,7 +17,7 @@ abilities:
   car: 3
 saves: ''
 skills: ''
-resistances: ''
+resistances: fuego
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''

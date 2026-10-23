@@ -35,9 +35,7 @@ y se instalará y afianzará ella sola
 
 45–51 Caballo de monta ensillado
 
-52–59 Pozo abierto (cubo de 3 m de lado), que pue-
-
-des colocar en el suelo a 3 m o menos de ti
+52–59 Pozo abierto (cubo de 3 m de lado), que puedes colocar en el suelo a 3 m o menos de ti
 
 60–68 4 pociones de curación
 
@@ -49,9 +47,7 @@ de nivel 1, 2 o 3 (a tu elección)
 
 84–90 2 mastines
 
-91–96 Ventana (60 cm por 1,2 m, con una profundi-
-
-dad de hasta 60 cm), que puedes colocar en
+91–96 Ventana (60 cm por 1,2 m, con una profundidad de hasta 60 cm), que puedes colocar en
 
 una superficie vertical que esté a tu alcance
 

@@ -6,7 +6,7 @@ ritual: true
 concentration: false
 castingTime: Acción o ritual
 range: Toque
-components: V, S, M (2 piezas de cobre, que se consu- men como parte del conjuro)
+components: V, S, M (2 piezas de cobre, que se consumen como parte del conjuro)
 duration: 10 días
 classes:
 - Clérigo

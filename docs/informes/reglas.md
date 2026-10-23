@@ -8,9 +8,9 @@ extraídos del PDF con `tools/ingest/import_rules.py` y el lector
 
 | Edición | Entradas | Palabras | Con tabla | Páginas de origen |
 |---|---|---|---|---|
-| SRD 5.1 | 47 | 33 743 | 10 | 79-110, 209-220, 380, 389-391, 394 |
-| SRD 5.2.1 | 174 | 34 004 | 20 | 5-20, 194-210, 211-222 |
-| **Total** | **221** | **67 747** | **30** | |
+| SRD 5.1 | 47 | 33 740 | 10 | 79-110, 209-220, 380, 389-391, 394 |
+| SRD 5.2.1 | 174 | 34 003 | 20 | 5-20, 194-210, 211-222 |
+| **Total** | **221** | **67 743** | **30** | |
 
 Las tres entradas de Ambientación del 5.1 llegaron después de que se escribiera
 este informe —los planos de existencia, los panteones y la plantilla de

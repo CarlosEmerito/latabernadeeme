@@ -15,7 +15,7 @@ abilities:
   int: 8
   sab: 12
   car: 14
-saves: ''
+saves: Des +5, Car +4
 skills: ''
 resistances: ''
 immunities: ''
@@ -26,7 +26,7 @@ languages: común y otro cualquiera
 cr: '1'
 xp: 200 PX; BC +2
 proficiency: ''
-gear: ''
+gear: armadura de cuero, dagas (6)
 srd: '5.2'
 page: 359
 ---

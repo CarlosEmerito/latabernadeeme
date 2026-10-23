@@ -15,11 +15,11 @@ abilities:
   int: 14
   sab: 11
   car: 13
-saves: ''
+saves: Des +3, Sab +2
 skills: Percepción +4, Sigilo +3
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: veneno
+conditionImmunities: envenenado
 vulnerabilities: ''
 senses: visión ciega 3 m, visión en la oscuridad 18 m; Percepción pasiva 14
 languages: dracónico

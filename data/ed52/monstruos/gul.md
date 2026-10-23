@@ -18,8 +18,8 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: veneno
+conditionImmunities: cansancio, envenenado, hechizado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 10
 languages: común

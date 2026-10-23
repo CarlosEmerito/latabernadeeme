@@ -15,11 +15,11 @@ abilities:
   int: 16
   sab: 23
   car: 18
-saves: ''
+saves: Des +6, Con +11, Int +9, Sab +12
 skills: Conocimiento arcano +9, Percepción +12, Religión +15
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: necrótico, radiante
+immunities: psíquico
+conditionImmunities: asustado, hechizado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 22
 languages: celestial, común
@@ -53,6 +53,4 @@ page: 322
 
 **Merodeo arcano.** La esfinge puede teletransportarse hasta 9 m a un espacio sin ocupar que pueda ver y realiza un ataque con sus garras.
 
-**Peso de los años.** Tirada de salvación de Constitución: CD 16, una criatura que la esfinge pueda ver a 36 m o menos. Fallo: el objetivo suma 1 nivel de cansancio. Mientras el objetivo tenga al menos 1 nivel de cansan-
-
-**cio, parecerá 3d10 años más viejo.** Fallo o éxito: la esfinge no puede volver a realizar esta acción hasta el principio de su siguiente turno.
+**Peso de los años.** Tirada de salvación de Constitución: CD 16, una criatura que la esfinge pueda ver a 36 m o menos. Fallo: el objetivo suma 1 nivel de cansancio. Mientras el objetivo tenga al menos 1 nivel de cansancio, parecerá 3d10 años más viejo. Fallo o éxito: la esfinge no puede volver a realizar esta acción hasta el principio de su siguiente turno.

@@ -15,7 +15,7 @@ abilities:
   int: 2
   sab: 10
   car: 4
-saves: ''
+saves: Des +5
 skills: Percepción +2
 resistances: ''
 immunities: ''

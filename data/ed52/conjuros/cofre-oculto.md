@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: Acción
 range: Toque
-components: V, S, M (un cofre con unas dimensiones de 90 cm por 60 cm por 60 cm, construido de mate- riales raros que valgan al menos 5000 po, así como una réplica Diminuta hecha de los mismos materiales y que valga al menos 50 po)
+components: V, S, M (un cofre con unas dimensiones de 90 cm por 60 cm por 60 cm, construido de materiales raros que valgan al menos 5000 po, así como una réplica Diminuta hecha de los mismos materiales y que valga al menos 50 po)
 duration: Hasta que sea disipado
 classes:
 - Mago

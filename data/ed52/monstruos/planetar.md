@@ -15,11 +15,11 @@ abilities:
   int: 19
   sab: 22
   car: 25
-saves: ''
+saves: Fue +12, Con +12, Sab +11, Car +12
 skills: Percepción +11
-resistances: ''
+resistances: radiante
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: asustado, cansancio, hechizado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 21
 languages: todos; telepatía 36 m

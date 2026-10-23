@@ -26,8 +26,6 @@ usa acciones ni acciones adicionales. Huye. El objetivo emplea su turno en aleja
 
 ti de la manera más rápida posible. Póstrate. El objetivo adopta el estado de derribado
 
-y termina su turno. Suelta. El objetivo suelta lo que sea que esté suje-
-
-tando y acaba su turno.
+y termina su turno. Suelta. El objetivo suelta lo que sea que esté sujetando y acaba su turno.
 
 Con un espacio de conjuro de nivel superior. Puedes afectar a una criatura adicional por cada nivel por encima de 1 que tenga el espacio.

@@ -17,9 +17,9 @@ abilities:
   car: 18
 saves: ''
 skills: Conocimiento arcano +12, Historia +12, Percepción +8, Religión +12
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: necrótico, radiante
+immunities: psíquico
+conditionImmunities: asustado, hechizado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 18
 languages: celestial, común
@@ -43,9 +43,9 @@ page: 321
 
 **Garra.** Tirada de ataque cuerpo a cuerpo: +8, alcance 1,5 m. Acierto: 14 (3d6 + 4) de daño cortante.
 
-**Lanzamiento de conjuros.** La esfinge lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 16):
+**Lanzamiento de conjuros.** La esfinge lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 16): A voluntad: detectar magia, identificar, ilusión menor, mano de mago, prestidigitación 1/día cada uno: conocer las leyendas, desplazamiento entre planos, disipar magia, don de lenguas, levantar maldición, localizar objeto
 
-**Rugido desgarramentes (recarga 5–6).** Tirada de salvación de Sabiduría: CD 16, todos los enemigos en una emanación de 90 m que se origina en la esfinge. Fallo: 35 (10d6) de daño psíquico y el objetivo tendrá el es-
+**Rugido desgarramentes (recarga 5–6).** Tirada de salvación de Sabiduría: CD 16, todos los enemigos en una emanación de 90 m que se origina en la esfinge. Fallo: 35 (10d6) de daño psíquico y el objetivo tendrá el estado de incapacitado hasta el principio del siguiente turno de la esfinge.
 
 ## Acciones legendarias
 

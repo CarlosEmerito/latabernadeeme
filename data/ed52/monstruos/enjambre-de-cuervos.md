@@ -17,9 +17,9 @@ abilities:
   car: 6
 saves: ''
 skills: Percepción +5
-resistances: ''
+resistances: contundente, cortante, perforante
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: agarrado, apresado, asustado, aturdido, derribado, hechizado, paralizado, petrificado
 vulnerabilities: ''
 senses: Percepción pasiva 15
 languages: ninguno

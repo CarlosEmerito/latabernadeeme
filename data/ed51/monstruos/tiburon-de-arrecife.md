@@ -39,4 +39,4 @@ page: 425
 
 ## Acciones
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante.
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante. Los tiburones de arrecife son más pequeños que los tiburones gigantes y cazadores. Habitan en aguas poco profundas y suelen cazar en grupos pequeños. Un espécimen adulto mide entre 1,8 y 3 m de largo.

@@ -14,11 +14,7 @@ srd: '5.1'
 page: 140
 ---
 
-Elige un conjuro de nivel 5 o inferior que puedas lanzar, que tenga un tiempo de lanzamiento de 1 acción y que te permita elegirte como objetivo. Lanzas el conjuro (llamado “conjuro contingente”)
-
-contingencia como parte del lanzamiento de y gastas los espacios de conjuro de ambos, pero el conjuro contingente no tiene efecto en ese momento, sino que se activa cuando se produce una circunstancia
-
-determinada. Describes esa circunstancia cuando lanzas los dos conjuros. Por ejemplo, si lanzas contingencia respirar bajo el agua, junto a podrías respirar bajo el agua decir que tenga efecto cuando te sumerjas en agua o en un líquido similar.
+Elige un conjuro de nivel 5 o inferior que puedas lanzar, que tenga un tiempo de lanzamiento de 1 acción y que te permita elegirte como objetivo. Lanzas el conjuro (llamado “conjuro contingente”) como parte del lanzamiento de y gastas contingencia los espacios de conjuro de ambos, pero el conjuro contingente no tiene efecto en ese momento, sino que se activa cuando se produce una circunstancia determinada. Describes esa circunstancia cuando lanzas los dos conjuros. Por ejemplo, si lanzas contingencia respirar bajo el agua, junto a podrías decir que tenga efecto cuando respirar bajo el agua te sumerjas en agua o en un líquido similar.
 
 El conjuro contingente tiene efecto inmediatamente después de que se produzca la circunstancia por primera vez, tanto si quieres como si no, y después termina el conjuro contingencia.
 

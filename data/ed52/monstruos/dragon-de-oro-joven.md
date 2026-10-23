@@ -15,10 +15,10 @@ abilities:
   int: 16
   sab: 13
   car: 20
-saves: ''
+saves: Des +6, Sab +5
 skills: Percepción +9, Perspicacia +5, Persuasión +9, Sigilo +6
 resistances: ''
-immunities: ''
+immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión ciega 9 m, visión en la oscuridad 36 m; Percepción pasiva 19
@@ -43,4 +43,4 @@ page: 305
 
 **Aliento de fuego (recarga 5–6).** Tirada de salvación de Destreza: CD 17, todas las criaturas en un cono de 9 m. Fallo: 55 (10d10) de daño de fuego. Éxito: la mitad del daño.
 
-**Aliento debilitador.** Tirada de salvación de Fuerza: CD 17, todas las criaturas que no estén afectadas ya por este aliento en un cono de 9 m. Fallo: el objetivo tendrá desventaja en las pruebas con d20 basadas en la Fuerza y restará 3 (1d6) a sus tiradas de daño. Repe-
+**Aliento debilitador.** Tirada de salvación de Fuerza: CD 17, todas las criaturas que no estén afectadas ya por este aliento en un cono de 9 m. Fallo: el objetivo tendrá desventaja en las pruebas con d20 basadas en la Fuerza y restará 3 (1d6) a sus tiradas de daño. Repetirá la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente.

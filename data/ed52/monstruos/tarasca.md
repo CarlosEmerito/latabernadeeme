@@ -15,11 +15,11 @@ abilities:
   int: 3
   sab: 11
   car: 11
-saves: ''
+saves: Des +9, Int +5, Sab +9, Car +9
 skills: Percepción +9
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: contundente, cortante, perforante
+immunities: fuego, veneno
+conditionImmunities: asustado, ensordecido, envenenado, hechizado, paralizado
 vulnerabilities: ''
 senses: visión ciega 36 m; Percepción pasiva 19
 languages: ninguno
@@ -55,7 +55,7 @@ page: 370
 
 ## Acciones adicionales
 
-**Engullir.** Tirada de salvación de Fuerza: CD 27, una criatura Grande o más pequeña agarrada por la tarasca (puede tener hasta seis criaturas engullidas a la vez). Fallo: el objetivo será engullido y se pondrá fin al estado de agarrado. Una criatura engullida tendrá los estados de apresada y cegada y no podrá teletransportarse, tendrá cobertura completa contra los ataques y otros efectos fuera de la tarasca y recibirá 56 (16d6) de daño de ácido al principio de cada turno de la tarasca.
+**Engullir.** Tirada de salvación de Fuerza: CD 27, una criatura Grande o más pequeña agarrada por la tarasca (puede tener hasta seis criaturas engullidas a la vez). Fallo: el objetivo será engullido y se pondrá fin al estado de agarrado. Una criatura engullida tendrá los estados de apresada y cegada y no podrá teletransportarse, tendrá cobertura completa contra los ataques y otros efectos fuera de la tarasca y recibirá 56 (16d6) de daño de ácido al principio de cada turno de la tarasca. Si la tarasca sufre 60 o más de daño en un solo turno por parte de una criatura que esté dentro de ella, deberá superar una tirada de salvación de Constitución con CD 20 al final de ese turno o regurgitará a todas las criaturas engullidas, que caerán en espacios a 3 m o menos de la tarasca y tendrán el estado de derribadas. Si la tarasca muere, cualquier criatura engullida dejará de tener el estado de apresada y podrá gastar 6 m de movimiento para escapar del cadáver, del que saldrá con el estado de derribada.
 
 ## Acciones legendarias
 

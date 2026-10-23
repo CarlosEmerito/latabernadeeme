@@ -30,6 +30,4 @@ Puño cerrado. La mano golpea a una criatura o un objeto a 1,5 m o menos de ella
 
 ## A niveles superiores
 
-Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 6 o superior,
-
-el daño de la opción de puño cerrado aumenta en 2d8 y el de la mano apresadora aumenta en 2d6 por cada nivel por encima de 5 que tenga el espacio que hayas empleado.
+Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 6 o superior, el daño de la opción de puño cerrado aumenta en 2d8 y el de la mano apresadora aumenta en 2d6 por cada nivel por encima de 5 que tenga el espacio que hayas empleado.

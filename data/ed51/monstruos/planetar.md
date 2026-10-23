@@ -35,7 +35,7 @@ page: 284
 
 **Armas Angelicales.** Los ataques con arma del planetar son mágicos. Cuando el planetar impacta con cualquier arma, esta inflige 5d8 de daño radiante adicional (ya incluido en el ataque).
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica del planetar es el Carisma (CD de salvación de conjuros 20). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica del planetar es el Carisma (CD de salvación de conjuros 20). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: detectar el bien y el mal, invisibilidad (solo lanzador) 3/día cada uno: alzar a los muertos, barrera de cuchillas, disipar el bien y el mal, golpe flamígero 1/día cada uno: comunión, controlar el clima, plaga de insectos
 
 **Percepción Divina.** El planetar reconoce cualquier mentira que escuche.
 

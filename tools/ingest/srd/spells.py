@@ -64,8 +64,13 @@ def _title_class(name: str) -> str:
     return CLASS_NAMES.get(key, name.strip().capitalize())
 
 
+# La línea de escuela de un truco del 5.2 es «Truco de <escuela> (clases)», y
+# «Truco de la cuerda» es el NOMBRE de un conjuro: sin exigir la escuela detrás,
+# el nombre se tomaba por una línea de escuela y el cuerpo del conjuro anterior
+# se cortaba un renglón antes (T-0241).
 SCHOOL_START = re.compile(
-    r"^(?:" + "|".join(SCHOOLS) + r")\s+(?:de nivel \d+|nivel \d+|nivel \d+ \()|^Truco de "
+    r"^(?:(?:" + "|".join(SCHOOLS) + r")\s+(?:de nivel \d+|nivel \d+|nivel \d+ \())"
+    r"|^Truco de (?i:" + "|".join(SCHOOLS) + r")\b"
 )
 
 
@@ -73,13 +78,48 @@ def _looks_like_school_start(text: str) -> bool:
     return bool(SCHOOL_START.match(text)) or bool(_match_school(text))
 
 
+def _abre_ficha(lines: list[Line], j: int) -> bool:
+    """¿La línea `j` abre la ficha de un conjuro (nombre corto y escuela detrás)?
+
+    El nombre de un conjuro puede parecerse a una línea de escuela —«Truco de la
+    cuerda» empieza como el «Truco de …» de los trucos del 5.2—, así que mirar
+    solo la línea siguiente al cuerpo cortaba antes de tiempo y el último
+    párrafo perdía su renglón final en silencio (T-0241: «…a una criatura
+    adicional por» y ahí se acababa la ficha de trepar cual arácnido).
+    """
+    if j + 1 >= len(lines):
+        return False
+    nombre = lines[j].text.strip()
+    if len(nombre) > 70 or _looks_like_school_start(nombre):
+        return False
+    return _looks_like_school_start(lines[j + 1].text.strip())
+
+
 def _match_school(line: str) -> re.Match | None:
     return SCHOOL_51.match(line) or SCHOOL_52.match(line) or CANTRIP_52.match(line)
 
 
+def _recomponer(piezas: list[str]) -> str:
+    """Une trozos de una misma línea recomponiendo la palabra partida.
+
+    Las propiedades del encabezado llegan en varias líneas y la última puede
+    acabar en el guion del maquetador («…construido de mate-» + «riales
+    raros»). Unirlas con un espacio deja «mate- riales» publicado.
+    """
+    texto = ""
+    for p in piezas:
+        if not texto:
+            texto = p
+        elif texto.endswith("-"):
+            texto = texto[:-1] + p
+        else:
+            texto += " " + p
+    return texto
+
+
 def _extract_props(block: list[Line]) -> dict[str, str]:
     """Reparte las propiedades del encabezado, que llegan partidas en líneas."""
-    joined = " ".join(l.text for l in block)
+    joined = _recomponer([l.text for l in block])
     props: dict[str, str] = {}
     positions = []
     for lbl in PROP_LABELS:
@@ -147,10 +187,13 @@ def parse(lines: list[Line]) -> list[Spell]:
             continue
         j += 1
 
+        # El cuerpo llega hasta el nombre del conjuro siguiente, y ese nombre
+        # entra en el cuerpo: el corte se decide en `_abre_ficha`. La condición
+        # `j < len(lines) - 1` de antes se comía además el último renglón de la
+        # sección (T-0241).
         body_lines: list[Line] = []
-        while j < len(lines) - 1:
-            nxt = lines[j + 1].text.strip()
-            if _looks_like_school_start(nxt):
+        while j < len(lines):
+            if _abre_ficha(lines, j):
                 break
             body_lines.append(lines[j])
             j += 1

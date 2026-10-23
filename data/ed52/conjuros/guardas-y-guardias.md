@@ -29,14 +29,6 @@ Puertas. Todas las puertas de la zona protegida están cerradas de manera mágic
 
 Otro efecto del conjuro. Sitúas uno de los siguientes efectos mágicos dentro de la zona protegida:
 
-• Luces danzantes en cuatro pasillos con un patrón
+• Luces danzantes en cuatro pasillos con un patrón sencillo que las luces reproducirán mientras dure guardas y guardias. • Boca mágica en dos lugares. • Nube apestosa en dos lugares (los vapores volverán tras 10 minutos si se dispersan mientras dure guardas y guardias). • Ráfaga de viento en un pasillo o sala (el viento sopla sin parar mientras dure el conjuro).
 
-sencillo que las luces reproducirán mientras dure guardas y guardias. • Boca mágica en dos lugares. • Nube apestosa en dos lugares (los vapores vol-
-
-verán tras 10 minutos si se dispersan mientras dure guardas y guardias). • Ráfaga de viento en un pasillo o sala (el viento
-
-sopla sin parar mientras dure el conjuro).
-
-• Sugestión en una casilla de 1,5 m de lado, y cual-
-
-quier criatura que entre en ella recibirá la sugestión mentalmente.
+• Sugestión en una casilla de 1,5 m de lado, y cualquier criatura que entre en ella recibirá la sugestión mentalmente.

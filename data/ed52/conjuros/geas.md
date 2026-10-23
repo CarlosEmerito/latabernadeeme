@@ -24,6 +24,6 @@ Mientras esté hechizada, la criatura sufre 5d10 de daño psíquico si actúa de
 
 Puedes dar cualquier orden que quieras, siempre que no sea una actividad que suponga una muerte segura. Si das una orden suicida, el conjuro termina.
 
-deseo, levantar maldición restableciUn conjuro o miento mayor también pone fin a este conjuro.
+Un conjuro o deseo, levantar maldición restablecimiento mayor también pone fin a este conjuro.
 
 Con un espacio de conjuro de nivel superior. Si usas un espacio de niveles 7 u 8, la duración será de 365 días. Si usas un espacio de nivel 9, el conjuro durará hasta que se le ponga fin mediante uno de los conjuros mencionados anteriormente.

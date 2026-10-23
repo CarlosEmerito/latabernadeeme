@@ -26,7 +26,7 @@ languages: común, jerga de ladrones
 cr: 1/8
 xp: 25 PX; BC +2
 proficiency: ''
-gear: ''
+gear: armadura de cuero, ballesta ligera, cimitarra
 srd: '5.2'
 page: 286
 ---

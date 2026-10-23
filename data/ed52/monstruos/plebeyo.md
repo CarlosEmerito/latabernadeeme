@@ -26,7 +26,7 @@ languages: común
 cr: '0'
 xp: 10 PX; BC +2
 proficiency: ''
-gear: ''
+gear: garrote
 srd: '5.2'
 page: 361
 ---

@@ -45,7 +45,7 @@ page: 317
 
 **Estallido de espinas.** Tirada de ataque a distancia: +6, alcance 18 m. Acierto: 7 (1d6 + 4) de daño perforante.
 
-**Lanzamiento de conjuros.** La dríade lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 14):
+**Lanzamiento de conjuros.** La dríade lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 14): A voluntad: encantar animal, hechizar monstruo (dura 24 horas; termina antes de tiempo si la dríade vuelve a lanzarlo), saber druídico 1/día cada uno: enmarañar, pasar sin rastro
 
 ## Acciones adicionales
 

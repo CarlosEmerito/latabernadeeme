@@ -37,4 +37,4 @@ page: 415
 
 ## Acciones
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d6 + 1) de daño perforante. Si el objetivo es una
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d6 + 1) de daño perforante. Si el objetivo es una criatura, deberá superar una tirada de salvación de Fuerza con CD 11 o será derribada. Los mastines son sabuesos imponentes, muy apreciados por todo tipo de humanoides debido a su lealtad y agudos sentidos. Pueden ser entrenados para servir como perros guardianes, de caza o de guerra. Los medianos y otros humanoides Pequeños los usan como monturas.

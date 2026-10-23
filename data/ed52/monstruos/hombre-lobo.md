@@ -41,9 +41,7 @@ page: 339
 
 **Arañazo.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 10 (2d6 + 3) de daño cortante.
 
-**Mordisco (solo en forma de lobo o híbrida).** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 12 (2d8 + 3) de daño perforante. Si el objetivo es un
-
-**humanoide, sufre el siguiente efecto.** Tirada de salvación de Constitución: CD 12. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre lobo controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre lobo durante 24 horas.
+**Mordisco (solo en forma de lobo o híbrida).** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 12 (2d8 + 3) de daño perforante. Si el objetivo es un humanoide, sufre el siguiente efecto. Tirada de salvación de Constitución: CD 12. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre lobo controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre lobo durante 24 horas.
 
 **Arco largo (solo en forma humanoide o híbrida).** Tirada de ataque a distancia: +4, alcance 45/180 m. Acierto: 11 (2d8 + 2) de daño perforante.
 

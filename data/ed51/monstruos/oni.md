@@ -35,7 +35,7 @@ page: 371
 
 **Armas Mágicas.** Los ataques con arma del oni son mágicos.
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del oni es el Carisma (CD de salvación de conjuros 13). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del oni es el Carisma (CD de salvación de conjuros 13). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: invisibilidad, oscuridad 1/día cada uno: cono de frío, dormir, forma gaseosa, hechizar persona
 
 **Regeneración.** El oni recupera 10 puntos de golpe al principio de su turno si tiene al menos 1.
 

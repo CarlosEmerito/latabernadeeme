@@ -15,10 +15,10 @@ abilities:
   int: 18
   sab: 15
   car: 27
-saves: ''
+saves: Des +7, Sab +9
 skills: Percepción +16, Sigilo +7
 resistances: ''
-immunities: ''
+immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión ciega 18 m, visión en la oscuridad 36 m; Percepción pasiva 26
@@ -43,7 +43,7 @@ page: 314
 
 **Aliento de fuego (recarga 5–6).** Tirada de salvación de Destreza: CD 24, todas las criaturas en un cono de 27 m. Fallo: 91 (26d6) de daño de fuego. Éxito: la mitad del daño.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 23, +15 a acertar con ataques de conjuro):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 23, +15 a acertar con ataques de conjuro): A voluntad: detectar magia, orden imperiosa (versión de nivel 2), rayo abrasador (versión de nivel 3) 1/día cada uno: bola de fuego (versión de nivel 6), escudriñar
 
 ## Acciones legendarias
 

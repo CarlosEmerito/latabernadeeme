@@ -16,10 +16,6 @@ page: 127
 
 Lanzando palitos con gemas incrustadas, tirando huesos de dragón, echando las cartas o mediante otra herramienta de adivinación, consigues que una entidad de otro mundo te otorgue un presagio sobre los resultados de un curso de acción concreto que planees llevar a cabo en los próximos 30 minutos. Tu GM elige de entre los siguientes presagios posibles:
 
-• Fortuna, para resultados buenos. • Desdicha, para resultados malos. • Fortuna y desdicha, para resultados a la vez
-
-buenos y malos. • Nada, para resultados que no son particularmente
-
-buenos ni malos. Este conjuro no tiene en cuenta ninguna circunstancia que pueda alterar los resultados, como el lanzamiento de otros conjuros o la pérdida o el encuentro de un compañero.
+• Fortuna, para resultados buenos. • Desdicha, para resultados malos. • Fortuna y desdicha, para resultados a la vez buenos y malos. • Nada, para resultados que no son particularmente buenos ni malos. Este conjuro no tiene en cuenta ninguna circunstancia que pueda alterar los resultados, como el lanzamiento de otros conjuros o la pérdida o el encuentro de un compañero.
 
 Si lanzas el conjuro dos o más veces antes de finalizar tu siguiente descanso largo, hay una posibilidad acumulativa del 25 % por cada lanzamiento después del primero de que recibas un presagio aleatorio. Tu GM realizará esta tirada en secreto.

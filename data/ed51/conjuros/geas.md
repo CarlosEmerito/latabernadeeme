@@ -18,9 +18,7 @@ srd: '5.1'
 page: 160
 ---
 
-Das una orden mágica a una criatura que puedas ver dentro del alcance que la obligue a prestar algún servicio o le impida realizar alguna acción o actividad que tú decidas. Si la criatura puede entenderte, deberá superar una tirada de salvación de Sabiduría o quedará hechizada por ti hasta que termine el conjuro. Mientras esté hechizada por ti,
-
-recibirá 5d10 de daño psíquico cada vez que actúe de una forma directamente contraria a tus instrucciones, pero no más de una vez al día. Si una criatura no puede comprenderte, no se verá afectada por el conjuro.
+Das una orden mágica a una criatura que puedas ver dentro del alcance que la obligue a prestar algún servicio o le impida realizar alguna acción o actividad que tú decidas. Si la criatura puede entenderte, deberá superar una tirada de salvación de Sabiduría o quedará hechizada por ti hasta que termine el conjuro. Mientras esté hechizada por ti, recibirá 5d10 de daño psíquico cada vez que actúe de una forma directamente contraria a tus instrucciones, pero no más de una vez al día. Si una criatura no puede comprenderte, no se verá afectada por el conjuro.
 
 Puedes dar cualquier orden que quieras, siempre que no sea una actividad que suponga una muerte segura. Si das una orden suicida, el conjuro termina.
 

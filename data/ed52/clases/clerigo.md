@@ -78,7 +78,7 @@ Cuando alcances los niveles 4 y 10 de clérigo, aprenderás otro truco de tu ele
 
 Espacios de conjuro. La tabla “Rasgos de clérigo” muestra cuántos espacios de conjuro tienes para lanzar tus conjuros de nivel 1 y superiores. Recuperas todos los espacios utilizados tras finalizar un descanso largo.
 
-Conjuros preparados de nivel 1 y superiores. Preparas una serie de conjuros de nivel 1 y superiores, que son los que podrás lanzar con este rasgo. Para empezar, elige cuatro conjuros de nivel 1 de ben- la lista de conjuros de clérigo. Se recomiendan dición, curar heridas, escudo de fe y saeta guía.
+Conjuros preparados de nivel 1 y superiores. Preparas una serie de conjuros de nivel 1 y superiores, que son los que podrás lanzar con este rasgo. Para empezar, elige cuatro conjuros de nivel 1 de la lista de conjuros de clérigo. Se recomiendan bendición, curar heridas, escudo de fe y saeta guía.
 
 El número de conjuros de tu lista aumenta conforme subes de nivel de clérigo, como se muestra en la columna “Conjuros preparados” de la tabla “Rasgos de clérigo”. Cuando ese número aumente, elige conjuros adicionales de la lista de conjuros de clérigo hasta que el número de conjuros de tu lista coincida con el número de la tabla. Estos conjuros deben ser de un nivel para el que tengas espacios de conjuro. Por ejemplo, si eres una clériga de nivel 3, podrías preparar cualquier combinación de seis conjuros de nivel 1 o 2.
 

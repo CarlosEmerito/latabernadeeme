@@ -33,7 +33,7 @@ page: 335
 
 ## Rasgos
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica del drow es el Carisma (CD de salvación de conjuros 11). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica del drow es el Carisma (CD de salvación de conjuros 11). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: luces danzantes 1/día cada uno: fuego feérico, oscuridad
 
 **Linaje Feérico.** El drow tiene ventaja en las tiradas de salvación para evitar ser hechizado y la magia no puede dormirlo.
 
@@ -43,4 +43,4 @@ page: 335
 
 **Espada corta.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
 
-**Ballesta de mano.** Ataque con arma a distancia: +4 a impactar, alcance 9/36 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante y el objetivo deberá
+**Ballesta de mano.** Ataque con arma a distancia: +4 a impactar, alcance 9/36 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante y el objetivo deberá superar una tirada de salvación de Constitución con CD 13 o quedará envenenado durante 1 hora. Si la falla por 5 o más, el objetivo también quedará inconsciente mientras esté envenenado de esta forma. El objetivo se despertará si recibe algún daño o si otra criatura utiliza su acción para despertarlo.

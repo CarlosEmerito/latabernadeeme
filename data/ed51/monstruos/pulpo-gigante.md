@@ -41,8 +41,6 @@ page: 420
 
 ## Acciones
 
-**Tentáculos.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 4,5 m, un objetivo. Impacto: 10 (2d6 + 3) de daño contundente. Si el objetivo es una
-
-**criatura, quedará agarrada (CD 16 para escapar).** Hasta que el agarre termine, el objetivo estará apresado y el pulpo no podrá usar sus tentáculos contra otro objetivo.
+**Tentáculos.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 4,5 m, un objetivo. Impacto: 10 (2d6 + 3) de daño contundente. Si el objetivo es una criatura, quedará agarrada (CD 16 para escapar). Hasta que el agarre termine, el objetivo estará apresado y el pulpo no podrá usar sus tentáculos contra otro objetivo.
 
 **Nube de tinta (se recarga tras un descanso corto o largo).** Si el pulpo está bajo el agua, una nube de tinta de 6 m de radio se extiende a su alrededor. Esta zona estará muy oscura durante 1 minuto, aunque una corriente fuerte puede dispersar la tinta. Tras descargar la tinta, el pulpo puede realizar la acción de correr como acción adicional.

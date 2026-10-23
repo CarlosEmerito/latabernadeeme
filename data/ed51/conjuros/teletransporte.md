@@ -34,9 +34,7 @@ Familiaridad. “Círculo permanente” se refiere a un círculo de teletranspor
 
 En el objetivo. Tu grupo y tú (o el objeto objetivo) aparecéis donde tú querías.
 
-Apartado del objetivo. Tu grupo y tú (o el objeto objetivo) aparecéis a una distancia aleatoria del destino en una dirección al azar. La distancia respecto al objetivo es de 1d10 × 1d10 por ciento de la distancia que se debía recorrer. Por ejemplo, si estabas intentando recorrer 180 km, aterrizas lejos del objetivo y sacas 5 y 3 en los dos d10, estarías apartado del objetivo un 15 %, es decir, 27 km. Tu GM determinará al azar la dirección en la que te has desviado tirando 1d8 y designando el 1 como el norte, el 2 como el noreste, el 3 como el este y así
-
-sucesivamente siguiendo los puntos de la brújula. Si te estabas teletransportando a una ciudad costera y acabas a 27 km de ella en mar abierto, podrías tener problemas.
+Apartado del objetivo. Tu grupo y tú (o el objeto objetivo) aparecéis a una distancia aleatoria del destino en una dirección al azar. La distancia respecto al objetivo es de 1d10 × 1d10 por ciento de la distancia que se debía recorrer. Por ejemplo, si estabas intentando recorrer 180 km, aterrizas lejos del objetivo y sacas 5 y 3 en los dos d10, estarías apartado del objetivo un 15 %, es decir, 27 km. Tu GM determinará al azar la dirección en la que te has desviado tirando 1d8 y designando el 1 como el norte, el 2 como el noreste, el 3 como el este y así sucesivamente siguiendo los puntos de la brújula. Si te estabas teletransportando a una ciudad costera y acabas a 27 km de ella en mar abierto, podrías tener problemas.
 
 Área similar. Tu grupo y tú (o el objeto objetivo) acabáis en una zona diferente pero que se parece visual o temáticamente al área objetivo. Si te dirigías a tu laboratorio, por ejemplo, podrías acabar en el laboratorio de otro mago o en una tienda de suministros de alquimia que tenga muchos de los objetos y las herramientas que también tienes tú. En general, aparecerás en el espacio similar más cercano al objetivo, pero como el conjuro no tiene límite de alcance, podrías acabar en cualquier lugar del plano.
 

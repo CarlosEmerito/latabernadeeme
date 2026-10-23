@@ -15,11 +15,11 @@ abilities:
   int: 10
   sab: 10
   car: 14
-saves: ''
+saves: Des +5, Sab +2
 skills: Percepción +4, Persuasión +4, Sigilo +7
-resistances: ''
+resistances: necrótico
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: hechizado (salvo por parte de su amo vampiro)
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 14
 languages: común y otro cualquiera

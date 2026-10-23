@@ -41,4 +41,4 @@ page: 430
 
 **Espada corta.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 5 (1d6 + 2) de daño perforante.
 
-**Arco largo.** Ataque con arma a distancia: +4 a impactar, alcance 45/180 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante.
+**Arco largo.** Ataque con arma a distancia: +4 a impactar, alcance 45/180 m, un objetivo. Impacto: 6 (1d8 + 2) de daño perforante. Los son cazadores y rastreadores batidores avezados que ofrecen sus servicios a quien esté dispuesto a pagarlos. La mayoría cazan animales salvajes, pero unos pocos trabajan como cazarrecompensas, guías o desempeñando labores de reconocimiento para ejércitos.

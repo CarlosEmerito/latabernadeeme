@@ -15,11 +15,11 @@ abilities:
   int: 16
   sab: 19
   car: 18
-saves: ''
+saves: Des +8, Con +7, Int +7, Sab +8, Car +8
 skills: Conocimiento arcano +11, Historia +11, Religión +11
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: veneno
+conditionImmunities: apresado, envenenado, hechizado, paralizado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 14
 languages: celestial, común
@@ -41,6 +41,6 @@ page: 353
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +8, alcance 3 m. Acierto: 17 (2d12 + 4) de daño perforante más 22 (4d10) de daño de veneno.
 
-**Lanzamiento de conjuros.** La naga lanza uno de los siguientes conjuros, que no requiere componentes somáticos o materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 16):
+**Lanzamiento de conjuros.** La naga lanza uno de los siguientes conjuros, que no requiere componentes somáticos o materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 16): A voluntad: taumaturgia 1/día cada uno: clarividencia, curar heridas (versión de nivel 6), geas, golpe flamígero (versión de nivel 6), visión veraz
 
 **Saliva venenosa.** Tirada de salvación de Constitución: CD 16, una criatura que la naga pueda ver a 18 m o menos. Fallo: 31 (7d8) de daño de veneno y el objetivo tendrá el estado de cegado hasta el principio del siguiente turno de la naga. Éxito: solo la mitad del daño.

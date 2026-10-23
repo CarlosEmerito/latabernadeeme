@@ -33,9 +33,7 @@ page: 356
 
 ## Rasgos
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica innata de la lamia es el Carisma (CD de salvación
-
-**de conjuros 13).** Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica innata de la lamia es el Carisma (CD de salvación de conjuros 13). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: disfrazarse (cualquier forma humanoide), imagen mayor 3/día cada uno: escudriñar, hechizar persona, imagen múltiple, sugestión 1/día: geas
 
 ## Acciones
 

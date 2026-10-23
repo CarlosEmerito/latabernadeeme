@@ -9,7 +9,6 @@ page: 242
 
 Recibes un bonificador de +2 a las tiradas de ataque y de daño que hagas con esta arma mágica. Además, puedes realizar un ataque con ella como acción adicional en cada uno de tus turnos.
 
-Documento de referencia del sistema 5.1. 242
 
 Cinturón de fuerza de gigante
 

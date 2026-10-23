@@ -16,9 +16,7 @@ srd: '5.1'
 page: 208
 ---
 
-Tocas a una criatura voluntaria. Hasta que termine el conjuro, el objetivo consigue una velocidad
-
-volando de 18 m. Cuando el conjuro acabe, el objetivo caerá si aún está en el aire, excepto si puede detener la caída.
+Tocas a una criatura voluntaria. Hasta que termine el conjuro, el objetivo consigue una velocidad volando de 18 m. Cuando el conjuro acabe, el objetivo caerá si aún está en el aire, excepto si puede detener la caída.
 
 ## A niveles superiores
 

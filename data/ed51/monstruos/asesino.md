@@ -43,6 +43,6 @@ page: 429
 
 **Ataque múltiple.** El asesino realiza dos ataques con su espada corta.
 
-**Espada corta.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 6 (1d6 + 3) de daño perforante y el objetivo deberá
+**Espada corta.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 6 (1d6 + 3) de daño perforante y el objetivo deberá hacer una tirada de salvación de Constitución con CD 15; sufrirá 24 (7d6) de daño de veneno si la falla o la mitad del daño si la supera.
 
-**Ballesta ligera.** Ataque con arma a distancia: +6 a impactar, alcance 24/96 m, un objetivo. Impacto: 7 (1d8 + 3) de daño perforante y el objetivo deberá
+**Ballesta ligera.** Ataque con arma a distancia: +6 a impactar, alcance 24/96 m, un objetivo. Impacto: 7 (1d8 + 3) de daño perforante y el objetivo deberá hacer una tirada de salvación de Constitución con CD 15; sufrirá 24 (7d6) de daño de veneno si la falla o la mitad del daño si la supera. Expertos en el uso de venenos, los asesinos son sicarios despiadados que trabajan para nobles, maestros gremiales, soberanos o cualquiera que pueda permitirse sus servicios.

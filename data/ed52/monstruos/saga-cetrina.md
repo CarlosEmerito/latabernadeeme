@@ -45,4 +45,4 @@ page: 365
 
 **Garra.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 8 (1d8 + 4) de daño cortante más 3 (1d6) de daño de veneno.
 
-**Lanzamiento de conjuros.** La saga lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 12, +4 a acertar con ataques de conjuro):
+**Lanzamiento de conjuros.** La saga lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 12, +4 a acertar con ataques de conjuro): A voluntad: disfrazarse (24 horas de duración), ilusión menor, invisibilidad (solo lanzador y la saga no deja huellas mientras es invisible), luces danzantes, rayo nauseabundo (versión de nivel 3)

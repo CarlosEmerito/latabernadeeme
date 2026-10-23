@@ -32,6 +32,4 @@ Objeto en criatura. Puedes convertir un objeto en cualquier tipo de criatura, si
 
 Si el conjuro se vuelve permanente, dejas de controlar a la criatura, que puede seguir siendo amistosa contigo en función de cómo la hayas tratado.
 
-Criatura en objeto. Si conviertes a una criatura en un objeto, se transforma en esa forma junto con todo
-
-lo que lleve o vista. El perfil de la criatura pasa a ser el del objeto y no tiene recuerdos del tiempo pasado en esa forma después de que el conjuro termine y recupere su forma normal.
+Criatura en objeto. Si conviertes a una criatura en un objeto, se transforma en esa forma junto con todo lo que lleve o vista. El perfil de la criatura pasa a ser el del objeto y no tiene recuerdos del tiempo pasado en esa forma después de que el conjuro termine y recupere su forma normal.

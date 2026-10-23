@@ -15,7 +15,7 @@ abilities:
   int: 6
   sab: 13
   car: 6
-saves: ''
+saves: Con +7
 skills: ''
 resistances: ''
 immunities: ''
@@ -35,9 +35,7 @@ page: 357
 
 **Ataque múltiple.** El otyugh realiza un ataque de mordisco y dos con sus tentáculos.
 
-**Mordisco.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 12 (2d8 + 3) de daño perforante y el objetivo tendrá el estado de envenenado. Siempre que el objetivo envenenado termine un descanso largo, sufrirá el siguiente efecto. Tirada de salvación de Constitución: CD 15. Fallo: los puntos de golpe máximos del objetivo se reducirán en 5 (1d10) y no volverán
-
-**a la normalidad hasta que deje de tener el estado de envenenado.** Éxito: el estado de envenenado termina.
+**Mordisco.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 12 (2d8 + 3) de daño perforante y el objetivo tendrá el estado de envenenado. Siempre que el objetivo envenenado termine un descanso largo, sufrirá el siguiente efecto. Tirada de salvación de Constitución: CD 15. Fallo: los puntos de golpe máximos del objetivo se reducirán en 5 (1d10) y no volverán a la normalidad hasta que deje de tener el estado de envenenado. Éxito: el estado de envenenado termina.
 
 **Tentáculo.** Tirada de ataque cuerpo a cuerpo: +6, alcance 3 m. Acierto: 12 (2d8 + 3) de daño perforante. Si el objetivo es una criatura Mediana o más pequeña, tendrá el estado de agarrada (CD 13 para escapar) por uno de los dos tentáculos.
 

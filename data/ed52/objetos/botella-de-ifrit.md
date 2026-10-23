@@ -29,14 +29,8 @@ Las dos siguientes veces que se abra la botella,
 
 ocurrirá el mismo efecto. Si la botella se abre
 
-una cuarta vez, el ifrit se escapará y desapare-
+una cuarta vez, el ifrit se escapará y desaparecerá, y la botella perderá su magia.
 
-cerá, y la botella perderá su magia.
-
-10 El ifrit entiende tus idiomas y puede lanzar de-
-
-seo una vez para ti. Desaparecerá cuando con-
-
-ceda el deseo o después de 1 hora y la botella
+10 El ifrit entiende tus idiomas y puede lanzar deseo una vez para ti. Desaparecerá cuando conceda el deseo o después de 1 hora y la botella
 
 perderá su magia.

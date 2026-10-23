@@ -18,7 +18,7 @@ abilities:
 saves: ''
 skills: Percepción +5, Sigilo +5
 resistances: ''
-immunities: ''
+immunities: frío
 conditionImmunities: ''
 vulnerabilities: ''
 senses: Percepción pasiva 15

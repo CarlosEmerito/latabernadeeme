@@ -8,5 +8,3 @@ page: 226
 ---
 
 Tendrás una velocidad nadando de 12 m mientras lleves puesto este anillo.
-
-Documento de referencia del sistema 5.1. 226

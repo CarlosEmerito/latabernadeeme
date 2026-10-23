@@ -43,4 +43,4 @@ page: 401
 
 **Garras.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 9 (2d6 + 2) de daño cortante.
 
-**Pico.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (2d4 + 2) de daño perforante.
+**Pico.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (2d4 + 2) de daño perforante. Los buitres gigantes son seres sumamente inteligentes con propensión a hacer el mal. A diferencia de sus primos de menor tamaño, atacarán a cualquier criatura herida que encuentren, buscando adelantar su destino final. Aun así, se sabe de buitres gigantes que han perseguido a una víctima hambrienta y sedienta durante días por el mero placer de verla sufrir.

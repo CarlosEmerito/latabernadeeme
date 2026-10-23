@@ -26,7 +26,7 @@ languages: común, goblin
 cr: 1/2
 xp: 100 PX; BC +2
 proficiency: ''
-gear: ''
+gear: arco largo, escudo, espada larga, media armadura
 srd: '5.2'
 page: 338
 ---

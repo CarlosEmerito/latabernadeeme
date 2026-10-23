@@ -17,9 +17,7 @@ page: 140
 
 Tu toque provoca enfermedades. Haz un ataque de conjuro cuerpo a cuerpo contra una criatura que esté dentro de tu alcance. Si impacta, le infliges una enfermedad de tu elección de entre las descritas más adelante.
 
-Al final de cada uno de sus turnos, el objetivo debe realizar una tirada de salvación de Constitución. Si falla tres, los efectos de la enfermedad durarán
-
-hasta que termine el conjuro y la criatura no hará más tiradas de salvación. Si supera tres, la criatura se recuperará de la enfermedad y el conjuro terminará.
+Al final de cada uno de sus turnos, el objetivo debe realizar una tirada de salvación de Constitución. Si falla tres, los efectos de la enfermedad durarán hasta que termine el conjuro y la criatura no hará más tiradas de salvación. Si supera tres, la criatura se recuperará de la enfermedad y el conjuro terminará.
 
 Como este conjuro provoca una enfermedad natural en el objetivo, se le puede aplicar cualquier efecto que cure una enfermedad o alivie sus efectos de cualquier otra forma.
 

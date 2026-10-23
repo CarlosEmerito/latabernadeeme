@@ -47,4 +47,4 @@ page: 431
 
 ## Reacciones
 
-**Parada.** El caballero suma 2 a su CA contra un ataque cuerpo a cuerpo que le fuera a impactar. Para poder hacer esto, debe ver a su atacante y estar empuñando un arma cuerpo a cuerpo.
+**Parada.** El caballero suma 2 a su CA contra un ataque cuerpo a cuerpo que le fuera a impactar. Para poder hacer esto, debe ver a su atacante y estar empuñando un arma cuerpo a cuerpo. Los caballeros son guerreros que se ponen al servicio de gobernantes, órdenes religiosas y causas nobles. El alineamiento del caballero determina hasta qué punto honra su compromiso. Tanto si parten para cumplir una misión o se encuentran patrullando el reino, los caballeros suelen viajar con un séquito del que forman parte escuderos y asalariados, a los que puedes representar usando el perfil del plebeyo.

@@ -33,7 +33,7 @@ page: 345
 
 ## Rasgos
 
-**Rabia.** Si el gnoll reduce a 0 los puntos de golpe de una criatura con un ataque cuerpo a cuerpo en su
+**Rabia.** Si el gnoll reduce a 0 los puntos de golpe de una criatura con un ataque cuerpo a cuerpo en su turno, puede utilizar una acción adicional para moverse hasta la mitad de su velocidad y realizar un ataque de mordisco.
 
 ## Acciones
 

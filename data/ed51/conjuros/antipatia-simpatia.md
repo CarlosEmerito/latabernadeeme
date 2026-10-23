@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: 1 hora
 range: 18 m
-components: V, S, M (un pedazo de alumbre antipatía empapado en vinagre para el efecto de o una gota de miel para el efecto de simpatía)
+components: V, S, M (un pedazo de alumbre empapado en vinagre para el efecto de antipatía o una gota de miel para el efecto de simpatía)
 duration: 10 días
 classes:
 - Druida

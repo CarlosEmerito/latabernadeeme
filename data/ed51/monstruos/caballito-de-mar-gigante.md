@@ -39,4 +39,4 @@ page: 402
 
 ## Acciones
 
-**Embestir.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d6 + 1) de daño contundente.
+**Embestir.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d6 + 1) de daño contundente. Al igual que sus parientes más pequeños, los caballitos de mar gigantes son seres tímidos, de vivos colores y con la cola enroscada. Los elfos acuáticos los utilizan como monturas.

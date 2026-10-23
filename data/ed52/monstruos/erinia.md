@@ -15,11 +15,11 @@ abilities:
   int: 14
   sab: 14
   car: 18
-saves: ''
+saves: Des +7, Con +8, Car +8
 skills: Percepción +6, Persuasión +8
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: frío
+immunities: fuego, veneno
+conditionImmunities: envenenado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 16
 languages: infernal; telepatía 36 m

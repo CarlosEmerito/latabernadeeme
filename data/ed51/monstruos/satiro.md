@@ -41,7 +41,7 @@ page: 380
 
 **Espada corta.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 6 (1d6 + 3) de daño perforante.
 
-**Arco corto.** Ataque con arma a distancia: +5 a impactar, alcance 24/96 m, un objetivo. Impacto: 6 (1d6 + 3) de daño perforante.
+**Arco corto.** Ataque con arma a distancia: +5 a impactar, alcance 24/96 m, un objetivo. Impacto: 6 (1d6 + 3) de daño perforante. Cualquier bestia, gigante, humanoide o monstruosidad puede convertirse en un semidragón. Conservará su perfil, salvo por las excepciones que se indican a continuación.
 
 **Desafío.** Para evitar tener que volver a calcular el valor de desafío de la criatura, aplica esta plantilla solo a aquellos seres que cumplan con los requisitos opcionales que se indican en la tabla “Ataque de aliento” que aparece más adelante. De lo contrario, calcula de nuevo el valor de desafío una vez aplicada la plantilla.
 
@@ -49,4 +49,4 @@ page: 380
 
 **Resistencias.** El semidragón gana resistencia a un tipo de daño que depende de su color.
 
-**Idiomas.** El semidragón habla dracónico, además de cualquier otro idioma que ya conozca.
+**Idiomas.** El semidragón habla dracónico, además de cualquier otro idioma que ya conozca. Nueva acción: ataque de aliento. El semidragón posee el ataque de aliento de su mitad dragón. Su tamaño determina el funcionamiento de esta acción.

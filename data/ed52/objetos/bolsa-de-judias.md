@@ -15,11 +15,7 @@ Si sacas una judía de la bolsa, la plantas en tierra o arena y la riegas, la ju
 
 1d100 Efecto
 
-01 Brotan 5d4 hongos venenosos. Si una cria-
-
-tura come un hongo, tira un dado. Si el re-
-
-sultado es impar, la criatura deberá superar
+01 Brotan 5d4 hongos venenosos. Si una criatura come un hongo, tira un dado. Si el resultado es impar, la criatura deberá superar
 
 una tirada de salvación de Constitución con
 
@@ -27,9 +23,7 @@ CD 15 o recibirá 5d6 de daño de veneno
 
 y tendrá el estado de envenenada durante
 
-1 hora. Si el resultado es par, la criatura ob-
-
-tendrá 5d6 puntos de golpe temporales que
+1 hora. Si el resultado es par, la criatura obtendrá 5d6 puntos de golpe temporales que
 
 durarán 1 hora.
 
@@ -47,15 +41,9 @@ El chorro tiene una altura de 9 m y dura
 
 Si el resultado es impar, el ent es caótico
 
-malvado. Si el resultado es par, el ent es caó-
+malvado. Si el resultado es par, el ent es caótico bueno.
 
-tico bueno.
-
-21–30 Aparece una estatua de piedra animada e in-
-
-móvil con tu apariencia y te amenaza verbal-
-
-mente. Si la abandonas y otros se acercan,
+21–30 Aparece una estatua de piedra animada e inmóvil con tu apariencia y te amenaza verbalmente. Si la abandonas y otros se acercan,
 
 la estatua te describirá como el más vil de
 
@@ -99,15 +87,11 @@ rosa intenso.
 
 la tierra y ataca.
 
-71–80 Crece un árbol frutal. Tiene 1d10 + 20 fru-
-
-tas, de las cuales 1d8 se comportan como
+71–80 Crece un árbol frutal. Tiene 1d10 + 20 frutas, de las cuales 1d8 se comportan como
 
 pociones determinadas al azar. El árbol se
 
-desvanece tras 1 hora. La fruta recogida per-
-
-manece y conserva la magia durante 30 días.
+desvanece tras 1 hora. La fruta recogida permanece y conserva la magia durante 30 días.
 
 81–90 Aparece un nido con 1d4 + 3 huevos de los
 
@@ -119,9 +103,7 @@ de salvación de Constitución con CD 20.
 
 Si la supera, aumentará su puntuación de
 
-característica más baja en 1 de forma perma-
-
-nente (se elegirá al azar la puntuación si hay
+característica más baja en 1 de forma permanente (se elegirá al azar la puntuación si hay
 
 varias puntuaciones que empatan como la
 
@@ -137,20 +119,14 @@ interna.
 
 un mausoleo con una momia, un señor de
 
-las momias u otro muerto viviente a elec-
-
-ción de tu GM. El sarcófago contiene tesoros
+las momias u otro muerto viviente a elección de tu GM. El sarcófago contiene tesoros
 
 a elección de tu GM.
 
 96–00 Brota un tallo de judías gigante que crece
 
-hasta la altura que decida tu GM, que tam-
+hasta la altura que decida tu GM, que también elige adónde conduce la parte superior.
 
-bién elige adónde conduce la parte superior.
-
-Por ejemplo, podría dar a un hermoso mi-
-
-rador, al castillo de un gigante de las nubes
+Por ejemplo, podría dar a un hermoso mirador, al castillo de un gigante de las nubes
 
 o a otro plano de existencia.

@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: Acción
 range: 90 m
-components: V, S, M (una esfera de cristal en minia- tura)
+components: V, S, M (una esfera de cristal en miniatura)
 duration: Instantáneo
 classes:
 - Hechicero

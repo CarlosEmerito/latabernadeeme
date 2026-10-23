@@ -22,14 +22,8 @@ Puntos de golpe Efecto
 
 0–20 El objetivo muere.
 
-21–30 El objetivo tiene los estados de aturdido,
+21–30 El objetivo tiene los estados de aturdido, cegado y ensordecido durante 1 hora.
 
-cegado y ensordecido durante 1 hora.
+31–40 El objetivo tiene los estados de cegado y ensordecido durante 10 minutos.
 
-31–40 El objetivo tiene los estados de cegado
-
-y ensordecido durante 10 minutos.
-
-41–50 El objetivo tiene el estado de ensordecido
-
-durante 1 minuto.
+41–50 El objetivo tiene el estado de ensordecido durante 1 minuto.

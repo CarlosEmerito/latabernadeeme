@@ -37,4 +37,4 @@ page: 436
 
 ## Acciones
 
-**Cimitarra.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, una criatura. Impacto: 4 (1d6 + 1) de daño cortante.
+**Cimitarra.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, una criatura. Impacto: 4 (1d6 + 1) de daño cortante. Los juran lealtad a poderes oscuros, sectarios como príncipes elementales, señores demoníacos o archidiablos. La mayoría de ellos ocultan sus actividades para evitar que los condenen al ostracismo, los apresen o los ejecuten por sus creencias. A diferencia de los acólitos malvados, los sectarios suelen mostrar señales evidentes de locura en sus actos y creencias.

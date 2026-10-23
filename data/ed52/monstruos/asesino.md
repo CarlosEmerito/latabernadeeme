@@ -15,9 +15,9 @@ abilities:
   int: 16
   sab: 11
   car: 10
-saves: ''
+saves: Des +7, Int +6
 skills: Acrobacias +7, Percepción +6, Sigilo +10
-resistances: ''
+resistances: veneno
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''

@@ -39,4 +39,4 @@ page: 411
 
 ## Acciones
 
-**Pico.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d4 + 2) de daño perforante.
+**Pico.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d4 + 2) de daño perforante. Los halcones sangrientos reciben este nombre tanto por sus plumas carmesíes como por su agresividad, pues atacan con temeridad a prácticamente cualquier otro animal, apuñalándolo con su afilado pico. Estas aves forman enormes bandadas, que aprovechan la superioridad numérica para abatir a sus presas.

@@ -15,7 +15,7 @@ abilities:
   int: 12
   sab: 16
   car: 16
-saves: ''
+saves: Con +10, Sab +7
 skills: Percepción +11, Perspicacia +7
 resistances: ''
 immunities: ''
@@ -39,7 +39,7 @@ page: 328
 
 **Nube de tormenta.** Tirada de ataque a distancia: +12, alcance 72 m. Acierto: 18 (3d6 + 8) de daño de trueno y el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno.
 
-**Lanzamiento de conjuros.** El gigante lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 15):
+**Lanzamiento de conjuros.** El gigante lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 15): A voluntad: detectar magia, luz, nube de oscurecimiento 1/día cada uno: controlar el clima, forma gaseosa, telequinesis
 
 ## Acciones adicionales
 

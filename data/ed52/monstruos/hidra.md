@@ -19,7 +19,7 @@ saves: ''
 skills: Percepción +6
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: asustado, aturdido, cegado, ensordecido, hechizado, inconsciente
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 16
 languages: ninguno

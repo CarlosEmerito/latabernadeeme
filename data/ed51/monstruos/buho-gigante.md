@@ -39,4 +39,4 @@ page: 401
 
 ## Acciones
 
-**Garras.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 8 (2d6 + 1) de daño cortante.
+**Garras.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 8 (2d6 + 1) de daño cortante. Los suelen llevarse bien con los búhos gigantes feéricos y el resto de criaturas silvestres. Además, sirven de protectores de los bosques.

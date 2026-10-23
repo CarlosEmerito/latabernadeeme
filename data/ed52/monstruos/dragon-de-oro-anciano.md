@@ -15,10 +15,10 @@ abilities:
   int: 18
   sab: 17
   car: 28
-saves: ''
+saves: Des +9, Sab +10
 skills: Percepción +17, Perspicacia +10, Persuasión +16, Sigilo +9
 resistances: ''
-immunities: ''
+immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión ciega 18 m, visión en la oscuridad 36 m; Percepción pasiva 27
@@ -47,7 +47,7 @@ page: 306
 
 **Aliento debilitador.** Tirada de salvación de Fuerza: CD 24, todas las criaturas que no estén afectadas ya por este aliento en un cono de 27 m. Fallo: el objetivo tendrá desventaja en las pruebas con d20 basadas en la Fuerza y restará 5 (1d10) a sus tiradas de daño. Repetirá la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 24, +16 a acertar con ataques de conjuro):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 24, +16 a acertar con ataques de conjuro): A voluntad: cambiar de forma (solo forma de bestia o humanoide, no se obtienen puntos de golpe temporales del conjuro y no se requieren concentración ni puntos de golpe temporales para mantener el conjuro), detectar magia, saeta guía (versión de nivel 4) 1/día cada uno: golpe flamígero (versión de nivel 6), palabra de regreso, zona de la verdad
 
 ## Acciones legendarias
 

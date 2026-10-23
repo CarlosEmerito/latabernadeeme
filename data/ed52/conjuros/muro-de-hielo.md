@@ -18,9 +18,7 @@ Creas un muro de hielo en una superficie sólida dentro del alcance. Puedes darl
 
 Al aparecer, si el muro atraviesa el espacio de una criatura, esta es empujada hacia un lado del muro (tú eliges cuál) y hace una tirada de salvación de Destreza; sufrirá 10d6 de daño de frío si la falla o la mitad de daño si la supera.
 
-El muro es un objeto que se puede dañar y, por tanto, atravesar. Tiene una CA de 12, 30 puntos de golpe por cada sección de 3 m de lado, inmunidad al daño de frío, psíquico y de veneno y vulnerabilidad al daño de fuego. Si se reduce una sección
-
-del muro de 3 m de lado a 0 puntos de golpe, se destruirá y dejará una capa de aire gélido en el lugar que ocupaba.
+El muro es un objeto que se puede dañar y, por tanto, atravesar. Tiene una CA de 12, 30 puntos de golpe por cada sección de 3 m de lado, inmunidad al daño de frío, psíquico y de veneno y vulnerabilidad al daño de fuego. Si se reduce una sección del muro de 3 m de lado a 0 puntos de golpe, se destruirá y dejará una capa de aire gélido en el lugar que ocupaba.
 
 Si una criatura pasa por la capa de aire gélido por primera vez en un turno, deberá hacer una tirada de salvación de Constitución; sufrirá 5d6 de daño de frío si la falla o la mitad de daño si la supera.
 

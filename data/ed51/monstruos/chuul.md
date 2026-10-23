@@ -41,6 +41,6 @@ page: 290
 
 **Ataque múltiple.** El chuul realiza dos ataques con sus tenazas. Si está agarrando a una criatura, también puede usar sus tentáculos una vez.
 
-**Tenaza.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 3 m, un objetivo. Impacto: 11 (2d6 + 4) de daño contundente. El objetivo quedará
+**Tenaza.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 3 m, un objetivo. Impacto: 11 (2d6 + 4) de daño contundente. El objetivo quedará agarrado (CD 14 para escapar) si es una criatura Grande o más pequeña y el chuul no está agarrando a otras dos criaturas.
 
-**Tentáculos.** Una criatura agarrada por el chuul deberá superar una tirada de salvación de Constitución con CD 13 o quedará envenenada durante 1 minuto. Hasta que el efecto de este veneno termine, el objetivo estará paralizado. El objetivo puede repetir la tirada
+**Tentáculos.** Una criatura agarrada por el chuul deberá superar una tirada de salvación de Constitución con CD 13 o quedará envenenada durante 1 minuto. Hasta que el efecto de este veneno termine, el objetivo estará paralizado. El objetivo puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto.

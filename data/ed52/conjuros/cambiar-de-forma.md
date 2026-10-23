@@ -15,9 +15,7 @@ srd: '5.2'
 page: 126
 ---
 
-Asumes la forma de otra criatura hasta que termine el conjuro o hasta que uses una acción de magia para adoptar otra forma para la que cumplas los requisitos. La nueva forma debe ser la de una criatura con un valor de desafío igual o menor a tu nivel o valor de desafío. Tienes que haber visto alguna
-
-criatura de ese tipo y no puede ser un autómata ni un muerto viviente.
+Asumes la forma de otra criatura hasta que termine el conjuro o hasta que uses una acción de magia para adoptar otra forma para la que cumplas los requisitos. La nueva forma debe ser la de una criatura con un valor de desafío igual o menor a tu nivel o valor de desafío. Tienes que haber visto alguna criatura de ese tipo y no puede ser un autómata ni un muerto viviente.
 
 Cuando lanzas el conjuro, obtienes una cantidad de puntos de golpe temporales igual a los puntos de golpe de la primera forma que adoptes. Estos puntos de golpe temporales se desvanecerán si conservas alguno cuando el conjuro termine.
 

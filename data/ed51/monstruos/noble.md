@@ -37,4 +37,4 @@ page: 435
 
 ## Reacciones
 
-**Parada.** El noble suma 2 a su CA contra un ataque cuerpo a cuerpo que le fuera a impactar. Para poder
+**Parada.** El noble suma 2 a su CA contra un ataque cuerpo a cuerpo que le fuera a impactar. Para poder hacer esto, debe ver a su atacante y estar empuñando un arma cuerpo a cuerpo. Los poseen la autoridad e influencia propias nobles de un miembro de las clases más altas. Algunos tienen la fortuna y los contactos necesarios para medirse con generales o incluso monarcas. Suelen viajar acompañados tanto de guardias como de sirvientes plebeyos. El perfil del noble también sirve para representar a cortesanos que no sean de noble alcurnia.

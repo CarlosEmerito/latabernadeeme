@@ -17,9 +17,7 @@ srd: '5.1'
 page: 169
 ---
 
-Una criatura a la que tocas se vuelve invisible hasta que el conjuro termine. Además, cualquier cosa que
-
-el objetivo vista o lleve consigo también será invisible mientras siga llevándola encima. Para cada objetivo, el conjuro termina si ataca o lanza un conjuro.
+Una criatura a la que tocas se vuelve invisible hasta que el conjuro termine. Además, cualquier cosa que el objetivo vista o lleve consigo también será invisible mientras siga llevándola encima. Para cada objetivo, el conjuro termina si ataca o lanza un conjuro.
 
 ## A niveles superiores
 

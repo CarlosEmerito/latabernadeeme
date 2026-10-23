@@ -37,7 +37,7 @@ page: 364
 
 **Llama radiante.** Tirada de ataque a distancia: +4, alcance 18 m. Acierto: 7 (2d6) de daño radiante.
 
-**Lanzamiento de conjuros.** El sacerdote lanza uno de los siguientes conjuros, que utiliza la Sabiduría como aptitud mágica:
+**Lanzamiento de conjuros.** El sacerdote lanza uno de los siguientes conjuros, que utiliza la Sabiduría como aptitud mágica: A voluntad: luz, taumaturgia
 
 ## Acciones adicionales
 

@@ -37,7 +37,7 @@ page: 344
 
 **Garra.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 7 (1d8 + 3) de daño cortante más 7 (2d6) de daño psíquico.
 
-**Lanzamiento de conjuros.** La lamia lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 13):
+**Lanzamiento de conjuros.** La lamia lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 13): A voluntad: disfrazarse (puede presentarse como un bípedo Grande o Mediano), ilusión menor 1/día cada uno: escudriñar, geas, imagen mayor
 
 **Toque corruptor.** Tirada de salvación de Sabiduría: CD 13, una criatura que la lamia pueda ver a 1,5 m o menos. Fallo: 13 (3d8) de daño psíquico y el objetivo estará maldito durante 1 hora. Hasta que se levante la maldición, el objetivo tendrá los estados de envenenado y hechizado.
 

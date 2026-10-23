@@ -19,11 +19,7 @@ Los conjuros que lances desde el sombrero emplean tu CD de salvación de conjuro
 
 01–50 Lanzas un conjuro aleatorio que determinas
 
-tirando 1d10: si el resultado es 1, agrandar/re-
-
-ducir (efecto de agrandar); si es 2, agrandar/re-
-
-ducir bola de fuego; (efecto de reducir); si es 3,
+tirando 1d10: si el resultado es 1, agrandar/reducir (efecto de agrandar); si es 2, agrandar/reducir bola de fuego; (efecto de reducir); si es 3,
 
 ## si es fuego feérico; si es fuerza fantasmal; 4, 5,
 
@@ -55,9 +51,7 @@ es 1, un vial de ácido; si es 2, una antorcha
 
 ## mista; si es una palanqueta. 4,
 
-66–70 Sufres unas “náuseas mágicas” y tienes el es-
-
-tado de envenenado durante 1 hora.
+66–70 Sufres unas “náuseas mágicas” y tienes el estado de envenenado durante 1 hora.
 
 71–75 Tienes el estado de petrificado hasta el final
 
@@ -75,13 +69,9 @@ cuerda con un garfio de escalada atado en un
 
 valorada en 50 po.
 
-81–85 Una criatura aparece en un espacio sin ocu-
+81–85 Una criatura aparece en un espacio sin ocupar lo más cerca posible de ti. El animal no
 
-par lo más cerca posible de ti. El animal no
-
-se encuentra bajo tu control, actúa con nor-
-
-malidad y desaparece tras 1 hora o cuando
+se encuentra bajo tu control, actúa con normalidad y desaparece tras 1 hora o cuando
 
 sus puntos de golpe se reduzcan a 0. Tira 1d4
 
@@ -103,9 +93,7 @@ ataca.
 
 91–95 Un portal bidireccional y vertical de 3 m de
 
-diámetro que conduce a otro plano de exis-
-
-tencia se abre en un espacio sin ocupar a 9 m
+diámetro que conduce a otro plano de existencia se abre en un espacio sin ocupar a 9 m
 
 o menos de ti y permanece abierto hasta el
 
@@ -117,10 +105,6 @@ adónde lleva.
 
 1d6 para determinar la rareza del objeto: si
 
-el resultado es 1–3, común; si es 4–5, infre-
+el resultado es 1–3, común; si es 4–5, infrecuente; si es 6, raro. Tu GM elige el objeto,
 
-cuente; si es 6, raro. Tu GM elige el objeto,
-
-que desaparecerá tras 1 hora si no se con-
-
-sume o destruye antes.
+que desaparecerá tras 1 hora si no se consume o destruye antes.

@@ -41,4 +41,4 @@ page: 434
 
 **Maza.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 5 (1d6 + 2) de daño contundente.
 
-**Ballesta pesada.** Ataque con arma a distancia: +2 a impactar, alcance 30/120 m, un objetivo. Impacto: 5 (1d10) de daño perforante.
+**Ballesta pesada.** Ataque con arma a distancia: +2 a impactar, alcance 30/120 m, un objetivo. Impacto: 5 (1d10) de daño perforante. Los matones son sicarios despiadados con talento para la intimidación y la violencia. Solo les mueve el dinero y carecen casi por completo de escrúpulos.

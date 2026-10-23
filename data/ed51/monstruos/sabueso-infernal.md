@@ -39,6 +39,6 @@ page: 376
 
 ## Acciones
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d8 + 3) de daño perforante más 7 (2d6) de daño
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d8 + 3) de daño perforante más 7 (2d6) de daño de fuego.
 
 **Aliento de fuego (recarga 5–6).** El sabueso exhala fuego en un cono de 4,5 m. Todas las criaturas situadas en la zona deberán hacer una tirada de salvación de Destreza con CD 12; sufrirán 21 (6d6) de daño de fuego si la fallan o la mitad del daño si la superan.

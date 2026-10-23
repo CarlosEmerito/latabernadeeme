@@ -37,7 +37,7 @@ page: 407
 
 ## Acciones
 
-**Picos.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo en el espacio del enjambre. Impacto: 7 (2d6) de daño perforante o 3 (1d6) de daño perforante si el enjambre tiene la mitad o menos de sus puntos de golpe.
+**Picos.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo en el espacio del enjambre. Impacto: 7 (2d6) de daño perforante o 3 (1d6) de daño perforante si el enjambre tiene la mitad o menos de sus puntos de golpe. Los enjambres de insectos pueden ser de varios tipos distintos y cada uno de ellos posee ciertas características especiales descritas a continuación.
 
 **Enjambre de arañas.** Los enjambres de arañas poseen los atributos siguientes:
 

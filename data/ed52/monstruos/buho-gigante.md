@@ -15,9 +15,9 @@ abilities:
   int: 10
   sab: 14
   car: 10
-saves: ''
+saves: Sab +4
 skills: Percepción +6, Sigilo +6
-resistances: ''
+resistances: necrótico, radiante
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
@@ -39,4 +39,4 @@ page: 379
 
 **Garras.** Tirada de ataque cuerpo a cuerpo: +4, alcance 1,5 m. Acierto: 7 (1d10 + 2) de daño cortante.
 
-**Lanzamiento de conjuros.** El búho lanza uno de los siguientes conjuros, que no requiere componentes y utiliza la Sabiduría como aptitud mágica:
+**Lanzamiento de conjuros.** El búho lanza uno de los siguientes conjuros, que no requiere componentes y utiliza la Sabiduría como aptitud mágica: A voluntad: detectar el bien y el mal, detectar magia 1/día: clarividencia

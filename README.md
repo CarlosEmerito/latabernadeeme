@@ -165,7 +165,12 @@ Y como el disparador es el push a `main`, el check llega después del merge: un 
   `src/lib/presupuesto.ts` y `tools/test/presupuesto.mjs` los compara con el markdown del SRD. La
   **iniciativa se guarda en el navegador** y se recupera al recargar —orden y turno activos—:
   `/mesa/` y `/mesa/jugadores/` leen el mismo estado con `src/lib/iniciativa.ts`, así que la ventana
-  de los jugadores nunca enseña un combate que la mesa ya no tiene.
+  de los jugadores nunca enseña un combate que la mesa ya no tiene. Con la casilla de **ventaja**
+  marcada, la tirada de dados tira los dos d20 y los enseña los dos, diciendo cuál se queda
+  (`19 = [3, 19] (se queda el 19)`, y «los dos dados iguales» cuando empatan); antes pintaba solo
+  el primero y «la otra» con el menor, así que la mitad de las tiradas —las que suman con el
+  segundo dado— anunciaban un total que no aparecía entre los dados. Lo vigila el bloque de dados
+  de `tools/test/humo.mjs`.
 - Temas claro y oscuro, foco visible, navegación por teclado y estilos de impresión para llevar una ficha a la mesa.
 
 ```bash

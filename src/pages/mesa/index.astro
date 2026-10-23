@@ -604,9 +604,18 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       let total = tiradas.reduce((a, b) => a + b, 0) + mod;
       let extra = "";
       if (($("dad-ventaja") as HTMLInputElement).checked && n === 1 && caras === 20) {
+        const primera = tiradas[0];
         const otra = d(20);
-        total = Math.max(tiradas[0], otra) + mod;
-        extra = ` (la otra: ${Math.min(tiradas[0], otra)})`;
+        // Los dos d20 tirados se enseñan, no solo el primero: con la lista corta
+        // la mitad de las tiradas (las que suman con el segundo dado) anunciaban
+        // un total que no aparecía entre los dados —«19 = [3] (la otra: 3)»— y el
+        // DM no podía comprobar la tirada que le estaban enseñando.
+        tiradas.push(otra);
+        total = Math.max(primera, otra) + mod;
+        extra =
+          primera === otra
+            ? " (los dos dados iguales)"
+            : ` (se queda el ${Math.max(primera, otra)})`;
       }
       salida.innerHTML = `<strong>${total}</strong> = [${tiradas.join(", ")}]${
         mod ? ` ${mod > 0 ? "+" : "−"} ${Math.abs(mod)}` : ""

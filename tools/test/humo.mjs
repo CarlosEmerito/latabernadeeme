@@ -493,6 +493,62 @@ try {
     fallo("dados con ventaja", `no enseña los dos d20 tirados: ${ventaja}`);
   else bien(`dados con ventaja: ${ventaja.trim()}`);
 
+  // Los dos dados iguales: la salida lo dice y no repite el número como si
+  // fueran dos dados distintos (antes se leía «19 = [19] (la otra: 19)»).
+  const ventajaIguales = await evaluar(
+    mesa,
+    `(() => {
+      const azar = Math.random;
+      Math.random = () => 0.9;
+      const expresion = document.getElementById('dad-expresion');
+      const casilla = document.getElementById('dad-ventaja');
+      expresion.value = '1d20+0';
+      casilla.checked = true;
+      document.getElementById('dad-tirar').click();
+      const salida = document.getElementById('dad-salida').textContent;
+      casilla.checked = false;
+      Math.random = azar;
+      return salida;
+    })()`,
+  );
+  const numerosIguales = (ventajaIguales.match(/\d+/g) ?? []).map(Number);
+  if (numerosIguales[0] !== 19)
+    fallo("dados con ventaja y los dos iguales", `el total no es 19: ${ventajaIguales}`);
+  else if (!/iguales/.test(ventajaIguales))
+    fallo("dados con ventaja y los dos iguales", `no dice que los dados han salido iguales: ${ventajaIguales}`);
+  else if (numerosIguales.some((valor) => valor !== 19))
+    fallo("dados con ventaja y los dos iguales", `enseña un número que no ha salido: ${ventajaIguales}`);
+  else bien(`dados con ventaja y los dos iguales: ${ventajaIguales.trim()}`);
+
+  // Con ventaja y modificador el total es el mayor más el modificador (3 y 19
+  // con +5 son 24) y lo que se pinta cuadra con ese total.
+  const ventajaMod = await evaluar(
+    mesa,
+    `(() => {
+      const azar = Math.random;
+      const cola = [0.1, 0.9];
+      Math.random = () => (cola.length ? cola.shift() : azar());
+      const expresion = document.getElementById('dad-expresion');
+      const casilla = document.getElementById('dad-ventaja');
+      expresion.value = '1d20+5';
+      casilla.checked = true;
+      document.getElementById('dad-tirar').click();
+      const salida = document.getElementById('dad-salida').textContent;
+      casilla.checked = false;
+      Math.random = azar;
+      return salida;
+    })()`,
+  );
+  const totalMod = Number((/^(\d+)/.exec(ventajaMod.trim()) ?? [])[1]);
+  const dadosMod = (ventajaMod.match(/\d+/g) ?? []).map(Number).slice(1);
+  if (totalMod !== 24)
+    fallo("dados con ventaja y modificador", `el total no es el dado mayor más 5: ${ventajaMod}`);
+  else if (!dadosMod.includes(19) || !dadosMod.includes(3))
+    fallo("dados con ventaja y modificador", `no enseña los dos d20 tirados: ${ventajaMod}`);
+  else if (!/[+] 5/.test(ventajaMod))
+    fallo("dados con ventaja y modificador", `no enseña el modificador: ${ventajaMod}`);
+  else bien(`dados con ventaja y modificador: ${ventajaMod.trim()}`);
+
   await evaluar(mesa, `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#enc-lista option')) { clearInterval(t); res(1); } }, 100); setTimeout(() => { clearInterval(t); res(0); }, 5000); })`);
   const enc = await evaluar(
     mesa,

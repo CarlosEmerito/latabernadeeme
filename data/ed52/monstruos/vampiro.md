@@ -39,7 +39,7 @@ page: 374
 
 **si termina su turno en agua corriente.** Estaca en el corazón. Si al vampiro se le clava en el
 
-**empieza su turno bajo la luz solar.** Además, tiene desventaja en las tiradas de ataque y las pruebas de característica hechas bajo la luz del sol. Prohibición. El vampiro no puede entrar en una resi-
+**empieza su turno bajo la luz solar.** Además, tiene desventaja en las tiradas de ataque y las pruebas de característica hechas bajo la luz del sol. Prohibición. El vampiro no puede entrar en una residencia sin invitación de un habitante.
 
 **Escape brumoso.** Si los puntos de golpe del vampiro se reducen a 0 fuera de su lugar de descanso, utilizará
 

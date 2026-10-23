@@ -192,6 +192,30 @@ arrastraba cambios de prosa ajenos a la tarea. La corrección del parser impide
 que el fallo vuelva en la próxima regeneración; el parche de datos solo arregla
 lo que ya está publicado.
 
+#### Los cortes de palabra del maquetador
+
+El PDF parte palabras con guion al final de la línea, y en el 5.2 el trozo que sobra viaja a otra
+frase (`de he-` / `la lista de conjuros de bardo` / `chizar persona`, con la negrita abriéndose en
+mitad de la palabra en `bulette`). Los escritores recomponen ahora la palabra al unir líneas
+(`stream.paragraphs` y `spells._extract_props`, más `items._sin_pies` para el texto plano), y
+`tools/verify/validar.py` —el paso 1 de `npm run verificar`— vigila las dos formas del corte,
+guion a fin de línea y guion dentro de la palabra, más cinco frases testigo completas: un corte
+nuevo tumba la puerta.
+
+`conjuros` y `monstruos` se regeneran con `tools/ingest/extract_core.py` y salen limpios.
+`objetos`, `clases` y `reglas` no: se generaron con versiones anteriores del pipeline que ya no
+reproducen `data/` (volver a pasarlas cambia cientos de fichas por motivos que no son este
+arreglo), así que lo publicado se repara con `tools/ingest/reparar_cortes.py`. Ese script quita el
+pie de página que parte una palabra, une los cortes y escribe enteras las frases en las que el
+trozo se fue a otro sitio —el texto correcto está copiado de `.cache/srd/work/es5x.txt`, que sí lo
+conserva en orden—. Es idempotente y falla si una frase testigo no aparece donde debería. Se pasa
+después de cualquier regeneración:
+
+```bash
+python3 tools/ingest/reparar_cortes.py            # repara data/
+python3 tools/ingest/reparar_cortes.py --check    # solo cuenta, no escribe
+```
+
 ### especies / trasfondos / dotes / reglas
 
 ```yaml

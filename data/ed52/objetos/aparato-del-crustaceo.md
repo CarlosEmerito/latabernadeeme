@@ -21,9 +21,7 @@ Palancas del aparato del crustáceo
 
 Palanca Subida
 
-1 Las patas se extienden, lo que permite que el apa-
-
-rato camine y nade.
+1 Las patas se extienden, lo que permite que el aparato camine y nade.
 
 2 La persiana de la ventana delantera se abre.
 
@@ -45,9 +43,7 @@ cuerpo a cuerpo: +8 a acertar, alcance 1,5 m.
 
 nada hacia delante.
 
-7 Si las patas están extendidas, el aparato gira 90 gra-
-
-dos a la izquierda.
+7 Si las patas están extendidas, el aparato gira 90 grados a la izquierda.
 
 8 Unas linternas con forma de ojo emiten luz
 

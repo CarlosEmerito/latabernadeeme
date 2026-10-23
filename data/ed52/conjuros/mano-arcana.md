@@ -25,9 +25,7 @@ Mano apresadora. La mano intenta agarrar a una
 
 criatura Enorme o más pequeña que esté a 1,5 m o menos de ella. El objetivo deberá superar una tirada de salvación de Destreza o tendrá el estado de agarrado. La CD para escapar es igual a tu CD de salvación de conjuros. Mientras la mano agarre al objetivo, puedes usar una acción adicional para hacer que la mano lo aplaste y causarle una cantidad de daño contundente igual a 4d6 más tu modificador por aptitud mágica. Mano contundente. La mano intenta empujar a una
 
-criatura Enorme o más pequeña que esté a 1,5 m o menos de ella. El objetivo deberá superar una tirada de salvación de Fuerza o la mano lo empujará hasta 1,5 m más una distancia igual a 1,5 m × tu modificador por aptitud mágica. La mano se mueve a la vez que el objetivo y permanece a 1,5 m o menos de él. Mano interpuesta. La mano te proporciona co-
-
-bertura media contra ataques y otros efectos que se originen en su espacio o intenten atravesarla. Además, ese espacio se considera terreno difícil para tus enemigos. Puño cerrado. La mano golpea a un objetivo a
+criatura Enorme o más pequeña que esté a 1,5 m o menos de ella. El objetivo deberá superar una tirada de salvación de Fuerza o la mano lo empujará hasta 1,5 m más una distancia igual a 1,5 m × tu modificador por aptitud mágica. La mano se mueve a la vez que el objetivo y permanece a 1,5 m o menos de él. Mano interpuesta. La mano te proporciona cobertura media contra ataques y otros efectos que se originen en su espacio o intenten atravesarla. Además, ese espacio se considera terreno difícil para tus enemigos. Puño cerrado. La mano golpea a un objetivo a
 
 1,5 m o menos de ella. Haz un ataque de conjuro
 

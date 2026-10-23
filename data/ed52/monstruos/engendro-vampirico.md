@@ -39,7 +39,7 @@ page: 373
 
 **si termina su turno en agua corriente.** Estaca en el corazón. El vampiro es destruido si se
 
-**empieza su turno bajo la luz solar.** Además, tiene desventaja en las tiradas de ataque y las pruebas de característica hechas bajo la luz del sol. Prohibición. El vampiro no puede entrar en una resi-
+**empieza su turno bajo la luz solar.** Además, tiene desventaja en las tiradas de ataque y las pruebas de característica hechas bajo la luz del sol. Prohibición. El vampiro no puede entrar en una residencia sin invitación de un habitante.
 
 **Trepar cual arácnido.** El vampiro puede trepar por superficies difíciles e incluso recorrer techos sin tener que realizar pruebas de característica.
 

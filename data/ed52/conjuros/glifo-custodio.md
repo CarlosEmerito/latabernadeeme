@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: 1 hora
 range: Toque
-components: V, S, M (diamante en polvo que valga al menos 200 po, que se consume como parte del con- juro)
+components: V, S, M (diamante en polvo que valga al menos 200 po, que se consume como parte del conjuro)
 duration: Hasta que sea disipado o se active
 classes:
 - Bardo

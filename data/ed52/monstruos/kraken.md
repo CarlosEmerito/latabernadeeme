@@ -47,9 +47,7 @@ page: 343
 
 **Engullir.** Tirada de salvación de Destreza: CD 25, una criatura agarrada por el kraken (puede tener hasta cuatro criaturas engullidas a la vez). Fallo: 23 (3d8 + 10) de daño perforante. Si el objetivo es Grande o más pequeño, será engullido y dejará de estar agarrado. Una criatura engullida tendrá el estado de apresada, tendrá cobertura completa contra los ataques y otros efectos fuera del kraken y recibirá 24 (7d6) de daño de ácido al principio de cada uno de sus propios turnos.
 
-**Lanzar.** El kraken lanza una criatura Grande o más pequeña que tenga agarrada a un espacio que pueda ver a 18 m o menos de él que no esté en el aire. Tirada de salvación de Destreza: CD 25, la criatura lanzada y todas las criaturas en el espacio de destino. Fallo: 18 (4d8) de daño contundente y el objetivo tiene el es-
-
-**tado de derribado.** Éxito: solo la mitad del daño.
+**Lanzar.** El kraken lanza una criatura Grande o más pequeña que tenga agarrada a un espacio que pueda ver a 18 m o menos de él que no esté en el aire. Tirada de salvación de Destreza: CD 25, la criatura lanzada y todas las criaturas en el espacio de destino. Fallo: 18 (4d8) de daño contundente y el objetivo tiene el estado de derribado. Éxito: solo la mitad del daño.
 
 **Relámpago.** Tirada de salvación de Destreza: CD 23, una criatura que el kraken pueda ver a 36 m o menos. Fallo: 33 (6d10) de daño de relámpago. Éxito: la mitad del daño.
 

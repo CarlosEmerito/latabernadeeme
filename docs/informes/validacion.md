@@ -35,7 +35,7 @@ Total de entradas: **2502**. Apartados con incidencias: **0**.
 ## ed52 · monstruos — 330 entradas · OK
 
 ## ed52 · objetos — 258 entradas · OK
-- Aviso, cuerpos más largos de lo esperado: 2 (baraja-misteriosa.md (8441 caracteres), estatuilla-de-poder-maravilloso.md (6110 caracteres))
+- Aviso, cuerpos más largos de lo esperado: 2 (baraja-misteriosa.md (8435 caracteres), estatuilla-de-poder-maravilloso.md (6101 caracteres))
 
 ## ed52 · reglas — 174 entradas · OK
 
@@ -68,3 +68,7 @@ Total de entradas: **2502**. Apartados con incidencias: **0**.
 ## Línea de tipo (tipo, tamaño y alineamiento)
 
 - Ningún alineamiento lleva el tamaño, una aclaración del tipo ni su complemento suelto.
+
+## Cortes de palabra
+
+- Ninguna palabra queda partida por el guion y las frases testigo se leen enteras.

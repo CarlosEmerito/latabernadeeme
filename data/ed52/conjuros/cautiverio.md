@@ -21,11 +21,7 @@ Hasta que el conjuro termine, el objetivo también se verá afectado por uno de 
 
 Contención mínima. El objetivo queda reducido
 
-a una altura de 2,5 cm y atrapado dentro de una gema u otro objeto similar, que es indestructible. La luz puede atravesar la piedra preciosa (permitiendo que el objetivo vea lo que hay fuera y las demás criaturas vean lo que hay dentro), pero nada más puede atravesarla de ninguna forma. Encadenamiento. Unas cadenas firmemente ancla-
-
-das al suelo retienen al objetivo. El objetivo tiene el estado de apresado y no hay ninguna forma de moverlo. Entierro. El objetivo queda sepultado bajo tie-
-
-rra en un globo hueco de fuerza mágica con un tamaño justo como para contenerlo. Nada puede entrar ni salir del globo.
+a una altura de 2,5 cm y atrapado dentro de una gema u otro objeto similar, que es indestructible. La luz puede atravesar la piedra preciosa (permitiendo que el objetivo vea lo que hay fuera y las demás criaturas vean lo que hay dentro), pero nada más puede atravesarla de ninguna forma. Encadenamiento. Unas cadenas firmemente ancladas al suelo retienen al objetivo. El objetivo tiene el estado de apresado y no hay ninguna forma de moverlo. Entierro. El objetivo queda sepultado bajo tierra en un globo hueco de fuerza mágica con un tamaño justo como para contenerlo. Nada puede entrar ni salir del globo.
 
 Presidio cercado. El objetivo está atrapado en un
 

@@ -45,7 +45,7 @@ page: 304
 
 **Aliento ralentizador.** Tirada de salvación de Constitución: CD 22, todas las criaturas en un cono de 27 m. Fallo: el objetivo no podrá llevar a cabo reacciones, su velocidad se reducirá a la mitad y podrá realizar una acción o una acción adicional en su turno, pero no ambas. Este efecto durará hasta el final de su siguiente turno.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes ma-
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 21):
 
 ## Acciones legendarias
 

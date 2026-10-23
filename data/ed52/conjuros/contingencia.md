@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: 10 minutos
 range: Lanzador
-components: V, S, M (una estatuilla de ti tallada y de- corada con gemas que valga al menos 1500 po)
+components: V, S, M (una estatuilla de ti tallada y decorada con gemas que valga al menos 1500 po)
 duration: 10 días
 classes:
 - Mago

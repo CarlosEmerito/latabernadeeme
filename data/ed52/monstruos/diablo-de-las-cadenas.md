@@ -15,11 +15,11 @@ abilities:
   int: 11
   sab: 12
   car: 14
-saves: ''
+saves: Con +7, Sab +4
 skills: ''
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: contundente, cortante, frío, perforante
+immunities: fuego, veneno
+conditionImmunities: envenenado
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m (no afectada por la oscuridad mágica); Percepción pasiva 11
 languages: infernal; telepatía 36 m

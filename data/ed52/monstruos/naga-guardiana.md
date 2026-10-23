@@ -15,11 +15,11 @@ abilities:
   int: 16
   sab: 19
   car: 18
-saves: ''
+saves: Des +8, Con +7, Int +7, Sab +8, Car +8
 skills: Conocimiento arcano +11, Historia +11, Religión +11
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: veneno
+conditionImmunities: apresado, envenenado, hechizado, paralizado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 14
 languages: celestial, común

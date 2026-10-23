@@ -18,7 +18,7 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
+immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: Percepción pasiva 11

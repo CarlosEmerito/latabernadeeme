@@ -18,8 +18,8 @@ abilities:
 saves: ''
 skills: Percepción +14
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: veneno, radiante
+conditionImmunities: asustado, cansancio, envenenado, hechizado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 24
 languages: todos; telepatía 36 m

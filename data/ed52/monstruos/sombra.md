@@ -17,10 +17,10 @@ abilities:
   car: 8
 saves: ''
 skills: Sigilo +6
-resistances: ''
-immunities: ''
-conditionImmunities: ''
-vulnerabilities: ''
+resistances: ácido, frío, fuego, relámpago, trueno
+immunities: necrótico, veneno
+conditionImmunities: agarrado, apresado, asustado, cansancio, derribado, envenenado, inconsciente, paralizado, petrificado
+vulnerabilities: radiante
 senses: visión en la oscuridad 18 m; Percepción pasiva 10
 languages: ninguno
 cr: 1/2

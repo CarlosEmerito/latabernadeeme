@@ -18,7 +18,7 @@ abilities:
 saves: ''
 skills: Percepción +6, Sigilo +7
 resistances: ''
-immunities: ''
+immunities: relámpago
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión en la oscuridad 27 m; Percepción pasiva 16

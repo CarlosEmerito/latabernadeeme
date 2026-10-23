@@ -102,6 +102,17 @@ Quien lo lea tiene que quedarse con el valor base (lo que va antes del primer `P
 los separadores: `src/lib/xp.ts` lo hace para el índice JSON y para las herramientas de
 `/mesa/`.
 
+`saves`, `resistances`, `immunities`, `conditionImmunities`, `vulnerabilities` y `gear` salen
+del perfil de la criatura, y cada edición lo escribe a su manera. El 5.1 los da con etiqueta
+propia (`Tiradas de salvación:`, `Inmunidad a daño:`, `Inmunidad a estados:`…). El 5.2 usa **una
+sola etiqueta por campo**, con los tipos de daño y los estados en la misma lista separados por
+`;` (`Inmunidades: veneno; cansancio, envenenado`): lo de antes del `;` es daño y lo de después
+estados, pero como hay criaturas que solo tienen estados (`Cieno gris`), el reparto se hace por
+nombre contra la lista cerrada de estados, no por la posición. Las salvaciones del 5.2 no llevan
+etiqueta: son la **tercera columna** de la tabla de características (`F 23 +6 +6`: puntuación,
+modificador, salvación) y solo se publican cuando no coinciden con el modificador, que es cuando
+la criatura tiene competencia; la del secuaz goblin se queda vacía, como en el SRD.
+
 ### objetos (`data/ed5x/objetos/*.md`)
 
 ```yaml

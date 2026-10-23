@@ -15,10 +15,10 @@ abilities:
   int: 16
   sab: 15
   car: 20
-saves: ''
+saves: Des +5, Sab +7
 skills: Percepción +12, Sigilo +5
 resistances: ''
-immunities: ''
+immunities: relámpago
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión ciega 18 m, visión en la oscuridad 36 m; Percepción pasiva 22

@@ -18,9 +18,9 @@ abilities:
 saves: ''
 skills: Percepción +2, Sigilo +3
 resistances: ''
-immunities: ''
-conditionImmunities: ''
-vulnerabilities: ''
+immunities: frío, veneno
+conditionImmunities: cansancio, envenenado
+vulnerabilities: fuego
 senses: visión en la oscuridad 18 m; Percepción pasiva 12
 languages: primordial (acuano, aurano)
 cr: 1/2

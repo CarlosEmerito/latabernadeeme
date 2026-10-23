@@ -17,9 +17,9 @@ abilities:
   car: 3
 saves: ''
 skills: ''
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: frío
+immunities: fuego, veneno
+conditionImmunities: asustado, envenenado, hechizado
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m (no afectada por la oscuridad mágica); Percepción pasiva 10
 languages: entiende infernal, pero no puede hablar

@@ -18,8 +18,8 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: veneno
+conditionImmunities: envenenado, hechizado, paralizado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 13
 languages: celestial, elfo, silvano; telepatía 36 m

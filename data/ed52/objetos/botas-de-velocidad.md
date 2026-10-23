@@ -7,10 +7,4 @@ srd: '5.2'
 page: 245
 ---
 
-Mientras calces estas botas, podrás utilizar una acción adicional para entrechocar los talones. Si lo haces, las botas duplicarán tu velocidad y cualquier
-
-245
-
-Documento de referencia del sistema 5.2.1
-
-Efecto
+Mientras calces estas botas, podrás utilizar una acción adicional para entrechocar los talones. Si lo haces, las botas duplicarán tu velocidad y cualquier Efecto

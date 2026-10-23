@@ -69,6 +69,10 @@ Total de entradas: **2502**. Apartados con incidencias: **0**.
 
 - Ningún alineamiento lleva el tamaño, una aclaración del tipo ni su complemento suelto.
 
+## Pies de página dentro del texto
+
+- Ningún texto de ficha lleva el pie de página del PDF ni la línea de la licencia.
+
 ## Cortes de palabra
 
 - Ninguna palabra queda partida por el guion y las frases testigo se leen enteras.

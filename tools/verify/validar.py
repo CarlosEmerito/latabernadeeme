@@ -798,6 +798,8 @@ def main() -> int:
             lineas.append(f"  - …y {len(pies) - 15} más")
     else:
         lineas.append("- Ningún texto de ficha lleva el pie de página del PDF ni la línea de la licencia.")
+    lineas.append("")
+
     # El guion del maquetador parte palabras dentro del texto publicado: la
     # ficha se lee mal y, en los casos peores, el trozo viaja a otra frase.
     cortes = cortes_de_palabra()

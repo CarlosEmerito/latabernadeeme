@@ -61,6 +61,34 @@ export function nombreTipo(ed: Edition | undefined, tipo: Tipo): string {
   return NOMBRE_TIPO[ed][tipo] ?? base;
 }
 
+// La frase que va detrás del número en la descripción de un listado («193 piezas
+// de equipo del SRD 5.2.1.»). No sale de `TIPO_META`: «Equipo» no es contable
+// —lo que hay dentro son piezas, no equipos— y el nombre del plural («Especies y
+// razas») no encaja detrás de una cifra. Se fija aquí, en minúsculas, con el
+// término que usa cada documento, y la concordancia la pone el recuento.
+const FRASE_RECUENTO: Record<Tipo, { uno: string; varios: string }> = {
+  conjuros: { uno: "conjuro", varios: "conjuros" },
+  monstruos: { uno: "monstruo", varios: "monstruos" },
+  objetos: { uno: "objeto mágico", varios: "objetos mágicos" },
+  equipo: { uno: "pieza de equipo", varios: "piezas de equipo" },
+  clases: { uno: "clase", varios: "clases" },
+  especies: { uno: "especie", varios: "especies" },
+  trasfondos: { uno: "trasfondo", varios: "trasfondos" },
+  dotes: { uno: "dote", varios: "dotes" },
+  reglas: { uno: "regla", varios: "reglas" },
+};
+
+const FRASE_RECUENTO_EDICION: Record<Edition, Partial<Record<Tipo, { uno: string; varios: string }>>> = {
+  "5e": { especies: { uno: "raza", varios: "razas" } },
+  "5.5": {},
+};
+
+/** La frase del recuento de un listado, concordada con el número. */
+export function fraseRecuento(ed: Edition | undefined, tipo: Tipo, n: number): string {
+  const frase = (ed ? FRASE_RECUENTO_EDICION[ed][tipo] : undefined) ?? FRASE_RECUENTO[tipo];
+  return n === 1 ? frase.uno : frase.varios;
+}
+
 export interface Entrada {
   slug: string;
   data: Record<string, any>;

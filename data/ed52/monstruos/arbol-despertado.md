@@ -17,10 +17,10 @@ abilities:
   car: 7
 saves: ''
 skills: ''
-resistances: ''
+resistances: contundente, perforante
 immunities: ''
 conditionImmunities: ''
-vulnerabilities: ''
+vulnerabilities: fuego
 senses: Percepción pasiva 10
 languages: común y otro cualquiera
 cr: '2'

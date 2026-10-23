@@ -174,6 +174,20 @@ def salvaciones_completas() -> list[str]:
                 f"{ed}: solo {con} fichas declaran tiradas de salvación y la tabla del SRD "
                 f"da al menos {minimo}"
             )
+    # El formato se comprueba en todas, no solo en las testigo: la celda de la
+    # tabla del 5.2 viene siempre con signo, y una sin él («2» en la Int del
+    # dragón blanco joven, pág. 300) se publicaría como «Int 2».
+    for ed in ("ed51", "ed52"):
+        for f in sorted(DATOS.glob(f"{ed}/monstruos/*.md")):
+            contenido = leer(f)
+            if contenido is None:
+                continue
+            valor = str(contenido[0].get("saves") or "")
+            for trozo in sorted(_salvaciones(valor)):
+                if not SALVACION.match(trozo):
+                    problemas.append(
+                        f"{ed}/{f.stem}: saves trae «{trozo}», que no es «Abreviatura +N»"
+                    )
     return problemas
 
 
@@ -206,7 +220,22 @@ PERFIL_TESTIGO_5_2 = {
 # El flujo del PDF da 148 criaturas con «Inmunidades:», 70 con «Resistencias:»,
 # 15 con «Vulnerabilidades:» y 44 con «Equipo:». El mínimo deja crecer el
 # catálogo sin poner la puerta en rojo por una ficha nueva.
-CAMPO_MINIMO_5_2 = {"immunities": 140, "resistances": 65, "vulnerabilities": 14, "gear": 40}
+#
+# De esas 148, 24 solo tienen estados («Cieno gris: agarrado, apresado,
+# asustado…»), que por la propia puerta van a `conditionImmunities`: el daño de
+# `immunities` lo declaran 126, y de esas dos son bloques de estatua que caen
+# fuera de los tramos de monstruos («Objeto animado», pág. 121, dentro de
+# conjuros; «Avatar de la muerte», pág. 238, dentro de objetos), así que el
+# techo real es 124 y el mínimo de 140 no se podía alcanzar nunca. Se baja a
+# 120 y se añade el mínimo de `conditionImmunities`, que es donde van esos 24
+# estados: sin él, volver a perderlos no ponía nada en rojo.
+CAMPO_MINIMO_5_2 = {
+    "immunities": 120,
+    "conditionImmunities": 90,
+    "resistances": 65,
+    "vulnerabilities": 14,
+    "gear": 40,
+}
 
 
 def perfil_del_5_2() -> list[str]:

@@ -18,15 +18,15 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
-vulnerabilities: ''
+immunities: veneno
+conditionImmunities: cansancio, envenenado
+vulnerabilities: contundente
 senses: visión en la oscuridad 18 m; Percepción pasiva 9
 languages: entiende común y otro idioma, pero no puede hablar
 cr: 1/4
 xp: 50 PX; BC +2
 proficiency: ''
-gear: ''
+gear: arco corto, espada corta
 srd: '5.2'
 page: 323
 ---

@@ -15,9 +15,9 @@ abilities:
   int: 11
   sab: 10
   car: 12
-saves: ''
+saves: Des +6, Sab +3
 skills: Percepción +3, Sigilo +6
-resistances: ''
+resistances: necrótico
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''

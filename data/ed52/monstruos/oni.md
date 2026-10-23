@@ -15,9 +15,9 @@ abilities:
   int: 14
   sab: 12
   car: 15
-saves: ''
+saves: Des +3, Con +6, Sab +4, Car +5
 skills: Conocimiento arcano +5, Engaño +8, Percepción +4
-resistances: ''
+resistances: frío
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''

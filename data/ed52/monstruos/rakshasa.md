@@ -19,8 +19,8 @@ saves: ''
 skills: Engaño +10, Percepción +8, Perspicacia +8
 resistances: ''
 immunities: ''
-conditionImmunities: ''
-vulnerabilities: ''
+conditionImmunities: asustado, hechizado
+vulnerabilities: daño perforante de armas empuñadas por criaturas bajo el efecto de un conjuro bendición
 senses: visión verdadera 18 m; Percepción pasiva 18
 languages: común, infernal
 cr: '13'

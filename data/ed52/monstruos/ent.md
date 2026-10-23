@@ -17,10 +17,10 @@ abilities:
   car: 12
 saves: ''
 skills: ''
-resistances: ''
+resistances: contundente, perforante
 immunities: ''
 conditionImmunities: ''
-vulnerabilities: ''
+vulnerabilities: fuego
 senses: Percepción pasiva 13
 languages: común, druídico, elfo, silvano
 cr: '9'

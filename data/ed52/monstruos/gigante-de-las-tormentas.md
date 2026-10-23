@@ -15,10 +15,10 @@ abilities:
   int: 16
   sab: 20
   car: 18
-saves: ''
+saves: Fue +14, Con +10, Sab +10, Car +9
 skills: Atletismo +14, Conocimiento arcano +8, Historia +8, Percepción +10
-resistances: ''
-immunities: ''
+resistances: frío
+immunities: relámpago, trueno
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m, visión verdadera 9 m; Percepción pasiva 20

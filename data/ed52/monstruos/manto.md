@@ -19,7 +19,7 @@ saves: ''
 skills: Sigilo +5
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: asustado
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m; Percepción pasiva 12
 languages: habla de las profundidades, infracomún

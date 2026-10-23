@@ -15,9 +15,9 @@ abilities:
   int: 10
   sab: 12
   car: 12
-saves: ''
+saves: Con +11, Sab +7
 skills: ''
-resistances: ''
+resistances: fuego
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''

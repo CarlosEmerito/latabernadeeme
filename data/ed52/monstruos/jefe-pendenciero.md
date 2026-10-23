@@ -15,7 +15,7 @@ abilities:
   int: 11
   sab: 10
   car: 11
-saves: ''
+saves: Fue +5, Con +5, Car +2
 skills: ''
 resistances: ''
 immunities: ''
@@ -26,7 +26,7 @@ languages: común y otro cualquiera
 cr: '4'
 xp: 1100 PX; BC +2
 proficiency: ''
-gear: ''
+gear: ballesta pesada, cota de malla, martillo de guerra
 srd: '5.2'
 page: 358
 ---

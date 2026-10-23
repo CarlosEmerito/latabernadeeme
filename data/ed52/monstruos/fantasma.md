@@ -17,9 +17,9 @@ abilities:
   car: 17
 saves: ''
 skills: ''
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: ácido, contundente, cortante, frío, fuego, perforante, relámpago, trueno
+immunities: necrótico, veneno
+conditionImmunities: agarrado, apresado, asustado, cansancio, derribado, envenenado, hechizado, paralizado, petrificado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 11
 languages: común y otro cualquiera

@@ -15,11 +15,11 @@ abilities:
   int: 22
   sab: 18
   car: 20
-saves: ''
+saves: Fue +17, Des +7, Con +15, Sab +11
 skills: Historia +13, Percepción +11
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: frío, relámpago
+conditionImmunities: agarrado, apresado, asustado, paralizado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 21
 languages: entiende abisal, celestial, infernal y primordial, pero no puede hablar; telepatía 36 m

@@ -15,11 +15,11 @@ abilities:
   int: 16
   sab: 23
   car: 18
-saves: ''
+saves: Des +6, Con +11, Int +9, Sab +12
 skills: Conocimiento arcano +9, Percepción +12, Religión +15
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: necrótico, radiante
+immunities: psíquico
+conditionImmunities: asustado, hechizado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 22
 languages: celestial, común

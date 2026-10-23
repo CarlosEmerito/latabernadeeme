@@ -49,6 +49,14 @@ Total de entradas: **2502**. Apartados con incidencias: **0**.
 
 - Ningún campo del perfil acaba cortado y las fichas testigo están completas.
 
+## Tiradas de salvación
+
+- Las fichas testigo declaran sus salvaciones y cada edición pasa su mínimo.
+
+## Inmunidades, resistencias y vulnerabilidades del 5.2
+
+- Las fichas testigo del 5.2 declaran sus inmunidades, resistencias, vulnerabilidades y equipo, y el catálogo pasa sus mínimos.
+
 ## Catálogo de equipo
 
 - Los doce objetos que faltaban están y ningún nombre de equipo acaba cortado.

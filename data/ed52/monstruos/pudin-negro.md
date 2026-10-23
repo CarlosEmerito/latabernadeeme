@@ -18,8 +18,8 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: ácido, cortante, frío, relámpago
+conditionImmunities: agarrado, apresado, asustado, cansancio, derribado, ensordecido, hechizado
 vulnerabilities: ''
 senses: visión ciega 18 m; Percepción pasiva 8
 languages: ninguno

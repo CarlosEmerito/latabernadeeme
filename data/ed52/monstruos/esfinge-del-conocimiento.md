@@ -17,9 +17,9 @@ abilities:
   car: 18
 saves: ''
 skills: Conocimiento arcano +12, Historia +12, Percepción +8, Religión +12
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: necrótico, radiante
+immunities: psíquico
+conditionImmunities: asustado, hechizado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 18
 languages: celestial, común

@@ -100,6 +100,12 @@
  *      cuando llega sangrada, y `_split_feature()` descarta en silencio el trozo
  *      que se queda suelto: la ficha publica la mitad de la acción sin que nada
  *      falle. Comprueba los dos cortes con sus líneas crudas y barre `data/`.
+ *  29. `tools/test/cambios.mjs`: que el párrafo con el que `/cambios/` explica la
+ *      coincidencia del comparador describa el criterio que aplica el código.
+ *  30. `tools/test/huerfanos-tools.mjs`: que la puerta de huérfanos mire también
+ *      `tools/ingest/` y `tools/verify/` —un `.py` de allí que nadie importa y
+ *      que no declara `__main__` es código muerto— y que lo haga sin escribir en
+ *      el repositorio: monta su árbol en un directorio temporal.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -314,4 +320,11 @@ if (cambios !== 0) {
   process.exit(cambios);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar y texto de la página de cambios correctos.");
+console.log("▶ Huérfanos de tools/: huerfanos-tools.mjs (tools/ingest/ y tools/verify/)");
+const huerfanosTools = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/huerfanos-tools.mjs")]);
+if (huerfanosTools !== 0) {
+  console.error("✗ La puerta de huérfanos no vigila los módulos de tools/: un módulo muerto de la ingesta se queda ahí pareciendo la referencia.");
+  process.exit(huerfanosTools);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto y la puerta de huérfanos mirando tools/");

@@ -24,7 +24,25 @@
  * que decide: si un módulo solo lo importa otro módulo muerto, el huérfano de
  * verdad es el de arriba y este se queda con él hasta que se vaya.
  *
+ * El mismo criterio vale fuera de `src/lib/`, y ahí no hay `export` que mirar
+ * sino otra señal: `tools/ingest/` y `tools/verify/` son código de trabajo. Un
+ * `.py` de allí que no importa nadie y que tampoco se lanza como script (no
+ * declara `if __name__ == "__main__"`) es código muerto igual, y peor: en esas
+ * carpetas parece la referencia de cómo se hace la ingesta. Pasó con
+ * `tools/ingest/srd/reader.py`, 117 líneas con docstrings que lo presentaban
+ * como el lector del flujo del PDF mientras nadie lo importaba y ni siquiera
+ * podía abrir el JSONL actual (`Block(**d)` con una clave `block` que el
+ * dataclass no declara): quien tocara la ingesta lo habría encontrado primero y
+ * habría escrito su cambio en un módulo que no se ejecuta.
+ *
+ * Un script de esos se reconoce por su guarda `__main__`, no por una lista de
+ * excepciones: si se lanza con `python tools/ingest/<x>.py`, la guarda lo dice.
+ * Un `.mjs` de `tools/verify/` cuenta como consumido si lo importa alguien o si
+ * `package.json` lo nombra en sus scripts (`verificar`, `enlaces`, …).
+ *
  * Uso: node tools/test/huerfanos.mjs
+ *      HUERFANOS_TOOLS=/ruta/a/ingest:/ruta/a/verify node tools/test/huerfanos.mjs
+ *      (la variable sustituye las dos carpetas y sirve a la prueba del paso)
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -34,18 +52,20 @@ const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
 const LIB = path.join(RAIZ, "src/lib");
 const FUENTES = ["src", "tools"];
 const EXTENSIONES = [".ts", ".tsx", ".astro", ".mjs", ".js"];
+/** Para los módulos de `tools/` el universo lleva también el código de ingesta. */
+const CODIGO = [...EXTENSIONES, ".py"];
 const SIMBOLO = /^export\s+(?:async\s+)?(?:function|const)\s+([A-Za-z_$][\w$]*)/gm;
 /** Este mismo fichero no cuenta como consumidor: cita los símbolos al explicarse. */
 const PROPIO = fileURLToPath(import.meta.url);
 
 /** Todos los ficheros de código de un directorio, sin entrar en `node_modules`. */
-function recorrer(dir, salida = []) {
+function recorrer(dir, salida = [], extensiones = EXTENSIONES) {
   if (!fs.existsSync(dir)) return salida;
   for (const entrada of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entrada.name === "node_modules" || entrada.name === ".git") continue;
+    if (entrada.name === "node_modules" || entrada.name === ".git" || entrada.name === "__pycache__") continue;
     const ruta = path.join(dir, entrada.name);
-    if (entrada.isDirectory()) recorrer(ruta, salida);
-    else if (EXTENSIONES.includes(path.extname(entrada.name))) salida.push(ruta);
+    if (entrada.isDirectory()) recorrer(ruta, salida, extensiones);
+    else if (extensiones.includes(path.extname(entrada.name))) salida.push(ruta);
   }
   return salida;
 }
@@ -108,8 +128,88 @@ for (const [nombre, { modulo, ruta }] of simbolos) {
   if (!usado) sinUso.push({ nombre, modulo });
 }
 
+/* ── Los módulos de tools/ ────────────────────────────────────────────────
+ * Un `.py` de la ingesta o de `verificar` que nadie importa y que no se lanza
+ * como script está muerto, igual que un módulo suelto de `src/lib/`. La guarda
+ * `__main__` es la que distingue el que se ejecuta a mano del que espera a que
+ * alguien lo llame: sin ella, un fichero que nadie importa no corre nunca.
+ */
+const TOOLS = (
+  process.env.HUERFANOS_TOOLS
+    ? process.env.HUERFANOS_TOOLS.split(path.delimiter)
+    : ["tools/ingest", "tools/verify"].map((carpeta) => path.join(RAIZ, carpeta))
+).filter((carpeta) => fs.existsSync(carpeta));
+
+/** Los nombres de un `import a, b as c` ya sin paréntesis, alias ni comas. */
+function nombresImportados(parte) {
+  return parte
+    .replace(/[()\\]/g, " ")
+    .split(",")
+    .map((nombre) => nombre.split(/\s+as\s+/)[0].trim())
+    .filter(Boolean);
+}
+
+/** ¿`texto` importa el módulo Python `nombre`? Cubre `import x`, `import a.x` y `from a import x`. */
+function importaPython(texto, nombre) {
+  // Un `from x import (a,\n b)` partido en líneas se lee de una vez.
+  const plano = texto.replace(
+    /(^[ \t]*from[ \t]+[\w.]+[ \t]+import[ \t]*)\(([\s\S]*?)\)/gm,
+    (_, cabecera, dentro) => cabecera + dentro.replace(/\s*\n\s*/g, " "),
+  );
+  const base = (ruta) => path.posix.basename(ruta.replaceAll(".", "/"));
+  for (const [, paquete, nombres] of plano.matchAll(/^[ \t]*from[ \t]+([\w.]+)[ \t]+import[ \t]+(.+)$/gm)) {
+    if (base(paquete) === nombre) return true;
+    if (nombresImportados(nombres).includes(nombre)) return true;
+  }
+  for (const [, nombres] of plano.matchAll(/^[ \t]*import[ \t]+(.+)$/gm)) {
+    if (nombresImportados(nombres).some((ruta) => base(ruta) === nombre)) return true;
+  }
+  return false;
+}
+
+const PAQUETE = fs.existsSync(path.join(RAIZ, "package.json"))
+  ? fs.readFileSync(path.join(RAIZ, "package.json"), "utf8")
+  : "";
+
+/** Todo lo que puede importar: `src/`, `tools/` y las carpetas que se miran. */
+const universo = [...new Set([...ficheros, ...TOOLS.flatMap((carpeta) => recorrer(carpeta, [], CODIGO))])];
+const textos = new Map(universo.map((fichero) => [fichero, fs.readFileSync(fichero, "utf8")]));
+
+let comprobadosTools = 0;
+let scriptsTools = 0;
+const huerfanosTools = [];
+
+for (const carpeta of TOOLS) {
+  for (const fichero of recorrer(carpeta, [], CODIGO)) {
+    const nombre = path.basename(fichero).replace(/\.[^.]+$/, "");
+    if (nombre === "__init__") continue;
+    const texto = textos.get(fichero) ?? fs.readFileSync(fichero, "utf8");
+    comprobadosTools += 1;
+    const esPython = fichero.endsWith(".py");
+    if (esPython && /^if\s+__name__\s*==\s*["']__main__["']/m.test(texto)) {
+      scriptsTools += 1;
+      continue;
+    }
+    const relativa = path.relative(RAIZ, fichero);
+    // El import se busca entre iguales: un `.py` lo importa otro `.py`, y un
+    // `.mjs` lo importa código de JS (en un `.astro` o en un `.py` no hay
+    // `import x from "…"` que valga).
+    const consumido = universo.some((otro) => {
+      if (otro === fichero) return false;
+      const ajeno = textos.get(otro) ?? "";
+      if (esPython) return otro.endsWith(".py") && importaPython(ajeno, nombre);
+      return !otro.endsWith(".py") && especificadores(ajeno).some((ruta) => apuntaA(ruta, nombre));
+    }) || (!esPython && PAQUETE.includes(relativa));
+    if (!consumido) huerfanosTools.push({ relativa, lineas: texto.split("\n").length });
+  }
+}
+
 console.log(`Módulos de src/lib comprobados: ${modulos.length} · sin importadores: ${huerfanos.length}`);
 console.log(`Símbolos exportados comprobados: ${simbolos.size} · sin uso: ${sinUso.length}`);
+console.log(
+  `Módulos de tools comprobados: ${comprobadosTools} · se lanzan como script: ${scriptsTools}` +
+    ` · sin importadores: ${huerfanosTools.length}`,
+);
 
 let fallos = false;
 
@@ -138,7 +238,25 @@ if (sinUso.length > 0) {
   );
 }
 
+if (huerfanosTools.length > 0) {
+  fallos = true;
+  console.log("");
+  for (const { relativa, lineas } of huerfanosTools) {
+    console.log(
+      `  ✗ ${relativa} (${lineas} líneas): ningún import lo referencia y no declara` +
+        " «if __name__ == \"__main__\"».",
+    );
+  }
+  console.log(
+    "  Bórralos, o dales su guarda `__main__` si de verdad se lanzan a mano: un módulo de" +
+      " tools/ que nadie importa parece la referencia de la ingesta y no se ejecuta nunca.",
+  );
+}
+
 if (fallos) process.exit(1);
 
-console.log("Sin huérfanos: cada módulo de src/lib lo importa alguien y cada símbolo exportado se usa.");
+console.log(
+  "Sin huérfanos: cada módulo de src/lib lo importa alguien, cada símbolo exportado se usa" +
+    " y cada módulo de tools/ lo importa alguien o se lanza como script.",
+);
 process.exit(0);

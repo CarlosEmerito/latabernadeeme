@@ -8,7 +8,3 @@ page: 267
 ---
 
 Cuando bebas esta poción, obtendrás el efecto del conjuro detectar pensamientos (CD de salvación 13) durante 10 minutos (no requiere concentración). En el líquido denso y morado de esta poción flota una nube rosa ovoide.
-
-267
-
-Documento de referencia del sistema 5.2.1

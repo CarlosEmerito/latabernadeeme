@@ -6,7 +6,7 @@ ritual: true
 concentration: false
 castingTime: Acción o ritual
 range: 18 m
-components: V, S, M (un trozo de cuerda y uno de ma- dera)
+components: V, S, M (un trozo de cuerda y uno de madera)
 duration: 1 hora
 classes:
 - Bardo

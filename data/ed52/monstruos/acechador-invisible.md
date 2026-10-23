@@ -17,9 +17,9 @@ abilities:
   car: 11
 saves: ''
 skills: Percepción +8, Sigilo +10
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: contundente, cortante, perforante
+immunities: veneno
+conditionImmunities: agarrado, apresado, cansancio, derribado, envenenado, inconsciente, paralizado, petrificado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 18
 languages: común, primordial (aurano)

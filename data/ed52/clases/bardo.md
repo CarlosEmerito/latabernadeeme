@@ -91,7 +91,7 @@ Cuando alcances los niveles 4 y 10 de bardo, aprenderás otro truco de tu elecci
 
 Espacios de conjuro. La tabla “Rasgos de bardo” muestra cuántos espacios de conjuro tienes para lanzar tus conjuros de nivel 1 y superiores. Recuperas todos los espacios utilizados tras finalizar un descanso largo.
 
-Conjuros preparados de nivel 1 y superiores. Preparas una serie de conjuros de nivel 1 y superiores, que son los que podrás lanzar con este rasgo. Para empezar, elige cuatro conjuros de nivel 1 de he- la lista de conjuros de bardo. Se recomiendan chizar persona, palabra de curación, rociada de color y susurros discordantes.
+Conjuros preparados de nivel 1 y superiores. Preparas una serie de conjuros de nivel 1 y superiores, que son los que podrás lanzar con este rasgo. Para empezar, elige cuatro conjuros de nivel 1 de la lista de conjuros de bardo. Se recomiendan hechizar persona, palabra de curación, rociada de color y susurros discordantes.
 
 El número de conjuros de tu lista aumenta conforme subes de nivel de bardo, como se muestra en la columna “Conjuros preparados” de la tabla “Rasgos de bardo”. Cuando ese número aumente, elige conjuros adicionales de la lista de conjuros de bardo hasta que el número de conjuros de tu lista coincida con el número de la tabla. Estos conjuros deben ser de un nivel para el que tengas espacios de conjuro. Por ejemplo, si eres un bardo de nivel 3, podrías preparar cualquier combinación de seis conjuros de nivel 1 o 2.
 

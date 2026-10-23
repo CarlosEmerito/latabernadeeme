@@ -15,7 +15,7 @@ abilities:
   int: 11
   sab: 12
   car: 11
-saves: ''
+saves: Con +4, Sab +3
 skills: Sigilo +6, Supervivencia +3
 resistances: ''
 immunities: ''

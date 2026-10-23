@@ -17,9 +17,9 @@ abilities:
   car: 15
 saves: ''
 skills: Percepción +3, Sigilo +4
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: necrótico
+immunities: veneno
+conditionImmunities: cansancio, envenenado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 13
 languages: común y otro cualquiera

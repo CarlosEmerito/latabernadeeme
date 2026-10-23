@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: 1 minuto
 range: Lanzador
-components: V, S, M (una gema, un cristal o un relica- rio que valga al menos 500 po)
+components: V, S, M (una gema, un cristal o un relicario que valga al menos 500 po)
 duration: Hasta que sea disipado
 classes:
 - Mago
@@ -18,9 +18,7 @@ Tu cuerpo entra en estado catatónico y tu alma lo abandona y entra en el recipi
 
 Puedes intentar poseer a cualquier humanoide que esté a 30 m o menos de ti que puedas ver (las
 
-círculo criaturas protegidas mediante un conjuro mágico protección contra el bien y el mal o no pueden ser poseídas). El objetivo hace una tirada de salva-
-
-ción de Carisma. Si la falla, tu alma se introducirá en el cuerpo del objetivo y la suya quedará atrapada en el recipiente. Si la supera, resistirá tus esfuerzos por poseerlo y no podrás volver a intentarlo durante 24 horas.
+círculo criaturas protegidas mediante un conjuro mágico protección contra el bien y el mal o no pueden ser poseídas). El objetivo hace una tirada de salvación de Carisma. Si la falla, tu alma se introducirá en el cuerpo del objetivo y la suya quedará atrapada en el recipiente. Si la supera, resistirá tus esfuerzos por poseerlo y no podrás volver a intentarlo durante 24 horas.
 
 En cuanto posees el cuerpo de una criatura, lo controlas. Tus puntos de golpe, dados de puntos de golpe, Fuerza, Destreza, Constitución, velocidad y sentidos se sustituyen por los de la criatura. Por lo demás, conservas tu perfil.
 

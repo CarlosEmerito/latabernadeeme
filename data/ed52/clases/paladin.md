@@ -80,7 +80,7 @@ Has aprendido a lanzar conjuros gracias a la oración y la meditación. Consulta
 
 Espacios de conjuro. La tabla “Rasgos de paladín” muestra cuántos espacios de conjuro tienes para lanzar tus conjuros de nivel 1 y superiores. Recuperas todos los espacios utilizados tras finalizar un descanso largo.
 
-Conjuros preparados de nivel 1 y superiores. Preparas una serie de conjuros de nivel 1 y superiores, que son los que podrás lanzar con este rasgo. Para empezar, elige dos conjuros de paladín de castigo abrasador heroís- nivel 1. Se recomiendan y mo.
+Conjuros preparados de nivel 1 y superiores. Preparas una serie de conjuros de nivel 1 y superiores, que son los que podrás lanzar con este rasgo. Para empezar, elige dos conjuros de paladín de nivel 1. Se recomiendan castigo abrasador y heroísmo.
 
 El número de conjuros de tu lista aumenta conforme subes de nivel de paladín, como se muestra en la columna “Conjuros preparados” de la tabla “Rasgos de paladín”. Cuando ese número aumente, elige conjuros de paladín adicionales hasta que el número de conjuros de tu lista coincida con el número de la tabla “Rasgos de paladín”. Estos conjuros deben ser de un nivel para el que tengas espacios de conjuro. Por ejemplo, si eres un paladín de nivel 5, podrías preparar cualquier combinación de seis conjuros de paladín de nivel 1 o 2.
 

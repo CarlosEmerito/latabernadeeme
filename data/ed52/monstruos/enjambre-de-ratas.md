@@ -15,11 +15,11 @@ abilities:
   int: 2
   sab: 10
   car: 3
-saves: ''
+saves: Des +2
 skills: ''
-resistances: ''
+resistances: contundente, cortante, perforante
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: agarrado, apresado, asustado, aturdido, derribado, hechizado, paralizado, petrificado
 vulnerabilities: ''
 senses: visión en la oscuridad 9 m; Percepción pasiva 10
 languages: ninguno

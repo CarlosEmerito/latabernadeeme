@@ -102,6 +102,17 @@ Quien lo lea tiene que quedarse con el valor base (lo que va antes del primer `P
 los separadores: `src/lib/xp.ts` lo hace para el índice JSON y para las herramientas de
 `/mesa/`.
 
+`saves`, `resistances`, `immunities`, `conditionImmunities`, `vulnerabilities` y `gear` salen
+del perfil de la criatura, y cada edición lo escribe a su manera. El 5.1 los da con etiqueta
+propia (`Tiradas de salvación:`, `Inmunidad a daño:`, `Inmunidad a estados:`…). El 5.2 usa **una
+sola etiqueta por campo**, con los tipos de daño y los estados en la misma lista separados por
+`;` (`Inmunidades: veneno; cansancio, envenenado`): lo de antes del `;` es daño y lo de después
+estados, pero como hay criaturas que solo tienen estados (`Cieno gris`), el reparto se hace por
+nombre contra la lista cerrada de estados, no por la posición. Las salvaciones del 5.2 no llevan
+etiqueta: son la **tercera columna** de la tabla de características (`F 23 +6 +6`: puntuación,
+modificador, salvación) y solo se publican cuando no coinciden con el modificador, que es cuando
+la criatura tiene competencia; la del secuaz goblin se queda vacía, como en el SRD.
+
 ### objetos (`data/ed5x/objetos/*.md`)
 
 ```yaml
@@ -180,6 +191,59 @@ se parchearon a mano en su día y no se regeneró la carpeta entera: el flujo de
 arrastraba cambios de prosa ajenos a la tarea. La corrección del parser impide
 que el fallo vuelva en la próxima regeneración; el parche de datos solo arregla
 lo que ya está publicado.
+
+#### Los cortes de palabra del maquetador
+
+El PDF parte palabras con guion al final de la línea, y en el 5.2 el trozo que sobra viaja a otra
+frase (`de he-` / `la lista de conjuros de bardo` / `chizar persona`, con la negrita abriéndose en
+mitad de la palabra en `bulette`). Los escritores recomponen ahora la palabra al unir líneas
+(`stream.paragraphs` y `spells._extract_props`, más `srd/pies.py` para el texto plano), y
+`tools/verify/validar.py` —el paso 1 de `npm run verificar`— vigila las dos formas del corte,
+guion a fin de línea y guion dentro de la palabra, más cinco frases testigo completas: un corte
+nuevo tumba la puerta.
+
+`conjuros` y `monstruos` se regeneran con `tools/ingest/extract_core.py` y salen limpios.
+`objetos`, `clases` y `reglas` no: se generaron con versiones anteriores del pipeline que ya no
+reproducen `data/` (volver a pasarlas cambia cientos de fichas por motivos que no son este
+arreglo), así que lo publicado se repara con `tools/ingest/reparar_cortes.py`. Ese script quita el
+pie de página que parte una palabra, une los cortes y escribe enteras las frases en las que el
+trozo se fue a otro sitio —el texto correcto está copiado de `.cache/srd/work/es5x.txt`, que sí lo
+conserva en orden—. Es idempotente y falla si una frase testigo no aparece donde debería. Se pasa
+después de cualquier regeneración:
+
+```bash
+python3 tools/ingest/reparar_cortes.py            # repara data/
+python3 tools/ingest/reparar_cortes.py --check    # solo cuenta, no escribe
+```
+
+#### El pie de página del PDF
+
+El texto linealizado trae, al final de cada hoja, la línea legal del documento —«Documento de
+referencia del sistema 5.1. 226», «Prohibida la reventa. Tienes permiso para imprimir o fotocopiar
+este documento solo para uso personal.»— y a veces el número de página. El flujo por coordenadas ya
+lo descartaba (`FOOTER_RE` e `is_footer` en `tools/ingest/linearize.py`), pero el capítulo de
+objetos se extrae del **texto plano**, así que el pie viajaba con el objeto y se publicaba como
+último párrafo de la descripción: 93 fichas lo llevaban, y en las que cayó a media frase la
+descripción se quedó sin el final del texto (`anillo-de-almacenamiento-de-conjuros` acababa en «…y
+los conserva hasta que el portador»).
+
+`tools/ingest/srd/pies.py` limpia el texto antes de cortar los cuerpos (`sin_pies`, que llama
+`items.plain_bodies`): quita el pie —también el que quedó pegado dentro de un párrafo—, quita el
+número que lo precede y, si el pie había partido una frase, vuelve a unirla. Lo ya publicado se
+arregló con `tools/ingest/reparar_pies.py`, que recompone cada ficha desde el texto del PDF (de la
+cabecera del objeto al objeto siguiente) y, si el cuerpo tiene una tabla y no se puede recomponer
+sin perderla, solo quita el pie (`quita_pies`). Antes de escribir comprueba que el texto nuevo está
+literal en el PDF y que no se pierde ningún párrafo del viejo; si no se cumple, deja la ficha como
+estaba y lo dice.
+
+```bash
+python3 tools/ingest/reparar_pies.py            # repara data/
+python3 tools/ingest/reparar_pies.py --seco     # solo cuenta, no escribe
+```
+
+Lo vigila `tools/test/pies.py` (un paso de `npm run verificar`) con las líneas crudas del PDF, y el
+paso 1 (`tools/verify/validar.py`, `pies_de_pagina()`) tumba la puerta si una ficha de `data/` vuelve
+a publicar el pie.
 
 ### especies / trasfondos / dotes / reglas
 

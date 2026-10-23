@@ -18,8 +18,8 @@ abilities:
 saves: ''
 skills: Sigilo +4
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: veneno
+conditionImmunities: cansancio, envenenado, petrificado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 10
 languages: primordial (terrano)

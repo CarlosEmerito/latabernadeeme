@@ -18,9 +18,7 @@ Haces que una zona dentro del alcance sea mágicamente segura. Esta zona es un c
 
 Cuando lanzas el conjuro, decides el tipo de seguridad que proporciona eligiendo cualesquiera de las siguientes propiedades:
 
-• El sonido no puede atravesar la barrera del perí-
-
-metro de la zona protegida. • La barrera de la zona protegida parece oscura
+• El sonido no puede atravesar la barrera del perímetro de la zona protegida. • La barrera de la zona protegida parece oscura
 
 y con niebla, impidiendo ver a través de ella (incluso a la visión en la oscuridad). • Dentro de la zona protegida no pueden aparecer
 

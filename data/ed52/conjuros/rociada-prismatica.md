@@ -46,9 +46,7 @@ supera la tirada: la mitad de daño.
 
 de apresado y hará una tirada de salvación de Constitución al final de cada uno de sus turnos. Si la supera tres veces, el estado terminará. Si la falla tres veces, tendrá el estado de petrificado hasta que lo libere un efecto como el del conjuro restablecimiento mayor. Los éxitos y los fallos no tienen por qué ser consecutivos: lleva la cuenta de ambos hasta que el objetivo tenga tres de un mismo tipo.
 
-7 Violeta. Si falla la tirada: El objetivo tendrá el es-
-
-tado de cegado y hará una tirada de salvación de Sabiduría al principio de tu siguiente turno. Si la supera, el estado terminará. Si la falla, el estado terminará y la criatura se teletransportará a otro plano de existencia (a elección de tu GM).
+7 Violeta. Si falla la tirada: El objetivo tendrá el estado de cegado y hará una tirada de salvación de Sabiduría al principio de tu siguiente turno. Si la supera, el estado terminará. Si la falla, el estado terminará y la criatura se teletransportará a otro plano de existencia (a elección de tu GM).
 
 8 Especial. Dos rayos alcanzan al objetivo. Tira dos
 

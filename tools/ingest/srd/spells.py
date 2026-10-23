@@ -77,9 +77,27 @@ def _match_school(line: str) -> re.Match | None:
     return SCHOOL_51.match(line) or SCHOOL_52.match(line) or CANTRIP_52.match(line)
 
 
+def _recomponer(piezas: list[str]) -> str:
+    """Une trozos de una misma línea recomponiendo la palabra partida.
+
+    Las propiedades del encabezado llegan en varias líneas y la última puede
+    acabar en el guion del maquetador («…construido de mate-» + «riales
+    raros»). Unirlas con un espacio deja «mate- riales» publicado.
+    """
+    texto = ""
+    for p in piezas:
+        if not texto:
+            texto = p
+        elif texto.endswith("-"):
+            texto = texto[:-1] + p
+        else:
+            texto += " " + p
+    return texto
+
+
 def _extract_props(block: list[Line]) -> dict[str, str]:
     """Reparte las propiedades del encabezado, que llegan partidas en líneas."""
-    joined = " ".join(l.text for l in block)
+    joined = _recomponer([l.text for l in block])
     props: dict[str, str] = {}
     positions = []
     for lbl in PROP_LABELS:

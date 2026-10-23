@@ -26,7 +26,7 @@ languages: común
 cr: 1/8
 xp: 25 PX; BC +2
 proficiency: ''
-gear: ''
+gear: camisa de malla, lanza
 srd: '5.2'
 page: 335
 ---

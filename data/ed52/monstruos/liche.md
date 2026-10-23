@@ -15,11 +15,11 @@ abilities:
   int: 21
   sab: 14
   car: 16
-saves: ''
+saves: Des +10, Con +10, Int +12, Sab +9
 skills: Conocimiento arcano +19, Historia +12, Percepción +9, Perspicacia +9
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: frío, relámpago
+immunities: necrótico, veneno
+conditionImmunities: asustado, cansancio, envenenado, hechizado, paralizado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 19
 languages: todos

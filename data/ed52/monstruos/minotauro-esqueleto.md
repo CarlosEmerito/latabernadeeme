@@ -18,9 +18,9 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
-vulnerabilities: ''
+immunities: veneno
+conditionImmunities: cansancio, envenenado
+vulnerabilities: contundente
 senses: visión en la oscuridad 18 m; Percepción pasiva 9
 languages: entiende abisal, pero no puede hablar
 cr: '2'

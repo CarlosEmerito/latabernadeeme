@@ -15,11 +15,11 @@ abilities:
   int: 1
   sab: 5
   car: 1
-saves: ''
+saves: Des +4
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: psíquico, veneno
+conditionImmunities: asustado, cansancio, ensordecido, envenenado, hechizado, paralizado, petrificado
 vulnerabilities: ''
 senses: visión ciega 18 m; Percepción pasiva 7
 languages: ninguno

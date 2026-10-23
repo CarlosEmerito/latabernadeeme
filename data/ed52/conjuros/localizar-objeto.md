@@ -6,7 +6,7 @@ ritual: false
 concentration: true
 castingTime: Acción
 range: Lanzador
-components: V, S, M (una ramita con forma de hor- quilla)
+components: V, S, M (una ramita con forma de horquilla)
 duration: Concentración, hasta 10 minutos
 classes:
 - Bardo

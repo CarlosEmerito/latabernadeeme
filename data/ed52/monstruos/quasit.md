@@ -17,9 +17,9 @@ abilities:
   car: 10
 saves: ''
 skills: Sigilo +5
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: frío, fuego, relámpago
+immunities: veneno
+conditionImmunities: envenenado
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m; Percepción pasiva 10
 languages: abisal, común

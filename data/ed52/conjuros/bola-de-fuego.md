@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: Acción
 range: 45 m
-components: V, S, M (una pelota de guano de murcié- lago y azufre)
+components: V, S, M (una pelota de guano de murciélago y azufre)
 duration: Instantáneo
 classes:
 - Hechicero

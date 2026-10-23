@@ -17,9 +17,9 @@ abilities:
   car: 3
 saves: ''
 skills: ''
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: frío, fuego, relámpago
+immunities: veneno
+conditionImmunities: envenenado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 9
 languages: abisal; telepatía 18 m (solo funciona con criaturas que entiendan abisal)

@@ -7,8 +7,4 @@ srd: '5.1'
 page: 269
 ---
 
-Mientras empuñes esta varita, obtendrás un bonificador a las tiradas de ataque de conjuro determinado por la rareza de la varita. Además,
-
-Prohibida la reventa. Tienes permiso para imprimir o fotocopiar este documento solo para uso personal.
-
-ignorarás la cobertura media cuando realices un ataque de conjuro.
+(requiere sintonización por parte de un lanzador de conjuros) Mientras empuñes esta varita, obtendrás un bonificador a las tiradas de ataque de conjuro determinado por la rareza de la varita. Además, ignorarás la cobertura media cuando realices un ataque de conjuro.

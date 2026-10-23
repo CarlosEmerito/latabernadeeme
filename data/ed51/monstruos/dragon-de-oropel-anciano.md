@@ -55,9 +55,7 @@ page: 325
 
 **en un cono de 27 m.** Todas las criaturas situadas en la zona deberán superar una tirada de salvación de Constitución con CD 21 o quedarán inconscientes durante 10 minutos. Este efecto finaliza para una criatura si recibe daño o si alguien usa una acción para despertarla.
 
-**Cambiar de forma.** El dragón se transforma mágicamente en un humanoide o una bestia con un valor de desafío igual o menor al suyo, o vuelve a su auténtica forma. Si muere, recuperará su verdadera forma. Cualquier equipo que vista o lleve será absorbido o portado por la nueva forma, a elección del dragón.
-
-**tuaciones de Inteligencia, Sabiduría y Carisma, así como esta acción.** El resto de su perfil y capacidades son reemplazadas por las de la nueva forma, aunque no obtiene ni los rasgos de clase ni las acciones legendarias de esta.
+**Cambiar de forma.** El dragón se transforma mágicamente en un humanoide o una bestia con un valor de desafío igual o menor al suyo, o vuelve a su auténtica forma. Si muere, recuperará su verdadera forma. Cualquier equipo que vista o lleve será absorbido o portado por la nueva forma, a elección del dragón. Mientras asuma su nueva forma, el dragón mantendrá su alineamiento, puntos de golpe, Dados de Golpe, capacidad para hablar, competencias, Resistencia Legendaria, acciones en guarida y puntuaciones de Inteligencia, Sabiduría y Carisma, así como esta acción. El resto de su perfil y capacidades son reemplazadas por las de la nueva forma, aunque no obtiene ni los rasgos de clase ni las acciones legendarias de esta.
 
 **Presencia aterradora.** Todas las criaturas a elección del dragón que estén a 36 m o menos de él y sean conscientes de su presencia deberán superar una tirada de salvación de Sabiduría con CD 18 o quedarán asustadas durante 1 minuto. Una criatura puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Si una criatura supera la tirada de salvación o el efecto termina para ella, será inmune a la presencia aterradora del dragón durante las siguientes 24 horas.
 

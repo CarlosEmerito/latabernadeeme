@@ -15,11 +15,11 @@ abilities:
   int: 3
   sab: 11
   car: 11
-saves: ''
+saves: Des +9, Int +5, Sab +9, Car +9
 skills: Percepción +9
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: contundente, cortante, perforante
+immunities: fuego, veneno
+conditionImmunities: asustado, ensordecido, envenenado, hechizado, paralizado
 vulnerabilities: ''
 senses: visión ciega 36 m; Percepción pasiva 19
 languages: ninguno

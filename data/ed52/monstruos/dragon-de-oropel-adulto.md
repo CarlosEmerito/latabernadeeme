@@ -15,10 +15,10 @@ abilities:
   int: 14
   sab: 13
   car: 17
-saves: ''
+saves: Des +5, Sab +6
 skills: Historia +7, Percepción +11, Persuasión +8, Sigilo +5
 resistances: ''
-immunities: ''
+immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión ciega 18 m, visión en la oscuridad 36 m; Percepción pasiva 21
@@ -45,7 +45,7 @@ page: 308
 
 **Aliento somnífero.** Tirada de salvación de Constitución: CD 18, todas las criaturas en un cono de 18 m. Fallo: el objetivo tendrá el estado de incapacitado hasta el final de su siguiente turno, momento en el que repetirá la tirada de salvación. Segundo fallo: el objetivo tendrá el estado de inconsciente durante 10 minutos. Este efecto acabará si el objetivo sufre daño o si una criatura que se encuentre a 1,5 m o menos de él lleva a cabo una acción para despertarlo.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes ma-
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 16):
 
 ## Acciones legendarias
 

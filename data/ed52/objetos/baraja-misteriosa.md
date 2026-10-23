@@ -107,9 +107,7 @@ VD: ninguno (0 PX; BC igual al de su invocador)
 
 Atributos
 
-Movimiento incorpóreo. El avatar puede moverse a tra-
-
-vés de otras criaturas y objetos como si fueran terreno
+Movimiento incorpóreo. El avatar puede moverse a través de otras criaturas y objetos como si fueran terreno
 
 difícil. Recibe 5 (1d10) de daño de fuerza si acaba su
 
@@ -121,9 +119,7 @@ Ataque múltiple. El avatar realiza una cantidad de
 
 ataques con su guadaña segadora igual a la mitad del
 
-bonificador por competencia de su invocador (redon-
-
-deando hacia arriba).
+bonificador por competencia de su invocador (redondeando hacia arriba).
 
 Guadaña segadora. Tirada de ataque cuerpo a cuerpo:
 

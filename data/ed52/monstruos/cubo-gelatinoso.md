@@ -18,8 +18,8 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: ácido
+conditionImmunities: asustado, cansancio, cegado, derribado, ensordecido, hechizado
 vulnerabilities: ''
 senses: visión ciega 18 m; Percepción pasiva 8
 languages: ninguno

@@ -116,6 +116,162 @@ def perfil_completo() -> list[str]:
     return problemas
 
 
+# Las tiradas de salvación del 5.2 viajan en la tercera columna de la tabla de
+# características («F 23 +6 +6»: puntuación, modificador, salvación) y
+# `_parse_abilities` solo lee la puntuación, así que las 330 fichas del 5.2 se
+# publican sin la fila «Tiradas de salvación» mientras el 5.1 sí la trae (92 de
+# 317). La tabla del PDF no se versiona (`.cache/`), así que las líneas crudas
+# que se perdían van escritas aquí, ficha a ficha, y el mínimo por edición deja
+# que el catálogo crezca sin poner la puerta en rojo.
+SALVACIONES_TESTIGO = {
+    ("ed52", "archimago"): "Int +9, Sab +6",
+    ("ed52", "dragon-rojo-joven"): "Des +4, Sab +4",
+    ("ed52", "dragon-rojo-anciano"): "Des +7, Sab +9",
+    ("ed51", "dragon-rojo-adulto"): "Des +6, Con +13, Sab +7, Car +11",
+}
+SALVACIONES_MINIMO = {"ed51": 90, "ed52": 40}
+SALVACION = re.compile(r"^(?:Fue|Des|Con|Int|Sab|Car) [+−-]\d+$")
+
+
+def _salvaciones(valor: object) -> set[str]:
+    """«Des +7, Sab +9» → {"Des +7", "Sab +9"}, sin depender del orden."""
+    return {trozo.strip() for trozo in str(valor or "").split(",") if trozo.strip()}
+
+
+def salvaciones_completas() -> list[str]:
+    """Fichas que deberían declarar tiradas de salvación y no las declaran."""
+    problemas: list[str] = []
+    for (ed, ficha), esperado in SALVACIONES_TESTIGO.items():
+        f = DATOS / ed / "monstruos" / f"{ficha}.md"
+        if not f.exists():
+            problemas.append(f"{ed}/{ficha}: no existe la ficha testigo")
+            continue
+        contenido = leer(f)
+        if contenido is None:
+            problemas.append(f"{ed}/{ficha}: la ficha testigo no tiene frontmatter válido")
+            continue
+        datos, _ = contenido
+        valor = str(datos.get("saves") or "")
+        tiene = _salvaciones(valor)
+        falta = sorted(_salvaciones(esperado) - tiene)
+        if falta:
+            problemas.append(
+                f"{ed}/{ficha}: saves debería declarar {', '.join(falta)} y dice «{valor}»"
+            )
+        for trozo in sorted(tiene):
+            if not SALVACION.match(trozo):
+                problemas.append(
+                    f"{ed}/{ficha}: saves trae «{trozo}», que no es «Abreviatura +N»"
+                )
+    for ed, minimo in SALVACIONES_MINIMO.items():
+        con = 0
+        for f in sorted(DATOS.glob(f"{ed}/monstruos/*.md")):
+            contenido = leer(f)
+            if contenido is not None and str(contenido[0].get("saves") or "").strip():
+                con += 1
+        if con < minimo:
+            problemas.append(
+                f"{ed}: solo {con} fichas declaran tiradas de salvación y la tabla del SRD "
+                f"da al menos {minimo}"
+            )
+    # El formato se comprueba en todas, no solo en las testigo: la celda de la
+    # tabla del 5.2 viene siempre con signo, y una sin él («2» en la Int del
+    # dragón blanco joven, pág. 300) se publicaría como «Int 2».
+    for ed in ("ed51", "ed52"):
+        for f in sorted(DATOS.glob(f"{ed}/monstruos/*.md")):
+            contenido = leer(f)
+            if contenido is None:
+                continue
+            valor = str(contenido[0].get("saves") or "")
+            for trozo in sorted(_salvaciones(valor)):
+                if not SALVACION.match(trozo):
+                    problemas.append(
+                        f"{ed}/{f.stem}: saves trae «{trozo}», que no es «Abreviatura +N»"
+                    )
+    return problemas
+
+
+# Las inmunidades, resistencias y vulnerabilidades del 5.2 llevan **una sola
+# etiqueta** por campo, con los tipos de daño y los estados separados por «;»
+# («Inmunidades: veneno; cansancio, envenenado»), y `STAT_LABELS` solo conoce
+# las de 2014 («Inmunidad a daño:», «Inmunidad a estados:»…), así que las
+# cuatro filas salen vacías en las 330 fichas y el DM no ve que el esqueleto es
+# inmune al veneno y vulnerable al contundente. El equipo se pierde por la misma
+# puerta cuando la línea «Equipo:» cae antes de «Sentidos:». La tabla del PDF no
+# se versiona, así que los valores van escritos aquí, ficha a ficha.
+PERFIL_TESTIGO_5_2 = {
+    ("ed52", "esqueleto"): {
+        "immunities": "veneno",
+        "conditionImmunities": "cansancio, envenenado",
+        "vulnerabilities": "contundente",
+        "gear": "arco corto, espada corta",
+    },
+    ("ed52", "couatl"): {
+        "resistances": "contundente, cortante, perforante",
+        "immunities": "psíquico, radiante",
+    },
+    ("ed52", "behir"): {"immunities": "relámpago"},
+    ("ed52", "elemental-de-tierra"): {
+        "immunities": "veneno",
+        "conditionImmunities": "cansancio, envenenado, inconsciente, paralizado, petrificado",
+        "vulnerabilities": "trueno",
+    },
+}
+# El flujo del PDF da 148 criaturas con «Inmunidades:», 70 con «Resistencias:»,
+# 15 con «Vulnerabilidades:» y 44 con «Equipo:». El mínimo deja crecer el
+# catálogo sin poner la puerta en rojo por una ficha nueva.
+#
+# De esas 148, 24 solo tienen estados («Cieno gris: agarrado, apresado,
+# asustado…»), que por la propia puerta van a `conditionImmunities`: el daño de
+# `immunities` lo declaran 126, y de esas dos son bloques de estatua que caen
+# fuera de los tramos de monstruos («Objeto animado», pág. 121, dentro de
+# conjuros; «Avatar de la muerte», pág. 238, dentro de objetos), así que el
+# techo real es 124 y el mínimo de 140 no se podía alcanzar nunca. Se baja a
+# 120 y se añade el mínimo de `conditionImmunities`, que es donde van esos 24
+# estados: sin él, volver a perderlos no ponía nada en rojo.
+CAMPO_MINIMO_5_2 = {
+    "immunities": 120,
+    "conditionImmunities": 90,
+    "resistances": 65,
+    "vulnerabilities": 14,
+    "gear": 40,
+}
+
+
+def perfil_del_5_2() -> list[str]:
+    """Inmunidades, resistencias, vulnerabilidades y equipo del SRD 5.2."""
+    problemas: list[str] = []
+    for (ed, ficha), esperado in PERFIL_TESTIGO_5_2.items():
+        f = DATOS / ed / "monstruos" / f"{ficha}.md"
+        if not f.exists():
+            problemas.append(f"{ed}/{ficha}: no existe la ficha testigo")
+            continue
+        contenido = leer(f)
+        if contenido is None:
+            problemas.append(f"{ed}/{ficha}: la ficha testigo no tiene frontmatter válido")
+            continue
+        datos, _ = contenido
+        for campo, texto in esperado.items():
+            valor = str(datos.get(campo) or "").strip()
+            if valor != texto:
+                problemas.append(f"{ed}/{ficha}: {campo} debería ser «{texto}» y dice «{valor}»")
+        for campo in ("immunities", "conditionImmunities", "resistances", "vulnerabilities"):
+            if campo not in datos:
+                problemas.append(f"{ed}/{ficha}: la ficha no declara el campo {campo}")
+    for campo, minimo in CAMPO_MINIMO_5_2.items():
+        con = 0
+        for f in sorted(DATOS.glob("ed52/monstruos/*.md")):
+            contenido = leer(f)
+            if contenido is not None and str(contenido[0].get(campo) or "").strip():
+                con += 1
+        if con < minimo:
+            problemas.append(
+                f"ed52: solo {con} fichas declaran {campo} y el flujo del SRD da al menos {minimo}"
+            )
+    return problemas
+
+
+
 # Los doce objetos del SRD que faltaban en el catálogo de equipo: los siete
 # paquetes del 5.1 (pág. 71, que en el PDF salen en prosa y no en tabla) y las
 # cinco municiones del 5.2 (pág. 106, con su propia tabla). El nombre y el
@@ -434,6 +590,68 @@ def revisar_carpeta(ed: str, carpeta: Path) -> tuple[list[str], int, int]:
     return lineas, len(ficheros), incidencias
 
 
+# El pie de página del PDF («Documento de referencia del sistema 5.1.» y su
+# número de página) y la línea de la licencia («Prohibida la reventa…») se
+# colaron en el texto de 64 objetos —las 33 fichas del 5.1 y 31 del 5.2—: es lo
+# último que lee quien abre la ficha y lo que se lleva el botón de Markdown. El
+# filtro existe en el resto del pipeline (`FOOTER_RE` e `is_footer` en
+# `tools/ingest/linearize.py`); el camino de los objetos no lo aplicó.
+PIES_DE_PAGINA = ("Documento de referencia del sistema", "Prohibida la reventa")
+
+
+def pies_de_pagina() -> list[str]:
+    """Pies de página del PDF publicados dentro del texto de una ficha."""
+    problemas: list[str] = []
+    for f in sorted(DATOS.glob("*/*/*.md")):
+        texto = f.read_text(encoding="utf-8")
+        cuerpo = texto.split("---", 2)[-1] if texto.startswith("---") else texto
+        for pie in PIES_DE_PAGINA:
+            if pie in cuerpo:
+                problemas.append(
+                    f"{f.parent.parent.name}/{f.parent.name}/{f.stem}: lleva «{pie}» dentro del texto"
+                )
+    return problemas
+
+# El 5.2.1 llega con la palabra partida por el guion del maquetador y el trozo
+# pegado donde cayó: 101 líneas de `data/ed52/` acaban en guion partiendo una
+# palabra (más 3 del 5.1) y 23 la parten en mitad de la línea («mate- riales»,
+# «al me- nos»). De las primeras, 89 continúan en minúscula y se recomponen
+# uniendo el guion; las otras 15 viajan a otra frase («de he- la lista … chizar
+# persona», «el es-» + «**tado de derribado**»). La tabla del PDF no se
+# versiona, así que las frases testigo van escritas aquí tal y como deben
+# leerse, con el texto linealizado (`.cache/srd/work/es52.txt`) como referencia.
+CORTE_AL_FINAL = re.compile(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]-[ \t]*$", re.M)
+CORTE_EN_MEDIO = re.compile(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+-[ \t]+[a-záéíóúüñ]")
+CORTES_TESTIGO = {
+    ("ed52", "monstruos", "bulette"): "el objetivo tiene el estado de derribado",
+    ("ed52", "conjuros", "cofre-oculto"): "construido de materiales raros",
+    ("ed52", "conjuros", "reencarnar"): "que valgan al menos 1000 po",
+    ("ed52", "clases", "bardo"): "de la lista de conjuros de bardo. Se recomiendan hechizar persona",
+    ("ed51", "reglas", "los-planos-de-existencia"): "gobernadas por principios espirituales",
+}
+
+
+def cortes_de_palabra() -> list[str]:
+    """Palabras partidas por el guion del PDF en los ficheros de `data/`."""
+    problemas: list[str] = []
+    for f in sorted(DATOS.glob("*/*/*.md")):
+        texto = f.read_text(encoding="utf-8")
+        etiqueta = f"{f.parent.parent.name}/{f.parent.name}/{f.stem}"
+        for patron, forma in ((CORTE_AL_FINAL, "acaba en guion"), (CORTE_EN_MEDIO, "guion dentro de palabra")):
+            for m in patron.finditer(texto):
+                linea = texto[: m.start()].count("\n") + 1
+                trozo = texto[max(0, m.start() - 25) : m.end() + 15].replace("\n", " ")
+                problemas.append(f"{etiqueta}:{linea}: {forma} («…{trozo.strip()}…»)")
+    for (ed, carpeta, ficha), esperado in CORTES_TESTIGO.items():
+        f = DATOS / ed / carpeta / f"{ficha}.md"
+        if not f.exists():
+            problemas.append(f"{ed}/{carpeta}/{ficha}: no existe la ficha testigo")
+            continue
+        if esperado not in f.read_text(encoding="utf-8"):
+            problemas.append(f"{ed}/{carpeta}/{ficha}: debería decir «{esperado}»")
+    return problemas
+
+
 def main() -> int:
     lineas = ["# Informe de validación", "", "Generado por `tools/verify/validar.py`.", ""]
     problemas = 0
@@ -483,6 +701,42 @@ def main() -> int:
         lineas.append("- Ningún campo del perfil acaba cortado y las fichas testigo están completas.")
     lineas.append("")
 
+    # Las tiradas de salvación del 5.2 viven en la tercera columna de la tabla
+    # de características y no en una etiqueta, así que el parser las perdía sin
+    # romper nada: la ficha salía más corta y en paz. Se vigilan las fichas
+    # testigo y un mínimo por edición.
+    salvaciones = salvaciones_completas()
+    lineas += ["## Tiradas de salvación", ""]
+    if salvaciones:
+        problemas += 1
+        lineas.append(f"- Fichas sin las salvaciones que les da el SRD: **{len(salvaciones)}**")
+        lineas += [f"  - {p}" for p in salvaciones[:15]]
+        if len(salvaciones) > 15:
+            lineas.append(f"  - …y {len(salvaciones) - 15} más")
+    else:
+        lineas.append(
+            "- Las fichas testigo declaran sus salvaciones y cada edición pasa su mínimo."
+        )
+    lineas.append("")
+
+    # Las inmunidades, resistencias y vulnerabilidades del 5.2 se perdían por la
+    # misma puerta que las salvaciones: el parser no conoce las etiquetas de
+    # 2024 y las tiraba en silencio. Se vigilan las fichas testigo y un mínimo.
+    perfil52 = perfil_del_5_2()
+    lineas += ["## Inmunidades, resistencias y vulnerabilidades del 5.2", ""]
+    if perfil52:
+        problemas += 1
+        lineas.append(f"- Campos del perfil del 5.2 perdidos: **{len(perfil52)}**")
+        lineas += [f"  - {p}" for p in perfil52[:15]]
+        if len(perfil52) > 15:
+            lineas.append(f"  - …y {len(perfil52) - 15} más")
+    else:
+        lineas.append(
+            "- Las fichas testigo del 5.2 declaran sus inmunidades, resistencias, "
+            "vulnerabilidades y equipo, y el catálogo pasa sus mínimos."
+        )
+    lineas.append("")
+
     # El catálogo de equipo tiene que seguir cubriendo el capítulo del SRD:
     # los siete paquetes del 5.1 y las cinco municiones del 5.2 se perdían
     # porque el extractor de equipo solo leía tablas, y una regeneración los
@@ -530,6 +784,34 @@ def main() -> int:
         lineas.append(
             "- Ningún alineamiento lleva el tamaño, una aclaración del tipo ni su complemento suelto."
         )
+    lineas.append("")
+
+    # El pie de página del PDF es texto de maqueta, no del SRD: si viaja con el
+    # objeto, la ficha acaba contando en qué página estaba.
+    pies = pies_de_pagina()
+    lineas += ["## Pies de página dentro del texto", ""]
+    if pies:
+        problemas += 1
+        lineas.append(f"- Fichas con el pie del PDF dentro de su texto: **{len(pies)}**")
+        lineas += [f"  - {p}" for p in pies[:15]]
+        if len(pies) > 15:
+            lineas.append(f"  - …y {len(pies) - 15} más")
+    else:
+        lineas.append("- Ningún texto de ficha lleva el pie de página del PDF ni la línea de la licencia.")
+    lineas.append("")
+
+    # El guion del maquetador parte palabras dentro del texto publicado: la
+    # ficha se lee mal y, en los casos peores, el trozo viaja a otra frase.
+    cortes = cortes_de_palabra()
+    lineas += ["## Cortes de palabra", ""]
+    if cortes:
+        problemas += 1
+        lineas.append(f"- Cortes de palabra y frases testigo mal escritas: **{len(cortes)}**")
+        lineas += [f"  - {p}" for p in cortes[:15]]
+        if len(cortes) > 15:
+            lineas.append(f"  - …y {len(cortes) - 15} más")
+    else:
+        lineas.append("- Ninguna palabra queda partida por el guion y las frases testigo se leen enteras.")
     lineas.append("")
 
     lineas.insert(3, f"Total de entradas: **{total}**. Apartados con incidencias: **{problemas}**.")

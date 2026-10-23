@@ -15,10 +15,10 @@ abilities:
   int: 10
   sab: 14
   car: 13
-saves: ''
+saves: Des +3, Con +10, Car +5
 skills: Atletismo +11, Percepción +6
 resistances: ''
-immunities: ''
+immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: Percepción pasiva 16

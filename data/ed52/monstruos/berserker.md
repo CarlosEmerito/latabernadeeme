@@ -26,7 +26,7 @@ languages: común
 cr: '2'
 xp: 450 PX; BC +2
 proficiency: ''
-gear: ''
+gear: armadura de pieles, hacha a dos manos
 srd: '5.2'
 page: 288
 ---

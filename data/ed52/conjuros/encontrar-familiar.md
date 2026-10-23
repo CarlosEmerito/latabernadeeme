@@ -6,7 +6,7 @@ ritual: true
 concentration: false
 castingTime: 1 hora o un ritual
 range: 3 m
-components: V, S, M (incienso para quemar que valga al menos 10 po, que se consume como parte del con- juro)
+components: V, S, M (incienso para quemar que valga al menos 10 po, que se consume como parte del conjuro)
 duration: Instantáneo
 classes:
 - Mago

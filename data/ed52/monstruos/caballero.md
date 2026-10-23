@@ -15,18 +15,18 @@ abilities:
   int: 11
   sab: 11
   car: 15
-saves: ''
+saves: Con +4, Sab +2
 skills: ''
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: asustado
 vulnerabilities: ''
 senses: Percepción pasiva 10
 languages: común y otro cualquiera
 cr: '3'
 xp: 700 PX; BC +2
 proficiency: ''
-gear: ''
+gear: armadura de placas, ballesta pesada, espadón
 srd: '5.2'
 page: 289
 ---

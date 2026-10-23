@@ -15,11 +15,11 @@ abilities:
   int: 20
   sab: 15
   car: 16
-saves: ''
+saves: Int +9, Sab +6
 skills: Conocimiento arcano +13, Historia +9, Percepción +6
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: psíquico
+conditionImmunities: hechizado (con mente en blanco)
 vulnerabilities: ''
 senses: Percepción pasiva 16
 languages: común y otros cinco idiomas

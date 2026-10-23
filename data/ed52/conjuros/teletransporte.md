@@ -46,9 +46,7 @@ teletransportación permanente cuya secuencia de sellos conozcas. • “Objeto 
 
 objeto tomado del destino deseado en los últimos seis meses, como un libro de la biblioteca de un mago. • “Muy familiar” es un sitio que has visitado
 
-a menudo, que has estudiado detenidamente o que puedas ver cuando lanzas el conjuro. • “Visto esporádicamente” es un lugar que has vis-
-
-to más de una vez, pero que no conoces muy bien. • “Visto una vez o descrito” es un lugar que solo
+a menudo, que has estudiado detenidamente o que puedas ver cuando lanzas el conjuro. • “Visto esporádicamente” es un lugar que has visto más de una vez, pero que no conoces muy bien. • “Visto una vez o descrito” es un lugar que solo
 
 has visto en una ocasión, quizá mediante la magia, o un sitio que conoces de segunda mano, quizá por un mapa. • “Destino falso” es un lugar que no existe.
 

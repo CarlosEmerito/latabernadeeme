@@ -15,7 +15,7 @@ abilities:
   int: 17
   sab: 12
   car: 11
-saves: ''
+saves: Int +6, Sab +4
 skills: Conocimiento arcano +6, Historia +6, Percepción +4
 resistances: ''
 immunities: ''

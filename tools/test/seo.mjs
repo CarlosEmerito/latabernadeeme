@@ -1,5 +1,5 @@
 /**
- * Metadatos sociales de las 3559 páginas compiladas.
+ * Metadatos sociales de todas las páginas compiladas.
  *
  * Cada página tiene que publicar una sola canónica absoluta con la base del
  * despliegue y una barra final, `og:url` idéntica a ella, `og:type` con

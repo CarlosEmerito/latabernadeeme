@@ -27,6 +27,14 @@ DATOS = RAIZ / "data"
 INFORME = RAIZ / "docs" / "informes" / "validacion.md"
 README = RAIZ / "README.md"
 
+# La frase del README que nombra el trasfondo y la dote del SRD 5.1, de los que
+# solo hay una ficha cada uno. Los nombres se comprueban contra `data/`; la
+# forma de la frase también, porque si se reescribe hay que volver a mirarla.
+PATRON_UNICAS = re.compile(
+    r"un trasfondo\s*\((?P<trasfondo>[^)]*)\)\s*y una dote\s*\((?P<dote>[^)]*)\)",
+    re.IGNORECASE,
+)
+
 # Recuentos del SRD en español, comprobados contra los documentos oficiales.
 REFERENCIA = {
     ("ed51", "conjuros"): 319,
@@ -501,6 +509,47 @@ def recuentos_readme() -> tuple[dict[tuple[str, str], int], list[str]]:
     return recuentos, errores
 
 
+def nombres_readme() -> list[str]:
+    """El nombre que el README da a las entradas de las que el SRD tiene una sola.
+
+    La tabla de «Estado» cuenta ficheros, así que el README puede decir que el
+    5.1 tiene una dote y llamarla de cualquier manera sin que ningún número se
+    descuadre: pasó desde el primer día con la dote «Apresador», que el README
+    llamaba «luchador» (el nombre inglés es *Grappler*), y el nombre no aparecía
+    en ninguna otra parte del sitio. La frase se lee tal cual está escrita y sus
+    dos nombres se comparan con el `name` de la ficha; si la frase desaparece, la
+    pasada falla igual, porque entonces el nombre se queda sin vigilar.
+    """
+    if not README.exists():
+        return ["no existe README.md"]
+    encontrado = PATRON_UNICAS.search(README.read_text(encoding="utf-8"))
+    if encontrado is None:
+        return [
+            "no encuentro en README.md la frase «un trasfondo (…) y una dote (…)»: "
+            "el nombre de las entradas únicas del 5.1 se queda sin comprobar"
+        ]
+    problemas: list[str] = []
+    for campo, carpeta in (("trasfondo", "trasfondos"), ("dote", "dotes")):
+        dice = encontrado.group(campo).strip()
+        fichas = sorted((DATOS / "ed51" / carpeta).glob("*.md"))
+        if len(fichas) != 1:
+            problemas.append(
+                f"ed51/{carpeta}: el README dice que el 5.1 tiene una sola {campo} y hay "
+                f"{len(fichas)} fichas"
+            )
+            continue
+        leida = leer(fichas[0])
+        nombre = str((leida[0].get("name") if leida else "") or "").strip()
+        if not nombre:
+            problemas.append(f"ed51/{carpeta}/{fichas[0].name}: la ficha no declara «name»")
+            continue
+        if sin_tildes(nombre) != sin_tildes(dice):
+            problemas.append(
+                f"ed51/{carpeta}: el README la llama «{dice}» y la ficha «{nombre}»"
+            )
+    return problemas
+
+
 def nombres_repetidos(fichas: list[tuple[str, str]]) -> list[str]:
     """Nombres que se repiten dentro de la misma carpeta y categoría.
 
@@ -685,6 +734,21 @@ def main() -> int:
         lineas += [f"- Celda sin carpeta en `data/`: `{ed}/{tipo}`" for ed, tipo in sobrantes]
     else:
         lineas.append(f"- Las {len(declarados)} celdas coinciden con los ficheros de `data/`.")
+    lineas.append("")
+
+    # La tabla cuenta ficheros; el nombre que el README pone a las entradas de
+    # las que solo hay una (la dote y el trasfondo del 5.1) no lo miraba nadie,
+    # y el README llamaba «luchador» a la dote «Apresador» sin que cuadrara de
+    # menos: 1 dote es 1 dote se llame como se llame.
+    nombres = nombres_readme()
+    lineas += ["## README — nombres de las entradas únicas", ""]
+    if nombres:
+        problemas += 1
+        lineas += [f"- {n}" for n in nombres]
+    else:
+        lineas.append(
+            "- El README nombra la dote y el trasfondo del 5.1 como sus fichas."
+        )
     lineas.append("")
 
     # El perfil de las criaturas es lo que el DM consulta en la mesa: un valor

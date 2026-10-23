@@ -45,6 +45,10 @@ Total de entradas: **2502**. Apartados con incidencias: **0**.
 
 - Las 18 celdas coinciden con los ficheros de `data/`.
 
+## README — nombres de las entradas únicas
+
+- El README nombra la dote y el trasfondo del 5.1 como sus fichas.
+
 ## Perfil de las criaturas
 
 - Ningún campo del perfil acaba cortado y las fichas testigo están completas.

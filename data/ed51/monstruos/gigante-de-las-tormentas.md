@@ -35,7 +35,7 @@ page: 344
 
 **Anfibio.** El gigante puede respirar tanto dentro como fuera del agua.
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del gigante es el Carisma (CD de salvación de conjuros 17). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del gigante es el Carisma (CD de salvación de conjuros 17). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: caída de pluma, detectar magia, levitar, luz 3/día cada uno: controlar el clima, respirar bajo el agua
 
 ## Acciones
 

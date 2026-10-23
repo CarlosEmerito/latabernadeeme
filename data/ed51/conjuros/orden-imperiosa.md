@@ -21,9 +21,7 @@ Más adelante puedes encontrar ejemplos de órdenes típicas y sus efectos, aunq
 
 Acércate. El objetivo se acerca a ti por la ruta más corta y directa posible, y su turno acaba si se sitúa a 1,5 m o menos de ti.
 
-Detente. El objetivo no se mueve ni realiza ninguna acción. Si puede, una criatura que esté volando permanecerá en el aire. Si para ello debe
-
-moverse, volará la distancia mínima necesaria para seguir en el aire.
+Detente. El objetivo no se mueve ni realiza ninguna acción. Si puede, una criatura que esté volando permanecerá en el aire. Si para ello debe moverse, volará la distancia mínima necesaria para seguir en el aire.
 
 Huye. El objetivo emplea su turno en alejarse de ti de la manera más rápida posible.
 

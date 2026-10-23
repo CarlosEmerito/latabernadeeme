@@ -15,9 +15,9 @@ abilities:
   int: 10
   sab: 12
   car: 12
-saves: ''
+saves: Con +11, Sab +7
 skills: ''
-resistances: ''
+resistances: fuego
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''
@@ -43,6 +43,4 @@ page: 316
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +13, alcance 4,5 m. Acierto: 23 (3d10 + 7) de daño perforante más 7 (2d6) de daño de fuego. Estar bajo el agua no otorga resistencia a este daño de fuego.
 
-**Aliento de vapor (recarga 5–6).** Tirada de salvación de Constitución: CD 19, todas las criaturas en un cono de 18 m. Fallo: 56 (16d6) de daño de fuego. Éxito: la mitad
-
-**del daño.** Fallo o éxito: estar bajo el agua no otorga resistencia a este daño de fuego.
+**Aliento de vapor (recarga 5–6).** Tirada de salvación de Constitución: CD 19, todas las criaturas en un cono de 18 m. Fallo: 56 (16d6) de daño de fuego. Éxito: la mitad del daño. Fallo o éxito: estar bajo el agua no otorga resistencia a este daño de fuego.

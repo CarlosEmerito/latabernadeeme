@@ -39,4 +39,4 @@ page: 425
 
 ## Acciones
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 13 (2d8 + 4) de daño perforante.
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 1,5 m, un objetivo. Impacto: 13 (2d8 + 4) de daño perforante. Los tiburones cazadores, más pequeños que los gigantes, aunque más grandes y fieros que los de arrecife, moran en aguas profundas. Suelen cazar solos, pero se dan casos en los que varios tiburones se alimentan en la misma zona. Un tiburón cazador adulto mide entre 4,5 y 6 m.

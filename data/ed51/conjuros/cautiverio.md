@@ -41,6 +41,6 @@ Sueño. El objetivo se queda dormido y no se le puede despertar. El componente e
 
 Poner fin al conjuro. Durante el lanzamiento del conjuro en cualquiera de sus versiones, puedes especificar una condición que hará que el conjuro termine y el objetivo se libere. La condición puede ser tan específica o complicada como quieras, pero tu GM debe aceptar que sea razonable y haya posibilidades de que suceda. Las condiciones se pueden basar en el nombre, la identidad o la deidad de la criatura, pero por lo demás deben basarse en acciones o cualidades observables y no en aspectos intangibles, como su nivel, su clase o sus puntos de golpe.
 
-disipar magia Un conjuro puede poner fin al conjuro solamente si se lanza como un conjuro de nivel 9 y hace objetivo a la prisión o al componente especial usado para crearla.
+Un conjuro puede poner fin al disipar magia conjuro solamente si se lanza como un conjuro de nivel 9 y hace objetivo a la prisión o al componente especial usado para crearla.
 
 Solo puedes usar un componente especial para crear una prisión al mismo tiempo. Si vuelves a lanzar el conjuro con el mismo componente, el objetivo del primer conjuro se liberará inmediatamente de su atadura.

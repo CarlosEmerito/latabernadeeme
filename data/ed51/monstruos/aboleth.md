@@ -45,16 +45,14 @@ page: 282
 
 **Cola.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 3 m, un objetivo. Impacto: 15 (3d6 + 5) de daño contundente.
 
-**Tentáculo.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 3 m, un objetivo. Impacto: 12 (2d6 + 5) de daño contundente. Si el objetivo es una criatura, deberá superar una tirada de salvación de Constitución con CD 14 o contraerá una enfermedad. Esta enfermedad no tendrá efecto durante 1 minuto y puede ser eliminada por cualquier magia que cure
+**Tentáculo.** Ataque con arma cuerpo a cuerpo: +9 a impactar, alcance 3 m, un objetivo. Impacto: 12 (2d6 + 5) de daño contundente. Si el objetivo es una criatura, deberá superar una tirada de salvación de Constitución con CD 14 o contraerá una enfermedad. Esta enfermedad no tendrá efecto durante 1 minuto y puede ser eliminada por cualquier magia que cure enfermedades. Pasado 1 minuto, la piel de la criatura infectada se torna traslúcida y legamosa, y la víctima no podrá recuperar puntos de golpe a menos que esté bajo el agua. Además, llegados a este punto, la enfermedad solo podrá eliminarse mediante curar u otro conjuro de curación de enfermedades de nivel 6 o superior. Si la criatura no se encuentra sumergida en una masa de agua, recibirá 6 (1d12) de daño de ácido cada 10 minutos, aunque esto puede evitarse humedeciendo su piel antes de que pasen los 10 minutos.
 
-**enfermedades.** Pasado 1 minuto, la piel de la criatura infectada se torna traslúcida y legamosa, y la víctima no podrá recuperar puntos de golpe a menos que esté bajo el agua. Además, llegados a este punto, la enfermedad solo podrá eliminarse mediante curar u otro conjuro de curación de enfermedades de nivel 6 o superior. Si la criatura no se encuentra sumergida en una masa de agua, recibirá 6 (1d12) de daño de ácido cada 10 minutos, aunque esto puede evitarse humedeciendo su piel antes de que pasen los 10 minutos.
-
-**Esclavizar (3/día).** El aboleth hace objetivo a una criatura que pueda ver a 9 m o menos de él. El objetivo deberá superar una tirada de salvación de Sabiduría con CD 14 o quedará hechizado mágicamente por el aboleth hasta que este muera o se encuentre en un plano de existencia diferente al de la criatura. El objetivo hechizado estará bajo el control del aboleth y no podrá llevar a cabo reacciones. Además, los dos podrán comunicarse telepáticamente entre ellos a cualquier distancia.
+**Esclavizar (3/día).** El aboleth hace objetivo a una criatura que pueda ver a 9 m o menos de él. El objetivo deberá superar una tirada de salvación de Sabiduría con CD 14 o quedará hechizado mágicamente por el aboleth hasta que este muera o se encuentre en un plano de existencia diferente al de la criatura. El objetivo hechizado estará bajo el control del aboleth y no podrá llevar a cabo reacciones. Además, los dos podrán comunicarse telepáticamente entre ellos a cualquier distancia. Siempre que la criatura hechizada reciba daño, podrá repetir la tirada de salvación. Si la supera, el efecto acabará. Además, como mucho una vez cada 24 horas, si el objetivo está a más de 1,5 km del aboleth, también podrá volver a realizar la tirada de salvación.
 
 ## Acciones legendarias
 
 **Coletazo.** El aboleth realiza un ataque con la cola.
 
-**Detectar.** El aboleth realiza una prueba de Sabiduría
+**Detectar.** El aboleth realiza una prueba de Sabiduría (Percepción).
 
-**Drenaje psíquico (cuesta 2 acciones).** Una criatura
+**Drenaje psíquico (cuesta 2 acciones).** Una criatura hechizada por el aboleth recibe 10 (3d6) de daño psíquico y este recupera tantos puntos de golpe como el daño recibido por dicha criatura.

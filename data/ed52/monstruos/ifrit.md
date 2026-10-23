@@ -15,10 +15,10 @@ abilities:
   int: 16
   sab: 15
   car: 19
-saves: ''
+saves: Sab +6, Car +8
 skills: ''
 resistances: ''
-immunities: ''
+immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m; Percepción pasiva 12
@@ -47,4 +47,4 @@ page: 342
 
 **Arrojar llama.** Tirada de ataque a distancia: +8, alcance 36 m. Acierto: 24 (7d6) de daño de fuego.
 
-**Lanzamiento de conjuros.** El ifrit lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 16):
+**Lanzamiento de conjuros.** El ifrit lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 16): A voluntad: detectar magia, elementalismo 1/día cada uno: desplazamiento entre planos, don de lenguas, forma gaseosa, imagen mayor, invisibilidad, muro de fuego (versión de nivel 7)

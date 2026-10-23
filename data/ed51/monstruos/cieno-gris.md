@@ -37,8 +37,8 @@ page: 290
 
 **Apariencia Falsa.** Mientras el cieno permanezca inmóvil, no se le podrá distinguir de un estanque oleoso o de una roca húmeda.
 
-**Corroer Metal.** Cualquier arma no mágica hecha de metal que entre en contacto con el cieno se corroerá. Tras causar daño, el arma sufrirá un penalizador de −1 permanente y acumulativo a las tiradas de daño. Si este penalizador llega a ser de −5, el arma será destruida. Cualquier munición no mágica hecha de metal que impacte al cieno será destruida tras causar su daño.
+**Corroer Metal.** Cualquier arma no mágica hecha de metal que entre en contacto con el cieno se corroerá. Tras causar daño, el arma sufrirá un penalizador de −1 permanente y acumulativo a las tiradas de daño. Si este penalizador llega a ser de −5, el arma será destruida. Cualquier munición no mágica hecha de metal que impacte al cieno será destruida tras causar su daño. El cieno es capaz de consumir un grosor de 5 cm de metal no mágico por asalto.
 
 ## Acciones
 
-**Pseudópodo.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d6 + 1) de daño contundente más 7 (2d6) de daño
+**Pseudópodo.** Ataque con arma cuerpo a cuerpo: +3 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d6 + 1) de daño contundente más 7 (2d6) de daño de ácido, y si el objetivo lleva una armadura no mágica de metal, esta se corroe parcialmente y recibe un penalizador de −1 permanente y acumulativo a la CA que proporciona. La armadura será destruida si el penalizador reduce su CA hasta 10.

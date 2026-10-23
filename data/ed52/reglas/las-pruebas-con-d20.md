@@ -11,9 +11,7 @@ Cuando el resultado de una acción no esté claro, se tira 1d20 para determinar 
 
 **2: Añade los modificadores.** Añade estos modificadores al resultado obtenido con el d20:
 
-- El modificador por característica correspon-
-
-diente. Los capítulos “Cómo jugar” y “Glosario de reglas” explican qué modificador por característica se debe emplear en las diversas pruebas con d20.
+- El modificador por característica correspondiente. Los capítulos “Cómo jugar” y “Glosario de reglas” explican qué modificador por característica se debe emplear en las diversas pruebas con d20.
 
 - Tu bonificador por competencia, si procede. Cada criatura tiene un bonificador por competencia, un número que se suma al realizar una prueba con d20 que utilice alguna aptitud, como una habilidad, en la que la criatura sea competente. Consulta el apartado “Competencia” más adelante en “Cómo jugar”.
 - Bonificadores y penalizadores según las

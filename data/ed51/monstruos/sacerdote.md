@@ -33,7 +33,7 @@ page: 435
 
 ## Rasgos
 
-**Lanzamiento de Conjuros.** El sacerdote es un lanzador de conjuros de nivel 5. Su aptitud mágica es la Sabiduría (CD de salvación de conjuros 13, +5 a impactar con ataques de conjuro). Tiene los siguientes conjuros de clérigo preparados:
+**Lanzamiento de Conjuros.** El sacerdote es un lanzador de conjuros de nivel 5. Su aptitud mágica es la Sabiduría (CD de salvación de conjuros 13, +5 a impactar con ataques de conjuro). Tiene los siguientes conjuros de clérigo preparados: Trucos (a voluntad): llama sagrada, luz, taumaturgia Nivel 1 (4 espacios): curar heridas, saeta guía, santuario Nivel 2 (3 espacios): arma espiritual, restablecimiento menor Nivel 3 (2 espacios): disipar magia, espíritus guardianes
 
 **Prerrogativa Divina.** Como acción adicional, el sacerdote puede gastar un espacio de conjuro para hacer que sus ataques con arma cuerpo a cuerpo causen mágicamente 10 (3d6) de daño radiante adicional si impactan. Este beneficio dura hasta el final del turno. Si el sacerdote gasta un espacio de conjuro de nivel 2 o más, el daño adicional aumenta en 1d6 por cada nivel por encima de 1 que tenga el espacio que haya empleado.
 
@@ -41,4 +41,4 @@ page: 435
 
 **Maza.** Ataque con arma cuerpo a cuerpo: +2 a impactar, alcance 1,5 m, un objetivo. Impacto: 3 (1d6) de daño contundente.
 
-**Los sacerdotes transmiten las enseñanzas de sus dioses al pueblo llano.** Son los líderes espirituales de templos y santuarios, y suelen ocupar posiciones influyentes en sus comunidades. Los sacerdotes malvados pueden operar abiertamente bajo las órdenes de un tirano o dirigir sectas religiosas ocultas entre las sombras que proyecta la sociedad, supervisando ritos depravados.
+**Los sacerdotes transmiten las enseñanzas de sus dioses al pueblo llano.** Son los líderes espirituales de templos y santuarios, y suelen ocupar posiciones influyentes en sus comunidades. Los sacerdotes malvados pueden operar abiertamente bajo las órdenes de un tirano o dirigir sectas religiosas ocultas entre las sombras que proyecta la sociedad, supervisando ritos depravados. Cada sacerdote suele tener al menos un acólito, cuyo fin es ayudarle en las ceremonias religiosas y el resto de tareas sagradas.

@@ -15,10 +15,10 @@ abilities:
   int: 16
   sab: 20
   car: 18
-saves: ''
+saves: Fue +14, Con +10, Sab +10, Car +9
 skills: Atletismo +14, Conocimiento arcano +8, Historia +8, Percepción +10
-resistances: ''
-immunities: ''
+resistances: frío
+immunities: relámpago, trueno
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m, visión verdadera 9 m; Percepción pasiva 20
@@ -43,6 +43,6 @@ page: 329
 
 **Rayo.** Tirada de ataque a distancia: +14, alcance 150 m. Acierto: 22 (2d12 + 9) de daño de relámpago y el objetivo tendrá los estados de cegado y ensordecido hasta el principio del siguiente turno del gigante.
 
-**Lanzamiento de conjuros.** El gigante lanza uno de los siguientes conjuros, que no requiere componentes ma-
+**Lanzamiento de conjuros.** El gigante lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 18): A voluntad: detectar magia, luz 1/día: controlar el clima
 
 **Tormenta de relámpagos (recarga 5–6).** Tirada de salvación de Destreza: CD 18, todas las criaturas en un cilindro de 3 m de radio y 12 m de alto que se origina en un punto que el gigante pueda ver a 150 m o menos. Fallo: 55 (10d10) de daño de relámpago. Éxito: la mitad del daño.

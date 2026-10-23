@@ -15,9 +15,7 @@ srd: '5.1'
 page: 138
 ---
 
-De tus manos surge una ráfaga de aire frío. Todas las criaturas situadas en un cono de 18 m deberán hacer
-
-una tirada de salvación de Constitución. Sufrirán 8d8 de daño de frío si la fallan o la mitad del daño si la superan.
+De tus manos surge una ráfaga de aire frío. Todas las criaturas situadas en un cono de 18 m deberán hacer una tirada de salvación de Constitución. Sufrirán 8d8 de daño de frío si la fallan o la mitad del daño si la superan.
 
 Si una criatura muere a causa de este conjuro, se convertirá en una estatua congelada hasta que se descongele.
 

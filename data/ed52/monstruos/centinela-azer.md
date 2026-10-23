@@ -15,11 +15,11 @@ abilities:
   int: 12
   sab: 13
   car: 10
-saves: ''
+saves: Con +4
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: fuego, veneno
+conditionImmunities: envenenado
 vulnerabilities: ''
 senses: Percepción pasiva 11
 languages: primordial (ígneo)

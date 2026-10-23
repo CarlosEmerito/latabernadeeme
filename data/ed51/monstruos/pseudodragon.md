@@ -41,6 +41,6 @@ page: 374
 
 ## Acciones
 
-**Aguijón.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 4 (1d4 + 2) de daño perforante y el objetivo deberá
+**Aguijón.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 4 (1d4 + 2) de daño perforante y el objetivo deberá superar una tirada de salvación de Constitución con CD 11 o quedará envenenado durante 1 hora. Si la falla por 5 o más, también quedará inconsciente durante ese periodo de tiempo, o hasta que sufra daño u otra criatura use una acción para despertarlo.
 
 **Mordisco.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 4 (1d4 + 2) de daño perforante.

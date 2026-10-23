@@ -22,6 +22,4 @@ De forma similar, puedes alterar el aspecto de las estructuras o añadir algunas
 
 La ilusión incluye elementos sonoros, visuales, táctiles y olfativos, por lo que puede convertir un lugar despejado en un terreno difícil (o viceversa) o entorpecer de otra forma el movimiento por la zona. Cualquier parte del terreno ilusorio (como una piedra o un palo) que se saque de la zona desaparece de inmediato.
 
-Las criaturas con visión verdadera pueden ver a través de la ilusión y distinguir la verdadera forma del terreno. Sin embargo, todos los demás elementos de la ilusión permanecen, por lo que, aunque dichas
-
-criaturas serán conscientes de que se trata de una ilusión, podrán interactuar físicamente con ella.
+Las criaturas con visión verdadera pueden ver a través de la ilusión y distinguir la verdadera forma del terreno. Sin embargo, todos los demás elementos de la ilusión permanecen, por lo que, aunque dichas criaturas serán conscientes de que se trata de una ilusión, podrán interactuar físicamente con ella.

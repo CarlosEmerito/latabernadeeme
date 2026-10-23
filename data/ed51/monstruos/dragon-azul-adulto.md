@@ -45,7 +45,7 @@ page: 306
 
 **Mordisco.** Ataque con arma cuerpo a cuerpo: +12 a impactar, alcance 3 m, un objetivo. Impacto: 18 (2d10 + 7) de daño perforante más 5 (1d10) de daño de relámpago.
 
-**Aliento de relámpago (recarga 5–6).** El dragón exhala relámpagos en una línea de 27 m de largo y 1,5 m de ancho. Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 19;
+**Aliento de relámpago (recarga 5–6).** El dragón exhala relámpagos en una línea de 27 m de largo y 1,5 m de ancho. Todas las criaturas situadas en la línea deberán hacer una tirada de salvación de Destreza con CD 19; sufrirán 66 (12d10) de daño de relámpago si la fallan o la mitad del daño si la superan.
 
 **Presencia aterradora.** Todas las criaturas a elección del dragón que estén a 36 m o menos de él y sean conscientes de su presencia deberán superar una tirada de salvación de Sabiduría con CD 17 o quedarán asustadas durante 1 minuto. Una criatura puede repetir la tirada de salvación al final de cada uno de sus turnos y, si tiene éxito, se librará del efecto. Si una criatura supera la tirada de salvación o el efecto termina para ella, será inmune a la presencia aterradora del dragón durante las siguientes 24 horas.
 
@@ -53,8 +53,6 @@ page: 306
 
 **Coletazo.** El dragón realiza un ataque con su cola.
 
-**Detectar.** El dragón realiza una prueba de Sabiduría
+**Detectar.** El dragón realiza una prueba de Sabiduría (Percepción).
 
-**Atacar con las alas (cuesta 2 acciones).** El dragón
-
-**bate las alas.** Todas las criaturas a 3 m o menos de él deberán superar una tirada de salvación de Destreza con CD 20 o sufrirán 14 (2d6 + 7) de daño contundente y serán derribadas. Luego, el dragón puede volar hasta la mitad de su velocidad volando.
+**Atacar con las alas (cuesta 2 acciones).** El dragón bate las alas. Todas las criaturas a 3 m o menos de él deberán superar una tirada de salvación de Destreza con CD 20 o sufrirán 14 (2d6 + 7) de daño contundente y serán derribadas. Luego, el dragón puede volar hasta la mitad de su velocidad volando.

@@ -21,7 +21,7 @@ A primera vista, este objeto parece un barril de hierro sellado Grande que pesa 
 
 Objeto maravilloso, legendario
 
-Clase de Armadura: 20 Puntos de golpe: 200 Velocidad: 9 m, nadar 9 m (o 0 m en ambos casos si no se han extendido las patas y cola) Inmunidad a daño: psíquico, veneno Prohibida la reventa. Tienes permiso para imprimir o fotocopiar este documento solo para uso personal.
+Clase de Armadura: 20 Puntos de golpe: 200 Velocidad: 9 m, nadar 9 m (o 0 m en ambos casos si no se han extendido las patas y cola) Inmunidad a daño: psíquico, veneno
 
 6 7 8
 
@@ -29,7 +29,6 @@ El aparato camina o nada hacia delante. El aparato gira 90 grados a la izquierda
 
 Bajada Las patas y la cola se retraen, lo que reduce la velocidad del aparato a 0 e impide que se beneficie de ningún bonificador a su velocidad. La persiana de la ventana delantera se cierra. Las persianas de las ventanas laterales se cierran (dos por lado). Las pinzas se retraen. Cada pinza extendida lleva a cabo el siguiente ataque con arma cuerpo a cuerpo: +8 a impactar, alcance 1,5 m, un objetivo. Impacto: El objetivo quedará agarrado (CD 15 para escapar). El aparato camina o nada hacia atrás. El aparato gira 90 grados a la derecha. La luz se apaga.
 
-Documento de referencia del sistema 5.1. 228
 
 Palanca 9 10
 

@@ -39,4 +39,4 @@ page: 415
 
 **Colmillos.** Ataque con arma cuerpo a cuerpo: +10 a impactar, alcance 3 m, un objetivo. Impacto: 25 (4d8 + 7) de daño perforante.
 
-**Pisotón.** Ataque con arma cuerpo a cuerpo: +10 a impactar, alcance 1,5 m, una criatura derribada. Impacto: 29 (4d10 + 7) de daño contundente.
+**Pisotón.** Ataque con arma cuerpo a cuerpo: +10 a impactar, alcance 1,5 m, una criatura derribada. Impacto: 29 (4d10 + 7) de daño contundente. Los mamuts son criaturas similares a elefantes, pero con un pelaje espeso y los colmillos tremendamente largos. También son más fornidos y feroces que los elefantes y habitan en una gran variedad de climas, desde el subártico al subtropical.

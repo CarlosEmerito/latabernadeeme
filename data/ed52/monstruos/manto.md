@@ -19,7 +19,7 @@ saves: ''
 skills: Sigilo +5
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: asustado
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m; Percepción pasiva 12
 languages: habla de las profundidades, infracomún
@@ -39,9 +39,7 @@ page: 347
 
 **Ataque múltiple.** El manto realiza la acción de adherirse y lleva a cabo dos ataques con su cola.
 
-**Adherirse.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 13 (3d6 + 3) de daño perforante. Si el objetivo es una criatura Grande o más pequeña, el manto se adhiere a ella. Mientras el manto esté adherido, el objetivo tendrá el estado de cegado y el manto
-
-**no podrá realizar la acción de adherirse contra otros objetivos.** Asimismo, el manto reduce a la mitad el daño que reciba (redondeando hacia abajo) y el objetivo sufre la misma cantidad de daño.
+**Adherirse.** Tirada de ataque cuerpo a cuerpo: +6, alcance 1,5 m. Acierto: 13 (3d6 + 3) de daño perforante. Si el objetivo es una criatura Grande o más pequeña, el manto se adhiere a ella. Mientras el manto esté adherido, el objetivo tendrá el estado de cegado y el manto no podrá realizar la acción de adherirse contra otros objetivos. Asimismo, el manto reduce a la mitad el daño que reciba (redondeando hacia abajo) y el objetivo sufre la misma cantidad de daño.
 
 **El manto puede usar 1,5 m de movimiento para soltarse.** El objetivo o una criatura que esté a 1,5 m o menos de él puede llevar a cabo una acción para tratar de desenganchar al manto, lo que logrará si supera una prueba de Fuerza (Atletismo) con CD 14.
 

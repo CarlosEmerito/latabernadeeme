@@ -37,4 +37,4 @@ page: 430
 
 ## Acciones
 
-**Hacha a dos manos.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 9 (1d12 + 3) de daño cortante.
+**Hacha a dos manos.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 9 (1d12 + 3) de daño cortante. Los impredecibles berserkers provienen de tierras salvajes y forman partidas de guerra que buscan el conflicto allá donde puedan encontrarlo.

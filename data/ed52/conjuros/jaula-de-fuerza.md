@@ -16,9 +16,7 @@ srd: '5.2'
 page: 160
 ---
 
-Una prisión inmóvil e invisible con forma de cubo y compuesta de fuerza mágica surge en una zona de
-
-tu elección dentro del alcance. Puede ser una jaula o una caja de paredes sólidas, según desees.
+Una prisión inmóvil e invisible con forma de cubo y compuesta de fuerza mágica surge en una zona de tu elección dentro del alcance. Puede ser una jaula o una caja de paredes sólidas, según desees.
 
 Una prisión con forma de jaula puede tener hasta 6 m de lado y estar hecha de barrotes de 1,25 cm de diámetro separados 1,25 cm entre sí. Una prisión con forma de caja puede tener hasta 3 m de lado. Creará una barrera sólida que impida que cualquier materia la atraviese y bloqueará cualquier conjuro que se lance a esa zona o desde ella.
 

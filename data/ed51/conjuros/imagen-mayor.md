@@ -25,6 +25,4 @@ La interacción física con la imagen revela que es una ilusión, ya que las cos
 
 ## A niveles superiores
 
-Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 6 o superior,
-
-el conjuro se mantiene hasta que es disipado, sin requerir concentración.
+Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 6 o superior, el conjuro se mantiene hasta que es disipado, sin requerir concentración.

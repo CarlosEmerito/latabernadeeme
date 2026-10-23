@@ -38,11 +38,7 @@ MOD. SALV. MOD. SALV. MOD. SALV.
 
 F 16 +3 +3 D 10 +0 +0 C 10 +0 +0 ue es on I 3 −4 −4 S 3 −4 −4 C 1 −5 −5 nt ab ar
 
-Inmunidades: psíquico, veneno; asustado, cansancio,
-
-envenenado, hechizado, paralizado Sentidos: visión ciega 9 m; Percepción pasiva 6 Idiomas: entiende los idiomas que conozcas VD: ninguno (0 PX; BC igual a tu bonificador por
-
-competencia)
+Inmunidades: psíquico, veneno; asustado, cansancio, envenenado, hechizado, paralizado Sentidos: visión ciega 9 m; Percepción pasiva 6 Idiomas: entiende los idiomas que conozcas VD: ninguno (0 PX; BC igual a tu bonificador por competencia)
 
 Acciones
 

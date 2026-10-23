@@ -22,6 +22,4 @@ Tú y hasta ocho criaturas voluntarias que unan sus manos formando un círculo s
 
 Como alternativa, si conoces la secuencia de sellos de un círculo de teletransportación en otro plano de existencia, este conjuro puede llevarte hasta dicho círculo. Si el círculo de teletransportación es demasiado pequeño como para que quepan todas las criaturas que has transportado, aparecerán en los espacios sin ocupar más cercanos a él.
 
-Puedes usar este conjuro para desterrar a una criatura no voluntaria a otro plano. Elige una criatura dentro de tu alcance y haz un ataque de
-
-conjuro cuerpo a cuerpo contra ella. Si impacta, la criatura deberá hacer una tirada de salvación de Carisma. Si la falla, será transportada a una ubicación aleatoria del plano de existencia que especifiques. Una criatura transportada de este modo deberá buscar su propio modo de regresar a tu plano de existencia actual.
+Puedes usar este conjuro para desterrar a una criatura no voluntaria a otro plano. Elige una criatura dentro de tu alcance y haz un ataque de conjuro cuerpo a cuerpo contra ella. Si impacta, la criatura deberá hacer una tirada de salvación de Carisma. Si la falla, será transportada a una ubicación aleatoria del plano de existencia que especifiques. Una criatura transportada de este modo deberá buscar su propio modo de regresar a tu plano de existencia actual.

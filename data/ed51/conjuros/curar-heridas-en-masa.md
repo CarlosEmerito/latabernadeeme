@@ -16,9 +16,7 @@ srd: '5.1'
 page: 145
 ---
 
-Una ola de energía curativa brota de un punto de tu elección dentro del alcance. Elige a hasta seis criaturas en una esfera de 9 m de radio centrada en ese punto. Cada objetivo recupera una cantidad de puntos de golpe igual a 3d8 + tu modificador por
-
-aptitud mágica. Este conjuro no afecta ni a autómatas ni a muertos vivientes.
+Una ola de energía curativa brota de un punto de tu elección dentro del alcance. Elige a hasta seis criaturas en una esfera de 9 m de radio centrada en ese punto. Cada objetivo recupera una cantidad de puntos de golpe igual a 3d8 + tu modificador por aptitud mágica. Este conjuro no afecta ni a autómatas ni a muertos vivientes.
 
 ## A niveles superiores
 

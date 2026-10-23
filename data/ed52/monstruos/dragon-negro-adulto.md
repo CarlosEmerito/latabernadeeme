@@ -15,10 +15,10 @@ abilities:
   int: 14
   sab: 13
   car: 19
-saves: ''
+saves: Des +7, Sab +6
 skills: Percepción +11, Sigilo +7
 resistances: ''
-immunities: ''
+immunities: ácido
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión ciega 18 m, visión en la oscuridad 36 m; Percepción pasiva 21
@@ -45,7 +45,7 @@ page: 312
 
 **Aliento ácido (recarga 5–6).** Tirada de salvación de Destreza: CD 18, todas las criaturas en una línea de 18 m de largo y 1,5 m de ancho. Fallo: 54 (12d8) de daño de ácido. Éxito: la mitad del daño.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 17, +9 a acertar con ataques de conjuro):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 17, +9 a acertar con ataques de conjuro): A voluntad: detectar magia, flecha ácida (versión de nivel 3), terror 1/día cada uno: esfera vitriólica, hablar con los muertos
 
 ## Acciones legendarias
 

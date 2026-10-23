@@ -19,7 +19,7 @@ saves: ''
 skills: Engaño +6, Perspicacia +3
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: hechizado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 11
 languages: común y otros tres idiomas

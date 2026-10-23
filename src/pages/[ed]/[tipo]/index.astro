@@ -1,7 +1,7 @@
 ---
 import Base from "../../../layouts/Base.astro";
 import Tabla from "../../../components/Tabla.astro";
-import { EDICIONES, TIPO_META, cargar, nombreTipo, type Edition, type Tipo, TIPOS } from "../../../lib/content";
+import { EDICIONES, TIPO_META, cargar, fraseRecuento, nombreTipo, type Edition, type Tipo, TIPOS } from "../../../lib/content";
 import { TAMANOS, tamanosDe } from "../../../lib/tamano";
 import { e } from "../../../lib/urls";
 
@@ -234,7 +234,7 @@ if (["equipo", "dotes", "reglas"].includes(tipo)) {
 
 <Base
   title={`${nombrePlural} · ${meta.srd}`}
-  description={`${entradas.length} ${nombrePlural.toLowerCase()} del ${meta.srd}.`}
+  description={`${entradas.length} ${fraseRecuento(ed, tipo, entradas.length)} del ${meta.srd}.`}
   edicion={ed}
   tipo={tipo}
 >

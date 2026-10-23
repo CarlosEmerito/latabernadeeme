@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
-from .stream import Line, paragraphs
+from .stream import CIERRE_RE, Line, paragraphs
 
 TYPES = (
     "Aberración",
@@ -44,6 +44,13 @@ STAT_LABELS = (
     "Inmunidad a daño:",
     "Inmunidad a estados:",
     "Vulnerabilidad a daño:",
+    # El 5.2 da los cuatro campos con una sola etiqueta por campo y los tipos de
+    # daño y los estados dentro de la misma lista. Sin estas tres, la línea no
+    # casa con ninguna etiqueta, cae en `body`, `_split_feature` no le ve el
+    # «. » de un rasgo y se tira en silencio en las 330 fichas.
+    "Inmunidades:",
+    "Resistencias:",
+    "Vulnerabilidades:",
     "Sentidos:",
     "Idiomas:",
     "PG:",
@@ -61,11 +68,39 @@ FIELD_BY_LABEL = {
     "Inmunidad a daño": "immunities",
     "Inmunidad a estados": "condition_immunities",
     "Vulnerabilidad a daño": "vulnerabilities",
+    "Inmunidades": "immunities",
+    "Resistencias": "resistances",
+    "Vulnerabilidades": "vulnerabilities",
     "Sentidos": "senses",
     "Idiomas": "languages",
     "Competencia": "proficiency",
     "Equipo": "gear",
 }
+
+# Las tres etiquetas del 5.2 que llevan daño y estados en el mismo valor.
+SPLIT_LABELS = ("Inmunidades", "Resistencias", "Vulnerabilidades")
+
+# Los nombres que el SRD 5.2 usa en esos campos. Un trozo que abre con un estado
+# va a `conditionImmunities` y el resto al campo de daño: es lo que reparte
+# «veneno; cansancio, envenenado» y también «asustado, envenenado, hechizado»,
+# que llega sin «;» porque la criatura solo tiene estados.
+CONDITIONS = (
+    "agarrado",
+    "apresado",
+    "asustado",
+    "aturdido",
+    "cansancio",
+    "cegado",
+    "derribado",
+    "ensordecido",
+    "envenenado",
+    "hechizado",
+    "incapacitado",
+    "inconsciente",
+    "invisible",
+    "paralizado",
+    "petrificado",
+)
 
 SECTION_HEADS = {
     "Acciones": "actions",
@@ -79,6 +114,11 @@ SECTION_HEADS = {
 }
 
 ABILITY_LINE_RE = re.compile(r"(Fue|Des|Con|Int|Sab|Car)\s*(-?\d+)\s*([+−-]\d+)")
+
+# Fila de la tabla del 5.2: «F 21 +5 +5 D 9 −1 +3 …», puntuación, modificador y
+# salvación. El lookbehind evita que el modificador se lea como puntuación de la
+# siguiente característica.
+ABILITY_TRIPLE_RE = re.compile(r"(?<![+\d−-])(\d{1,2})\s+([+−]?\d{1,2})\s+([+−]?\d{1,2})")
 
 
 @dataclass
@@ -113,6 +153,21 @@ class Monster:
     legendary: list[tuple[str, str]] = field(default_factory=list)
     lair: list[tuple[str, str]] = field(default_factory=list)
     page: int = 0
+
+
+def _duplica_cabecera(lines: list[Line], i: int) -> bool:
+    """El PDF repite el nombre de la criatura: cabecera de página y título.
+
+    En el 5.2 la línea del nombre sale dos veces seguidas («Doppelganger» a
+    156,2 y a 180,5 en la pág. 297) y solo la segunda lleva detrás la línea de
+    tipo, así que `is_header()` no reconoce la primera y el nombre entraba en el
+    cuerpo de la criatura anterior (T-0241).
+    """
+    return (
+        i + 1 < len(lines)
+        and lines[i].text.strip() == lines[i + 1].text.strip()
+        and is_header(lines, i + 1)
+    )
 
 
 def is_header(lines: list[Line], i: int) -> bool:
@@ -173,6 +228,27 @@ def _split_feature(text: str) -> tuple[str, str]:
     return "", text.strip()
 
 
+# Una etiqueta que el flujo deja suelta al final de la línea («Acierto:») y la
+# tirada de daño a la que etiqueta. La etiqueta se recoloca delante del valor,
+# que ya está publicado: si no, la acción acaba en una etiqueta sin número.
+ETIQUETA_SUELTA_RE = re.compile(r"\s+([A-ZÁÉÍÓÚÑ][\wáéíóúüñÁÉÍÓÚÑ ]{0,25}:)$")
+TIRO_DE_DANO_RE = re.compile(r"\d+ \(\d+d\d+(?:\s*[+−-]\s*\d+)?\)")
+
+
+def _recoloca_etiqueta(detalle: str) -> str:
+    """Mueve al sitio una etiqueta que el flujo puso detrás de su valor."""
+    m = ETIQUETA_SUELTA_RE.search(detalle)
+    if not m:
+        return detalle
+    sin = detalle[: m.start()].rstrip()
+    tiro = None
+    for tiro in TIRO_DE_DANO_RE.finditer(sin):
+        pass
+    if tiro is None:
+        return detalle
+    return f"{sin[: tiro.start()].rstrip()} {m.group(1)} {sin[tiro.start() :].strip()}"
+
+
 def _between(text: str, start: str, stops: tuple[str, ...]) -> str:
     idx = text.find(start)
     if idx < 0:
@@ -230,8 +306,23 @@ def join_dangling_labels(lines: list[Line]) -> list[Line]:
             es_del_perfil = any(cur.text.strip().startswith(lbl) for lbl in ALL_LABELS)
             sigue_valor = nxt.text[:1].isdigit() or bool(STAT_ABBREV_RE.match(nxt.text.strip()))
             if _is_profile_value(nxt.text) and (sigue_valor or (es_del_perfil and _same_paragraph(cur, nxt))):
+                # La línea unida ocupa dos renglones y `end_y` guarda dónde
+                # acaba. Si solo se moviera la `y`, el hueco hasta la línea
+                # siguiente valdría dos renglones y `stream.paragraphs()`
+                # cortaría ahí el párrafo: el trozo suelto no empieza por
+                # «Nombre. », `_split_feature()` lo descarta y la ficha publica
+                # la acción a media frase (T-0241, el «Impacto:» del mordisco).
                 out.append(
-                    Line(cur.page, cur.col, cur.x, cur.y, cur.size, f"{cur.text} {nxt.text}".strip(), cur.block)
+                    Line(
+                        cur.page,
+                        cur.col,
+                        cur.x,
+                        cur.y,
+                        cur.size,
+                        f"{cur.text} {nxt.text}".strip(),
+                        cur.block,
+                        end_y=nxt.y,
+                    )
                 )
                 i += 2
                 continue
@@ -269,7 +360,10 @@ def merge_continuations(lines: list[Line]) -> list[Line]:
                     j += 1
                     continue
                 break
-            out.append(Line(cur.page, cur.col, cur.x, cur.y, cur.size, text, cur.block))
+            # `end_y` es la `y` de la última línea consumida, igual que en
+            # `join_dangling_labels`: la línea unida ocupa varios renglones y el
+            # hueco con la siguiente se mide desde ahí, no desde el principio.
+            out.append(Line(cur.page, cur.col, cur.x, cur.y, cur.size, text, cur.block, end_y=lines[j - 1].y))
             i = j
             continue
         out.append(cur)
@@ -283,14 +377,60 @@ def _parse_abilities(blob: str) -> dict[str, int]:
     vals = re.findall(r"(-?\d+)\s*\(([+−-]\d+)\)", blob)
     if len(vals) == 6:
         return {k: int(v[0]) for k, v in zip(keys, vals)}
-    # Formato 5.2: "F 21 +5 +5 D 9 −1 +3 ..." (puntuación, salvación, habilidad)
-    triples = re.findall(r"(?<![+\d−-])(\d{1,2})\s+([+−]?\d{1,2})\s+([+−]?\d{1,2})", blob)
+    # Formato 5.2: "F 21 +5 +5 D 9 −1 +3 ..." (puntuación, modificador, salvación)
+    triples = ABILITY_TRIPLE_RE.findall(blob)
     if len(triples) == 6:
         return {k: int(t[0]) for k, t in zip(keys, triples)}
     mods = ABILITY_LINE_RE.findall(blob)
     if len(mods) >= 6:
         return {k.lower(): int(v) for k, v, _ in mods[:6]}
     return {}
+
+
+def _entero(valor: str) -> int:
+    return int(valor.replace("−", "-").replace("+", ""))
+
+
+def _con_signo(valor: str) -> str:
+    """El SRD imprime siempre el signo de la salvación; una celda sin él se
+    publica con «+», que es la convención de la columna («2» en la Int del
+    dragón blanco joven, pág. 300, es la única del catálogo)."""
+    return valor if valor[:1] in "+−-" else f"+{valor}"
+
+
+def _parse_saves(blob: str) -> str:
+    """Tiradas de salvación de la tercera columna de la tabla del 5.2.
+
+    La caja de características del 5.2 trae tres columnas por característica
+    —puntuación, modificador y salvación, con «MOD. SALV.» repetido en la
+    cabecera— y la tabla del 5.1 solo dos, con la fila en su propia etiqueta.
+    Se publica solo la salvación que no es el modificador, que es la que tiene
+    competencia: el secuaz goblin («F 8 −1 −1») se queda sin fila, como en el
+    SRD.
+    """
+    if len(re.findall(r"(-?\d+)\s*\(([+−-]\d+)\)", blob)) == 6:
+        return ""
+    triples = ABILITY_TRIPLE_RE.findall(blob)
+    if len(triples) != 6:
+        return ""
+    partes = [
+        f"{abrev} {_con_signo(salvacion)}"
+        for abrev, (_, mod, salvacion) in zip(("Fue", "Des", "Con", "Int", "Sab", "Car"), triples)
+        if _entero(mod) != _entero(salvacion)
+    ]
+    return ", ".join(partes)
+
+
+def _split_damage_conditions(valor: str) -> tuple[str, str]:
+    """«veneno, fuego; asustado, cansancio» → («veneno, fuego», «asustado, cansancio»)."""
+    dano: list[str] = []
+    estados: list[str] = []
+    for trozo in valor.replace(";", ",").split(","):
+        trozo = trozo.strip(" .,;")
+        if not trozo:
+            continue
+        (estados if trozo.split()[0].lower() in CONDITIONS else dano).append(trozo)
+    return ", ".join(dano), ", ".join(estados)
 
 
 def parse(lines: list[Line]) -> list[Monster]:
@@ -306,12 +446,15 @@ def parse(lines: list[Line]) -> list[Monster]:
         m = Monster(name=head.text.strip(), type_line=type_line.text.strip(), page=head.page)
         m.kind, m.size, m.tags, m.alignment = _split_type(m.type_line)
 
-        # Bloque de datos: desde CA hasta la primera etiqueta de habilidades.
+        # Bloque de datos: desde CA hasta la primera etiqueta de habilidades. El
+        # «Equipo:» del 5.2 va antes de «Sentidos:», así que sin nombrarlo aquí
+        # la línea entra en la cabecera, que solo saca CA, Iniciativa, PG,
+        # Velocidad y la tabla, y el equipo se pierde (13 de las 44 criaturas).
         j = i + 2
         hdr: list[str] = []
-        while j < len(lines) and not is_header(lines, j):
+        while j < len(lines) and not is_header(lines, j) and not _duplica_cabecera(lines, j):
             text = lines[j].text.strip()
-            if text.startswith(("Habilidades:", "Tiradas de salvación:", "Sentidos:", "Resistencia a daño:", "Inmunidad a daño:", "Inmunidad a estados:", "Vulnerabilidad a daño:", "Idiomas:", "Desafío:", "VD:")):
+            if text.startswith(("Habilidades:", "Tiradas de salvación:", "Sentidos:", "Equipo:", "Resistencia a daño:", "Inmunidad a daño:", "Inmunidad a estados:", "Vulnerabilidad a daño:", "Inmunidades:", "Resistencias:", "Vulnerabilidades:", "Idiomas:", "Desafío:", "VD:")):
                 break
             if text in SECTION_HEADS:
                 break
@@ -328,6 +471,7 @@ def parse(lines: list[Line]) -> list[Monster]:
         if not m.speed and "Velocidad:" in blob:
             m.speed = re.split(r"\s(?:MOD\.|FUE|[FDCIS]\s\d)", _between(blob, "Velocidad:", ()))[0]
         m.abilities = _parse_abilities(blob)
+        saves_tabla = _parse_saves(blob)
 
         # Algunas páginas parten la etiqueta («CA: Iniciativa:» y los valores
         # en la línea siguiente). Se reparte aquí.
@@ -340,13 +484,24 @@ def parse(lines: list[Line]) -> list[Monster]:
         # Resto del perfil: etiquetas de datos y rasgos/acciones.
         body: list[Line] = []
         last_field = ""
-        while j < len(lines) and not is_header(lines, j):
+        while j < len(lines) and not is_header(lines, j) and not _duplica_cabecera(lines, j):
             text = lines[j].text.strip()
             matched = False
             for label in STAT_LABELS:
                 if text.startswith(label):
                     key = label.rstrip(":")
-                    if key in FIELD_BY_LABEL:
+                    if key in SPLIT_LABELS:
+                        # «Inmunidades: veneno; cansancio, envenenado»: el daño
+                        # va al campo de la etiqueta y los estados a
+                        # `conditionImmunities`.
+                        dano, estados = _split_damage_conditions(_between(text, label, ()))
+                        last_field = FIELD_BY_LABEL[key]
+                        setattr(m, last_field, dano)
+                        if estados:
+                            m.condition_immunities = ", ".join(
+                                t for t in (m.condition_immunities, estados) if t
+                            )
+                    elif key in FIELD_BY_LABEL:
                         last_field = FIELD_BY_LABEL[key]
                         setattr(m, last_field, _between(text, label, ()))
                     elif key == "PG":
@@ -376,6 +531,10 @@ def parse(lines: list[Line]) -> list[Monster]:
             body.append(lines[j])
             j += 1
 
+        # La etiqueta «Tiradas de salvación:» del 5.1 manda; en el 5.2 la fila
+        # sale de la tercera columna de la tabla.
+        m.saves = m.saves or saves_tabla
+
         current = "traits"
         for para in paragraphs(body):
             text = para.strip()
@@ -384,7 +543,26 @@ def parse(lines: list[Line]) -> list[Monster]:
                 continue
             name, detail = _split_feature(text)
             if name:
-                getattr(m, current).append((name, detail))
+                getattr(m, current).append((name, _recoloca_etiqueta(detail)))
+                continue
+            # Un párrafo que no empieza por «Nombre. » es la continuación del
+            # rasgo anterior —llega con la frase abierta, o es prosa larga que
+            # el maquetador sangró— y descartarlo publicaba la ficha cortada sin
+            # que fallara ninguna puerta (T-0241). Lo que se queda fuera son las
+            # cabeceras de página y los títulos de sección del PDF, que son
+            # cortos: «Doppelganger», «Monstruos (D) Demonios».
+            seccion = getattr(m, current)
+            # Se pega si el rasgo anterior está a media frase, o si es prosa
+            # entera (cierra frase y tiene cuerpo): la introducción de una
+            # variante («Los piratas son los bandidos del mar…») llega así. Las
+            # cabeceras de página y las filas de tabla del PDF, que se cuelan en
+            # el cuerpo, no acaban en punto y se quedan fuera.
+            if seccion and (
+                not CIERRE_RE.search(seccion[-1][1].rstrip())
+                or (len(text.split()) > 6 and bool(CIERRE_RE.search(text)))
+            ):
+                nombre_previo, detalle_previo = seccion[-1]
+                seccion[-1] = (nombre_previo, f"{detalle_previo} {text}".strip())
 
         monsters.append(m)
         i = j

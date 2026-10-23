@@ -17,9 +17,9 @@ abilities:
   car: 14
 saves: ''
 skills: Engaño +4, Perspicacia +3, Sigilo +5
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: frío
+immunities: fuego, veneno
+conditionImmunities: envenenado
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m (no afectada por la oscuridad mágica); Percepción pasiva 11
 languages: común, infernal

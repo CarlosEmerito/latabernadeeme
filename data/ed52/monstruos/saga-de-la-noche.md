@@ -17,9 +17,9 @@ abilities:
   car: 16
 saves: ''
 skills: Engaño +6, Percepción +5, Perspicacia +5, Sigilo +5
-resistances: ''
+resistances: frío, fuego
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: hechizado
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m; Percepción pasiva 15
 languages: abisal, común, infernal, primordial
@@ -47,9 +47,9 @@ page: 365
 
 **Garra.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 13 (2d8 + 4) de daño cortante.
 
-**Lanzamiento de conjuros.** La saga lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 14):
+**Lanzamiento de conjuros.** La saga lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 14): A voluntad: detectar magia, excursión etérea, proyectil mágico (versión de nivel 4) 2/día cada uno: asesino fantasmal, desplazamiento entre planos (solo lanzador)
 
-**Provocar pesadillas (1/día; requiere una bolsa de almas).** Mientras está en el Plano Etéreo, la saga lanza ensueño usando la misma aptitud mágica que para su lanzamiento de conjuros. Solo la saga puede actuar como mensajera del conjuro y el objetivo debe ser una criatura que la saga pueda ver en el Plano Material. El conjuro fallará y se desperdiciará si el objetivo se encuentra bajo el efecto de un conjuro protección contra el bien y el mal o dentro de un conjuro círculo mágico.
+**Provocar pesadillas (1/día; requiere una bolsa de almas).** Mientras está en el Plano Etéreo, la saga lanza ensueño usando la misma aptitud mágica que para su lanzamiento de conjuros. Solo la saga puede actuar como mensajera del conjuro y el objetivo debe ser una criatura que la saga pueda ver en el Plano Material. El conjuro fallará y se desperdiciará si el objetivo se encuentra bajo el efecto de un conjuro protección contra el bien y el mal o dentro de un conjuro círculo mágico. Si el objetivo recibe daño del conjuro ensueño, sus puntos de golpe máximos se reducirán en una cantidad igual a ese daño. Si el conjuro mata al objetivo, su alma quedará atrapada en la bolsa de almas de la saga y el objetivo no podrá volver a la vida hasta que se libere su alma.
 
 ## Acciones adicionales
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+from .pies import sin_pies
 from .stream import Line
 
 TYPE_PREFIXES = (
@@ -293,7 +294,13 @@ def plain_bodies(items: list[Item], text: str) -> list[str | None]:
     final de la línea. El texto plano las deja en su sitio, así que se ancla la
     cabecera de cada entrada (nombre + línea de tipo) y se toma el texto hasta
     la cabecera siguiente.
+
+    El texto plano trae el pie de página del PDF —y con él, a veces, el número
+    de la hoja—, así que se limpia antes de cortar los cuerpos: sin eso el pie
+    acaba publicado dentro de la descripción del objeto y, si cayó a media
+    frase, la ficha se queda sin el final del texto.
     """
+    text = sin_pies(text)
     prefix = "(?:" + "|".join(TYPE_PREFIXES) + ")"
     rarity = (
         r"(?:poco común|muy rar[oa]s?|infrecuentes?|legendari[oa]s?|comunes?|común"

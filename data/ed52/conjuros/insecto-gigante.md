@@ -14,9 +14,7 @@ srd: '5.2'
 page: 159
 ---
 
-Invocas una araña, una avispa o un ciempiés gigante (a tu elección cuando lanzas el conjuro). Se manifiesta en un espacio sin ocupar que puedas
-
-insecto ver dentro del alcance y utiliza el perfil del gigante. La forma que elijas determina ciertos aspectos de su perfil. La criatura desaparecerá si sus puntos de golpe se reducen a 0 o si el conjuro termina.
+Invocas una araña, una avispa o un ciempiés gigante (a tu elección cuando lanzas el conjuro). Se manifiesta en un espacio sin ocupar que puedas ver dentro del alcance y utiliza el perfil del insecto gigante. La forma que elijas determina ciertos aspectos de su perfil. La criatura desaparecerá si sus puntos de golpe se reducen a 0 o si el conjuro termina.
 
 La criatura se considera un aliado para tus aliados y para ti. En combate, la criatura comparte tu orden de iniciativa, pero su turno va justo después del tuyo, obedece tus órdenes verbales (no requiere acción) y, si no le das ninguna, realiza la acción de esquivar y usa su movimiento para evitar el peligro.
 
@@ -32,11 +30,7 @@ MOD. SALV. MOD. SALV. MOD. SALV.
 
 F 17 +3 +3 D 13 +1 +1 C 15 +2 +2 ue es on I 4 −3 −3 S 14 +2 +2 C 3 −4 −4 nt ab ar
 
-Sentidos: visión en la oscuridad 18 m; Percepción
-
-pasiva 12 Idiomas: entiende los idiomas que conozcas VD: ninguno (0 PX; BC igual a tu bonificador por
-
-competencia)
+Sentidos: visión en la oscuridad 18 m; Percepción pasiva 12 Idiomas: entiende los idiomas que conozcas VD: ninguno (0 PX; BC igual a tu bonificador por competencia)
 
 Atributos
 

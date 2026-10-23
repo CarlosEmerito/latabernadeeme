@@ -19,7 +19,7 @@ saves: ''
 skills: ''
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: petrificado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 11
 languages: ninguno

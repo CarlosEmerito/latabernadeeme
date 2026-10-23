@@ -43,6 +43,6 @@ page: 366
 
 ## Acciones
 
-**Mordisco.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d8 + 3) de daño perforante más 4 (1d8) de daño
+**Mordisco.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d8 + 3) de daño perforante más 4 (1d8) de daño de ácido.
 
-**Pseudópodo.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d8 + 3) de daño contundente. Si el mimeto está en
+**Pseudópodo.** Ataque con arma cuerpo a cuerpo: +5 a impactar, alcance 1,5 m, un objetivo. Impacto: 7 (1d8 + 3) de daño contundente. Si el mimeto está en forma de objeto, el objetivo se verá afectado por el atributo Adhesivo.

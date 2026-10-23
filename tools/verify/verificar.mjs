@@ -88,6 +88,18 @@
  *      carga de la página —no a 800 ms de reloj— y se cierren, que es lo que
  *      hacía intermitente la comprobación de la tarjeta social. Usa pestañas
  *      falsas, así que no necesita navegador.
+ *  27. `tools/test/pies.py`: que el pie de página del PDF no se cuele en el
+ *      texto de las fichas. Da por buenas las líneas crudas del PDF —con su
+ *      número de página delante, en su propia línea y partiendo una frase— y
+ *      comprueba que `srd/pies.py` las quita y vuelve a unir el párrafo, que
+ *      `quita_pies` no toca ni una tabla, y que `plain_bodies` no publica el
+ *      pie ni pierde el texto que venía detrás.
+ *  28. `tools/test/acciones.py`: que el texto de un rasgo o una acción no quede
+ *      cortado a media frase. `paragraphs()` parte el párrafo de más cuando la
+ *      continuación de un rótulo unido conserva la `y` de la primera línea o
+ *      cuando llega sangrada, y `_split_feature()` descarta en silencio el trozo
+ *      que se queda suelto: la ficha publica la mitad de la acción sin que nada
+ *      falle. Comprueba los dos cortes con sus líneas crudas y barre `data/`.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -281,4 +293,18 @@ if (humoEspera !== 0) {
   process.exit(humoEspera);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM y espera de carga de las pestañas del humo correctos.");
+console.log("▶ Pie de página del PDF: pies.py (tools/ingest/srd/pies.py)");
+const pies = ejecutar(python, [path.join(RAIZ, "tools/test/pies.py")]);
+if (pies !== 0) {
+  console.error("✗ El pie de página del PDF se publica dentro del texto de las fichas o se lleva el final del párrafo.");
+  process.exit(pies);
+}
+
+console.log("▶ Texto de rasgos y acciones: acciones.py (tools/ingest/srd/ y data/)");
+const acciones = ejecutar(python, [path.join(RAIZ, "tools/test/acciones.py")]);
+if (acciones !== 0) {
+  console.error("✗ Hay rasgos o acciones cortados a media frase: la ficha publica la mitad del texto y el resto se pierde.");
+  process.exit(acciones);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF y texto de rasgos y acciones sin cortar correctos.");

@@ -18,9 +18,7 @@ Invocas un espíritu que asume la forma de una montura inusualmente inteligente,
 
 Tu montura te sirve tanto en combate como fuera de él y tienes un vínculo instintivo con ella que os permite luchar como si fuerais un solo ser. Mientras montes en ella, puedes hacer que cualquier conjuro que lances y que solo te haga objetivo a ti también haga objetivo a tu montura.
 
-Si los puntos de golpe de la montura se reducen a 0, desaparecerá y no dejará atrás ninguna forma
-
-física. Como acción, también puedes hacer que se desvanezca en cualquier momento. En cualquiera de los casos, si vuelves a lanzar este conjuro, se invocará la misma montura con sus puntos de golpe máximos recuperados.
+Si los puntos de golpe de la montura se reducen a 0, desaparecerá y no dejará atrás ninguna forma física. Como acción, también puedes hacer que se desvanezca en cualquier momento. En cualquiera de los casos, si vuelves a lanzar este conjuro, se invocará la misma montura con sus puntos de golpe máximos recuperados.
 
 Mientras tu montura esté a 1,5 km o menos de ti, puedes comunicarte con ella telepáticamente.
 

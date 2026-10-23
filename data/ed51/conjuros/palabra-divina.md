@@ -18,10 +18,4 @@ Pronuncias una palabra divina impregnada del poder que dio forma al mundo en los
 
 • 50 puntos de golpe o menos: ensordecida durante
 
-1 minuto. • 40 puntos de golpe o menos: ensordecida y cegada
-
-durante 10 minutos. • 30 puntos de golpe o menos: ensordecida, cegada
-
-y aturdida durante 1 hora. • 20 puntos de golpe o menos: muerte instantánea. Con independencia de sus puntos de golpe actuales, cualquier celestial, feérico o infernal que falle su tirada de salvación se verá forzado a regresar a su plano de origen (si no está en él ya) y no podrá
-
-regresar a tu plano actual durante 24 horas por cualquier medio que no sea un conjuro deseo.
+1 minuto. • 40 puntos de golpe o menos: ensordecida y cegada durante 10 minutos. • 30 puntos de golpe o menos: ensordecida, cegada y aturdida durante 1 hora. • 20 puntos de golpe o menos: muerte instantánea. Con independencia de sus puntos de golpe actuales, cualquier celestial, feérico o infernal que falle su tirada de salvación se verá forzado a regresar a su plano de origen (si no está en él ya) y no podrá regresar a tu plano actual durante 24 horas por cualquier medio que no sea un conjuro deseo.

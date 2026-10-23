@@ -37,9 +37,7 @@ page: 289
 
 **Mordisco.** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (2d12 + 4) de daño perforante.
 
-**Salto mortífero.** El bulette gasta 1,5 m de movimiento para saltar a un espacio a 4,5 m o menos que contenga una o varias criaturas Grandes o más pequeñas. Tirada de salvación de Destreza: CD 15, todas las criaturas situadas en el espacio de destino del bulette. Fallo: 19 (3d12) de daño contundente y el objetivo tiene el es-
-
-**tado de derribado.** Éxito: la mitad del daño y el objetivo es empujado 1,5 m respecto al bulette en línea recta.
+**Salto mortífero.** El bulette gasta 1,5 m de movimiento para saltar a un espacio a 4,5 m o menos que contenga una o varias criaturas Grandes o más pequeñas. Tirada de salvación de Destreza: CD 15, todas las criaturas situadas en el espacio de destino del bulette. Fallo: 19 (3d12) de daño contundente y el objetivo tiene el estado de derribado. Éxito: la mitad del daño y el objetivo es empujado 1,5 m respecto al bulette en línea recta.
 
 ## Acciones adicionales
 

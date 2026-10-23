@@ -41,6 +41,4 @@ page: 381
 
 ## Acciones
 
-**Consumir fuerza.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 9 (2d6 + 2) de daño necrótico y la puntuación de Fuerza
-
-**del objetivo se reduce en 1d4.** El objetivo muere si esto reduce su Fuerza a 0. De lo contrario, la reducción dura hasta que el objetivo finalice un descanso corto o largo.
+**Consumir fuerza.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, una criatura. Impacto: 9 (2d6 + 2) de daño necrótico y la puntuación de Fuerza del objetivo se reduce en 1d4. El objetivo muere si esto reduce su Fuerza a 0. De lo contrario, la reducción dura hasta que el objetivo finalice un descanso corto o largo. Si un humanoide no malvado muere a consecuencia de este ataque, una nueva sombra se alzará de su cadáver después de 1d4 horas.

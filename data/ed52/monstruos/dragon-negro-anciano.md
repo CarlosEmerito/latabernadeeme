@@ -15,10 +15,10 @@ abilities:
   int: 16
   sab: 15
   car: 22
-saves: ''
+saves: Des +9, Sab +9
 skills: Percepción +16, Sigilo +9
 resistances: ''
-immunities: ''
+immunities: ácido
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión ciega 18 m, visión en la oscuridad 36 m; Percepción pasiva 26
@@ -47,7 +47,7 @@ page: 312
 
 **27 m de largo y 3 m de ancho.** Fallo: 67 (15d8) de daño de ácido. Éxito: la mitad del daño.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 21, +13 a acertar con ataques de conjuro):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 21, +13 a acertar con ataques de conjuro): A voluntad: detectar magia, flecha ácida (versión de nivel 4), terror 1/día cada uno: crear muerto viviente, esfera vitriólica (versión de nivel 5), hablar con los muertos
 
 ## Acciones legendarias
 

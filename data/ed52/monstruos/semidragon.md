@@ -15,9 +15,9 @@ abilities:
   int: 10
   sab: 15
   car: 14
-saves: ''
+saves: Des +5, Sab +5
 skills: Atletismo +7, Percepción +5, Sigilo +5
-resistances: ''
+resistances: tipo de daño elegido para el atributo Origen dracónico más adelante
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''

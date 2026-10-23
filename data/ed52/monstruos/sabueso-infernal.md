@@ -18,7 +18,7 @@ abilities:
 saves: ''
 skills: Percepción +5
 resistances: ''
-immunities: ''
+immunities: fuego
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 15

@@ -19,6 +19,4 @@ Insuflas valor a una criatura voluntaria a la que toques. Hasta que el conjuro t
 
 ## A niveles superiores
 
-Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 2 o superior,
-
-puedes elegir como objetivo a una criatura adicional por cada nivel por encima de 1 que tenga el espacio que hayas empleado.
+Cuando lanzas este conjuro mediante un espacio de conjuro de nivel 2 o superior, puedes elegir como objetivo a una criatura adicional por cada nivel por encima de 1 que tenga el espacio que hayas empleado.

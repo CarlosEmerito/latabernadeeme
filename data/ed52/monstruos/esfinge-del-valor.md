@@ -15,11 +15,11 @@ abilities:
   int: 16
   sab: 23
   car: 18
-saves: ''
+saves: Des +6, Con +11, Int +9, Sab +12
 skills: Conocimiento arcano +9, Percepción +12, Religión +15
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: necrótico, radiante
+immunities: psíquico
+conditionImmunities: asustado, hechizado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 22
 languages: celestial, común
@@ -43,16 +43,14 @@ page: 322
 
 **Garra.** Tirada de ataque cuerpo a cuerpo: +12, alcance 1,5 m. Acierto: 20 (4d6 + 6) de daño cortante.
 
-**Lanzamiento de conjuros.** La esfinge lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 20):
+**Lanzamiento de conjuros.** La esfinge lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Sabiduría como aptitud mágica (CD de salvación de conjuros 20): A voluntad: detectar el bien y el mal, taumaturgia 1/día cada uno: detectar magia, disipar magia, festín de héroes, restablecimiento mayor, zona de la verdad
 
 **Rugido (3/día).** La esfinge emite un rugido mágico. Cada vez que ruja, el rugido tendrá un efecto distinto, como se detalla a continuación (la secuencia se reinicia cada vez que haga un descanso largo):
 
-**Primer rugido.** Tirada de salvación de Sabiduría:
+**Primer rugido.** Tirada de salvación de Sabiduría: CD 20, todos los enemigos en una emanación de 150 m que se origina en la esfinge. Fallo: el objetivo tendrá el estado de asustado durante 1 minuto. Segundo rugido. Tirada de salvación de Sabiduría: CD 20, todos los enemigos en una emanación de 150 m que se origina en la esfinge. Fallo: el objetivo tendrá el estado de paralizado y repetirá la tirada de salvación al final de cada uno de sus turnos. Si tiene éxito, se librará del efecto. Tras 1 minuto, tendrá éxito automáticamente. Tercer rugido. Tirada de salvación de Constitución: CD 20, todos los enemigos en una emanación de 150 m que se origina en la esfinge. Fallo: 44 (8d10) de daño de trueno y el objetivo tendrá el estado de derribado. Éxito: solo la mitad del daño.
 
 ## Acciones legendarias
 
 **Merodeo arcano.** La esfinge puede teletransportarse hasta 9 m a un espacio sin ocupar que pueda ver y realiza un ataque con sus garras.
 
-**Peso de los años.** Tirada de salvación de Constitución: CD 16, una criatura que la esfinge pueda ver a 36 m o menos. Fallo: el objetivo suma 1 nivel de cansancio. Mientras el objetivo tenga al menos 1 nivel de cansan-
-
-**cio, parecerá 3d10 años más viejo.** Fallo o éxito: la esfinge no puede volver a realizar esta acción hasta el principio de su siguiente turno.
+**Peso de los años.** Tirada de salvación de Constitución: CD 16, una criatura que la esfinge pueda ver a 36 m o menos. Fallo: el objetivo suma 1 nivel de cansancio. Mientras el objetivo tenga al menos 1 nivel de cansancio, parecerá 3d10 años más viejo. Fallo o éxito: la esfinge no puede volver a realizar esta acción hasta el principio de su siguiente turno.

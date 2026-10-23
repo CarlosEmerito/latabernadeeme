@@ -26,7 +26,7 @@ languages: común, dracónico
 cr: 1/8
 xp: 25 PX; BC +2
 proficiency: ''
-gear: ''
+gear: dagas (3)
 srd: '5.2'
 page: 343
 ---

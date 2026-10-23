@@ -19,7 +19,7 @@ saves: ''
 skills: ''
 resistances: ''
 immunities: ''
-conditionImmunities: ''
+conditionImmunities: asustado, cegado, ensordecido, hechizado
 vulnerabilities: ''
 senses: visión ciega 9 m; Percepción pasiva 6
 languages: ninguno

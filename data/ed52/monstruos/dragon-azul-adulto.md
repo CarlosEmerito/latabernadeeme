@@ -15,10 +15,10 @@ abilities:
   int: 16
   sab: 15
   car: 20
-saves: ''
+saves: Des +5, Sab +7
 skills: Percepción +12, Sigilo +5
 resistances: ''
-immunities: ''
+immunities: relámpago
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión ciega 18 m, visión en la oscuridad 36 m; Percepción pasiva 22
@@ -41,9 +41,9 @@ page: 298
 
 **Desgarro.** Tirada de ataque cuerpo a cuerpo: +12, alcance 3 m. Acierto: 16 (2d8 + 7) de daño cortante más 5 (1d10) de daño de relámpago.
 
-**Aliento de relámpago (recarga 5–6).** Tirada de salvación de Destreza: CD 19, todas las criaturas en una línea de 27 m de largo y 1,5 m de ancho. Fallo: 60 (11d10) de daño de relámpago. Éxito: la mitad del
+**Aliento de relámpago (recarga 5–6).** Tirada de salvación de Destreza: CD 19, todas las criaturas en una línea de 27 m de largo y 1,5 m de ancho. Fallo: 60 (11d10) de daño de relámpago. Éxito: la mitad del daño.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 18):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 18): A voluntad: detectar magia, hacer añicos, invisibilidad, mano de mago 1/día cada uno: escudriñar, recado
 
 ## Acciones legendarias
 

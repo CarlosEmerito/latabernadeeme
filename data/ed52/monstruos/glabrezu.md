@@ -15,11 +15,11 @@ abilities:
   int: 19
   sab: 17
   car: 16
-saves: ''
+saves: Fue +9, Con +9, Sab +7, Car +7
 skills: Engaño +7, Percepción +7
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: frío, fuego, relámpago
+immunities: veneno
+conditionImmunities: envenenado
 vulnerabilities: ''
 senses: visión verdadera 36 m; Percepción pasiva 17
 languages: abisal; telepatía 36 m
@@ -45,4 +45,4 @@ page: 330
 
 **Aporrear.** Tirada de salvación de Destreza: CD 17, una criatura agarrada por el glabrezu. Fallo: 15 (3d6 + 5) de daño contundente. Éxito: la mitad del daño.
 
-**Lanzamiento de conjuros.** El glabrezu lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 16):
+**Lanzamiento de conjuros.** El glabrezu lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 16): A voluntad: detectar magia, disipar magia, oscuridad 1/día cada uno: confusión, palabra de poder: aturdir, volar

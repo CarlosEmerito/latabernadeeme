@@ -19,8 +19,8 @@ saves: ''
 skills: Engaño +10, Percepción +8, Perspicacia +8
 resistances: ''
 immunities: ''
-conditionImmunities: ''
-vulnerabilities: ''
+conditionImmunities: asustado, hechizado
+vulnerabilities: daño perforante de armas empuñadas por criaturas bajo el efecto de un conjuro bendición
 senses: visión verdadera 18 m; Percepción pasiva 18
 languages: común, infernal
 cr: '13'
@@ -43,6 +43,6 @@ page: 362
 
 **Toque maldito.** Tirada de ataque cuerpo a cuerpo: +10, alcance 1,5 m. Acierto: 12 (2d6 + 5) de daño cortante más 19 (3d12) de daño necrótico. Si el objetivo es una criatura, quedará maldita. Mientras esté maldita, la criatura no obtendrá beneficio alguno por finalizar un descanso corto o largo.
 
-**Lanzamiento de conjuros.** El rakshasa lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 18):
+**Lanzamiento de conjuros.** El rakshasa lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 18): A voluntad: detectar magia, detectar pensamientos, disfrazarse, ilusión menor, mano de mago 1/día cada uno: desplazamiento entre planos, imagen mayor, invisibilidad, volar
 
 **Orden siniestra (recarga 5–6).** Tirada de salvación de Sabiduría: CD 18, todos los enemigos en una emanación de 9 m que se origina en el rakshasa. Fallo: 28 (8d6) de daño psíquico y el objetivo tendrá los estados de asustado e incapacitado hasta el principio del siguiente turno del rakshasa.

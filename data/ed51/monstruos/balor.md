@@ -45,10 +45,8 @@ page: 293
 
 **Ataque múltiple.** El balor realiza dos ataques: uno con su espada larga y otro con su látigo.
 
-**Espada larga.** Ataque con arma cuerpo a cuerpo: +14 a impactar, alcance 3 m, un objetivo. Impacto: 21 (3d8 + 8) de daño cortante más 13 (3d8) de daño
+**Espada larga.** Ataque con arma cuerpo a cuerpo: +14 a impactar, alcance 3 m, un objetivo. Impacto: 21 (3d8 + 8) de daño cortante más 13 (3d8) de daño de relámpago. Si el balor causa un crítico, tira los dados de daño tres veces en lugar de dos.
 
-**de relámpago.** Si el balor causa un crítico, tira los dados de daño tres veces en lugar de dos.
-
-**Látigo.** Ataque con arma cuerpo a cuerpo: +14 a impactar, alcance 9 m, un objetivo. Impacto: 15 (2d6 + 8) de daño cortante más 10 (3d6) de daño
+**Látigo.** Ataque con arma cuerpo a cuerpo: +14 a impactar, alcance 9 m, un objetivo. Impacto: 15 (2d6 + 8) de daño cortante más 10 (3d6) de daño de fuego y el objetivo deberá superar una tirada de salvación de Fuerza con CD 20 o será arrastrado hasta 7,5 m hacia el balor.
 
 **Teletransporte.** El balor se teletransporta, junto con cualquier equipo que vista o lleve consigo, hasta 36 m a un espacio sin ocupar que pueda ver.

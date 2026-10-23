@@ -15,9 +15,7 @@ srd: '5.1'
 page: 129
 ---
 
-Un rayo de luz amarilla surge de tu dedo índice, se condensa y espera en un punto elegido dentro del alcance en forma de una cuenta brillante hasta que
-
-termine el conjuro. Cuando el conjuro termine, bien porque pierdas la concentración o bien porque decidas ponerle fin, la cuenta estalla con un rugido sordo en una explosión de llamas que se extiende más allá de las esquinas. Todas las criaturas situadas en una esfera de 6 m de radio centrada en ese punto deberán hacer una tirada de salvación de Destreza. Sufrirán una cantidad de daño de fuego igual al daño total acumulado si fallan la tirada o la mitad del daño si la superan.
+Un rayo de luz amarilla surge de tu dedo índice, se condensa y espera en un punto elegido dentro del alcance en forma de una cuenta brillante hasta que termine el conjuro. Cuando el conjuro termine, bien porque pierdas la concentración o bien porque decidas ponerle fin, la cuenta estalla con un rugido sordo en una explosión de llamas que se extiende más allá de las esquinas. Todas las criaturas situadas en una esfera de 6 m de radio centrada en ese punto deberán hacer una tirada de salvación de Destreza. Sufrirán una cantidad de daño de fuego igual al daño total acumulado si fallan la tirada o la mitad del daño si la superan.
 
 El daño base del conjuro es 12d6. Si al final de tu turno la cuenta aún no ha detonado, el daño aumenta en 1d6.
 

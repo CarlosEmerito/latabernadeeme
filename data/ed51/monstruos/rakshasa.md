@@ -35,12 +35,10 @@ page: 375
 
 **Inmunidad Mágica Limitada.** El rakshasa no puede ser afectado o detectado por conjuros de nivel 6 o menos, salvo que así lo quiera. Además, tiene ventaja en las tiradas de salvación contra el resto de conjuros y efectos mágicos.
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del rakshasa es el Carisma (CD de salvación de conjuros 18, +10 a impactar con ataques de conjuro). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del rakshasa es el Carisma (CD de salvación de conjuros 18, +10 a impactar con ataques de conjuro). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: detectar pensamientos, disfrazarse, ilusión menor, mano de mago 3/día cada uno: detectar magia, hechizar persona, imagen mayor, invisibilidad, sugestión 1/día cada uno: desplazamiento entre planos, dominar persona, visión veraz, volar
 
 ## Acciones
 
 **Ataque múltiple.** El rakshasa realiza dos ataques con sus garras.
 
-**Garra.** Ataque con arma cuerpo a cuerpo: +7 a impactar, alcance 1,5 m, un objetivo. Impacto: 9 (2d6 + 2) de daño cortante y el objetivo quedará maldito si es una criatura. La maldición mágica surte efecto cada vez que la criatura haga un descanso corto o largo, llenando
-
-**su mente de pensamientos plagados de sueños e imágenes horribles.** La criatura maldita no obtiene beneficio alguno por finalizar un descanso corto o largo. La maldición durará hasta que se elimine con un conjuro levantar maldición u otro efecto mágico similar.
+**Garra.** Ataque con arma cuerpo a cuerpo: +7 a impactar, alcance 1,5 m, un objetivo. Impacto: 9 (2d6 + 2) de daño cortante y el objetivo quedará maldito si es una criatura. La maldición mágica surte efecto cada vez que la criatura haga un descanso corto o largo, llenando su mente de pensamientos plagados de sueños e imágenes horribles. La criatura maldita no obtiene beneficio alguno por finalizar un descanso corto o largo. La maldición durará hasta que se elimine con un conjuro levantar maldición u otro efecto mágico similar.

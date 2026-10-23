@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: Acción
 range: Lanzador
-components: S, M (un arma con la que tengas compe- tencia y que valga al menos 1 pc)
+components: S, M (un arma con la que tengas competencia y que valga al menos 1 pc)
 duration: Instantáneo
 classes:
 - Bardo

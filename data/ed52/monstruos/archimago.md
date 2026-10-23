@@ -15,11 +15,11 @@ abilities:
   int: 20
   sab: 15
   car: 16
-saves: ''
+saves: Int +9, Sab +6
 skills: Conocimiento arcano +13, Historia +9, Percepción +6
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: psíquico
+conditionImmunities: hechizado (con mente en blanco)
 vulnerabilities: ''
 senses: Percepción pasiva 16
 languages: común y otros cinco idiomas
@@ -41,7 +41,7 @@ page: 347
 
 **Estallido arcano.** Tirada de ataque cuerpo a cuerpo o a distancia: +9, alcance 1,5 m o 45 m a distancia. Acierto: 27 (4d10 + 5) de daño de fuerza.
 
-**Lanzamiento de conjuros.** El archimago lanza uno de los siguientes conjuros, que utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 17):
+**Lanzamiento de conjuros.** El archimago lanza uno de los siguientes conjuros, que utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 17): A voluntad: armadura de mago (incluido en la CA), detectar magia, detectar pensamientos, disfrazarse, invisibilidad, luz, mano de mago, prestidigitación 2/día cada uno: relámpago (versión de nivel 7), volar 1/día cada uno: cono de frío (versión de nivel 9), escudriñar, mente en blanco (lanzado antes del combate), teletransporte
 
 ## Acciones adicionales
 

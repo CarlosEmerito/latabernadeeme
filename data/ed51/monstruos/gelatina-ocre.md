@@ -39,7 +39,7 @@ page: 291
 
 ## Acciones
 
-**Pseudópodo.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 9 (2d6 + 2) de daño contundente más 3 (1d6) de daño
+**Pseudópodo.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 1,5 m, un objetivo. Impacto: 9 (2d6 + 2) de daño contundente más 3 (1d6) de daño de ácido.
 
 ## Reacciones
 

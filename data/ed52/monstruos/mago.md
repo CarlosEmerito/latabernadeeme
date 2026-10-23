@@ -15,7 +15,7 @@ abilities:
   int: 17
   sab: 12
   car: 11
-saves: ''
+saves: Int +6, Sab +4
 skills: Conocimiento arcano +6, Historia +6, Percepción +4
 resistances: ''
 immunities: ''
@@ -37,7 +37,7 @@ page: 346
 
 **Estallido arcano.** Tirada de ataque cuerpo a cuerpo o a distancia: +6, alcance 1,5 m o 36 m a distancia. Acierto: 16 (3d8 + 3) de daño de fuerza.
 
-**Lanzamiento de conjuros.** El mago lanza uno de los siguientes conjuros, que utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 14):
+**Lanzamiento de conjuros.** El mago lanza uno de los siguientes conjuros, que utiliza la Inteligencia como aptitud mágica (CD de salvación de conjuros 14): A voluntad: armadura de mago (incluido en la CA), detectar magia, luz, mano de mago, prestidigitación 2/día cada uno: bola de fuego (versión de nivel 4), invisibilidad 1/día cada uno: cono de frío, volar
 
 ## Acciones adicionales
 

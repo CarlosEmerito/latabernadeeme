@@ -37,7 +37,7 @@ page: 384
 
 **Carga.** Si el unicornio se mueve al menos 6 m en línea recta hacia un objetivo y luego le impacta con un ataque de cuerno durante el mismo turno, el objetivo recibe 9 (2d8) de daño perforante adicional. Si el objetivo es una criatura, deberá superar una tirada de salvación de Fuerza con CD 15 o será derribada.
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del unicornio es el Carisma (CD de salvación de conjuros 14). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica innata del unicornio es el Carisma (CD de salvación de conjuros 14). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes: A voluntad: detectar el bien y el mal, pasar sin rastro, saber druídico 1/día cada uno: calmar emociones, disipar el bien y el mal, enmarañar
 
 **Resistencia Mágica.** El unicornio tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
 
@@ -55,6 +55,6 @@ page: 384
 
 ## Acciones legendarias
 
-**Cascos.** El unicornio realiza un ataque con sus cascos.
+**Cascos.** El unicornio realiza un ataque con sus cascos. El unicornio crea un escudo brillante de naturaleza mágica alrededor de sí mismo o de otra criatura que pueda ver a 18 m o menos de él. El objetivo recibe un bonificador de +2 a la CA hasta el final del siguiente turno del unicornio.
 
-**Curarse a sí mismo (cuesta 3 acciones).** El unicornio
+**Curarse a sí mismo (cuesta 3 acciones).** El unicornio recupera mágicamente 11 (2d8 + 2) puntos de golpe.

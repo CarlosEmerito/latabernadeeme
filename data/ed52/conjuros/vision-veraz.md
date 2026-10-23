@@ -6,7 +6,7 @@ ritual: false
 concentration: false
 castingTime: Acción
 range: Toque
-components: V, S, M (hongos pulverizados que valgan al menos 25 po, que se consumen como parte del con- juro)
+components: V, S, M (hongos pulverizados que valgan al menos 25 po, que se consumen como parte del conjuro)
 duration: 1 hora
 classes:
 - Bardo

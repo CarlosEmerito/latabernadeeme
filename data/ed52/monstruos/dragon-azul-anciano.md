@@ -15,10 +15,10 @@ abilities:
   int: 18
   sab: 17
   car: 25
-saves: ''
+saves: Des +7, Sab +10
 skills: Percepción +17, Sigilo +7
 resistances: ''
-immunities: ''
+immunities: relámpago
 conditionImmunities: ''
 vulnerabilities: ''
 senses: visión ciega 18 m, visión en la oscuridad 36 m; Percepción pasiva 27
@@ -43,12 +43,12 @@ page: 299
 
 **Aliento de relámpago (recarga 5–6).** Tirada de salvación de Destreza: CD 23, todas las criaturas en una línea de 36 m de largo y 3 m de ancho. Fallo: 88 (16d10) de daño de relámpago. Éxito: la mitad del daño.
 
-**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 22):
+**Lanzamiento de conjuros.** El dragón lanza uno de los siguientes conjuros, que no requiere componentes materiales y utiliza el Carisma como aptitud mágica (CD de salvación de conjuros 22): A voluntad: detectar magia, hacer añicos (versión de nivel 3), invisibilidad, mano de mago 1/día cada uno: escudriñar, recado
 
 ## Acciones legendarias
 
 **Coletazo.** El dragón realiza un ataque de desgarro.
 
-**Estallido sónico.** El dragón utiliza su lanzamiento de conjuros para lanzar hacer añicos (versión de nivel 3).
+**Estallido sónico.** El dragón utiliza su lanzamiento de conjuros para lanzar hacer añicos (versión de nivel 3). El dragón no puede volver a realizar esta acción hasta el principio de su siguiente turno.
 
 **Vuelo encubierto.** El dragón utiliza su lanzamiento de conjuros para lanzarse invisibilidad a sí mismo y puede volar hasta la mitad de su velocidad volando. El dragón no puede volver a realizar esta acción hasta el principio de su siguiente turno.

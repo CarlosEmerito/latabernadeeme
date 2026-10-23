@@ -37,4 +37,4 @@ page: 399
 
 ## Acciones
 
-**Golpe.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 3 m, un objetivo. Impacto: 14 (3d6 + 4) de daño contundente.
+**Golpe.** Ataque con arma cuerpo a cuerpo: +6 a impactar, alcance 3 m, un objetivo. Impacto: 14 (3d6 + 4) de daño contundente. Un es un árbol normal que ha árbol despertado sido dotado de consciencia y la capacidad de desplazarse mediante el conjuro u otro despertar efecto mágico similar.

@@ -37,7 +37,7 @@ page: 299
 
 **Aura de Miedo.** Si el diablo de la sima no está incapacitado, todas las criaturas que le sean hostiles y empiecen su turno a 6 m o menos de él deberán hacer una tirada de salvación de Sabiduría con CD 21. Si la fallan, estarán asustadas hasta el principio de su siguiente turno. Si una criatura supera la tirada de salvación, será inmune al Aura de Miedo del diablo de la sima durante las siguientes 24 horas.
 
-**Lanzamiento de Conjuros Innato.** La aptitud mágica del diablo de la sima es el Carisma (CD de salvación de conjuros 21). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales:
+**Lanzamiento de Conjuros Innato.** La aptitud mágica del diablo de la sima es el Carisma (CD de salvación de conjuros 21). Puede lanzar de forma innata los siguientes conjuros, sin necesidad de componentes materiales: A voluntad: bola de fuego, detectar magia 3/día cada uno: inmovilizar monstruo, muro de fuego
 
 **Resistencia Mágica.** El diablo de la sima tiene ventaja en las tiradas de salvación contra conjuros y otros efectos mágicos.
 

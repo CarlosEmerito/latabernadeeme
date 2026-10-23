@@ -18,9 +18,9 @@ abilities:
 saves: ''
 skills: Sigilo +3
 resistances: ''
-immunities: ''
-conditionImmunities: ''
-vulnerabilities: ''
+immunities: fuego, veneno
+conditionImmunities: cansancio, envenenado
+vulnerabilities: frío
 senses: visión en la oscuridad 18 m; Percepción pasiva 10
 languages: primordial (ígneo, terrano)
 cr: 1/2

@@ -18,9 +18,9 @@ abilities:
 saves: ''
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
-vulnerabilities: ''
+immunities: veneno
+conditionImmunities: cansancio, envenenado, inconsciente, paralizado, petrificado
+vulnerabilities: trueno
 senses: sentir vibraciones 18 m, visión en la oscuridad 18 m; Percepción pasiva 10
 languages: primordial (terrano)
 cr: '5'

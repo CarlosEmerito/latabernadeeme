@@ -69,7 +69,7 @@ Como druida, obtienes los siguientes rasgos de clase cuando alcanzas los niveles
 
 ### Druídico (nivel 1)
 
-Sabes druídico, el idioma secreto de los druidas. Mientras aprendías esta lengua antigua, accediste a la magia para comunicarte con los animales, por hablar con los ani- lo que siempre tienes el conjuro males preparado.
+Sabes druídico, el idioma secreto de los druidas. Mientras aprendías esta lengua antigua, accediste a la magia para comunicarte con los animales, por lo que siempre tienes el conjuro hablar con los animales preparado.
 
 Puedes utilizar el druídico para dejar mensajes ocultos. Tanto tú como cualquiera que conozca este idioma os percataréis de inmediato de la presencia de estos mensajes. Los demás deberán superar una prueba de Inteligencia (Investigación) con CD 15 para detectarlos, pero no podrán descifrarlos sin recurrir a la magia.
 
@@ -125,17 +125,13 @@ Cuando alcances determinados niveles de druida, la cantidad de formas conocidas 
 
 Al escoger las formas conocidas, puedes consultar otras fuentes para buscar más bestias si tu Game Master te lo permite.
 
-Reglas con forma de bestia. Mientras tengas la forma de una bestia, conservas tu personalidad, recuerdos y capacidad de hablar, y se aplican las siguientes normas: Puntos de golpe temporales. Cuando te transfor-
-
-mas usando Forma salvaje, obtienes una cantidad de puntos de golpe temporales igual a tu nivel de
+Reglas con forma de bestia. Mientras tengas la forma de una bestia, conservas tu personalidad, recuerdos y capacidad de hablar, y se aplican las siguientes normas: Puntos de golpe temporales. Cuando te transformas usando Forma salvaje, obtienes una cantidad de puntos de golpe temporales igual a tu nivel de
 
 druida. Perfil. Tu perfil se sustituye por el perfil de la bestia, pero conservas tu tipo de criatura, puntos
 
 de golpe, dados de puntos de golpe, puntuaciones de Inteligencia, Sabiduría y Carisma, rasgos de
 
-clase, idiomas y dotes. También conservas tus competencias en habilidades y tiradas de salva-
-
-ción y utilizas tu bonificador por competencia con ellas, además de obtener las competencias de la
+clase, idiomas y dotes. También conservas tus competencias en habilidades y tiradas de salvación y utilizas tu bonificador por competencia con ellas, además de obtener las competencias de la
 
 criatura. Si el modificador de una habilidad o tirada de salvación del perfil de la bestia es superior
 

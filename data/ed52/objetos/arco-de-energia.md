@@ -19,9 +19,7 @@ Bajada
 
 Las patas se retraen, lo que reduce la velocidad y la
 
-velocidad nadando del aparato a 0 e impide que se be-
-
-neficie de ningún bonificador a su velocidad.
+velocidad nadando del aparato a 0 e impide que se beneficie de ningún bonificador a su velocidad.
 
 La persiana de la ventana delantera se cierra.
 

@@ -41,4 +41,4 @@ page: 408
 
 ## Acciones
 
-**Mordiscos.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 0 m, una criatura en el espacio del enjambre. Impacto: 5 (2d4) de daño perforante
+**Mordiscos.** Ataque con arma cuerpo a cuerpo: +4 a impactar, alcance 0 m, una criatura en el espacio del enjambre. Impacto: 5 (2d4) de daño perforante o 2 (1d4) de daño perforante si el enjambre tiene la mitad o menos de sus puntos de golpe.

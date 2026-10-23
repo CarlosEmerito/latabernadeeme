@@ -16,9 +16,7 @@ srd: '5.1'
 page: 157
 ---
 
-Haces que el terreno de una zona cuadrada de hasta 1,5 km de lado tenga el aspecto, los sonidos, los olores e incluso las sensaciones de otro tipo de terreno. Sin embargo, la forma general de este terreno no se modificará. Podrías hacer que un campo abierto o una carretera se parezcan a un pantano, una colina, una grieta u otro tipo de terreno difícil o infranqueable. Se puede hacer que un estanque parezca una pradera cubierta de hierba, que un precipicio se aparezca como una suave cuesta
-
-o que un barranco pedregoso y estrecho se presente como una carretera amplia y lisa.
+Haces que el terreno de una zona cuadrada de hasta 1,5 km de lado tenga el aspecto, los sonidos, los olores e incluso las sensaciones de otro tipo de terreno. Sin embargo, la forma general de este terreno no se modificará. Podrías hacer que un campo abierto o una carretera se parezcan a un pantano, una colina, una grieta u otro tipo de terreno difícil o infranqueable. Se puede hacer que un estanque parezca una pradera cubierta de hierba, que un precipicio se aparezca como una suave cuesta o que un barranco pedregoso y estrecho se presente como una carretera amplia y lisa.
 
 De forma similar, puedes alterar el aspecto de las estructuras o añadir algunas donde no las hay. El conjuro no disfraza, oculta ni añade criaturas.
 

@@ -17,9 +17,9 @@ abilities:
   car: 11
 saves: ''
 skills: ''
-resistances: ''
-immunities: ''
-conditionImmunities: ''
+resistances: ácido, contundente, cortante, frío, fuego, necrótico, perforante
+immunities: relámpago, veneno
+conditionImmunities: agarrado, apresado, cansancio, derribado, envenenado, inconsciente, paralizado, petrificado
 vulnerabilities: ''
 senses: visión en la oscuridad 36 m; Percepción pasiva 12
 languages: común y otro cualquiera
@@ -47,4 +47,4 @@ page: 326
 
 **Desvanecerse.** El fuego fatuo y su luz tienen el estado de invisibles hasta que el fuego fatuo deje de concentrarse en este efecto, que terminará antes de tiempo inmediatamente después de que el fuego fatuo haga una tirada de ataque o use su acción de devorar vida.
 
-**Devorar vida.** Tirada de salvación de Constitución: CD 10, una criatura viva que el fuego fatuo pueda ver a 1,5 m o menos y tenga 0 puntos de golpe. Fallo:
+**Devorar vida.** Tirada de salvación de Constitución: CD 10, una criatura viva que el fuego fatuo pueda ver a 1,5 m o menos y tenga 0 puntos de golpe. Fallo: el objetivo muere y el fuego fatuo recupera 10 (3d6) puntos de golpe.

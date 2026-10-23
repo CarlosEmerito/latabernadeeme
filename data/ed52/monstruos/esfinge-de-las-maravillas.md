@@ -17,7 +17,7 @@ abilities:
   car: 11
 saves: ''
 skills: Conocimiento arcano +4, Religión +4, Sigilo +5
-resistances: ''
+resistances: necrótico, psíquico, radiante
 immunities: ''
 conditionImmunities: ''
 vulnerabilities: ''

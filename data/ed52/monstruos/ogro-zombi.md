@@ -15,11 +15,11 @@ abilities:
   int: 3
   sab: 6
   car: 5
-saves: ''
+saves: Sab +0
 skills: ''
 resistances: ''
-immunities: ''
-conditionImmunities: ''
+immunities: veneno
+conditionImmunities: cansancio, envenenado
 vulnerabilities: ''
 senses: visión en la oscuridad 18 m; Percepción pasiva 8
 languages: entiende común y gigante, pero no puede hablar

@@ -39,9 +39,7 @@ page: 339
 
 **Hacha de mano (solo en forma humanoide o híbrida).** Tirada de ataque cuerpo a cuerpo o a distancia: +7, alcance 1,5 m o 6/18 m a distancia. Acierto: 14 (3d6 + 4) de daño cortante.
 
-**Mordisco (solo en forma de oso o híbrida).** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (2d12 + 4) de daño perforante. Si el objetivo es
-
-**un humanoide, sufre el siguiente efecto.** Tirada de salvación de Constitución: CD 14. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre oso controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre oso durante 24 horas.
+**Mordisco (solo en forma de oso o híbrida).** Tirada de ataque cuerpo a cuerpo: +7, alcance 1,5 m. Acierto: 17 (2d12 + 4) de daño perforante. Si el objetivo es un humanoide, sufre el siguiente efecto. Tirada de salvación de Constitución: CD 14. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre oso controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre oso durante 24 horas.
 
 ## Acciones adicionales
 

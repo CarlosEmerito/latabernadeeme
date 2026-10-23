@@ -37,9 +37,7 @@ page: 340
 
 **Arañazo.** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 6 (1d6 + 3) de daño cortante.
 
-**Mordisco (solo en forma de rata o híbrida).** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 8 (2d4 + 3) de daño perforante. Si el objetivo es un hu-
-
-**manoide, sufre el siguiente efecto.** Tirada de salvación de Constitución: CD 11. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre rata controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre rata durante 24 horas.
+**Mordisco (solo en forma de rata o híbrida).** Tirada de ataque cuerpo a cuerpo: +5, alcance 1,5 m. Acierto: 8 (2d4 + 3) de daño perforante. Si el objetivo es un humanoide, sufre el siguiente efecto. Tirada de salvación de Constitución: CD 11. Fallo: el objetivo estará maldito. Si los puntos de golpe del objetivo maldito se reducen a 0, en vez de ello, se convertirá en un hombre rata controlado por el GM y tendrá 10 puntos de golpe. Éxito: el objetivo será inmune a la maldición de este hombre rata durante 24 horas.
 
 **Ballesta de mano (solo en forma humanoide o híbrida).** Tirada de ataque a distancia: +5, alcance 9/36 m. Acierto: 6 (1d6 + 3) de daño perforante.
 

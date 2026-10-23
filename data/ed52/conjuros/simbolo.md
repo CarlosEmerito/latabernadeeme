@@ -17,9 +17,7 @@ srd: '5.2'
 page: 184
 ---
 
-Inscribes un glifo dañino bien en una superficie (como un trozo de un suelo o una pared) o bien en un objeto que se pueda cerrar (como un libro o un cofre). Este puede abarcar una zona de hasta 3 m de diámetro. Si eliges un objeto, este debe permanecer en su sitio; si se mueve más de 3 m respecto
-
-al lugar donde lanzaste el conjuro, el glifo se romperá y el conjuro terminará sin activarse.
+Inscribes un glifo dañino bien en una superficie (como un trozo de un suelo o una pared) o bien en un objeto que se pueda cerrar (como un libro o un cofre). Este puede abarcar una zona de hasta 3 m de diámetro. Si eliges un objeto, este debe permanecer en su sitio; si se mueve más de 3 m respecto al lugar donde lanzaste el conjuro, el glifo se romperá y el conjuro terminará sin activarse.
 
 El glifo es casi imperceptible y es necesario superar una prueba de Sabiduría (Percepción) contra tu CD de salvación de conjuros para detectarlo.
 

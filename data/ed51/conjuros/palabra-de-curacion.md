@@ -16,9 +16,7 @@ srd: '5.1'
 page: 181
 ---
 
-Una criatura de tu elección que puedas ver dentro del alcance recupera una cantidad de puntos de golpe igual a 1d4 + tu modificador por aptitud
-
-mágica. Este conjuro no afecta ni a autómatas ni a muertos vivientes.
+Una criatura de tu elección que puedas ver dentro del alcance recupera una cantidad de puntos de golpe igual a 1d4 + tu modificador por aptitud mágica. Este conjuro no afecta ni a autómatas ni a muertos vivientes.
 
 ## A niveles superiores
 

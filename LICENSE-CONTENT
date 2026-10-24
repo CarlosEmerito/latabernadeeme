@@ -1,0 +1,54 @@
+Contenido de La Taberna de Eme
+==============================
+
+Salvo donde se indique lo contrario, el contenido de este repositorio —los
+textos de `data/` y `docs/`, este README, las notas y las imágenes e iconos
+propios del sitio— está bajo la licencia
+
+    Creative Commons Atribución 4.0 Internacional (CC BY 4.0)
+    https://creativecommons.org/licenses/by/4.0/deed.es
+
+Puedes copiarlo, transformarlo y redistribuirlo, incluso con fines comerciales,
+siempre que des atribución.
+
+El código (src/, tools/, .github/ y la configuración) va aparte, bajo MIT; ver
+el fichero LICENSE.
+
+
+Atribución obligatoria
+----------------------
+
+El texto de las fichas procede del System Reference Document de Dungeons &
+Dragons, en su traducción oficial al español, publicado por Wizards of the
+Coast LLC bajo Creative Commons Atribución 4.0 Internacional:
+
+    SRD 5.1 — System Reference Document, Wizards of the Coast LLC.
+    https://dnd.wizards.com/resources/systems-reference-document
+
+    SRD 5.2.1 — System Reference Document, Wizards of the Coast LLC.
+    https://www.dndbeyond.com/srd
+
+Al reutilizar el contenido, mantén esta atribución y la de este repositorio:
+
+    Contenido del SRD 5.1 y del SRD 5.2.1, © Wizards of the Coast LLC,
+    usado bajo CC BY 4.0. Recopilado y adaptado en La Taberna de Eme
+    (https://github.com/CarlosEmerito/latabernadeeme), CC BY 4.0.
+
+La estructura de datos, la ingesta y el sitio son obra de Carlos López Lovera
+(CarlosEmerito).
+
+
+Marcas
+------
+
+«Dungeons & Dragons» y «D&D» son marcas registradas de Wizards of the Coast
+LLC. Este proyecto no está afiliado ni respaldado por Wizards of the Coast y no
+incluye logotipos ni material de ambientación: solo el contenido abierto del
+SRD.
+
+
+Tipografías
+-----------
+
+Newsreader, Instrument Sans y Geist Mono se distribuyen bajo SIL Open Font
+License 1.1, con sus propios avisos de copyright.

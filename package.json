@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "La Taberna de Eme: referencia y herramientas de mesa para la quinta edición de D&D y las reglas de 2024, construida sobre el SRD en español.",
+  "license": "MIT",
   "engines": {
     "node": ">=22.22.0"
   },

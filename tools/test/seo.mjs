@@ -4,7 +4,7 @@
  * Cada página tiene que publicar una sola canónica absoluta con la base del
  * despliegue y una barra final, `og:url` idéntica a ella, `og:type` con
  * `article` en las fichas y `website` en la portada y los listados, y una
- * `og:image` absoluta que sea el PNG del sigilo de esa ficha —o el genérico—
+ * `og:image` absoluta que sea el PNG del sigilo de esa ficha, la tarjeta propia de la portada o el genérico
  * y exista de verdad en `dist/`. Sin esto cada ficha se indexaba en dos
  * direcciones (`/…/` y `/…/index.html`) y al pegar un enlace en WhatsApp,
  * Telegram o X no salía ninguna imagen.
@@ -50,6 +50,9 @@ const TIPOS = [
 ];
 const FICHA = new RegExp(`^/(5e|5\\.5)/(${TIPOS.join("|")})/(?!indice/)[^/]+/$`);
 const GENERICA = `${BASE}/img/og/reglas/generico.png`;
+// La portada no habla de una entrada concreta: lleva su propia tarjeta, dibujada
+// aparte y guardada en `public/img/og/portada.png`.
+const PORTADA = `${BASE}/img/og/portada.png`;
 const PNG = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
 
 /** Valores de `content` de las `<meta>` con ese atributo y ese nombre. */
@@ -115,8 +118,9 @@ for (const fichero of paginas) {
   if (esFicha && sigilo) {
     const tarjeta = sigilo.replace("/img/sigilos/", "/img/og/").replace(/\.svg$/, ".png");
     if (imagen !== `${SITIO}${tarjeta}`) anotar(nombre, `og:image «${imagen}» no es la tarjeta de «${sigilo}»`);
-  } else if (!esFicha && imagen !== `${SITIO}${GENERICA}`) {
-    anotar(nombre, `og:image «${imagen}» no es la genérica`);
+  } else if (!esFicha) {
+    const esperada = ruta === "/" ? `${SITIO}${PORTADA}` : `${SITIO}${GENERICA}`;
+    if (imagen !== esperada) anotar(nombre, `og:image «${imagen}» no es la esperada «${esperada}»`);
   }
 
   const ficheroImagen = path.join(DIST, decodeURIComponent(imagen.slice((SITIO + BASE).length)));

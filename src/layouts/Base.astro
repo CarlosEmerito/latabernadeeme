@@ -22,6 +22,11 @@ interface Props {
   seccion?: string;
   /** `article` en las fichas, `website` en la portada y los listados. */
   tipoOg?: "website" | "article";
+  /**
+   * Tarjeta social propia, para cuando el sigilo no cuenta lo suficiente. La
+   * portada la usa: es la única página que no habla de una entrada concreta.
+   */
+  tarjeta?: { src: string; ancho: number; alto: number; alt?: string };
 }
 
 const {
@@ -33,6 +38,7 @@ const {
   imagen,
   seccion,
   tipoOg = "website",
+  tarjeta,
 } = Astro.props;
 
 const SITIO = "La Taberna de Eme";
@@ -54,9 +60,22 @@ const base = edicion ? e(`/${edicion}`) : "";
 // direcciones y el buscador elige por su cuenta cuál guarda.
 const rutaCanonica = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonica = new URL(rutaCanonica, Astro.site ?? Astro.url).href;
-// Las redes no pintan un SVG: la tarjeta es el mismo sigilo rasterizado.
-const tarjeta = new URL(e(tarjetaDe(imagen)), Astro.site ?? Astro.url).href;
-const altTarjeta = imagen ? `Sigilo de ${title}` : SITIO;
+// Las redes no pintan un SVG: la tarjeta es el mismo sigilo rasterizado, salvo
+// que la página traiga la suya (la portada). El tamaño va con la tarjeta: si se
+// anuncia 600×315 y el PNG mide 1200×630, algunas plataformas recortan.
+const tarjetaSocial = tarjeta
+  ? {
+      url: new URL(e(tarjeta.src), Astro.site ?? Astro.url).href,
+      ancho: tarjeta.ancho,
+      alto: tarjeta.alto,
+      alt: tarjeta.alt ?? SITIO,
+    }
+  : {
+      url: new URL(e(tarjetaDe(imagen)), Astro.site ?? Astro.url).href,
+      ancho: 600,
+      alto: 315,
+      alt: imagen ? `Sigilo de ${title}` : SITIO,
+    };
 ---
 
 <!doctype html>
@@ -90,16 +109,16 @@ const altTarjeta = imagen ? `Sigilo de ${title}` : SITIO;
     <meta property="og:locale" content="es_ES" />
     <meta name="keywords" content="D&D, DnD, Dungeons & Dragons, D&D 5e, 5e, 5.5e, D&D 2024, SRD, conjuros, monstruos, objetos mágicos, clases, reglas, herramientas de mesa, español" />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={tarjeta} />
+    <meta property="og:image" content={tarjetaSocial.url} />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="600" />
-    <meta property="og:image:height" content="315" />
-    <meta property="og:image:alt" content={altTarjeta} />
+    <meta property="og:image:width" content={tarjetaSocial.ancho} />
+    <meta property="og:image:height" content={tarjetaSocial.alto} />
+    <meta property="og:image:alt" content={tarjetaSocial.alt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={tituloCompleto} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={tarjeta} />
-    <meta name="twitter:image:alt" content={altTarjeta} />
+    <meta name="twitter:image" content={tarjetaSocial.url} />
+    <meta name="twitter:image:alt" content={tarjetaSocial.alt} />
     <script is:inline>
       try {
         const guardado = localStorage.getItem("tema");

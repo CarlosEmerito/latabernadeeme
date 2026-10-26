@@ -325,5 +325,13 @@ Decisión: **el Markdown es la fuente; el JSON es un derivado que se genera en c
   Cabe en una visita. `tools/test/cifras.py` vuelve a medir estos números desde
   `dist/datos/` en cada pasada, así que no pueden quedar atrás cuando crecen las
   fichas.
+- Para la tarjeta emergente de los enlaces hay un segundo derivado, más delgado
+  todavía, en `src/pages/datos/[ed]-tarjetas.json.ts` → `/datos/<edición>-tarjetas.json`:
+  solo el nombre y los tres o cuatro campos del perfil que pinta la tarjeta, con
+  los textos repetidos una sola vez en una lista aparte. Pesa 46 KB y 45 KB
+  frente a los 316 KB y 296 KB del índice completo, que sigue publicado igual
+  para las herramientas de `/mesa/` y para quien lo consuma de fuera. Lo vigila
+  `tools/test/tarjetas.mjs` (presupuesto de bytes, cobertura de las fichas
+  enlazadas y cada valor contra el catálogo), no una nota a mano.
 
 Regla: si un dato se puede derivar, se deriva. El JSON nunca es la fuente de la verdad.

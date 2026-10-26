@@ -248,18 +248,36 @@ const tarjetaSocial = tarjeta
       /* Tarjetas emergentes: al pasar o enfocar un enlace enlazado, se muestra un
          resumen de la entrada. Es una mejora: el enlace funciona sin esto. */
       const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-      const cacheDatos = new Map<string, Promise<any[]>>();
+      /* La tarjeta pide el índice delgado de su edición, no el catálogo entero:
+         de `/datos/<ed>.json` solo usa el nombre y tres o cuatro campos, y ese
+         fichero pesa 300 KB porque lleva todas las entradas con sus facetas. */
+      const cacheDatos = new Map<string, Promise<any>>();
       const cargarDatos = (ed: string) => {
         if (!cacheDatos.has(ed)) {
           cacheDatos.set(
             ed,
-            fetch(`${BASE}/datos/${ed}.json`)
-              .then((r) => (r.ok ? r.json() : { entradas: [] }))
-              .then((j) => j.entradas ?? [])
-              .catch(() => []),
+            fetch(`${BASE}/datos/${ed}-tarjetas.json`)
+              .then((r) => (r.ok ? r.json() : null))
+              .catch(() => null),
           );
         }
         return cacheDatos.get(ed)!;
+      };
+
+      /* Cada fila del índice es una lista de valores en el orden que declara
+         `campos[tipo]`; los textos vienen una sola vez en `textos` y la fila
+         guarda su índice en negativo. */
+      const entradaDeTarjeta = (indice: any, clave: string) => {
+        const [tipo, slug] = clave.split("/");
+        const fila = indice?.[tipo]?.[slug];
+        const campos = indice?.campos?.[tipo];
+        if (!fila || !campos) return null;
+        const d: Record<string, any> = {};
+        campos.forEach((campo: string, i: number) => {
+          const v = fila[i];
+          d[campo] = typeof v === "number" && v < 0 ? indice.textos[-v - 1] : v;
+        });
+        return { t: tipo, n: d[campos[0]], d };
       };
 
       let tarjeta: HTMLDivElement | null = null;
@@ -314,9 +332,8 @@ const tarjetaSocial = tarjeta
         const ed = a.dataset.ed ?? "5.5";
         window.clearTimeout(temporizador);
         temporizador = window.setTimeout(async () => {
-          const entradas = await cargarDatos(ed);
-          const [tipo, slug] = clave.split("/");
-          const e = entradas.find((x: any) => x.t === tipo && x.s === slug);
+          const indice = await cargarDatos(ed);
+          const e = entradaDeTarjeta(indice, clave);
           if (e && actual === a) pintar(e, a);
         }, 120);
       });
@@ -333,9 +350,8 @@ const tarjetaSocial = tarjeta
         const a = (ev.target as HTMLElement)?.closest?.("a[data-tarjeta]") as HTMLAnchorElement | null;
         if (a) {
           actual = a;
-          cargarDatos(a.dataset.ed ?? "5.5").then((entradas) => {
-            const [tipo, slug] = a.dataset.tarjeta!.split("/");
-            const e = entradas.find((x: any) => x.t === tipo && x.s === slug);
+          cargarDatos(a.dataset.ed ?? "5.5").then((indice) => {
+            const e = entradaDeTarjeta(indice, a.dataset.tarjeta!);
             if (e) pintar(e, a);
           });
         }

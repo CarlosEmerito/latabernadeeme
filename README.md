@@ -42,7 +42,10 @@ Además del texto:
 - **TypeScript** en el sitio; **Python** solo en la ingesta de datos.
 - CSS propio, sin framework de UI.
 - **Newsreader**, **Instrument Sans** y **Geist Mono** autoalojadas (SIL OFL 1.1): ninguna petición a
-  terceros. El CSS las carga con `@fontsource-variable` y `package.json` no declara ninguna otra.
+  terceros por las fuentes. El CSS las carga con `@fontsource-variable` y `package.json` no declara ninguna otra.
+- **Analítica**: una sola petición a terceros en todo el sitio, el beacon de **Cloudflare Web
+  Analytics** (`static.cloudflareinsights.com`, unos 31 KB, `defer`), sin cookies. Está detallado en
+  [/licencias/](https://carlosemerito.github.io/latabernadeeme/licencias/).
 - **Metadatos sociales**: canónica absoluta y `og:image` por página, con la tarjeta generada al compilar.
 
 ## Empezar

@@ -218,7 +218,23 @@ const filas = (["5e", "5.5"] as Edition[]).map((ed) => ({
       <p>
         Tipografías: <strong>Newsreader</strong> (títulos y perfiles), <strong>Instrument Sans</strong>
         (interfaz) y <strong>Geist Mono</strong> (números, VD, páginas), las tres bajo SIL Open Font
-        License 1.1, autoalojadas (ninguna petición a terceros).
+        License 1.1, autoalojadas: la página no pide ninguna fuente a un servidor externo.
+      </p>
+
+      <h2>Analítica y terceros</h2>
+      <p>
+        El sitio no tiene cuentas, ni cookies propias, ni publicidad, ni perfiles de lector. Hay
+        <strong>una sola petición a un servidor de terceros</strong>: el beacon de
+        <a href="https://www.cloudflare.com/web-analytics/">Cloudflare Web Analytics</a>, que carga en
+        cada página desde <code>static.cloudflareinsights.com</code> (unos 31 KB, con
+        <code>defer</code>) y envía visitas, procedencia y métricas de carga (Core Web Vitals) de
+        forma agregada. Según Cloudflare, esa medición no usa cookies, ni almacenamiento local, ni
+        huella del navegador.
+      </p>
+      <p>
+        Todo lo demás —HTML, CSS, JavaScript, tipografías, iconos e imágenes— se sirve desde GitHub
+        Pages. El beacon está ahí para saber qué se consulta y cuánto tarda en cargar, no para seguir
+        a nadie: si lo bloqueas, la web funciona igual.
       </p>
 
       <h2>Atribución de la traducción</h2>

@@ -1,16 +1,25 @@
 ---
 import Base from "../../layouts/Base.astro";
 import MesaNav from "../../components/MesaNav.astro";
-import { cargar } from "../../lib/content";
+import { cargar, EDICIONES } from "../../lib/content";
 import { e } from "../../lib/urls";
 import { REGLAS, dificultadPorDefecto, dificultadesDe } from "../../lib/presupuesto";
 
-const objetos51 = cargar("5e", "objetos");
+// El botín sale del catálogo que la página declara: el 5.2.1, el mismo con el
+// que arranca el constructor de encuentros. Leerlo del 5.1 dejaba fuera 24
+// objetos de 2024 —seis legendarios, «Capa de invisibilidad» entre ellos— y
+// dejaba la rareza «Común» con un solo objeto, así que el generador devolvía
+// siempre el mismo y parecía roto.
+const CATALOGO_BOTIN = "5.5" as const;
+const srdBotin = EDICIONES[CATALOGO_BOTIN];
+const objetosBotin = cargar(CATALOGO_BOTIN, "objetos");
 const porRareza: Record<string, string[]> = {};
-for (const o of objetos51) {
+for (const o of objetosBotin) {
   const r = String(o.data.rarity || "sin rareza").toLowerCase();
   (porRareza[r] ??= []).push(String(o.data.name));
 }
+// Ordenados por nombre para que el JSON publicado sea estable entre compilaciones.
+for (const lista of Object.values(porRareza)) lista.sort((a, b) => a.localeCompare(b, "es"));
 
 // El panel arranca con el catálogo 5.2.1, así que las dificultades que se
 // publican en el HTML son las suyas. El script las rehace al cambiar de
@@ -145,6 +154,10 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
 
     <section class="mesa-panel" aria-labelledby="p-botin">
       <h2 id="p-botin">Botín</h2>
+      <p class="mesa-panel__nota" id="bot-regla">
+        Objetos mágicos del catálogo {srdBotin.srd} ({srdBotin.nota}), el mismo con el que arranca el
+        resto de la sección Mesa: {objetosBotin.length} objetos repartidos por rareza.
+      </p>
       <div class="mesa-fila">
         <label>Rareza
           <select id="bot-rareza" aria-label="Rareza del objeto mágico">

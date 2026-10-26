@@ -647,6 +647,122 @@ try {
   if (roto.filas === 0 && roto.aviso === "" && /^[0-9]+ = /.test(roto.dados)) bien("iniciativa con la clave rota: sin combate y la mesa sigue viva");
   else fallo("iniciativa con la clave rota", JSON.stringify(roto));
 
+  // El combate de la partida anterior se queda pegado a la mesa: el panel de
+  // Iniciativa no tiene forma de quitar un combatiente ni de vaciar la lista, y
+  // como se restaura de localStorage, la única salida es abrir las herramientas
+  // del navegador. Se comprueba el recorrido entero: vaciar deja la mesa y el
+  // guardado sin combate —y la vista de jugador en «Sin combate»—, y quitar una
+  // fila quita esa y no otra, sin descolocar el turno.
+  const seccionIniciativa = `[...document.querySelectorAll('section.mesa-panel')].find((s) => /Iniciativa/.test(s.querySelector('h2')?.textContent || ''))`;
+  const botonesDeIniciativa = () =>
+    evaluar(
+      mesa,
+      `(() => {
+         const sec = ${seccionIniciativa};
+         return sec ? [...sec.querySelectorAll('button')].map((b) => ({ id: b.id, nombre: (b.getAttribute('aria-label') || b.textContent || '').trim() })) : null;
+       })()`,
+    );
+  const vaciarCombate = () =>
+    evaluar(
+      mesa,
+      `(() => {
+         const sec = ${seccionIniciativa};
+         if (!sec) return null;
+         const b = [...sec.querySelectorAll('button')].find((x) => /vaciar|limpiar|reiniciar|nuevo combate/i.test((x.getAttribute('aria-label') || '') + ' ' + x.textContent));
+         if (!b) return null;
+         b.click();
+         return b.id || (b.getAttribute('aria-label') || b.textContent).trim();
+       })()`,
+    );
+  const quitarCombatiente = (nombre) =>
+    evaluar(
+      mesa,
+      `(() => {
+         const fila = [...document.querySelectorAll('#ini-lista li')].find((li) => li.textContent.trim().startsWith(${JSON.stringify(nombre)}));
+         if (!fila) return { error: 'no hay fila para ' + ${JSON.stringify(nombre)} };
+         const b = [...fila.querySelectorAll('button')].find((x) => /quitar|eliminar|borrar/i.test((x.getAttribute('aria-label') || '') + ' ' + x.textContent));
+         if (!b) return { error: 'la fila no tiene botón de quitar' };
+         b.click();
+         return { ok: true };
+       })()`,
+    );
+  const activoDe = (c) => (c && c.activa >= 0 ? c.orden[c.activa][0] : null);
+
+  await evaluar(mesa, `localStorage.removeItem('taberna:iniciativa')`);
+  await ir(mesa, `${BASE}/mesa/`);
+  await evaluar(
+    mesa,
+    `(() => {
+       ${campos}
+       n.value='Aria'; v.value='18'; document.getElementById('ini-anadir').click();
+       n.value='Brumo'; v.value='12'; document.getElementById('ini-anadir').click();
+       n.value='Lobo'; v.value='15'; document.getElementById('ini-anadir').click();
+       return 1;
+     })()`,
+  );
+  const antesDeVaciar = await leerCombate();
+  const vaciado = await vaciarCombate();
+  const trasVaciar = await leerCombate();
+  const guardadoVacio = trasVaciar.guardado === null || (trasVaciar.guardado.lista ?? []).length === 0;
+  if (vaciado && trasVaciar.orden.length === 0 && guardadoVacio)
+    bien(`iniciativa: «${vaciado}» deja la mesa y el guardado sin combate`);
+  else
+    fallo(
+      "iniciativa: no hay forma de vaciar el combate",
+      JSON.stringify({ vaciado, antesDeVaciar, trasVaciar, botones: await botonesDeIniciativa() }),
+    );
+
+  const vistaVacia = await abrir(`${BASE}/mesa/jugadores/`);
+  const jugadorVacio = await evaluar(
+    vistaVacia,
+    `({ turno: document.getElementById('turno')?.textContent?.trim() ?? '', filas: document.querySelectorAll('.jugadores__lista li').length })`,
+  );
+  if (jugadorVacio.filas === 0 && jugadorVacio.turno === "Sin combate")
+    bien("iniciativa: la vista de jugador dice «Sin combate» tras vaciar");
+  else fallo("iniciativa: la vista de jugador sigue con el combate viejo tras vaciar", JSON.stringify(jugadorVacio));
+
+  // Quitar una fila: primero una que no tiene el turno, después la que lo tiene.
+  // Se parte de una lista limpia por localStorage, no de lo que haya dejado el
+  // caso anterior: los dos escenarios se prueban por separado.
+  await evaluar(mesa, `localStorage.removeItem('taberna:iniciativa')`);
+  await ir(mesa, `${BASE}/mesa/`);
+  await evaluar(
+    mesa,
+    `(() => {
+       ${campos}
+       n.value='Aria'; v.value='18'; document.getElementById('ini-anadir').click();
+       n.value='Brumo'; v.value='12'; document.getElementById('ini-anadir').click();
+       n.value='Lobo'; v.value='15'; document.getElementById('ini-anadir').click();
+       document.getElementById('ini-siguiente').click();
+       document.getElementById('ini-siguiente').click();
+       return 1;
+     })()`,
+  );
+  const antesDeQuitar = await leerCombate();
+  const quitadoOtro = await quitarCombatiente("Lobo");
+  const trasQuitarOtro = await leerCombate();
+  const okOtro =
+    quitadoOtro?.ok &&
+    nombresDe(trasQuitarOtro) === "Aria,Brumo" &&
+    activoDe(trasQuitarOtro) === activoDe(antesDeQuitar);
+  if (okOtro) bien(`iniciativa: quitar «Lobo» deja el turno en ${activoDe(trasQuitarOtro)}`);
+  else
+    fallo(
+      "iniciativa: quitar un combatiente que no tiene el turno",
+      JSON.stringify({ quitadoOtro, antes: antesDeQuitar, despues: trasQuitarOtro }),
+    );
+
+  const quitadoActivo = await quitarCombatiente("Brumo");
+  const trasQuitarActivo = await leerCombate();
+  const activoFinal = activoDe(trasQuitarActivo);
+  if (quitadoActivo?.ok && trasQuitarActivo.orden.length === 1 && activoFinal === "Aria")
+    bien("iniciativa: quitar el combatiente activo deja el turno en el siguiente sin salirse de la lista");
+  else
+    fallo(
+      "iniciativa: quitar el combatiente activo",
+      JSON.stringify({ quitadoActivo, despues: trasQuitarActivo, activoFinal }),
+    );
+
   const pnj = await evaluar(mesa, `(() => { document.getElementById('pnj-generar').click(); return document.getElementById('pnj-salida').textContent; })()`);
   if (pnj && pnj.includes(",")) bien(`pnj: ${pnj.slice(0, 40)}`);
   else fallo("pnj", pnj);

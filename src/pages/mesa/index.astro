@@ -329,13 +329,37 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       aviso.hidden = !texto;
     };
 
+    /* Las tres herramientas de /mesa/ leen el mismo catálogo, así que un catálogo
+       que no ha llegado se cuenta igual en las tres. El texto sale de la carga
+       —`cargaCatalogo` nombra la edición— y no de tres copias que se
+       desincronizan: Ajustar y Estimar se quedaron fuera del arreglo del panel
+       de Encuentros y uno culpaba al lector de un fallo de red, el otro ni
+       contestaba. */
+    const avisoDeCatalogo = () =>
+      avisoDelCatalogo ||
+      "El catálogo de criaturas no ha cargado: las herramientas de la mesa no pueden buscar en él hasta que vuelva la conexión.";
+
+    /** Escribe ese aviso en la salida de cualquier panel, en vez de su resultado. */
+    const pintarAvisoDeCatalogo = (salida: HTMLElement | null) => {
+      if (!salida) return;
+      // `#vd-salida` ya es un `<p>`: meterle otro dentro sería HTML inválido.
+      if (salida.tagName === "P") {
+        salida.textContent = avisoDeCatalogo();
+        return;
+      }
+      const p = document.createElement("p");
+      p.className = "muted";
+      p.textContent = avisoDeCatalogo();
+      salida.replaceChildren(p);
+    };
+
     const anadirCriatura = (texto: string): Monstruo | null => {
       const buscado = plegar(texto.trim());
       if (!buscado) return null;
       // Sin catálogo no hay nada que buscar: el fallo es de la carga, no del
       // nombre que se acaba de escribir.
       if (!catalogoListo) {
-        avisar(avisoDelCatalogo || "El catálogo de criaturas no ha cargado.");
+        avisar(avisoDeCatalogo());
         return null;
       }
       // Vale el nombre exacto y, si no lo hay, un único parecido: «dragon rojo»
@@ -461,6 +485,12 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
 
     $("aj-calcular")?.addEventListener("click", () => {
       const salida = $("aj-salida");
+      // Sin catálogo no hay ninguna criatura que buscar: el fallo es de la
+      // carga, no del nombre, y se dice con el mismo texto que en Encuentros.
+      if (!catalogoListo) {
+        pintarAvisoDeCatalogo(salida);
+        return;
+      }
       const nombre = ($("aj-criatura") as HTMLInputElement).value.trim();
       const objetivo = String(($("aj-objetivo") as HTMLInputElement).value).trim();
       const m = buscarPorNombre(catalogo, nombre);
@@ -533,7 +563,13 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
     $("vd-estimar")?.addEventListener("click", () => {
       const campoPg = $("vd-pg") as HTMLInputElement;
       const salida = $("vd-salida");
-      if (!salida || !catalogo.length) return;
+      if (!salida) return;
+      // Un botón mudo es peor que un mensaje: sin catálogo no hay vecinas con
+      // las que comparar, y eso hay que decirlo.
+      if (!catalogoListo) {
+        pintarAvisoDeCatalogo(salida);
+        return;
+      }
 
       const pg = positivo(campoPg.value);
       const ca = positivo(($("vd-ca") as HTMLInputElement).value);

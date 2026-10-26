@@ -137,6 +137,36 @@ caso("la página usa la carga compartida y publica aviso y reintento", () => {
   assert.match(pagina, /id="enc-reintentar"/, "el panel no ofrece reintentar la carga");
 });
 
+// Las tres herramientas de /mesa/ leen el mismo catálogo, así que un catálogo
+// que no ha llegado se cuenta igual en las tres. Ajustar y Estimar se quedaron
+// fuera del arreglo del panel de Encuentros: uno contestaba que la criatura no
+// existe y el otro no hacía nada. Aquí se vigila que el texto sea uno solo
+// —el que nombra la edición— y que los tres paneles lo usen.
+caso("Ajustar y Estimar dicen que el catálogo no ha llegado, con el mismo texto", () => {
+  const pagina = fs.readFileSync(PAGINA, "utf8");
+  /* El trozo de fuente de un manejador basta para saber si mira el catálogo
+     antes de contestar: el registro y las primeras líneas del cuerpo. */
+  const bloque = (marca) => {
+    const desde = pagina.indexOf(marca);
+    assert.ok(desde > 0, `la página no registra ${marca}`);
+    return pagina.slice(desde, desde + 400);
+  };
+  assert.match(bloque('$("aj-calcular")'), /pintarAvisoDeCatalogo\(salida\)/, "Ajustar no dice que el catálogo no ha llegado");
+  const vd = bloque('$("vd-estimar")');
+  assert.match(vd, /pintarAvisoDeCatalogo\(salida\)/, "Estimar no dice que el catálogo no ha llegado");
+  assert.ok(
+    !/!catalogo\.length\) return/.test(vd),
+    "Estimar vuelve a callarse cuando el catálogo está vacío: un botón mudo no es un mensaje",
+  );
+  // Y el texto es uno solo, no tres: el de la carga, que nombra la edición.
+  assert.match(pagina, /const avisoDeCatalogo = \(\) =>/, "no hay un único texto de aviso del catálogo");
+  assert.equal(
+    (pagina.match(/avisoDelCatalogo \|\|/g) ?? []).length,
+    1,
+    "el aviso del catálogo se construye en más de un sitio: son copias que se desincronizan",
+  );
+});
+
 console.log(
   fallos
     ? `\n${fallos} fallo(s): el constructor de encuentros vuelve a quedarse mudo sin catálogo.`

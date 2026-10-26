@@ -79,7 +79,9 @@
  *      máquina donde se compiló y deja el árbol sucio en cualquier clon en
  *      cuanto se importa el módulo.
  *  24. `tools/test/ajustar.mjs`: que «Ajustar una criatura» encuentre las
- *      criaturas con diacrítico escribiéndolas sin tilde.
+ *      criaturas con diacrítico escribiéndolas sin tilde y acepte los VD
+ *      fraccionarios del catálogo (1/8, 1/4, 1/2) y su decimal, con el «VD
+ *      actual» de la criatura elegida escrito por la página.
  *  25. `tools/test/pantalla.mjs`: que la pantalla del DM publique las reglas de
  *      combate del 5.2.1 —las que el SRD de 2024 dejó en el glosario—, que
  *      cada categoría del catálogo tenga su panel entero y que la lista viva en
@@ -281,10 +283,10 @@ if (bytecode !== 0) {
   process.exit(bytecode);
 }
 
-console.log("▶ Búsqueda de criaturas sin tilde: ajustar.mjs (dist/datos/ y src/lib/)");
+console.log("▶ Búsqueda de criaturas sin tilde y VD fraccionarios: ajustar.mjs (dist/datos/ y src/lib/)");
 const ajustar = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/ajustar.mjs")]);
 if (ajustar !== 0) {
-  console.error("✗ «Ajustar una criatura» no encuentra las criaturas cuyo nombre lleva tilde cuando se escribe sin ella.");
+  console.error("✗ «Ajustar una criatura» no encuentra las criaturas cuyo nombre lleva tilde cuando se escribe sin ella, o no acepta los VD fraccionarios del catálogo.");
   process.exit(ajustar);
 }
 

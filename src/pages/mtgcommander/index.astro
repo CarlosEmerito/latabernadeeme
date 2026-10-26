@@ -64,6 +64,7 @@ import { e } from "../../lib/urls";
         <p class="mtg-eyebrow" id="mtg-fuente"></p>
         <h2 id="mtg-nombre"></h2>
         <p class="mtg-ficha__comandante" id="mtg-comandante-nombre"></p>
+        <p class="mtg-ficha__comandante" id="mtg-companion-nombre" hidden></p>
       </div>
       <div class="mtg-ficha__acciones">
         <button id="mtg-quitar" class="btn btn--fantasma" type="button">Quitar de guardados</button>
@@ -966,7 +967,7 @@ import { e } from "../../lib/urls";
       const li = document.createElement("li");
       const boton = document.createElement("button");
       boton.type = "button";
-      boton.innerHTML = `<strong>${esc(m.nombre)}</strong><span>${m.cartas.length + m.comandantes.length} cartas · ${new Date(m.creado).toLocaleDateString("es-ES")}</span>`;
+      boton.innerHTML = `<strong>${esc(m.nombre)}</strong><span>${m.cartas.filter((c) => c.tablero !== "companion").length + m.comandantes.length} cartas · ${new Date(m.creado).toLocaleDateString("es-ES")}</span>`;
       boton.addEventListener("click", () => {
         mazoActual = m;
         render();
@@ -1048,9 +1049,11 @@ import { e } from "../../lib/urls";
       mazoActual = mazo;
       guardarMazo(mazo);
       render();
-      const total = mazo.cartas.reduce((n, c) => n + c.cantidad, 0) + comandantes.reduce((n, c) => n + c.cantidad, 0);
+      const companions = resto.filter((c) => c.tablero === "companion");
+      const enLasCien = resto.filter((c) => c.tablero !== "companion");
+      const total = enLasCien.reduce((n, c) => n + c.cantidad, 0) + comandantes.reduce((n, c) => n + c.cantidad, 0);
       estado(
-        `Listo: ${total} cartas${noEncontradas.length ? `, ${noEncontradas.length} sin resolver (${noEncontradas.map((l) => l.nombre).join(", ")})` : " y todas resueltas"}.`,
+        `Listo: ${total} cartas${companions.length ? ` y ${companions.length} companion fuera de las 100` : ""}${noEncontradas.length ? `, ${noEncontradas.length} sin resolver (${noEncontradas.map((l) => l.nombre).join(", ")})` : " y todas resueltas"}.`,
         noEncontradas.length > 0,
       );
       $("#mtg-comandante").hidden = true;
@@ -1072,6 +1075,11 @@ import { e } from "../../lib/urls";
     $("#mtg-fuente").textContent = m.fuente === "export" ? "Mazo importado" : "Mazo guardado";
     $("#mtg-nombre").textContent = m.nombre;
     $("#mtg-comandante-nombre").textContent = a.comandante ? `Comandante: ${a.comandante}` : "Sin comandante marcado";
+    const lineaCompanion = $("#mtg-companion-nombre");
+    lineaCompanion.textContent = a.companion.length
+      ? `Companion: ${a.companion.join(", ")} (fuera de las 100)`
+      : "";
+    lineaCompanion.hidden = a.companion.length === 0;
 
     const problemas = a.legalidad.problemas.length;
     const cifras: Array<[string, string, string]> = [
@@ -1184,6 +1192,13 @@ import { e } from "../../lib/urls";
   }
 
   // ── Rejilla de cartas ─────────────────────────────────────────────────────
+  /** El tablero de una carta, cuando no es el mazo: se nombra en la rejilla y en la ficha. */
+  function etiquetaDeTablero(c: CartaMazo): string {
+    if (c.tablero === "commander") return " · comandante";
+    if (c.tablero === "companion") return " · companion";
+    return "";
+  }
+
   function tipoDe(carta: CartaScryfall): string {
     for (const tipo of ["Land", "Creature", "Planeswalker", "Battle", "Instant", "Sorcery", "Enchantment", "Artifact"]) {
       if (new RegExp(`\\b${tipo}\\b`, "i").test(carta.type_line ?? "")) return tipo;
@@ -1246,7 +1261,7 @@ import { e } from "../../lib/urls";
           ${imagen ? `<img src="${esc(imagen)}" alt="${esc(c.carta.name)}" loading="lazy" decoding="async" />` : `<span class="mtg-carta__sin">Sin imagen</span>`}
           ${c.cantidad > 1 ? `<span class="mtg-carta__q">×${c.cantidad}</span>` : ""}
           <span class="mtg-carta__n">${esc(c.carta.name)}</span>
-          <span class="mtg-carta__c">${esc(costeDe(c.carta) || "—")}${c.tablero === "commander" ? " · comandante" : ""}</span>`;
+          <span class="mtg-carta__c">${esc(costeDe(c.carta) || "—")}${etiquetaDeTablero(c)}</span>`;
         b.addEventListener("click", () => abrirCarta(c));
         rejilla.append(b);
       }
@@ -1294,7 +1309,7 @@ import { e } from "../../lib/urls";
           <h3>${esc(actual?.name ?? carta.name)}</h3>
           <p class="mtg-dialogo__tipo">${esc(coste)} · ${esc(tipo)}</p>
           <p>${esc(texto || "Sin texto Oracle.")}</p>
-          <p class="mtg-dialogo__tipo">${c.cantidad > 1 ? `${c.cantidad} copias · ` : ""}${precio ? `${Number(precio).toFixed(2)} ${carta.prices?.eur ? "EUR" : "USD"}` : "sin precio"}${c.tablero === "commander" ? " · comandante" : ""}</p>
+          <p class="mtg-dialogo__tipo">${c.cantidad > 1 ? `${c.cantidad} copias · ` : ""}${precio ? `${Number(precio).toFixed(2)} ${carta.prices?.eur ? "EUR" : "USD"}` : "sin precio"}${etiquetaDeTablero(c)}</p>
           ${roles.length ? `<p class="mtg-dialogo__tipo">Roles: ${roles.map((r) => ROLES[r].etiqueta).join(", ")}</p>` : ""}
           ${caras.length > 1 ? `<button id="mtg-girar" class="btn btn--fantasma" type="button">Ver la otra cara</button>` : ""}
         </div>`;

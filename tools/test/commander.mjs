@@ -214,6 +214,36 @@ const base = mazoDe([[bosque, 36], ...cartasBase], comandante);
   );
 }
 
+{
+  // El companion se ve en el análisis pero no suma en tierras, curva, media ni
+  // precio: si sumara, un mazo legal saldría más caro y con otra media de valor.
+  const caro = carta(
+    "Companion Caro",
+    "Legendary Creature — Elemental",
+    "Companion — Your starting deck contains only cards with odd mana values.",
+    { color_identity: ["G"], cmc: 6, prices: { eur: "250.00", usd: "250.00" } },
+  );
+  const sin = analizarMazo(mazoDe([[bosque, 36], ...cartasBase], comandante));
+  const m = mazoDe([[bosque, 36], ...cartasBase], comandante);
+  m.cartas.push({ cantidad: 1, carta: caro, tablero: "companion", linea: { cantidad: 1, nombre: caro.name, tablero: "companion" } });
+  const a = analizarMazo(m);
+  comprobar(
+    a.companion.length === 1 && a.companion[0] === caro.name,
+    `el análisis no nombra el companion: [${a.companion.join(", ")}]`,
+  );
+  comprobar(a.total === sin.total, `el companion cambia el total: ${sin.total} → ${a.total}`);
+  comprobar(a.tierras === sin.tierras, `el companion cambia las tierras: ${sin.tierras} → ${a.tierras}`);
+  comprobar(Math.abs(a.media - sin.media) < 1e-9, `el companion cambia la media: ${sin.media} → ${a.media}`);
+  comprobar(
+    a.curva.length === sin.curva.length && a.curva.every((c, i) => c.mv === sin.curva[i].mv && c.n === sin.curva[i].n),
+    "el companion cambia la curva",
+  );
+  comprobar(
+    Math.abs(a.precio.total - sin.precio.total) < 1e-9,
+    `el companion suma al precio: ${sin.precio.total} → ${a.precio.total}`,
+  );
+}
+
 // ── 4. Resolver ─────────────────────────────────────────────────────────────
 titulo("Resolver por lotes, sin red");
 const cartaJson = (name, set = "tst", cn = "1") => ({

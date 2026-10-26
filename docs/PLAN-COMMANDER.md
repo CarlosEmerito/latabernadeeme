@@ -21,6 +21,10 @@ contenido de D&D. El recorrido:
    Ficha de carta al pulsar, con texto Oracle, legalidad y precio.
 4. **Se lee el mazo.** Curva de mana, tierras, media de valor, identidad de color, legalidad
    Commander (100 cartas, singleton, banlist, identidad del comandante) y **bracket estimado**.
+   El **companion** va aparte: se pinta con el mazo y se ve en su ficha, pero no cuenta para las
+   100 ni suma en tierras, curva, media ni precio (en Commander se declara al empezar y vive en
+   el banquillo); lo que sí se le exige es la identidad de color y la legalidad, como a cualquier
+   otra carta que se juega.
 5. **Se aconseja.** Informe que dice qué le falta y qué le sobra, y un plan de juego por tramos
    (turnos 1-3, 4-6, 7+): qué buscar, cuándo barrer, cómo cerrar. Es **determinista** (sale de los
    datos del mazo, no de un modelo). Opcionalmente, un botón **«Analizar con IA»** manda el resumen

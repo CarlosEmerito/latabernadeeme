@@ -1628,6 +1628,48 @@ try {
   fallo("tarjeta emergente", String(e));
 }
 
+// Lo que cuesta la tarjeta emergente. Enseña dos líneas del perfil, así que lo
+// que descarga para ello tiene un presupuesto: se envuelve `fetch` en la página
+// antes de disparar el `pointerover` y se mide el fichero que hay en `dist/`,
+// que es lo que el navegador se lleva. Si la tarjeta vuelve a tirar del catálogo
+// entero, aquí se ve en bytes y no en impresiones.
+try {
+  const PRESUPUESTO = 60000;
+  const p = await abrir(`${BASE}/5.5/monstruos/mago/`);
+  await evaluar(
+    p,
+    `(() => {
+      const original = window.fetch;
+      window.__pedidos = [];
+      window.fetch = (...args) => { window.__pedidos.push(String(args[0])); return original(...args); };
+      return true;
+    })()`,
+  );
+  await evaluar(
+    p,
+    `(() => { const a = document.querySelector('a[data-tarjeta]');
+      a.dispatchEvent(new Event('pointerover', {bubbles: true})); return true; })()`,
+  );
+  await new Promise((r) => setTimeout(r, 900));
+  const pedidos = (await evaluar(p, "window.__pedidos")) ?? [];
+  const catalogos = pedidos
+    .filter((u) => /\/datos\/[^/]+\.json(?:$|\?)/.test(u))
+    .map((u) => {
+      // La página pide la ruta del sitio (`/latabernadeeme/datos/…`), sin
+      // dominio: se lee el camino tal cual, sin `new URL` sobre una relativa.
+      const camino = u.startsWith("http") ? new URL(u).pathname : u.split("?")[0];
+      const rel = camino.replace(/^\/latabernadeeme\//, "");
+      const fichero = new URL(`../../dist/${rel}`, import.meta.url);
+      return { nombre: rel, bytes: fs.existsSync(fichero) ? fs.statSync(fichero).size : -1 };
+    });
+  const gordo = catalogos.find((c) => c.bytes < 0 || c.bytes > PRESUPUESTO);
+  if (!catalogos.length) fallo("peso de la tarjeta emergente", `no pidió ningún catálogo: ${JSON.stringify(pedidos)}`);
+  else if (gordo) fallo("peso de la tarjeta emergente", `${gordo.nombre} pesa ${gordo.bytes} B (presupuesto ${PRESUPUESTO})`);
+  else bien(`peso de la tarjeta emergente: ${catalogos.map((c) => `${c.nombre} ${c.bytes} B`).join(", ")}`);
+} catch (e) {
+  fallo("peso de la tarjeta emergente", String(e));
+}
+
 try {
   const p = await abrir(`${BASE}/mesa/jugadores/`);
   await evaluar(

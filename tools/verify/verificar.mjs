@@ -106,6 +106,9 @@
  *      `tools/ingest/` y `tools/verify/` —un `.py` de allí que nadie importa y
  *      que no declara `__main__` es código muerto— y que lo haga sin escribir en
  *      el repositorio: monta su árbol en un directorio temporal.
+ *  31. `tools/test/botin.mjs`: que el botín de `/mesa/` reparta los objetos del
+ *      catálogo que la página anuncia (el 5.2.1) y que ninguna rareza del
+ *      selector se quede con un solo objeto.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -327,4 +330,11 @@ if (huerfanosTools !== 0) {
   process.exit(huerfanosTools);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto y la puerta de huérfanos mirando tools/");
+console.log("▶ Botín de la Mesa: botin.mjs (dist/ y data/ed52/)");
+const botin = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/botin.mjs")]);
+if (botin !== 0) {
+  console.error("✗ El botín de /mesa/ no reparte el catálogo que la página anuncia: faltan objetos del 5.2.1 o una rareza se queda con uno solo.");
+  process.exit(botin);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1 y la puerta de huérfanos mirando tools/");

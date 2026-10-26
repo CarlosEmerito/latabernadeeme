@@ -1115,9 +1115,19 @@ try {
   if (q.valor === "goblin" && q.resultados > 0) bien(`buscador: ?q=goblin deja «${q.valor}» con ${q.resultados} resultados`);
   else fallo("buscador ?q=goblin", JSON.stringify(q));
 
+  // El campo del buscador no es del sitio: lo pinta PagefindUI, y salió sin
+  // etiqueta (solo con `title`, que repite el placeholder). Un lector de
+  // pantalla anunciaba «Bola de fuego, goblin, cota de malla…» como nombre del
+  // campo, y /accesibilidad/ promete una etiqueta por campo. La página no estaba
+  // en ninguna puerta de axe: por eso la violación llevaba ahí sin verse.
+  await axeEn(conParametro, "buscador");
+
   const limpio = await leerBusqueda(buscar);
   if (limpio.valor === "" && limpio.resultados === 0) bien("buscador: sin parámetro arranca vacío");
   else fallo("buscador sin parámetro", JSON.stringify(limpio));
+
+  // La misma página sin término también, que es la que se ve al llegar desde el menú.
+  await axeEn(buscar, "buscador sin término");
 
   // Teclear el mismo término a mano tiene que dar el mismo número de resultados.
   try {

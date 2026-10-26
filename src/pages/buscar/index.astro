@@ -22,6 +22,18 @@ import { e } from "../../lib/urls";
   <script is:inline>
     window.addEventListener("DOMContentLoaded", () => {
       if (typeof window.PagefindUI === "undefined") return;
+      // PagefindUI cuelga `search_label` del <form role="search">, no del campo:
+      // el <input> sale solo con `title`, que repite el placeholder, así que un
+      // lector de pantalla anuncia el ejemplo de búsqueda como nombre del campo
+      // (axe lo marca como `label-title-only`). El nombre accesible se le pone al
+      // propio campo; el placeholder se queda como ejemplo.
+      const ETIQUETA = "Buscar en La Taberna de Eme";
+      const etiquetarCampo = () => {
+        const campo = document.querySelector("#busqueda .pagefind-ui__search-input");
+        if (!campo) return false;
+        campo.setAttribute("aria-label", ETIQUETA);
+        return true;
+      };
       // Los formularios de la cabecera y de la portada envían GET ?q=… hasta aquí;
       // Pagefind no lee la dirección por su cuenta, así que se le pasa el término.
       const termino = (new URLSearchParams(window.location.search).get("q") ?? "").trim();
@@ -34,7 +46,7 @@ import { e } from "../../lib/urls";
           placeholder: "Bola de fuego, goblin, cota de malla…",
           clear_search: "Limpiar",
           load_more: "Ver más",
-          search_label: "Buscar en La Taberna de Eme",
+          search_label: ETIQUETA,
           zero_results: "Sin resultados para [SEARCH_TERM]",
           many_results: "[COUNT] resultados para [SEARCH_TERM]",
           one_result: "1 resultado para [SEARCH_TERM]",
@@ -43,6 +55,9 @@ import { e } from "../../lib/urls";
           searching: "Buscando [SEARCH_TERM]…",
         },
       });
+      // La librería monta el campo al construir la instancia; si aún no estuviera,
+      // se reintenta en el fotograma siguiente en vez de quedarse sin etiqueta.
+      if (!etiquetarCampo()) requestAnimationFrame(etiquetarCampo);
       if (termino) ui.triggerSearch(termino);
     });
   </script>

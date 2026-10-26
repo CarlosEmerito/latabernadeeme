@@ -618,10 +618,22 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       } catch {}
     };
 
-    const pintarIniciativa = () => {
+    /**
+     * Pinta la lista ordenada por iniciativa y deja el turno sobre quien lo
+     * tenía. El `sort()` de aquí abajo reordena las filas, así que un índice
+     * que valía para el orden anterior pasa a señalar a otra criatura: cuando
+     * la lista cambia sin que el DM haya pasado turno (un refuerzo que llega a
+     * mitad del combate), el puntero sigue al combatiente por identidad —el
+     * objeto, que el nombre se puede repetir— y no por su puesto.
+     */
+    const pintarIniciativa = (conservar?: Combatiente) => {
       const lista = $("ini-lista");
       if (!lista) return;
       combatientes.sort((a, b) => b.valor - a.valor);
+      if (conservar) {
+        const i = combatientes.indexOf(conservar);
+        turno = i >= 0 ? i : 0;
+      }
       if (turno >= combatientes.length) turno = 0;
       lista.replaceChildren(
         ...combatientes.map((c, i) => {
@@ -642,10 +654,10 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
     $("ini-anadir")?.addEventListener("click", () => {
       const nombre = ($("ini-nombre") as HTMLInputElement).value.trim() || "Sin nombre";
       const valor = Number(($("ini-valor") as HTMLInputElement).value) || 0;
+      const activo = combatientes[turno];
       combatientes.push({ nombre, valor });
       ($("ini-nombre") as HTMLInputElement).value = "";
-      turno = 0;
-      pintarIniciativa();
+      pintarIniciativa(activo);
     });
 
     $("ini-siguiente")?.addEventListener("click", () => {

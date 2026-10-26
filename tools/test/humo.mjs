@@ -802,6 +802,64 @@ try {
   fallo("Catálogo caído", String(e));
 }
 
+// El catálogo caído se arregló para el panel de Encuentros y se dejó sin tocar en
+// los otros dos que lo usan: «Ajustar una criatura» contestaba «No hay ninguna
+// criatura que se llame «Lobo» en este catálogo» —culpando al lector de que el
+// JSON no haya llegado— y «Estimar VD» no hacía nada, ni resultado ni aviso, ni
+// un error en la consola. Se bloquea la petición con CDP antes de navegar y se
+// mira lo que ve el lector en cada panel.
+try {
+  const p = await abrir("about:blank");
+  await p.enviar("Network.enable");
+  await p.enviar("Network.setCacheDisabled", { cacheDisabled: true });
+  await p.enviar("Network.setBlockedURLs", { urls: ["*datos/5.5.json*"] });
+  await pestanas.ir(p, `${BASE}/mesa/`);
+
+  await evaluar(p, `new Promise((res) => {
+     const t = setInterval(() => {
+       const a = document.getElementById('enc-aviso');
+       if (a && !a.hidden) { clearInterval(t); res(1); }
+     }, 100);
+     setTimeout(() => { clearInterval(t); res(0); }, 6000);
+  })`);
+
+  const lee = (id) =>
+    `(() => { const e = document.getElementById('${id}'); return e ? e.textContent.split(String.fromCharCode(10)).join(' ').split(' ').filter(Boolean).join(' ') : ''; })()`;
+
+  const encAviso = await evaluar(p, lee("enc-aviso"));
+  const d = await evaluar(
+    p,
+    `(() => {
+       const ajustar = document.getElementById('aj-criatura');
+       ajustar.value = 'Lobo';
+       document.getElementById('aj-objetivo').value = '5';
+       document.getElementById('aj-calcular').click();
+       const aj = document.getElementById('aj-salida').textContent.split(String.fromCharCode(10)).join(' ').split(' ').filter(Boolean).join(' ');
+       document.getElementById('vd-salida').innerHTML = '';
+       const pg = document.getElementById('vd-pg');
+       const ca = document.getElementById('vd-ca');
+       pg.value = '45';
+       ca.value = '15';
+       document.getElementById('vd-estimar').click();
+       const vd = document.getElementById('vd-salida').textContent.split(String.fromCharCode(10)).join(' ').split(' ').filter(Boolean).join(' ');
+       return { aj, vd };
+     })()`,
+  );
+
+  const nombraCatalogo = (texto) =>
+    texto.toLowerCase().includes("catálogo") && texto.includes("5.2.1");
+  const culpaAlLector = (texto) => texto.toLowerCase().includes("ninguna criatura que se llame");
+  const ok =
+    encAviso.includes("catálogo del 5.2.1") &&
+    nombraCatalogo(d.aj) &&
+    !culpaAlLector(d.aj) &&
+    nombraCatalogo(d.vd);
+  if (ok) bien(`Catálogo caído en Ajustar y Estimar: «${d.aj.slice(0, 60)}…»`);
+  else fallo("Catálogo caído en Ajustar y Estimar", JSON.stringify({ encAviso, ...d }));
+} catch (e) {
+  fallo("Catálogo caído en Ajustar y Estimar", String(e));
+}
+
 // La pantalla del DM compilaba y el humo la abría por URL, pero no había ni un
 // enlace a ella en todo el sitio: un DM que no supiera la dirección no llegaba.
 // Se comprueba el recorrido de verdad, con un clic del ratón sobre la tarjeta de

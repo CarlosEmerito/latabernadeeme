@@ -595,6 +595,12 @@ try {
   if (Array.isArray(ini) && ini[0].startsWith("B")) bien(`iniciativa: ${ini.join(" | ")}`);
   else fallo("iniciativa", JSON.stringify(ini));
 
+  // Se pasa el turno con un clic y se recarga: el orden y la fila activa tienen
+  // que seguir donde estaban. El avance se mide respecto a donde estaba el
+  // puntero —añadir B (18) por delante de A (12) ya no lo mueve, así que la
+  // partida arranca en A, la segunda fila— y no con un índice fijo, que era la
+  // suposición vieja de que añadir devolvía el turno al primer puesto.
+  const antesDePasar = await leerCombate();
   await evaluar(mesa, `document.getElementById('ini-siguiente').click()`);
   const antes = await leerCombate();
   await ir(mesa, `${BASE}/mesa/`);
@@ -605,8 +611,11 @@ try {
   const despues = await leerCombate();
   const nombresDe = (x) => (x?.orden ?? []).map((f) => f[0]).join(",");
   const recargaOk =
-    antes.activa === 1 && despues.activa === 1 && nombresDe(antes) === "B,A" && nombresDe(despues) === "B,A";
-  if (recargaOk) bien(`iniciativa tras recargar: ${nombresDe(despues)} con el turno de ${despues.orden[1][0]}`);
+    antes.activa === (antesDePasar.activa + 1) % antes.orden.length &&
+    despues.activa === antes.activa &&
+    nombresDe(antes) === "B,A" &&
+    nombresDe(despues) === "B,A";
+  if (recargaOk) bien(`iniciativa tras recargar: ${nombresDe(despues)} con el turno de ${despues.orden[despues.activa][0]}`);
   else fallo("iniciativa tras recargar", JSON.stringify({ antes, despues }));
 
   const trasAnadir = await evaluar(

@@ -266,6 +266,40 @@ try {
   fallo("filtro de texto con tildes", String(e));
 }
 
+// El filtro del listado tiene que encontrar la entrada por su nombre inglés: la
+// ficha publica «En inglés: …» y /buscar/ lo indexa, así que quien conoce el
+// conjuro como «thunderwave» no puede encontrarse el listado en cero mientras la
+// ficha de al lado sí lo llama así (T-0267). Se comprueba en las dos ediciones y
+// que el nombre español siga encontrando la misma fila.
+try {
+  const filtrarConjuros = async (ed, termino) => {
+    const pag = await abrir(`${BASE}/${ed}/conjuros/`);
+    await evaluar(pag, `document.getElementById('f-texto').focus()`);
+    await pag.enviar("Input.insertText", { text: termino });
+    await new Promise((r) => setTimeout(r, 400));
+    return evaluar(
+      pag,
+      `({total: document.querySelectorAll('#cuerpo tr').length,
+        nombres: [...document.querySelectorAll('#cuerpo tr:not([hidden]) td.col-nombre a')].map((a) => a.textContent.trim()),
+        cuenta: document.getElementById('cuenta')?.textContent})`,
+    );
+  };
+
+  const ingles = await filtrarConjuros("5.5", "thunderwave");
+  const espanol = await filtrarConjuros("5.5", "ola atronadora");
+  const otraEdicion = await filtrarConjuros("5e", "true seeing");
+
+  const soloUna = (d, nombre) =>
+    d.nombres.length === 1 && d.nombres[0] === nombre && d.total > 100 && d.cuenta?.startsWith("1 ");
+  if (soloUna(ingles, "Ola atronadora") && soloUna(espanol, "Ola atronadora") && soloUna(otraEdicion, "Visión veraz")) {
+    bien(`filtro por nombre inglés: thunderwave y ola atronadora dan «Ola atronadora» (${ingles.cuenta}), true seeing da «Visión veraz» en 5e`);
+  } else {
+    fallo("filtro por nombre inglés", JSON.stringify({ ingles, espanol, otraEdicion }));
+  }
+} catch (e) {
+  fallo("filtro por nombre inglés", String(e));
+}
+
 // La cabecera de la tabla tiene que cuadrar con sus celdas: la primera columna es
 // el nombre y el primer campo de cada tipo (VD, nivel, tipo, categoría) conserva
 // la suya. Sin esto, el nombre ocupaba la celda del primer campo y su valor

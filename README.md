@@ -32,7 +32,7 @@ Además del texto:
 - **Comparador 5e ↔ 5.5** de conjuros, monstruos, objetos y equipo, con las diferencias alineadas bloque a bloque.
 - **Herramientas de mesa** en `/mesa/`: constructor de encuentros, ajuste de criaturas y estimación de VD, iniciativa con vista para jugadores, dados, PNJ y botín.
 - **Pantalla del DM** en `/mesa/pantalla/`, con paneles configurables e imprimibles.
-- **Filtros y orden que entienden el español**: «dragon» encuentra «Dragón», «Mediano» y «Mediana» son la misma casilla y «40 000 po» ordena por valor, no por la primera cifra.
+- **Filtros y orden que entienden el español**: «dragon» encuentra «Dragón», «thunderwave» encuentra «Ola atronadora» —el nombre inglés va detrás del español en el mismo filtro—, «Mediano» y «Mediana» son la misma casilla y «40 000 po» ordena por valor, no por la primera cifra.
 - **Tema claro y oscuro**, navegación por teclado, foco visible y estilos de impresión para llevar una ficha a la mesa.
 
 ## Stack

@@ -105,6 +105,7 @@ const INGLES: Record<string, string> = {
   "Teleport": "Teletransporte",
   "Thunderwave": "Ola atronadora",
   "Time Stop": "Parar el tiempo",
+  "True Seeing": "Visión veraz",
   "True Strike": "Impacto certero",
   "Wall of Fire": "Muro de fuego",
   "Wall of Force": "Muro de fuerza",
@@ -424,7 +425,6 @@ const POR_EDICION: Record<string, Record<string, string>> = {
     "Sage": "Erudito",
     "Soldier": "Soldado",
     "Sphinx": "Esfinge de las maravillas",
-    "True Seeing": "Visión veraz",
   },
 };
 

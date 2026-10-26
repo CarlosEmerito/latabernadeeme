@@ -1,5 +1,6 @@
 /**
- * Comprueba que el filtro de texto de los listados ignora tildes y mayúsculas.
+ * Comprueba que el filtro de texto de los listados ignora tildes y mayúsculas
+ * y que encuentra la fila también por el nombre inglés de la entrada.
  *
  * El filtro del cliente compara la consulta plegada contra `data-buscar`, así
  * que el atributo tiene que salir del HTML ya plegado: si se sirviera el nombre
@@ -9,6 +10,11 @@
  *   1. `data-buscar` es el nombre visible plegado: sin tildes y en minúsculas.
  *   2. Es idempotente (no queda ningún combinable ni mayúscula).
  *   3. Las búsquedas sin tilde que la gente teclea encuentran filas de verdad.
+ *   4. Detrás del nombre español puede ir el inglés —`ola atronadora
+ *      thunderwave`—, y toda fila cuyo `/datos/<edición>.json` publica alias
+ *      tiene que poder encontrarse por él: quien conoce la entrada como
+ *      «Thunderwave» se encontraba el listado en cero al lado de una ficha que
+ *      sí la llama así.
  *
  * La función de plegado se repite a propósito en este fichero: si el test
  * importara la del sitio, comprobaría que el código hace lo que hace. Aquí es

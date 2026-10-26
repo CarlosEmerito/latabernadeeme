@@ -971,6 +971,65 @@ try {
   fallo("ajustar tildes", String(e));
 }
 
+// «Ajustar una criatura» no admite los VD fraccionarios que publica el catálogo
+// y su «VD actual» no lo escribe nadie. 78 de las 330 criaturas del 5.2.1 están
+// en VD 1/8, 1/4 o 1/2 —Bandido, Lobo, Oso negro: las de una partida de nivel
+// bajo—, y el campo era `type=number step=1`, así que «1/2» lo dejaba vacío y
+// «0.5» no casaba con la clave «1/2» del perfil: el panel contestaba que el
+// catálogo no tenía ninguna criatura con ese VD, culpando al catálogo de un
+// fallo del campo. Y el `<output id="aj-vd">` de «VD actual», que existe para
+// enseñar el VD del original, se quedaba en «—» para siempre porque ningún
+// script lo escribía.
+try {
+  const p = await abrir(`${BASE}/mesa/`);
+  await evaluar(p, `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#enc-lista option')) { clearInterval(t); res(1); } }, 100); setTimeout(() => { clearInterval(t); res(0); }, 6000); })`);
+  const casos = await evaluar(
+    p,
+    `(() => {
+       const leer = () => document.getElementById('aj-salida').textContent.split(String.fromCharCode(10)).join(' ').replace(/[ ]{2,}/g, ' ').trim();
+       const disparar = (campo, valor) => {
+         campo.value = valor;
+         campo.dispatchEvent(new Event('input', {bubbles: true}));
+         campo.dispatchEvent(new Event('change', {bubbles: true}));
+       };
+       const probar = (nombre, vd) => {
+         disparar(document.getElementById('aj-criatura'), nombre);
+         const objetivo = document.getElementById('aj-objetivo');
+         disparar(objetivo, vd);
+         const escrito = objetivo.value;
+         document.getElementById('aj-calcular').click();
+         const actual = document.getElementById('aj-vd').textContent.trim();
+         return { escrito, actual, salida: leer() };
+       };
+       return {
+         fraccion: probar('Lobo', '1/2'),
+         decimal: probar('Lobo', '0.5'),
+         octavo: probar('Bandido', '1/4'),
+         sinVd: probar('Lobo', '18'),
+       };
+     })()`,
+  );
+  // Lo que ve el lector cuando el ajuste sale: el VD de destino, el de origen y
+  // unas cifras nuevas. El aviso de «no hay media» es justo el fallo.
+  const escala = (c, desde, hasta) =>
+    new RegExp('VD ' + hasta + ' antes ' + desde).test(c.salida) &&
+    /PG [0-9]+ → [0-9]+/.test(c.salida) &&
+    !/no tiene ninguna criatura con VD/.test(c.salida);
+  const ok =
+    casos.fraccion.escrito === '1/2' &&
+    casos.decimal.escrito === '0.5' &&
+    escala(casos.fraccion, '1/4', '1/2') &&
+    escala(casos.decimal, '1/4', '1/2') &&
+    escala(casos.octavo, '1/8', '1/4') &&
+    casos.fraccion.actual === '1/4' &&
+    casos.octavo.actual === '1/8' &&
+    /no tiene ninguna criatura con VD 18/.test(casos.sinVd.salida);
+  if (ok) bien(`ajustar a un VD fraccionario: «${casos.fraccion.salida.slice(0, 64)}»`);
+  else fallo("ajustar VD fraccionario", JSON.stringify(casos));
+} catch (e) {
+  fallo("ajustar VD fraccionario", String(e));
+}
+
 // Los campos del constructor de encuentros se teclean a mano y `type=number` no
 // impide 0, 11, -3, un decimal ni dejarlos vacíos. Con «Personajes» vacío el
 // presupuesto era 0 y el veredicto salía «Por encima (Infinity % del

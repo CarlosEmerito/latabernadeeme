@@ -894,6 +894,69 @@ try {
   fallo("mesa", String(e));
 }
 
+// La mitad de /mesa/ son botones que dependen del script de la página: el
+// constructor de encuentros, el ajuste de criatura, el VD, la iniciativa, los
+// dados, el PNJ y el botín. Con JavaScript desactivado quedan a la vista y
+// mudos, y la página no decía en ningún sitio que hicieran falta scripts, así
+// que el DM que abre /mesa/ con los scripts bloqueados no tiene forma de saber
+// si la herramienta está rota o si le falta algo. El buscador ya lo avisa con un
+// <noscript> y remite a lo que sí se sirve renderizado.
+//
+// Se desactiva el script de verdad en el navegador
+// (`Emulation.setScriptExecutionDisabled`): el <noscript> no se ejecuta, así que
+// su contenido solo llega al texto visible en ese modo y buscar la cadena en el
+// HTML no demostraría nada. Se mira lo que lee el lector en los dos estados: sin
+// scripts el aviso está a la vista y antes de la primera herramienta; con
+// scripts no aparece y el documento sigue declarando el <noscript>.
+const AVISO_SIN_JS = "necesitan JavaScript";
+const LEER_SIN_JS = `(() => {
+   const plano = (s) => s.split(String.fromCharCode(10)).join(' ').replace(/[ ]{2,}/g, ' ').trim();
+   const texto = plano(document.body.innerText);
+   const aviso = [...document.querySelectorAll('p')].find((el) => el.textContent.indexOf('${AVISO_SIN_JS}') >= 0);
+   const primera = document.querySelector('section.mesa-panel h2');
+   return {
+     texto: texto,
+     declaraNoscript: !!document.querySelector('noscript'),
+     herramientas: document.querySelectorAll('section.mesa-panel').length,
+     avisoEnTexto: texto.indexOf('${AVISO_SIN_JS}'),
+     avisoVisible: !!aviso && aviso.getClientRects().length > 0,
+     antesDeLaPrimera:
+       !!aviso && !!primera && (aviso.compareDocumentPosition(primera) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0,
+     remiteALosListados: !!aviso && aviso.textContent.indexOf('listados') >= 0,
+   };
+ })()`;
+try {
+  const p = await abrir("about:blank");
+  await p.enviar("Emulation.setScriptExecutionDisabled", { value: true });
+  await ir(p, `${BASE}/mesa/`);
+  const sinJs = await evaluar(p, LEER_SIN_JS);
+
+  const okSinJs =
+    sinJs.avisoEnTexto >= 0 && sinJs.avisoVisible && sinJs.antesDeLaPrimera && sinJs.remiteALosListados && sinJs.herramientas >= 7;
+
+  await pestanas.cerrar(p);
+
+  const con = await abrir(`${BASE}/mesa/`);
+  const conJs = await evaluar(con, LEER_SIN_JS);
+  const okConJs = conJs.avisoEnTexto < 0 && conJs.declaraNoscript;
+
+  if (okSinJs && okConJs) bien("/mesa/ avisa sin JavaScript y remite a lo que sí funciona, sin estorbar con el script activo");
+  else
+    fallo(
+      "/mesa/ sin JavaScript",
+      JSON.stringify({
+        okSinJs,
+        okConJs,
+        texto: sinJs.texto.slice(0, 220),
+        sinJs: { ...sinJs, texto: undefined },
+        conScriptDeclaraNoscript: conJs.declaraNoscript,
+        conScriptVeAviso: conJs.avisoEnTexto >= 0,
+      }),
+    );
+} catch (e) {
+  fallo("/mesa/ sin JavaScript", String(e));
+}
+
 // El campo «Añadir criatura» solo escuchaba `change`, que el datalist dispara al
 // elegir una sugerencia: escribir el nombre y pulsar Intro dejaba el texto en el
 // campo sin añadir nada, que es justo el gesto natural sobre el primer campo de la

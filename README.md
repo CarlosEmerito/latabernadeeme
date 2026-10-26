@@ -38,7 +38,7 @@ Además del texto:
 
 ## Stack
 
-- **Astro** en modo estático: el contenido se sirve siempre renderizado; los filtros y el orden de las tablas necesitan JavaScript.
+- **Astro** en modo estático: el contenido se sirve siempre renderizado; los filtros, el orden de las tablas y las herramientas de `/mesa/` necesitan JavaScript, y las páginas que lo necesitan lo avisan con un `<noscript>` que remite a lo que sí funciona sin él.
 - **Pagefind** para la búsqueda.
 - **TypeScript** en el sitio; **Python** solo en la ingesta de datos.
 - CSS propio, sin framework de UI.

@@ -647,6 +647,65 @@ try {
   if (roto.filas === 0 && roto.aviso === "" && /^[0-9]+ = /.test(roto.dados)) bien("iniciativa con la clave rota: sin combate y la mesa sigue viva");
   else fallo("iniciativa con la clave rota", JSON.stringify(roto));
 
+  // Añadir un combatiente con el combate ya empezado no puede mover el turno: el
+  // DM está en una criatura y la que llega a mitad del asalto se coloca en su
+  // sitio sin que el puntero salte. Antes el manejador ponía `turno = 0`, así que
+  // el refuerzo devolvía el turno al primer puesto de la lista —y el guardado
+  // también— justo en mitad de la partida.
+  await evaluar(mesa, `localStorage.removeItem('taberna:iniciativa')`);
+  await ir(mesa, `${BASE}/mesa/`);
+  await evaluar(
+    mesa,
+    `(() => {
+       ${campos}
+       n.value='Aria'; v.value='18'; document.getElementById('ini-anadir').click();
+       n.value='Brumo'; v.value='12'; document.getElementById('ini-anadir').click();
+       document.getElementById('ini-siguiente').click();
+       return 1;
+     })()`,
+  );
+  const antesDeAnadir = await leerCombate();
+  await evaluar(
+    mesa,
+    `(() => {
+       ${campos}
+       n.value='Lobo'; v.value='15'; document.getElementById('ini-anadir').click();
+       return 1;
+     })()`,
+  );
+  const trasAnadirMitad = await leerCombate();
+  const activoDe = (c) => (c && c.activa >= 0 ? c.orden[c.activa][0] : null);
+  const guardadoDe = (c) => (c?.guardado ? (c.guardado.lista?.[c.guardado.turno]?.nombre ?? null) : null);
+  const activoAntes = activoDe(antesDeAnadir);
+  const activoMitad = activoDe(trasAnadirMitad);
+  if (activoAntes === "Brumo" && activoMitad === activoAntes && guardadoDe(trasAnadirMitad) === activoAntes)
+    bien(`iniciativa: añadir no mueve el turno (sigue ${activoMitad})`);
+  else
+    fallo(
+      "iniciativa: añadir mueve el turno",
+      JSON.stringify({ activoAntes, activoMitad, guardado: guardadoDe(trasAnadirMitad), orden: trasAnadirMitad?.orden }),
+    );
+
+  // Y tampoco cuando el que llega entra por delante de todos: el activo sigue
+  // siendo el mismo combatiente, aunque ya no esté en el primer puesto.
+  await evaluar(
+    mesa,
+    `(() => {
+       ${campos}
+       n.value='Z'; v.value='30'; document.getElementById('ini-anadir').click();
+       return 1;
+     })()`,
+  );
+  const conRefuerzoPrimero = await leerCombate();
+  const activoConRefuerzo = activoDe(conRefuerzoPrimero);
+  if (activoConRefuerzo === activoAntes && nombresDe(conRefuerzoPrimero) === "Z,Aria,Lobo,Brumo")
+    bien(`iniciativa: un refuerzo con más iniciativa no roba el turno (sigue ${activoConRefuerzo})`);
+  else
+    fallo(
+      "iniciativa: un refuerzo con más iniciativa roba el turno",
+      JSON.stringify({ activoAntes, activoConRefuerzo, orden: conRefuerzoPrimero?.orden }),
+    );
+
   const pnj = await evaluar(mesa, `(() => { document.getElementById('pnj-generar').click(); return document.getElementById('pnj-salida').textContent; })()`);
   if (pnj && pnj.includes(",")) bien(`pnj: ${pnj.slice(0, 40)}`);
   else fallo("pnj", pnj);

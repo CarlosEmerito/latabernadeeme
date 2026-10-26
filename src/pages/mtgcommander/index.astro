@@ -1,0 +1,1385 @@
+---
+import Base from "../../layouts/Base.astro";
+import { e } from "../../lib/urls";
+---
+
+<Base
+  title="MTG Commander"
+  description="Importa un mazo de Moxfield, míralo entero y recibe un plan de juego para Commander. Sin cuenta, sin servidor y con tus datos en tu navegador."
+  etiqueta="La Taberna"
+  buscador={false}
+  ancho
+>
+  <header class="cabecera">
+    <p class="cabecera__eyebrow">Herramienta · Magic: The Gathering</p>
+    <h1>Commander</h1>
+    <p class="cabecera__lede">
+      Pega el export de tu mazo de Moxfield y velo entero: las 100 cartas, la curva, los roles, la
+      legalidad, el bracket y un plan de juego. Sin cuenta y sin servidor: el mazo se queda en tu
+      navegador.
+    </p>
+  </header>
+
+  <section class="mtg-importar" aria-labelledby="mtg-importar-t">
+    <div class="mtg-importar__cab">
+      <h2 id="mtg-importar-t">Importar un mazo</h2>
+      <p class="mtg-nota">
+        En Moxfield: <strong>More → Export → Plain Text</strong>, copia y pega aquí. La URL del mazo
+        no se puede importar: Moxfield bloquea a los importadores de terceros.
+      </p>
+    </div>
+    <label class="mtg-etiqueta" for="mtg-texto">Lista del mazo</label>
+    <textarea
+      id="mtg-texto"
+      class="mtg-textarea"
+      rows="9"
+      spellcheck="false"
+      placeholder={"Commander\n1 Atraxa, Praetors' Voice (MUL) 1\n\nDeck\n1 Sol Ring (LTC) 284\n1 Arcane Signet (CMM) 951\n10 Forest (ZNR) 280\n..."}
+    ></textarea>
+    <div class="mtg-acciones">
+      <button id="mtg-importar" class="btn btn--acento" type="button">Importar mazo</button>
+      <label class="btn btn--fantasma" for="mtg-archivo">Cargar un .txt</label>
+      <input id="mtg-archivo" type="file" accept=".txt,text/plain" hidden />
+      <button id="mtg-limpiar" class="btn btn--fantasma" type="button">Limpiar</button>
+    </div>
+    <p id="mtg-estado" class="mtg-estado" role="status" aria-live="polite"></p>
+
+    <div id="mtg-comandante" class="mtg-comandante" hidden>
+      <label for="mtg-comandante-sel">No venía marcado el comandante. Elige cuál es:</label>
+      <div class="mtg-acciones">
+        <select id="mtg-comandante-sel"></select>
+        <button id="mtg-comandante-ok" class="btn" type="button">Usar este</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="mtg-guardados" class="mtg-guardados" hidden aria-labelledby="mtg-guardados-t">
+    <h2 id="mtg-guardados-t">Mazos guardados</h2>
+    <ul id="mtg-lista" class="mtg-lista"></ul>
+  </section>
+
+  <section id="mtg-ficha" class="mtg-ficha" hidden aria-labelledby="mtg-nombre">
+    <header class="mtg-ficha__cab">
+      <div>
+        <p class="mtg-eyebrow" id="mtg-fuente"></p>
+        <h2 id="mtg-nombre"></h2>
+        <p class="mtg-ficha__comandante" id="mtg-comandante-nombre"></p>
+      </div>
+      <div class="mtg-ficha__acciones">
+        <button id="mtg-quitar" class="btn btn--fantasma" type="button">Quitar de guardados</button>
+      </div>
+    </header>
+
+    <div id="mtg-resumen" class="mtg-resumen"></div>
+
+    <div class="mtg-columnas">
+      <div class="mtg-principal">
+        <div id="mtg-curva" class="mtg-curva" aria-label="Curva de maná"></div>
+
+        <div class="mtg-filtros" role="search" aria-label="Filtrar las cartas">
+          <label class="mtg-campo">
+            <span>Buscar</span>
+            <input id="mtg-f-texto" type="search" autocomplete="off" placeholder="Nombre de carta" />
+          </label>
+          <label class="mtg-campo">
+            <span>Tipo</span>
+            <select id="mtg-f-tipo"></select>
+          </label>
+          <label class="mtg-campo">
+            <span>Valor</span>
+            <select id="mtg-f-mv"></select>
+          </label>
+          <label class="mtg-campo">
+            <span>Color</span>
+            <select id="mtg-f-color"></select>
+          </label>
+          <label class="mtg-campo">
+            <span>Rol</span>
+            <select id="mtg-f-rol"></select>
+          </label>
+          <label class="mtg-campo">
+            <span>Orden</span>
+            <select id="mtg-f-orden">
+              <option value="tipo">Por tipo</option>
+              <option value="coste">Por coste</option>
+              <option value="nombre">Por nombre</option>
+            </select>
+          </label>
+        </div>
+
+        <p id="mtg-cuenta" class="mtg-cuenta" role="status" aria-live="polite"></p>
+        <div id="mtg-rejilla" class="mtg-rejilla"></div>
+        <p id="mtg-vacio" class="mtg-vacio" hidden>Ninguna carta cumple esos filtros.</p>
+      </div>
+
+      <aside class="mtg-lateral" aria-label="Resumen del mazo">
+        <section class="mtg-panel">
+          <h3>Roles</h3>
+          <div id="mtg-roles"></div>
+        </section>
+        <section class="mtg-panel">
+          <h3>Legalidad</h3>
+          <div id="mtg-legal"></div>
+        </section>
+        <section class="mtg-panel">
+          <h3>Colores y tipos</h3>
+          <div id="mtg-colores"></div>
+          <div id="mtg-tipos"></div>
+        </section>
+      </aside>
+    </div>
+  </section>
+
+  <section id="mtg-consejo" class="mtg-consejo" hidden aria-labelledby="mtg-consejo-t">
+    <h2 id="mtg-consejo-t">Plan de juego</h2>
+    <p id="mtg-consejo-titular" class="mtg-consejo__titular"></p>
+    <div id="mtg-consejo-cuerpo" class="mtg-consejo__cuerpo"></div>
+
+    <section class="mtg-ia" aria-labelledby="mtg-ia-t">
+      <h3 id="mtg-ia-t">Analizar con IA <span class="mtg-opcional">(opcional)</span></h3>
+      <p class="mtg-nota">
+        El informe de arriba sale de los datos del mazo y no cuesta nada. Si quieres una segunda
+        lectura redactada, pega tu clave de <strong>Gemini API</strong> (la capa gratuita de Google
+        sirve). La clave se queda en este navegador y el mazo se envía a Google solo cuando pulses el
+        botón; en la capa gratuita, Google puede usar los prompts para mejorar sus productos.
+        <a href={e("/mtgcommander/licencias/")}>Más sobre datos y licencias</a>.
+      </p>
+      <div id="mtg-ia-form" class="mtg-ia__form">
+        <label class="mtg-campo mtg-campo--ancho">
+          <span>Clave de Gemini</span>
+          <input id="mtg-clave" type="password" autocomplete="off" spellcheck="false" placeholder="AIza…" />
+        </label>
+        <label class="mtg-check">
+          <input id="mtg-recordar" type="checkbox" checked />
+          <span>Guardar la clave en este navegador</span>
+        </label>
+        <div class="mtg-acciones">
+          <button id="mtg-analizar" class="btn btn--acento" type="button">Analizar con IA</button>
+          <button id="mtg-olvidar" class="btn btn--fantasma" type="button" hidden>Olvidar la clave</button>
+        </div>
+      </div>
+      <p id="mtg-ia-estado" class="mtg-estado" role="status" aria-live="polite"></p>
+      <div id="mtg-ia-salida" class="mtg-ia__salida" hidden></div>
+    </section>
+  </section>
+
+  <dialog id="mtg-dialogo" class="mtg-dialogo" aria-label="Ficha de la carta">
+    <div id="mtg-dialogo-cuerpo" class="mtg-dialogo__cuerpo"></div>
+    <form method="dialog" class="mtg-dialogo__pie">
+      <button class="btn" type="submit">Cerrar</button>
+    </form>
+  </dialog>
+
+  <p class="mtg-aviso">
+    La Taberna de Eme (Commander) is unofficial Fan Content permitted under the Fan Content Policy.
+    Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the
+    Coast. ©Wizards of the Coast LLC. Datos e imágenes de las cartas: <a href="https://scryfall.com/" rel="noopener">Scryfall</a>.
+    Esta sección no está afiliada ni respaldada por Wizards of the Coast.
+  </p>
+</Base>
+
+<style is:global>
+  /* La ficha se pinta desde JavaScript: los estilos tienen que ser globales o
+     los nodos creados no llevan el atributo de ámbito de Astro y no se pintan. */
+  .mtg-importar,
+  .mtg-guardados,
+  .mtg-ficha,
+  .mtg-consejo {
+    margin-bottom: 2rem;
+  }
+
+  .mtg-importar {
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    background: var(--surface);
+    padding: 1.25rem;
+  }
+
+  .mtg-importar__cab h2,
+  .mtg-guardados h2,
+  .mtg-ficha h2,
+  .mtg-consejo h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .mtg-nota {
+    color: var(--ink-3);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+    max-width: 72ch;
+  }
+
+  .mtg-etiqueta {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink-2);
+    margin-bottom: 0.35rem;
+  }
+
+  .mtg-textarea {
+    width: 100%;
+    min-height: 9rem;
+    resize: vertical;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--rule-2);
+    border-radius: var(--r);
+    padding: 0.75rem;
+  }
+
+  .mtg-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+  }
+
+  .mtg-estado {
+    font-size: 0.85rem;
+    color: var(--ink-2);
+    margin: 0.75rem 0 0;
+    min-height: 1.2em;
+  }
+
+  .mtg-estado--mal {
+    color: var(--accent);
+  }
+
+  .mtg-comandante {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.88rem;
+  }
+
+  .mtg-comandante select {
+    min-width: 18rem;
+    max-width: 100%;
+  }
+
+  .mtg-guardados h2 {
+    font-size: 1.2rem;
+  }
+
+  .mtg-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .mtg-lista li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    background: var(--surface);
+    padding: 0.55rem 0.75rem;
+  }
+
+  .mtg-lista button {
+    border: 0;
+    background: none;
+    color: var(--ink);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .mtg-lista button:hover {
+    color: var(--accent);
+  }
+
+  .mtg-lista span {
+    color: var(--ink-3);
+    font-size: 0.78rem;
+    font-family: var(--mono);
+  }
+
+  .mtg-ficha__cab {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.75rem;
+  }
+
+  .mtg-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 0.25rem;
+  }
+
+  .mtg-ficha__comandante {
+    color: var(--ink-2);
+    font-size: 0.9rem;
+    margin: 0.25rem 0 0;
+  }
+
+  .mtg-resumen {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 0.6rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .mtg-cifra {
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    background: var(--surface);
+    padding: 0.6rem 0.75rem;
+  }
+
+  .mtg-cifra b {
+    display: block;
+    font-family: var(--mono);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .mtg-cifra span {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    margin-top: 0.15rem;
+  }
+
+  .mtg-cifra--bien b {
+    color: var(--green);
+  }
+
+  .mtg-cifra--mal b {
+    color: var(--accent);
+  }
+
+  .mtg-columnas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .mtg-curva {
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    background: var(--surface);
+    padding: 0.75rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.35rem;
+    height: 9rem;
+    margin-bottom: 1rem;
+  }
+
+  .mtg-barra {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.25rem;
+    height: 100%;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--ink-3);
+  }
+
+  .mtg-barra__n {
+    color: var(--ink-2);
+  }
+
+  .mtg-barra__palo {
+    width: 100%;
+    background: var(--accent);
+    border-radius: 2px 2px 0 0;
+    min-height: 2px;
+  }
+
+  .mtg-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: flex-end;
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    background: var(--surface);
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .mtg-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.72rem;
+    color: var(--ink-3);
+  }
+
+  .mtg-campo--ancho {
+    flex: 1;
+    min-width: 16rem;
+  }
+
+  .mtg-campo input,
+  .mtg-campo select {
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--rule-2);
+    border-radius: var(--r);
+    padding: 0.35rem 0.45rem;
+    min-width: 8rem;
+  }
+
+  .mtg-cuenta {
+    font-size: 0.82rem;
+    color: var(--ink-3);
+    margin: 0 0 0.6rem;
+  }
+
+  .mtg-rejilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 0.75rem;
+  }
+
+  .mtg-grupo {
+    grid-column: 1 / -1;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    margin: 0.5rem 0 0;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .mtg-grupo span {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-3);
+  }
+
+  .mtg-carta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    background: var(--surface);
+    padding: 0.35rem;
+    cursor: pointer;
+    text-align: left;
+    color: var(--ink);
+  }
+
+  .mtg-carta:hover,
+  .mtg-carta:focus-visible {
+    border-color: var(--accent);
+    outline: none;
+  }
+
+  .mtg-carta img {
+    width: 100%;
+    aspect-ratio: 5 / 7;
+    object-fit: cover;
+    border-radius: 3px;
+    background: var(--surface-2);
+  }
+
+  .mtg-carta__n {
+    font-size: 0.78rem;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .mtg-carta__c {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--ink-3);
+  }
+
+  .mtg-carta__q {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.55rem;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    border-radius: 999px;
+    padding: 0.1rem 0.4rem;
+  }
+
+  .mtg-vacio {
+    color: var(--ink-3);
+    font-size: 0.9rem;
+  }
+
+  .mtg-lateral {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .mtg-panel {
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    background: var(--surface);
+    padding: 0.85rem;
+  }
+
+  .mtg-panel h3 {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 0.6rem;
+  }
+
+  .mtg-rol {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.15rem 0.5rem;
+    font-size: 0.82rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mtg-rol__n {
+    font-family: var(--mono);
+    color: var(--ink-2);
+  }
+
+  .mtg-rol__ref {
+    grid-column: 1 / -1;
+    font-size: 0.7rem;
+    color: var(--ink-3);
+  }
+
+  .mtg-rol__palo {
+    grid-column: 1 / -1;
+    height: 4px;
+    background: var(--surface-2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .mtg-rol__palo i {
+    display: block;
+    height: 100%;
+    background: var(--ink-3);
+  }
+
+  .mtg-rol--corto .mtg-rol__n,
+  .mtg-rol--corto .mtg-rol__ref {
+    color: var(--accent);
+  }
+
+  .mtg-rol--corto .mtg-rol__palo i {
+    background: var(--accent);
+  }
+
+  .mtg-legal__ok {
+    color: var(--green);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .mtg-legal ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.8rem;
+    color: var(--ink-2);
+  }
+
+  .mtg-legal li {
+    margin-bottom: 0.35rem;
+  }
+
+  .mtg-pips {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.6rem;
+  }
+
+  .mtg-pip {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #141412;
+    background: var(--surface-2);
+    border: 1px solid var(--rule-2);
+  }
+
+  .mtg-pip--W { background: #f2ecd4; }
+  .mtg-pip--U { background: #bcd6e6; }
+  .mtg-pip--B { background: #b9b4ad; }
+  .mtg-pip--R { background: #e8b7a9; }
+  .mtg-pip--G { background: #b9d3b3; }
+  .mtg-pip--C { background: #d8d6cd; }
+
+  .mtg-tipos {
+    font-size: 0.8rem;
+    color: var(--ink-2);
+  }
+
+  .mtg-tipos div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.15rem 0;
+  }
+
+  .mtg-consejo__titular {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--ink-3);
+    margin: 0 0 1rem;
+  }
+
+  .mtg-consejo__cuerpo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1rem;
+  }
+
+  .mtg-consejo__cuerpo section {
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    background: var(--surface);
+    padding: 0.9rem;
+  }
+
+  .mtg-consejo__cuerpo h3 {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .mtg-consejo__cuerpo p {
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0 0 0.45rem;
+  }
+
+  .mtg-consejo__cuerpo p:last-child {
+    margin-bottom: 0;
+  }
+
+  .mtg-ia {
+    margin-top: 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--r);
+    background: var(--surface);
+    padding: 1rem;
+  }
+
+  .mtg-ia h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .mtg-opcional {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--ink-3);
+    font-weight: 400;
+  }
+
+  .mtg-ia__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: flex-end;
+  }
+
+  .mtg-check {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--ink-2);
+  }
+
+  .mtg-ia__salida {
+    margin-top: 1rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 0.75rem;
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 72ch;
+  }
+
+  .mtg-ia__salida p {
+    margin: 0 0 0.7rem;
+  }
+
+  .mtg-dialogo {
+    border: 1px solid var(--rule-2);
+    border-radius: var(--r);
+    background: var(--surface);
+    color: var(--ink);
+    padding: 0;
+    max-width: 46rem;
+    width: calc(100% - 2rem);
+    box-shadow: var(--shadow);
+  }
+
+  .mtg-dialogo::backdrop {
+    background: rgb(0 0 0 / 0.55);
+  }
+
+  .mtg-dialogo__cuerpo {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .mtg-dialogo__cuerpo img {
+    width: 100%;
+    border-radius: 6px;
+  }
+
+  .mtg-dialogo__cuerpo h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .mtg-dialogo__cuerpo p {
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0 0 0.5rem;
+  }
+
+  .mtg-dialogo__cuerpo .mtg-dialogo__tipo {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-3);
+  }
+
+  .mtg-dialogo__pie {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem 1rem;
+  }
+
+  .mtg-aviso {
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: var(--ink-3);
+    border-top: 1px solid var(--rule);
+    padding-top: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 980px) {
+    .mtg-columnas {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .mtg-dialogo__cuerpo {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .mtg-dialogo__cuerpo img {
+      max-width: 16rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .mtg-ficha__cab {
+      flex-direction: column;
+    }
+    .mtg-rejilla {
+      grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+    }
+    .mtg-campo input,
+    .mtg-campo select {
+      min-width: 6.5rem;
+    }
+  }
+</style>
+
+<script>
+  import { parsearExport } from "../../lib/commander/export";
+  import { resolverCartas } from "../../lib/commander/scryfall";
+  import { analizarMazo, type Analisis } from "../../lib/commander/analisis";
+  import { consejoDe } from "../../lib/commander/consejo";
+  import { analizarConIA } from "../../lib/commander/ia";
+  import {
+    COLORES,
+    NOMBRE_COLOR,
+    costeDe,
+    imagenDe,
+    textoDe,
+    type CartaMazo,
+    type CartaScryfall,
+    type Mazo,
+  } from "../../lib/commander/tipos";
+  import { ROLES, rolesDe, type RolId } from "../../lib/commander/roles";
+
+  const CLAVE_MAZOS = "taberna:commander:mazos";
+  const CLAVE_IA = "taberna:commander:clave";
+
+  const $ = <T extends HTMLElement>(sel: string) => document.querySelector(sel) as T;
+  const estado = (texto: string, mal = false) => {
+    const el = $("#mtg-estado");
+    el.textContent = texto;
+    el.classList.toggle("mtg-estado--mal", mal);
+  };
+  const estadoIA = (texto: string, mal = false) => {
+    const el = $("#mtg-ia-estado");
+    el.textContent = texto;
+    el.classList.toggle("mtg-estado--mal", mal);
+  };
+  const esc = (texto: string) =>
+    texto.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const plegar = (texto: string) =>
+    texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+  let mazoActual: Mazo | null = null;
+  let analisisActual: Analisis | null = null;
+  let pendienteComandante: { mazo: Mazo; candidatos: CartaMazo[] } | null = null;
+
+  // ── Guardados ─────────────────────────────────────────────────────────────
+  function leerMazos(): Mazo[] {
+    try {
+      const crudo = JSON.parse(localStorage.getItem(CLAVE_MAZOS) ?? "[]");
+      return Array.isArray(crudo) ? crudo : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function escribirMazos(lista: Mazo[]) {
+    try {
+      localStorage.setItem(CLAVE_MAZOS, JSON.stringify(lista));
+    } catch {
+      estado("No se ha podido guardar: el almacenamiento del navegador está lleno o bloqueado.", true);
+    }
+  }
+
+  function guardarMazo(mazo: Mazo) {
+    const lista = leerMazos().filter((m) => m.id !== mazo.id);
+    lista.unshift(mazo);
+    escribirMazos(lista.slice(0, 12));
+    pintarGuardados();
+  }
+
+  function borrarMazo(id: string) {
+    escribirMazos(leerMazos().filter((m) => m.id !== id));
+    if (mazoActual?.id === id) {
+      mazoActual = null;
+      analisisActual = null;
+      $("#mtg-ficha").hidden = true;
+      $("#mtg-consejo").hidden = true;
+    }
+    pintarGuardados();
+  }
+
+  function pintarGuardados() {
+    const lista = leerMazos();
+    const seccion = $("#mtg-guardados");
+    const ul = $("#mtg-lista");
+    seccion.hidden = lista.length === 0;
+    ul.replaceChildren();
+    for (const m of lista) {
+      const li = document.createElement("li");
+      const boton = document.createElement("button");
+      boton.type = "button";
+      boton.innerHTML = `<strong>${esc(m.nombre)}</strong><span>${m.cartas.length + m.comandantes.length} cartas · ${new Date(m.creado).toLocaleDateString("es-ES")}</span>`;
+      boton.addEventListener("click", () => {
+        mazoActual = m;
+        render();
+        $("#mtg-ficha").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      const quitar = document.createElement("button");
+      quitar.type = "button";
+      quitar.className = "btn btn--fantasma";
+      quitar.textContent = "Quitar";
+      quitar.addEventListener("click", () => borrarMazo(m.id));
+      li.append(boton, quitar);
+      ul.append(li);
+    }
+  }
+
+  // ── Importar ──────────────────────────────────────────────────────────────
+  async function importar(texto: string) {
+    const { lineas, avisos } = parsearExport(texto);
+    if (!lineas.length) {
+      estado(avisos[0] ?? "No hay ninguna carta en el texto.", true);
+      return;
+    }
+    estado(`Resolviendo ${lineas.length} líneas con Scryfall…`);
+    try {
+      const { cartas, noEncontradas } = await resolverCartas(lineas);
+      if (!cartas.length) {
+        estado("Scryfall no ha encontrado ninguna carta. Revisa que el export sea el texto de Moxfield.", true);
+        return;
+      }
+      // El banquillo y los montones auxiliares no forman parte de las 100.
+      const enMazo = (c: CartaMazo) => c.tablero === "main" || c.tablero === "companion";
+      let comandantes = cartas.filter((c) => c.tablero === "commander");
+      let resto = cartas.filter(enMazo);
+      if (!comandantes.length) {
+        const candidatos = resto.filter(
+          (c) => /legendary creature/i.test(c.carta.type_line ?? "") || /can be your commander/i.test(textoDe(c.carta)),
+        );
+        if (candidatos.length === 1) {
+          comandantes = [candidatos[0]];
+          resto = resto.filter((c) => c !== candidatos[0]);
+        } else if (candidatos.length > 1) {
+          const mazo: Mazo = {
+            id: `mazo-${Date.now().toString(36)}`,
+            nombre: "Mazo importado",
+            creado: new Date().toISOString(),
+            fuente: "export",
+            comandantes: [],
+            cartas: resto,
+            noEncontradas: noEncontradas.map((l) => l.nombre),
+          };
+          pendienteComandante = { mazo, candidatos };
+          const sel = $("#mtg-comandante-sel") as HTMLSelectElement;
+          sel.replaceChildren(
+            ...candidatos.map((c) => {
+              const o = document.createElement("option");
+              o.value = c.carta.id;
+              o.textContent = c.carta.name;
+              return o;
+            }),
+          );
+          $("#mtg-comandante").hidden = false;
+          estado(
+            `He encontrado ${cartas.length} cartas, pero el export no marca el comandante. Elige cuál es entre los ${candidatos.length} candidatos.`,
+          );
+          return;
+        }
+      }
+
+      const nombreComandante = comandantes.map((c) => c.carta.name).join(" + ");
+      const mazo: Mazo = {
+        id: `mazo-${Date.now().toString(36)}`,
+        nombre: nombreComandante ? `Mazo de ${nombreComandante}` : "Mazo importado",
+        creado: new Date().toISOString(),
+        fuente: "export",
+        comandantes,
+        cartas: resto,
+        noEncontradas: noEncontradas.map((l) => l.nombre),
+      };
+      mazoActual = mazo;
+      guardarMazo(mazo);
+      render();
+      const total = mazo.cartas.reduce((n, c) => n + c.cantidad, 0) + comandantes.reduce((n, c) => n + c.cantidad, 0);
+      estado(
+        `Listo: ${total} cartas${noEncontradas.length ? `, ${noEncontradas.length} sin resolver (${noEncontradas.map((l) => l.nombre).join(", ")})` : " y todas resueltas"}.`,
+        noEncontradas.length > 0,
+      );
+      $("#mtg-comandante").hidden = true;
+      $("#mtg-ficha").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (error) {
+      estado(String(error), true);
+    }
+  }
+
+  // ── Pintar la ficha ───────────────────────────────────────────────────────
+  function render() {
+    if (!mazoActual) return;
+    analisisActual = analizarMazo(mazoActual);
+    const a = analisisActual;
+    const m = mazoActual;
+
+    $("#mtg-ficha").hidden = false;
+    $("#mtg-consejo").hidden = false;
+    $("#mtg-fuente").textContent = m.fuente === "export" ? "Mazo importado" : "Mazo guardado";
+    $("#mtg-nombre").textContent = m.nombre;
+    $("#mtg-comandante-nombre").textContent = a.comandante ? `Comandante: ${a.comandante}` : "Sin comandante marcado";
+
+    const problemas = a.legalidad.problemas.length;
+    const cifras: Array<[string, string, string]> = [
+      [String(a.total), "cartas", a.total === 100 ? "bien" : "mal"],
+      [`${a.tierras}`, `tierras (${a.basicas} básicas)`, ""],
+      [a.media.toFixed(1), "valor medio", ""],
+      [
+        a.precio.moneda === "—" ? "—" : `${a.precio.total.toFixed(0)} ${a.precio.moneda}`,
+        "precio aprox.",
+        "",
+      ],
+      [a.bracket.etiqueta.replace("Bracket ", "B"), "bracket estimado", ""],
+      [problemas ? `${problemas}` : "OK", problemas ? "problemas de legalidad" : "legal", problemas ? "mal" : "bien"],
+    ];
+    $("#mtg-resumen").innerHTML = cifras
+      .map(
+        ([valor, etiqueta, clase]) =>
+          `<div class="mtg-cifra${clase ? ` mtg-cifra--${clase}` : ""}"><b>${esc(valor)}</b><span>${esc(etiqueta)}</span></div>`,
+      )
+      .join("");
+
+    pintarCurva(a);
+    pintarFiltros(a);
+    pintarRoles(a);
+    pintarLegal(a);
+    pintarColores(a);
+    pintarConsejo();
+    pintarRejilla();
+  }
+
+  function pintarCurva(a: Analisis) {
+    const max = Math.max(1, ...a.curva.map((c) => c.n));
+    $("#mtg-curva").innerHTML = a.curva
+      .map(
+        (c) =>
+          `<div class="mtg-barra" title="${c.n} cartas de valor ${c.mv}${c.mv === 7 ? "+" : ""}"><span class="mtg-barra__n">${c.n}</span><span class="mtg-barra__palo" style="height:${Math.round((c.n / max) * 70)}%"></span><span>${c.mv}${c.mv === 7 ? "+" : ""}</span></div>`,
+      )
+      .join("");
+  }
+
+  function pintarFiltros(a: Analisis) {
+    const tipo = $("#mtg-f-tipo") as HTMLSelectElement;
+    const mv = $("#mtg-f-mv") as HTMLSelectElement;
+    const color = $("#mtg-f-color") as HTMLSelectElement;
+    const rol = $("#mtg-f-rol") as HTMLSelectElement;
+    const tipoActual = tipo.value;
+    const rolActual = rol.value;
+    tipo.innerHTML = `<option value="">Todos</option>${a.tipos.map((t) => `<option value="${esc(t.tipo)}">${esc(t.tipo)} (${t.n})</option>`).join("")}`;
+    mv.innerHTML = `<option value="">Todos</option>${Array.from({ length: 8 }, (_, i) => `<option value="${i}">${i}${i === 7 ? "+" : ""}</option>`).join("")}`;
+    color.innerHTML = `<option value="">Todos</option>${COLORES.map((c) => `<option value="${c}">${NOMBRE_COLOR[c]}</option>`).join("")}<option value="C">Incoloro</option>`;
+    rol.innerHTML = `<option value="">Todos</option>${a.roles
+      .filter((r) => r.n > 0)
+      .map((r) => `<option value="${r.id}">${esc(r.etiqueta)} (${r.n})</option>`)
+      .join("")}`;
+    if (tipoActual) tipo.value = tipoActual;
+    if (rolActual) rol.value = rolActual;
+  }
+
+  function pintarRoles(a: Analisis) {
+    const contenedor = $("#mtg-roles");
+    contenedor.innerHTML = a.roles
+      .filter((r) => r.n > 0 || (r.referencia && r.referencia[0] > 0))
+      .map((r) => {
+        const [min, max] = r.referencia ?? [0, 0];
+        const corto = r.referencia ? r.n < min : false;
+        const alto = r.referencia ? Math.min(100, Math.round((r.n / Math.max(max, 1)) * 100)) : 100;
+        return `<div class="mtg-rol${corto ? " mtg-rol--corto" : ""}">
+          <span>${esc(r.etiqueta)}</span><span class="mtg-rol__n">${r.n}</span>
+          <span class="mtg-rol__palo"><i style="width:${alto}%"></i></span>
+          <span class="mtg-rol__ref">${r.referencia ? `referencia ${min}-${max}${corto ? " · corto" : ""}` : ROLES[r.id].nota}</span>
+        </div>`;
+      })
+      .join("");
+  }
+
+  function pintarLegal(a: Analisis) {
+    const contenedor = $("#mtg-legal");
+    if (a.legalidad.ok) {
+      contenedor.innerHTML = `<p class="mtg-legal__ok">Legal en Commander según lo que se puede comprobar.</p>`;
+    } else {
+      contenedor.innerHTML = `<ul>${a.legalidad.problemas.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>`;
+    }
+    if (a.legalidad.avisos.length) {
+      contenedor.innerHTML += `<ul>${a.legalidad.avisos.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>`;
+    }
+    if (a.bracket.etiqueta !== "Sin bracket") {
+      contenedor.innerHTML += `<p class="mtg-nota">${esc(a.bracket.etiqueta)}: ${esc(a.bracket.motivo)}</p>`;
+    }
+  }
+
+  function pintarColores(a: Analisis) {
+    const pips = COLORES.filter((c) => a.pips[c] > 0)
+      .map((c) => `<span class="mtg-pip mtg-pip--${c}" title="${NOMBRE_COLOR[c]}: ${a.pips[c]} símbolos">${c}</span>`)
+      .join("");
+    $("#mtg-colores").innerHTML = `<div class="mtg-pips">${pips || '<span class="mtg-nota">Incolora</span>'}</div>`;
+    $("#mtg-tipos").innerHTML = `<div class="mtg-tipos">${a.tipos
+      .map((t) => `<div><span>${esc(t.tipo)}</span><span>${t.n}</span></div>`)
+      .join("")}</div>`;
+  }
+
+  function pintarConsejo() {
+    if (!mazoActual || !analisisActual) return;
+    const c = consejoDe(mazoActual, analisisActual);
+    $("#mtg-consejo-titular").textContent = c.titular;
+    $("#mtg-consejo-cuerpo").innerHTML = c.secciones
+      .map(
+        (s) => `<section><h3>${esc(s.titulo)}</h3>${s.parrafos.map((p) => `<p>${esc(p)}</p>`).join("")}</section>`,
+      )
+      .join("");
+  }
+
+  // ── Rejilla de cartas ─────────────────────────────────────────────────────
+  function tipoDe(carta: CartaScryfall): string {
+    for (const tipo of ["Land", "Creature", "Planeswalker", "Battle", "Instant", "Sorcery", "Enchantment", "Artifact"]) {
+      if (new RegExp(`\\b${tipo}\\b`, "i").test(carta.type_line ?? "")) return tipo;
+    }
+    return "Otro";
+  }
+
+  function pintarRejilla() {
+    if (!mazoActual) return;
+    const texto = plegar(($("#mtg-f-texto") as HTMLInputElement).value);
+    const tipo = ($("#mtg-f-tipo") as HTMLSelectElement).value;
+    const mv = ($("#mtg-f-mv") as HTMLSelectElement).value;
+    const color = ($("#mtg-f-color") as HTMLSelectElement).value;
+    const rol = ($("#mtg-f-rol") as HTMLSelectElement).value as RolId | "";
+    const orden = ($("#mtg-f-orden") as HTMLSelectElement).value;
+
+    const todas = [...mazoActual.comandantes, ...mazoActual.cartas];
+    const visibles = todas.filter((c) => {
+      if (texto && !plegar(c.carta.name).includes(texto)) return false;
+      if (tipo && tipoDe(c.carta) !== tipo) return false;
+      if (mv) {
+        const valor = Math.min(7, Math.max(0, Math.floor(Number(c.carta.cmc ?? 0))));
+        if (String(valor) !== mv) return false;
+      }
+      if (color) {
+        const identidad = c.carta.color_identity ?? [];
+        if (color === "C" ? identidad.length > 0 : !identidad.includes(color)) return false;
+      }
+      if (rol && !rolesDe(c.carta).includes(rol)) return false;
+      return true;
+    });
+
+    const cuenta = visibles.reduce((n, c) => n + c.cantidad, 0);
+    $("#mtg-cuenta").textContent = `${visibles.length} fichas distintas · ${cuenta} cartas`;
+
+    const ordenar = (lista: CartaMazo[]) => {
+      const copia = [...lista];
+      if (orden === "coste") {
+        copia.sort((x, y) => Number(x.carta.cmc ?? 0) - Number(y.carta.cmc ?? 0) || x.carta.name.localeCompare(y.carta.name, "es"));
+      } else if (orden === "nombre") {
+        copia.sort((x, y) => x.carta.name.localeCompare(y.carta.name, "es"));
+      }
+      return copia;
+    };
+
+    const rejilla = $("#mtg-rejilla");
+    rejilla.replaceChildren();
+    const vacio = $("#mtg-vacio");
+    vacio.hidden = visibles.length > 0;
+    if (!visibles.length) return;
+
+    const bloque = (lista: CartaMazo[]) => {
+      for (const c of lista) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "mtg-carta";
+        b.dataset.id = c.carta.id;
+        const imagen = imagenDe(c.carta, "small");
+        b.innerHTML = `
+          ${imagen ? `<img src="${esc(imagen)}" alt="${esc(c.carta.name)}" loading="lazy" decoding="async" />` : `<span class="mtg-carta__sin">Sin imagen</span>`}
+          ${c.cantidad > 1 ? `<span class="mtg-carta__q">×${c.cantidad}</span>` : ""}
+          <span class="mtg-carta__n">${esc(c.carta.name)}</span>
+          <span class="mtg-carta__c">${esc(costeDe(c.carta) || "—")}${c.tablero === "commander" ? " · comandante" : ""}</span>`;
+        b.addEventListener("click", () => abrirCarta(c));
+        rejilla.append(b);
+      }
+    };
+
+    if (orden === "tipo") {
+      const grupos = new Map<string, CartaMazo[]>();
+      for (const c of visibles) {
+        const t = tipoDe(c.carta);
+        (grupos.get(t) ?? grupos.set(t, []).get(t)!).push(c);
+      }
+      const ordenTipos = ["Creature", "Planeswalker", "Battle", "Instant", "Sorcery", "Enchantment", "Artifact", "Land", "Otro"];
+      for (const t of ordenTipos) {
+        const lista = grupos.get(t);
+        if (!lista?.length) continue;
+        const h = document.createElement("h3");
+        h.className = "mtg-grupo";
+        h.innerHTML = `${esc(t)} <span>${lista.reduce((n, c) => n + c.cantidad, 0)}</span>`;
+        rejilla.append(h);
+        bloque(ordenar(lista));
+      }
+    } else {
+      bloque(ordenar(visibles));
+    }
+  }
+
+  // ── Ficha de una carta ────────────────────────────────────────────────────
+  function abrirCarta(c: CartaMazo) {
+    const dialogo = $("#mtg-dialogo") as HTMLDialogElement;
+    const cuerpo = $("#mtg-dialogo-cuerpo");
+    const carta = c.carta;
+    const caras = carta.card_faces ?? [];
+    let cara = 0;
+    const pintar = () => {
+      const actual = caras[cara];
+      const imagen = actual?.image_uris?.normal ?? imagenDe(carta, "normal");
+      const texto = actual?.oracle_text ?? carta.oracle_text ?? "";
+      const tipo = actual?.type_line ?? carta.type_line ?? "";
+      const coste = actual?.mana_cost ?? carta.mana_cost ?? "";
+      const roles = rolesDe({ ...carta, oracle_text: texto, type_line: tipo });
+      const precio = carta.prices?.eur ?? carta.prices?.usd ?? null;
+      cuerpo.innerHTML = `
+        <div>${imagen ? `<img src="${esc(imagen)}" alt="${esc(actual?.name ?? carta.name)}" />` : ""}</div>
+        <div>
+          <h3>${esc(actual?.name ?? carta.name)}</h3>
+          <p class="mtg-dialogo__tipo">${esc(coste)} · ${esc(tipo)}</p>
+          <p>${esc(texto || "Sin texto Oracle.")}</p>
+          <p class="mtg-dialogo__tipo">${c.cantidad > 1 ? `${c.cantidad} copias · ` : ""}${precio ? `${Number(precio).toFixed(2)} ${carta.prices?.eur ? "EUR" : "USD"}` : "sin precio"}${c.tablero === "commander" ? " · comandante" : ""}</p>
+          ${roles.length ? `<p class="mtg-dialogo__tipo">Roles: ${roles.map((r) => ROLES[r].etiqueta).join(", ")}</p>` : ""}
+          ${caras.length > 1 ? `<button id="mtg-girar" class="btn btn--fantasma" type="button">Ver la otra cara</button>` : ""}
+        </div>`;
+      const girar = document.getElementById("mtg-girar");
+      if (girar) {
+        girar.addEventListener("click", () => {
+          cara = (cara + 1) % caras.length;
+          pintar();
+        });
+      }
+    };
+    pintar();
+    if (!dialogo.open) dialogo.showModal();
+  }
+
+  // ── IA ────────────────────────────────────────────────────────────────────
+  function claveGuardada(): string {
+    try {
+      return localStorage.getItem(CLAVE_IA) ?? "";
+    } catch {
+      return "";
+    }
+  }
+
+  function refrescarIA() {
+    const guardada = claveGuardada();
+    const olvidar = $("#mtg-olvidar") as HTMLButtonElement;
+    const clave = $("#mtg-clave") as HTMLInputElement;
+    olvidar.hidden = !guardada;
+    if (guardada) {
+      clave.value = "";
+      clave.placeholder = "Clave guardada (escríbela para cambiarla)";
+    } else {
+      clave.placeholder = "AIza…";
+    }
+  }
+
+  async function conIA() {
+    if (!mazoActual || !analisisActual) return;
+    const campo = $("#mtg-clave") as HTMLInputElement;
+    const clave = campo.value.trim() || claveGuardada();
+    if (!clave) {
+      estadoIA("Falta la clave: pégala arriba. Se obtiene gratis en Google AI Studio.", true);
+      campo.focus();
+      return;
+    }
+    const recordar = ($("#mtg-recordar") as HTMLInputElement).checked;
+    try {
+      if (recordar) localStorage.setItem(CLAVE_IA, clave);
+      else localStorage.removeItem(CLAVE_IA);
+    } catch {
+      // sin almacenamiento, la clave vive solo en esta página
+    }
+    estadoIA("Analizando el mazo con Gemini…");
+    const salida = $("#mtg-ia-salida");
+    salida.hidden = true;
+    try {
+      const texto = await analizarConIA(mazoActual, analisisActual, clave);
+      salida.innerHTML = texto
+        .split(/\n{2,}/)
+        .map((p) => `<p>${esc(p.replace(/\n/g, " "))}</p>`)
+        .join("");
+      salida.hidden = false;
+      estadoIA("Listo. La respuesta es una sugerencia del modelo, no una regla.");
+      refrescarIA();
+    } catch (error) {
+      estadoIA(String(error), true);
+    }
+  }
+
+  // ── Eventos ───────────────────────────────────────────────────────────────
+  $("#mtg-importar").addEventListener("click", () => {
+    const texto = ($("#mtg-texto") as HTMLTextAreaElement).value;
+    void importar(texto);
+  });
+
+  $("#mtg-limpiar").addEventListener("click", () => {
+    ($("#mtg-texto") as HTMLTextAreaElement).value = "";
+    estado("");
+  });
+
+  ($("#mtg-archivo") as HTMLInputElement).addEventListener("change", async (ev) => {
+    const archivo = (ev.target as HTMLInputElement).files?.[0];
+    if (!archivo) return;
+    const texto = await archivo.text();
+    ($("#mtg-texto") as HTMLTextAreaElement).value = texto;
+    void importar(texto);
+  });
+
+  $("#mtg-comandante-ok").addEventListener("click", () => {
+    if (!pendienteComandante) return;
+    const id = ($("#mtg-comandante-sel") as HTMLSelectElement).value;
+    const elegido = pendienteComandante.candidatos.find((c) => c.carta.id === id);
+    if (!elegido) return;
+    const mazo = pendienteComandante.mazo;
+    mazo.comandantes = [elegido];
+    mazo.cartas = mazo.cartas.filter((c) => c !== elegido);
+    mazo.nombre = `Mazo de ${elegido.carta.name}`;
+    pendienteComandante = null;
+    mazoActual = mazo;
+    guardarMazo(mazo);
+    render();
+    $("#mtg-comandante").hidden = true;
+    estado(`Listo: comandante ${elegido.carta.name}.`);
+    $("#mtg-ficha").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  $("#mtg-quitar").addEventListener("click", () => {
+    if (mazoActual) borrarMazo(mazoActual.id);
+  });
+
+  for (const sel of ["#mtg-f-texto", "#mtg-f-tipo", "#mtg-f-mv", "#mtg-f-color", "#mtg-f-rol", "#mtg-f-orden"]) {
+    const el = $(sel);
+    el.addEventListener(el instanceof HTMLInputElement ? "input" : "change", pintarRejilla);
+  }
+
+  $("#mtg-analizar").addEventListener("click", () => void conIA());
+  $("#mtg-olvidar").addEventListener("click", () => {
+    try {
+      localStorage.removeItem(CLAVE_IA);
+    } catch {
+      // nada
+    }
+    refrescarIA();
+    estadoIA("Clave olvidada.");
+  });
+
+  pintarGuardados();
+  refrescarIA();
+  if (leerMazos().length) {
+    // No se carga solo el último: el lector decide qué abrir.
+    $("#mtg-guardados").hidden = false;
+  }
+</script>

@@ -113,7 +113,10 @@
  *      selector se quede con un solo objeto.
  *  32. `tools/test/catalogo.mjs`: que el constructor de encuentros diga que el
  *      catálogo no ha llegado en vez de contestar que la criatura no existe.
- *  33. `tools/test/tarjetas.mjs` sobre `dist/`: que la tarjeta emergente pida su
+ *  33. `tools/test/commander.mjs`: que el parser del export de Moxfield, los
+ *      roles, la legalidad, el bracket y el resolver de mazos de la herramienta
+ *      de Commander sigan cumpliendo lo que prometen.
+ *  34. `tools/test/tarjetas.mjs` sobre `dist/`: que la tarjeta emergente pida su
  *      índice delgado (`/datos/<edición>-tarjetas.json`) y no el catálogo
  *      entero, que se quede por debajo de 60 000 B, que cubra cada ficha
  *      enlazada con `data-tarjeta` y que cada valor sea el del catálogo.
@@ -352,6 +355,13 @@ if (catalogoCaido !== 0) {
   process.exit(catalogoCaido);
 }
 
+console.log("▶ Herramienta de Commander: commander.mjs (src/lib/commander/)");
+const commander = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/commander.mjs")]);
+if (commander !== 0) {
+  console.error("✗ El parser del export, los roles, la legalidad, el bracket o el resolver de mazos de Commander han dejado de cumplir lo que prometen.");
+  process.exit(commander);
+}
+
 console.log("▶ Tarjetas emergentes: tarjetas.mjs (dist/)");
 const tarjetas = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/tarjetas.mjs")]);
 if (tarjetas !== 0) {
@@ -359,4 +369,4 @@ if (tarjetas !== 0) {
   process.exit(tarjetas);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/ y el índice delgado de la tarjeta emergente");
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket) y el índice delgado de la tarjeta emergente)");

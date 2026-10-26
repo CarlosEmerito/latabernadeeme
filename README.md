@@ -50,7 +50,7 @@ Además del texto:
 
 ## Empezar
 
-Requiere **Node >= 22.22**.
+Requiere **Node >= 22.23.4** (Astro 7.4.2 no arranca en versiones anteriores).
 
 ```bash
 npm install

@@ -19,6 +19,7 @@ import { rolesDe } from "../../src/lib/commander/roles.ts";
 import { analizarMazo } from "../../src/lib/commander/analisis.ts";
 import { consejoDe } from "../../src/lib/commander/consejo.ts";
 import { analizarConIA, promptDe } from "../../src/lib/commander/ia.ts";
+import { markdownDe, sinIntroduccion } from "../../src/lib/commander/markdown.ts";
 import { resolverCartas } from "../../src/lib/commander/scryfall.ts";
 
 const fallos = [];
@@ -250,6 +251,9 @@ titulo("Consejo determinista");
   comprobar(prompt.includes("Comandante Verde"), "el prompt no nombra al comandante");
   comprobar(prompt.includes("Rampa 1"), "el prompt no incluye la lista del mazo");
   comprobar(prompt.includes("Bracket"), "el prompt no incluye el bracket");
+  comprobar(prompt.includes("Empieza directamente"), "el prompt no pide ir al grano");
+  comprobar(prompt.includes("Markdown"), "el prompt no pide Markdown");
+  comprobar(!prompt.includes("idea del mazo"), "el prompt sigue pidiendo la introducción");
 }
 
 // ── IA: techo de tokens y errores ──────────────────────────────────────────
@@ -325,6 +329,27 @@ titulo("IA: techo de tokens y errores");
     error = String(e);
   }
   comprobar(error.includes("cuota"), `sin error de cuota: ${error || "no lanzó"}`);
+}
+
+// ── Presentación de la respuesta ───────────────────────────────────────────
+titulo("Markdown y recorte de la introducción");
+{
+  const html = markdownDe("## Plan por turnos\n\n### 1-3\n\n- **Sol Ring**\n- Arcane Signet\n\nTexto");
+  comprobar(html.includes("<h2>Plan por turnos</h2>"), "no convierte el h2");
+  comprobar(html.includes("<h3>1-3</h3>"), "no convierte el h3");
+  comprobar(html.includes("<ul>") && html.includes("<strong>Sol Ring</strong>"), "no convierte lista y negrita");
+  const crudo = markdownDe("<script>alert(1)</script>");
+  comprobar(!crudo.includes("<script>"), "markdown-it deja pasar HTML crudo");
+}
+{
+  const saludo = sinIntroduccion("¡Excelente elección de comandante!\n\n## Plan\n\n- x");
+  comprobar(saludo.startsWith("## Plan") && !saludo.includes("Excelente"), `saludo: ${saludo.slice(0, 40)}`);
+  const resumen = sinIntroduccion("Este mazo es un potente arquetipo de Equipment.\n\n## Plan\n\n- x");
+  comprobar(resumen.startsWith("## Plan"), `resumen: ${resumen.slice(0, 40)}`);
+  const directo = "## Plan\n\n- x";
+  comprobar(sinIntroduccion(directo) === directo, "toca una respuesta que ya va al grano");
+  const conLista = "- uno\n- dos\n\n## Plan";
+  comprobar(sinIntroduccion(conLista) === conLista, "se come una respuesta que empieza por lista");
 }
 
 // ── Resultado ───────────────────────────────────────────────────────────────

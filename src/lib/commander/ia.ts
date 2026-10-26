@@ -34,7 +34,10 @@ export function promptDe(mazo: Mazo, a: Analisis): string {
   return [
     "Eres un jugador experto de Magic: The Gathering, formato Commander (100 cartas, multijugador de 4).",
     "Vas a aconsejar cómo jugar este mazo concreto. No inventes cartas que no estén en la lista ni cambies su legalidad.",
-    "Responde en español, en 6-10 párrafos cortos, con estas partes: (1) idea del mazo en dos frases; (2) plan por turnos (1-3, 4-6, 7+); (3) qué mano inicial buscar y cuándo hacer mulligan; (4) tres errores típicos con este mazo; (5) dos cambios concretos que probarías, sin comprar nada caro.",
+    "Empieza directamente por el plan: no saludes, no digas «¡Excelente elección!», no resumas el mazo en una introducción y no repitas la lista de cartas.",
+    "Responde en español y en Markdown: un `##` por bloque (Plan por turnos, Mano inicial, Errores típicos, Cambios concretos), listas con `-` y los nombres de carta en negrita. Nada de párrafos largos.",
+    "En el plan por turnos usa tres apartados con `###`: 1-3, 4-6 y 7+.",
+    "En «Errores típicos» pon exactamente tres; en «Cambios concretos», dos, y que no cuesten dinero.",
     "",
     `Comandante: ${a.comandante ?? "sin comandante"}`,
     `Cartas: ${a.total} · tierras: ${a.tierras} · media de valor: ${a.media.toFixed(1)} · bracket estimado: ${a.bracket.etiqueta}`,

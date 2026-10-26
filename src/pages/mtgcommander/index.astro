@@ -746,6 +746,51 @@ import { e } from "../../lib/urls";
     margin: 0 0 0.7rem;
   }
 
+  .mtg-ia__salida h2 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    margin: 1.2rem 0 0.45rem;
+    color: var(--ink);
+  }
+
+  .mtg-ia__salida h3 {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0.9rem 0 0.3rem;
+    color: var(--ink);
+  }
+
+  .mtg-ia__salida h2:first-child {
+    margin-top: 0;
+  }
+
+  .mtg-ia__salida ul,
+  .mtg-ia__salida ol {
+    margin: 0 0 0.8rem;
+    padding-left: 1.25rem;
+  }
+
+  .mtg-ia__salida li {
+    margin-bottom: 0.3rem;
+  }
+
+  .mtg-ia__salida strong {
+    color: var(--ink);
+  }
+
+  .mtg-ia__salida code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    background: var(--surface-2);
+    border-radius: 3px;
+    padding: 0.05rem 0.25rem;
+  }
+
+  .mtg-ia__salida a {
+    color: var(--accent);
+  }
+
   .mtg-dialogo {
     border: 1px solid var(--rule-2);
     border-radius: var(--r);
@@ -839,6 +884,7 @@ import { e } from "../../lib/urls";
   import { analizarMazo, type Analisis } from "../../lib/commander/analisis";
   import { consejoDe } from "../../lib/commander/consejo";
   import { analizarConIA } from "../../lib/commander/ia";
+  import { markdownDe, sinIntroduccion } from "../../lib/commander/markdown";
   import {
     COLORES,
     NOMBRE_COLOR,
@@ -1307,10 +1353,7 @@ import { e } from "../../lib/urls";
     salida.hidden = true;
     try {
       const texto = await analizarConIA(mazoActual, analisisActual, clave);
-      salida.innerHTML = texto
-        .split(/\n{2,}/)
-        .map((p) => `<p>${esc(p.replace(/\n/g, " "))}</p>`)
-        .join("");
+      salida.innerHTML = markdownDe(sinIntroduccion(texto));
       salida.hidden = false;
       estadoIA("Listo. La respuesta es una sugerencia del modelo, no una regla.");
       refrescarIA();

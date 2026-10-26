@@ -1,0 +1,96 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { e } from "../../../lib/urls";
+---
+
+<Base
+  title="Licencias de Commander"
+  description="De dónde salen los datos y las imágenes de la herramienta de Commander, qué licencia tienen y qué no hace la sección."
+  seccion="Commander"
+  etiqueta="La Taberna"
+  buscador={false}
+  ancho
+>
+  <header class="cabecera">
+    <p class="cabecera__eyebrow">Transparencia</p>
+    <h1>Licencias de Commander</h1>
+    <p class="cabecera__lede">
+      Esta sección es una herramienta no oficial para consultar tus mazos. Aquí está de dónde sale
+      cada cosa y qué se puede hacer con ella.
+    </p>
+  </header>
+
+  <article class="prosa">
+    <h2>Aviso de contenido no oficial</h2>
+    <blockquote>
+      <p lang="en">
+        La Taberna de Eme (Commander) is unofficial Fan Content permitted under the Fan Content
+        Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of
+        Wizards of the Coast. ©Wizards of the Coast LLC.
+      </p>
+    </blockquote>
+    <p>
+      Es decir: la herramienta es contenido de aficionado, gratuito y sin registro, hecha bajo la
+      <a href="https://company.wizards.com/en/legal/fancontentpolicy" rel="noopener">Fan Content Policy</a>
+      de Wizards of the Coast. No está aprobada ni respaldada por Wizards, y no usa sus logotipos ni
+      sus símbolos de maná como identidad. Los nombres de las cartas y del formato se usan de forma
+      descriptiva, para saber de qué se habla.
+    </p>
+
+    <h2>Datos e imágenes: Scryfall</h2>
+    <p>
+      Los datos de las cartas —nombre, coste, tipo, texto Oracle, legalidad, precio y color— y las
+      imágenes vienen de <a href="https://scryfall.com/" rel="noopener">Scryfall</a>, que los publica
+      para contenido sobre Magic bajo la misma Fan Content Policy. La herramienta los consulta
+      directamente desde tu navegador y no los copia a ningún servidor propio.
+    </p>
+    <ul>
+      <li>No se recortan, deforman, filtran ni se les tapa el copyright ni el nombre del artista: se muestran enteras.</li>
+      <li>No hay paywall, ni registro, ni suscripción para ver nada.</li>
+      <li>No se republica la base de datos de Scryfall ni se hace de proxy: se consulta la carta que pide tu mazo y se muestra con un análisis encima.</li>
+      <li>Los precios son orientativos y Scryfall solo los actualiza una vez al día: no sirven para comprar o vender.</li>
+    </ul>
+
+    <h2>El mazo: Moxfield</h2>
+    <p>
+      El mazo entra <strong>pegando el export en texto</strong> (More → Export → Plain Text) o
+      soltando un <code>.txt</code>. No se pide la URL del mazo: Moxfield no tiene una API pública y
+      bloquea a los importadores de terceros, así que la herramienta no intenta saltarse ese
+      bloqueo. Tampoco se scrapea Moxfield ni se guarda nada en un servidor: el texto que pegas y el
+      mazo resuelto viven en el almacenamiento de tu navegador.
+    </p>
+
+    <h2>La IA es opcional y va con tu clave</h2>
+    <p>
+      El informe de «Plan de juego» lo calcula la propia página con los datos del mazo: no llama a
+      ningún modelo. El botón <strong>Analizar con IA</strong> es otra cosa: solo funciona si pegas tu
+      propia clave de Gemini API, y entonces el resumen del mazo se envía directamente desde tu
+      navegador a Google. La clave se guarda en tu navegador si marcas la casilla. En la capa gratuita
+      de Gemini, Google puede usar los prompts para mejorar sus productos; si eso te importa, no uses
+      el botón o usa una clave de pago.
+    </p>
+
+    <h2>Marcas</h2>
+    <p>
+      Magic: The Gathering, Commander y los nombres de las cartas son marcas de Wizards of the Coast
+      LLC. «Commander» se usa aquí para nombrar el formato, no como marca de esta web. Esta sección no
+      está afiliada, patrocinada ni respaldada por Wizards of the Coast.
+    </p>
+
+    <h2>Analítica del sitio</h2>
+    <p>
+      La web usa Cloudflare Web Analytics, la única petición a un tercero que hace la página, sin
+      cookies. Está detallada en la <a href={e("/licencias/")}>página de licencias del sitio</a>.
+    </p>
+
+    <h2>Qué no hace esta herramienta</h2>
+    <ul>
+      <li>No copia mazos ajenos a la web ni los publica.</li>
+      <li>No vende nada, no pide cuenta y no limita el acceso.</li>
+      <li>No decide si un mazo es «bueno»: cuenta roles, comprueba legalidad y estima un bracket.</li>
+      <li>No sustituye a la conversación de la mesa: el bracket es una guía, no una regla.</li>
+    </ul>
+
+    <p><a href={e("/mtgcommander/")}>Volver a la herramienta</a></p>
+  </article>
+</Base>

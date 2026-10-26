@@ -346,4 +346,11 @@ if (catalogoCaido !== 0) {
   process.exit(catalogoCaido);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros y la puerta de huérfanos mirando tools/");
+console.log("▶ Herramienta de Commander: commander.mjs (src/lib/commander/)");
+const commander = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/commander.mjs")]);
+if (commander !== 0) {
+  console.error("✗ El parser del export, los roles, la legalidad, el bracket o el resolver de mazos de Commander han dejado de cumplir lo que prometen.");
+  process.exit(commander);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/ y la herramienta de Commander (export, roles, legalidad y bracket)");

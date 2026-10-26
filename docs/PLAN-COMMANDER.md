@@ -1,6 +1,9 @@
 # Commander: importar un mazo de Moxfield, verlo y aconsejarlo
 
-Plan y análisis de viabilidad. **Nada de esto está implementado.** Fecha: 26 de octubre de 2026.
+Plan y análisis de viabilidad. Fecha: 26 de octubre de 2026.
+
+**Estado:** decisiones tomadas. Fases F0-F4 hechas (importador, ficha, análisis, consejo y botón
+de IA opcional); F5 (mazos propios como páginas estáticas) pendiente de los exports del autor.
 
 ## 1. Qué es y cómo se usa
 
@@ -81,7 +84,7 @@ El sitio hoy promete «solo contenido del SRD, CC BY 4.0». MTG es otra cosa:
   añadimos el análisis del mazo, así que cumplimos; las imágenes se muestran enteras.
 - **Fan Content Policy**: gratis para el usuario (sin pago, encuesta, registro ni suscripción), sin
   logos ni símbolos de Wizards como identidad, y con el aviso de no oficial. Texto exacto que habrá
-  que poner en `/commander/` y en su pie:
+  que poner en `/mtgcommander/` y en su pie:
   > La Taberna de Eme (Commander) is unofficial Fan Content permitted under the Fan Content Policy.
   > Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the
   > Coast. ©Wizards of the Coast LLC.
@@ -109,10 +112,10 @@ de funcionar cualquier día.
 Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegador.
 
 ```
-/commander/                     importador + mazo + consejo (una página con estados)
-/commander/mazo/<slug>/         mazo propio, estático (solo los del repo)
-/commander/como-se-juega/       guía corta de Commander (reglas, brackets, mulligan)
-/commander/licencias/           Fan Content, Scryfall y qué no se puede hacer
+/mtgcommander/                     importador + mazo + consejo (una página con estados)
+/mtgcommander/mazo/<slug>/         mazo propio, estático (solo los del repo)
+/mtgcommander/como-se-juega/       guía corta de Commander (reglas, brackets, mulligan)
+/mtgcommander/licencias/           Fan Content, Scryfall y qué no se puede hacer
 ```
 
 - **Entrada**: `<textarea>` para el export + arrastrar un `.txt`; botón «Importar».
@@ -153,7 +156,7 @@ legalidad ni el bracket. Se etiqueta como sugerencia y se avisa de que el mazo s
 
 | Fase | Qué | Criterio de aceptación | Esfuerzo |
 |---|---|---|---|
-| F0 | Licencias, rutas y aviso de Fan Content | `/commander/licencias/` publicada y pie con el texto exacto | 0,5 |
+| F0 | Licencias, rutas y aviso de Fan Content | `/mtgcommander/licencias/` publicada y pie con el texto exacto | 0,5 |
 | F1 | Export → Scryfall → rejilla de las 100 cartas | Un mazo de 100 se ve en <3 s; ninguna carta perdida sin aviso; copias agrupadas | 2-3 |
 | F2 | Ficha, filtros, stats, legalidad y bracket | Filtros por tipo/MV/color/rol; legalidad y bracket con datos; axe limpio; 360/390 sin scroll horizontal | 2 |
 | F3 | Consejo determinista | Informe con roles, curva y plan por turnos; cada frase sale de un dato del mazo | 2 |
@@ -175,11 +178,9 @@ la IA.
 - **Peso**: 100 imágenes `small` con `lazy`; la ficha carga la `normal` solo al abrirla.
 - **Privacidad**: el mazo vive en el navegador; la IA es opt-in y con la clave del usuario.
 
-## 10. Decisiones que hacen falta
+## 10. Decisiones tomadas (26/10/2026)
 
-1. **Entrada**: export pegado (recomendado) o además URL con Worker (frágil).
-2. **Sitio**: sección `/commander/` dentro de La Taberna, con su aviso y sin tocar los títulos de
-   D&D (recomendado), o sitio aparte.
-3. **IA**: consejo determinista gratis + botón opcional con clave gratuita de Gemini (recomendado),
-   solo determinista, o IA con clave del sitio (coste y abuso).
-4. **Compartir**: mazos propios como páginas estáticas del repo (recomendado) o solo local.
+1. **Entrada**: export pegado. La URL de Moxfield no se intenta.
+2. **Sitio**: sección `/mtgcommander/`, con su aviso de Fan Content y sin tocar los títulos de D&D.
+3. **IA**: consejo determinista gratis + botón opcional con la clave gratuita de Gemini del usuario.
+4. **Compartir**: mazos propios como páginas estáticas del repo; pendiente de F5.

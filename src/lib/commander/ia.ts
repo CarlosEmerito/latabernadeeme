@@ -1,0 +1,96 @@
+/**
+ * La parte de IA, opcional y con la clave del usuario.
+ *
+ * No hay servidor ni clave del sitio: la llamada sale del navegador a Google con
+ * la clave que el usuario pegue. Sin clave, esta función no se llama.
+ *
+ * El modelo recibe el mazo ya resuelto y el análisis hecho: su trabajo es
+ * redactar estrategia, no decidir legalidad ni bracket.
+ */
+import type { Analisis } from "./analisis.ts";
+import type { Mazo } from "./tipos.ts";
+
+const MODELO = "gemini-2.5-flash";
+const URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODELO}:generateContent`;
+
+/** Prompt con el mazo y el análisis; ~6.000 tokens para 100 cartas. */
+export function promptDe(mazo: Mazo, a: Analisis): string {
+  const lista = [...mazo.comandantes, ...mazo.cartas]
+    .filter((c) => c.tablero !== "side" && c.tablero !== "maybeboard")
+    .map((c) => {
+      const texto = [c.carta.oracle_text ?? "", ...(c.carta.card_faces ?? []).map((f) => f.oracle_text ?? "")]
+        .join(" ")
+        .replace(/\s+/g, " ")
+        .trim();
+      return `${c.cantidad} ${c.carta.name} | ${c.carta.mana_cost ?? "—"} | ${c.carta.type_line} | ${texto}`;
+    })
+    .join("\n");
+
+  const roles = a.roles
+    .filter((r) => r.n > 0)
+    .map((r) => `${r.etiqueta}: ${r.n}${r.cartas.length ? ` (${r.cartas.slice(0, 6).join(", ")})` : ""}`)
+    .join("\n");
+
+  return [
+    "Eres un jugador experto de Magic: The Gathering, formato Commander (100 cartas, multijugador de 4).",
+    "Vas a aconsejar cómo jugar este mazo concreto. No inventes cartas que no estén en la lista ni cambies su legalidad.",
+    "Responde en español, en 6-10 párrafos cortos, con estas partes: (1) idea del mazo en dos frases; (2) plan por turnos (1-3, 4-6, 7+); (3) qué mano inicial buscar y cuándo hacer mulligan; (4) tres errores típicos con este mazo; (5) dos cambios concretos que probarías, sin comprar nada caro.",
+    "",
+    `Comandante: ${a.comandante ?? "sin comandante"}`,
+    `Cartas: ${a.total} · tierras: ${a.tierras} · media de valor: ${a.media.toFixed(1)} · bracket estimado: ${a.bracket.etiqueta}`,
+    `Identidad: ${a.identidad.join("") || "incolora"}`,
+    "",
+    "Recuentos por rol:",
+    roles,
+    "",
+    "Lista completa (cantidad, nombre, coste, tipo, texto):",
+    lista,
+  ].join("\n");
+}
+
+/** Mensaje de error legible a partir de la respuesta de Google. */
+async function errorDe(respuesta: Response): Promise<string> {
+  if (respuesta.status === 400 || respuesta.status === 403) {
+    return "Google ha rechazado la clave. Revisa que sea una clave de Gemini API y que la API esté activada.";
+  }
+  if (respuesta.status === 429) {
+    return "Has agotado la cuota gratuita de Gemini por ahora. Espera un rato o cambia de modelo.";
+  }
+  let detalle = "";
+  try {
+    const cuerpo = (await respuesta.json()) as { error?: { message?: string } };
+    detalle = cuerpo.error?.message ?? "";
+  } catch {
+    // sin cuerpo legible
+  }
+  return `Gemini ha respondido ${respuesta.status}${detalle ? `: ${detalle}` : ""}.`;
+}
+
+/** Llama a Gemini y devuelve el texto. Lanza con un mensaje en español. */
+export async function analizarConIA(
+  mazo: Mazo,
+  analisis: Analisis,
+  clave: string,
+  fetchImpl: typeof fetch = fetch,
+): Promise<string> {
+  const limpia = clave.trim();
+  if (!limpia) throw new Error("Falta la clave de Gemini.");
+  const respuesta = await fetchImpl(`${URL}?key=${encodeURIComponent(limpia)}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ role: "user", parts: [{ text: promptDe(mazo, analisis) }] }],
+      generationConfig: { temperature: 0.4, maxOutputTokens: 1400 },
+    }),
+  });
+  if (!respuesta.ok) throw new Error(await errorDe(respuesta));
+  const datos = (await respuesta.json()) as {
+    candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
+  };
+  const texto = (datos.candidates?.[0]?.content?.parts ?? [])
+    .map((p) => p.text ?? "")
+    .join("")
+    .trim();
+  if (!texto) throw new Error("Gemini ha contestado sin texto. Prueba otra vez.");
+  return texto;
+}

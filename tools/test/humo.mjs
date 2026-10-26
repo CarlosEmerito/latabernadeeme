@@ -1848,6 +1848,40 @@ try {
   fallo("tarjeta social", String(e));
 }
 
+// La herramienta de Commander: importador, aviso y licencias.
+//
+// No se importa un mazo aquí: eso llama a Scryfall y la pasada del humo no
+// tiene por qué depender de la red. El parser y el análisis los cubre
+// `tools/test/commander.mjs`; aquí se mira que la página exista, que el aviso
+// de Fan Content esté publicado y que axe no encuentre nada.
+try {
+  const pag = await abrir(`${BASE}/mtgcommander/`);
+  const d = await evaluar(
+    pag,
+    `(() => ({
+      h1: document.querySelector('h1')?.textContent?.trim(),
+      texto: !!document.querySelector('#mtg-texto'),
+      aviso: document.querySelector('.mtg-aviso')?.textContent?.includes('unofficial Fan Content'),
+      enlace: !!document.querySelector('a[href*="mtgcommander/licencias"]'),
+    }))()`,
+  );
+  if (d.h1 !== "Commander" || !d.texto || !d.aviso || !d.enlace)
+    fallo("Commander: importador y aviso", JSON.stringify(d));
+  else bien("Commander: importador, aviso de Fan Content y enlace a licencias");
+  await axeEn(pag, "Commander");
+
+  await ir(pag, `${BASE}/mtgcommander/licencias/`);
+  const l = await evaluar(
+    pag,
+    `(() => ({ h1: document.querySelector('h1')?.textContent?.trim(), fan: document.body.textContent.includes('Fan Content Policy') }))()`,
+  );
+  if (l.h1 !== "Licencias de Commander" || !l.fan) fallo("Commander: licencias", JSON.stringify(l));
+  else bien("Commander: la página de licencias explica la Fan Content Policy");
+  await axeEn(pag, "licencias de Commander");
+} catch (e) {
+  fallo("Commander", String(e));
+}
+
 // Maqueta en móvil: ninguna página puede pedir scroll horizontal.
 //
 // Las puertas medían el sitio solo en el ancho de escritorio. A 390 px, diez

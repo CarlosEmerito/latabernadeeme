@@ -27,6 +27,16 @@ interface Props {
    * portada la usa: es la única página que no habla de una entrada concreta.
    */
   tarjeta?: { src: string; ancho: number; alto: number; alt?: string };
+  /**
+   * Sufijo del `<title>` cuando la página no es de D&D. Las de Commander lo
+   * usan para no anunciarse como «D&D 5e y 5.5e».
+   */
+  etiqueta?: string;
+  /**
+   * El buscador superior busca en el catálogo de D&D; una página de otro juego
+   * lo oculta para no mandar al lector a conjuros cuando busca cartas.
+   */
+  buscador?: boolean;
 }
 
 const {
@@ -39,10 +49,12 @@ const {
   seccion,
   tipoOg = "website",
   tarjeta,
+  etiqueta,
+  buscador = true,
 } = Astro.props;
 
 const SITIO = "La Taberna de Eme";
-const ETIQUETA = edicion ? (edicion === "5e" ? "D&D 5e" : "D&D 5.5e") : "D&D 5e y 5.5e";
+const ETIQUETA = etiqueta ?? (edicion ? (edicion === "5e" ? "D&D 5e" : "D&D 5.5e") : "D&D 5e y 5.5e");
 const tituloCompleto =
   title === SITIO
     ? `${SITIO} — ${ETIQUETA} en español`
@@ -137,11 +149,13 @@ const tarjetaSocial = tarjeta
         <span class="marca__nombre">La Taberna de Eme</span>
       </a>
 
-      <form class="buscador-top" role="search" aria-label="Buscar en la taberna" action={e("/buscar/")} method="get">
-        <span class="lupa" aria-hidden="true">⌕</span>
-        <input type="search" name="q" placeholder="Conjuro, monstruo, objeto…" aria-label="Buscar en la taberna" />
-        <kbd>↵</kbd>
-      </form>
+      {buscador && (
+        <form class="buscador-top" role="search" aria-label="Buscar en la taberna" action={e("/buscar/")} method="get">
+          <span class="lupa" aria-hidden="true">⌕</span>
+          <input type="search" name="q" placeholder="Conjuro, monstruo, objeto…" aria-label="Buscar en la taberna" />
+          <kbd>↵</kbd>
+        </form>
+      )}
 
       <div class="topbar__acciones">
         <div class="segmento" role="group" aria-label="Edición">
@@ -233,6 +247,7 @@ const tarjetaSocial = tarjeta
           <p>
             <a href={e("/cambios/")}>Qué cambia entre ediciones</a> ·
             <a href={e("/mesa/")}>Mesa</a> ·
+            <a href={e("/mtgcommander/")}>MTG Commander</a> ·
             <a href={e("/licencias/")}>Licencias y fuentes</a> ·
             <a href={e("/accesibilidad/")}>Accesibilidad</a>
           </p>

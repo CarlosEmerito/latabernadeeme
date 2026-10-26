@@ -31,6 +31,7 @@ Además del texto:
 - **Buscador** con Pagefind, indexado en cada compilación y enlazable: `/buscar/?q=goblin`.
 - **Comparador 5e ↔ 5.5** de conjuros, monstruos, objetos y equipo, con las diferencias alineadas bloque a bloque.
 - **Herramientas de mesa** en `/mesa/`: constructor de encuentros, ajuste de criaturas y estimación de VD, iniciativa con vista para jugadores —con quitar un combatiente caído y vaciar el combate—, dados, PNJ y botín.
+- **Commander (Magic: The Gathering)** en `/mtgcommander/`: pega el export de Moxfield, indexa las 100 cartas, calcula rampa, robo, interacción, legalidad y bracket, y redacta un plan de juego. La IA es opcional y funciona con la clave gratuita de Gemini que ponga cada usuario.
 - **Pantalla del DM** en `/mesa/pantalla/`, con paneles configurables e imprimibles.
 - **Filtros y orden que entienden el español**: «dragon» encuentra «Dragón», «thunderwave» encuentra «Ola atronadora» —el nombre inglés va detrás del español en el mismo filtro—, «Mediano» y «Mediana» son la misma casilla y «40 000 po» ordena por valor, no por la primera cifra.
 - **Tema claro y oscuro**, navegación por teclado, foco visible y estilos de impresión para llevar una ficha a la mesa.
@@ -47,6 +48,7 @@ Además del texto:
   Analytics** (`static.cloudflareinsights.com`, unos 31 KB, `defer`), sin cookies. Está detallado en
   [/licencias/](https://carlosemerito.github.io/latabernadeeme/licencias/).
 - **Metadatos sociales**: canónica absoluta y `og:image` por página, con la tarjeta generada al compilar.
+- **Commander**: Scryfall para las cartas y las imágenes (CORS abierto, sin servidor propio) y, solo si el usuario lo pide, Gemini con su propia clave.
 
 ## Empezar
 
@@ -89,7 +91,7 @@ La ingesta es la parte delicada: un PDF a dos columnas se rompe en cualquier sit
 
 ```bash
 npm run build           # compila dist/
-npm run verificar       # 32 pasos: datos, enlaces, ids, filtros, alias, SEO, cifras… (sin navegador)
+npm run verificar       # 33 pasos: datos, enlaces, ids, filtros, alias, SEO, cifras, Commander… (sin navegador)
 npm run verificar:humo  # pruebas de humo en Chrome headless, maqueta a 360 y 390 px incluida
 ```
 
@@ -106,6 +108,7 @@ Este repositorio mezcla tres cosas y cada una tiene su licencia:
 - **Código** (`src/`, `tools/`, `.github/` y la configuración): **MIT**, en [LICENSE](LICENSE). Úsalo, modifícalo y redistribúyelo citando la autoría.
 - **Contenido propio** (textos de `data/` y `docs/`, este README y las imágenes e iconos del sitio): **CC BY 4.0**, en [LICENSE-CONTENT](LICENSE-CONTENT).
 - **Texto del SRD**: procede del **SRD 5.1** y del **SRD 5.2.1** de Wizards of the Coast LLC, publicado bajo **Creative Commons Atribución 4.0 Internacional (CC BY 4.0)**: se puede copiar, transformar y redistribuir con atribución, incluso comercialmente. La atribución obligatoria está en [LICENSE-CONTENT](LICENSE-CONTENT).
+- **Sección Commander**: los datos e imágenes de *Magic: The Gathering* vienen de [Scryfall](https://scryfall.com/) y se usan bajo la **Fan Content Policy** de Wizards of the Coast; **no son CC BY**. El detalle está en [`/mtgcommander/licencias/`](https://carlosemerito.github.io/latabernadeeme/mtgcommander/licencias/).
 - **Tipografías**: Newsreader, Instrument Sans y Geist Mono, bajo **SIL Open Font License 1.1**.
 
 Si reutilizas el contenido, mantén el aviso de atribución a Wizards of the Coast y a este repositorio. Los nombres y marcas de los productos citados pertenecen a sus titulares.

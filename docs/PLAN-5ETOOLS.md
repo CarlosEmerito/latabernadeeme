@@ -159,7 +159,7 @@ Strahd*, *Tyranny of Dragons* y el resto de aventuras.
 
 ### 4.3 Lo que nosotros tenemos hoy
 
-3.579 páginas, 2.502 entradas, 0 imágenes, 0 aventuras, 0 prosa de ambientación.
+3.581 páginas, 2.502 entradas, 0 imágenes, 0 aventuras, 0 prosa de ambientación.
 
 Es decir: **el giro multiplica el contenido por 10–15 y añade dos categorías nuevas** (libros y
 aventuras) que hoy no existen en el proyecto.

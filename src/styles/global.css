@@ -350,7 +350,11 @@ kbd {
 
 @media (max-width: 980px) {
   .shell {
-    grid-template-columns: 1fr;
+    /* `1fr` conserva el mínimo de contenido de la pista: una tabla ancha dentro
+       del listado estiraba la columna y la página entera pedía scroll
+       horizontal (7 px a 360 px en los listados, más en las fichas de clase).
+       `minmax(0, 1fr)` deja que el hijo scrolle dentro de su panel. */
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -441,6 +445,11 @@ kbd {
 
 @media (max-width: 980px) {
   .main {
+    /* Un ítem de rejilla con `width: auto` se encoge a su contenido: en un
+       listado el mínimo eran 366,8 px y la página pedía 7 px de scroll en un
+       móvil de 360. Al 100 % de su pista no pasa del ancho que le toca. Solo en
+       móvil: en escritorio el ancho actual (al contenido) es el de siempre. */
+    width: 100%;
     padding: 1.25rem 1rem 3rem;
   }
 }
@@ -498,6 +507,15 @@ kbd {
   font-size: 0.78rem;
   color: var(--ink-3);
   white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  /* La pantalla del DM publica un párrafo largo aquí: con `nowrap` su cabecera
+     medía 718 px y la página pedía 344 px de scroll horizontal en un móvil. */
+  .cabecera__meta {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
 }
 
 .cabecera__meta b {
@@ -706,7 +724,10 @@ kbd {
 
 @media (max-width: 1080px) {
   .ficha {
-    grid-template-columns: 1fr;
+    /* Por el mismo motivo que `.shell`: con `1fr`, la tabla de progresión de las
+       clases del 5.1 —cinco columnas— fijaba el ancho de la ficha en su
+       mínimo de contenido y la página se iba a 671 px en un móvil de 390. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
   }
 }
@@ -860,6 +881,15 @@ kbd {
   font-size: 1.0375rem;
   line-height: 1.62;
   max-width: 68ch;
+}
+
+/* Las URLs de la atribución no tienen dónde partirse: sin esto, /licencias/
+   pedía 33 px de scroll horizontal a 390 px. Solo en el texto, no en las
+   tablas: `anywhere` también reduce el mínimo de una celda y partiría las
+   palabras de una tabla para que cupiera. */
+.prosa p,
+.prosa li {
+  overflow-wrap: anywhere;
 }
 
 .prosa h2 {

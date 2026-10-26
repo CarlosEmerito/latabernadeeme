@@ -127,6 +127,16 @@
   margin-top: 1rem;
 }
 
+@media (max-width: 980px) {
+  /* En un móvil la tabla de un listado no cabe (367 px de mínimo en conjuros a
+     360): con `clip` las columnas de la derecha se cortaban sin forma de
+     llegar a ellas, así que el panel pasa a desplazarse. La cabecera deja de
+     ser pegajosa en ese ancho, que es lo que `clip` protegía. */
+  .panel-tabla {
+    overflow-x: auto;
+  }
+}
+
 .panel-tabla .tabla thead th {
   background: var(--surface-2);
   color: var(--ink-2);

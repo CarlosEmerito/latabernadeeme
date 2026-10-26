@@ -1848,6 +1848,50 @@ try {
   fallo("tarjeta social", String(e));
 }
 
+// Maqueta en móvil: ninguna página puede pedir scroll horizontal.
+//
+// Las puertas medían el sitio solo en el ancho de escritorio. A 390 px, diez
+// fichas de clase del 5.1 se iban a más de 600 px —la tabla de progresión de
+// cinco columnas empujaba la pista `1fr` de la ficha— y la pantalla del DM a
+// 734 px, por la línea `white-space: nowrap` de su cabecera: el lector tenía
+// que arrastrar la página entera para leer una fila. Se mide el documento, no
+// una captura: `scrollWidth - clientWidth` es el desbordamiento real.
+try {
+  const pag = await abrir(`${BASE}/`);
+  const casos = [
+    ["/", "portada"],
+    ["/5e/clases/mago/", "clase del 5.1"],
+    ["/5e/clases/barbaro/", "clase del 5.1 con tabla corta"],
+    ["/5.5/clases/mago/", "clase del 5.2.1"],
+    ["/5e/conjuros/", "listado del 5.1"],
+    ["/5.5/monstruos/", "listado del 5.2.1"],
+    ["/mesa/pantalla/", "pantalla del DM"],
+    ["/licencias/", "licencias"],
+  ];
+  const malos = [];
+  for (const [ruta, etiqueta] of casos) {
+    await ir(pag, `${BASE}${ruta}`);
+    for (const ancho of [360, 390]) {
+      await pag.enviar("Emulation.setDeviceMetricsOverride", {
+        width: ancho,
+        height: 844,
+        deviceScaleFactor: 2,
+        mobile: true,
+      });
+      const desborde = await evaluar(
+        pag,
+        "(() => { const d = document.documentElement; return d.scrollWidth - d.clientWidth; })()",
+      );
+      if (desborde > 1) malos.push(`${etiqueta} a ${ancho} px: ${desborde} px`);
+    }
+  }
+  await pag.enviar("Emulation.clearDeviceMetricsOverride");
+  if (!malos.length) bien("maqueta en móvil: ninguna página desborda a 360 ni a 390 px");
+  else fallo("maqueta en móvil", malos.join(" · "));
+} catch (e) {
+  fallo("maqueta en móvil", String(e));
+}
+
 // Enlaces internos roos: se comprueban sobre el HTML compilado, no en el navegador.
 //
 // Las pestañas se cierran antes de leer los resultados: el perfil de Chrome se

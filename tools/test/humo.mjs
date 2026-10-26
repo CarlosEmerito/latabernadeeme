@@ -824,6 +824,25 @@ try {
     bien("iniciativa: la vista de jugador dice «Sin combate» tras vaciar");
   else fallo("iniciativa: la vista de jugador sigue con el combate viejo tras vaciar", JSON.stringify(jugadorVacio));
 
+  // Vaciar con la lista ya vacía no puede romper nada, y lo vaciado tiene que
+  // seguir vacío al recargar: si la clave se quedara con el combate anterior, el
+  // botón serviría de adorno.
+  const vaciadoOtraVez = await vaciarCombate();
+  const trasVaciarOtraVez = await leerCombate();
+  await ir(mesa, `${BASE}/mesa/`);
+  await evaluar(
+    mesa,
+    `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#ini-lista')) { clearInterval(t); res(1); } }, 50); setTimeout(() => { clearInterval(t); res(0); }, 4000); })`,
+  );
+  const trasRecargarVacio = await leerCombate();
+  if (vaciadoOtraVez && trasVaciarOtraVez.orden.length === 0 && trasRecargarVacio.orden.length === 0)
+    bien("iniciativa: vaciar con la lista ya vacía no rompe nada y el combate no vuelve al recargar");
+  else
+    fallo(
+      "iniciativa: vaciar con la lista ya vacía",
+      JSON.stringify({ vaciadoOtraVez, trasVaciarOtraVez, trasRecargarVacio }),
+    );
+
   // Quitar una fila: primero una que no tiene el turno, después la que lo tiene.
   // Se parte de una lista limpia por localStorage, no de lo que haya dejado el
   // caso anterior: los dos escenarios se prueban por separado.

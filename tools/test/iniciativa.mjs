@@ -13,10 +13,15 @@
  * que la gente ya tiene guardados en su navegador, y eso no se nota en ningún
  * otro sitio.
  *
+ * Y `sinCombatiente`, la cuenta del turno al quitar una fila: es una posición
+ * en la lista, no una identidad, así que quitar a alguien de delante del activo
+ * desplaza el puntero si nadie lo corrige. Se prueba aquí porque en el humo
+ * cada caso costaría un combate montado a mano.
+ *
  * Uso: node tools/test/iniciativa.mjs
  */
 import assert from "node:assert/strict";
-import { CLAVE_INICIATIVA, leerIniciativa } from "../../src/lib/iniciativa.ts";
+import { CLAVE_INICIATIVA, leerIniciativa, sinCombatiente } from "../../src/lib/iniciativa.ts";
 
 const fallos = [];
 let comprobados = 0;
@@ -135,9 +140,65 @@ caso(
   { turno: 0, lista: [{ nombre: "Aria", valor: 12 }, { nombre: "Goblin", valor: 12 }] },
 );
 
+// Quitar un combatiente mueve el turno o no, según dónde caiga. El turno es una
+// posición en la lista, y como la lista se ordena por iniciativa, quitar una
+// fila de delante desplaza a todos los demás: si no se corrigiera, el puntero
+// saltaría a otro combatiente sin que el DM haya pasado turno.
+// Iniciativa fija por nombre, para que el combate esperado conserve los valores
+// del de partida aunque se escriba con la fila de menos.
+const INI = { Goblin: 20, Trasgo: 19, Aria: 18, Lobo: 17 };
+const combate = (nombres, turno) => ({ turno, lista: nombres.map((nombre) => ({ nombre, valor: INI[nombre] })) });
+
+/** Un caso de quitar: el combate, el puesto que se quita y lo que tiene que quedar. */
+function casoQuitar(nombre, estado, indice, esperado) {
+  comprobados++;
+  try {
+    assert.deepEqual(sinCombatiente(estado, indice), esperado);
+  } catch (e) {
+    fallos.push(`${nombre}: ${String(e.message).split("\n")[0]}`);
+  }
+}
+
+// El activo es el tercero (Aria): al caer el primero, el turno baja con ella.
+casoQuitar(
+  "quitar uno de delante del activo",
+  combate(["Goblin", "Trasgo", "Aria"], 2),
+  0,
+  combate(["Trasgo", "Aria"], 1),
+);
+// Y baja con ella aunque quede gente detrás: sin corregirlo, el turno se
+// quedaría en el puesto 2 y saltaría a Lobo sin pasar turno.
+casoQuitar(
+  "quitar uno de delante del activo con gente detrás",
+  combate(["Goblin", "Trasgo", "Aria", "Lobo"], 2),
+  0,
+  combate(["Trasgo", "Aria", "Lobo"], 1),
+);
+// Cae el activo: el hueco lo ocupa el siguiente, el turno no se toca.
+casoQuitar(
+  "quitar el activo",
+  combate(["Goblin", "Trasgo", "Aria"], 1),
+  1,
+  combate(["Goblin", "Aria"], 1),
+);
+// El activo es el último y se cae: el turno se recorta al primer puesto.
+casoQuitar("quitar el activo que era el último", combate(["Goblin", "Aria"], 1), 1, combate(["Goblin"], 0));
+// Uno de detrás del activo no cambia quién tiene el turno.
+casoQuitar("quitar uno de detrás del activo", combate(["Goblin", "Aria"], 0), 1, combate(["Goblin"], 0));
+// El último combatiente: el combate se queda sin nadie y el turno en 0.
+casoQuitar("quitar el único combatiente", combate(["Goblin"], 0), 0, { turno: 0, lista: [] });
+// Un puesto que no existe no toca nada: ni recorta ni inventa un combate.
+casoQuitar("puesto fuera de la lista", combate(["Goblin", "Aria"], 0), 2, null);
+casoQuitar("puesto negativo", combate(["Goblin", "Aria"], 0), -1, null);
+casoQuitar("puesto que no es entero", combate(["Goblin", "Aria"], 0), 1.5, null);
+casoQuitar("puesto que es texto", combate(["Goblin", "Aria"], 0), "1", null);
+casoQuitar("quitar de un combate vacío", { turno: 0, lista: [] }, 0, null);
+
 console.log(`Casos comprobados: ${comprobados} · fallos: ${fallos.length}`);
 if (fallos.length === 0) {
-  console.log("Sin fallos: el combate guardado se valida, se ordena y el turno cae dentro de la lista.");
+  console.log(
+    "Sin fallos: el combate guardado se valida, se ordena, el turno cae dentro de la lista y quitando a alguien el turno sigue donde estaba.",
+  );
   process.exit(0);
 }
 

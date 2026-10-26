@@ -60,3 +60,24 @@ export function leerIniciativa(crudo: string | null): Iniciativa | null {
 
   return { turno: dentro ? (turno as number) : 0, lista: combatientes };
 }
+
+/**
+ * El combate que queda al quitar el combatiente que ocupa `indice`, o `null` si
+ * ese puesto no existe.
+ *
+ * El turno es una posición en la lista, así que quitando una fila de delante el
+ * puntero apuntaría a otro combatiente: se retrocede un puesto para que siga
+ * sobre quien lo tenía. Si el que cae es el activo, el hueco lo ocupa el
+ * siguiente —no hay que mover nada—, y si era el último de la lista el turno se
+ * recorta al primer puesto. Una lista sin nadie deja `turno` en 0, que es lo que
+ * `leerIniciativa` devuelve como «sin combate».
+ */
+export function sinCombatiente(estado: Iniciativa, indice: number): Iniciativa | null {
+  if (!Number.isInteger(indice) || indice < 0 || indice >= estado.lista.length) return null;
+
+  const lista = estado.lista.filter((_, i) => i !== indice);
+  if (!lista.length) return { turno: 0, lista };
+
+  const turno = indice < estado.turno ? estado.turno - 1 : estado.turno;
+  return { turno: Math.min(turno, lista.length - 1), lista };
+}

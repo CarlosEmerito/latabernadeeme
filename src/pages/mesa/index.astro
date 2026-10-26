@@ -135,6 +135,7 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       <div class="mesa-botones">
         <button class="btn" type="button" id="ini-anadir">Añadir</button>
         <button class="btn btn--acento" type="button" id="ini-siguiente">Siguiente turno</button>
+        <button class="btn btn--fantasma" type="button" id="ini-vaciar">Vaciar combate</button>
       </div>
       <ol id="ini-lista" class="mesa-iniciativa" aria-live="polite"></ol>
       <button class="btn btn--fantasma" type="button" id="ini-proyectar">Abrir vista de jugador</button>
@@ -199,7 +200,7 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
     import { buscarPorNombre } from "../../lib/criaturas";
     import { claveVd } from "../../lib/vd";
     import { cargaCatalogo, type MonstruoCatalogo } from "../../lib/catalogo";
-    import { CLAVE_INICIATIVA, leerIniciativa, type Combatiente } from "../../lib/iniciativa";
+    import { CLAVE_INICIATIVA, leerIniciativa, sinCombatiente, type Combatiente } from "../../lib/iniciativa";
 
     const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     const azar = <T,>(xs: T[]): T => xs[Math.floor(Math.random() * xs.length)];
@@ -644,12 +645,39 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
           const valor = document.createElement("span");
           valor.className = "num";
           valor.textContent = String(c.valor);
-          fila.append(nombre, valor);
+          // El botón de la fila lleva su propio nombre accesible: el texto
+          // «Quitar» repetido en seis filas no dice a quién quita cada uno.
+          const quitar = document.createElement("button");
+          quitar.type = "button";
+          quitar.className = "btn btn--fantasma mesa-iniciativa__quitar";
+          quitar.textContent = "Quitar";
+          quitar.setAttribute("aria-label", `Quitar a ${c.nombre} del combate`);
+          quitar.addEventListener("click", () => quitarCombatiente(i));
+          fila.append(nombre, valor, quitar);
           return fila;
         }),
       );
       guardar();
     };
+
+    /**
+     * Quita el combatiente que ocupa `indice`. La cuenta del turno vive en
+     * `sinCombatiente`, que se prueba sin navegador en `tools/test/iniciativa.mjs`:
+     * aquí solo se pinta lo que devuelve.
+     */
+    const quitarCombatiente = (indice: number) => {
+      const siguiente = sinCombatiente({ turno, lista: combatientes }, indice);
+      if (!siguiente) return;
+      combatientes = siguiente.lista;
+      turno = siguiente.turno;
+      pintarIniciativa();
+    };
+
+    $("ini-vaciar")?.addEventListener("click", () => {
+      combatientes = [];
+      turno = 0;
+      pintarIniciativa();
+    });
 
     $("ini-anadir")?.addEventListener("click", () => {
       const nombre = ($("ini-nombre") as HTMLInputElement).value.trim() || "Sin nombre";

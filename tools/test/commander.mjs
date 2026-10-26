@@ -18,7 +18,7 @@ import { parsearExport } from "../../src/lib/commander/export.ts";
 import { rolesDe } from "../../src/lib/commander/roles.ts";
 import { analizarMazo } from "../../src/lib/commander/analisis.ts";
 import { consejoDe } from "../../src/lib/commander/consejo.ts";
-import { promptDe } from "../../src/lib/commander/ia.ts";
+import { analizarConIA, promptDe } from "../../src/lib/commander/ia.ts";
 import { resolverCartas } from "../../src/lib/commander/scryfall.ts";
 
 const fallos = [];
@@ -252,6 +252,81 @@ titulo("Consejo determinista");
   comprobar(prompt.includes("Bracket"), "el prompt no incluye el bracket");
 }
 
+// ── IA: techo de tokens y errores ──────────────────────────────────────────
+titulo("IA: techo de tokens y errores");
+{
+  const a = analizarMazo(base);
+  const cuerpos = [];
+  const fake = async (_url, opciones) => {
+    cuerpos.push(JSON.parse(opciones.body).generationConfig);
+    return new Response(
+      JSON.stringify({ candidates: [{ content: { parts: [{ text: "Plan completo." }] }, finishReason: "STOP" }] }),
+      { status: 200 },
+    );
+  };
+  const texto = await analizarConIA(base, a, "clave", fake);
+  comprobar(texto === "Plan completo.", `texto: ${texto}`);
+  comprobar(cuerpos[0]?.thinkingConfig?.thinkingBudget === 0, "no apaga el pensamiento");
+  comprobar(cuerpos[0]?.maxOutputTokens === 4096, "no pide margen de salida");
+}
+{
+  const a = analizarMazo(base);
+  let llamadas = 0;
+  const techos = [];
+  const fake = async (_url, opciones) => {
+    llamadas += 1;
+    techos.push(JSON.parse(opciones.body).generationConfig.maxOutputTokens);
+    const finish = llamadas === 1 ? "MAX_TOKENS" : "STOP";
+    const texto = llamadas === 1 ? "Se corta a medias" : "Plan entero";
+    return new Response(
+      JSON.stringify({ candidates: [{ content: { parts: [{ text: texto }] }, finishReason: finish }] }),
+      { status: 200 },
+    );
+  };
+  const texto = await analizarConIA(base, a, "clave", fake);
+  comprobar(llamadas === 2, `llamadas: ${llamadas}`);
+  comprobar(texto === "Plan entero", `texto tras reintento: ${texto}`);
+  comprobar(techos[1] === 8192, `techo del reintento: ${techos[1]}`);
+}
+{
+  const a = analizarMazo(base);
+  const fake = async () =>
+    new Response(
+      JSON.stringify({ candidates: [{ content: { parts: [{ text: "a" }] }, finishReason: "MAX_TOKENS" }] }),
+      { status: 200 },
+    );
+  let error = "";
+  try {
+    await analizarConIA(base, a, "clave", fake);
+  } catch (e) {
+    error = String(e);
+  }
+  comprobar(error.includes("cortado"), `sin error de corte: ${error || "no lanzó"}`);
+}
+{
+  const a = analizarMazo(base);
+  const fake = async () =>
+    new Response(JSON.stringify({ promptFeedback: { blockReason: "SAFETY" } }), { status: 200 });
+  let error = "";
+  try {
+    await analizarConIA(base, a, "clave", fake);
+  } catch (e) {
+    error = String(e);
+  }
+  comprobar(error.includes("bloqueado"), `sin error de bloqueo: ${error || "no lanzó"}`);
+}
+{
+  const a = analizarMazo(base);
+  const fake = async () => new Response("{}", { status: 429 });
+  let error = "";
+  try {
+    await analizarConIA(base, a, "clave", fake);
+  } catch (e) {
+    error = String(e);
+  }
+  comprobar(error.includes("cuota"), `sin error de cuota: ${error || "no lanzó"}`);
+}
+
 // ── Resultado ───────────────────────────────────────────────────────────────
 console.log("");
 if (fallos.length) {
@@ -259,4 +334,4 @@ if (fallos.length) {
   console.log(`\n${comprobados - fallos.length}/${comprobados} comprobaciones correctas`);
   process.exit(1);
 }
-console.log(`✓ Parser, roles, análisis, bracket, resolver y consejo: ${comprobados} comprobaciones correctas.`);
+console.log(`✓ Parser, roles, análisis, bracket, resolver, consejo e IA: ${comprobados} comprobaciones correctas.`);

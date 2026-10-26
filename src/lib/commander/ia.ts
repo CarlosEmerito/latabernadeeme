@@ -66,6 +66,49 @@ async function errorDe(respuesta: Response): Promise<string> {
   return `Gemini ha respondido ${respuesta.status}${detalle ? `: ${detalle}` : ""}.`;
 }
 
+interface RespuestaGemini {
+  candidates?: Array<{
+    content?: { parts?: Array<{ text?: string }> };
+    finishReason?: string;
+  }>;
+  promptFeedback?: { blockReason?: string };
+  usageMetadata?: { thoughtsTokenCount?: number; candidatesTokenCount?: number };
+}
+
+/**
+ * Una llamada a Gemini. El presupuesto de salida incluye los tokens de
+ * pensamiento: con 1.400 y Flash pensando, la respuesta se cortaba a media
+ * frase. Se apaga el pensamiento (es redactar, no razonar) y se deja margen.
+ */
+async function pedir(
+  clave: string,
+  prompt: string,
+  maxOutputTokens: number,
+  fetchImpl: typeof fetch,
+): Promise<RespuestaGemini> {
+  const respuesta = await fetchImpl(`${URL}?key=${encodeURIComponent(clave)}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.4,
+        maxOutputTokens,
+        thinkingConfig: { thinkingBudget: 0 },
+      },
+    }),
+  });
+  if (!respuesta.ok) throw new Error(await errorDe(respuesta));
+  return (await respuesta.json()) as RespuestaGemini;
+}
+
+function textoDe(datos: RespuestaGemini): string {
+  return (datos.candidates?.[0]?.content?.parts ?? [])
+    .map((p) => p.text ?? "")
+    .join("")
+    .trim();
+}
+
 /** Llama a Gemini y devuelve el texto. Lanza con un mensaje en español. */
 export async function analizarConIA(
   mazo: Mazo,
@@ -75,22 +118,26 @@ export async function analizarConIA(
 ): Promise<string> {
   const limpia = clave.trim();
   if (!limpia) throw new Error("Falta la clave de Gemini.");
-  const respuesta = await fetchImpl(`${URL}?key=${encodeURIComponent(limpia)}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ role: "user", parts: [{ text: promptDe(mazo, analisis) }] }],
-      generationConfig: { temperature: 0.4, maxOutputTokens: 1400 },
-    }),
-  });
-  if (!respuesta.ok) throw new Error(await errorDe(respuesta));
-  const datos = (await respuesta.json()) as {
-    candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
-  };
-  const texto = (datos.candidates?.[0]?.content?.parts ?? [])
-    .map((p) => p.text ?? "")
-    .join("")
-    .trim();
+  const prompt = promptDe(mazo, analisis);
+
+  const primera = await pedir(limpia, prompt, 4096, fetchImpl);
+  if (primera.promptFeedback?.blockReason) {
+    throw new Error(`Gemini ha bloqueado la respuesta (${primera.promptFeedback.blockReason}).`);
+  }
+  const candidato = primera.candidates?.[0];
+  let texto = textoDe(primera);
+  if (candidato?.finishReason === "MAX_TOKENS") {
+    // El techo se quedó corto (pasa si el modelo gasta en pensamiento): una
+    // segunda pasada con el doble de margen antes de devolver algo a medias.
+    const segunda = await pedir(limpia, prompt, 8192, fetchImpl);
+    if (segunda.promptFeedback?.blockReason) {
+      throw new Error(`Gemini ha bloqueado la respuesta (${segunda.promptFeedback.blockReason}).`);
+    }
+    texto = textoDe(segunda);
+    if (segunda.candidates?.[0]?.finishReason === "MAX_TOKENS") {
+      throw new Error("La respuesta se ha cortado por longitud. Vuelve a intentarlo o pide un análisis más corto.");
+    }
+  }
   if (!texto) throw new Error("Gemini ha contestado sin texto. Prueba otra vez.");
   return texto;
 }

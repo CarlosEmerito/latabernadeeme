@@ -266,6 +266,40 @@ try {
   fallo("filtro de texto con tildes", String(e));
 }
 
+// El filtro del listado tiene que encontrar la entrada por su nombre inglés: la
+// ficha publica «En inglés: …» y /buscar/ lo indexa, así que quien conoce el
+// conjuro como «thunderwave» no puede encontrarse el listado en cero mientras la
+// ficha de al lado sí lo llama así (T-0267). Se comprueba en las dos ediciones y
+// que el nombre español siga encontrando la misma fila.
+try {
+  const filtrarConjuros = async (ed, termino) => {
+    const pag = await abrir(`${BASE}/${ed}/conjuros/`);
+    await evaluar(pag, `document.getElementById('f-texto').focus()`);
+    await pag.enviar("Input.insertText", { text: termino });
+    await new Promise((r) => setTimeout(r, 400));
+    return evaluar(
+      pag,
+      `({total: document.querySelectorAll('#cuerpo tr').length,
+        nombres: [...document.querySelectorAll('#cuerpo tr:not([hidden]) td.col-nombre a')].map((a) => a.textContent.trim()),
+        cuenta: document.getElementById('cuenta')?.textContent})`,
+    );
+  };
+
+  const ingles = await filtrarConjuros("5.5", "thunderwave");
+  const espanol = await filtrarConjuros("5.5", "ola atronadora");
+  const otraEdicion = await filtrarConjuros("5e", "true seeing");
+
+  const soloUna = (d, nombre) =>
+    d.nombres.length === 1 && d.nombres[0] === nombre && d.total > 100 && d.cuenta?.startsWith("1 ");
+  if (soloUna(ingles, "Ola atronadora") && soloUna(espanol, "Ola atronadora") && soloUna(otraEdicion, "Visión veraz")) {
+    bien(`filtro por nombre inglés: thunderwave y ola atronadora dan «Ola atronadora» (${ingles.cuenta}), true seeing da «Visión veraz» en 5e`);
+  } else {
+    fallo("filtro por nombre inglés", JSON.stringify({ ingles, espanol, otraEdicion }));
+  }
+} catch (e) {
+  fallo("filtro por nombre inglés", String(e));
+}
+
 // La cabecera de la tabla tiene que cuadrar con sus celdas: la primera columna es
 // el nombre y el primer campo de cada tipo (VD, nivel, tipo, categoría) conserva
 // la suya. Sin esto, el nombre ocupaba la celda del primer campo y su valor
@@ -595,6 +629,12 @@ try {
   if (Array.isArray(ini) && ini[0].startsWith("B")) bien(`iniciativa: ${ini.join(" | ")}`);
   else fallo("iniciativa", JSON.stringify(ini));
 
+  // Se pasa el turno con un clic y se recarga: el orden y la fila activa tienen
+  // que seguir donde estaban. El avance se mide respecto a donde estaba el
+  // puntero —añadir B (18) por delante de A (12) ya no lo mueve, así que la
+  // partida arranca en A, la segunda fila— y no con un índice fijo, que era la
+  // suposición vieja de que añadir devolvía el turno al primer puesto.
+  const antesDePasar = await leerCombate();
   await evaluar(mesa, `document.getElementById('ini-siguiente').click()`);
   const antes = await leerCombate();
   await ir(mesa, `${BASE}/mesa/`);
@@ -605,8 +645,11 @@ try {
   const despues = await leerCombate();
   const nombresDe = (x) => (x?.orden ?? []).map((f) => f[0]).join(",");
   const recargaOk =
-    antes.activa === 1 && despues.activa === 1 && nombresDe(antes) === "B,A" && nombresDe(despues) === "B,A";
-  if (recargaOk) bien(`iniciativa tras recargar: ${nombresDe(despues)} con el turno de ${despues.orden[1][0]}`);
+    antes.activa === (antesDePasar.activa + 1) % antes.orden.length &&
+    despues.activa === antes.activa &&
+    nombresDe(antes) === "B,A" &&
+    nombresDe(despues) === "B,A";
+  if (recargaOk) bien(`iniciativa tras recargar: ${nombresDe(despues)} con el turno de ${despues.orden[despues.activa][0]}`);
   else fallo("iniciativa tras recargar", JSON.stringify({ antes, despues }));
 
   const trasAnadir = await evaluar(
@@ -647,6 +690,65 @@ try {
   if (roto.filas === 0 && roto.aviso === "" && /^[0-9]+ = /.test(roto.dados)) bien("iniciativa con la clave rota: sin combate y la mesa sigue viva");
   else fallo("iniciativa con la clave rota", JSON.stringify(roto));
 
+  // Añadir un combatiente con el combate ya empezado no puede mover el turno: el
+  // DM está en una criatura y la que llega a mitad del asalto se coloca en su
+  // sitio sin que el puntero salte. Antes el manejador ponía `turno = 0`, así que
+  // el refuerzo devolvía el turno al primer puesto de la lista —y el guardado
+  // también— justo en mitad de la partida.
+  await evaluar(mesa, `localStorage.removeItem('taberna:iniciativa')`);
+  await ir(mesa, `${BASE}/mesa/`);
+  await evaluar(
+    mesa,
+    `(() => {
+       ${campos}
+       n.value='Aria'; v.value='18'; document.getElementById('ini-anadir').click();
+       n.value='Brumo'; v.value='12'; document.getElementById('ini-anadir').click();
+       document.getElementById('ini-siguiente').click();
+       return 1;
+     })()`,
+  );
+  const antesDeAnadir = await leerCombate();
+  await evaluar(
+    mesa,
+    `(() => {
+       ${campos}
+       n.value='Lobo'; v.value='15'; document.getElementById('ini-anadir').click();
+       return 1;
+     })()`,
+  );
+  const trasAnadirMitad = await leerCombate();
+  const activoDe = (c) => (c && c.activa >= 0 ? c.orden[c.activa][0] : null);
+  const guardadoDe = (c) => (c?.guardado ? (c.guardado.lista?.[c.guardado.turno]?.nombre ?? null) : null);
+  const activoAntes = activoDe(antesDeAnadir);
+  const activoMitad = activoDe(trasAnadirMitad);
+  if (activoAntes === "Brumo" && activoMitad === activoAntes && guardadoDe(trasAnadirMitad) === activoAntes)
+    bien(`iniciativa: añadir no mueve el turno (sigue ${activoMitad})`);
+  else
+    fallo(
+      "iniciativa: añadir mueve el turno",
+      JSON.stringify({ activoAntes, activoMitad, guardado: guardadoDe(trasAnadirMitad), orden: trasAnadirMitad?.orden }),
+    );
+
+  // Y tampoco cuando el que llega entra por delante de todos: el activo sigue
+  // siendo el mismo combatiente, aunque ya no esté en el primer puesto.
+  await evaluar(
+    mesa,
+    `(() => {
+       ${campos}
+       n.value='Z'; v.value='30'; document.getElementById('ini-anadir').click();
+       return 1;
+     })()`,
+  );
+  const conRefuerzoPrimero = await leerCombate();
+  const activoConRefuerzo = activoDe(conRefuerzoPrimero);
+  if (activoConRefuerzo === activoAntes && nombresDe(conRefuerzoPrimero) === "Z,Aria,Lobo,Brumo")
+    bien(`iniciativa: un refuerzo con más iniciativa no roba el turno (sigue ${activoConRefuerzo})`);
+  else
+    fallo(
+      "iniciativa: un refuerzo con más iniciativa roba el turno",
+      JSON.stringify({ activoAntes, activoConRefuerzo, orden: conRefuerzoPrimero?.orden }),
+    );
+
   // El combate de la partida anterior se queda pegado a la mesa: el panel de
   // Iniciativa no tiene forma de quitar un combatiente ni de vaciar la lista, y
   // como se restaura de localStorage, la única salida es abrir las herramientas
@@ -686,8 +788,9 @@ try {
          return { ok: true };
        })()`,
     );
-  const activoDe = (c) => (c && c.activa >= 0 ? c.orden[c.activa][0] : null);
 
+  // Vaciar: se parte de un combate de tres, se vacía y se mira la mesa, lo
+  // guardado y la ventana de los jugadores.
   await evaluar(mesa, `localStorage.removeItem('taberna:iniciativa')`);
   await ir(mesa, `${BASE}/mesa/`);
   await evaluar(

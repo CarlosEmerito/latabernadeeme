@@ -21,6 +21,12 @@ interface Columna {
 interface Fila {
   href: string;
   nombre: string;
+  /**
+   * Nombre inglés de la ficha, cuando lo tiene (`aliasDe`). Va en `data-buscar`
+   * detrás del español: la ficha publica «En inglés: …» y el buscador del sitio
+   * lo encuentra, así que el filtro del listado no puede dejarlo fuera.
+   */
+  alias?: string;
   chips?: string[];
   celdas: Record<string, string | number>;
   facetas: Record<string, string>;
@@ -53,6 +59,21 @@ const {
 // (VD, nivel, tipo…) seguiría sin celda propia.
 const COLUMNA_NOMBRE: Columna = { clave: "__nombre", etiqueta: "Nombre" };
 const columnasTabla: Columna[] = [COLUMNA_NOMBRE, ...columnas];
+
+/**
+ * El texto con el que el filtro compara una fila.
+ *
+ * El nombre en español va delante —así el atributo sigue sirviendo para lo de
+ * antes y para las comprobaciones que lo leen— y detrás, cuando existe y no
+ * repite el español, el nombre inglés. Sin él, quien conoce la entrada como
+ * «Thunderwave» se encuentra el listado en cero al lado de una ficha que sí lo
+ * llama así.
+ */
+const buscable = (f: Fila): string => {
+  const nombre = plegar(f.nombre);
+  const alias = f.alias ? plegar(f.alias) : "";
+  return alias && alias !== nombre ? `${nombre} ${alias}` : nombre;
+};
 
 // Recuento por valor, para que el menú diga cuántas hay antes de filtrar.
 const cuentaValor = (clave: string, valor: string) =>
@@ -152,7 +173,7 @@ const cuentaValor = (clave: string, valor: string) =>
         <tr
           data-facetas={JSON.stringify(f.facetas)}
           data-rangos={JSON.stringify(f.rangos ?? {})}
-          data-buscar={plegar(f.nombre)}
+          data-buscar={buscable(f)}
         >
           <td class="col-nombre">
             <a href={f.href}>{f.nombre}</a>

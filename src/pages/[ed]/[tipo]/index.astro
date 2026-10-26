@@ -3,6 +3,7 @@ import Base from "../../../layouts/Base.astro";
 import Tabla from "../../../components/Tabla.astro";
 import { EDICIONES, TIPO_META, cargar, fraseRecuento, nombreTipo, type Edition, type Tipo, TIPOS } from "../../../lib/content";
 import { TAMANOS, tamanosDe } from "../../../lib/tamano";
+import { aliasDe } from "../../../lib/alias";
 import { e } from "../../../lib/urls";
 
 export function getStaticPaths() {
@@ -84,7 +85,11 @@ const columnas: Record<string, { clave: string; etiqueta: string; tipo?: "num" |
 
 const filas = entradas.map((en) => {
   const d = en.data;
-  const base = { href: e(`/${ed}/${tipo}/${en.slug}/`), nombre: String(d.name ?? en.slug) };
+  const nombre = String(d.name ?? en.slug);
+  // El nombre inglés viaja a la fila porque el filtro del listado lo necesita:
+  // la ficha ya publica «En inglés: …» y el buscador del sitio lo indexa (ver
+  // T-0267). El alias sale de `aliasDe`, el mismo que usa la ficha y el JSON.
+  const base = { href: e(`/${ed}/${tipo}/${en.slug}/`), nombre, alias: aliasDe(nombre, tipo, en.slug, ed) };
   switch (tipo) {
     case "conjuros":
       return {

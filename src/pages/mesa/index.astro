@@ -98,13 +98,16 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       <p class="mesa-panel__nota">
         Sube o baja el valor de desafío de una criatura del catálogo tomando como referencia la media
         de PG y CA de las criaturas de ese VD. Es una aproximación de mesa, no una regla del manual.
+        El VD objetivo se escribe tal cual lo publica el catálogo, fraccionarios incluidos
+        (<code>1/8</code>, <code>1/4</code>, <code>1/2</code>) o en decimal (<code>0.125</code>,
+        <code>0.25</code>, <code>0.5</code>).
       </p>
       <div class="mesa-fila">
         <label class="mesa-ancho">Criatura
           <input type="search" id="aj-criatura" list="enc-lista" placeholder="Guerrero goblin, trol, aboleth…" autocomplete="off" />
         </label>
         <label>VD actual <output id="aj-vd">—</output></label>
-        <label>VD objetivo <input type="number" id="aj-objetivo" min="0" max="30" step="1" value="5" /></label>
+        <label>VD objetivo <input type="text" inputmode="decimal" id="aj-objetivo" value="5" /></label>
         <button class="btn btn--acento" type="button" id="aj-calcular">Ajustar</button>
       </div>
       <div id="aj-salida" class="mesa-resumen" aria-live="polite">
@@ -194,6 +197,7 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
     } from "../../lib/presupuesto";
     import { plegar } from "../../lib/texto";
     import { buscarPorNombre } from "../../lib/criaturas";
+    import { claveVd } from "../../lib/vd";
     import { cargaCatalogo, type MonstruoCatalogo } from "../../lib/catalogo";
     import { CLAVE_INICIATIVA, leerIniciativa, type Combatiente } from "../../lib/iniciativa";
 
@@ -442,13 +446,29 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       return mapa;
     };
 
+    /* El VD del original se enseña en cuanto se elige la criatura: el `<output>`
+       de «VD actual» existía justo para eso y se quedaba en «—» para siempre
+       porque ningún script lo escribía. */
+    const pintarVdActual = () => {
+      const salida = $("aj-vd");
+      if (!salida) return;
+      const nombre = ($("aj-criatura") as HTMLInputElement | null)?.value.trim() ?? "";
+      const m = buscarPorNombre(catalogo, nombre);
+      salida.textContent = m ? String(m.d.vd ?? "—") : "—";
+    };
+    $("aj-criatura")?.addEventListener("input", pintarVdActual);
+    $("aj-criatura")?.addEventListener("change", pintarVdActual);
+
     $("aj-calcular")?.addEventListener("click", () => {
       const salida = $("aj-salida");
       const nombre = ($("aj-criatura") as HTMLInputElement).value.trim();
       const objetivo = String(($("aj-objetivo") as HTMLInputElement).value).trim();
       const m = buscarPorNombre(catalogo, nombre);
       const perfil = perfiles();
-      const destino = perfil.get(objetivo);
+      /* El VD se casa por valor, no por texto: el catálogo lo escribe como
+         fracción (`1/2`) y el lector lo teclea como quiera (`0.5`, `0,5`). */
+      const clave = claveVd(perfil.keys(), objetivo);
+      const destino = clave ? perfil.get(clave) : undefined;
 
       /* Dos fallos distintos no comparten mensaje: un nombre que no está en el
          catálogo y un VD sin ninguna criatura se arreglan de maneras distintas,
@@ -471,6 +491,10 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
         );
         return;
       }
+      if (!objetivo) {
+        aviso("Escribe el VD al que quieres ajustar la criatura.");
+        return;
+      }
       if (!destino) {
         aviso(`El catálogo no tiene ninguna criatura con VD ${objetivo}: no hay media con la que escalar. Prueba otro VD.`);
         return;
@@ -485,9 +509,9 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       const px = mediana(destino.xp);
 
       if (salida)
-        salida.innerHTML = `<p class="mesa-resumen__cifra">VD ${objetivo} <span>antes ${m.d.vd}</span></p>
+        salida.innerHTML = `<p class="mesa-resumen__cifra">VD ${clave} <span>antes ${m.d.vd}</span></p>
           <p><b>PG</b> ${hp} → <b>${nuevoHp}</b> · <b>CA</b> ${ac} → <b>${nuevaAc}</b> · <b>PX</b> ${Math.round(px).toLocaleString("es-ES")}</p>
-          <p class="muted">Escala ×${factor.toFixed(2)} sobre la media del VD ${objetivo}. Sube o baja el daño de sus ataques en la misma proporción.</p>`;
+          <p class="muted">Escala ×${factor.toFixed(2)} sobre la media del VD ${clave}. Sube o baja el daño de sus ataques en la misma proporción.</p>`;
     });
 
     /* ------------------------------------------------------- estimar VD */

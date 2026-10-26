@@ -1126,6 +1126,9 @@ try {
   if (limpio.valor === "" && limpio.resultados === 0) bien("buscador: sin parámetro arranca vacío");
   else fallo("buscador sin parámetro", JSON.stringify(limpio));
 
+  // La misma página sin término también, que es la que se ve al llegar desde el menú.
+  await axeEn(buscar, "buscador sin término");
+
   // Teclear el mismo término a mano tiene que dar el mismo número de resultados.
   try {
     await evaluar(buscar, `document.querySelector('.pagefind-ui__search-input').focus()`);

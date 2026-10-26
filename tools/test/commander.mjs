@@ -175,6 +175,44 @@ const base = mazoDe([[bosque, 36], ...cartasBase], comandante);
   const a = analizarMazo(m);
   comprobar(a.bracket.etiqueta === "Bracket 4-5", `cuatro GC dan ${a.bracket.etiqueta}`);
 }
+/*
+ * El companion de un export de Moxfield va en su propia sección y en Commander
+ * no cuenta para las 100: es una carta del banquillo que se declara al empezar.
+ * El parser ya lo marca con su tablero, así que un mazo legal de 1 comandante +
+ * 99 cartas + 1 companion no puede salir «101 cartas» ni quedarse ilegal.
+ */
+{
+  const comp = carta(
+    "Jegantha, el Manantial",
+    "Legendary Creature — Elemental Elk",
+    "Companion — Each permanent card in your starting deck has at most one of each mana symbol in its mana cost.",
+    { color_identity: ["G"], cmc: 5 },
+  );
+  const m = mazoDe([[bosque, 36], ...cartasBase], comandante);
+  m.cartas.push({ cantidad: 1, carta: comp, tablero: "companion", linea: { cantidad: 1, nombre: comp.name, tablero: "companion" } });
+  const a = analizarMazo(m);
+  comprobar(a.total === 100, `un mazo de 100 con companion tiene que dar 100 cartas y da ${a.total}`);
+  comprobar(a.legalidad.ok, `un mazo legal con companion sale ilegal: ${a.legalidad.problemas.join(" · ")}`);
+  comprobar(!a.roles.some((r) => r.cartas.includes(comp.name)), "el companion no cuenta como una carta más del mazo en los roles");
+}
+{
+  // Fuera de las 100, pero su identidad de color sí es exigible: un companion
+  // con un color que el comandante no tiene sigue siendo un problema.
+  const azul = carta(
+    "Companion Azul",
+    "Legendary Creature — Elemental",
+    "Companion — Your starting deck contains only cards with odd mana values.",
+    { color_identity: ["U"], cmc: 5 },
+  );
+  const m = mazoDe([[bosque, 36], ...cartasBase], comandante);
+  m.cartas.push({ cantidad: 1, carta: azul, tablero: "companion", linea: { cantidad: 1, nombre: azul.name, tablero: "companion" } });
+  const a = analizarMazo(m);
+  comprobar(a.total === 100, `el companion no suma a las 100 y da ${a.total}`);
+  comprobar(
+    !a.legalidad.ok && a.legalidad.problemas.some((p) => p.includes("colores")),
+    "la identidad de color del companion tiene que seguir comprobándose",
+  );
+}
 
 // ── 4. Resolver ─────────────────────────────────────────────────────────────
 titulo("Resolver por lotes, sin red");

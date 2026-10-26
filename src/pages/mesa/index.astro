@@ -84,6 +84,7 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
         <datalist id="enc-lista"></datalist>
       </label>
       <p class="mesa-aviso" id="enc-aviso" role="status" hidden></p>
+      <button class="btn btn--fantasma" type="button" id="enc-reintentar" hidden>Reintentar la carga del catálogo</button>
 
       <ul id="enc-anadidas" class="mesa-anadidas" aria-live="polite"></ul>
 
@@ -193,6 +194,7 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
     } from "../../lib/presupuesto";
     import { plegar } from "../../lib/texto";
     import { buscarPorNombre } from "../../lib/criaturas";
+    import { cargaCatalogo, type MonstruoCatalogo } from "../../lib/catalogo";
     import { CLAVE_INICIATIVA, leerIniciativa, type Combatiente } from "../../lib/iniciativa";
 
     const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -200,8 +202,13 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
 
     /* ------------------------------------------------------------ encuentros */
 
-    type Monstruo = { s: string; n: string; d: { vd: string; xp: number | string; tipo: string; tamano: string } };
+    type Monstruo = MonstruoCatalogo;
     let catalogo: Monstruo[] = [];
+    // El catálogo puede no llegar —un despliegue a medias, un corte de red—, así
+    // que se recuerda si está y qué contar cuando falta: sin esto, un catálogo
+    // vacío se leía como «esa criatura no existe».
+    let catalogoListo = false;
+    let avisoDelCatalogo = "";
     let anadidas: { n: string; xp: number; qty: number }[] = [];
 
     const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T | null;
@@ -241,15 +248,22 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
     };
 
     const cargarCatalogo = async (ed: string) => {
-      const r = await fetch(`${BASE}/datos/${ed}.json`);
-      const j = await r.json();
-      catalogo = (j.entradas as any[]).filter((e) => e.t === "monstruos");
+      const { monstruos, aviso } = await cargaCatalogo(ed, BASE);
+      catalogo = monstruos;
+      catalogoListo = monstruos.length > 0;
+      avisoDelCatalogo = aviso;
       const lista = $("enc-lista") as HTMLDataListElement | null;
       if (lista) {
         lista.innerHTML = catalogo
           .map((m) => `<option value="${m.n.replace(/"/g, "&quot;")}">VD ${m.d.vd} · ${xpNumerico(m.d.xp).toLocaleString("es-ES")} PX</option>`)
           .join("");
       }
+      // Sin catálogo el panel lo dice y deja el reintento a mano; con él, se
+      // retira el aviso y el botón.
+      const reintentar = $("enc-reintentar");
+      if (reintentar) reintentar.hidden = catalogoListo;
+      avisar(aviso);
+      return catalogoListo;
     };
 
     const pintarEncuentro = () => {
@@ -314,6 +328,12 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
     const anadirCriatura = (texto: string): Monstruo | null => {
       const buscado = plegar(texto.trim());
       if (!buscado) return null;
+      // Sin catálogo no hay nada que buscar: el fallo es de la carga, no del
+      // nombre que se acaba de escribir.
+      if (!catalogoListo) {
+        avisar(avisoDelCatalogo || "El catálogo de criaturas no ha cargado.");
+        return null;
+      }
       // Vale el nombre exacto y, si no lo hay, un único parecido: «dragon rojo»
       // sin tilde encuentra «Dragón rojo», pero «goblin» es ambiguo y se avisa.
       const exacta = catalogo.find((x) => plegar(x.n) === buscado);
@@ -353,8 +373,9 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       ev.preventDefault();
       confirmarCriatura();
     });
-    // El aviso deja de tener sentido en cuanto se corrige el texto.
-    campoBuscar?.addEventListener("input", () => avisar(""));
+    // El aviso deja de tener sentido en cuanto se corrige el texto, salvo el del
+    // catálogo caído: ese sigue siendo verdad hasta que la carga funcione.
+    campoBuscar?.addEventListener("input", () => avisar(catalogoListo ? "" : avisoDelCatalogo));
 
     $("enc-anadidas")?.addEventListener("click", (ev) => {
       const b = (ev.target as HTMLElement).closest("button");
@@ -370,16 +391,22 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       anadidas = [];
       pintarEncuentro();
     });
+    // Reintentar sin recargar: la página ya está, lo que falta es el JSON.
+    $("enc-reintentar")?.addEventListener("click", async () => {
+      if (!(await cargarCatalogo(edicion))) return;
+      pintarEncuentro();
+    });
     $("enc-ed")?.addEventListener("change", async (ev) => {
       // El catálogo manda sobre la regla: al cambiarlo se rehacen las
       // dificultades y el texto que dice qué tabla se está usando, antes de
       // cargar las criaturas del catálogo nuevo.
-      edicion = edicionDe((ev.target as HTMLSelectElement).value);
+      const elegida = (ev.target as HTMLSelectElement).value;
+      edicion = edicionDe(elegida);
       pintarDificultades();
       pintarRegla();
-      await cargarCatalogo((ev.target as HTMLSelectElement).value);
       anadidas = [];
-      avisar("");
+      // La carga deja el aviso que toque: el de este catálogo o ninguno.
+      await cargarCatalogo(elegida);
       pintarEncuentro();
     });
 

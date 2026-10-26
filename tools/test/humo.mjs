@@ -721,6 +721,87 @@ try {
   fallo("Introducir criatura", String(e));
 }
 
+// El catálogo de criaturas se pide con `fetch` y el panel daba por hecho que
+// siempre contesta: con el JSON caído se quedaba mudo —cero sugerencias y ningún
+// aviso— y al escribir un nombre que sí existe contestaba que no hay ninguna
+// criatura así, culpando al lector de un fallo de red. Se bloquea la petición de
+// verdad con CDP (`Network.setBlockedURLs`, que es lo que se mide), se comprueba
+// el aviso y que el reintento recupera el catálogo sin recargar la página.
+try {
+  const p = await abrir(`${BASE}/mesa/`);
+  await p.enviar("Network.enable");
+  await p.enviar("Network.setCacheDisabled", { cacheDisabled: true });
+  await p.enviar("Network.setBlockedURLs", { urls: ["*datos/5.5.json*"] });
+  await pestanas.ir(p, `${BASE}/mesa/`);
+
+  const leer = `(() => {
+     const aviso = document.getElementById('enc-aviso');
+     const boton = document.getElementById('enc-reintentar');
+     const texto = (el) => (el && !el.hidden ? el.textContent.split(String.fromCharCode(10)).join(' ').split(' ').filter(Boolean).join(' ') : '');
+     return {
+       opciones: document.querySelectorAll('#enc-lista option').length,
+       aviso: texto(aviso),
+       reintentar: !!boton && !boton.hidden,
+       anadidas: document.querySelectorAll('#enc-anadidas li').length,
+     };
+   })()`;
+  const esperarAviso = `new Promise((res) => {
+     const t = setInterval(() => {
+       const a = document.getElementById('enc-aviso');
+       if (a && !a.hidden) { clearInterval(t); res(1); }
+     }, 100);
+     setTimeout(() => { clearInterval(t); res(0); }, 6000);
+  })`;
+  const esperarCatalogo = `new Promise((res) => {
+     const t = setInterval(() => {
+       if (document.querySelectorAll('#enc-lista option').length > 300) { clearInterval(t); res(1); }
+     }, 100);
+     setTimeout(() => { clearInterval(t); res(0); }, 8000);
+  })`;
+  const teclear = async (texto) => {
+    await evaluar(p, `(() => { const c = document.getElementById('enc-buscar'); c.value = ''; c.focus(); return 1; })()`);
+    await p.enviar("Input.insertText", { text: texto });
+    for (const tipo of ["keyDown", "keyUp"])
+      await p.enviar("Input.dispatchKeyEvent", {
+        type: tipo,
+        key: "Enter",
+        code: "Enter",
+        windowsVirtualKeyCode: 13,
+        nativeVirtualKeyCode: 13,
+      });
+    await new Promise((r) => setTimeout(r, 300));
+  };
+
+  await evaluar(p, esperarAviso);
+  const caido = await evaluar(p, leer);
+
+  await teclear("Goblin");
+  const sinCatalogo = await evaluar(p, leer);
+
+  await p.enviar("Network.setBlockedURLs", { urls: [] });
+  await evaluar(p, `(() => { const b = document.getElementById('enc-reintentar'); if (b) b.click(); return 1; })()`);
+  await evaluar(p, esperarCatalogo);
+  const recuperado = await evaluar(p, leer);
+
+  await teclear("Guerrero goblin");
+  const anadida = await evaluar(p, leer);
+
+  const okCaido = caido.opciones === 0 && caido.aviso.includes("catálogo del 5.2.1") && caido.reintentar;
+  const okNombre =
+    sinCatalogo.anadidas === 0 &&
+    sinCatalogo.aviso.includes("catálogo") &&
+    !sinCatalogo.aviso.toLowerCase().includes("ninguna criatura que se llame");
+  const okRecuperado = recuperado.opciones > 300 && recuperado.aviso === "" && !recuperado.reintentar;
+  const okAnadida = anadida.anadidas === 1 && anadida.aviso === "";
+  if (okCaido && okNombre && okRecuperado && okAnadida)
+    bien(
+      `Catálogo caído: el panel lo dice («${caido.aviso.slice(0, 70)}…»), no culpa al nombre escrito y el reintento recupera las ${recuperado.opciones} criaturas`,
+    );
+  else fallo("Catálogo caído", JSON.stringify({ caido, sinCatalogo, recuperado, anadida }));
+} catch (e) {
+  fallo("Catálogo caído", String(e));
+}
+
 // La pantalla del DM compilaba y el humo la abría por URL, pero no había ni un
 // enlace a ella en todo el sitio: un DM que no supiera la dirección no llegaba.
 // Se comprueba el recorrido de verdad, con un clic del ratón sobre la tarjeta de

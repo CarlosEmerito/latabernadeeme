@@ -830,6 +830,18 @@
   color: #8a4a1c;
 }
 
+/* El reintento de la carga del catálogo solo existe cuando la carga ha fallado.
+   El `hidden` del navegador no basta: `.btn` pone `display: inline-flex` y gana,
+   así que el botón se quedaría a la vista con el catálogo cargado. */
+#enc-reintentar {
+  margin: -0.5rem 0 0.9rem;
+  padding: 0;
+}
+
+#enc-reintentar[hidden] {
+  display: none;
+}
+
 .mesa-check {
   flex-direction: row !important;
   align-items: center;

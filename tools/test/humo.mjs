@@ -206,6 +206,16 @@ try {
 // dejaba 39 de las 126 criaturas medianas de 5.2.1 fuera de la casilla que se
 // marca. Se comprueba con el recuento que anuncia la propia casilla y con las
 // filas que quedan a la vista al marcarla.
+//
+// Despachar el `change` no aplica el filtro en el acto: quien filtra es el
+// `<script type="module">` de `Tabla.astro`, y hasta que ese módulo no corre la
+// tabla sigue entera. Leer las filas visibles en la misma expresión síncrona
+// que el despacho convertía cualquier milisegundo de diferencia en un rojo
+// falso (««Mediano» anuncia 122 y enseña 317») que mandaba a buscar el fallo en
+// la página, que no lo tenía. Ahora se sondea hasta 2 s, y si el efecto no
+// llega el mensaje lo dice con esas palabras y con el estado del documento,
+// para que se distinga «el módulo no ha corrido» de «el módulo corre y no
+// filtra».
 for (const ed of ["5.5", "5e"]) {
   try {
     const p = await abrir(`${BASE}/${ed}/monstruos/`);
@@ -215,16 +225,38 @@ for (const ed of ["5.5", "5e"]) {
         const casillas = [...document.querySelectorAll('[data-faceta="tamano"]')];
         const femeninas = casillas.filter((c) => /^(Diminuta|Peque\u00f1a|Mediana|Gargantuesca)$/.test(c.value)).map((c) => c.value);
         const mediano = casillas.find((c) => c.value === "Mediano");
-        if (!mediano) return { casillas: casillas.length, femeninas, anunciado: null, visibles: null };
+        if (!mediano) return { casillas: casillas.length, femeninas, anunciado: null };
         const anunciado = Number(mediano.closest("label").querySelector(".faceta__n").textContent);
         mediano.checked = true;
         mediano.dispatchEvent(new Event("change", { bubbles: true }));
-        return { casillas: casillas.length, femeninas, anunciado, visibles: document.querySelectorAll("#cuerpo tr:not([hidden])").length };
+        return { casillas: casillas.length, femeninas, anunciado };
       })()`,
     );
-    if (d.casillas >= 1 && d.casillas <= 7 && d.femeninas.length === 0 && d.anunciado === d.visibles && d.visibles > 100)
-      bien(`filtro tamaño ${ed}: ${d.casillas} casillas, «Mediano» anuncia ${d.anunciado} y enseña ${d.visibles}`);
-    else fallo(`filtro tamaño ${ed}`, JSON.stringify(d));
+    const aplicado =
+      d.anunciado === null
+        ? false
+        : await evaluar(
+            p,
+            `new Promise((res) => {
+               const vale = () => document.querySelectorAll("#cuerpo tr:not([hidden])").length === ${d.anunciado};
+               if (vale()) return res(1);
+               const t = setInterval(() => { if (vale()) { clearInterval(t); res(1); } }, 100);
+               setTimeout(() => { clearInterval(t); res(vale() ? 1 : 0); }, 2000);
+             })`,
+          );
+    const estado = await evaluar(
+      p,
+      `({ listo: document.readyState,
+          total: document.querySelectorAll("#cuerpo tr").length,
+          visibles: document.querySelectorAll("#cuerpo tr:not([hidden])").length,
+          cuenta: document.getElementById("cuenta")?.textContent ?? null })`,
+    );
+    const detalle = JSON.stringify({ ...d, ...estado });
+    if (d.anunciado === null) fallo(`filtro tamaño ${ed}`, `no hay casilla «Mediano» — ${detalle}`);
+    else if (!aplicado) fallo(`filtro tamaño ${ed}`, `el filtro no se ha aplicado en 2 s — ${detalle}`);
+    else if (d.casillas >= 1 && d.casillas <= 7 && d.femeninas.length === 0 && estado.visibles > 100)
+      bien(`filtro tamaño ${ed}: ${d.casillas} casillas, «Mediano» anuncia ${d.anunciado} y enseña ${estado.visibles}`);
+    else fallo(`filtro tamaño ${ed}`, detalle);
   } catch (e) {
     fallo(`filtro tamaño ${ed}`, String(e));
   }

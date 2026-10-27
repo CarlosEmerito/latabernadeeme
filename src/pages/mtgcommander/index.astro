@@ -882,7 +882,7 @@ import { e } from "../../lib/urls";
 <script>
   import { parsearExport } from "../../lib/commander/export";
   import { resolverCartas } from "../../lib/commander/scryfall";
-  import { analizarMazo, cuentaDeCartas, type Analisis } from "../../lib/commander/analisis";
+  import { analizarMazo, contarPorTipo, cuentaDeCartas, type Analisis } from "../../lib/commander/analisis";
   import { consejoDe } from "../../lib/commander/consejo";
   import { analizarConIA } from "../../lib/commander/ia";
   import { markdownDe, sinIntroduccion } from "../../lib/commander/markdown";
@@ -893,10 +893,9 @@ import { e } from "../../lib/urls";
     imagenDe,
     textoDe,
     type CartaMazo,
-    type CartaScryfall,
     type Mazo,
   } from "../../lib/commander/tipos";
-  import { ROLES, rolesDe, tipoFrontal, type RolId } from "../../lib/commander/roles";
+  import { ROLES, TIPOS_FILTRO, rolesDe, tipoDeCarta, type RolId } from "../../lib/commander/roles";
 
   const CLAVE_MAZOS = "taberna:commander:mazos";
   const CLAVE_IA = "taberna:commander:clave";
@@ -1126,7 +1125,11 @@ import { e } from "../../lib/urls";
     const rol = $("#mtg-f-rol") as HTMLSelectElement;
     const tipoActual = tipo.value;
     const rolActual = rol.value;
-    tipo.innerHTML = `<option value="">Todos</option>${a.tipos.map((t) => `<option value="${esc(t.tipo)}">${esc(t.tipo)} (${t.n})</option>`).join("")}`;
+    // Los números del desplegable son los que devuelve el filtro, no el desglose
+    // del lateral: salen de la misma clasificación y de la misma cuenta que la
+    // rejilla (`tipoDeCarta` y `cuentaDeCartas`), sobre las mismas cartas.
+    const porTipo = contarPorTipo([...(mazoActual?.comandantes ?? []), ...(mazoActual?.cartas ?? [])]);
+    tipo.innerHTML = `<option value="">Todos</option>${porTipo.map((t) => `<option value="${esc(t.tipo)}">${esc(t.tipo)} (${t.n})</option>`).join("")}`;
     mv.innerHTML = `<option value="">Todos</option>${Array.from({ length: 8 }, (_, i) => `<option value="${i}">${i}${i === 7 ? "+" : ""}</option>`).join("")}`;
     color.innerHTML = `<option value="">Todos</option>${COLORES.map((c) => `<option value="${c}">${NOMBRE_COLOR[c]}</option>`).join("")}<option value="C">Incoloro</option>`;
     rol.innerHTML = `<option value="">Todos</option>${a.roles
@@ -1176,7 +1179,7 @@ import { e } from "../../lib/urls";
     $("#mtg-colores").innerHTML = `<div class="mtg-pips">${pips || '<span class="mtg-nota">Incolora</span>'}</div>`;
     $("#mtg-tipos").innerHTML = `<div class="mtg-tipos">${a.tipos
       .map((t) => `<div><span>${esc(t.tipo)}</span><span>${t.n}</span></div>`)
-      .join("")}</div>`;
+      .join("")}</div><p class="mtg-nota">Aquí una carta de dos tipos cuenta en los dos; el filtro de la rejilla la cuenta en uno.</p>`;
   }
 
   function pintarConsejo() {
@@ -1198,13 +1201,6 @@ import { e } from "../../lib/urls";
     return "";
   }
 
-  function tipoDe(carta: CartaScryfall): string {
-    for (const tipo of ["Land", "Creature", "Planeswalker", "Battle", "Instant", "Sorcery", "Enchantment", "Artifact"]) {
-      if (new RegExp(`\\b${tipo}\\b`, "i").test(tipoFrontal(carta))) return tipo;
-    }
-    return "Otro";
-  }
-
   function pintarRejilla() {
     if (!mazoActual) return;
     const texto = plegar(($("#mtg-f-texto") as HTMLInputElement).value);
@@ -1217,7 +1213,7 @@ import { e } from "../../lib/urls";
     const todas = [...mazoActual.comandantes, ...mazoActual.cartas];
     const visibles = todas.filter((c) => {
       if (texto && !plegar(c.carta.name).includes(texto)) return false;
-      if (tipo && tipoDe(c.carta) !== tipo) return false;
+      if (tipo && tipoDeCarta(c.carta) !== tipo) return false;
       if (mv) {
         const valor = Math.min(7, Math.max(0, Math.floor(Number(c.carta.cmc ?? 0))));
         if (String(valor) !== mv) return false;
@@ -1269,10 +1265,12 @@ import { e } from "../../lib/urls";
     if (orden === "tipo") {
       const grupos = new Map<string, CartaMazo[]>();
       for (const c of visibles) {
-        const t = tipoDe(c.carta);
+        const t = tipoDeCarta(c.carta);
         (grupos.get(t) ?? grupos.set(t, []).get(t)!).push(c);
       }
-      const ordenTipos = ["Creature", "Planeswalker", "Battle", "Instant", "Sorcery", "Enchantment", "Artifact", "Land", "Otro"];
+      // Las criaturas primero y las tierras al final, que es donde se buscan;
+      // el orden en que se decide el tipo es el de `TIPOS_FILTRO`.
+      const ordenTipos = [...TIPOS_FILTRO.filter((t) => t !== "Land"), "Land", "Otro"];
       for (const t of ordenTipos) {
         const lista = grupos.get(t);
         if (!lista?.length) continue;

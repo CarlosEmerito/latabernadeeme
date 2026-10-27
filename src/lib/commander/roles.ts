@@ -163,6 +163,42 @@ export function esTierra(carta: CartaScryfall): boolean {
   return /\bland\b/i.test(tipoFrontal(carta));
 }
 
+/**
+ * Tipos con los que filtra la rejilla, en el orden en que se decide. Una carta
+ * de tipo múltiple cae en el primero que case: `Artifact Creature` es criatura
+ * y `Land Creature` es tierra. Ese orden es el contrato del filtro —cambiarlo
+ * cambia qué devuelve cada opción— y por eso se lee de aquí y no de la página.
+ */
+export const TIPOS_FILTRO = [
+  "Land",
+  "Creature",
+  "Planeswalker",
+  "Battle",
+  "Instant",
+  "Sorcery",
+  "Enchantment",
+  "Artifact",
+] as const;
+
+export type TipoFiltro = (typeof TIPOS_FILTRO)[number] | "Otro";
+
+/**
+ * El tipo de una carta para la rejilla y su filtro: una sola respuesta por carta.
+ *
+ * El desglose por tipos del análisis cuenta los tipos múltiples (un
+ * `Artifact Creature` suma en Artifact y en Creature), y para un desglose está
+ * bien. El filtro, en cambio, devuelve cartas: si el número que anuncia su
+ * desplegable saliera de ese desglose, en toda carta de tipo múltiple prometería
+ * más cartas de las que enseña. Una clasificación sola para las dos preguntas.
+ */
+export function tipoDeCarta(carta: CartaScryfall): TipoFiltro {
+  const linea = tipoFrontal(carta);
+  for (const tipo of TIPOS_FILTRO) {
+    if (new RegExp(`\\b${tipo}\\b`, "i").test(linea)) return tipo;
+  }
+  return "Otro";
+}
+
 /** Roles de una carta, sin repetir. Las tierras no tienen rol. */
 export function rolesDe(carta: CartaScryfall): RolId[] {
   if (esTierra(carta)) return [];

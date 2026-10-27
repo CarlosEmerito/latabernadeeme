@@ -160,6 +160,13 @@ Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegado
   como el hechizo que son —entran en la curva, en la media, en los roles y en **un solo** tipo— y
   no como tierra. La convención de quien construye mazos es reservarles un slot de tierra; si el
   informe quiere enseñar cuántas son reversibles, se dice aparte, sin cambiar el recuento.
+- **Un tipo por carta para filtrar, todos los tipos para el desglose.** `tipoDeCarta`
+  (`src/lib/commander/roles.ts`) decide en qué tipo cae cada carta —Land, Creature, Planeswalker,
+  Battle, Instant, Sorcery, Enchantment, Artifact, y `Otro` si no casa ninguno— y con esa misma
+  función cuenta el desplegable «Tipo» de la rejilla, así que el número de cada opción es el de las
+  cartas que esa opción devuelve. El desglose «Colores y tipos» del lateral sigue contando los tipos
+  múltiples (`Artifact Creature` suma en los dos), porque ahí la pregunta es otra: cuántas cartas
+  llevan ese tipo.
 
 **IA opcional:** solo redacta estrategia sobre el resumen que ya está calculado; no decide la
 legalidad ni el bracket. Se etiqueta como sugerencia y se avisa de que el mazo sale del navegador.

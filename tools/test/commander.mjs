@@ -15,8 +15,8 @@
  * Uso: node tools/test/commander.mjs
  */
 import { parsearExport } from "../../src/lib/commander/export.ts";
-import { esTierra, rolesDe } from "../../src/lib/commander/roles.ts";
-import { analizarMazo, cuentaDeCartas } from "../../src/lib/commander/analisis.ts";
+import { TIPOS_FILTRO, esTierra, rolesDe, tipoDeCarta } from "../../src/lib/commander/roles.ts";
+import { analizarMazo, contarPorTipo, cuentaDeCartas } from "../../src/lib/commander/analisis.ts";
 import { consejoDe } from "../../src/lib/commander/consejo.ts";
 import { analizarConIA, promptDe } from "../../src/lib/commander/ia.ts";
 import { markdownDe, sinIntroduccion } from "../../src/lib/commander/markdown.ts";
@@ -454,7 +454,63 @@ titulo("Cuenta de cartas de un mazo guardado");
   comprobar(analizarMazo(conCompanion).companion.length === 1, "el companion se pierde del análisis");
 }
 
-// ── 4. Resolver ─────────────────────────────────────────────────────────────
+// ── 4. Tipo de cada carta y recuento del desplegable ────────────────────────
+/*
+ * El desplegable «Tipo» de la rejilla anuncia un número al lado de cada tipo y
+ * el filtro devuelve cartas. Cuando el número sale del desglose por tipos —que
+ * cuenta cada carta una vez por cada tipo que lleva— y el filtro se queda con el
+ * primero que casa, para toda carta de tipo múltiple el desplegable promete más
+ * cartas de las que enseña, y el lector ve las dos cifras en el mismo sitio.
+ *
+ * El caso es corriente en Commander: `Baleful Strix` es `Artifact Creature`,
+ * `Dryad Arbor` es `Land Creature` y los equipos son `Artifact`. En el mazo de
+ * abajo el desplegable anunciaba 4 criaturas y 3 artefactos, y el filtro
+ * devolvía 3 y 2.
+ */
+titulo("Tipo de cada carta y recuento del desplegable");
+{
+  const strix = carta("Baleful Strix", "Artifact Creature — Bird", "Flying", { cmc: 2 });
+  const arbor = carta("Dryad Arbor", "Land Creature — Forest Dryad", "", { cmc: 0 });
+  const equipo = carta("Espada de prueba", "Artifact — Equipment", "Equipped creature gets +1/+1.", { cmc: 1 });
+  const sol = carta("Sol Ring", "Artifact", "{T}: Add {C}{C}.", { cmc: 1 });
+  const elfo = carta("Elfo de prueba", "Creature — Elf", "", { cmc: 1 });
+  const sueltas = [];
+  for (let i = 1; i <= 59; i++) sueltas.push([rampa(100 + i), 1]);
+  const m = mazoDe([[strix, 1], [arbor, 1], [equipo, 1], [sol, 1], [elfo, 1], [bosque, 35], ...sueltas], comandante);
+  const entradas = [...m.comandantes, ...m.cartas];
+  const anunciado = new Map(contarPorTipo(entradas).map((t) => [t.tipo, t.n]));
+  const devueltas = (tipo) =>
+    entradas.filter((e) => tipoDeCarta(e.carta) === tipo).reduce((n, e) => n + e.cantidad, 0);
+
+  // La clasificación: una sola respuesta por carta, y las tierras mandan.
+  comprobar(tipoDeCarta(arbor) === "Land", `Dryad Arbor se clasifica como ${tipoDeCarta(arbor)} y no como Land`);
+  comprobar(tipoDeCarta(strix) === "Creature", `Baleful Strix se clasifica como ${tipoDeCarta(strix)} y no como Creature`);
+  comprobar(tipoDeCarta(equipo) === "Artifact", `un equipo se clasifica como ${tipoDeCarta(equipo)} y no como Artifact`);
+  comprobar(tipoDeCarta(bosque) === "Land", `una tierra básica se clasifica como ${tipoDeCarta(bosque)}`);
+
+  // El número de cada opción es el de las cartas que ese tipo devuelve.
+  for (const tipo of TIPOS_FILTRO) {
+    const n = anunciado.get(tipo);
+    if (!n) continue;
+    comprobar(
+      n === devueltas(tipo),
+      `${tipo}: el desplegable anuncia ${n} y el filtro devuelve ${devueltas(tipo)}`,
+    );
+  }
+  comprobar(anunciado.get("Creature") === 3, `Creature anuncia ${anunciado.get("Creature")} y el filtro devuelve 3`);
+  comprobar(anunciado.get("Artifact") === 2, `Artifact anuncia ${anunciado.get("Artifact")} y el filtro devuelve 2`);
+
+  // Lo que anuncian las opciones no puede pasar de las cartas del mazo.
+  const suma = [...anunciado.values()].reduce((a, b) => a + b, 0);
+  comprobar(suma === cuentaDeCartas(entradas), `las opciones suman ${suma} cartas y el mazo tiene ${cuentaDeCartas(entradas)}`);
+
+  // El desglose del lateral sigue contando los tipos múltiples: es un desglose.
+  const a = analizarMazo(m);
+  comprobar(a.tipos.find((t) => t.tipo === "Creature")?.n === 4, `el desglose cuenta ${a.tipos.find((t) => t.tipo === "Creature")?.n} criaturas y son 4`);
+  comprobar(a.tipos.find((t) => t.tipo === "Artifact")?.n === 3, `el desglose cuenta ${a.tipos.find((t) => t.tipo === "Artifact")?.n} artefactos y son 3`);
+}
+
+// ── 5. Resolver ─────────────────────────────────────────────────────────────
 titulo("Resolver por lotes, sin red");
 const cartaJson = (name, set = "tst", cn = "1") => ({
   ...carta(name, "Artifact", "Add {C}.", { set, collector_number: cn }),

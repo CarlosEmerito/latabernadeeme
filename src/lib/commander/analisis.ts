@@ -14,7 +14,16 @@ import {
   type Color,
   type Mazo,
 } from "./tipos.ts";
-import { ROLES, esTierra, rolesDe, tipoFrontal, type RolId } from "./roles.ts";
+import {
+  ROLES,
+  TIPOS_FILTRO,
+  esTierra,
+  rolesDe,
+  tipoDeCarta,
+  tipoFrontal,
+  type RolId,
+  type TipoFiltro,
+} from "./roles.ts";
 import { plegar } from "../texto.ts";
 
 export interface RolContado {
@@ -107,6 +116,33 @@ export function cuentaDeCartas(entradas: CartaMazo[]): number {
 /** Cartas que van dentro de las 100: todo menos banquillo y montones auxiliares. */
 function cartasDelMazo(mazo: Mazo): CartaMazo[] {
   return [...mazo.comandantes, ...mazo.cartas].filter((c) => !FUERA_DEL_MAZO.has(c.tablero));
+}
+
+/**
+ * Recuento por tipo con el que se anuncia el filtro de la rejilla.
+ *
+ * Cada carta cae en un solo tipo —el que decide `tipoDeCarta`, el mismo que usa
+ * el filtro— y el número de cada opción es la suma de cantidades de dentro del
+ * mazo, la misma cifra que el contador de la rejilla. Antes salía del desglose
+ * de `Analisis.tipos`, que cuenta los tipos múltiples: para un `Artifact
+ * Creature` el desplegable anunciaba una carta que el filtro no devolvía, y el
+ * lector veía las dos cifras en el mismo sitio.
+ *
+ * El desglose del lateral sigue contando los tipos múltiples a propósito: ahí
+ * la pregunta es «cuántas cartas llevan tal tipo», no «cuántas devuelve el
+ * filtro».
+ */
+export function contarPorTipo(entradas: CartaMazo[]): Array<{ tipo: TipoFiltro; n: number }> {
+  const grupos = new Map<TipoFiltro, CartaMazo[]>();
+  for (const entrada of entradas) {
+    const tipo = tipoDeCarta(entrada.carta);
+    const grupo = grupos.get(tipo);
+    if (grupo) grupo.push(entrada);
+    else grupos.set(tipo, [entrada]);
+  }
+  return [...TIPOS_FILTRO, "Otro" as const]
+    .map((tipo) => ({ tipo, n: cuentaDeCartas(grupos.get(tipo) ?? []) }))
+    .filter((cuenta) => cuenta.n > 0);
 }
 
 /**

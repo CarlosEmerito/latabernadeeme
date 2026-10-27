@@ -114,8 +114,9 @@
  *  32. `tools/test/catalogo.mjs`: que el constructor de encuentros diga que el
  *      catálogo no ha llegado en vez de contestar que la criatura no existe.
  *  33. `tools/test/commander.mjs`: que el parser del export de Moxfield, los
- *      roles, la legalidad, el bracket y el resolver de mazos de la herramienta
- *      de Commander sigan cumpliendo lo que prometen.
+ *      roles, la legalidad, el bracket, el resolver de mazos y el plazo de las
+ *      llamadas de red de la herramienta de Commander sigan cumpliendo lo que
+ *      prometen.
  *  34. `tools/test/tarjetas.mjs` sobre `dist/`: que la tarjeta emergente pida su
  *      índice delgado (`/datos/<edición>-tarjetas.json`) y no el catálogo
  *      entero, que se quede por debajo de 60 000 B, que cubra cada ficha

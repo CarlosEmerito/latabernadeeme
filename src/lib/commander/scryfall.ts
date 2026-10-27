@@ -11,15 +11,24 @@
  *
  * `fetch` se recibe por parámetro para poder probar la función sin red.
  */
+import { conPlazo } from "./plazo.ts";
 import type { CartaMazo, CartaScryfall, Linea } from "./tipos.ts";
 
 const API = "https://api.scryfall.com";
 const LOTE = 75;
 const ESPERA_MS = 500;
+/** Techo de cada petición: dos lotes de 100 cartas tardan segundos, no minutos. */
+const PLAZO_MS = 15_000;
 
 export interface OpcionesResolver {
   fetchImpl?: typeof fetch;
   esperar?: (ms: number) => Promise<void>;
+  /**
+   * Milisegundos que se espera cada petición antes de darla por perdida. Un
+   * `fetch` que no contesta no rechaza nunca, así que sin esto la página se
+   * queda en «Resolviendo…» para siempre.
+   */
+  plazoMs?: number;
   /**
    * Solo para Node: el navegador no deja fijar `User-Agent` y ya manda el suyo.
    * Scryfall rechaza el de `fetch` de Node con un 400.
@@ -73,6 +82,7 @@ async function pedir(
 ): Promise<{ respuesta: Respuesta; peticiones: number }> {
   const hacerFetch = opciones.fetchImpl ?? fetch;
   const esperar = opciones.esperar ?? ((ms: number) => new Promise((listo) => setTimeout(listo, ms)));
+  const plazoMs = opciones.plazoMs ?? PLAZO_MS;
   const cabeceras: Record<string, string> = {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -82,11 +92,14 @@ async function pedir(
   let peticiones = 0;
   let respuesta: Response | null = null;
   for (let intento = 0; intento < 2; intento++) {
-    respuesta = await hacerFetch(`${API}/cards/collection`, {
-      method: "POST",
-      headers: cabeceras,
-      body: JSON.stringify({ identifiers: identificadores }),
-    });
+    respuesta = await conPlazo("Scryfall", plazoMs, (senal) =>
+      hacerFetch(`${API}/cards/collection`, {
+        method: "POST",
+        headers: cabeceras,
+        body: JSON.stringify({ identifiers: identificadores }),
+        signal: senal,
+      }),
+    );
     peticiones += 1;
     if (respuesta.status !== 429) break;
     await esperar(1000);

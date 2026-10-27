@@ -7,11 +7,14 @@
  * El modelo recibe el mazo ya resuelto y el análisis hecho: su trabajo es
  * redactar estrategia, no decidir legalidad ni bracket.
  */
+import { conPlazo } from "./plazo.ts";
 import type { Analisis } from "./analisis.ts";
 import type { Mazo } from "./tipos.ts";
 
 const MODELO = "gemini-2.5-flash";
 const URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODELO}:generateContent`;
+/** Redactar 100 cartas tarda, pero una llamada que no contesta no puede colgar la página. */
+const PLAZO_MS = 60_000;
 
 /** Prompt con el mazo y el análisis; ~6.000 tokens para 100 cartas. */
 export function promptDe(mazo: Mazo, a: Analisis): string {
@@ -88,19 +91,23 @@ async function pedir(
   prompt: string,
   maxOutputTokens: number,
   fetchImpl: typeof fetch,
+  plazoMs: number,
 ): Promise<RespuestaGemini> {
-  const respuesta = await fetchImpl(`${URL}?key=${encodeURIComponent(clave)}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.4,
-        maxOutputTokens,
-        thinkingConfig: { thinkingBudget: 0 },
-      },
+  const respuesta = await conPlazo("Gemini", plazoMs, (senal) =>
+    fetchImpl(`${URL}?key=${encodeURIComponent(clave)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: {
+          temperature: 0.4,
+          maxOutputTokens,
+          thinkingConfig: { thinkingBudget: 0 },
+        },
+      }),
+      signal: senal,
     }),
-  });
+  );
   if (!respuesta.ok) throw new Error(await errorDe(respuesta));
   return (await respuesta.json()) as RespuestaGemini;
 }
@@ -118,12 +125,13 @@ export async function analizarConIA(
   analisis: Analisis,
   clave: string,
   fetchImpl: typeof fetch = fetch,
+  plazoMs: number = PLAZO_MS,
 ): Promise<string> {
   const limpia = clave.trim();
   if (!limpia) throw new Error("Falta la clave de Gemini.");
   const prompt = promptDe(mazo, analisis);
 
-  const primera = await pedir(limpia, prompt, 4096, fetchImpl);
+  const primera = await pedir(limpia, prompt, 4096, fetchImpl, plazoMs);
   if (primera.promptFeedback?.blockReason) {
     throw new Error(`Gemini ha bloqueado la respuesta (${primera.promptFeedback.blockReason}).`);
   }
@@ -132,7 +140,7 @@ export async function analizarConIA(
   if (candidato?.finishReason === "MAX_TOKENS") {
     // El techo se quedó corto (pasa si el modelo gasta en pensamiento): una
     // segunda pasada con el doble de margen antes de devolver algo a medias.
-    const segunda = await pedir(limpia, prompt, 8192, fetchImpl);
+    const segunda = await pedir(limpia, prompt, 8192, fetchImpl, plazoMs);
     if (segunda.promptFeedback?.blockReason) {
       throw new Error(`Gemini ha bloqueado la respuesta (${segunda.promptFeedback.blockReason}).`);
     }

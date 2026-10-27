@@ -429,6 +429,35 @@ titulo("IA: techo de tokens y errores");
   }
   comprobar(error.includes("cuota"), `sin error de cuota: ${error || "no lanzó"}`);
 }
+/*
+ * Un proveedor que acepta la conexión y no contesta deja la llamada colgada
+ * igual que Scryfall: la clave se pega a mano y el estado se queda en
+ * «Analizando el mazo con Gemini…» para siempre. El plazo se pasa como quinto
+ * argumento para que la pasada dure milisegundos.
+ */
+{
+  const a = analizarMazo(base);
+  let init = null;
+  const colgada = (_url, opciones = {}) => {
+    init = opciones;
+    if (!opciones.signal) return Promise.reject(new Error("la petición a Gemini no lleva plazo"));
+    return new Promise((_, rechazar) => {
+      opciones.signal.addEventListener("abort", () => rechazar(new Error("abortada por el plazo")));
+    });
+  };
+  let error = null;
+  try {
+    await analizarConIA(base, a, "clave", colgada, 30);
+  } catch (e) {
+    error = e;
+  }
+  comprobar(!!init?.signal, "la petición a Gemini no lleva señal de plazo");
+  comprobar(
+    /no ha contestado|tardado|demasiado/i.test(String(error)),
+    `una petición colgada a Gemini tiene que vencer con un mensaje que diga que no ha contestado a tiempo y dio: ${error}`,
+  );
+  comprobar(/Gemini/.test(String(error)), `el mensaje tiene que nombrar la fuente y dio: ${error}`);
+}
 
 // ── Presentación de la respuesta ───────────────────────────────────────────
 titulo("Markdown y recorte de la introducción");

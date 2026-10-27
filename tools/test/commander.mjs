@@ -15,7 +15,7 @@
  * Uso: node tools/test/commander.mjs
  */
 import { parsearExport } from "../../src/lib/commander/export.ts";
-import { rolesDe } from "../../src/lib/commander/roles.ts";
+import { esTierra, rolesDe } from "../../src/lib/commander/roles.ts";
 import { analizarMazo } from "../../src/lib/commander/analisis.ts";
 import { consejoDe } from "../../src/lib/commander/consejo.ts";
 import { analizarConIA, promptDe } from "../../src/lib/commander/ia.ts";
@@ -241,6 +241,66 @@ const base = mazoDe([[bosque, 36], ...cartasBase], comandante);
   comprobar(
     Math.abs(a.precio.total - sin.precio.total) < 1e-9,
     `el companion suma al precio: ${sin.precio.total} → ${a.precio.total}`,
+  );
+}
+
+/*
+ * Una carta modal de doble cara cuyo dorso es una tierra se juega por su cara
+ * frontal, así que es un hechizo. Scryfall publica `type_line` con las dos caras
+ * y el valor de la frontal («Sorcery // Land», cmc 3), y el `mana_cost` va en
+ * cada cara. Tomando ese `type_line` entero la carta pasaba por tierra para
+ * todo: fuera de la curva y de la media, sin ningún rol —una recursión que no
+ * cuenta como recursión— y, encima, contada en dos tipos a la vez.
+ */
+{
+  const dobleCara = {
+    id: "mdfc-bala-ged",
+    name: "Bala Ged Recovery // Bala Ged Sanctuary",
+    cmc: 3,
+    type_line: "Sorcery // Land",
+    color_identity: ["G"],
+    legalities: { commander: "legal" },
+    card_faces: [
+      {
+        name: "Bala Ged Recovery",
+        mana_cost: "{2}{G}",
+        type_line: "Sorcery",
+        oracle_text: "Return target card from your graveyard to your hand.",
+      },
+      {
+        name: "Bala Ged Sanctuary",
+        type_line: "Land",
+        oracle_text: "Bala Ged Sanctuary enters the battlefield tapped.",
+      },
+    ],
+  };
+  comprobar(
+    !esTierra(dobleCara),
+    "una carta con dorso de tierra no es una tierra: manda la cara frontal",
+  );
+  comprobar(
+    rolesDe(dobleCara).includes("recursion"),
+    `la cara frontal es recursión y los roles dicen ${rolesDe(dobleCara).join(", ") || "nada"}`,
+  );
+
+  const hechizos = cartasBase.slice(0, 62).map(([c]) => c);
+  const m = mazoDe([[bosque, 36], [dobleCara, 1], ...hechizos.map((c) => [c, 1])], comandante);
+  const a = analizarMazo(m);
+  comprobar(a.total === 100, `el mazo de la prueba tiene que dar 100 cartas y da ${a.total}`);
+  comprobar(a.tierras === 36, `tierras ${a.tierras}: la doble cara no es una tierra más`);
+  comprobar(
+    a.curva.some((t) => t.mv === 3 && t.n === 2),
+    `la curva del tramo 3 tiene que sumar 2 (comandante y doble cara): ${JSON.stringify(a.curva)}`,
+  );
+  comprobar(
+    Math.abs(a.media - 130 / 64) < 1e-9,
+    `la media tiene que contar los dos hechizos de valor 3 y da ${a.media}`,
+  );
+  const suma = a.tipos.reduce((n, t) => n + t.n, 0);
+  comprobar(suma === a.total, `los tipos suman ${suma} sobre ${a.total} cartas: la doble cara va contada dos veces`);
+  comprobar(
+    a.tipos.every((t) => t.tipo !== "Land" || t.n === 36),
+    `las tierras del reparto por tipo son ${a.tipos.find((t) => t.tipo === "Land")?.n} y no 36`,
   );
 }
 

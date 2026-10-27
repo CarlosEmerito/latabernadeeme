@@ -840,6 +840,95 @@ titulo("Markdown y recorte de la introducción");
   comprobar(sinIntroduccion(conLista) === conLista, "se come una respuesta que empieza por lista");
 }
 
+// ── Comandante con tipo compuesto ───────────────────────────────────────────
+/*
+ * Los dioses de Theros y Hope of Ghirapur son comandantes legales, y su línea de
+ * tipo mete un tipo de permanente entre «legendary» y «creature»: «Legendary
+ * Enchantment Creature — God» (lo dice Scryfall, que además las da como `legal`
+ * en commander). Buscar la cadena «legendary creature» de corrido las rechaza, y
+ * con ellas el mazo entero: «Sin bracket» y el consejo diciendo que hay cosas que
+ * arreglar antes de jugarlo. Lo que hay que mirar son los tipos por separado
+ * —`Legendary` y `Creature`— sobre la cara frontal, como ya hace `esBasica` con
+ * las básicas de nieve.
+ *
+ * Los contrapesos van en el mismo bloque: una legendaria que no es criatura, una
+ * criatura que no es legendaria y un planeswalker con «can be your commander»
+ * tienen que seguir como están.
+ */
+titulo("Comandante con tipo compuesto");
+{
+  const comandanteconTipo = (nombre, tipo, texto = "", extra = {}) => ({
+    ...carta(nombre, tipo, texto),
+    color_identity: ["R"],
+    cmc: 3,
+    ...extra,
+  });
+  const deComandante = (c) => ({
+    cantidad: 1,
+    carta: c,
+    tablero: "commander",
+    linea: { cantidad: 1, nombre: c.name, tablero: "commander" },
+  });
+  const relleno = (n) =>
+    Array.from({ length: n }, (_, i) => ({
+      cantidad: 1,
+      carta: carta(`Relleno ${i}`, "Creature — Goblin", "", { color_identity: ["R"], cmc: 2 }),
+      tablero: "main",
+      linea: { cantidad: 1, nombre: `Relleno ${i}`, tablero: "main" },
+    }));
+  const unComandante = (c) => ({
+    id: "prueba",
+    nombre: "Prueba",
+    creado: "2026-01-01T00:00:00.000Z",
+    fuente: "export",
+    comandantes: [deComandante(c)],
+    cartas: relleno(99),
+    noEncontradas: [],
+  });
+  const problemas = (a) => a.legalidad.problemas.join(" · ");
+
+  const dios = analizarMazo(unComandante(comandanteconTipo("Purphoros, God of the Forge", "Legendary Enchantment Creature — God")));
+  comprobar(
+    dios.legalidad.ok,
+    `un comandante «Legendary Enchantment Creature — God» es legal y sale ilegal: ${problemas(dios)}`,
+  );
+  comprobar(
+    dios.bracket.etiqueta === "Bracket 1-2",
+    `con un comandante legal el bracket tiene que ser Bracket 1-2 y es «${dios.bracket.etiqueta}»`,
+  );
+
+  const artefacto = analizarMazo(unComandante(comandanteconTipo("Hope of Ghirapur", "Legendary Artifact Creature — Thopter")));
+  comprobar(
+    artefacto.legalidad.ok,
+    `un comandante «Legendary Artifact Creature — Thopter» es legal y sale ilegal: ${problemas(artefacto)}`,
+  );
+
+  const nieve = analizarMazo(unComandante(comandanteconTipo("Jorn, God of Winter", "Legendary Snow Creature — God")));
+  comprobar(nieve.legalidad.ok, `un comandante «Legendary Snow Creature» es legal y sale ilegal: ${problemas(nieve)}`);
+
+  const equipo = analizarMazo(unComandante(comandanteconTipo("Espada Legendaria", "Legendary Artifact — Equipment")));
+  comprobar(
+    !equipo.legalidad.ok && /no puede ser comandante/.test(problemas(equipo)),
+    `una legendaria que no es criatura no puede ser comandante y sale legal: ${problemas(equipo)}`,
+  );
+
+  const noLegendaria = analizarMazo(unComandante(comandanteconTipo("Goblin Cualquiera", "Creature — Goblin")));
+  comprobar(
+    !noLegendaria.legalidad.ok && /no puede ser comandante/.test(problemas(noLegendaria)),
+    `una criatura que no es legendaria no puede ser comandante y sale legal: ${problemas(noLegendaria)}`,
+  );
+
+  const planeswalker = analizarMazo(
+    unComandante(
+      comandanteconTipo("Teferi, Temporal Archmage", "Legendary Planeswalker — Teferi", "Teferi, Temporal Archmage can be your commander."),
+    ),
+  );
+  comprobar(
+    planeswalker.legalidad.ok,
+    `un planeswalker que dice «can be your commander» es comandante legal y sale ilegal: ${problemas(planeswalker)}`,
+  );
+}
+
 // ── Resultado ───────────────────────────────────────────────────────────────
 console.log("");
 if (fallos.length) {

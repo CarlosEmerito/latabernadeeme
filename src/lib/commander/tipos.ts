@@ -97,11 +97,31 @@ export function textoDe(carta: CartaScryfall): string {
     .trim();
 }
 
-/** Coste de maná completo, incluidas las dos caras. */
+/**
+ * Coste de maná de una carta, con las dos caras separadas por «//».
+ *
+ * En las de doble cara el `mana_cost` de nivel superior ya trae los dos costes
+ * —Scryfall publica `"{2}{R} // {1}{R}"` en Bonecrusher Giant y `"{1}{R} // {1}{U}"`
+ * en Fire // Ice—, así que se devuelve tal cual; unirlo con el de cada cara
+ * repetiría cada coste. Solo cuando viene vacío se monta con las caras, que es
+ * el caso de las que tienen un dorso sin coste (Shatterskull Smashing).
+ */
 export function costeDe(carta: CartaScryfall): string {
-  return [carta.mana_cost ?? "", ...(carta.card_faces ?? []).map((c) => c.mana_cost ?? "")]
-    .join(" ")
-    .trim();
+  const arriba = (carta.mana_cost ?? "").trim();
+  if (arriba) return arriba;
+  return (carta.card_faces ?? [])
+    .map((c) => (c.mana_cost ?? "").trim())
+    .filter((coste) => coste.length > 0)
+    .join(" // ");
+}
+
+/**
+ * Coste de maná de la cara que se juega. El dorso de una aventura o de una
+ * partida no se lanza desde la mano, así que sus símbolos no cuentan: se corta
+ * el coste por el «//» que separa las caras.
+ */
+export function costeFrontalDe(carta: CartaScryfall): string {
+  return costeDe(carta).split(/\s*\/\/\s*/)[0];
 }
 
 /** Imagen de una carta, con la primera cara si es de doble cara. */

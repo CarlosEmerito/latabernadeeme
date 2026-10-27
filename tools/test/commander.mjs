@@ -22,6 +22,7 @@ import { consejoDe } from "../../src/lib/commander/consejo.ts";
 import { analizarConIA, promptDe } from "../../src/lib/commander/ia.ts";
 import { markdownDe, sinIntroduccion } from "../../src/lib/commander/markdown.ts";
 import { resolverCartas } from "../../src/lib/commander/scryfall.ts";
+import { costeDe } from "../../src/lib/commander/tipos.ts";
 
 const fallos = [];
 let comprobados = 0;
@@ -936,6 +937,194 @@ titulo("Dos comandantes y su habilitación");
   comprobar(
     unoSolo.legalidad.ok,
     `un mazo de un solo comandante no tiene que pasar por la regla del partner y sale ilegal: ${problemas(unoSolo) || "sin problemas"}`,
+  );
+}
+
+// ── Coste de maná de las cartas de dos caras ────────────────────────────────
+/*
+ * En las cartas de aventura y en las partidas el `mana_cost` de nivel superior
+ * ya trae los dos costes separados por «//» (`"{2}{R} // {1}{R}"` en
+ * Bonecrusher Giant, comprobado con Scryfall), y cada cara trae el suyo. Unir
+ * las tres cosas deja cada coste tres veces —`"{2}{R} // {1}{R} {2}{R}
+ * {1}{R}"`—, que es lo que acaba pintando la rejilla en el coste de la carta y
+ * lo que hincha los símbolos de color del mazo: cuatro por carta en vez de uno.
+ *
+ * Los símbolos se cuentan de la cara frontal, que es la convención del resto del
+ * módulo (`tipoFrontal`, `esTierra`, `tipoDeCarta`) y el coste con el que se
+ * juega la carta. Los contrapesos: las cartas de una cara no cambian y las de
+ * doble cara cuyo dorso es tierra (Shatterskull, Bala Ged) siguen igual, porque
+ * su dorso no tiene coste.
+ */
+titulo("Coste de maná de las cartas de dos caras");
+{
+  const dobleCara = (nombre, coste, type_line, caras, extra = {}) => ({
+    ...carta(nombre, type_line, ""),
+    mana_cost: coste,
+    cmc: 3,
+    color_identity: ["R"],
+    card_faces: caras,
+    ...extra,
+  });
+  const bone = dobleCara("Bonecrusher Giant // Stomp", "{2}{R} // {1}{R}", "Creature — Giant // Instant — Adventure", [
+    { name: "Bonecrusher Giant", mana_cost: "{2}{R}", type_line: "Creature — Giant" },
+    { name: "Stomp", mana_cost: "{1}{R}", type_line: "Instant — Adventure" },
+  ]);
+  comprobar(costeDe(bone) === "{2}{R} // {1}{R}", `el coste de una aventura se pinta «${costeDe(bone)}»`);
+  comprobar(
+    !/\{2\}\{R\}.*\{2\}\{R\}/.test(costeDe(bone)),
+    `el coste de la aventura repite el mismo grupo de símbolos: «${costeDe(bone)}»`,
+  );
+
+  const fireIce = dobleCara("Fire // Ice", "{1}{R} // {1}{U}", "Instant // Instant", [
+    { name: "Fire", mana_cost: "{1}{R}", type_line: "Instant" },
+    { name: "Ice", mana_cost: "{1}{U}", type_line: "Instant" },
+  ]);
+  comprobar(costeDe(fireIce) === "{1}{R} // {1}{U}", `el coste de una partida se pinta «${costeDe(fireIce)}»`);
+
+  const brazen = dobleCara("Brazen Borrower // Petty Theft", "{1}{U}{U} // {1}{U}", "Creature — Faerie Rogue // Instant — Adventure", [
+    { name: "Brazen Borrower", mana_cost: "{1}{U}{U}", type_line: "Creature — Faerie Rogue" },
+    { name: "Petty Theft", mana_cost: "{1}{U}", type_line: "Instant — Adventure" },
+  ]);
+  comprobar(
+    costeDe(brazen) === "{1}{U}{U} // {1}{U}",
+    `el coste de Brazen Borrower se pinta «${costeDe(brazen)}»`,
+  );
+
+  // Doble cara sin coste arriba y con el dorso sin coste: tiene que quedar solo
+  // el de la frontal, sin separadores sueltos.
+  const shatterskull = dobleCara("Shatterskull Smashing // Shatterskull, the Hammer Pass", undefined, "Sorcery // Land", [
+    { name: "Shatterskull Smashing", mana_cost: "{X}{R}{R}", type_line: "Sorcery" },
+    { name: "Shatterskull, the Hammer Pass", mana_cost: "", type_line: "Land" },
+  ]);
+  comprobar(
+    costeDe(shatterskull) === "{X}{R}{R}",
+    `el coste de una doble cara con dorso de tierra se pinta «${costeDe(shatterskull)}»`,
+  );
+
+  // Doble cara sin coste arriba y con coste en las dos caras.
+  const dosCostes = dobleCara("Andar // Correr", undefined, "Instant // Sorcery", [
+    { name: "Andar", mana_cost: "{2}{R}", type_line: "Instant" },
+    { name: "Correr", mana_cost: "{1}{U}", type_line: "Sorcery" },
+  ]);
+  comprobar(
+    costeDe(dosCostes) === "{2}{R} // {1}{U}",
+    `sin coste de nivel superior, los de las caras se unen una vez: «${costeDe(dosCostes)}»`,
+  );
+
+  comprobar(costeDe(carta("Sol Ring", "Artifact", "{T}: Add {C}{C}.")) === "{1}", "una carta de una cara cambia de coste");
+
+  // Los símbolos de color: un comandante {1}{R} y una aventura {2}{R} son dos
+  // símbolos rojos, no cinco.
+  const comandanteRojo = carta("Cmd", "Legendary Creature — Human", "", { mana_cost: "{1}{R}", color_identity: ["R"], cmc: 2 });
+  const uno = analizarMazo(mazoDe([[bone, 1]], comandanteRojo));
+  comprobar(uno.pips.R === 2, `un comandante {1}{R} y una aventura {2}{R} tienen que dar 2 símbolos rojos y dan ${uno.pips.R}`);
+  // Dos líneas del export (dos impresiones, una copia cada una) sí suman: lo que
+  // no puede pasar es que una sola carta cuente sus caras de más.
+  const otraImpresion = { ...bone, id: "bonecrusher-mid", set: "MID", collector_number: "128" };
+  const dos = analizarMazo(mazoDe([[bone, 1], [otraImpresion, 1]], comandanteRojo));
+  comprobar(dos.pips.R === 3, `con dos líneas de la aventura son 3 símbolos rojos y dan ${dos.pips.R}`);
+  const tierraDorso = analizarMazo(mazoDe([[shatterskull, 1]], comandanteRojo));
+  comprobar(
+    tierraDorso.pips.R === 3,
+    `el comandante {1}{R} y Shatterskull {X}{R}{R} son 3 símbolos rojos y dan ${tierraDorso.pips.R}`,
+  );
+}
+
+// ── Comandante con tipo compuesto ───────────────────────────────────────────
+/*
+ * Los dioses de Theros y Hope of Ghirapur son comandantes legales, y su línea de
+ * tipo mete un tipo de permanente entre «legendary» y «creature»: «Legendary
+ * Enchantment Creature — God» (lo dice Scryfall, que además las da como `legal`
+ * en commander). Buscar la cadena «legendary creature» de corrido las rechaza, y
+ * con ellas el mazo entero: «Sin bracket» y el consejo diciendo que hay cosas que
+ * arreglar antes de jugarlo. Lo que hay que mirar son los tipos por separado
+ * —`Legendary` y `Creature`— sobre la cara frontal, como ya hace `esBasica` con
+ * las básicas de nieve.
+ *
+ * Los contrapesos van en el mismo bloque: una legendaria que no es criatura, una
+ * criatura que no es legendaria y un planeswalker con «can be your commander»
+ * tienen que seguir como están.
+ */
+titulo("Comandante con tipo compuesto");
+{
+  const comandanteconTipo = (nombre, tipo, texto = "", extra = {}) => ({
+    ...carta(nombre, tipo, texto),
+    color_identity: ["R"],
+    cmc: 3,
+    ...extra,
+  });
+  const deComandante = (c) => ({
+    cantidad: 1,
+    carta: c,
+    tablero: "commander",
+    linea: { cantidad: 1, nombre: c.name, tablero: "commander" },
+  });
+  const relleno = (n) =>
+    Array.from({ length: n }, (_, i) => ({
+      cantidad: 1,
+      carta: carta(`Relleno ${i}`, "Creature — Goblin", "", { color_identity: ["R"], cmc: 2 }),
+      tablero: "main",
+      linea: { cantidad: 1, nombre: `Relleno ${i}`, tablero: "main" },
+    }));
+  const unComandante = (c) => ({
+    id: "prueba",
+    nombre: "Prueba",
+    creado: "2026-01-01T00:00:00.000Z",
+    fuente: "export",
+    comandantes: [deComandante(c)],
+    cartas: relleno(99),
+    noEncontradas: [],
+  });
+  const problemas = (a) => a.legalidad.problemas.join(" · ");
+
+  const dios = analizarMazo(unComandante(comandanteconTipo("Purphoros, God of the Forge", "Legendary Enchantment Creature — God")));
+  comprobar(
+    dios.legalidad.ok,
+    `un comandante «Legendary Enchantment Creature — God» es legal y sale ilegal: ${problemas(dios)}`,
+  );
+  comprobar(
+    dios.bracket.etiqueta === "Bracket 1-2",
+    `con un comandante legal el bracket tiene que ser Bracket 1-2 y es «${dios.bracket.etiqueta}»`,
+  );
+
+  const artefacto = analizarMazo(unComandante(comandanteconTipo("Hope of Ghirapur", "Legendary Artifact Creature — Thopter")));
+  comprobar(
+    artefacto.legalidad.ok,
+    `un comandante «Legendary Artifact Creature — Thopter» es legal y sale ilegal: ${problemas(artefacto)}`,
+  );
+
+  const nieve = analizarMazo(unComandante(comandanteconTipo("Jorn, God of Winter", "Legendary Snow Creature — God")));
+  comprobar(nieve.legalidad.ok, `un comandante «Legendary Snow Creature» es legal y sale ilegal: ${problemas(nieve)}`);
+
+  const simple = analizarMazo(unComandante(comandanteconTipo("Ragavan, Nimble Pilferer", "Legendary Creature — Monkey Pirate")));
+  comprobar(simple.legalidad.ok, `un comandante «Legendary Creature» a secas es legal y sale ilegal: ${problemas(simple)}`);
+
+  // Doble cara con el dorso de tierra: lo que se mira es la cara frontal.
+  const dobleCara = analizarMazo(
+    unComandante(comandanteconTipo("Tamiyo, Compleated Sage", "Legendary Creature — Human Wizard // Legendary Planeswalker — Tamiyo")),
+  );
+  comprobar(dobleCara.legalidad.ok, `un comandante de doble cara con la frontal de criatura es legal y sale ilegal: ${problemas(dobleCara)}`);
+
+  const equipo = analizarMazo(unComandante(comandanteconTipo("Espada Legendaria", "Legendary Artifact — Equipment")));
+  comprobar(
+    !equipo.legalidad.ok && /no puede ser comandante/.test(problemas(equipo)),
+    `una legendaria que no es criatura no puede ser comandante y sale legal: ${problemas(equipo)}`,
+  );
+
+  const noLegendaria = analizarMazo(unComandante(comandanteconTipo("Goblin Cualquiera", "Creature — Goblin")));
+  comprobar(
+    !noLegendaria.legalidad.ok && /no puede ser comandante/.test(problemas(noLegendaria)),
+    `una criatura que no es legendaria no puede ser comandante y sale legal: ${problemas(noLegendaria)}`,
+  );
+
+  const planeswalker = analizarMazo(
+    unComandante(
+      comandanteconTipo("Teferi, Temporal Archmage", "Legendary Planeswalker — Teferi", "Teferi, Temporal Archmage can be your commander."),
+    ),
+  );
+  comprobar(
+    planeswalker.legalidad.ok,
+    `un planeswalker que dice «can be your commander» es comandante legal y sale ilegal: ${problemas(planeswalker)}`,
   );
 }
 

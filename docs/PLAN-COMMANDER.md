@@ -148,6 +148,12 @@ Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegado
   permiten), banlist de Commander, identidad de color del comandante, cartas no legales. El
   singleton cuenta copias **por nombre**, no por línea del export: dos impresiones de la misma carta
   (`1 Sol Ring (LTC) 284` y `1 Sol Ring (CMM) 951`) son dos copias y salen como duplicado.
+- **Quién puede ser comandante**: una criatura legendaria o cualquier carta que lo diga en su texto
+  («can be your commander»). Los tipos se miran **por separado sobre la cara frontal**, no buscando
+  «legendary creature» de corrido: los dioses de Theros son `Legendary Enchantment Creature — God`
+  y Hope of Ghirapur es `Legendary Artifact Creature — Thopter`, y las dos son comandantes legales.
+  Una legendaria que no sea criatura (un `Legendary Artifact — Equipment`) y una criatura no
+  legendaria siguen siendo problema; un `Legendary Planeswalker` con el texto, no.
 - Bracket estimado por puertas duras: Game Changers (0/0/3/∞), negación masiva de tierras, turnos
   extra encadenados, combos conocidos. Se presenta como **suelo** («esto no puede ser Bracket 2»),
   no como sentencia: WotC dice que el bracket es una conversación.
@@ -157,6 +163,15 @@ Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegado
   turno 4-6: motor con Z; cierre: W». Nada de «deberías tener más rampa» sin decir cuánta hay y
   cuánta falta.
 - Simulador de mano inicial (extra barato): 7 cartas al azar y una nota de si son jugables.
+- **El coste de maná de una doble cara se lee una vez.** En las aventuras y las partidas
+  (Bonecrusher Giant, Fire // Ice) Scryfall publica el coste de las dos caras en el `mana_cost` de
+  nivel superior, separado por «//», **y además** el de cada cara: unirlos pinta cada coste tres
+  veces en la rejilla y multiplica por cuatro los símbolos de color del mazo. `costeDe`
+  (`src/lib/commander/tipos.ts`) devuelve el de arriba cuando existe y solo monta el de las caras
+  con « // » cuando viene vacío (los dorsos que son tierra, Shatterskull Smashing y Bala Ged
+  Recovery, no llevan coste). Los símbolos de color se cuentan de la **cara frontal**
+  (`costeFrontalDe`): el dorso de una aventura no se lanza desde la mano, y es la misma convención
+  de `tipoFrontal`, `esTierra` y `tipoDeCarta`.
 - **Qué es «tierra», en caso de doble cara.** Manda la cara frontal: Scryfall publica
   `type_line` con las dos caras («Sorcery // Land» en Bala Ged Recovery, Shatterskull Smashing,
   Agadeem's Awakening, Sea Gate Restoration) y esas cartas se juegan por delante, así que cuentan

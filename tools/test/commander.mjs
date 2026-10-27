@@ -304,6 +304,73 @@ const base = mazoDe([[bosque, 36], ...cartasBase], comandante);
   );
 }
 
+/*
+ * Las básicas de nieve también son básicas y se pueden repetir sin límite.
+ *
+ * Scryfall escribe su línea de tipo «Basic Snow Land — Forest» (comprobado en
+ * su API: /cards/named?exact=Snow-Covered+Forest), así que el supertipo «Snow»
+ * va en medio y un patrón de «basic land» seguido deja la carta fuera. Las
+ * básicas de nieve se juegan (mazos de nieve, Into the North, Extraplanar Lens)
+ * y no son una tierra cualquiera: un mazo legal de 100 con 36 de ellas salía
+ * con «aparece 36 veces y no es tierra básica», el bracket en «Sin bracket» y
+ * `basicas` a 0, que es lo que enseñan la ficha y el informe de consejo.
+ */
+{
+  const nieve = carta("Snow-Covered Forest", "Basic Snow Land — Forest", "({T}: Add {G}.)", {
+    color_identity: ["G"],
+    cmc: 0,
+    prices: { eur: "0.30", usd: "0.30" },
+  });
+  const m = mazoDe([[nieve, 36], ...cartasBase], comandante);
+  const a = analizarMazo(m);
+  comprobar(a.total === 100, `el mazo de la prueba tiene que dar 100 cartas y da ${a.total}`);
+  comprobar(a.tierras === 36, `tierras con básicas de nieve: ${a.tierras}`);
+  comprobar(a.basicas === 36, `las básicas de nieve cuentan como básicas y son ${a.basicas}`);
+  comprobar(
+    a.legalidad.ok,
+    `un mazo legal con básicas de nieve sale ilegal: ${a.legalidad.problemas.join(" · ")}`,
+  );
+  comprobar(
+    !a.legalidad.problemas.some((p) => p.includes("Snow-Covered Forest")),
+    `las básicas de nieve se pueden repetir y salen como problema: ${a.legalidad.problemas.join(" · ")}`,
+  );
+  comprobar(
+    a.bracket.etiqueta === "Bracket 1-2",
+    `un mazo sin Game Changers con básicas de nieve tiene que dar Bracket 1-2 y da ${a.bracket.etiqueta}`,
+  );
+  // El resto de básicas de nieve, una por color: mismo supertipo, otro subtipo.
+  for (const [nombre, subtipo] of [
+    ["Snow-Covered Plains", "Plains"],
+    ["Snow-Covered Island", "Island"],
+    ["Snow-Covered Swamp", "Swamp"],
+    ["Snow-Covered Mountain", "Mountain"],
+  ]) {
+    const otra = carta(nombre, `Basic Snow Land — ${subtipo}`, "({T}: Add {G}.)", { color_identity: ["G"], cmc: 0 });
+    const suyo = analizarMazo(mazoDe([[otra, 36], ...cartasBase], comandante));
+    comprobar(
+      suyo.basicas === 36 && suyo.legalidad.ok,
+      `${nombre} tiene que contar como básica (basicas ${suyo.basicas}) y salir legal: ${suyo.legalidad.problemas.join(" · ")}`,
+    );
+  }
+}
+
+/*
+ * Y el permiso de repetir es de la básica, no de cualquier tierra: aflojar el
+ * patrón hasta «cualquier tierra se repite» cambiaría un falso positivo por un
+ * falso negativo, que es peor.
+ */
+{
+  const torre = carta("Command Tower", "Land", "{T}: Add one mana of any color in your commander's color identity.", {
+    color_identity: ["G"],
+    cmc: 0,
+  });
+  const a = analizarMazo(mazoDe([[torre, 36], ...cartasBase], comandante));
+  comprobar(
+    !a.legalidad.ok && a.legalidad.problemas.some((p) => p.includes("Command Tower")),
+    "una tierra no básica repetida tiene que seguir siendo un problema de legalidad",
+  );
+}
+
 // ── 4. Resolver ─────────────────────────────────────────────────────────────
 titulo("Resolver por lotes, sin red");
 const cartaJson = (name, set = "tst", cn = "1") => ({

@@ -15,7 +15,10 @@ contenido de D&D. El recorrido:
    importadores de terceros (ver §3).
 2. **Se indexa.** Cada línea se resuelve contra Scryfall; se agrupan las copias (12 `Forest` son
    una fila con cantidad 12), se separan comandante, companion y mainboard, y se guarda el mazo en
-   el navegador. Sin cuenta, sin servidor.
+   el navegador. Sin cuenta, sin servidor. Lo que venga en el **banquillo**, el **maybeboard**, las
+   fichas, las atracciones, los planes o los schemes se queda fuera de las 100 —no son el mazo—,
+   pero el mensaje de después dice cuántas cartas eran y de qué tablero, y añade las líneas que el
+   parser no ha entendido: descartarlas es correcto, callarlo no.
 3. **Se ve entero.** Rejilla con las 100 cartas y su imagen, buscador y filtros por tipo, valor de
    mana, color, rareza y **rol** (rampa, robo, removal, barrido, tutor, protección, wincon…).
    Ficha de carta al pulsar, con texto Oracle, legalidad y precio.

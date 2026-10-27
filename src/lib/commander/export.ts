@@ -98,6 +98,74 @@ function partirLinea(cruda: string): { cantidad: number; nombre: string; set?: s
   return { cantidad: Math.max(1, cantidad), nombre: texto.replace(/\s+/g, " ").trim(), set, numero };
 }
 
+export interface DatosImportacion {
+  /** Cartas que cuentan para las 100, contadas por cantidad y sin las descartadas. */
+  total: number;
+  /** Companions declarados: se pintan con el mazo, pero viven fuera de las 100. */
+  companions: number;
+  /** Nombres de las líneas que Scryfall no ha resuelto. */
+  noEncontradas: string[];
+  /** Todas las líneas que traía el texto, para nombrar lo que no se ha mirado. */
+  lineas: Linea[];
+  /** Lo que el parser no entendió. */
+  avisos: string[];
+}
+
+/**
+ * Tableros que el export puede traer y que no forman parte de las 100, con el
+ * nombre que se les da en el mensaje. El companion no está: se pinta con el
+ * mazo y se anuncia aparte.
+ */
+const NOMBRE_TABLERO: Record<string, string> = {
+  side: "del banquillo",
+  maybeboard: "del maybeboard",
+  attraction: "de las atracciones",
+  scheme: "de los schemes",
+  plane: "de los planes",
+  token: "de las fichas",
+};
+
+/** «2 del banquillo y 1 del maybeboard no cuentan para las 100», o «» si no hay. */
+function fraseDescartadas(lineas: Linea[]): string {
+  const porTablero = new Map<string, number>();
+  let total = 0;
+  for (const linea of lineas) {
+    if (!Object.hasOwn(NOMBRE_TABLERO, linea.tablero)) continue;
+    porTablero.set(linea.tablero, (porTablero.get(linea.tablero) ?? 0) + linea.cantidad);
+    total += linea.cantidad;
+  }
+  if (!total) return "";
+  const trozos = [...porTablero].map(([tablero, cuantas]) => `${cuantas} ${NOMBRE_TABLERO[tablero]}`);
+  const lista = trozos.length === 1 ? trozos[0] : `${trozos.slice(0, -1).join(", ")} y ${trozos.at(-1)}`;
+  return `${lista} ${total === 1 ? "no cuenta" : "no cuentan"} para las 100.`;
+}
+
+/**
+ * El mensaje de estado de una importación, ya montado.
+ *
+ * Vive aquí y no en la página para poder probarlo sin navegador: dice cuántas
+ * cartas quedan en el mazo, cuántos companions van fuera, qué líneas no se
+ * resolvieron y —esto es lo que faltaba— cuántas se han quedado fuera por venir
+ * en tableros que no son las 100 (banquillo, maybeboard, fichas, atracciones,
+ * planes y schemes). Descartarlas es correcto; callarlo, no: el lector veía
+ * «Listo: 100 cartas y todas resueltas» con quince líneas suyas desaparecidas.
+ * Los avisos del parser se añaden tal cual, aunque el resto del export se
+ * entienda: son justo las líneas que no se han tenido en cuenta.
+ */
+export function mensajeDeImportacion(datos: DatosImportacion): string {
+  const { total, companions, noEncontradas, lineas, avisos } = datos;
+  const sinResolver = noEncontradas.length
+    ? `, ${noEncontradas.length} sin resolver (${noEncontradas.join(", ")})`
+    : " y todas resueltas";
+  const partes = [
+    `Listo: ${total} cartas${companions ? ` y ${companions} companion fuera de las 100` : ""}${sinResolver}.`,
+  ];
+  const descartadas = fraseDescartadas(lineas);
+  if (descartadas) partes.push(descartadas);
+  partes.push(...avisos);
+  return partes.join(" ");
+}
+
 /**
  * Convierte el texto pegado en líneas con tablero.
  *

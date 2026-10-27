@@ -4,7 +4,8 @@
  * Comprueba las cuatro piezas que pueden fallar en silencio:
  *
  *   1. El parser del export: secciones, cantidades, sets con números raros
- *      (`C15-56`), acabados y comentarios.
+ *      (`C15-56`), acabados y comentarios. Y el mensaje de estado de la
+ *      importación, que tiene que decir qué se ha quedado fuera.
  *   2. Los roles: una carta concreta tiene que caer en el rol que toca.
  *   3. El análisis: 100 cartas, singleton, identidad, banlist y bracket.
  *   4. El resolver: lotes de 75, espera entre lotes, reintento por nombre y 429.
@@ -14,7 +15,7 @@
  *
  * Uso: node tools/test/commander.mjs
  */
-import { parsearExport } from "../../src/lib/commander/export.ts";
+import { mensajeDeImportacion, parsearExport } from "../../src/lib/commander/export.ts";
 import { TIPOS_FILTRO, esTierra, rolesDe, tipoDeCarta } from "../../src/lib/commander/roles.ts";
 import { analizarMazo, contarPorTipo, cuentaDeCartas } from "../../src/lib/commander/analisis.ts";
 import { consejoDe } from "../../src/lib/commander/consejo.ts";
@@ -68,6 +69,99 @@ SB: 1 Rest in Peace (RTR) 18
 {
   const r = parsearExport("1 Carta (SET)");
   comprobar(r.lineas[0]?.nombre === "Carta (SET)" && !r.lineas[0]?.set, "un paréntesis sin número no es un set");
+}
+
+// ── 1b. Mensaje de importación ──────────────────────────────────────────────
+titulo("Mensaje de importación");
+{
+  // El export del repro de la ficha: banquillo y maybeboard se descartan, y la
+  // página lo callaba.
+  const texto = `Commander
+1 Atraxa, Praetors' Voice (MUL) 1
+
+Deck
+1 Sol Ring (LTC) 284
+10 Forest (ZNR) 280
+
+Sideboard
+1 Rest in Peace (RTR) 18
+1 Toxic Deluge (MMA) 107
+
+Maybeboard
+1 Smothering Tithe (RNA) 22
+`;
+  const { lineas, avisos } = parsearExport(texto);
+  const m = mensajeDeImportacion({ total: 100, companions: 0, noEncontradas: [], lineas, avisos });
+  const esperado =
+    "Listo: 100 cartas y todas resueltas. 2 del banquillo y 1 del maybeboard no cuentan para las 100.";
+  comprobar(m === esperado, `mensaje con banquillo y maybeboard: «${m}», esperaba «${esperado}»`);
+}
+{
+  // Sin tableros extra, el mensaje es el de siempre: ni una coletilla.
+  const { lineas, avisos } = parsearExport(
+    "Deck\n1 Sol Ring (LTC) 284\n\nCompanion\n1 Lutri, the Spellchaser (IKO) 226\n",
+  );
+  const m = mensajeDeImportacion({ total: 99, companions: 1, noEncontradas: [], lineas, avisos });
+  const esperado = "Listo: 99 cartas y 1 companion fuera de las 100 y todas resueltas.";
+  comprobar(m === esperado, `mensaje con companion: «${m}», esperaba «${esperado}»`);
+}
+{
+  // Las que no se resuelven y los avisos del parser tampoco cambian de forma.
+  const { lineas, avisos } = parsearExport("Deck\n1 Sol Ring (LTC) 284\n1 Carta Inventada (XXX) 1\n");
+  const m = mensajeDeImportacion({
+    total: 100,
+    companions: 0,
+    noEncontradas: ["Carta Inventada"],
+    lineas,
+    avisos,
+  });
+  const esperado = "Listo: 100 cartas, 1 sin resolver (Carta Inventada).";
+  comprobar(m === esperado, `mensaje con una sin resolver: «${m}», esperaba «${esperado}»`);
+}
+{
+  // Se cuentan cartas, no líneas: `4 Rest in Peace` son cuatro, y cada tablero
+  // lleva su nombre. El orden es el del export.
+  const texto = `Deck
+1 Sol Ring (LTC) 284
+
+Sideboard
+4 Rest in Peace (RTR) 18
+
+Tokens
+2 Soldier (TDM) 1
+
+Attractions
+1 Ferris Wheel (UNF) 1
+`;
+  const { lineas, avisos } = parsearExport(texto);
+  const m = mensajeDeImportacion({ total: 100, companions: 0, noEncontradas: [], lineas, avisos });
+  const esperado =
+    "Listo: 100 cartas y todas resueltas. 4 del banquillo, 2 de las fichas y 1 de las atracciones no cuentan para las 100.";
+  comprobar(m === esperado, `mensaje con cantidades: «${m}», esperaba «${esperado}»`);
+}
+{
+  // Una sola carta descartada: el verbo va en singular.
+  const { lineas, avisos } = parsearExport("Deck\n1 Sol Ring (LTC) 284\n\nMaybeboard\n1 Smothering Tithe (RNA) 22\n");
+  const m = mensajeDeImportacion({ total: 100, companions: 0, noEncontradas: [], lineas, avisos });
+  const esperado = "Listo: 100 cartas y todas resueltas. 1 del maybeboard no cuenta para las 100.";
+  comprobar(m === esperado, `mensaje con una descartada: «${m}», esperaba «${esperado}»`);
+}
+{
+  // Los avisos del parser se enseñan aunque el resto del export se entienda.
+  const { lineas, avisos } = parsearExport("Deck\n1 Sol Ring (LTC) 284\n*F*\n");
+  const m = mensajeDeImportacion({ total: 100, companions: 0, noEncontradas: [], lineas, avisos });
+  const esperado = "Listo: 100 cartas y todas resueltas. No se entiende la línea: «*F*»";
+  comprobar(m === esperado, `mensaje con un aviso: «${m}», esperaba «${esperado}»`);
+}
+{
+  // El companion se anuncia aparte y no entra en el recuento de descartadas.
+  const { lineas, avisos } = parsearExport(
+    "Deck\n1 Sol Ring (LTC) 284\n\nCompanion\n1 Lutri, the Spellchaser (IKO) 226\n\nSideboard\n1 Rest in Peace (RTR) 18\n",
+  );
+  const m = mensajeDeImportacion({ total: 100, companions: 1, noEncontradas: [], lineas, avisos });
+  const esperado =
+    "Listo: 100 cartas y 1 companion fuera de las 100 y todas resueltas. 1 del banquillo no cuenta para las 100.";
+  comprobar(m === esperado, `mensaje con companion y banquillo: «${m}», esperaba «${esperado}»`);
 }
 
 // ── 2. Roles ────────────────────────────────────────────────────────────────

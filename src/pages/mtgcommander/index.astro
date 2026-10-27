@@ -880,7 +880,7 @@ import { e } from "../../lib/urls";
 </style>
 
 <script>
-  import { parsearExport } from "../../lib/commander/export";
+  import { mensajeDeImportacion, parsearExport } from "../../lib/commander/export";
   import { resolverCartas } from "../../lib/commander/scryfall";
   import { analizarMazo, contarPorTipo, cuentaDeCartas, type Analisis } from "../../lib/commander/analisis";
   import { consejoDe } from "../../lib/commander/consejo";
@@ -1051,7 +1051,13 @@ import { e } from "../../lib/urls";
       const companions = resto.filter((c) => c.tablero === "companion");
       const total = cuentaDeCartas([...comandantes, ...resto]);
       estado(
-        `Listo: ${total} cartas${companions.length ? ` y ${companions.length} companion fuera de las 100` : ""}${noEncontradas.length ? `, ${noEncontradas.length} sin resolver (${noEncontradas.map((l) => l.nombre).join(", ")})` : " y todas resueltas"}.`,
+        mensajeDeImportacion({
+          total,
+          companions: companions.length,
+          noEncontradas: noEncontradas.map((l) => l.nombre),
+          lineas,
+          avisos,
+        }),
         noEncontradas.length > 0,
       );
       $("#mtg-comandante").hidden = true;

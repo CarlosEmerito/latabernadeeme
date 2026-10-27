@@ -106,6 +106,29 @@ function esComandante(carta: CartaScryfall): boolean {
   return (/\blegendary\b/i.test(tipo) && /\bcreature\b/i.test(tipo)) || /can be your commander/i.test(textoDe(carta));
 }
 
+/**
+ * Qué permite llevar a esta carta como uno de los dos comandantes.
+ *
+ * La habilitación de la pareja no se puede deducir del tipo: `Partner` (y
+ * `Partner with …`), `Friends forever` y `Choose a Background` viven en
+ * `keywords` y en el texto Oracle —Scryfall da `keywords: ["Lifelink",
+ * "Partner"]` en Tymna the Weaver y `["Choose a background"]` en Burakos—, y un
+ * Background (`Legendary Enchantment — Background`, tipo Folk Hero) no es una
+ * criatura, así que el tipo lo rechaza aunque sea el segundo comandante legal.
+ *
+ * Se devuelve el papel (`partner`, el que elige Background, o `background`) y
+ * la decisión de si la pareja vale se toma con los dos, no carta a carta: un
+ * Background suelto no es comandante, y dos cartas sin habilitación tampoco son
+ * pareja.
+ */
+function habilitacionDe(carta: CartaScryfall): "partner" | "eligeBackground" | "background" | null {
+  const texto = `${(carta.keywords ?? []).join(" ")} ${textoDe(carta)}`;
+  if (/\bchoose a background\b/i.test(texto)) return "eligeBackground";
+  if (/\bpartner\b|friends forever/i.test(texto)) return "partner";
+  if (/\bbackground\b/i.test(tipoFrontal(carta))) return "background";
+  return null;
+}
+
 /** Cartas que permiten más de una copia (Relentless Rats, Seven Dwarves…). */
 function permiteRepetir(carta: CartaScryfall): boolean {
   const texto = textoDe(carta);
@@ -264,13 +287,31 @@ export function analizarMazo(mazo: Mazo): Analisis {
   if (!comandantes.length) {
     problemas.push("No hay comandante: el export tiene que traerlo en la sección Commander.");
   }
-  for (const { carta } of comandantes) {
-    if (!esComandante(carta)) problemas.push(`«${carta.name}» no puede ser comandante.`);
+  // Una pareja de comandantes solo vale si las cartas la habilitan: `Partner`
+  // (o `Partner with …`) y `Friends forever` en las dos, o un `Choose a
+  // Background` junto al Background que elige. Sin esto, dos legendarias
+  // cualesquiera salían legales y con Bracket 1-2.
+  const habilitaciones = comandantes.map(({ carta }) => habilitacionDe(carta));
+  const parejaHabilitada =
+    comandantes.length === 2 &&
+    (habilitaciones.every((h) => h === "partner") ||
+      (habilitaciones.includes("eligeBackground") && habilitaciones.includes("background")));
+  for (const [i, { carta }] of comandantes.entries()) {
+    // El Background no es criatura: vale como segundo comandante y solo si el
+    // otro es quien lo elige.
+    const backgroundDePareja = habilitaciones[i] === "background" && habilitaciones.includes("eligeBackground");
+    if (!esComandante(carta) && !backgroundDePareja) problemas.push(`«${carta.name}» no puede ser comandante.`);
     if (carta.legalities?.commander && carta.legalities.commander !== "legal") {
       problemas.push(`«${carta.name}» no es legal en Commander (${carta.legalities.commander}).`);
     }
   }
   if (comandantes.length > 2) problemas.push("Hay más de dos comandantes; en Commander son uno o dos (partner).");
+  if (comandantes.length === 2 && !parejaHabilitada) {
+    const [uno, dos] = comandantes.map(({ carta }) => `«${carta.name}»`);
+    problemas.push(
+      `${uno} y ${dos} no pueden ser los dos comandantes: hace falta Partner (o Partner with, Friends forever) en los dos, o un Background junto a quien lo elige.`,
+    );
+  }
 
   // El singleton es por carta, no por línea del export: Moxfield y las demás
   // herramientas listan la misma carta en dos impresiones como dos líneas con

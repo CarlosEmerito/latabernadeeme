@@ -22,6 +22,7 @@ import { consejoDe } from "../../src/lib/commander/consejo.ts";
 import { analizarConIA, promptDe } from "../../src/lib/commander/ia.ts";
 import { markdownDe, sinIntroduccion } from "../../src/lib/commander/markdown.ts";
 import { resolverCartas } from "../../src/lib/commander/scryfall.ts";
+import { costeDe } from "../../src/lib/commander/tipos.ts";
 
 const fallos = [];
 let comprobados = 0;
@@ -838,6 +839,96 @@ titulo("Markdown y recorte de la introducción");
   comprobar(sinIntroduccion(directo) === directo, "toca una respuesta que ya va al grano");
   const conLista = "- uno\n- dos\n\n## Plan";
   comprobar(sinIntroduccion(conLista) === conLista, "se come una respuesta que empieza por lista");
+}
+
+// ── Coste de maná de las cartas de dos caras ────────────────────────────────
+/*
+ * En las cartas de aventura y en las partidas el `mana_cost` de nivel superior
+ * ya trae los dos costes separados por «//» (`"{2}{R} // {1}{R}"` en
+ * Bonecrusher Giant, comprobado con Scryfall), y cada cara trae el suyo. Unir
+ * las tres cosas deja cada coste tres veces —`"{2}{R} // {1}{R} {2}{R}
+ * {1}{R}"`—, que es lo que acaba pintando la rejilla en el coste de la carta y
+ * lo que hincha los símbolos de color del mazo: cuatro por carta en vez de uno.
+ *
+ * Los símbolos se cuentan de la cara frontal, que es la convención del resto del
+ * módulo (`tipoFrontal`, `esTierra`, `tipoDeCarta`) y el coste con el que se
+ * juega la carta. Los contrapesos: las cartas de una cara no cambian y las de
+ * doble cara cuyo dorso es tierra (Shatterskull, Bala Ged) siguen igual, porque
+ * su dorso no tiene coste.
+ */
+titulo("Coste de maná de las cartas de dos caras");
+{
+  const dobleCara = (nombre, coste, type_line, caras, extra = {}) => ({
+    ...carta(nombre, type_line, ""),
+    mana_cost: coste,
+    cmc: 3,
+    color_identity: ["R"],
+    card_faces: caras,
+    ...extra,
+  });
+  const bone = dobleCara("Bonecrusher Giant // Stomp", "{2}{R} // {1}{R}", "Creature — Giant // Instant — Adventure", [
+    { name: "Bonecrusher Giant", mana_cost: "{2}{R}", type_line: "Creature — Giant" },
+    { name: "Stomp", mana_cost: "{1}{R}", type_line: "Instant — Adventure" },
+  ]);
+  comprobar(costeDe(bone) === "{2}{R} // {1}{R}", `el coste de una aventura se pinta «${costeDe(bone)}»`);
+  comprobar(
+    !/\{2\}\{R\}.*\{2\}\{R\}/.test(costeDe(bone)),
+    `el coste de la aventura repite el mismo grupo de símbolos: «${costeDe(bone)}»`,
+  );
+
+  const fireIce = dobleCara("Fire // Ice", "{1}{R} // {1}{U}", "Instant // Instant", [
+    { name: "Fire", mana_cost: "{1}{R}", type_line: "Instant" },
+    { name: "Ice", mana_cost: "{1}{U}", type_line: "Instant" },
+  ]);
+  comprobar(costeDe(fireIce) === "{1}{R} // {1}{U}", `el coste de una partida se pinta «${costeDe(fireIce)}»`);
+
+  const brazen = dobleCara("Brazen Borrower // Petty Theft", "{1}{U}{U} // {1}{U}", "Creature — Faerie Rogue // Instant — Adventure", [
+    { name: "Brazen Borrower", mana_cost: "{1}{U}{U}", type_line: "Creature — Faerie Rogue" },
+    { name: "Petty Theft", mana_cost: "{1}{U}", type_line: "Instant — Adventure" },
+  ]);
+  comprobar(
+    costeDe(brazen) === "{1}{U}{U} // {1}{U}",
+    `el coste de Brazen Borrower se pinta «${costeDe(brazen)}»`,
+  );
+
+  // Doble cara sin coste arriba y con el dorso sin coste: tiene que quedar solo
+  // el de la frontal, sin separadores sueltos.
+  const shatterskull = dobleCara("Shatterskull Smashing // Shatterskull, the Hammer Pass", undefined, "Sorcery // Land", [
+    { name: "Shatterskull Smashing", mana_cost: "{X}{R}{R}", type_line: "Sorcery" },
+    { name: "Shatterskull, the Hammer Pass", mana_cost: "", type_line: "Land" },
+  ]);
+  comprobar(
+    costeDe(shatterskull) === "{X}{R}{R}",
+    `el coste de una doble cara con dorso de tierra se pinta «${costeDe(shatterskull)}»`,
+  );
+
+  // Doble cara sin coste arriba y con coste en las dos caras.
+  const dosCostes = dobleCara("Andar // Correr", undefined, "Instant // Sorcery", [
+    { name: "Andar", mana_cost: "{2}{R}", type_line: "Instant" },
+    { name: "Correr", mana_cost: "{1}{U}", type_line: "Sorcery" },
+  ]);
+  comprobar(
+    costeDe(dosCostes) === "{2}{R} // {1}{U}",
+    `sin coste de nivel superior, los de las caras se unen una vez: «${costeDe(dosCostes)}»`,
+  );
+
+  comprobar(costeDe(carta("Sol Ring", "Artifact", "{T}: Add {C}{C}.")) === "{1}", "una carta de una cara cambia de coste");
+
+  // Los símbolos de color: un comandante {1}{R} y una aventura {2}{R} son dos
+  // símbolos rojos, no cinco.
+  const comandanteRojo = carta("Cmd", "Legendary Creature — Human", "", { mana_cost: "{1}{R}", color_identity: ["R"], cmc: 2 });
+  const uno = analizarMazo(mazoDe([[bone, 1]], comandanteRojo));
+  comprobar(uno.pips.R === 2, `un comandante {1}{R} y una aventura {2}{R} tienen que dar 2 símbolos rojos y dan ${uno.pips.R}`);
+  // Dos líneas del export (dos impresiones, una copia cada una) sí suman: lo que
+  // no puede pasar es que una sola carta cuente sus caras de más.
+  const otraImpresion = { ...bone, id: "bonecrusher-mid", set: "MID", collector_number: "128" };
+  const dos = analizarMazo(mazoDe([[bone, 1], [otraImpresion, 1]], comandanteRojo));
+  comprobar(dos.pips.R === 3, `con dos líneas de la aventura son 3 símbolos rojos y dan ${dos.pips.R}`);
+  const tierraDorso = analizarMazo(mazoDe([[shatterskull, 1]], comandanteRojo));
+  comprobar(
+    tierraDorso.pips.R === 3,
+    `el comandante {1}{R} y Shatterskull {X}{R}{R} son 3 símbolos rojos y dan ${tierraDorso.pips.R}`,
+  );
 }
 
 // ── Resultado ───────────────────────────────────────────────────────────────

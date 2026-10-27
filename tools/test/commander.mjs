@@ -303,6 +303,37 @@ const cartaJson = (name, set = "tst", cn = "1") => ({
   const r = await resolverCartas(lineas, { fetchImpl: fakeFetch, esperar: async () => {} });
   comprobar(llamadas === 2 && r.cartas.length === 1, "no reintenta el 429");
 }
+/*
+ * Una red que acepta la conexión y no contesta no rechaza nunca: sin plazo, la
+ * promesa se queda colgada y la página no sale de «Resolviendo N líneas con
+ * Scryfall…». El plazo tiene que llegarle al `fetch` como señal de aborto y, al
+ * vencer, la función tiene que fallar con un mensaje que lo diga.
+ *
+ * El doble rechaza cuando le llega la señal; si la petición no lleva ninguna, no
+ * hay plazo que esperar y contesta en el acto, que es el rojo de este bloque.
+ */
+{
+  const lineas = [{ cantidad: 1, nombre: "Sol Ring", tablero: "main" }];
+  let init = null;
+  const colgada = (_url, opciones = {}) => {
+    init = opciones;
+    if (!opciones.signal) return Promise.reject(new Error("la petición no lleva plazo"));
+    return new Promise((_, rechazar) => {
+      opciones.signal.addEventListener("abort", () => rechazar(new Error("abortada por el plazo")));
+    });
+  };
+  let error = null;
+  try {
+    await resolverCartas(lineas, { fetchImpl: colgada, plazoMs: 30 });
+  } catch (e) {
+    error = e;
+  }
+  comprobar(!!init?.signal, "la petición a Scryfall no lleva señal de plazo");
+  comprobar(
+    /no ha contestado|tardado|demasiado/i.test(String(error)),
+    `una petición colgada tiene que vencer con un mensaje que diga que no ha contestado a tiempo y dio: ${error}`,
+  );
+}
 
 // ── 5. Consejo ──────────────────────────────────────────────────────────────
 titulo("Consejo determinista");
@@ -397,6 +428,35 @@ titulo("IA: techo de tokens y errores");
     error = String(e);
   }
   comprobar(error.includes("cuota"), `sin error de cuota: ${error || "no lanzó"}`);
+}
+/*
+ * Un proveedor que acepta la conexión y no contesta deja la llamada colgada
+ * igual que Scryfall: la clave se pega a mano y el estado se queda en
+ * «Analizando el mazo con Gemini…» para siempre. El plazo se pasa como quinto
+ * argumento para que la pasada dure milisegundos.
+ */
+{
+  const a = analizarMazo(base);
+  let init = null;
+  const colgada = (_url, opciones = {}) => {
+    init = opciones;
+    if (!opciones.signal) return Promise.reject(new Error("la petición a Gemini no lleva plazo"));
+    return new Promise((_, rechazar) => {
+      opciones.signal.addEventListener("abort", () => rechazar(new Error("abortada por el plazo")));
+    });
+  };
+  let error = null;
+  try {
+    await analizarConIA(base, a, "clave", colgada, 30);
+  } catch (e) {
+    error = e;
+  }
+  comprobar(!!init?.signal, "la petición a Gemini no lleva señal de plazo");
+  comprobar(
+    /no ha contestado|tardado|demasiado/i.test(String(error)),
+    `una petición colgada a Gemini tiene que vencer con un mensaje que diga que no ha contestado a tiempo y dio: ${error}`,
+  );
+  comprobar(/Gemini/.test(String(error)), `el mensaje tiene que nombrar la fuente y dio: ${error}`);
 }
 
 // ── Presentación de la respuesta ───────────────────────────────────────────

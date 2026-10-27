@@ -116,17 +116,54 @@ function esComandante(carta: CartaScryfall): boolean {
  * Background (`Legendary Enchantment — Background`, tipo Folk Hero) no es una
  * criatura, así que el tipo lo rechaza aunque sea el segundo comandante legal.
  *
- * Se devuelve el papel (`partner`, el que elige Background, o `background`) y
- * la decisión de si la pareja vale se toma con los dos, no carta a carta: un
- * Background suelto no es comandante, y dos cartas sin habilitación tampoco son
- * pareja.
+ * Se devuelve el papel (`partner`, `partnerCon` con el nombre que ata la pareja,
+ * el que elige Background, o `background`) y la decisión de si la pareja vale se
+ * toma con los dos, no carta a carta: un Background suelto no es comandante, y
+ * dos cartas sin habilitación tampoco son pareja.
+ *
+ * «Partner with <nombre>» no es un partner libre (regla 702.124e): la carta se
+ * empareja solo con la que nombra. El nombre se lee del texto Oracle, no de
+ * `keywords`, porque Scryfall publica «Partner» también en las de «Partner with»
+ * —Brallin trae `["Partner with", "Partner"]`— y decidir por esa lista deja
+ * pasar cualquier pareja.
  */
-function habilitacionDe(carta: CartaScryfall): "partner" | "eligeBackground" | "background" | null {
-  const texto = `${(carta.keywords ?? []).join(" ")} ${textoDe(carta)}`;
-  if (/\bchoose a background\b/i.test(texto)) return "eligeBackground";
-  if (/\bpartner\b|friends forever/i.test(texto)) return "partner";
-  if (/\bbackground\b/i.test(tipoFrontal(carta))) return "background";
+type Habilitacion =
+  | { papel: "partner" }
+  | { papel: "partnerCon"; nombra: string }
+  | { papel: "eligeBackground" }
+  | { papel: "background" };
+
+/**
+ * El nombre que va detrás de «Partner with»: acaba en el paréntesis del
+ * recordatorio —«(When this creature enters…)»—, en el salto de línea o en el
+ * punto.
+ */
+const PARTNER_CON = /\bpartner with ([^(\n]+)/i;
+
+function habilitacionDe(carta: CartaScryfall): Habilitacion | null {
+  const oraculo = textoDe(carta);
+  const conNombre = PARTNER_CON.exec(oraculo);
+  if (conNombre) {
+    const nombra = conNombre[1].trim().replace(/[.,;]+$/, "").trim();
+    if (nombra) return { papel: "partnerCon", nombra };
+  }
+  const texto = `${(carta.keywords ?? []).join(" ")} ${oraculo}`;
+  if (/\bchoose a background\b/i.test(texto)) return { papel: "eligeBackground" };
+  if (/\bpartner\b|friends forever/i.test(texto)) return { papel: "partner" };
+  if (/\bbackground\b/i.test(tipoFrontal(carta))) return { papel: "background" };
   return null;
+}
+
+/**
+ * ¿Esta habilitación deja emparejar la carta con `otra`?
+ *
+ * Un partner libre vale con cualquiera; una carta de «Partner with» solo con la
+ * que nombra, y la comparación pliega tildes y mayúsculas como el resto del
+ * sitio (`plegar`).
+ */
+function nombraA(h: Habilitacion | null, otra: CartaScryfall): boolean {
+  if (h?.papel !== "partnerCon") return true;
+  return plegar(h.nombra) === plegar(otra.name);
 }
 
 /** Cartas que permiten más de una copia (Relentless Rats, Seven Dwarves…). */
@@ -292,14 +329,24 @@ export function analizarMazo(mazo: Mazo): Analisis {
   // Background` junto al Background que elige. Sin esto, dos legendarias
   // cualesquiera salían legales y con Bracket 1-2.
   const habilitaciones = comandantes.map(({ carta }) => habilitacionDe(carta));
+  const papeles = habilitaciones.map((h) => h?.papel ?? null);
+  // Una carta de «Partner with» solo se empareja con la que nombra (regla
+  // 702.124e), así que la pareja vale si las dos son partner libre, si una elige
+  // Background y la otra es Background, o si cada restringida nombra a la otra.
+  const seNombran =
+    comandantes.length === 2 &&
+    papeles.includes("partnerCon") &&
+    papeles.every((p) => p === "partner" || p === "partnerCon") &&
+    habilitaciones.every((h, i) => nombraA(h, comandantes[1 - i].carta));
   const parejaHabilitada =
     comandantes.length === 2 &&
-    (habilitaciones.every((h) => h === "partner") ||
-      (habilitaciones.includes("eligeBackground") && habilitaciones.includes("background")));
+    (papeles.every((p) => p === "partner") ||
+      (papeles.includes("eligeBackground") && papeles.includes("background")) ||
+      seNombran);
   for (const [i, { carta }] of comandantes.entries()) {
     // El Background no es criatura: vale como segundo comandante y solo si el
     // otro es quien lo elige.
-    const backgroundDePareja = habilitaciones[i] === "background" && habilitaciones.includes("eligeBackground");
+    const backgroundDePareja = papeles[i] === "background" && papeles.includes("eligeBackground");
     if (!esComandante(carta) && !backgroundDePareja) problemas.push(`«${carta.name}» no puede ser comandante.`);
     if (carta.legalities?.commander && carta.legalities.commander !== "legal") {
       problemas.push(`«${carta.name}» no es legal en Commander (${carta.legalities.commander}).`);
@@ -308,8 +355,19 @@ export function analizarMazo(mazo: Mazo): Analisis {
   if (comandantes.length > 2) problemas.push("Hay más de dos comandantes; en Commander son uno o dos (partner).");
   if (comandantes.length === 2 && !parejaHabilitada) {
     const [uno, dos] = comandantes.map(({ carta }) => `«${carta.name}»`);
+    // Si la que falla lleva «Partner with», el mensaje dice con quién sí puede
+    // ir: el mazo no se arregla cambiando a un partner genérico.
+    const ataduras = habilitaciones
+      .map((h, i) =>
+        h?.papel === "partnerCon"
+          ? `${comandantes[i].carta.name} lleva «Partner with ${h.nombra}» y solo se empareja con «${h.nombra}»`
+          : null,
+      )
+      .filter((t): t is string => t !== null);
     problemas.push(
-      `${uno} y ${dos} no pueden ser los dos comandantes: hace falta Partner (o Partner with, Friends forever) en los dos, o un Background junto a quien lo elige.`,
+      ataduras.length
+        ? `${uno} y ${dos} no pueden ser los dos comandantes: ${ataduras.join("; ")}.`
+        : `${uno} y ${dos} no pueden ser los dos comandantes: hace falta Partner (o Partner with, Friends forever) en los dos, o un Background junto a quien lo elige.`,
     );
   }
 

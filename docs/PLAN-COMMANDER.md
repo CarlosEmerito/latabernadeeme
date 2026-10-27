@@ -163,6 +163,15 @@ Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegado
   turno 4-6: motor con Z; cierre: W». Nada de «deberías tener más rampa» sin decir cuánta hay y
   cuánta falta.
 - Simulador de mano inicial (extra barato): 7 cartas al azar y una nota de si son jugables.
+- **El coste de maná de una doble cara se lee una vez.** En las aventuras y las partidas
+  (Bonecrusher Giant, Fire // Ice) Scryfall publica el coste de las dos caras en el `mana_cost` de
+  nivel superior, separado por «//», **y además** el de cada cara: unirlos pinta cada coste tres
+  veces en la rejilla y multiplica por cuatro los símbolos de color del mazo. `costeDe`
+  (`src/lib/commander/tipos.ts`) devuelve el de arriba cuando existe y solo monta el de las caras
+  con « // » cuando viene vacío (los dorsos que son tierra, Shatterskull Smashing y Bala Ged
+  Recovery, no llevan coste). Los símbolos de color se cuentan de la **cara frontal**
+  (`costeFrontalDe`): el dorso de una aventura no se lanza desde la mano, y es la misma convención
+  de `tipoFrontal`, `esTierra` y `tipoDeCarta`.
 - **Qué es «tierra», en caso de doble cara.** Manda la cara frontal: Scryfall publica
   `type_line` con las dos caras («Sorcery // Land» en Bala Ged Recovery, Shatterskull Smashing,
   Agadeem's Awakening, Sea Gate Restoration) y esas cartas se juegan por delante, así que cuentan

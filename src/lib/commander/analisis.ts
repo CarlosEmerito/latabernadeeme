@@ -7,7 +7,7 @@
  */
 import {
   COLORES,
-  costeDe,
+  costeFrontalDe,
   textoDe,
   type CartaMazo,
   type CartaScryfall,
@@ -219,7 +219,7 @@ export function analizarMazo(mazo: Mazo): Analisis {
 
   for (const entrada of cartas) {
     const { carta, cantidad } = entrada;
-    pipsDe(costeDe(carta), pips);
+    pipsDe(costeFrontalDe(carta), pips);
     for (const tipo of TIPOS) {
       if (new RegExp(`\\b${tipo}\\b`, "i").test(tipoFrontal(carta))) {
         tipos.set(tipo, (tipos.get(tipo) ?? 0) + cantidad);

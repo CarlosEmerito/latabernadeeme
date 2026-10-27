@@ -940,6 +940,113 @@ titulo("Dos comandantes y su habilitación");
   );
 }
 
+// ── «Partner with» empareja solo con la carta que nombra ────────────────────
+/*
+ * «Partner with <nombre>» no es un partner libre: la carta se puede emparejar
+ * solo con la que nombra (regla 702.124e). El análisis lo trata como partner a
+ * secas —`habilitacionDe` busca la palabra «partner» en `keywords` y en el
+ * texto, y el nombre que va detrás se pierde—, así que Brallin, Skyshark Rider
+ * con Tymna the Weaver sale «Legal en Commander» y con Bracket 1-2, y ese mazo
+ * no se puede jugar.
+ *
+ * Los datos son los de Scryfall: Brallin trae `keywords: ["Partner with",
+ * "Partner"]` y «Partner with Shabraz, the Skyshark (When this creature
+ * enters…)», Shabraz los mismos con el nombre al revés, y Tymna
+ * `["Lifelink", "Partner"]` con «Partner (You can have two commanders if both
+ * have partner.)». Ojo con el atajo: las cartas de «Partner with» también
+ * declaran «Partner» en `keywords`, así que no vale decidir por esa lista; lo
+ * que distingue el caso es el nombre que va detrás de «Partner with».
+ *
+ * Los contrapesos son la otra mitad: la pareja que sí se nombra (Brallin con
+ * Shabraz) y dos partner libres (Tymna con Thrasios) siguen siendo legales, y
+ * un arreglo que las tumbe cambia un falso positivo por un falso negativo.
+ */
+titulo("«Partner with» empareja solo con la carta que nombra");
+{
+  const comandante = (nombre, tipo, texto, extra = {}) => ({
+    cantidad: 1,
+    carta: {
+      ...carta(nombre, tipo, texto),
+      color_identity: [],
+      cmc: 3,
+      legalities: { commander: "legal" },
+      ...extra,
+    },
+    tablero: "commander",
+    linea: { cantidad: 1, nombre, tablero: "commander" },
+  });
+  const brallin = comandante(
+    "Brallin, Skyshark Rider",
+    "Legendary Creature — Human Shaman",
+    "Partner with Shabraz, the Skyshark (When this creature enters, target player may put Shabraz into their hand from their library, then shuffle.)\nWhenever you discard a card, put a +1/+1 counter on Brallin.",
+    { keywords: ["Partner with", "Partner"] },
+  );
+  const shabraz = comandante(
+    "Shabraz, the Skyshark",
+    "Legendary Creature — Shark Bird",
+    "Partner with Brallin, Skyshark Rider\nFlying",
+    { keywords: ["Flying", "Partner with", "Partner"] },
+  );
+  const tymna = comandante(
+    "Tymna the Weaver",
+    "Legendary Creature — Human Cleric",
+    "Lifelink\nAt the beginning of each of your postcombat main phases, you may pay X life, where X is the number of opponents that were dealt combat damage this turn. If you do, draw X cards.\nPartner (You can have two commanders if both have partner.)",
+    { keywords: ["Lifelink", "Partner"] },
+  );
+  const thrasios = comandante(
+    "Thrasios, Triton Hero",
+    "Legendary Creature — Merfolk Wizard",
+    "{4}: Scry 1, then reveal the top card of your library. If it's a land card, put it onto the battlefield tapped. Otherwise, draw a card.\nPartner (You can have two commanders if both have partner.)",
+    { keywords: ["Partner"] },
+  );
+  const relleno = (n) =>
+    Array.from({ length: n }, (_, i) => ({
+      cantidad: 1,
+      carta: carta(`Relleno ${i}`, "Creature — Goblin", "", { color_identity: [], cmc: 2 }),
+      tablero: "main",
+      linea: { cantidad: 1, nombre: `Relleno ${i}`, tablero: "main" },
+    }));
+  const mazoCon = (comandantes) => ({
+    id: "prueba",
+    nombre: "Prueba",
+    creado: "2026-01-01T00:00:00.000Z",
+    fuente: "export",
+    comandantes,
+    cartas: relleno(100 - comandantes.length),
+    noEncontradas: [],
+  });
+  const problemas = (a) => a.legalidad.problemas.join(" · ");
+
+  // Brallin solo puede ir con Shabraz: con Tymna el mazo no se puede jugar.
+  const conOtraPartner = analizarMazo(mazoCon([brallin, tymna]));
+  comprobar(
+    !conOtraPartner.legalidad.ok,
+    `una carta de «Partner with» con otra partner cualquiera es ilegal y el mazo sale legal: ${problemas(conOtraPartner) || "sin problemas"}`,
+  );
+  comprobar(
+    /partner/i.test(problemas(conOtraPartner)),
+    `el problema tiene que nombrar el partner restringido y dice: ${problemas(conOtraPartner) || "nada"}`,
+  );
+  comprobar(
+    conOtraPartner.bracket.etiqueta === "Sin bracket",
+    `un mazo ilegal no tiene bracket y anuncia «${conOtraPartner.bracket.etiqueta}»`,
+  );
+
+  // Contrapeso: la pareja que se nombra en las dos cartas sí es legal.
+  const conSuPareja = analizarMazo(mazoCon([brallin, shabraz]));
+  comprobar(
+    conSuPareja.legalidad.ok,
+    `«Partner with» con la carta que nombra es legal y sale ilegal: ${problemas(conSuPareja) || "sin problemas"}`,
+  );
+
+  // Contrapeso: dos partner libres siguen emparejándose con cualquiera.
+  const dosPartner = analizarMazo(mazoCon([tymna, thrasios]));
+  comprobar(
+    dosPartner.legalidad.ok,
+    `dos partner libres son legales y salen ilegales: ${problemas(dosPartner) || "sin problemas"}`,
+  );
+}
+
 // ── Coste de maná de las cartas de dos caras ────────────────────────────────
 /*
  * En las cartas de aventura y en las partidas el `mana_cost` de nivel superior

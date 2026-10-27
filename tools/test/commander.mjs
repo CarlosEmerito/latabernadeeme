@@ -151,6 +151,55 @@ const base = mazoDe([[bosque, 36], ...cartasBase], comandante);
   const a = analizarMazo(m);
   comprobar(!a.legalidad.ok && a.legalidad.problemas.some((p) => p.includes("Rampa 1")), "no detecta el duplicado");
 }
+
+/*
+ * El singleton es por carta, no por línea del export: dos impresiones del mismo
+ * objeto son dos líneas con cantidad 1 (`1 Sol Ring (LTC) 284` y
+ * `1 Sol Ring (CMM) 951`), así que mirar la cantidad de cada línea deja pasar un
+ * mazo con dos copias como legal. Es el dato central de la herramienta —un mazo
+ * ilegal enseñado en verde— y el export lo produce tal cual en cuanto el mismo
+ * objeto aparece en dos impresiones.
+ *
+ * Lo que se agrupa es el nombre, y con dos contrapesos para no cambiar un falso
+ * negativo por un falso positivo: las básicas de dos impresiones se repiten sin
+ * problema y las cartas que permiten repetir lo siguen permitiendo.
+ */
+{
+  const solRing = carta("Sol Ring", "Artifact", "{T}: Add {C}{C}.", { cmc: 1, set: "LTC", collector_number: "284" });
+  const solRingCmm = { ...solRing, id: "sol-ring-cmm", set: "CMM", collector_number: "951" };
+  const a = analizarMazo(mazoDe([[bosque, 36], [solRing, 1], [solRingCmm, 1], ...cartasBase.slice(2)], comandante));
+  comprobar(a.total === 100, `el mazo de la prueba tiene que dar 100 cartas y da ${a.total}`);
+  comprobar(
+    !a.legalidad.ok && a.legalidad.problemas.some((p) => p.includes("Sol Ring")),
+    `dos impresiones de la misma carta son dos copias y el mazo sale legal: ${JSON.stringify(a.legalidad.problemas)}`,
+  );
+  const menciones = a.legalidad.problemas.filter((p) => p.includes("Sol Ring")).length;
+  comprobar(
+    menciones === 1,
+    `el duplicado se avisa ${menciones} veces: tiene que nombrar la carta una vez, con el total de copias`,
+  );
+}
+{
+  const znr = { ...bosque, id: "forest-znr", set: "ZNR", collector_number: "280" };
+  const mid = { ...bosque, id: "forest-mid", set: "MID", collector_number: "293" };
+  const a = analizarMazo(mazoDe([[znr, 18], [mid, 18], ...cartasBase], comandante));
+  comprobar(a.basicas === 36, `las básicas de dos impresiones son ${a.basicas} y tienen que ser 36`);
+  comprobar(
+    a.legalidad.ok,
+    `las básicas de dos impresiones tienen que seguir siendo legales: ${a.legalidad.problemas.join(" · ")}`,
+  );
+}
+{
+  const ratas = carta("Relentless Rats", "Creature — Rat", "A deck can have any number of cards named Relentless Rats.", {
+    cmc: 3,
+  });
+  const ratas2 = { ...ratas, id: "relentless-rats-2" };
+  const a = analizarMazo(mazoDe([[bosque, 36], [ratas, 1], [ratas2, 1], ...cartasBase.slice(2)], comandante));
+  comprobar(
+    a.legalidad.ok,
+    `Relentless Rats se repite entre impresiones y el mazo sale ilegal: ${a.legalidad.problemas.join(" · ")}`,
+  );
+}
 {
   const azul = carta("Carta Azul", "Instant", "Draw a card.", { color_identity: ["U"], cmc: 1 });
   const m = mazoDe([[bosque, 36], [azul, 1], ...cartasBase.slice(1)], comandante);

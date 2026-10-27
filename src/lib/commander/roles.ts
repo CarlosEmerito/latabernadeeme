@@ -149,9 +149,18 @@ const PATRONES: Patron[] = [
   { rol: "sacrificio", texto: [/\bsacrifice a creature:/i, /\bsacrifice another creature:/i] },
 ];
 
-/** Una carta es tierra si su línea de tipo lo dice, en cualquier idioma. */
+/**
+ * Línea de tipo de la cara frontal. En una carta modal de doble cara Scryfall
+ * publica las dos caras en `type_line` («Sorcery // Land»), y lo que se juega es
+ * la frontal: el dorso no cambia el tipo, ni el valor, ni los roles.
+ */
+export function tipoFrontal(carta: CartaScryfall): string {
+  return (carta.type_line ?? "").split(/\s*\/\/\s*/)[0];
+}
+
+/** Una carta es tierra si su cara frontal lo es, en cualquier idioma. */
 export function esTierra(carta: CartaScryfall): boolean {
-  return /\bland\b/i.test(carta.type_line ?? "");
+  return /\bland\b/i.test(tipoFrontal(carta));
 }
 
 /** Roles de una carta, sin repetir. Las tierras no tienen rol. */

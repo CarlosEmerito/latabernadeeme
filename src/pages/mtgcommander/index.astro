@@ -896,7 +896,7 @@ import { e } from "../../lib/urls";
     type CartaScryfall,
     type Mazo,
   } from "../../lib/commander/tipos";
-  import { ROLES, rolesDe, type RolId } from "../../lib/commander/roles";
+  import { ROLES, rolesDe, tipoFrontal, type RolId } from "../../lib/commander/roles";
 
   const CLAVE_MAZOS = "taberna:commander:mazos";
   const CLAVE_IA = "taberna:commander:clave";
@@ -1201,7 +1201,7 @@ import { e } from "../../lib/urls";
 
   function tipoDe(carta: CartaScryfall): string {
     for (const tipo of ["Land", "Creature", "Planeswalker", "Battle", "Instant", "Sorcery", "Enchantment", "Artifact"]) {
-      if (new RegExp(`\\b${tipo}\\b`, "i").test(carta.type_line ?? "")) return tipo;
+      if (new RegExp(`\\b${tipo}\\b`, "i").test(tipoFrontal(carta))) return tipo;
     }
     return "Otro";
   }

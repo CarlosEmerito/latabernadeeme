@@ -14,7 +14,7 @@ import {
   type Color,
   type Mazo,
 } from "./tipos.ts";
-import { ROLES, esTierra, rolesDe, type RolId } from "./roles.ts";
+import { ROLES, esTierra, rolesDe, tipoFrontal, type RolId } from "./roles.ts";
 
 export interface RolContado {
   id: RolId;
@@ -68,7 +68,7 @@ const FUERA_DEL_MAZO: ReadonlySet<string> = new Set([
 
 /** ¿Es una tierra básica? El tipo lo dice en cualquier idioma de impresión. */
 function esBasica(carta: CartaScryfall): boolean {
-  return /basic land/i.test(carta.type_line ?? "");
+  return /basic land/i.test(tipoFrontal(carta));
 }
 
 /** Cartas que permiten más de una copia (Relentless Rats, Seven Dwarves…). */
@@ -145,7 +145,7 @@ export function analizarMazo(mazo: Mazo): Analisis {
     total += cantidad;
     pipsDe(costeDe(carta), pips);
     for (const tipo of TIPOS) {
-      if (new RegExp(`\\b${tipo}\\b`, "i").test(carta.type_line ?? "")) {
+      if (new RegExp(`\\b${tipo}\\b`, "i").test(tipoFrontal(carta))) {
         tipos.set(tipo, (tipos.get(tipo) ?? 0) + cantidad);
       }
     }

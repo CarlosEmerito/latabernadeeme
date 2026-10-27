@@ -152,6 +152,12 @@ Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegado
   turno 4-6: motor con Z; cierre: W». Nada de «deberías tener más rampa» sin decir cuánta hay y
   cuánta falta.
 - Simulador de mano inicial (extra barato): 7 cartas al azar y una nota de si son jugables.
+- **Qué es «tierra», en caso de doble cara.** Manda la cara frontal: Scryfall publica
+  `type_line` con las dos caras («Sorcery // Land» en Bala Ged Recovery, Shatterskull Smashing,
+  Agadeem's Awakening, Sea Gate Restoration) y esas cartas se juegan por delante, así que cuentan
+  como el hechizo que son —entran en la curva, en la media, en los roles y en **un solo** tipo— y
+  no como tierra. La convención de quien construye mazos es reservarles un slot de tierra; si el
+  informe quiere enseñar cuántas son reversibles, se dice aparte, sin cambiar el recuento.
 
 **IA opcional:** solo redacta estrategia sobre el resumen que ya está calculado; no decide la
 legalidad ni el bracket. Se etiqueta como sugerencia y se avisa de que el mazo sale del navegador.

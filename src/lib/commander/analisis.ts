@@ -45,14 +45,20 @@ export interface Analisis {
   };
   recomendacionTierras: number;
   comandante: string | null;
+  /** Companions declarados: se pintan con el mazo, pero están fuera de las 100. */
+  companion: string[];
   identidad: Color[];
 }
 
 const TIPOS = ["Creature", "Instant", "Sorcery", "Artifact", "Enchantment", "Planeswalker", "Battle", "Land"];
 
-/** Cartas que no van en el mazo de 100 (banquillo y montones que no se juegan). */
+/**
+ * Cartas que no van en el mazo de 100: banquillo, montones auxiliares y el
+ * companion, que se declara al empezar la partida y vive fuera de las 100.
+ */
 const FUERA_DEL_MAZO: ReadonlySet<string> = new Set([
   "side",
+  "companion",
   "maybeboard",
   "attraction",
   "scheme",
@@ -80,6 +86,14 @@ function cartasDelMazo(mazo: Mazo): CartaMazo[] {
   return [...mazo.comandantes, ...mazo.cartas].filter((c) => !FUERA_DEL_MAZO.has(c.tablero));
 }
 
+/**
+ * Companions declarados. No cuentan para las 100, pero se juegan: su identidad
+ * de color y su legalidad se comprueban como las de cualquier otra carta.
+ */
+function companerosDe(mazo: Mazo): CartaMazo[] {
+  return mazo.cartas.filter((c) => c.tablero === "companion");
+}
+
 /** Identidad de color de una carta, sin repetir. */
 function identidadDe(carta: CartaScryfall): Color[] {
   return COLORES.filter((c) => (carta.color_identity ?? []).includes(c));
@@ -103,6 +117,10 @@ function numeroDePrecio(carta: CartaScryfall, moneda: "EUR" | "USD"): number | n
 /** Análisis completo del mazo. */
 export function analizarMazo(mazo: Mazo): Analisis {
   const cartas = cartasDelMazo(mazo);
+  const companeros = companerosDe(mazo);
+  // El companion se juega, así que entra en lo que la identidad y la banlist
+  // pueden rechazar; lo que no hace es sumar cartas, tierras, curva ni precio.
+  const enJuego = [...cartas, ...companeros];
   const comandantes = mazo.comandantes;
   const identidad = [...new Set(comandantes.flatMap((c) => identidadDe(c.carta)))].sort(
     (a, b) => COLORES.indexOf(a) - COLORES.indexOf(b),
@@ -164,7 +182,7 @@ export function analizarMazo(mazo: Mazo): Analisis {
   // ── Legalidad ─────────────────────────────────────────────────────────────
   const problemas: string[] = [];
   const avisos: string[] = [];
-  const resto = cartas.filter((c) => !comandantes.includes(c));
+  const resto = enJuego.filter((c) => !comandantes.includes(c));
 
   if (total !== 100) problemas.push(`El mazo tiene ${total} cartas y Commander son exactamente 100.`);
   if (!comandantes.length) {
@@ -190,7 +208,7 @@ export function analizarMazo(mazo: Mazo): Analisis {
   }
 
   if (comandantes.length) {
-    const fuera = [...new Set(cartas.flatMap(({ carta }) => identidadDe(carta)))].filter(
+    const fuera = [...new Set(enJuego.flatMap(({ carta }) => identidadDe(carta)))].filter(
       (c) => !identidad.includes(c),
     );
     if (fuera.length) {
@@ -290,6 +308,7 @@ export function analizarMazo(mazo: Mazo): Analisis {
     bracket,
     recomendacionTierras,
     comandante: comandantes.map((c) => c.carta.name).join(" + ") || null,
+    companion: companeros.map((c) => c.carta.name),
     identidad,
   };
 }

@@ -88,6 +88,21 @@ function permiteRepetir(carta: CartaScryfall): boolean {
   );
 }
 
+/**
+ * Cartas de un mazo, para las etiquetas de la lista de guardados.
+ *
+ * Lo que se cuenta son cartas, no líneas del export: Moxfield agrupa las
+ * básicas en una sola línea con su cantidad (`10 Forest (ZNR) 280`), así que
+ * mirar `length` anuncia 91 en un mazo de 100. Es la misma cifra que
+ * `analizarMazo().total`, y la usan la lista de guardados, el mensaje de
+ * «Listo» y el contador de la rejilla para que no puedan discrepar.
+ */
+export function cuentaDeCartas(entradas: CartaMazo[]): number {
+  return entradas
+    .filter((c) => !FUERA_DEL_MAZO.has(c.tablero))
+    .reduce((n, c) => n + c.cantidad, 0);
+}
+
 /** Cartas que van dentro de las 100: todo menos banquillo y montones auxiliares. */
 function cartasDelMazo(mazo: Mazo): CartaMazo[] {
   return [...mazo.comandantes, ...mazo.cartas].filter((c) => !FUERA_DEL_MAZO.has(c.tablero));
@@ -133,7 +148,7 @@ export function analizarMazo(mazo: Mazo): Analisis {
     (a, b) => COLORES.indexOf(a) - COLORES.indexOf(b),
   );
 
-  let total = 0;
+  const total = cuentaDeCartas(cartas);
   let tierras = 0;
   let basicas = 0;
   const pips: Record<Color, number> = { W: 0, U: 0, B: 0, R: 0, G: 0 };
@@ -149,7 +164,6 @@ export function analizarMazo(mazo: Mazo): Analisis {
 
   for (const entrada of cartas) {
     const { carta, cantidad } = entrada;
-    total += cantidad;
     pipsDe(costeDe(carta), pips);
     for (const tipo of TIPOS) {
       if (new RegExp(`\\b${tipo}\\b`, "i").test(tipoFrontal(carta))) {

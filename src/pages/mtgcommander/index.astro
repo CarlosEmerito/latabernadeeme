@@ -882,7 +882,7 @@ import { e } from "../../lib/urls";
 <script>
   import { parsearExport } from "../../lib/commander/export";
   import { resolverCartas } from "../../lib/commander/scryfall";
-  import { analizarMazo, type Analisis } from "../../lib/commander/analisis";
+  import { analizarMazo, cuentaDeCartas, type Analisis } from "../../lib/commander/analisis";
   import { consejoDe } from "../../lib/commander/consejo";
   import { analizarConIA } from "../../lib/commander/ia";
   import { markdownDe, sinIntroduccion } from "../../lib/commander/markdown";
@@ -967,7 +967,7 @@ import { e } from "../../lib/urls";
       const li = document.createElement("li");
       const boton = document.createElement("button");
       boton.type = "button";
-      boton.innerHTML = `<strong>${esc(m.nombre)}</strong><span>${m.cartas.filter((c) => c.tablero !== "companion").length + m.comandantes.length} cartas · ${new Date(m.creado).toLocaleDateString("es-ES")}</span>`;
+      boton.innerHTML = `<strong>${esc(m.nombre)}</strong><span>${cuentaDeCartas([...m.comandantes, ...m.cartas])} cartas · ${new Date(m.creado).toLocaleDateString("es-ES")}</span>`;
       boton.addEventListener("click", () => {
         mazoActual = m;
         render();
@@ -1050,8 +1050,7 @@ import { e } from "../../lib/urls";
       guardarMazo(mazo);
       render();
       const companions = resto.filter((c) => c.tablero === "companion");
-      const enLasCien = resto.filter((c) => c.tablero !== "companion");
-      const total = enLasCien.reduce((n, c) => n + c.cantidad, 0) + comandantes.reduce((n, c) => n + c.cantidad, 0);
+      const total = cuentaDeCartas([...comandantes, ...resto]);
       estado(
         `Listo: ${total} cartas${companions.length ? ` y ${companions.length} companion fuera de las 100` : ""}${noEncontradas.length ? `, ${noEncontradas.length} sin resolver (${noEncontradas.map((l) => l.nombre).join(", ")})` : " y todas resueltas"}.`,
         noEncontradas.length > 0,
@@ -1231,7 +1230,7 @@ import { e } from "../../lib/urls";
       return true;
     });
 
-    const cuenta = visibles.reduce((n, c) => n + c.cantidad, 0);
+    const cuenta = cuentaDeCartas(visibles);
     $("#mtg-cuenta").textContent = `${visibles.length} fichas distintas · ${cuenta} cartas`;
 
     const ordenar = (lista: CartaMazo[]) => {

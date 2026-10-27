@@ -16,7 +16,7 @@
  */
 import { parsearExport } from "../../src/lib/commander/export.ts";
 import { esTierra, rolesDe } from "../../src/lib/commander/roles.ts";
-import { analizarMazo } from "../../src/lib/commander/analisis.ts";
+import { analizarMazo, cuentaDeCartas } from "../../src/lib/commander/analisis.ts";
 import { consejoDe } from "../../src/lib/commander/consejo.ts";
 import { analizarConIA, promptDe } from "../../src/lib/commander/ia.ts";
 import { markdownDe, sinIntroduccion } from "../../src/lib/commander/markdown.ts";
@@ -369,6 +369,40 @@ const base = mazoDe([[bosque, 36], ...cartasBase], comandante);
     !a.legalidad.ok && a.legalidad.problemas.some((p) => p.includes("Command Tower")),
     "una tierra no básica repetida tiene que seguir siendo un problema de legalidad",
   );
+}
+
+// La lista de mazos guardados anuncia cartas, no líneas del export: el export de
+// Moxfield agrupa las básicas (`10 Forest (ZNR) 280`), así que un mazo de 100
+// llegaba a la etiqueta como 91. La cifra tiene que coincidir con la de la ficha.
+titulo("Cuenta de cartas de un mazo guardado");
+{
+  const sueltas = [];
+  for (let i = 1; i <= 89; i++) sueltas.push([rampa(i), 1]);
+  const m = mazoDe([[bosque, 10], ...sueltas], comandante);
+  const guardado = [...m.comandantes, ...m.cartas];
+  const a = analizarMazo(m);
+  comprobar(guardado.length === 91, `el export tiene ${guardado.length} líneas y esperaba 91`);
+  comprobar(a.total === 100, `la ficha dice ${a.total} cartas y esperaba 100`);
+  comprobar(
+    cuentaDeCartas(guardado) === 100,
+    `la lista de guardados anuncia ${cuentaDeCartas(guardado)} cartas y el mazo tiene 100`,
+  );
+  comprobar(
+    cuentaDeCartas(guardado) === a.total,
+    `la lista dice ${cuentaDeCartas(guardado)} y la ficha ${a.total} para el mismo mazo`,
+  );
+
+  const solitario = [{ cantidad: 1, carta: rampa(1), tablero: "main", linea: { cantidad: 1, nombre: "Rampa 1", tablero: "main" } }];
+  comprobar(cuentaDeCartas(solitario) === 1, `una sola carta se anuncia como ${cuentaDeCartas(solitario)}`);
+
+  const companero = carta("Companero", "Legendary Creature — Cat", "Companion — Your starting deck contains only permanents.", { cmc: 3 });
+  const conCompanion = mazoDe([[bosque, 10], ...sueltas], comandante);
+  conCompanion.cartas.push({ cantidad: 1, carta: companero, tablero: "companion", linea: { cantidad: 1, nombre: "Companero", tablero: "companion" } });
+  comprobar(
+    cuentaDeCartas([...conCompanion.comandantes, ...conCompanion.cartas]) === 100,
+    "el companion no suma a las 100",
+  );
+  comprobar(analizarMazo(conCompanion).companion.length === 1, "el companion se pierde del análisis");
 }
 
 // ── 4. Resolver ─────────────────────────────────────────────────────────────

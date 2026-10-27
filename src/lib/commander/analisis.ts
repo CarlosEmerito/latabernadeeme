@@ -15,6 +15,7 @@ import {
   type Mazo,
 } from "./tipos.ts";
 import { ROLES, esTierra, rolesDe, tipoFrontal, type RolId } from "./roles.ts";
+import { plegar } from "../texto.ts";
 
 export interface RolContado {
   id: RolId;
@@ -219,10 +220,26 @@ export function analizarMazo(mazo: Mazo): Analisis {
   }
   if (comandantes.length > 2) problemas.push("Hay más de dos comandantes; en Commander son uno o dos (partner).");
 
+  // El singleton es por carta, no por línea del export: Moxfield y las demás
+  // herramientas listan la misma carta en dos impresiones como dos líneas con
+  // cantidad 1 (`1 Sol Ring (LTC) 284` y `1 Sol Ring (CMM) 951`), así que
+  // mirar la cantidad de cada línea deja pasar dos copias como legales. Se
+  // agrupa por nombre plegado (sin tildes ni mayúsculas) y se suma antes de
+  // decidir; las básicas y las que permiten repetir lo siguen haciendo.
+  const porNombre = new Map<string, { carta: CartaScryfall; cantidad: number }>();
   for (const { carta, cantidad } of resto) {
+    const clave = plegar(carta.name);
+    const grupo = porNombre.get(clave) ?? { carta, cantidad: 0 };
+    grupo.cantidad += cantidad;
+    porNombre.set(clave, grupo);
+  }
+
+  for (const { carta, cantidad } of porNombre.values()) {
     if (cantidad > 1 && !esBasica(carta) && !permiteRepetir(carta)) {
       problemas.push(`«${carta.name}» aparece ${cantidad} veces y no es tierra básica ni permite repetir.`);
     }
+  }
+  for (const { carta } of resto) {
     if (carta.legalities?.commander && carta.legalities.commander !== "legal") {
       problemas.push(`«${carta.name}» no es legal en Commander (${carta.legalities.commander}).`);
     }

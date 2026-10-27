@@ -840,6 +840,105 @@ titulo("Markdown y recorte de la introducción");
   comprobar(sinIntroduccion(conLista) === conLista, "se come una respuesta que empieza por lista");
 }
 
+// ── Dos comandantes y su habilitación ───────────────────────────────────────
+/*
+ * En Commander se pueden llevar dos comandantes solo si la carta lo permite:
+ * `Partner` (o `Partner with …`), `Friends forever`, o `Choose a Background` con
+ * un Background como segundo comandante. Hoy lo único que se mira es que no haya
+ * más de dos, así que dos legendarias cualesquiera —Krenko y Zada— salen
+ * «Legal en Commander» y con Bracket 1-2: un mazo ilegal enseñado en verde.
+ *
+ * Los contrapesos son la otra mitad y no se pueden dejar fuera: una pareja de
+ * partner de verdad y un `Choose a Background` con su Background son legales
+ * (Scryfall da los dos como `legal` en commander y sus `keywords` lo dicen), y un
+ * mazo de un solo comandante no tiene que pasar por esta regla.
+ */
+titulo("Dos comandantes y su habilitación");
+{
+  const comandante = (nombre, tipo = "Legendary Creature — Goblin", texto = "", extra = {}) => ({
+    cantidad: 1,
+    carta: { ...carta(nombre, tipo, texto), color_identity: [], cmc: 3, ...extra },
+    tablero: "commander",
+    linea: { cantidad: 1, nombre, tablero: "commander" },
+  });
+  const partner = (nombre) =>
+    comandante(nombre, "Legendary Creature — Human", "Partner (You can have two commanders if both have partner.)", {
+      keywords: ["Partner"],
+    });
+  const relleno = (n) =>
+    Array.from({ length: n }, (_, i) => ({
+      cantidad: 1,
+      carta: carta(`Relleno ${i}`, "Creature — Goblin", "", { color_identity: [], cmc: 2 }),
+      tablero: "main",
+      linea: { cantidad: 1, nombre: `Relleno ${i}`, tablero: "main" },
+    }));
+  const mazoCon = (comandantes) => ({
+    id: "prueba",
+    nombre: "Prueba",
+    creado: "2026-01-01T00:00:00.000Z",
+    fuente: "export",
+    comandantes,
+    cartas: relleno(100 - comandantes.length),
+    noEncontradas: [],
+  });
+  const problemas = (a) => a.legalidad.problemas.join(" · ");
+
+  const sinHabilitacion = analizarMazo(mazoCon([comandante("Krenko, Mob Boss"), comandante("Zada, Hedron Grinder")]));
+  comprobar(
+    !sinHabilitacion.legalidad.ok,
+    `dos comandantes sin partner son ilegales y el mazo sale legal: ${problemas(sinHabilitacion) || "sin problemas"}`,
+  );
+  comprobar(
+    /partner/i.test(problemas(sinHabilitacion)),
+    `el problema tiene que nombrar el partner y dice: ${problemas(sinHabilitacion) || "nada"}`,
+  );
+  comprobar(
+    sinHabilitacion.bracket.etiqueta === "Sin bracket",
+    `un mazo ilegal no tiene bracket y anuncia «${sinHabilitacion.bracket.etiqueta}»`,
+  );
+
+  const conPartner = analizarMazo(mazoCon([partner("Tymna the Weaver"), partner("Thrasios, Triton Hero")]));
+  comprobar(
+    conPartner.legalidad.ok,
+    `una pareja de partner es legal y sale ilegal: ${problemas(conPartner) || "sin problemas"}`,
+  );
+
+  // `Partner with …` es la misma puerta con el nombre de la pareja.
+  const conPartnerWith = analizarMazo(
+    mazoCon([
+      comandante("Kediss, Emberclaw Familiar", "Legendary Creature — Lizard", "Partner with Akiri, Line-Slinger", {
+        keywords: ["Partner"],
+      }),
+      comandante("Akiri, Line-Slinger", "Legendary Creature — Kor Warrior", "Partner with Kediss, Emberclaw Familiar", {
+        keywords: ["Partner"],
+      }),
+    ]),
+  );
+  comprobar(
+    conPartnerWith.legalidad.ok,
+    `una pareja de «Partner with» es legal y sale ilegal: ${problemas(conPartnerWith) || "sin problemas"}`,
+  );
+
+  const conBackground = analizarMazo(
+    mazoCon([
+      comandante("Burakos, Party Leader", "Legendary Creature — Orc Warrior", "Choose a Background (You can have a Background as a second commander.)", {
+        keywords: ["Choose a background"],
+      }),
+      comandante("Folk Hero", "Legendary Enchantment — Background", "Commander creatures you own have …", {}),
+    ]),
+  );
+  comprobar(
+    conBackground.legalidad.ok,
+    `un «Choose a Background» con su Background es legal y sale ilegal: ${problemas(conBackground) || "sin problemas"}`,
+  );
+
+  const unoSolo = analizarMazo(mazoCon([comandante("Krenko, Mob Boss")]));
+  comprobar(
+    unoSolo.legalidad.ok,
+    `un mazo de un solo comandante no tiene que pasar por la regla del partner y sale ilegal: ${problemas(unoSolo) || "sin problemas"}`,
+  );
+}
+
 // ── Resultado ───────────────────────────────────────────────────────────────
 console.log("");
 if (fallos.length) {

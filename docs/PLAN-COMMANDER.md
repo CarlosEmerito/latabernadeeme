@@ -148,6 +148,12 @@ Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegado
   permiten), banlist de Commander, identidad de color del comandante, cartas no legales. El
   singleton cuenta copias **por nombre**, no por línea del export: dos impresiones de la misma carta
   (`1 Sol Ring (LTC) 284` y `1 Sol Ring (CMM) 951`) son dos copias y salen como duplicado.
+- **Quién puede ser comandante**: una criatura legendaria o cualquier carta que lo diga en su texto
+  («can be your commander»). Los tipos se miran **por separado sobre la cara frontal**, no buscando
+  «legendary creature» de corrido: los dioses de Theros son `Legendary Enchantment Creature — God`
+  y Hope of Ghirapur es `Legendary Artifact Creature — Thopter`, y las dos son comandantes legales.
+  Una legendaria que no sea criatura (un `Legendary Artifact — Equipment`) y una criatura no
+  legendaria siguen siendo problema; un `Legendary Planeswalker` con el texto, no.
 - Bracket estimado por puertas duras: Game Changers (0/0/3/∞), negación masiva de tierras, turnos
   extra encadenados, combos conocidos. Se presenta como **suelo** («esto no puede ser Bracket 2»),
   no como sentencia: WotC dice que el bracket es una conversación.

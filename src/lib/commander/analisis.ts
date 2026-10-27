@@ -88,6 +88,24 @@ function esBasica(carta: CartaScryfall): boolean {
   return /\bbasic\b/i.test(tipo) && /\bland\b/i.test(tipo);
 }
 
+/**
+ * Qué carta puede ser comandante: una criatura legendaria, o cualquiera que lo
+ * diga en su texto («can be your commander»).
+ *
+ * Los supertipos de la línea de tipo no van seguidos: los dioses de Theros son
+ * `Legendary Enchantment Creature — God` y Hope of Ghirapur es `Legendary
+ * Artifact Creature — Thopter` (los dos legales en Commander según Scryfall),
+ * así que buscar «legendary creature» de corrido los rechaza y con ellos el
+ * mazo entero: «Sin bracket» y el aviso de que hay cosas que arreglar. Se miran
+ * los tipos por separado sobre la cara frontal, como hace `esBasica` con las
+ * básicas de nieve; y la segunda puerta se queda porque es la que cubre los
+ * planeswalkers con «can be your commander» y los Backgrounds de la pareja.
+ */
+function esComandante(carta: CartaScryfall): boolean {
+  const tipo = tipoFrontal(carta);
+  return (/\blegendary\b/i.test(tipo) && /\bcreature\b/i.test(tipo)) || /can be your commander/i.test(textoDe(carta));
+}
+
 /** Cartas que permiten más de una copia (Relentless Rats, Seven Dwarves…). */
 function permiteRepetir(carta: CartaScryfall): boolean {
   const texto = textoDe(carta);
@@ -247,9 +265,7 @@ export function analizarMazo(mazo: Mazo): Analisis {
     problemas.push("No hay comandante: el export tiene que traerlo en la sección Commander.");
   }
   for (const { carta } of comandantes) {
-    const esComandante =
-      /legendary creature/i.test(carta.type_line ?? "") || /can be your commander/i.test(textoDe(carta));
-    if (!esComandante) problemas.push(`«${carta.name}» no puede ser comandante.`);
+    if (!esComandante(carta)) problemas.push(`«${carta.name}» no puede ser comandante.`);
     if (carta.legalities?.commander && carta.legalities.commander !== "legal") {
       problemas.push(`«${carta.name}» no es legal en Commander (${carta.legalities.commander}).`);
     }

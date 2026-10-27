@@ -906,6 +906,15 @@ titulo("Comandante con tipo compuesto");
   const nieve = analizarMazo(unComandante(comandanteconTipo("Jorn, God of Winter", "Legendary Snow Creature — God")));
   comprobar(nieve.legalidad.ok, `un comandante «Legendary Snow Creature» es legal y sale ilegal: ${problemas(nieve)}`);
 
+  const simple = analizarMazo(unComandante(comandanteconTipo("Ragavan, Nimble Pilferer", "Legendary Creature — Monkey Pirate")));
+  comprobar(simple.legalidad.ok, `un comandante «Legendary Creature» a secas es legal y sale ilegal: ${problemas(simple)}`);
+
+  // Doble cara con el dorso de tierra: lo que se mira es la cara frontal.
+  const dobleCara = analizarMazo(
+    unComandante(comandanteconTipo("Tamiyo, Compleated Sage", "Legendary Creature — Human Wizard // Legendary Planeswalker — Tamiyo")),
+  );
+  comprobar(dobleCara.legalidad.ok, `un comandante de doble cara con la frontal de criatura es legal y sale ilegal: ${problemas(dobleCara)}`);
+
   const equipo = analizarMazo(unComandante(comandanteconTipo("Espada Legendaria", "Legendary Artifact — Equipment")));
   comprobar(
     !equipo.legalidad.ok && /no puede ser comandante/.test(problemas(equipo)),

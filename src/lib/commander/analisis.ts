@@ -66,9 +66,16 @@ const FUERA_DEL_MAZO: ReadonlySet<string> = new Set([
   "token",
 ]);
 
-/** ¿Es una tierra básica? El tipo lo dice en cualquier idioma de impresión. */
+/**
+ * ¿Es una tierra básica? El tipo lo dice en cualquier idioma de impresión.
+ *
+ * Se miran los tipos por separado y no la cadena «basic land»: Scryfall mete
+ * supertipos entre los dos («Basic Snow Land — Forest»), así que con la cadena
+ * literal la básica de nieve no casaba y un mazo legal salía ilegal.
+ */
 function esBasica(carta: CartaScryfall): boolean {
-  return /basic land/i.test(tipoFrontal(carta));
+  const tipo = tipoFrontal(carta);
+  return /\bbasic\b/i.test(tipo) && /\bland\b/i.test(tipo);
 }
 
 /** Cartas que permiten más de una copia (Relentless Rats, Seven Dwarves…). */

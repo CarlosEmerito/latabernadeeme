@@ -141,8 +141,8 @@ Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegado
 
 **Determinista, siempre:**
 
-- Legalidad: 100 cartas, singleton (salvo tierras básicas y cartas que lo permiten), banlist de
-  Commander, identidad de color del comandante, cartas no legales.
+- Legalidad: 100 cartas, singleton (salvo tierras básicas, incluidas las de nieve, y cartas que lo
+  permiten), banlist de Commander, identidad de color del comandante, cartas no legales.
 - Bracket estimado por puertas duras: Game Changers (0/0/3/∞), negación masiva de tierras, turnos
   extra encadenados, combos conocidos. Se presenta como **suelo** («esto no puede ser Bracket 2»),
   no como sentencia: WotC dice que el bracket es una conversación.

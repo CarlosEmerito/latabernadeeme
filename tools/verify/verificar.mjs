@@ -121,6 +121,12 @@
  *      índice delgado (`/datos/<edición>-tarjetas.json`) y no el catálogo
  *      entero, que se quede por debajo de 60 000 B, que cubra cada ficha
  *      enlazada con `data-tarjeta` y que cada valor sea el del catálogo.
+ *  35. `tools/test/objetos.py`: que el cuerpo de una ficha de objeto no acabe
+ *      donde acaba la página del PDF. Siete fichas se cortan a media frase
+ *      (`…Una vez que`, `…Sin embargo,`, `…alrededor de tu`) y una lleva dentro
+ *      la tabla de otro objeto; el paso busca literal el texto que falta, mira
+ *      que la tabla siga en la ficha a la que pertenece y veta el final en
+ *      palabra funcional suelta, que es la firma del corte.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -370,4 +376,11 @@ if (tarjetas !== 0) {
   process.exit(tarjetas);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket) y el índice delgado de la tarjeta emergente)");
+console.log("▶ Fichas de objetos completas: objetos.py (data/)");
+const objetos = ejecutar(python, [path.join(RAIZ, "tools/test/objetos.py")]);
+if (objetos !== 0) {
+  console.error("✗ Alguna ficha de objeto se corta a media frase en el salto de página o lleva dentro el texto de otro objeto.");
+  process.exit(objetos);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente y las fichas de objetos completas)");

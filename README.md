@@ -91,7 +91,7 @@ La ingesta es la parte delicada: un PDF a dos columnas se rompe en cualquier sit
 
 ```bash
 npm run build           # compila dist/
-npm run verificar       # 34 pasos: datos, enlaces, ids, filtros, alias, SEO, cifras, Commander… (sin navegador)
+npm run verificar       # 35 pasos: datos, enlaces, ids, filtros, alias, SEO, cifras, Commander… (sin navegador)
 npm run verificar:humo  # pruebas de humo en Chrome headless, maqueta a 360 y 390 px incluida
 ```
 

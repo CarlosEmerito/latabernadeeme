@@ -26,6 +26,10 @@ compara con la que declara el informe:
   - `docs/DATOS.md`: el total de entradas, el tamaño del índice de cada
     edición con y sin comprimir, y las listas de categorías de equipo y de
     dotes.
+  - `docs/VERIFICACION.md`: la cifra de comprobaciones que el paso 33 declara
+    de `tools/test/commander.mjs` contra las que la suite publica al correrla.
+    Decía 176 cuando ya eran 190, y es la misma familia de cifra escrita a mano
+    que nadie compara con el dato.
 
 Lo que no se puede derivar de `data/` —la fidelidad literal de las criaturas,
 que sale de comparar cada ficha con el PDF— se queda como la instantánea que
@@ -48,6 +52,7 @@ from __future__ import annotations
 import gzip
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -768,6 +773,83 @@ def revisar_documentos_de_plan(raiz: Path) -> list[str]:
     return problemas
 
 
+# La frase con la que cierra su recuento el paso 33 de `docs/VERIFICACION.md` y
+# la línea con la que `tools/test/commander.mjs` publica el suyo. Se leen de su
+# sitio y se comparan: es la cifra que se quedó en 176 con la suite en 190.
+RE_CIFRA_DEL_PASO_33 = re.compile(r"Son ([\d.]+) comprobaciones sin navegador")
+RE_TOTAL_DE_COMMANDER = re.compile(r"([\d.]+) comprobaciones correctas")
+
+
+def _total_de_la_suite(salida: str) -> int | None:
+    """El total que anuncia `commander.mjs`, también cuando acaba en rojo.
+
+    En verde la última línea dice «✓ …: 190 comprobaciones correctas.»; en
+    rojo, «189/190 comprobaciones correctas». En los dos casos el número que
+    interesa es el total —el que declara la documentación—, y el patrón salta
+    el recuento de las acertadas porque detrás de él viene una barra.
+    """
+    m = RE_TOTAL_DE_COMMANDER.search(salida)
+    return _entero(m.group(1)) if m else None
+
+
+def comprobaciones_de_commander(raiz: Path) -> int | None:
+    """Corre `tools/test/commander.mjs` y devuelve el total que publica.
+
+    Cuesta medio segundo y no llama a Scryfall, así que se ejecuta en vez de
+    fiarse de una cifra apuntada en otro fichero, que es justo lo que se
+    desincronizó. Devuelve `None` si no se puede medir.
+    """
+    guion = raiz / "tools" / "test" / "commander.mjs"
+    node = shutil.which("node")
+    if node is None or not guion.exists():
+        return None
+    try:
+        salida = subprocess.run(
+            [node, str(guion)],
+            cwd=raiz,
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return _total_de_la_suite(salida.stdout + salida.stderr)
+
+
+def revisar_verificacion(raiz: Path) -> list[str]:
+    """La cifra de comprobaciones que el paso 33 de VERIFICACION.md declara.
+
+    El paso describe lo que cubre `tools/test/commander.mjs` y cerraba con «Son
+    176 comprobaciones sin navegador y sin llamar a Scryfall» mientras la suite
+    publicaba 190: quien leyera la documentación de las puertas se creía 14
+    comprobaciones menos de las que hay.
+    """
+    ruta = raiz / "docs" / "VERIFICACION.md"
+    if not ruta.exists():
+        return [f"no existe {ruta.relative_to(raiz)}"]
+
+    problemas: list[str] = []
+    m = RE_CIFRA_DEL_PASO_33.search(ruta.read_text(encoding="utf-8"))
+    declaradas = _entero(m.group(1)) if m else None
+    if m is None:
+        problemas.append("VERIFICACION.md: no encuentro la cifra de comprobaciones del paso 33")
+    elif declaradas is None:
+        problemas.append(f"VERIFICACION.md: «{m.group(1)}» no es un número")
+
+    medidas = comprobaciones_de_commander(raiz)
+    if medidas is None:
+        problemas.append(
+            "VERIFICACION.md: no se ha podido medir la suite de Commander para "
+            "contrastar la cifra del paso 33 (¿falta node o el guion?)"
+        )
+    elif declaradas is not None and declaradas != medidas:
+        problemas.append(
+            f"VERIFICACION.md: el paso 33 declara {declaradas} comprobaciones y la "
+            f"suite de Commander publica {medidas}"
+        )
+    return problemas
+
+
 def revisar(raiz: Path) -> list[str]:
     """Todos los descuadres de los informes, en orden."""
     problemas: list[str] = []
@@ -778,6 +860,7 @@ def revisar(raiz: Path) -> list[str]:
     problemas += revisar_objetos(raiz)
     problemas += revisar_datos(raiz)
     problemas += revisar_documentos_de_plan(raiz)
+    problemas += revisar_verificacion(raiz)
     return problemas
 
 
@@ -1000,6 +1083,28 @@ Dotes: `category` (Épica).
 """,
         encoding="utf-8",
     )
+
+    # El paso 33 de la documentación de las puertas declara cuántas
+    # comprobaciones publica la suite de Commander. El árbol de ejemplo trae una
+    # suite de mentira que imprime su total, que es lo que la puerta tiene que
+    # leer y contrastar con el documento.
+    valores["comprobaciones"] = 7
+    (raiz / "docs" / "VERIFICACION.md").write_text(
+        f"""# Comprobaciones
+
+33. `tools/test/commander.mjs`: que la herramienta de MTG Commander no se rompa.
+
+Son {valores['comprobaciones']} comprobaciones sin navegador y sin llamar a Scryfall.
+""",
+        encoding="utf-8",
+    )
+    pruebas = raiz / "tools" / "test"
+    pruebas.mkdir(parents=True)
+    (pruebas / "commander.mjs").write_text(
+        f"console.log('✓ Parser, roles y resolver: {valores['comprobaciones']} "
+        "comprobaciones correctas.');\n",
+        encoding="utf-8",
+    )
     return valores
 
 
@@ -1146,6 +1251,24 @@ def _perturbaciones(valores: dict[str, int]) -> list[tuple[str, str, str, str]]:
             f"cubre las {valores['total-entradas']} entradas",
             f"cubre las {valores['total-entradas'] + 1} entradas",
         ),
+        (
+            "la cifra de comprobaciones del paso 33",
+            "docs/VERIFICACION.md",
+            f"Son {valores['comprobaciones']} comprobaciones sin navegador",
+            f"Son {valores['comprobaciones'] + 14} comprobaciones sin navegador",
+        ),
+        (
+            "el total que publica la suite de Commander",
+            "tools/test/commander.mjs",
+            f"{valores['comprobaciones']} comprobaciones correctas",
+            f"{valores['comprobaciones'] + 1} comprobaciones correctas",
+        ),
+        (
+            "la frase que declara la cifra del paso 33",
+            "docs/VERIFICACION.md",
+            f"Son {valores['comprobaciones']} comprobaciones sin navegador",
+            "Son comprobaciones sin navegador",
+        ),
     ]
 
 
@@ -1198,7 +1321,8 @@ def main() -> int:
         return 1
     print(
         "Cifras de los informes: reglas, monstruos, clases, orígenes, objetos, DATOS.md y los "
-        "documentos de plan cuadran con `data/` y `dist/datos/`."
+        "documentos de plan cuadran con `data/` y `dist/datos/`, y la cifra del paso 33 de "
+        "VERIFICACION.md con lo que publica la suite de Commander."
     )
     return 0
 

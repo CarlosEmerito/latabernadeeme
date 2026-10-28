@@ -55,7 +55,9 @@
  *      versionados cuadren con `data/` y con `dist/datos/` —las entradas, las
  *      palabras y las tablas de `reglas.md`, las fichas de `monstruos.md`, los
  *      ficheros por carpeta de `origenes-equipo.md` y de `objetos.md`, y el
- *      total de entradas y el tamaño del índice de `DATOS.md`.
+ *      total de entradas y el tamaño del índice de `DATOS.md`— y que la cifra
+ *      de comprobaciones que declara el paso 33 de `docs/VERIFICACION.md` sea
+ *      la que publica `tools/test/commander.mjs`, que se ejecuta para medirla.
  *  18. `tools/test/secciones.mjs` sobre `dist/`: que todos los apartados de
  *      las dos ediciones se publiquen en su página de comparación, que es donde
  *      se ven las dos redacciones de un mismo apartado.
@@ -250,10 +252,10 @@ if (titulos !== 0) {
   process.exit(titulos);
 }
 
-console.log("▶ Cifras de los informes: cifras.py (data/ y dist/datos/)");
+console.log("▶ Cifras de los informes y de las puertas: cifras.py (data/, dist/ y docs/VERIFICACION.md)");
 const cifras = ejecutar(python, [path.join(RAIZ, "tools/test/cifras.py")]);
 if (cifras !== 0) {
-  console.error("✗ Los informes declaran recuentos que no cuadran con los datos.");
+  console.error("✗ Un informe o la documentación de las puertas declara recuentos que no cuadran con los datos.");
   process.exit(cifras);
 }
 
@@ -383,4 +385,4 @@ if (objetos !== 0) {
   process.exit(objetos);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente y las fichas de objetos completas)");
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente y las fichas de objetos completas)");

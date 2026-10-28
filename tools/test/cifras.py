@@ -30,6 +30,11 @@ compara con la que declara el informe:
     de `tools/test/commander.mjs` contra las que la suite publica al correrla.
     Decía 176 cuando ya eran 190, y es la misma familia de cifra escrita a mano
     que nadie compara con el dato.
+  - `README.md` y `docs/VERIFICACION.md`: el número de pasos de `verificar`,
+    contado sobre los anuncios `▶` que imprime el runner. El README decía 35
+    con 38 pasos dentro —los tres últimos, `mazos-guardados`, `humo-limpieza`
+    y `humo-filtro`, se añadieron sin tocar esa cifra—, así que quien lo leía
+    se creía tres comprobaciones menos de las que corre cada publicación.
 
 Lo que no se puede derivar de `data/` —la fidelidad literal de las criaturas,
 que sale de comparar cada ficha con el PDF— se queda como la instantánea que
@@ -198,6 +203,92 @@ def _tramos(celda: str) -> list[tuple[int, int]] | None:
 def _kib(bytes_: int) -> int:
     """Los KB que declara un informe: el tamaño redondeado a la unidad."""
     return int(bytes_ / 1024 + 0.5)
+
+
+# --------------------------------------------------------- pasos del runner
+
+# Cada paso de `verificar.mjs` se anuncia con un `console.log` que empieza por
+# «▶» —uno va con plantilla porque interpola el intérprete de Python—, así que
+# contar esas llamadas es contar los pasos que la suite imprime de verdad, sin
+# fiarse de ninguna cifra escrita a mano.
+RE_PASO_DE_VERIFICAR = re.compile(r'console\.log\(\s*[`"]▶')
+
+# La cifra del README, en el comentario del bloque de comandos.
+RE_PASOS_EN_README = re.compile(r"#\s*(\d+)\s*pasos")
+
+# Las dos frases con las que `docs/VERIFICACION.md` declara ese mismo número, en
+# letras: «verificar ejecuta treinta y ocho pasos» y «los treinta y ocho pasos de
+# arriba». Se buscan por su frase y no por «N pasos» a secas porque el documento
+# habla también de «los mismos tres pasos a mano», que no es esta cifra.
+RE_PASOS_EN_VERIFICACION = (
+    ("ejecuta", re.compile(r"ejecuta ([a-záéíóúüñ ]+?) pasos")),
+    ("de arriba", re.compile(r"los ([a-záéíóúüñ ]+?) pasos de arriba")),
+)
+
+# Los números escritos con letras que usan los documentos. Llega hasta el 99, que
+# es de sobra para una suite de pasos, y no acepta nada que no sea un número.
+UNIDADES = {
+    "cero": 0,
+    "uno": 1,
+    "dos": 2,
+    "tres": 3,
+    "cuatro": 4,
+    "cinco": 5,
+    "seis": 6,
+    "siete": 7,
+    "ocho": 8,
+    "nueve": 9,
+}
+DECENAS = {
+    "diez": 10,
+    "once": 11,
+    "doce": 12,
+    "trece": 13,
+    "catorce": 14,
+    "quince": 15,
+    "dieciséis": 16,
+    "diecisiete": 17,
+    "dieciocho": 18,
+    "diecinueve": 19,
+    "veinte": 20,
+    "veintiuno": 21,
+    "veintidós": 22,
+    "veintitrés": 23,
+    "veinticuatro": 24,
+    "veinticinco": 25,
+    "veintiséis": 26,
+    "veintisiete": 27,
+    "veintiocho": 28,
+    "veintinueve": 29,
+    "treinta": 30,
+    "cuarenta": 40,
+    "cincuenta": 50,
+    "sesenta": 60,
+    "setenta": 70,
+    "ochenta": 80,
+    "noventa": 90,
+}
+
+
+def _en_letras_numero(texto: str) -> int | None:
+    """El número de un texto en letras: «treinta y ocho» → 38, «cinco» → 5."""
+    limpio = " ".join(texto.lower().split())
+    if limpio in UNIDADES:
+        return UNIDADES[limpio]
+    if limpio in DECENAS:
+        return DECENAS[limpio]
+    partes = limpio.split(" y ")
+    if len(partes) == 2 and partes[0] in DECENAS and partes[1] in UNIDADES:
+        return DECENAS[partes[0]] + UNIDADES[partes[1]]
+    return None
+
+
+def pasos_del_runner(raiz: Path) -> int | None:
+    """Cuántos pasos imprime `tools/verify/verificar.mjs`, contando sus anuncios."""
+    ruta = raiz / "tools" / "verify" / "verificar.mjs"
+    if not ruta.exists():
+        return None
+    return len(RE_PASO_DE_VERIFICAR.findall(ruta.read_text(encoding="utf-8")))
 
 
 # ----------------------------------------------------------------- lectura md
@@ -850,6 +941,52 @@ def revisar_verificacion(raiz: Path) -> list[str]:
     return problemas
 
 
+def revisar_pasos(raiz: Path) -> list[str]:
+    """La cifra de pasos que declaran el README y VERIFICACION.md frente al runner.
+
+    Es la misma familia que la cifra del paso 33: un número escrito a mano que
+    nadie compara con el dato. El README decía 35 pasos con 38 dentro, así que
+    quien lo abría para ver qué corre `verificar` se creía tres comprobaciones
+    menos de las que hay. El número se cuenta en el runner —sus anuncios «▶»— y
+    se contrasta con las tres frases que lo declaran.
+    """
+    problemas: list[str] = []
+    medidos = pasos_del_runner(raiz)
+    if medidos is None:
+        return ["no encuentro tools/verify/verificar.mjs para contar sus pasos"]
+
+    readme = raiz / "README.md"
+    if not readme.exists():
+        problemas.append("no existe README.md")
+    else:
+        m = RE_PASOS_EN_README.search(readme.read_text(encoding="utf-8"))
+        if m is None:
+            problemas.append("README.md: no encuentro la cifra de pasos de `verificar`")
+        elif _entero(m.group(1)) != medidos:
+            problemas.append(
+                f"README.md: declara {m.group(1)} pasos y verificar.mjs imprime {medidos}"
+            )
+
+    documento = raiz / "docs" / "VERIFICACION.md"
+    if not documento.exists():
+        problemas.append("no existe docs/VERIFICACION.md")
+    else:
+        texto = documento.read_text(encoding="utf-8")
+        for etiqueta, patron in RE_PASOS_EN_VERIFICACION:
+            m = patron.search(texto)
+            if m is None:
+                problemas.append(f"VERIFICACION.md: no encuentro la frase «{etiqueta} … pasos»")
+                continue
+            declarados = _en_letras_numero(m.group(1))
+            if declarados is None:
+                problemas.append(f"VERIFICACION.md: «{m.group(1)} pasos» no es un número")
+            elif declarados != medidos:
+                problemas.append(
+                    f"VERIFICACION.md: «{m.group(1)} pasos» y verificar.mjs imprime {medidos}"
+                )
+    return problemas
+
+
 def revisar(raiz: Path) -> list[str]:
     """Todos los descuadres de los informes, en orden."""
     problemas: list[str] = []
@@ -861,6 +998,7 @@ def revisar(raiz: Path) -> list[str]:
     problemas += revisar_datos(raiz)
     problemas += revisar_documentos_de_plan(raiz)
     problemas += revisar_verificacion(raiz)
+    problemas += revisar_pasos(raiz)
     return problemas
 
 
@@ -1089,12 +1227,17 @@ Dotes: `category` (Épica).
     # suite de mentira que imprime su total, que es lo que la puerta tiene que
     # leer y contrastar con el documento.
     valores["comprobaciones"] = 7
+    valores["pasos"] = 3
     (raiz / "docs" / "VERIFICACION.md").write_text(
         f"""# Comprobaciones
+
+`verificar` ejecuta tres pasos y compila el sitio antes del segundo.
 
 33. `tools/test/commander.mjs`: que la herramienta de MTG Commander no se rompa.
 
 Son {valores['comprobaciones']} comprobaciones sin navegador y sin llamar a Scryfall.
+
+Es decir, que los tres pasos de arriba corren en cada publicación.
 """,
         encoding="utf-8",
     )
@@ -1103,6 +1246,26 @@ Son {valores['comprobaciones']} comprobaciones sin navegador y sin llamar a Scry
     (pruebas / "commander.mjs").write_text(
         f"console.log('✓ Parser, roles y resolver: {valores['comprobaciones']} "
         "comprobaciones correctas.');\n",
+        encoding="utf-8",
+    )
+
+    # El runner de las puertas de mentira, con sus tres anuncios «▶», y las dos
+    # cifras que lo declaran: la del README y las dos frases del documento. Es lo
+    # que la puerta cuenta y contrasta, así que el árbol de ejemplo tiene que
+    # traerlo o el caso «una cifra alterada» se probaría sobre un árbol ya roto.
+    verify = raiz / "tools" / "verify"
+    verify.mkdir(parents=True)
+    (verify / "verificar.mjs").write_text(
+        "".join(
+            f'console.log("▶ Comprobación {i}")\n' for i in range(1, valores["pasos"] + 1)
+        ),
+        encoding="utf-8",
+    )
+    (raiz / "README.md").write_text(
+        "# La Taberna de Eme\n\n"
+        "```\n"
+        f"npm run verificar       # {valores['pasos']} pasos: datos, enlaces, ids…\n"
+        "```\n",
         encoding="utf-8",
     )
     return valores
@@ -1268,6 +1431,31 @@ def _perturbaciones(valores: dict[str, int]) -> list[tuple[str, str, str, str]]:
             "docs/VERIFICACION.md",
             f"Son {valores['comprobaciones']} comprobaciones sin navegador",
             "Son comprobaciones sin navegador",
+        ),
+        (
+            "la cifra de pasos del README",
+            "README.md",
+            f"# {valores['pasos']} pasos:",
+            f"# {valores['pasos'] + 3} pasos:",
+        ),
+        (
+            "un paso nuevo en el runner sin tocar los documentos",
+            "tools/verify/verificar.mjs",
+            f'console.log("▶ Comprobación {valores["pasos"]}")',
+            f'console.log("▶ Comprobación {valores["pasos"]}")\n'
+            f'console.log("▶ Comprobación {valores["pasos"] + 1}")',
+        ),
+        (
+            "la cifra de pasos de VERIFICACION.md",
+            "docs/VERIFICACION.md",
+            f"ejecuta tres pasos",
+            "ejecuta cuatro pasos",
+        ),
+        (
+            "la cifra de pasos de arriba de VERIFICACION.md",
+            "docs/VERIFICACION.md",
+            "los tres pasos de arriba",
+            "los cuatro pasos de arriba",
         ),
     ]
 

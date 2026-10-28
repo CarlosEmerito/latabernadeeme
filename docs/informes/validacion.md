@@ -16,7 +16,7 @@ Total de entradas: **2502**. Apartados con incidencias: **0**.
 ## ed51 · monstruos — 317 entradas · OK
 
 ## ed51 · objetos — 240 entradas · OK
-- Aviso, cuerpos más largos de lo esperado: 1 (baraja-de-multiples-cosas.md (7830 caracteres))
+- Aviso, cuerpos más largos de lo esperado: 2 (baraja-de-multiples-cosas.md (7830 caracteres), estatuilla-de-poder-maravilloso.md (6090 caracteres))
 
 ## ed51 · reglas — 47 entradas · OK
 

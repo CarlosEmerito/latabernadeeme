@@ -89,6 +89,15 @@ FUNCIONALES = {
 
 CIERRE = (".", ";", ":", "!", "?", "»", ")", "]", "…")
 
+# Una línea de tipo suelta («Anillo, raro (requiere sintonización)») dentro de un cuerpo es
+# siempre de otro objeto: la propia va en el frontmatter.
+TIPO_LINEA = re.compile(
+    r"^(Objeto maravilloso|Objeto|Arma|Armadura|Escudo|Varita|Vara|Bastón|Anillo|Poción"
+    r"|Pergamino|Artefacto)\b[^.]{0,90},\s*\S*"
+    r"(?:común|infrecuente|raro|rara|legendari[oa]|varía|variable|artefacto)\b",
+    re.I,
+)
+
 
 def cuerpo_de(ruta):
     """El cuerpo de la ficha, sin el frontmatter."""
@@ -117,9 +126,27 @@ def fichas():
             yield ed, os.path.splitext(os.path.basename(ruta))[0], ruta
 
 
+def nombre_de(ruta):
+    """El `name:` del frontmatter."""
+    with open(ruta, encoding="utf-8") as f:
+        for linea in f:
+            if linea.startswith("name:"):
+                return linea.split(":", 1)[1].strip()
+    return ""
+
+
+def nombres_por_edicion():
+    """{edición: {nombre de cada ficha}} — para ver un nombre ajeno publicado dentro."""
+    out = {}
+    for ed, _slug, ruta in fichas():
+        out.setdefault(ed, set()).add(nombre_de(ruta))
+    return out
+
+
 def comprobar():
     problemas = []
     total = 0
+    ajenos = nombres_por_edicion()
     for ed, slug, ruta in fichas():
         total += 1
         cuerpo = cuerpo_de(ruta)
@@ -145,6 +172,27 @@ def comprobar():
         if not cuerpo:
             problemas.append(f"{ed}/objetos/{slug}: la ficha no tiene cuerpo.")
             continue
+
+        # Tercera firma del corte: el cuerpo del vecino. Cuando el flujo entrega los dos
+        # nombres de una página a dos columnas antes que los dos cuerpos, el cuerpo de esta
+        # ficha se lleva el nombre, la línea de tipo o el texto del objeto siguiente. La
+        # primera línea del cuerpo puede ser la línea de tipo propia (así se publican casi
+        # todas), pero a partir de ahí ninguna puede serlo.
+        propias = ajenos.get(ed, set())
+        mio = nombre_de(ruta)
+        for linea in [l.strip() for l in cuerpo.splitlines() if l.strip()][1:]:
+            if linea in propias and linea != mio:
+                problemas.append(
+                    f"{ed}/objetos/{slug}: publica el nombre de otro objeto («{linea}»)."
+                )
+            elif linea.startswith("sintonización)"):
+                problemas.append(
+                    f"{ed}/objetos/{slug}: empieza un párrafo con la cola de una línea de tipo."
+                )
+            elif len(linea) <= 90 and TIPO_LINEA.match(linea):
+                problemas.append(
+                    f"{ed}/objetos/{slug}: publica la línea de tipo de otro objeto («{linea}»)."
+                )
 
         ultima = ultima_linea_de_prosa(cuerpo)
         if not ultima or ultima.endswith(CIERRE):

@@ -8,5 +8,3 @@ page: 227
 ---
 
 Mientras lleves puesto este anillo, podrás lanzar a voluntad el conjuro salto desde él como acción adicional, pero solo podrás ser tú el objetivo.
-
-Anillo, muy raro (requiere sintonización)

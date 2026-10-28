@@ -37,4 +37,4 @@ Truco Común 13 +5
 
 9 Legendario 19 +11
 
-**Copiar un pergamino en un libro de conjuros.** Un conjuro de mago en un pergamino de conjuro puede copiarse en un libro de conjuros. Cuando un conjuro se copie de esta forma, el copista deberá superar una prueba de Inteligencia (Conocimiento arcano) con CD igual a 10 más el nivel del conjuro. Si la supera, copiará el conjuro. Supere o no la prueba, el se destruirá. pergamino de conjuro
+**Copiar un pergamino en un libro de conjuros.** Un conjuro de mago en un pergamino de conjuro puede copiarse en un libro de conjuros. Cuando un conjuro se copie de esta forma, el copista deberá superar una prueba de Inteligencia (Conocimiento arcano) con CD igual a 10 más el nivel del conjuro. Si la supera, copiará el conjuro. Supere o no la prueba, el pergamino de conjuro se destruirá.

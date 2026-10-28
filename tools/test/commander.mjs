@@ -718,6 +718,42 @@ titulo("Consejo determinista");
   comprobar(prompt.includes("Markdown"), "el prompt no pide Markdown");
   comprobar(!prompt.includes("idea del mazo"), "el prompt sigue pidiendo la introducción");
 }
+/*
+ * El companion no está en las 100: se declara al empezar la partida y vive
+ * fuera del mazo. El análisis ya lo deja fuera de total, tierras, curva y
+ * media, pero el consejo recorría `mazo.cartas` sin filtro y lo metía en el
+ * plan: «Lo más barato que tienes es <companion>», una carta que el lector no
+ * tiene en la mano inicial. El plan tiene que leer las mismas cartas que
+ * cuenta el análisis.
+ */
+{
+  const companion = carta(
+    "Companion Barato",
+    "Legendary Creature — Elemental",
+    "Companion — Your starting deck contains only cards with odd mana values.",
+    { color_identity: ["G"], cmc: 0 },
+  );
+  const m = mazoDe([[bosque, 36], ...cartasBase], comandante);
+  m.cartas.push({
+    cantidad: 1,
+    carta: companion,
+    tablero: "companion",
+    linea: { cantidad: 1, nombre: companion.name, tablero: "companion" },
+  });
+  const a = analizarMazo(m);
+  comprobar(a.total === 100, `el mazo de la prueba tiene que dar 100 cartas y da ${a.total}`);
+  const c = consejoDe(m, a);
+  const plan = c.secciones.find((s) => s.titulo === "Plan de juego")?.parrafos.join(" ") ?? "";
+  const todo = c.secciones.map((s) => s.parrafos.join(" ")).join(" ");
+  comprobar(
+    !todo.includes(companion.name),
+    `el consejo cita el companion, que no está en las 100: «${plan}»`,
+  );
+  comprobar(
+    plan.includes("Rampa 1"),
+    `el plan de juego tiene que seguir citando cartas del mazo: «${plan}»`,
+  );
+}
 
 // ── IA: techo de tokens y errores ──────────────────────────────────────────
 titulo("IA: techo de tokens y errores");

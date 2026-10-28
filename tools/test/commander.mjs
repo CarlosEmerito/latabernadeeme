@@ -23,6 +23,9 @@ import { analizarConIA, promptDe } from "../../src/lib/commander/ia.ts";
 import { markdownDe, sinIntroduccion } from "../../src/lib/commander/markdown.ts";
 import { resolverCartas } from "../../src/lib/commander/scryfall.ts";
 import { costeDe } from "../../src/lib/commander/tipos.ts";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const fallos = [];
 let comprobados = 0;
@@ -1233,6 +1236,81 @@ titulo("Comandante con tipo compuesto");
     planeswalker.legalidad.ok,
     `un planeswalker que dice «can be your commander» es comandante legal y sale ilegal: ${problemas(planeswalker)}`,
   );
+}
+
+// ── Un solo predicado de comandante ─────────────────────────────────────────
+/*
+ * El arreglo de T-0314 se quedó a medias: la librería ya reconocía al comandante
+ * de tipo compuesto, pero la página conservaba su copia literal del patrón
+ * (`/legendary creature/i`). Cuando el export no trae sección «Commander», la
+ * página busca candidatos con esa copia: Ephara (`Legendary Enchantment
+ * Creature — God`) no casa, `candidatos` sale vacío y el mazo se guarda sin
+ * comandante —«No hay comandante: el export tiene que traerlo en la sección
+ * Commander» y «Sin bracket»— sin ofrecer el selector. El mismo dato daba dos
+ * veredictos según por dónde entrara.
+ *
+ * La puerta son las dos mitades: que el predicado de la librería acierte con
+ * los tipos compuestos (y siga rechazando lo que no es comandante) y que la
+ * página lo use en vez de su copia. La segunda se mira en el fuente porque la
+ * lógica vive en el `<script>` de una página Astro, que se publica como bundle
+ * con hash: no hay costura para llamarla desde aquí, y el patrón copiado es
+ * justo lo que hay que ver desaparecer.
+ */
+titulo("Un solo predicado de comandante");
+{
+  const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+  const pagina = fs.readFileSync(path.join(RAIZ, "src/pages/mtgcommander/index.astro"), "utf8");
+  comprobar(
+    !/legendary creature/i.test(pagina),
+    "src/pages/mtgcommander/index.astro conserva su copia de /legendary creature/i: con ella un comandante de tipo compuesto no se ofrece como candidato",
+  );
+  comprobar(
+    /import\s*\{[^}]*\besComandante\b[^}]*\}\s*from\s*["'][^"']*commander\/analisis(?:\.ts)?["']/.test(pagina),
+    "la página no importa esComandante de src/lib/commander/analisis.ts: mantiene su propio predicado",
+  );
+  comprobar(
+    /\besComandante\(/.test(pagina),
+    "la página no llama a esComandante: la búsqueda de candidatos sigue con el patrón viejo",
+  );
+
+  const analisis = await import("../../src/lib/commander/analisis.ts");
+  comprobar(
+    typeof analisis.esComandante === "function",
+    "esComandante no se exporta desde src/lib/commander/analisis.ts: la página no tiene a qué llamar",
+  );
+  if (typeof analisis.esComandante === "function") {
+    const puede = (c) => analisis.esComandante(c);
+    const caso = (nombre, tipo, esperado, texto = "") =>
+      comprobar(
+        puede(carta(nombre, tipo, texto)) === esperado,
+        `«${nombre}» (${tipo}) ${esperado ? "tiene" : "no tiene"} que ser comandante y el predicado dice ${puede(
+          carta(nombre, tipo, texto),
+        )}`,
+      );
+
+    caso("Ephara, God of the Polis", "Legendary Enchantment Creature — God", true);
+    caso("Hope of Ghirapur", "Legendary Artifact Creature — Thopter", true);
+    caso("Jorn, God of Winter", "Legendary Snow Creature — God", true);
+    caso("Ragavan, Nimble Pilferer", "Legendary Creature — Monkey Pirate", true);
+    caso("Goblin Cualquiera", "Creature — Goblin", false);
+    caso("Espada Legendaria", "Legendary Artifact — Equipment", false);
+    caso(
+      "Teferi, Temporal Archmage",
+      "Legendary Planeswalker — Teferi",
+      true,
+      "Teferi, Temporal Archmage can be your commander.",
+    );
+    // Doble cara: manda la cara frontal, que es lo que se juega.
+    caso(
+      "Tamiyo, Compleated Sage",
+      "Legendary Creature — Human Wizard // Legendary Planeswalker — Tamiyo",
+      true,
+    );
+    caso("Delver of Secrets", "Creature — Human // Legendary Creature — Insect", false);
+
+    const sinTipo = { name: "Sin tipo", oracle_text: "" };
+    comprobar(puede(sinTipo) === false, "una carta sin type_line no puede ser comandante y el predicado no lo rechaza");
+  }
 }
 
 // ── Resultado ───────────────────────────────────────────────────────────────

@@ -155,6 +155,13 @@
  *      puerta no abre Chrome —vigila la estrategia en el propio fuente— y se
  *      autocomprueba con la forma vieja (el reloj de 300 ms), sin el reintento
  *      del despacho, sin la señal del módulo y sin el techo.
+ *  39. `tools/test/humo-axe.mjs`: que el humo mida el tema oscuro y no solo el
+ *      claro. `/accesibilidad/` promete el mismo contraste en los dos temas y la
+ *      paleta oscura es propia, así que una regresión de contraste ahí no la ve
+ *      ninguna puerta: el humo pasa axe dieciséis veces y ninguna fija
+ *      `prefers-color-scheme`. La puerta vigila la estrategia en el fuente
+ *      —emulación del medio, valor oscuro, confirmación con `matchMedia` antes
+ *      de medir y `axeEn` después— y se autocomprueba tapando cada pieza.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -432,5 +439,12 @@ if (humoFiltro !== 0) {
   process.exit(humoFiltro);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas, los mazos guardados de Commander validados al leer, el almacén de la iniciativa del humo vacío al empezar y al terminar y el filtro de nivel del humo esperando al efecto)");
+console.log("▶ Tema oscuro del humo: humo-axe.mjs (tools/test/humo.mjs)");
+const humoAxe = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/humo-axe.mjs")]);
+if (humoAxe !== 0) {
+  console.error("✗ El humo mide solo el tema claro: la paleta oscura que promete /accesibilidad/ se queda sin pasar por axe.");
+  process.exit(humoAxe);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas, los mazos guardados de Commander validados al leer, el almacén de la iniciativa del humo vacío al empezar y al terminar, el filtro de nivel del humo esperando al efecto y el humo midiendo el tema oscuro con axe)");
 

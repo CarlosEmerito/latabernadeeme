@@ -185,18 +185,77 @@ for (const [ed, ruta, xpEsperado] of [
   }
 }
 
+// El filtro de nivel marca su casilla y quien filtra es el `<script>` de
+// `Tabla.astro`, no el `change` que se despacha: la tabla sigue entera hasta
+// que ese módulo corre. Medir con 300 ms de reloj mentía en frío —perfil de
+// Chrome recién creado, primer documento, módulo todavía sin enganchar— y el
+// recuento salía igual que antes («antes:319, despues:319») con el filtro
+// funcionando, que es el rojo que enseña a ignorar el rojo. Ahora se sondea el
+// efecto hasta 2 s, como el filtro Tamaño desde T-0289, y el `change` se vuelve
+// a despachar en cada vuelta: es lo que salva el caso del manejador que aún no
+// estaba. Si el efecto no llega, el rojo dice cuál de las dos causas es —el
+// módulo no ha aplicado el filtro (ni el sello `[data-sel]` ni `activa`, que
+// solo escribe él) o lo aplica y no reduce las filas— en vez de un «antes y
+// después iguales» mudo.
 const listado = await abrir(`${BASE}/5e/conjuros/`);
 try {
   const antes = await evaluar(listado, `document.querySelectorAll('#cuerpo tr:not([hidden])').length`);
-  await evaluar(
+  const sondeo = await evaluar(
     listado,
-    `(() => { const c = [...document.querySelectorAll('[data-faceta="nivel"]')].find(x => x.value === '3'); c.checked = true; c.dispatchEvent(new Event('change', {bubbles:true})); })()`,
+    `new Promise((res) => {
+       const filas = () => document.querySelectorAll('#cuerpo tr:not([hidden])').length;
+       const casilla = [...document.querySelectorAll('[data-faceta="nivel"]')].find((c) => c.value === '3');
+       if (!casilla) return res({ sinCasilla: true, antes: ${antes} });
+       const detalle = casilla.closest('details');
+       const estado = (aplicado, ticks) => ({
+         aplicado,
+         ticks,
+         antes: ${antes},
+         visibles: filas(),
+         sello: detalle?.querySelector('[data-sel]')?.textContent ?? null,
+         activa: Boolean(detalle?.classList.contains('activa')),
+         cuenta: document.getElementById('cuenta')?.textContent ?? null,
+         listo: document.readyState,
+       });
+       let ticks = 0;
+       const intentar = () => {
+         ticks += 1;
+         casilla.checked = true;
+         casilla.dispatchEvent(new Event('change', { bubbles: true }));
+         return filas() < ${antes};
+       };
+       if (intentar()) return res(estado(true, ticks));
+       const reloj = setInterval(() => {
+         if (intentar()) {
+           clearInterval(reloj);
+           return res(estado(true, ticks));
+         }
+         if (ticks >= 20) {
+           clearInterval(reloj);
+           res(estado(false, ticks));
+         }
+       }, 100);
+     })`,
   );
-  await new Promise((r) => setTimeout(r, 300));
-  const despues = await evaluar(listado, `document.querySelectorAll('#cuerpo tr:not([hidden])').length`);
-  const contador = await evaluar(listado, `document.getElementById('cuenta')?.textContent`);
-  if (antes > 300 && despues > 20 && despues < antes) bien(`filtro por nivel 3: ${antes} -> ${despues} (${contador})`);
-  else fallo("filtro", JSON.stringify({ antes, despues, contador }));
+  if (sondeo.sinCasilla) {
+    fallo("filtro", `el listado no publica la casilla de nivel 3 — ${JSON.stringify(sondeo)}`);
+  } else if (antes <= 300) {
+    fallo("filtro", `el listado no se ha pintado entero antes de filtrar: ${antes} filas visibles — ${JSON.stringify(sondeo)}`);
+  } else if (!sondeo.aplicado && !sondeo.activa) {
+    fallo(
+      "filtro",
+      `el módulo de la tabla no ha llegado a aplicar el filtro en 2 s: el change no encuentra manejador — ${JSON.stringify(sondeo)}`,
+    );
+  } else if (!sondeo.aplicado) {
+    fallo(
+      "filtro",
+      `el módulo aplica el filtro —la faceta queda activa— y no reduce las filas — ${JSON.stringify(sondeo)}`,
+    );
+  } else if (sondeo.visibles <= 20) {
+    fallo("filtro", `el filtro aplica y deja casi la tabla vacía: ${sondeo.visibles} de ${antes} filas — ${JSON.stringify(sondeo)}`);
+  } else {
+    bien(`filtro por nivel 3: ${antes} -> ${sondeo.visibles} (${sondeo.cuenta})`);
+  }
 } catch (e) {
   fallo("filtro", String(e));
 }

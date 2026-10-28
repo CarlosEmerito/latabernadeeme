@@ -73,6 +73,9 @@ const VIEJO = `
 /** Tapa un trozo con espacios, para que deje de contar sin mover las posiciones. */
 const tapar = (trozo) => trozo.replace(/[^"\n]/g, " ");
 
+/** Tapa todas las apariciones de un patrón: la señal y el techo tienen varias. */
+const taparTodo = (texto, patron) => texto.replace(new RegExp(patron.source, "g"), (m) => tapar(m));
+
 /** Número de línea de una posición del fuente, contando desde 1. */
 function linea(fuente, posicion) {
   return fuente.slice(0, posicion).split("\n").length;
@@ -192,8 +195,9 @@ if (trozo.length > 0) {
   const senal = SENAL.exec(trozo);
   comprobar("el sondeo mira la señal del módulo", Boolean(senal), "no hay [data-sel] ni «activa»");
   if (senal) {
-    const sinSenal = trozo.slice(0, senal.index) + tapar(senal[0]) + trozo.slice(senal.index + senal[0].length);
-    const canta = analizar(sinSenal);
+    // La señal son dos cosas —el sello y la clase—, así que se tapan las dos:
+    // dejar una basta para que el análisis siga viendo de dónde viene el rojo.
+    const canta = analizar(taparTodo(trozo, SENAL));
     comprobar(
       "quitar la señal del módulo pone la puerta en rojo",
       canta.some((p) => /no mira la señal del módulo/.test(p)),
@@ -202,16 +206,13 @@ if (trozo.length > 0) {
   }
 
   // 5. Autocomprobación: sin techo, la puerta también lo canta.
-  const techo = TECHO.exec(trozo);
-  if (techo) {
-    const sinTecho = trozo.slice(0, techo.index) + tapar(techo[0]) + trozo.slice(techo.index + techo[0].length);
-    const canta = analizar(sinTecho);
-    comprobar(
-      "quitar el techo del sondeo pone la puerta en rojo",
-      canta.some((p) => /no tiene techo/.test(p)),
-      JSON.stringify(canta),
-    );
-  }
+  comprobar("el sondeo tiene techo", TECHO.test(trozo), "no hay contador de vueltas ni plazo que lo corte");
+  const sinTecho = analizar(taparTodo(trozo, TECHO));
+  comprobar(
+    "quitar el techo del sondeo pone la puerta en rojo",
+    sinTecho.some((p) => /no tiene techo/.test(p)),
+    JSON.stringify(sinTecho),
+  );
 }
 
 for (const r of resultados) {

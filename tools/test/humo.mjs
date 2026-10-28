@@ -634,7 +634,30 @@ try {
   // primer «Añadir» borraba el orden que la vista de jugador seguía pintando. Se
   // comprueba el ciclo entero: añadir dos, pasar turno, recargar y que el orden y
   // el turno activo sigan donde estaban; añadir una tercera sin perder las otras.
+  // Todo ello sobre el almacén vacío: el humo reutiliza el perfil de Chrome y el
+  // combate se restaura al cargar, así que sin vaciar antes la pasada arrastra
+  // las filas de la anterior.
   const campos = `const n=document.getElementById('ini-nombre'), v=document.getElementById('ini-valor');`;
+
+  /**
+   * Deja el almacén de la pestaña sin combate y la página recién cargada.
+   *
+   * El combate se restaura de `localStorage` al cargar, así que un caso que
+   * siembra su propio combate sobre lo que hubiera ve las filas de antes: en la
+   * segunda pasada seguida sobre el mismo perfil de Chrome, las filas de la
+   * primera se colaban en las comprobaciones y salían tres rojos falsos con el
+   * código sano. Borrar la clave sin recargar tampoco basta: la lista sigue
+   * pintada en la página hasta que se vuelve a cargar.
+   */
+  const limpiarCombate = async () => {
+    await evaluar(mesa, `localStorage.removeItem('taberna:iniciativa')`);
+    await ir(mesa, `${BASE}/mesa/`);
+    await evaluar(
+      mesa,
+      `new Promise((res) => { const t = setInterval(() => { if (document.querySelector('#ini-lista')) { clearInterval(t); res(1); } }, 50); setTimeout(() => { clearInterval(t); res(0); }, 4000); })`,
+    );
+  };
+
   const leerCombate = () =>
     evaluar(
       mesa,
@@ -648,6 +671,7 @@ try {
        })()`,
     );
 
+  await limpiarCombate();
   const ini = await evaluar(
     mesa,
     `(() => {
@@ -823,8 +847,7 @@ try {
 
   // Vaciar: se parte de un combate de tres, se vacía y se mira la mesa, lo
   // guardado y la ventana de los jugadores.
-  await evaluar(mesa, `localStorage.removeItem('taberna:iniciativa')`);
-  await ir(mesa, `${BASE}/mesa/`);
+  await limpiarCombate();
   await evaluar(
     mesa,
     `(() => {
@@ -876,10 +899,9 @@ try {
     );
 
   // Quitar una fila: primero una que no tiene el turno, después la que lo tiene.
-  // Se parte de una lista limpia por localStorage, no de lo que haya dejado el
-  // caso anterior: los dos escenarios se prueban por separado.
-  await evaluar(mesa, `localStorage.removeItem('taberna:iniciativa')`);
-  await ir(mesa, `${BASE}/mesa/`);
+  // Se parte de una lista limpia, no de lo que haya dejado el caso anterior: los
+  // dos escenarios se prueban por separado.
+  await limpiarCombate();
   await evaluar(
     mesa,
     `(() => {
@@ -916,6 +938,11 @@ try {
       "iniciativa: quitar el combatiente activo",
       JSON.stringify({ quitadoActivo, despues: trasQuitarActivo, activoFinal }),
     );
+
+  // El humo deja la mesa como la encontró: sin el combate de sus escenarios. Si
+  // se quedara en el almacén, la pasada siguiente —el mismo perfil— empezaría
+  // con una fila que no ha sembrado ella.
+  await limpiarCombate();
 
   const pnj = await evaluar(mesa, `(() => { document.getElementById('pnj-generar').click(); return document.getElementById('pnj-salida').textContent; })()`);
   if (pnj && pnj.includes(",")) bien(`pnj: ${pnj.slice(0, 40)}`);

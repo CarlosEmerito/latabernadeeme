@@ -136,6 +136,15 @@
  *      único sitio que decide qué es un mazo guardado; la puerta le pasa JSON
  *      roto, una lista que no es lista, entradas nulas, mazos sin comandantes o
  *      sin cartas, cartas a medias y una fuente desconocida.
+ *  37. `tools/test/humo-limpieza.mjs`: que la sección de iniciativa de
+ *      `tools/test/humo.mjs` empiece con el almacén sin combate y no lo deje
+ *      sembrado al terminar. El humo reutiliza el perfil de Chrome y el combate
+ *      de `/mesa/` se restaura de `localStorage` al cargar, así que un caso que
+ *      siembra el suyo sin borrar la clave ve las filas de la pasada anterior:
+ *      la segunda pasada seguida daba tres rojos falsos con el código sano. La
+ *      puerta no abre Chrome —lo que vigila es el orden de las preparaciones en
+ *      el propio fuente— y se autocomprueba quitando la limpieza, dejándola sin
+ *      recarga o dejándola sin borrar la clave.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -399,4 +408,11 @@ if (mazosGuardados !== 0) {
   process.exit(mazosGuardados);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas y los mazos guardados de Commander validados al leer)");
+console.log("▶ Almacén de la iniciativa en el humo: humo-limpieza.mjs (tools/test/humo.mjs)");
+const humoLimpieza = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/humo-limpieza.mjs")]);
+if (humoLimpieza !== 0) {
+  console.error("✗ La sección de iniciativa del humo siembra su combate sin vaciar el almacén o lo deja sembrado: la segunda pasada sobre el mismo perfil dará rojos falsos.");
+  process.exit(humoLimpieza);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas, los mazos guardados de Commander validados al leer y el almacén de la iniciativa del humo vacío al empezar y al terminar)");

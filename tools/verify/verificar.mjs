@@ -145,6 +145,16 @@
  *      puerta no abre Chrome —lo que vigila es el orden de las preparaciones en
  *      el propio fuente— y se autocomprueba quitando la limpieza, dejándola sin
  *      recarga o dejándola sin borrar la clave.
+ *  38. `tools/test/humo-filtro.mjs`: que la comprobación del filtro de nivel de
+ *      `tools/test/humo.mjs` espere al efecto —sondea las filas visibles con un
+ *      techo y vuelve a despachar el `change`— en vez de medir con 300 ms de
+ *      reloj. En la primera pasada sobre un perfil de Chrome recién creado el
+ *      `change` llegaba antes de que el módulo de `Tabla.astro` enganchara el
+ *      manejador y el recuento salía «antes 319, después 319» con el filtro
+ *      funcionando: el rojo culpaba a la página de un fallo del reloj. La
+ *      puerta no abre Chrome —vigila la estrategia en el propio fuente— y se
+ *      autocomprueba con la forma vieja (el reloj de 300 ms), sin el reintento
+ *      del despacho, sin la señal del módulo y sin el techo.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -415,4 +425,12 @@ if (humoLimpieza !== 0) {
   process.exit(humoLimpieza);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas, los mazos guardados de Commander validados al leer y el almacén de la iniciativa del humo vacío al empezar y al terminar)");
+console.log("▶ Filtro de nivel del humo: humo-filtro.mjs (tools/test/humo.mjs)");
+const humoFiltro = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/humo-filtro.mjs")]);
+if (humoFiltro !== 0) {
+  console.error("✗ El filtro de nivel del humo vuelve a medir con un reloj: en frío dará rojo con la página sana y culpará al código.");
+  process.exit(humoFiltro);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas, los mazos guardados de Commander validados al leer, el almacén de la iniciativa del humo vacío al empezar y al terminar y el filtro de nivel del humo esperando al efecto)");
+

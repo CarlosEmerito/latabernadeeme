@@ -741,6 +741,41 @@ const cartaJson = (name, set = "tst", cn = "1") => ({
     !/failed to fetch|networkerror/i.test(errorGemini),
     `el mensaje crudo del navegador llega al lector: «${errorGemini}»`,
   );
+
+  /*
+   * Contrapeso: el arreglo no puede tragarse lo que sí contesta. Un error HTTP
+   * —Scryfall 500, Gemini 500— conserva el mensaje que ya tenía y no puede
+   * salir como un fallo de conexión: el lector estaría mirando su wifi cuando
+   * el problema es del servicio.
+   */
+  let errorHttpScryfall = "";
+  try {
+    await resolverCartas([{ cantidad: 1, nombre: "Sol Ring", tablero: "main" }], {
+      fetchImpl: async () => new Response("{}", { status: 500 }),
+      esperar: async () => {},
+    });
+  } catch (e) {
+    errorHttpScryfall = String(e?.message ?? e);
+  }
+  comprobar(
+    /ha respondido 500/i.test(errorHttpScryfall) && !/conectar/i.test(errorHttpScryfall),
+    `un 500 de Scryfall conserva su mensaje y dice: «${errorHttpScryfall}»`,
+  );
+  let errorHttpGemini = "";
+  try {
+    await analizarConIA(
+      base,
+      analizarMazo(base),
+      "clave",
+      async () => new Response("{}", { status: 500 }),
+    );
+  } catch (e) {
+    errorHttpGemini = String(e?.message ?? e);
+  }
+  comprobar(
+    /ha respondido 500/i.test(errorHttpGemini) && !/conectar/i.test(errorHttpGemini),
+    `un 500 de Gemini conserva su mensaje y dice: «${errorHttpGemini}»`,
+  );
 }
 
 // ── 5. Consejo ──────────────────────────────────────────────────────────────

@@ -736,6 +736,36 @@ titulo("IA: techo de tokens y errores");
   comprobar(cuerpos[0]?.thinkingConfig?.thinkingBudget === 0, "no apaga el pensamiento");
   comprobar(cuerpos[0]?.maxOutputTokens === 4096, "no pide margen de salida");
 }
+/*
+ * La clave del lector no puede viajar en la URL. La cadena de consulta queda
+ * en el registro de cualquier intermediario (proxy de empresa o de hotel, el
+ * depurador del móvil, `chrome://net-export`) y se copia y se pega con la ruta
+ * en cuanto alguien manda una captura. Gemini acepta la clave en la cabecera
+ * `x-goog-api-key`, que viaja en la petición y no en la ruta.
+ */
+{
+  const a = analizarMazo(base);
+  let visto = null;
+  const fake = async (url, opciones) => {
+    visto = { url: String(url), headers: { ...(opciones?.headers ?? {}) } };
+    return new Response(
+      JSON.stringify({ candidates: [{ content: { parts: [{ text: "Plan." }] }, finishReason: "STOP" }] }),
+      { status: 200 },
+    );
+  };
+  const clave = "AIzaClaveDePrueba123";
+  await analizarConIA(base, a, clave, fake);
+  comprobar(visto, "no se ha hecho ninguna petición");
+  comprobar(
+    !String(visto?.url ?? "").includes(clave),
+    `la clave viaja en la URL de la petición: ${visto?.url}`,
+  );
+  const enviada = Object.entries(visto?.headers ?? {}).find(([k]) => k.toLowerCase() === "x-goog-api-key")?.[1];
+  comprobar(
+    enviada === clave,
+    `la petición tiene que llevar la clave en la cabecera x-goog-api-key y lleva ${JSON.stringify(visto?.headers)}`,
+  );
+}
 {
   const a = analizarMazo(base);
   let llamadas = 0;

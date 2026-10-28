@@ -698,6 +698,85 @@ const cartaJson = (name, set = "tst", cn = "1") => ({
     `una petición colgada tiene que vencer con un mensaje que diga que no ha contestado a tiempo y dio: ${error}`,
   );
 }
+/*
+ * Un `fetch` que no llega no rechaza con un mensaje del sitio: el navegador
+ * lanza «TypeError: Failed to fetch» (Chrome) o «NetworkError when attempting
+ * to fetch resource.» (Firefox). Ese texto acababa tal cual en el estado de la
+ * herramienta —en inglés y sin decir de quién es el fallo—, que es justo lo
+ * que se ve cuando la conexión se cae en mitad de una partida. El lector
+ * necesita un mensaje en español que nombre la fuente; un error HTTP (404,
+ * 429, 500) y el vencimiento del plazo conservan el suyo.
+ */
+{
+  const sinRed = () => Promise.reject(new TypeError("Failed to fetch"));
+  let errorScryfall = "";
+  try {
+    await resolverCartas([{ cantidad: 1, nombre: "Sol Ring", tablero: "main" }], {
+      fetchImpl: sinRed,
+      esperar: async () => {},
+    });
+  } catch (e) {
+    errorScryfall = String(e?.message ?? e);
+  }
+  comprobar(
+    /scryfall/i.test(errorScryfall) && /conexi[oó]n|red|internet/i.test(errorScryfall),
+    `un fallo de red de Scryfall tiene que nombrar la fuente y la conexión, y dice: «${errorScryfall}»`,
+  );
+  comprobar(
+    !/failed to fetch|networkerror/i.test(errorScryfall),
+    `el mensaje crudo del navegador llega al lector: «${errorScryfall}»`,
+  );
+
+  let errorGemini = "";
+  try {
+    await analizarConIA(base, analizarMazo(base), "clave", sinRed);
+  } catch (e) {
+    errorGemini = String(e?.message ?? e);
+  }
+  comprobar(
+    /gemini/i.test(errorGemini) && /conexi[oó]n|red|internet/i.test(errorGemini),
+    `un fallo de red de Gemini tiene que nombrar la fuente y la conexión, y dice: «${errorGemini}»`,
+  );
+  comprobar(
+    !/failed to fetch|networkerror/i.test(errorGemini),
+    `el mensaje crudo del navegador llega al lector: «${errorGemini}»`,
+  );
+
+  /*
+   * Contrapeso: el arreglo no puede tragarse lo que sí contesta. Un error HTTP
+   * —Scryfall 500, Gemini 500— conserva el mensaje que ya tenía y no puede
+   * salir como un fallo de conexión: el lector estaría mirando su wifi cuando
+   * el problema es del servicio.
+   */
+  let errorHttpScryfall = "";
+  try {
+    await resolverCartas([{ cantidad: 1, nombre: "Sol Ring", tablero: "main" }], {
+      fetchImpl: async () => new Response("{}", { status: 500 }),
+      esperar: async () => {},
+    });
+  } catch (e) {
+    errorHttpScryfall = String(e?.message ?? e);
+  }
+  comprobar(
+    /ha respondido 500/i.test(errorHttpScryfall) && !/conectar/i.test(errorHttpScryfall),
+    `un 500 de Scryfall conserva su mensaje y dice: «${errorHttpScryfall}»`,
+  );
+  let errorHttpGemini = "";
+  try {
+    await analizarConIA(
+      base,
+      analizarMazo(base),
+      "clave",
+      async () => new Response("{}", { status: 500 }),
+    );
+  } catch (e) {
+    errorHttpGemini = String(e?.message ?? e);
+  }
+  comprobar(
+    /ha respondido 500/i.test(errorHttpGemini) && !/conectar/i.test(errorHttpGemini),
+    `un 500 de Gemini conserva su mensaje y dice: «${errorHttpGemini}»`,
+  );
+}
 
 // ── 5. Consejo ──────────────────────────────────────────────────────────────
 titulo("Consejo determinista");
@@ -717,6 +796,42 @@ titulo("Consejo determinista");
   comprobar(prompt.includes("Empieza directamente"), "el prompt no pide ir al grano");
   comprobar(prompt.includes("Markdown"), "el prompt no pide Markdown");
   comprobar(!prompt.includes("idea del mazo"), "el prompt sigue pidiendo la introducción");
+}
+/*
+ * El companion no está en las 100: se declara al empezar la partida y vive
+ * fuera del mazo. El análisis ya lo deja fuera de total, tierras, curva y
+ * media, pero el consejo recorría `mazo.cartas` sin filtro y lo metía en el
+ * plan: «Lo más barato que tienes es <companion>», una carta que el lector no
+ * tiene en la mano inicial. El plan tiene que leer las mismas cartas que
+ * cuenta el análisis.
+ */
+{
+  const companion = carta(
+    "Companion Barato",
+    "Legendary Creature — Elemental",
+    "Companion — Your starting deck contains only cards with odd mana values.",
+    { color_identity: ["G"], cmc: 0 },
+  );
+  const m = mazoDe([[bosque, 36], ...cartasBase], comandante);
+  m.cartas.push({
+    cantidad: 1,
+    carta: companion,
+    tablero: "companion",
+    linea: { cantidad: 1, nombre: companion.name, tablero: "companion" },
+  });
+  const a = analizarMazo(m);
+  comprobar(a.total === 100, `el mazo de la prueba tiene que dar 100 cartas y da ${a.total}`);
+  const c = consejoDe(m, a);
+  const plan = c.secciones.find((s) => s.titulo === "Plan de juego")?.parrafos.join(" ") ?? "";
+  const todo = c.secciones.map((s) => s.parrafos.join(" ")).join(" ");
+  comprobar(
+    !todo.includes(companion.name),
+    `el consejo cita el companion, que no está en las 100: «${plan}»`,
+  );
+  comprobar(
+    plan.includes("Rampa 1"),
+    `el plan de juego tiene que seguir citando cartas del mazo: «${plan}»`,
+  );
 }
 
 // ── IA: techo de tokens y errores ──────────────────────────────────────────

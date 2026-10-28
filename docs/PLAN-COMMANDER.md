@@ -167,7 +167,9 @@ Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegado
   barridos 2-3, protección 2-4), curva y pips por color frente a las fuentes de maná.
 - Plan de juego por tramos con frases que citan las cartas del mazo: «turno 1-3: rampa con X, Y;
   turno 4-6: motor con Z; cierre: W». Nada de «deberías tener más rampa» sin decir cuánta hay y
-  cuánta falta.
+  cuánta falta. Y solo con cartas de las 100: el companion, el banquillo y los montones auxiliares
+  se pintan con el mazo pero no se barajan, así que el plan no los nombra (el recuento de tierras
+  por color tampoco los cuenta).
 - Simulador de mano inicial (extra barato): 7 cartas al azar y una nota de si son jugables.
 - **El coste de maná de una doble cara se lee una vez.** En las aventuras y las partidas
   (Bonecrusher Giant, Fire // Ice) Scryfall publica el coste de las dos caras en el `mana_cost` de

@@ -5,8 +5,8 @@
  * rol no llega a la referencia se dice cuánto falta y con qué cartas se cuenta;
  * si no hay datos para afirmar algo, no se afirma.
  */
-import { NOMBRE_COLOR, type Color, type Mazo } from "./tipos.ts";
-import type { Analisis, RolContado } from "./analisis.ts";
+import { NOMBRE_COLOR, type CartaMazo, type Color, type Mazo } from "./tipos.ts";
+import { enLasCien, type Analisis, type RolContado } from "./analisis.ts";
 import { esTierra, rolesDe } from "./roles.ts";
 
 export interface Seccion {
@@ -30,9 +30,15 @@ function rol(a: Analisis, id: string): RolContado | undefined {
   return a.roles.find((r) => r.id === id);
 }
 
-/** Cartas no tierra ordenadas por valor de maná. */
-function porCoste(mazo: Mazo) {
-  return mazo.cartas
+/**
+ * Cartas no tierra de las 100, ordenadas por valor de maná.
+ *
+ * Solo lo que se baraja: el companion, el banquillo y los montones auxiliares
+ * se quedan fuera, que si no el plan nombra cartas que no están en la mano
+ * inicial. Son las mismas cartas que cuenta `analizarMazo`.
+ */
+function porCoste(cartas: CartaMazo[]) {
+  return cartas
     .filter((c) => !esTierra(c.carta))
     .sort((x, y) => Number(x.carta.cmc ?? 0) - Number(y.carta.cmc ?? 0));
 }
@@ -54,6 +60,9 @@ export function consejoDe(mazo: Mazo, a: Analisis): Consejo {
     : "incolora";
 
   const titular = `${comandante} · ${a.total} cartas · ${a.tierras} tierras · media ${a.media.toFixed(1)} · ${a.bracket.etiqueta}`;
+  // Lo mismo que cuenta el análisis: lo que está fuera de las 100 se pinta con
+  // el mazo pero no se juega desde la mano.
+  const cartas = mazo.cartas.filter(enLasCien);
 
   secciones.push({
     titulo: "Qué es",
@@ -98,7 +107,7 @@ export function consejoDe(mazo: Mazo, a: Analisis): Consejo {
   const color = colorDominante(a);
   const pips = color ? `${a.pips[color]} símbolos de ${NOMBRE_COLOR[color].toLowerCase()}` : "sin símbolos de color";
   const tierrasColor = color
-    ? mazo.cartas
+    ? cartas
         .filter((c) => esTierra(c.carta) && (c.carta.color_identity ?? []).includes(color))
         .reduce((n, c) => n + c.cantidad, 0)
     : 0;
@@ -114,7 +123,7 @@ export function consejoDe(mazo: Mazo, a: Analisis): Consejo {
   });
 
   // Plan de juego.
-  const orden = porCoste(mazo);
+  const orden = porCoste(cartas);
   const temprano = orden.filter((c) => Number(c.carta.cmc ?? 0) <= 2).slice(0, 6);
   const medio = orden.filter((c) => {
     const mv = Number(c.carta.cmc ?? 0);
@@ -127,7 +136,7 @@ export function consejoDe(mazo: Mazo, a: Analisis): Consejo {
     })
     .slice(0, 4);
   const cierre = [
-    ...mazo.cartas.filter((c) => rolesDe(c.carta).includes("wincon")),
+    ...cartas.filter((c) => rolesDe(c.carta).includes("wincon")),
     ...orden.filter((c) => Number(c.carta.cmc ?? 0) >= 6),
   ]
     .slice(0, 4)

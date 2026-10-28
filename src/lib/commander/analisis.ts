@@ -77,6 +77,19 @@ const FUERA_DEL_MAZO: ReadonlySet<string> = new Set([
 ]);
 
 /**
+ * ¿Esta entrada forma parte de las 100?
+ *
+ * El companion se declara al empezar la partida y el banquillo y los montones
+ * auxiliares no se barajan: se guardan con el mazo y se pintan en su ficha,
+ * pero no están en la mano inicial. Todo lo que cuente o cite cartas para
+ * jugar tiene que preguntar aquí antes, o acaba nombrando una carta que el
+ * lector no tiene.
+ */
+export function enLasCien(entrada: CartaMazo): boolean {
+  return !FUERA_DEL_MAZO.has(entrada.tablero);
+}
+
+/**
  * ¿Es una tierra básica? El tipo lo dice en cualquier idioma de impresión.
  *
  * Se miran los tipos por separado y no la cadena «basic land»: Scryfall mete
@@ -192,14 +205,12 @@ function permiteRepetir(carta: CartaScryfall): boolean {
  * «Listo» y el contador de la rejilla para que no puedan discrepar.
  */
 export function cuentaDeCartas(entradas: CartaMazo[]): number {
-  return entradas
-    .filter((c) => !FUERA_DEL_MAZO.has(c.tablero))
-    .reduce((n, c) => n + c.cantidad, 0);
+  return entradas.filter(enLasCien).reduce((n, c) => n + c.cantidad, 0);
 }
 
 /** Cartas que van dentro de las 100: todo menos banquillo y montones auxiliares. */
 function cartasDelMazo(mazo: Mazo): CartaMazo[] {
-  return [...mazo.comandantes, ...mazo.cartas].filter((c) => !FUERA_DEL_MAZO.has(c.tablero));
+  return [...mazo.comandantes, ...mazo.cartas].filter(enLasCien);
 }
 
 /**

@@ -2053,6 +2053,50 @@ try {
   fallo("Commander con la red caída", String(e));
 }
 
+// Los mazos guardados de Commander no pueden matar la página al cargar.
+//
+// `leerMazos` devuelve lo que haya en el almacén sin mirar la forma de cada
+// entrada, y `pintarGuardados` da por hecho que todas tienen comandantes y
+// cartas. Un mazo guardado por una versión anterior del formato —o una entrada
+// a medias— lanza al cargar y deja la sección «Mazos guardados» visible y
+// vacía; después, `guardarMazo` revienta en el mismo sitio y ningún mazo nuevo
+// se guarda. Aquí se siembra una entrada nula y un mazo bueno: la mala se tiene
+// que descartar, la buena queda y la página arranca sin excepciones.
+try {
+  const pag = await abrir(`${BASE}/mtgcommander/`);
+  const semilla = JSON.stringify([
+    null,
+    { id: "mazo-bueno", nombre: "Mazo bueno", creado: "2025-01-01T00:00:00.000Z", fuente: "export", comandantes: [], cartas: [], noEncontradas: [] },
+  ]);
+  await evaluar(pag, `(localStorage.setItem("taberna:commander:mazos", ${JSON.stringify(semilla)}), 1)`);
+  await pag.enviar("Page.addScriptToEvaluateOnNewDocument", {
+    source: 'window.__erroresCarga = []; window.addEventListener("error", (e) => window.__erroresCarga.push(String(e.message)));',
+  });
+  await ir(pag, `${BASE}/mtgcommander/`);
+  const d = await evaluar(
+    pag,
+    `(() => {
+      const lista = document.querySelector("#mtg-lista");
+      const seccion = document.querySelector("#mtg-guardados");
+      return {
+        errores: window.__erroresCarga ?? null,
+        filas: lista ? lista.children.length : null,
+        textos: lista ? [...lista.children].map((li) => li.textContent.trim().slice(0, 40)) : [],
+        seccionVisible: seccion ? !seccion.hidden : null,
+      };
+    })()`,
+  );
+  const problemas = [];
+  if (!Array.isArray(d.errores) || d.errores.length) problemas.push(`excepciones al cargar: ${JSON.stringify(d.errores)}`);
+  if (d.filas !== 1) problemas.push(`se esperaba una fila guardada (el mazo bueno) y hay ${d.filas}`);
+  if (!d.textos.some((t) => t.startsWith("Mazo bueno"))) problemas.push(`la fila del mazo bueno no está: ${JSON.stringify(d.textos)}`);
+  if (d.seccionVisible !== true) problemas.push("la sección de guardados se ha quedado oculta con un mazo bueno dentro");
+  if (!problemas.length) bien("Commander con un mazo guardado de forma vieja: se descarta y la lista sigue en pie");
+  else fallo("Commander con un mazo guardado de forma vieja", problemas.join(" · "));
+} catch (e) {
+  fallo("Commander con un mazo guardado de forma vieja", String(e));
+}
+
 // Maqueta en móvil: ninguna página puede pedir scroll horizontal.
 //
 // Las puertas medían el sitio solo en el ancho de escritorio. A 390 px, diez

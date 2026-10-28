@@ -100,8 +100,14 @@ function esBasica(carta: CartaScryfall): boolean {
  * los tipos por separado sobre la cara frontal, como hace `esBasica` con las
  * básicas de nieve; y la segunda puerta se queda porque es la que cubre los
  * planeswalkers con «can be your commander» y los Backgrounds de la pareja.
+ *
+ * Se exporta porque la página de Commander también lo necesita: cuando el
+ * export no trae sección «Commander» busca el comandante entre las cartas del
+ * mazo, y con una copia propia del patrón (`/legendary creature/i`) el mismo
+ * dato daba dos veredictos —la librería lo aceptaba en el análisis y la página
+ * no lo ofrecía como candidato—.
  */
-function esComandante(carta: CartaScryfall): boolean {
+export function esComandante(carta: CartaScryfall): boolean {
   const tipo = tipoFrontal(carta);
   return (/\blegendary\b/i.test(tipo) && /\bcreature\b/i.test(tipo)) || /can be your commander/i.test(textoDe(carta));
 }

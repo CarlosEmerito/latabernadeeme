@@ -882,7 +882,7 @@ import { e } from "../../lib/urls";
 <script>
   import { mensajeDeImportacion, parsearExport } from "../../lib/commander/export";
   import { resolverCartas } from "../../lib/commander/scryfall";
-  import { analizarMazo, contarPorTipo, cuentaDeCartas, type Analisis } from "../../lib/commander/analisis";
+  import { analizarMazo, contarPorTipo, cuentaDeCartas, esComandante, type Analisis } from "../../lib/commander/analisis";
   import { consejoDe } from "../../lib/commander/consejo";
   import { analizarConIA } from "../../lib/commander/ia";
   import { markdownDe, sinIntroduccion } from "../../lib/commander/markdown";
@@ -891,7 +891,6 @@ import { e } from "../../lib/urls";
     NOMBRE_COLOR,
     costeDe,
     imagenDe,
-    textoDe,
     type CartaMazo,
     type Mazo,
   } from "../../lib/commander/tipos";
@@ -1001,9 +1000,9 @@ import { e } from "../../lib/urls";
       let comandantes = cartas.filter((c) => c.tablero === "commander");
       let resto = cartas.filter(enMazo);
       if (!comandantes.length) {
-        const candidatos = resto.filter(
-          (c) => /legendary creature/i.test(c.carta.type_line ?? "") || /can be your commander/i.test(textoDe(c.carta)),
-        );
+        // El predicado es el de la librería: una copia aquí daba dos veredictos
+        // sobre el mismo dato y dejaba fuera a los comandantes de tipo compuesto.
+        const candidatos = resto.filter((c) => esComandante(c.carta));
         if (candidatos.length === 1) {
           comandantes = [candidatos[0]];
           resto = resto.filter((c) => c !== candidatos[0]);

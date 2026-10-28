@@ -19,6 +19,12 @@ contenido de D&D. El recorrido:
    fichas, las atracciones, los planes o los schemes se queda fuera de las 100 —no son el mazo—,
    pero el mensaje de después dice cuántas cartas eran y de qué tablero, y añade las líneas que el
    parser no ha entendido: descartarlas es correcto, callarlo no.
+   Si el export **no trae sección `Commander`**, el comandante se busca entre las cartas del mazo
+   con el mismo predicado que usa el análisis (`esComandante`, en `src/lib/commander/analisis.ts`):
+   un solo criterio para las dos puertas, porque con una copia en la página un dios de Theros
+   (`Legendary Enchantment Creature — God`) entraba en el análisis y no se ofrecía como candidato.
+   Con un candidato se toma solo; con varios se pregunta cuál es; con ninguno, el informe dice que
+   el export tiene que traerlo.
 3. **Se ve entero.** Rejilla con las 100 cartas y su imagen, buscador y filtros por tipo, valor de
    mana, color, rareza y **rol** (rampa, robo, removal, barrido, tutor, protección, wincon…).
    Ficha de carta al pulsar, con texto Oracle, legalidad y precio.

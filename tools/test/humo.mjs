@@ -2019,6 +2019,40 @@ try {
   fallo("Commander", String(e));
 }
 
+// El estado de Commander no pone el tipo del error delante del mensaje.
+//
+// La página enseña el fallo de una importación con `estado(String(error))`, y
+// `String` de un `Error` devuelve «Error: » más el mensaje: el nombre de la
+// clase de JavaScript acaba delante de un texto que se escribió en español y
+// que dice qué hacer. Aquí no se importa nada contra Scryfall —la pasada no
+// depende de la red—: se sustituye `fetch` por uno que rechaza, que es
+// exactamente lo que pasa con la red caída, y se lee lo que queda en pantalla.
+try {
+  const pag = await abrir(`${BASE}/mtgcommander/`);
+  const d = await evaluar(
+    pag,
+    `(async () => {
+      window.fetch = () => Promise.reject(new TypeError("Failed to fetch"));
+      const campo = document.querySelector("#mtg-texto");
+      campo.value = "Deck\\n1 Sol Ring (LTC) 284\\n";
+      document.querySelector("#mtg-importar").click();
+      await new Promise((listo) => setTimeout(listo, 1500));
+      const el = document.querySelector("#mtg-estado");
+      return { texto: el ? el.textContent : "", mal: el ? el.classList.contains("mtg-estado--mal") : null };
+    })()`,
+  );
+  const problemas = [];
+  if (/(^|\n)\s*(Uncaught )?(Type|Range|Reference|Syntax)?Error:/.test(d.texto))
+    problemas.push(`el estado empieza por el tipo del error: «${d.texto}»`);
+  if (!/scryfall/i.test(d.texto)) problemas.push("el estado no nombra la fuente que no ha contestado");
+  if (!/conexi/i.test(d.texto)) problemas.push("el estado no dice qué puede hacer el lector con la conexión");
+  if (d.mal !== true) problemas.push("el estado no se marca como error");
+  if (!problemas.length) bien("Commander con la red caída: el estado nombra la fuente y no publica el tipo del error");
+  else fallo("Commander con la red caída: el estado del panel", problemas.join(" · "));
+} catch (e) {
+  fallo("Commander con la red caída", String(e));
+}
+
 // Maqueta en móvil: ninguna página puede pedir scroll horizontal.
 //
 // Las puertas medían el sitio solo en el ancho de escritorio. A 390 px, diez

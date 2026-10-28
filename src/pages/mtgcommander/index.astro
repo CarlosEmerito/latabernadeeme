@@ -883,6 +883,7 @@ import { e } from "../../lib/urls";
   import { mensajeDeImportacion, parsearExport } from "../../lib/commander/export";
   import { resolverCartas } from "../../lib/commander/scryfall";
   import { analizarMazo, contarPorTipo, cuentaDeCartas, esComandante, type Analisis } from "../../lib/commander/analisis";
+  import { mensajeDeError } from "../../lib/commander/avisos";
   import { consejoDe } from "../../lib/commander/consejo";
   import { analizarConIA } from "../../lib/commander/ia";
   import { markdownDe, sinIntroduccion } from "../../lib/commander/markdown";
@@ -1062,7 +1063,7 @@ import { e } from "../../lib/urls";
       $("#mtg-comandante").hidden = true;
       $("#mtg-ficha").scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (error) {
-      estado(String(error), true);
+      estado(mensajeDeError(error), true);
     }
   }
 
@@ -1375,7 +1376,7 @@ import { e } from "../../lib/urls";
       estadoIA("Listo. La respuesta es una sugerencia del modelo, no una regla.");
       refrescarIA();
     } catch (error) {
-      estadoIA(String(error), true);
+      estadoIA(mensajeDeError(error), true);
     }
   }
 

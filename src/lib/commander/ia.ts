@@ -93,10 +93,12 @@ async function pedir(
   fetchImpl: typeof fetch,
   plazoMs: number,
 ): Promise<RespuestaGemini> {
+  // La clave va en la cabecera, no en la URL: la cadena de consulta queda en el
+  // registro de cualquier intermediario y se copia con la ruta en una captura.
   const respuesta = await conPlazo("Gemini", plazoMs, (senal) =>
-    fetchImpl(`${URL}?key=${encodeURIComponent(clave)}`, {
+    fetchImpl(URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "x-goog-api-key": clave },
       body: JSON.stringify({
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         generationConfig: {

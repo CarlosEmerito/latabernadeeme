@@ -895,8 +895,8 @@ import { e } from "../../lib/urls";
     type Mazo,
   } from "../../lib/commander/tipos";
   import { ROLES, TIPOS_FILTRO, rolesDe, tipoDeCarta, type RolId } from "../../lib/commander/roles";
+  import { CLAVE_MAZOS, leerMazosGuardados } from "../../lib/commander/guardados";
 
-  const CLAVE_MAZOS = "taberna:commander:mazos";
   const CLAVE_IA = "taberna:commander:clave";
 
   const $ = <T extends HTMLElement>(sel: string) => document.querySelector(sel) as T;
@@ -920,11 +920,14 @@ import { e } from "../../lib/urls";
   let pendienteComandante: { mazo: Mazo; candidatos: CartaMazo[] } | null = null;
 
   // ── Guardados ─────────────────────────────────────────────────────────────
+  // Lo que hay en el almacén no es de fiar —una versión anterior del formato, o
+  // una lista tocada a mano, dejaba la página sin arrancar—, así que la forma de
+  // cada mazo la decide `leerMazosGuardados`.
   function leerMazos(): Mazo[] {
     try {
-      const crudo = JSON.parse(localStorage.getItem(CLAVE_MAZOS) ?? "[]");
-      return Array.isArray(crudo) ? crudo : [];
+      return leerMazosGuardados(localStorage.getItem(CLAVE_MAZOS));
     } catch {
+      // Almacenamiento bloqueado: la sección se queda vacía y la página vive.
       return [];
     }
   }

@@ -698,6 +698,50 @@ const cartaJson = (name, set = "tst", cn = "1") => ({
     `una petición colgada tiene que vencer con un mensaje que diga que no ha contestado a tiempo y dio: ${error}`,
   );
 }
+/*
+ * Un `fetch` que no llega no rechaza con un mensaje del sitio: el navegador
+ * lanza «TypeError: Failed to fetch» (Chrome) o «NetworkError when attempting
+ * to fetch resource.» (Firefox). Ese texto acababa tal cual en el estado de la
+ * herramienta —en inglés y sin decir de quién es el fallo—, que es justo lo
+ * que se ve cuando la conexión se cae en mitad de una partida. El lector
+ * necesita un mensaje en español que nombre la fuente; un error HTTP (404,
+ * 429, 500) y el vencimiento del plazo conservan el suyo.
+ */
+{
+  const sinRed = () => Promise.reject(new TypeError("Failed to fetch"));
+  let errorScryfall = "";
+  try {
+    await resolverCartas([{ cantidad: 1, nombre: "Sol Ring", tablero: "main" }], {
+      fetchImpl: sinRed,
+      esperar: async () => {},
+    });
+  } catch (e) {
+    errorScryfall = String(e?.message ?? e);
+  }
+  comprobar(
+    /scryfall/i.test(errorScryfall) && /conexi[oó]n|red|internet/i.test(errorScryfall),
+    `un fallo de red de Scryfall tiene que nombrar la fuente y la conexión, y dice: «${errorScryfall}»`,
+  );
+  comprobar(
+    !/failed to fetch|networkerror/i.test(errorScryfall),
+    `el mensaje crudo del navegador llega al lector: «${errorScryfall}»`,
+  );
+
+  let errorGemini = "";
+  try {
+    await analizarConIA(base, analizarMazo(base), "clave", sinRed);
+  } catch (e) {
+    errorGemini = String(e?.message ?? e);
+  }
+  comprobar(
+    /gemini/i.test(errorGemini) && /conexi[oó]n|red|internet/i.test(errorGemini),
+    `un fallo de red de Gemini tiene que nombrar la fuente y la conexión, y dice: «${errorGemini}»`,
+  );
+  comprobar(
+    !/failed to fetch|networkerror/i.test(errorGemini),
+    `el mensaje crudo del navegador llega al lector: «${errorGemini}»`,
+  );
+}
 
 // ── 5. Consejo ──────────────────────────────────────────────────────────────
 titulo("Consejo determinista");

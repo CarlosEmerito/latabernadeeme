@@ -24,6 +24,52 @@ import type { CartaMazo, Mazo } from "./tipos.ts";
  */
 export const CLAVE_MAZOS = "taberna:commander:mazos";
 
+/** Cuántos mazos caben en el almacén: cada uno lleva sus 100 cartas enteras. */
+export const TOPE_MAZOS = 12;
+
+/**
+ * La lista que queda al guardar un mazo, y los que ha habido que dejar fuera.
+ *
+ * El tope no es un capricho —cada mazo guardado lleva las 100 cartas de
+ * Scryfall enteras, cientos de KB—, pero el descarte no puede ser silencioso:
+ * quien guarda el mazo número trece perdía el más antiguo sin un aviso y sin
+ * que nada en la página dijera que había un tope. Por eso lo que sobra se
+ * devuelve en vez de tirarse aquí: el texto que lo cuenta es cosa de la página,
+ * y el descarte lo decide un solo sitio.
+ *
+ * Volver a guardar un mazo que ya estaba no descarta a nadie: sale de su sitio
+ * y entra por delante.
+ */
+export function guardarEnLista(
+  lista: Mazo[],
+  mazo: Mazo,
+  tope = TOPE_MAZOS,
+): { mazos: Mazo[]; descartados: Mazo[] } {
+  const resto = lista.filter((m) => m.id !== mazo.id);
+  const todos = [mazo, ...resto];
+  const mazos = todos.slice(0, tope);
+  return { mazos, descartados: todos.slice(mazos.length) };
+}
+
+/**
+ * Lo que se le dice al lector cuando su mazo no ha entrado por el tope, o la
+ * cadena vacía si no ha salido ninguno.
+ *
+ * Va con el plural bien puesto y con los nombres entre comillas angulares: un
+ * «ha salido «A», «B»» se lee como un error de la página, y el aviso tiene que
+ * entenderse a la primera porque es el único momento en que el lector se
+ * entera de que su mazo ya no está.
+ */
+export function mensajeDeDescartes(descartados: Mazo[], tope = TOPE_MAZOS): string {
+  if (!descartados.length) return "";
+  const nombres = descartados.map((m) => `«${m.nombre}»`);
+  const enumerado =
+    nombres.length === 1
+      ? nombres[0]
+      : `${nombres.slice(0, -1).join(", ")} y ${nombres[nombres.length - 1]}`;
+  return `Solo se guardan los ${tope} mazos más recientes: ${nombres.length === 1 ? "ha" : "han"} salido ${enumerado}.`;
+}
+
 const esObjeto = (valor: unknown): valor is Record<string, unknown> =>
   typeof valor === "object" && valor !== null && !Array.isArray(valor);
 

@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { e } from "../../lib/urls";
+import { TOPE_MAZOS } from "../../lib/commander/guardados";
 ---
 
 <Base
@@ -55,6 +56,11 @@ import { e } from "../../lib/urls";
 
   <section id="mtg-guardados" class="mtg-guardados" hidden aria-labelledby="mtg-guardados-t">
     <h2 id="mtg-guardados-t">Mazos guardados</h2>
+    <p class="mtg-nota">
+      Se guardan los {TOPE_MAZOS} más recientes. Al guardar otro, el más antiguo sale de la lista: si
+      quieres conservarlo, impórtalo otra vez cuando lo necesites.
+    </p>
+    <p id="mtg-guardados-aviso" class="mtg-guardados__aviso" role="status" aria-live="polite" hidden></p>
     <ul id="mtg-lista" class="mtg-lista"></ul>
   </section>
 
@@ -268,6 +274,16 @@ import { e } from "../../lib/urls";
 
   .mtg-guardados h2 {
     font-size: 1.2rem;
+  }
+
+  .mtg-guardados__aviso {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    border-left: 3px solid var(--accent);
+    padding-left: 0.65rem;
+    margin: 0 0 0.9rem;
+    max-width: 72ch;
   }
 
   .mtg-lista {
@@ -896,7 +912,7 @@ import { e } from "../../lib/urls";
     type Mazo,
   } from "../../lib/commander/tipos";
   import { ROLES, TIPOS_FILTRO, rolesDe, tipoDeCarta, type RolId } from "../../lib/commander/roles";
-  import { CLAVE_MAZOS, leerMazosGuardados } from "../../lib/commander/guardados";
+  import { CLAVE_MAZOS, guardarEnLista, leerMazosGuardados, mensajeDeDescartes } from "../../lib/commander/guardados";
 
   const CLAVE_IA = "taberna:commander:clave";
 
@@ -941,11 +957,23 @@ import { e } from "../../lib/urls";
     }
   }
 
+  /**
+   * Dice qué mazo ha salido al guardar. El tope está escrito en la sección
+   * antes de que pase; esto es lo que faltaba: el descarte del más antiguo era
+   * silencioso y el lector perdía un mazo que tenía guardado sin saberlo.
+   */
+  function avisoDeDescartes(descartados: Mazo[]) {
+    const aviso = $("#mtg-guardados-aviso");
+    const texto = mensajeDeDescartes(descartados);
+    aviso.textContent = texto;
+    aviso.hidden = texto === "";
+  }
+
   function guardarMazo(mazo: Mazo) {
-    const lista = leerMazos().filter((m) => m.id !== mazo.id);
-    lista.unshift(mazo);
-    escribirMazos(lista.slice(0, 12));
+    const { mazos, descartados } = guardarEnLista(leerMazos(), mazo);
+    escribirMazos(mazos);
     pintarGuardados();
+    avisoDeDescartes(descartados);
   }
 
   function borrarMazo(id: string) {
@@ -957,6 +985,8 @@ import { e } from "../../lib/urls";
       $("#mtg-consejo").hidden = true;
     }
     pintarGuardados();
+    // Lo que ya salió de la lista no cambia porque se quite otro.
+    avisoDeDescartes([]);
   }
 
   function pintarGuardados() {

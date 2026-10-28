@@ -135,7 +135,9 @@ Todo estático, como el resto del sitio; el trabajo pesado ocurre en el navegado
 - **Resolución**: `POST /cards/collection` en lotes de 75 con 500 ms entre lotes; por nombre y set
   cuando el export lo trae, por `scryfall_id` si algún día viene de la API.
 - **Caché**: IndexedDB por `scryfall_id`, TTL 7 días (Scryfall pide ≥24 h). Los mazos en
-  `localStorage` (`taberna:commander:mazos`), ~150 KB cada uno.
+  `localStorage` (`taberna:commander:mazos`), ~150 KB cada uno, y se validan al leer
+  (`src/lib/commander/guardados.ts`): una entrada con la forma vieja del formato —o una lista
+  tocada a mano— se descarta en vez de tumbar la página, como `leerIniciativa` con el combate.
 - **Vista**: rejilla con `loading="lazy"`, imagen `small` y `normal` al abrir la ficha; filtros y
   buscador en cliente, sin Pagefind (el mazo no existe en el build).
 - **Consejo determinista**: módulo `src/lib/commander/` con funciones puras (roles, curva,

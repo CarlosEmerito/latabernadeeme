@@ -21,6 +21,24 @@ for (const o of objetosBotin) {
 // Ordenados por nombre para que el JSON publicado sea estable entre compilaciones.
 for (const lista of Object.values(porRareza)) lista.sort((a, b) => a.localeCompare(b, "es"));
 
+// Las rarezas que ofrece el selector. Se sacan del catálogo, no de una lista
+// escrita aquí: con cinco valores fijos, «varía» (12 objetos) y «artefacto»
+// (1: el Orbe Dragontino) no tenían opción y no podían salir nunca del
+// generador —justo las armas, escudos y munición +1/+2/+3, la poción de
+// curación y el pergamino de conjuro, que es lo que se reparte en una partida—,
+// mientras la nota del panel prometía los 258 objetos. El orden es el de la
+// tabla de rarezas del SRD, y una rareza nueva que no esté en esta lista se
+// añade al final en vez de quedarse sin opción.
+const ORDEN_RAREZAS = ["común", "poco común", "raro", "muy raro", "legendario", "varía", "artefacto", "sin rareza"];
+const rarezasBotin = Object.keys(porRareza).sort((a, b) => {
+  const ia = ORDEN_RAREZAS.indexOf(a);
+  const ib = ORDEN_RAREZAS.indexOf(b);
+  if (ia !== ib) return (ia === -1 ? ORDEN_RAREZAS.length : ia) - (ib === -1 ? ORDEN_RAREZAS.length : ib);
+  return a.localeCompare(b, "es");
+});
+/** La etiqueta que se lee en el desplegable: la rareza del catálogo, en mayúscula. */
+const etiquetaRareza = (r: string) => r.charAt(0).toUpperCase() + r.slice(1);
+
 // El panel arranca con el catálogo 5.2.1, así que las dificultades que se
 // publican en el HTML son las suyas. El script las rehace al cambiar de
 // catálogo; estas son las que ve quien lee la página sin ejecutar nada.
@@ -173,11 +191,11 @@ const dificultadInicial = dificultadPorDefecto(catalogoInicial);
       <div class="mesa-fila">
         <label>Rareza
           <select id="bot-rareza" aria-label="Rareza del objeto mágico">
-            <option value="común">Común</option>
-            <option value="poco común" selected>Poco común</option>
-            <option value="raro">Raro</option>
-            <option value="muy raro">Muy raro</option>
-            <option value="legendario">Legendario</option>
+            {rarezasBotin.map((r) => (
+              <option value={r} selected={r === (rarezasBotin.includes("poco común") ? "poco común" : rarezasBotin[0])}>
+                {etiquetaRareza(r)}
+              </option>
+            ))}
           </select>
         </label>
       </div>

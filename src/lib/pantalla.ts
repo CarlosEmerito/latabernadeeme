@@ -231,3 +231,127 @@ export function fueraDePantalla<T extends ReglaDePantalla>(reglas: T[]): T[] {
     );
   return fuera;
 }
+
+/* ── Elección guardada de la pantalla ───────────────────────────────────────
+ *
+ * La pantalla del DM deja al lector elegir qué paneles quiere y guarda la
+ * elección en `localStorage`. La lectura vivía en un `<script>` de la página y
+ * era `c.checked = guardado.includes(id)` sobre una lista de ids marcados: lo
+ * que la lista no nombraba se quedaba oculto, y el primer cambio del lector
+ * reescribía la lista sin él, así que la pérdida quedaba consolidada. Un panel
+ * añadido después de que alguien configurara su pantalla desaparecía para
+ * siempre, sin aviso, mientras el pie de la página seguía prometiendo las
+ * reglas que ese navegador ya no veía (T-0388).
+ *
+ * El formato que se guarda ahora lleva **todos** los ids conocidos con su
+ * estado:
+ *
+ *   { "v": 2, "paneles": { "combate": true, "social": false, … } }
+ *
+ * con lo que un id ausente solo puede significar una cosa: el panel no existía
+ * cuando se guardó, y entonces se ve. Un id que ya no existe se ignora. Y el
+ * formato viejo (un array con solo los marcados) no se puede desambiguar —la
+ * ausencia es «lo apagó» o «no existía», y no hay forma de saberlo—, así que no
+ * se oculta nada que no conste apagado: se respeta lo marcado y lo que no
+ * consta se deja a la vista. Cuesta una vez que un lector que había apagado un
+ * panel lo vuelva a ver; esconder un panel nuevo cuesta para siempre y sin
+ * decirlo. La lista vacía del formato viejo se mantiene: «el DM apagó todo» es
+ * una elección y se respeta.
+ */
+
+/** La clave de `localStorage` donde se guarda la elección de la pantalla. */
+export const CLAVE_PANELES = "taberna:pantalla";
+
+/** La versión del formato guardado: lo que no la declare no es nuestro. */
+const VERSION = 2;
+
+/**
+ * El mínimo de `localStorage` que hace falta aquí, para que la lectura se pueda
+ * probar con un doble sin abrir un navegador.
+ */
+export interface Almacen {
+  getItem(clave: string): string | null;
+  setItem(clave: string, valor: string): void;
+}
+
+export interface EstadoDePaneles {
+  /** Ids que van a la vista, en el orden de `ids`. */
+  visibles: string[];
+  /** Ids conocidos que el lector apagó a propósito. */
+  ocultos: string[];
+}
+
+const esObjeto = (valor: unknown): valor is Record<string, unknown> =>
+  typeof valor === "object" && valor !== null && !Array.isArray(valor);
+
+/**
+ * Qué ids están apagados a propósito, según lo guardado.
+ *
+ * Devuelve solo las decisiones explícitas: un id que no aparece no está ni
+ * encendido ni apagado, y quien llama lo deja a la vista.
+ */
+interface Guardado {
+  /** El lector apagó todo: el formato viejo con la lista vacía. */
+  todoApagado: boolean;
+  /** Ids que constan apagados uno a uno. */
+  apagados: Set<string>;
+}
+
+function apagados(crudo: string | null): Guardado | null {
+  if (crudo === null || crudo.trim() === "") return null;
+  let dato: unknown;
+  try {
+    dato = JSON.parse(crudo);
+  } catch {
+    return null;
+  }
+
+  // Formato viejo: un array con los ids marcados. Lo que la lista no menciona no
+  // se puede distinguir de un panel que aún no existía, así que no se apaga; la
+  // lista vacía sí, porque entonces no marcó nada nadie.
+  if (Array.isArray(dato)) {
+    return dato.length === 0 ? { todoApagado: true, apagados: new Set() } : null;
+  }
+
+  if (!esObjeto(dato) || dato.v !== VERSION || !esObjeto(dato.paneles)) return null;
+  const apagados = new Set<string>();
+  for (const [id, visible] of Object.entries(dato.paneles)) {
+    if (visible === false) apagados.add(id);
+  }
+  return { todoApagado: false, apagados };
+}
+
+/** Qué paneles se ven con la elección guardada en `crudo`. */
+export function leerPaneles(crudo: string | null, ids: string[]): EstadoDePaneles {
+  const conocidos = [...new Set(ids)];
+  const guardado = apagados(crudo);
+  const visibles = guardado?.todoApagado
+    ? []
+    : conocidos.filter((id) => !guardado?.apagados.has(id));
+  return { visibles, ocultos: conocidos.filter((id) => !visibles.includes(id)) };
+}
+
+/** Qué paneles se ven en este navegador. Un almacén que lanza deja todo a la vista. */
+export function leerDeAlmacen(almacen: Almacen | null, ids: string[]): EstadoDePaneles {
+  let crudo: string | null = null;
+  try {
+    crudo = almacen ? almacen.getItem(CLAVE_PANELES) : null;
+  } catch {
+    crudo = null;
+  }
+  return leerPaneles(crudo, ids);
+}
+
+/**
+ * Guarda la elección con **todos** los ids conocidos y su estado, para que la
+ * próxima lectura no tenga que adivinar nada. Si el almacén no deja escribir
+ * (modo restringido, cuota llena) la pantalla sigue funcionando en esta visita.
+ */
+export function guardarEnAlmacen(almacen: Almacen | null, ids: string[], visibles: string[]): void {
+  const puesto = new Set(visibles);
+  const paneles: Record<string, boolean> = {};
+  for (const id of new Set(ids)) paneles[id] = puesto.has(id);
+  try {
+    almacen?.setItem(CLAVE_PANELES, JSON.stringify({ v: VERSION, paneles }));
+  } catch {}
+}

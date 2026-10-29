@@ -83,26 +83,29 @@ const extracto = (texto: string) => {
   </p>
 
   <script>
-    const CLAVE = "taberna:pantalla";
+    import { guardarEnAlmacen, leerDeAlmacen } from "../../../lib/pantalla";
+
     const casillas = [...document.querySelectorAll<HTMLInputElement>("#config input[data-panel]")];
     const paneles = [...document.querySelectorAll<HTMLElement>(".pantalla [data-panel]")];
+    const ids = casillas.map((c) => c.dataset.panel!);
+
+    // `localStorage` puede no existir o no dejarse ni mirar (modo restringido).
+    let almacen: Storage | null = null;
+    try {
+      almacen = window.localStorage;
+    } catch {}
+
+    // Qué se ve lo decide `leerDeAlmacen`: la página no interpreta la lista
+    // guardada, solo asigna. Un panel que la elección no menciona se ve.
+    const { visibles } = leerDeAlmacen(almacen, ids);
+    for (const c of casillas) c.checked = visibles.includes(c.dataset.panel!);
 
     const aplicar = () => {
-      for (const c of casillas) {
-        for (const p of paneles) if (p.dataset.panel === c.dataset.panel) p.hidden = !c.checked;
-      }
-      try {
-        localStorage.setItem(
-          CLAVE,
-          JSON.stringify(casillas.filter((c) => c.checked).map((c) => c.dataset.panel)),
-        );
-      } catch {}
+      const marcados = casillas.filter((c) => c.checked).map((c) => c.dataset.panel!);
+      for (const p of paneles) p.hidden = !marcados.includes(p.dataset.panel!);
+      // Se guardan los nueve ids con su estado: lo que no conste apagado, se ve.
+      guardarEnAlmacen(almacen, ids, marcados);
     };
-
-    try {
-      const guardado = JSON.parse(localStorage.getItem(CLAVE) || "null") as string[] | null;
-      if (guardado) for (const c of casillas) c.checked = guardado.includes(c.dataset.panel!);
-    } catch {}
 
     for (const c of casillas) c.addEventListener("change", aplicar);
     aplicar();

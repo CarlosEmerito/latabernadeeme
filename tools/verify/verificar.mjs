@@ -174,6 +174,20 @@
  *      fichero, y que `a.download` salga de él y no del nombre, y se
  *      autocomprueba con un payload sin slug, con uno que no es el de la
  *      carpeta, con uno que empieza por guion y con la línea vieja del fuente.
+ *  41. `tools/test/pantalla-guardado.mjs`: que la elección guardada de la
+ *      pantalla del DM no esconda paneles en silencio. La lista guardada se leía
+ *      con `guardado.includes(id)`, así que lo que no nombraba se ocultaba —un
+ *      panel añadido después de configurarse la pantalla incluido— y el primer
+ *      cambio del lector reescribía la lista sin él: la pérdida quedaba
+ *      consolidada, sin aviso, mientras el pie seguía prometiendo esas reglas.
+ *      La lectura vive ahora en `src/lib/pantalla.ts` (`leerPaneles`,
+ *      `leerDeAlmacen`, `guardarEnAlmacen`) y guarda todos los ids conocidos con
+ *      su estado; el paso prueba sin navegador lo que no se puede leer (nada,
+ *      JSON roto, un valor que no es lista, un `localStorage` que lanza: todo a
+ *      la vista), el formato nuevo (exactamente lo marcado, y un id ausente
+ *      visible), la lista vacía como «nada», el id que ya no existe y la
+ *      migración del formato viejo, y exige que la página no vuelva a
+ *      interpretar la lista con `JSON.parse`.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -465,5 +479,12 @@ if (descarga !== 0) {
   process.exit(descarga);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas, los mazos guardados de Commander validados al leer, el almacén de la iniciativa del humo vacío al empezar y al terminar, el filtro de nivel del humo esperando al efecto, el humo midiendo el tema oscuro con axe y el nombre del fichero que descarga el botón JSON)");
+console.log("▶ Elección guardada de la pantalla: pantalla-guardado.mjs (src/lib/ y src/pages/)");
+const pantallaGuardado = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/pantalla-guardado.mjs")]);
+if (pantallaGuardado !== 0) {
+  console.error("✗ La pantalla del DM esconde paneles que el lector no apagó: su elección guardada no se valida al leer.");
+  process.exit(pantallaGuardado);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas, los mazos guardados de Commander validados al leer, el almacén de la iniciativa del humo vacío al empezar y al terminar, el filtro de nivel del humo esperando al efecto, el humo midiendo el tema oscuro con axe, el nombre del fichero que descarga el botón JSON y la elección guardada de la pantalla del DM)");
 

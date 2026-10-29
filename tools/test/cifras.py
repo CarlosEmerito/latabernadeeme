@@ -227,9 +227,12 @@ RE_PASOS_EN_VERIFICACION = (
 
 # Los números escritos con letras que usan los documentos. Llega hasta el 99, que
 # es de sobra para una suite de pasos, y no acepta nada que no sea un número.
+# «un» va aparte de «uno» porque delante del sustantivo la cifra se apocopa:
+# «cuarenta y un pasos» es lo que se escribe en español, no «cuarenta y uno pasos».
 UNIDADES = {
     "cero": 0,
     "uno": 1,
+    "un": 1,
     "dos": 2,
     "tres": 3,
     "cuatro": 4,

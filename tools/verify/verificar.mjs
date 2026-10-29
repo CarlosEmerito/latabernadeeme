@@ -162,6 +162,18 @@
  *      `prefers-color-scheme`. La puerta vigila la estrategia en el fuente
  *      —emulación del medio, valor oscuro, confirmación con `matchMedia` antes
  *      de medir y `axeEn` después— y se autocomprueba tapando cada pieza.
+ *  40. `tools/test/descarga.mjs`: que el botón «JSON» de una ficha descargue el
+ *      fichero con el nombre de la entrada. El nombre se armaba recortando el
+ *      nombre visible con `[^a-z0-9]`, que no pliega los acentos sino que los
+ *      cambia por guiones: «Águila» descargaba `-guila.json`, «Bastón de
+ *      madera» `bast-n-de-madera.json` y «Vara (3 m)» `vara-3-m-.json` —759 de
+ *      las 2 502 entradas de `data/` y 26 con guion delante—. El sitio ya tiene
+ *      `slugify()` y cada entrada trae su `slug`; lo que faltaba era que el
+ *      payload de `#datos-entrada` lo llevara. La puerta exige el slug en todas
+ *      las fichas publicadas, igual al de su carpeta y servible como nombre de
+ *      fichero, y que `a.download` salga de él y no del nombre, y se
+ *      autocomprueba con un payload sin slug, con uno que no es el de la
+ *      carpeta, con uno que empieza por guion y con la línea vieja del fuente.
  *
  * Si `dist/` no existe (clon recién hecho), compila el sitio antes del segundo
  * paso. El intérprete se puede forzar con `PYTHON=/ruta/python`.
@@ -446,5 +458,12 @@ if (humoAxe !== 0) {
   process.exit(humoAxe);
 }
 
-console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas, los mazos guardados de Commander validados al leer, el almacén de la iniciativa del humo vacío al empezar y al terminar, el filtro de nivel del humo esperando al efecto y el humo midiendo el tema oscuro con axe)");
+console.log("▶ Nombre del fichero que descarga el botón JSON: descarga.mjs (dist/ y src/components/Detalle.astro)");
+const descarga = ejecutar(process.execPath, [path.join(RAIZ, "tools/test/descarga.mjs")]);
+if (descarga !== 0) {
+  console.error("✗ El botón «JSON» descarga el fichero con el nombre recortado: las tildes y la eñe se cambian por guiones.");
+  process.exit(descarga);
+}
+
+console.log("✓ Datos, enlaces, ids, filtro, filtro de tamaño, alineación del comparador, columnas, iconos, alias, iniciativa, código muerto, fuentes, línea de tipo, metadatos sociales, nombres repetidos, títulos únicos por sección, cifras de los informes y la que la documentación declara de Commander, apartados del comparador, presupuesto de encuentros, emparejamiento entre ediciones, gastos del 5.2.1, Markdown copiado, bytecode sin versionar, búsqueda de criaturas sin tilde, reglas de la pantalla del DM, espera de carga de las pestañas del humo, pie de página del PDF, texto de rasgos y acciones sin cortar, texto de la página de cambios correcto, botín de la Mesa del 5.2.1, el aviso del catálogo caído del constructor de encuentros, la puerta de huérfanos mirando tools/, la herramienta de Commander (export, roles, legalidad y bracket), el índice delgado de la tarjeta emergente, las fichas de objetos completas, los mazos guardados de Commander validados al leer, el almacén de la iniciativa del humo vacío al empezar y al terminar, el filtro de nivel del humo esperando al efecto, el humo midiendo el tema oscuro con axe y el nombre del fichero que descarga el botón JSON)");
 

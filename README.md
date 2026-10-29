@@ -92,7 +92,7 @@ La ingesta es la parte delicada: un PDF a dos columnas se rompe en cualquier sit
 ```bash
 npm run build           # compila dist/
 npm run verificar       # 39 pasos: datos, enlaces, ids, filtros, alias, SEO, cifras, Commander… (sin navegador)
-npm run verificar:humo  # pruebas de humo en Chrome headless, maqueta a 360 y 390 px incluida
+npm run verificar:humo  # pruebas de humo en Chrome headless: axe en los dos temas y maqueta a 360 y 390 px
 ```
 
 `verificar` corre en cada publicación antes de subir el artefacto: un enlace roto, un dato descuadrado o dos fichas con el mismo nombre paran el despliegue. Lo que comprueba cada paso —y el fallo que lo motivó— está en **[docs/VERIFICACION.md](docs/VERIFICACION.md)**.

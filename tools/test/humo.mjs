@@ -75,6 +75,51 @@ async function axeEn(pag, etiqueta) {
   else fallo(`axe ${etiqueta}`, JSON.stringify(res));
 }
 
+/** El fondo del tema claro: si el «oscuro» midiera este, axe estaría midiendo lo de siempre. */
+const FONDO_CLARO = "rgb(251, 251, 249)";
+
+/**
+ * Pasa axe a unas páginas con el tema oscuro puesto, que es lo que promete
+ * `/accesibilidad/` («todos los textos superan el 4,5:1 en ambos temas»).
+ *
+ * El tema se decide al cargar: `Base.astro` aplica `prefers-color-scheme` (o la
+ * elección guardada por el conmutador) en `data-tema`. Así que la emulación va
+ * **antes** de navegar: puesta después, el documento ya está pintado en claro y
+ * `axeEn` mediría el tema claro llamándolo oscuro. Y antes de medir se confirma
+ * que el navegador se ha quedado en oscuro; si no, sale en rojo en vez de dar
+ * por bueno el contraste del tema claro.
+ */
+async function axeEnTemaOscuro(casos) {
+  const pag = await abrir(`${BASE}/`);
+  await pag.enviar("Emulation.setEmulatedMedia", {
+    features: [{ name: "prefers-color-scheme", value: "dark" }],
+  });
+  // La elección del conmutador manda sobre el sistema: se quita para que decida
+  // la preferencia emulada y la comprobación no dependa de lo que guarde el perfil.
+  await evaluar(pag, `localStorage.removeItem("tema")`);
+  for (const [ruta, etiqueta] of casos) {
+    await ir(pag, `${BASE}${ruta}`);
+    const tema = await evaluar(
+      pag,
+      `(() => ({
+        emulado: matchMedia("(prefers-color-scheme: dark)").matches,
+        aplicado: document.documentElement.dataset.tema,
+        fondo: getComputedStyle(document.body).backgroundColor,
+        color: getComputedStyle(document.body).color,
+      }))()`,
+    );
+    if (!tema?.emulado || tema.aplicado !== "oscuro" || tema.fondo === FONDO_CLARO) {
+      fallo(
+        `axe ${etiqueta} en tema oscuro`,
+        `no se mide: el navegador no se ha quedado en oscuro ${JSON.stringify(tema)}`,
+      );
+      continue;
+    }
+    await axeEn(pag, `${etiqueta} en tema oscuro`);
+  }
+  await pag.enviar("Emulation.clearEmulatedMedia");
+}
+
 const portada = await abrir(`${BASE}/`);
 try {
   const d = await evaluar(portada, `({h1: document.querySelectorAll('h1').length, ediciones: document.querySelectorAll('.edicion-carta').length, titulo: document.title})`);
@@ -2225,6 +2270,20 @@ try {
   else fallo("maqueta en móvil", malos.join(" · "));
 } catch (e) {
   fallo("maqueta en móvil", String(e));
+}
+
+// Contraste en el tema oscuro: `/accesibilidad/` promete el mismo 4,5:1 en los
+// dos temas, y el oscuro es una paleta propia (no una inversión del claro), así
+// que una regresión ahí no la veía ninguna puerta: las dieciséis pasadas de axe
+// medían el tema que decidiera el perfil de Chrome, que arranca en claro.
+try {
+  await axeEnTemaOscuro([
+    ["/", "portada"],
+    ["/5.5/monstruos/guerrero-goblin/", "ficha de monstruo"],
+    ["/mesa/", "mesa del DM"],
+  ]);
+} catch (e) {
+  fallo("axe en tema oscuro", String(e));
 }
 
 // Enlaces internos roos: se comprueban sobre el HTML compilado, no en el navegador.

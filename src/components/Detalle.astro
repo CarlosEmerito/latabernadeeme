@@ -56,6 +56,9 @@ const exportable = {
   tipo,
   edicion,
   srd: edicion === "5e" ? "SRD 5.1" : "SRD 5.2.1",
+  // El slug de la entrada es el nombre de su carpeta y de su URL, ya plegado y
+  // sin guiones de adorno: es el que sirve para nombrar el fichero descargado.
+  slug: entrada.slug,
   datos: d,
   markdown: entrada.body,
 };
@@ -240,7 +243,13 @@ const exportable = {
 
   const crudo = document.getElementById("datos-entrada")?.textContent;
   if (crudo) {
-    const datos = JSON.parse(crudo) as { tipo: string; srd: string; datos: Record<string, any>; markdown: string };
+    const datos = JSON.parse(crudo) as {
+      tipo: string;
+      srd: string;
+      slug: string;
+      datos: Record<string, any>;
+      markdown: string;
+    };
     const aviso = document.getElementById("aviso-copia");
     const decir = (t: string) => {
       if (!aviso) return;
@@ -264,7 +273,7 @@ const exportable = {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${String(datos.datos.name).toLowerCase().replace(/[^a-z0-9]+/g, "-")}.json`;
+      a.download = `${datos.slug}.json`;
       a.click();
       URL.revokeObjectURL(url);
       decir("Descargado.");

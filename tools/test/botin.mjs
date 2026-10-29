@@ -93,6 +93,51 @@ export function revisar(pool, catalogo, rarezas = RAREZAS) {
 const fallos = [];
 let comprobados = 0;
 
+/**
+ * Las rarezas que el desplegable del panel ofrece de verdad, leídas del HTML
+ * publicado.
+ *
+ * `RAREZAS`, arriba, es una constante del test: comprueba el pool contra una
+ * lista escrita a mano, así que la lista y el selector pueden separarse sin que
+ * nada lo diga. Lo que el lector puede pedir está en el HTML, y es de ahí de
+ * donde se lee.
+ */
+export function rarezasDelSelector(html) {
+  const m = /<select id="bot-rareza"[^>]*>([\s\S]*?)<\/select>/.exec(String(html ?? ""));
+  if (!m) return null;
+  return [...m[1].matchAll(/<option value="([^"]*)"/g)].map((o) => o[1]);
+}
+
+/**
+ * El catálogo entero tiene que ser alcanzable desde el panel.
+ *
+ * Dos cosas distintas, y las dos se ven en la mesa: cada rareza del catálogo
+ * con su opción en el selector —si no, sus objetos no se pueden pedir— y cada
+ * objeto apareciendo en el pool de una rareza que el selector ofrece.
+ */
+export function revisarAlcance(pool, catalogo, opciones) {
+  const problemas = [];
+  if (!opciones) return ["la página no publica el selector de rareza (#bot-rareza)"];
+
+  for (const rareza of Object.keys(catalogo)) {
+    if (!opciones.includes(rareza)) {
+      problemas.push(
+        `el selector no ofrece la rareza «${rareza}», que sí está en el catálogo (${catalogo[rareza].length} objeto(s) que no pueden salir)`,
+      );
+    }
+  }
+  for (const [rareza, objetos] of Object.entries(catalogo)) {
+    for (const objeto of objetos) {
+      if (!opciones.some((opcion) => (pool?.[opcion] ?? []).includes(objeto))) {
+        problemas.push(
+          `«${objeto}» (rareza «${rareza}») no puede salir nunca: ninguna opción del selector lleva a su rareza`,
+        );
+      }
+    }
+  }
+  return problemas;
+}
+
 // El ejemplo: el pool con todo el catálogo del 5.2.1 no da ningún problema.
 const catalogoReal = fs.existsSync(CATALOGO) ? objetosPorRareza(CATALOGO) : {};
 const catalogo = Object.fromEntries(RAREZAS.map((r) => [r, catalogoReal[r] ?? []]));
@@ -128,6 +173,46 @@ if (!fs.existsSync(PAGINA)) {
 } else {
   const problemas = revisar(poolPublicado(fs.readFileSync(PAGINA, "utf8")), catalogo);
   for (const problema of problemas) fallos.push(`el botín de /mesa/: ${problema}`);
+}
+
+/* El alcance: la página de verdad, con las opciones que ofrece su selector.
+   `revisar` mira el pool contra cinco rarezas escritas en el test; esto mira lo
+   que el lector puede pedir, que es lo que decide si un objeto se reparte o se
+   queda en el JSON para siempre. */
+if (!fs.existsSync(PAGINA)) {
+  comprobados++;
+  fallos.push(`no hay página publicada donde leer el selector de rareza (${PAGINA})`);
+} else {
+  const html = fs.readFileSync(PAGINA, "utf8");
+  const opciones = rarezasDelSelector(html);
+  comprobados++;
+  for (const problema of revisarAlcance(poolPublicado(html), catalogoReal, opciones)) {
+    fallos.push(`el botín de /mesa/: ${problema}`);
+  }
+
+  /* La autocomprobación: con las opciones del catálogo entero no hay problema,
+     y quitar una deja en rojo nombrando lo que se queda fuera. Sin esto la
+     puerta podría estar en verde por no mirar ninguna opción. */
+  const todas = Object.keys(catalogoReal);
+  comprobados++;
+  const completo = Object.fromEntries(
+    todas.map((r) => [r, [...catalogoReal[r]]]),
+  );
+  if (revisarAlcance(completo, catalogoReal, todas).length > 0) {
+    fallos.push("un selector con todas las rarezas del catálogo ya sale con problemas");
+  }
+
+  for (const rareza of todas) {
+    comprobados++;
+    const sinUna = todas.filter((r) => r !== rareza);
+    const problemas = revisarAlcance(completo, catalogoReal, sinUna);
+    const testigo = (catalogoReal[rareza] ?? [])[0];
+    if (!problemas.some((p) => p.includes(`«${rareza}»`))) {
+      fallos.push(`quitar la rareza «${rareza}» del selector no pone la puerta en rojo`);
+    } else if (testigo && !problemas.some((p) => p.includes(`«${testigo}»`))) {
+      fallos.push(`quitar la rareza «${rareza}» no nombra «${testigo}», que deja de poder salir`);
+    }
+  }
 }
 
 console.log(`Botín de la Mesa: ${comprobados} casos comprobados; un objeto del catálogo que no puede salir se ve.`);
